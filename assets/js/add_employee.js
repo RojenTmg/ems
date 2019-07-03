@@ -105,3 +105,119 @@ function addNationality()
             }
         }
 }
+function addEmergency()
+{
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('POST','addEmergency',true);
+        var data = new FormData();
+        data.append('cpname',document.getElementById('cpname').value);
+        data.append('cpaddress',document.getElementById('cpaddress').value);
+        data.append('cpcontact',document.getElementById('cpcontact').value);
+        xmlHttp.send(data);
+
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+              var status = xmlHttp.responseText;
+               document.getElementById('responseEC').style.display="block";
+                     if(status=='true')
+                     {
+                        document.getElementById('responseEC').className="alert alert-success";
+                        document.getElementById('responseEC').innerHTML="<p>Successfully Updated</p>";
+                     }
+                  else
+                  {
+                    document.getElementById('responseEC').className="alert alert-danger";
+                    document.getElementById('responseEC').innerHTML=status;
+                  }
+            }
+        }
+}
+function addEducation()
+{
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('POST','addEducation',true);
+        var data = new FormData();
+        data.append('highestdegree',document.getElementById('highestdegree').value);
+        data.append('previousemployer',document.getElementById('previousemployer').value);
+        xmlHttp.send(data);
+
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+              var status = xmlHttp.responseText;
+               document.getElementById('responseE').style.display="block";
+                     if(status=='true')
+                     {
+                        document.getElementById('responseE').className="alert alert-success";
+                        document.getElementById('responseE').innerHTML="<p>Successfully Updated</p>";
+                     }
+                  else
+                  {
+                    document.getElementById('responseE').className="alert alert-danger";
+                    document.getElementById('responseE').innerHTML=status;
+                  }
+            }
+        }
+}
+function addHealth()
+{
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('POST','addHealth',true);
+        var data = new FormData();
+        data.append('bloodgroup',document.getElementById('bloodgroup').value);
+        data.append('medicalcomplications',document.getElementById('medicalcomplications').value);
+        data.append('regularmedication',document.getElementById('regularmedication').value);
+        data.append('others',document.getElementById('others').value);
+        xmlHttp.send(data);
+
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+              var status = xmlHttp.responseText;
+               document.getElementById('responseH').style.display="block";
+                     if(status=='true')
+                     {
+                        document.getElementById('responseH').className="alert alert-success";
+                        document.getElementById('responseH').innerHTML="<p>Successfully Updated</p>";
+                     }
+                  else
+                  {
+                    document.getElementById('responseH').className="alert alert-danger";
+                    document.getElementById('responseH').innerHTML=status;
+                  }
+            }
+        }
+}
+function addPan()
+{
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('POST','addPan',true);
+        var data = new FormData();
+        data.append('pan',document.getElementById('pan').value);
+        xmlHttp.send(data);
+
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+              var status = xmlHttp.responseText;
+               document.getElementById('responseP').style.display="block";
+                     if(status=='true')
+                     {
+                        document.getElementById('responseP').className="alert alert-success";
+                        document.getElementById('responseP').innerHTML="<p>Successfully Updated</p>";
+                     }
+                  else
+                  {
+                    document.getElementById('responseP').className="alert alert-danger";
+                    document.getElementById('responseP').innerHTML=status;
+                  }
+            }
+        }
+}

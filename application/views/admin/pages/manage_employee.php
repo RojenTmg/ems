@@ -32,7 +32,18 @@
  <div style="display: none" id="responseEC">
  </div>    
  <!-- ends here     -->
-
+ <!-- showing response for education tab -->
+ <div style="display: none" id="responseE">
+ </div>    
+ <!-- ends here     -->
+  <!-- showing response for health tab -->
+ <div style="display: none" id="responseH">
+ </div>    
+ <!-- ends here     -->
+  <!-- showing response for PAN tab -->
+ <div style="display: none" id="responseP">
+ </div>    
+ <!-- ends here     -->
     <div class="box box-tab" id="general" >
       <div class="box-head" onclick="slide(this)">
         <div  class="prog-status">
@@ -167,18 +178,18 @@
         <form class="form">
           <div class="form-div">
             <label>Incase of emergency: Contact Person's Name</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="cpname" placeholder="">
           </div>
            <div class="form-div">
             <label>Incase of emergency: Contact Person's Address</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="cpaddress" placeholder="">
           </div>
            <div class="form-div">
             <label>Incase of emergency: Contact Person's Phone No.</label>
-            <input type="number" name="" placeholder="">
+            <input type="number" id="cpcontact" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -197,14 +208,14 @@
         <form class="form">
           <div class="form-div">
             <label>Highest Education Degree</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="highestdegree" placeholder="">
           </div>
           <div class="form-div">
             <label>Previous Employer</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="previousemployer" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -223,15 +234,15 @@
         <form class="form">
            <div class="form-div">
             <label>Blood Group</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="bloodgroup" placeholder="">
           </div>
           <div class="form-div">
             <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="medicalcomplications" placeholder="">
           </div>
           <div class="form-div">
             <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="regularmedication" placeholder="">
           </div>
           <div class="form-div">
             <label>Any Allergies</label>
@@ -248,10 +259,10 @@
           </div>
           <div class="form-div">
             <label>If any, please mention</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="others" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -270,11 +281,11 @@
         <form class="form">
           <div class="form-div">
             <label>PAN Number</label>
-            <input type="number" name="" placeholder="">
+            <input type="number" id="pan" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button"  name="" value="Cancel" class="can">
           </div>
         </form>
       </div>

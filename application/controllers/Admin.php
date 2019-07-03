@@ -111,7 +111,107 @@ public function addNationality()
 			}
 			echo $status;
 }
+public function addEmergency()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('cpname','Contact Person Name','required',array('required' => 'You must provide detail of %s.'));
+
+		$this->form_validation->set_rules('cpaddress','Address','required',array('required' => 'You must provide address of contact person'));
+
+		$this->form_validation->set_rules('cpcontact','contact','required',array('required' => 'You must provide contact details of person.'));
 
 
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'cpname'=>$cpname,
+					'cpaddress'=>$cpaddress,
+					'cpcontact'=>$cpcontact
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addEducation()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('highestdegree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
+
+		$this->form_validation->set_rules('previousemployer','previousemployer','required',array('required' => 'You must provide name of previous employer'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'highestdegree'=>$highestdegree,
+					'previousemployer'=>$previousemployer
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addHealth()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('bloodgroup','Blood Group','required',array('required' => 'You must provide %s'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'bloodgroup'=>$bloodgroup,
+					'medicalcomplications'=>$medicalcomplications,
+					'regularmedication'=>$regularmedication,
+					'others'=>$others
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addPan()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'pan'=>$pan
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
 	}
 ?>
