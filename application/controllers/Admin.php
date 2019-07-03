@@ -80,5 +80,38 @@ public function addContact()
 			}
 			echo $status;
 }
+public function addNationality()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
+
+		$this->form_validation->set_rules('permission','Permission','required',array('required' => 'You must select a %s.'));
+
+		$this->form_validation->set_rules('visatype','Visa Type','required',array('required' => 'You must provide a %s.'));
+
+		$this->form_validation->set_rules('passport','Passport Number','required',array('required' => 'You must provide a %s.'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'nationality'=>$nationality,
+					'permission'=>$permission,
+					'visatype'=>$visatype,
+					'passport'=>$passport
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+
+
 	}
 ?>

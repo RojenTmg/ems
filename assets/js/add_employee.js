@@ -1,3 +1,13 @@
+// this function returns the value of radio button of same group
+function getSelectedValue(groupName) {
+    var radios = document.getElementsByName(groupName);
+    for( i = 0; i < radios.length; i++ ) {
+        if( radios[i].checked ) {
+            return radios[i].value;
+        }
+    }
+    return null;
+}
 
 function addcontact()
 {
@@ -57,6 +67,40 @@ function general()
                   {
                     document.getElementById('responseG').className="alert alert-danger";
                     document.getElementById('responseG').innerHTML=status;
+                  }
+            }
+        }
+}
+
+
+function addNationality()
+{
+    var nationality=getSelectedValue('nationality');
+    var permission=getSelectedValue('permission');
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('POST','addNationality',true);
+        var data = new FormData();
+        data.append('nationality',nationality);
+        data.append('permission',permission);
+        data.append('visatype',document.getElementById('visatype').value);
+        data.append('passport',document.getElementById('passport').value);
+        xmlHttp.send(data);
+
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+              var status = xmlHttp.responseText;
+               document.getElementById('responseN').style.display="block";
+                     if(status=='true')
+                     {
+                        document.getElementById('responseN').className="alert alert-success";
+                        document.getElementById('responseN').innerHTML="<p>Successfully Updated</p>";
+                     }
+                  else
+                  {
+                    document.getElementById('responseN').className="alert alert-danger";
+                    document.getElementById('responseN').innerHTML=status;
                   }
             }
         }

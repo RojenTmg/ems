@@ -16,12 +16,20 @@
       <h4>Update Profile</h4>
     </div>
 
-    <!-- showing response -->
+    <!-- showing response for general tab-->
  <div style="display: none" id="responseG">
  </div>    
  <!-- ends here     -->
-    <!-- showing response -->
+    <!-- showing response for contact tab-->
  <div style="display: none" id="responseC">
+ </div>    
+ <!-- ends here     -->
+ <!-- showing response for nationality tab -->
+ <div style="display: none" id="responseN">
+ </div>    
+ <!-- ends here     -->
+ <!-- showing response for emergency contact tab -->
+ <div style="display: none" id="responseEC">
  </div>    
  <!-- ends here     -->
 
@@ -106,16 +114,16 @@
         <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
       </div>
       <div class="box-body">
-        <form class="form">
+        <form name="nationality-tab" class="form">
           <div class="form-div">
             <label>Nationality</label>
             <div>
               <div>
-                <input type="checkbox" name="nepalese">
+                <input type="radio" name="nationality" checked="true" value="nepalese">
                 <label>Nepalese</label>
               </div>
               <div>
-                <input type="checkbox" name="non-nepalese">
+                <input type="radio" name="nationality" value="non-nepalese">
                 <label>Non-Nepalese</label>
               </div>
             </div>
@@ -123,24 +131,24 @@
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="checkbox" name="yes">
+              <input type="radio" name="permission" checked="true" value="yes">
               <label>Yes</label>
             </div>
             <div>
-              <input type="checkbox" name="no">
+              <input type="radio" name="permission" value="no">
               <label>No</label>
             </div>
           </div>
           <div class="form-div">
             <label>If yes, please specify your visa type and visa end date </label>
-            <input type="text" name="visatype" placeholder="">
+            <input type="text" id="visatype" placeholder="">
           </div>
           <div class="form-div">
             <label>Citizenship/Passport No. and Place of Issue</label>
-            <input type="text" name="passport" placeholder="">
+            <input type="number" id="passport" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="nationality()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>

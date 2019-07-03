@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['admin/addGeneral'] = 'Admin/addGeneral';
 $route['admin/addContact'] = 'Admin/addContact';
+$route['admin/addNationality'] = 'Admin/addNationality';
 $route['login'] = 'Login/view';
 $route['admin'] = 'Admin/view';
 $route['recommender'] = 'Recommender/view';
