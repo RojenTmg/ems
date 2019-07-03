@@ -14,6 +14,7 @@
 
     <div class="con-head">
       <h4>Update Profile</h4>
+      <h4>Update Profile</h4>
     </div>
 
     <!-- showing response -->
