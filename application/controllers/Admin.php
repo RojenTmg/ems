@@ -1,7 +1,8 @@
 <?php
 	class Admin extends CI_Controller {
 
-			public function view($page = 'dashboard') {
+public function view($page = 'dashboard') 
+{
 			if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
 				show_404();
 			}
@@ -17,7 +18,8 @@
 			else
 				redirect('login');
 }
-		public function addGeneral(){
+public function addGeneral()
+{
 		$status='';
 		extract($_POST);
 
@@ -43,8 +45,9 @@
 
 			}
 			echo $status;
-		}
-		public function addContact(){
+}
+public function addContact()
+{
 		$status='';
 		extract($_POST);
 
@@ -76,6 +79,6 @@
 
 			}
 			echo $status;
-		}
+}
 	}
 ?>
