@@ -56,18 +56,23 @@
         <form class="form">
           <div class="form-div">
             <label>Title</label>
-            <input type="text" id="title" name="title" placeholder="">
+            <select name="title" id="title">
+              <option value="mr">Mr</option>
+              <option value="ms">Ms</option>
+              <option value="mrs">Mrs</option>
+              <option value="dr">Dr</option>
+            </select>
           </div>
           <div class="form-div">
-            <label>First Name</label>
-            <input type="text" id="firstname" placeholder="">
+            <label>First Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="firstname" placeholder="" class="required">
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
             <input type="text" id="middlename" placeholder="">
           </div>
           <div class="form-div">
-            <label>Sur Name</label>
+            <label>Sur Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="surname" placeholder="">
           </div>
           <div class="sub-can">
