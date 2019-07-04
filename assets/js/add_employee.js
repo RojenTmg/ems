@@ -27,14 +27,14 @@
               {
                var status = xmlHttp.responseText;
                var JSONObject = JSON.parse(status);
-                var elements= document.getElementById('general-form').elements;
+                var elements = document.getElementById('general-form').elements;
 
                       for(var k in elements){
                        if(elements[k].type=="text"){
                         document.getElementById(elements[k].id).style.borderColor="#ced4da";
                         for(var l in JSONObject){
                            if(elements[k].id==l){
-                            document.getElementById(l).style.className="#dc3545";
+                            document.getElementById(l).style.borderColor="#dc3545";
                            }
                         }
                       }
