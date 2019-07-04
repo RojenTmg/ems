@@ -26,36 +26,25 @@
               if(xmlHttp.readyState==4)
               {
                var status = xmlHttp.responseText;
+               var success='';
+               if(status=="true") success="success";
                var JSONObject = JSON.parse(status);
-                var elements = document.getElementById('general-form').elements;
-
+                var elements= document.getElementById('general-form').elements;
                       for(var k in elements){
-                       if(elements[k].type=="text"){
-                        document.getElementById(elements[k].id).style.borderColor="#ced4da";
-                        for(var l in JSONObject){
-                           if(elements[k].id==l){
-                            document.getElementById(l).style.borderColor="#dc3545";
-                           }
-                        }
+                         if(elements[k].type=="text"||elements[k].nodeName=="select"){
+                           document.getElementById(elements[k].id).style.borderColor="#ced4da";
+                            for(var l in JSONObject){
+                              if(l=="0") {
+                                document.getElementById('message').innerHTML="success";
+                                 document.getElementById('message').className="message";
+                                break;
+                              }
+                               if(elements[k].id==l&&l!="true"){
+                                document.getElementById(l).style.borderColor="#dc3545";
+                               }
+                            }
+                         }
                       }
-                    }
-              document.getElementById('responseG').style.display="block";
-                    //    if(status=='true')
-                    //    {
-                    //       document.getElementById('responseG').className="alert alert-success";
-                    //       document.getElementById('responseG').innerHTML="<p>Successfully Updated</p>";
-                    //    }
-                    // else
-                    // {
-                    //   document.getElementById('responseG').className="alert alert-danger";
-                    //   document.getElementById('responseG').innerHTML=status;
-                    // }
-
-                    
-                    
-
-
-               
               }
           }
   }
