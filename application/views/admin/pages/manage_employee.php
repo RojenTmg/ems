@@ -16,35 +16,7 @@
       <h4>Update Profile</h4>
     </div>
 
-    <!-- showing response for general tab-->
- <div style="display: none" id="responseG">
 
- </div>    
- <!-- ends here     -->
-    <!-- showing response for contact tab-->
- <div style="display: none" id="responseC">
- </div>    
- <!-- ends here     -->
- <!-- showing response for nationality tab -->
- <div style="display: none" id="responseN">
- </div>    
- <!-- ends here     -->
- <!-- showing response for emergency contact tab -->
- <div style="display: none" id="responseEC">
- </div>    
- <!-- ends here     -->
- <!-- showing response for education tab -->
- <div style="display: none" id="responseE">
- </div>    
- <!-- ends here     -->
-  <!-- showing response for health tab -->
- <div style="display: none" id="responseH">
- </div>    
- <!-- ends here     -->
-  <!-- showing response for PAN tab -->
- <div style="display: none" id="responseP">
- </div>    
- <!-- ends here     -->
     <div class="box box-tab" id="general" >
       <div class="box-head" onclick="slide(this)">
         <div  class="prog-status">
@@ -57,18 +29,25 @@
         <form class="form" id="general-form">
           <div class="form-div">
             <label>Title</label>
-            <input type="text" id="title" name="title" placeholder=""  >
+
+            <select name="title" id="title">
+              <option value="mr">Mr</option>
+              <option value="ms">Ms</option>
+              <option value="mrs">Mrs</option>
+              <option value="dr">Dr</option>
+            </select>
+
           </div>
           <div class="form-div">
-            <label>First Name</label>
-            <input type="text" id="firstname" placeholder="">
+            <label>First Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="firstname" placeholder="" class="required">
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
             <input type="text" id="middlename" placeholder="">
           </div>
           <div class="form-div">
-            <label>Sur Name</label>
+            <label>Sur Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="surname" placeholder="">
           </div>
           <div class="sub-can">
