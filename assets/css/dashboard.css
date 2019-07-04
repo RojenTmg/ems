@@ -891,16 +891,16 @@ background-color: #4c546d;
 }
 
 
-#responseG, #responseC {
+.message {
+  display: block;
   padding-bottom: 0px !important;
   margin-bottom: 20px;
-  display: none;
   animation: pop-up 3s linear forwards;
 }
 
 @keyframes pop-up {
-  0% { opacity: 0; display: block; }
+  0% { opacity: 0; visibility: visible; }
   10% { opacity: 1; }
   80% { opacity: 1; }
-  100% { opacity: 0; display: none; }
+  100% {opacity:0; visibility: hidden; }
 }

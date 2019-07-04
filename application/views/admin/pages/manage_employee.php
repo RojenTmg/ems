@@ -23,9 +23,11 @@
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
       </div>
     </nav>
+    <div id="message" class="alert ">
+     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-        <form class="form">
+        <form class="form" id="general-form">
           <div class="form-div">
             <label>Title</label>
             <select name="title" id="title">
@@ -35,9 +37,10 @@
               <option value="dr">Dr</option>
             </select>
           </div>
+
           <div class="form-div">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="firstname" placeholder="" class="required">
+            <input type="text" id="firstname" placeholder="" >
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
