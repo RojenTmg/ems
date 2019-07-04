@@ -18,12 +18,14 @@ class Validate_login_form extends CI_Model
 		$this->db->where('id',$id);
 		$query = $this->db->get();
 		
-		if ($query->num_rows()>0) 
+	if ($query->num_rows()>0) 
 		{
-			foreach($query->result() as $row)
+		foreach($query->result() as $row)
   			{
-  			 	// $store_password = $this->encrypt->decode($row->password);
-  			 	$store_password=$row->password;
+  						 	// $store_password = $this->encrypt->decode($row->password);
+  				if($row->is_logged_in==0)
+  				{
+  						$store_password=$row->user_pass;
 			     if($password == $store_password)
 			     {
 				    $_SESSION['loggedin']=true;
@@ -36,9 +38,9 @@ class Validate_login_form extends CI_Model
 			     	$msg=$msg.'Invalid Password.';
 			}
 		}
-		else{
-				$msg=$msg.'Invalid Login Id.';
-			}
+	}
+		else { 	$msg=$msg.'Invalid Login Id.';	}
+
 			//message for invalid credentials 
 			return $msg;
 	}
