@@ -16,6 +16,9 @@
      <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <!-- added address tab -->
+          <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
         <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
         <a class="nav-item nav-link" id="nav-eContact-tab" data-toggle="tab" href="#nav-eContact" role="tab" aria-controls="nav-eContact" aria-selected="false">Emergency Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
@@ -57,27 +60,28 @@
           </div>
         </form>
       </div>
-      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <form class="form" id="contact-form">
-          <div class="form-div">
-            <label>Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></label>
-            <input type="text" id="permanentaddress" placeholder="">
+    <!-- general ends -->
+
+      <!-- address changes-->
+      <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+        <form class="form" id="address-form">
+           <div class="form-group">
+            <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
+            <input type="text" id="permanentaddress_city" placeholder="City" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_state" placeholder="State" class="form-group col-md-3">
+            <!-- country will be a dropdown -->
+            <input type="text" id="permanentaddress_country" placeholder="Country" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_zip" placeholder="Zip Code" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_zone" placeholder="Zone" class="form-group col-md-3">
           </div>
-          <div class="form-div">
-            <label>Current Address</label>
-            <input type="text" id="currentaddress" placeholder="">
-          </div>
-          <div class="form-div">
-            <label>Date of Birth</label>
-            <input type="date" id="dob" placeholder="">
-          </div>
-          <div class="form-div">
-            <label>Contact No.  <span class="opt"><i>(Landline, Cell Phone)</i></span></label>
-            <input type="number" id="contact" placeholder="">
-          </div>
-          <div class="form-div">
-            <label>Email Address</label>
-            <input type="email" id="email" placeholder="">
+          <div class="form-group">
+            <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
+               <input type="text" id="currentaddress_city" placeholder="City" class="form-group col-md-3">
+            <input type="text" id="currentaddress_state" placeholder="State" class="form-group col-md-3">
+            <!-- country will be a dropdown -->
+            <input type="text" id="currentaddress_country" placeholder="Country" class="form-group col-md-3">
+            <input type="text" id="currentaddress_zip" placeholder="Zip Code" class="form-group col-md-3">
+            <input type="text" id="currentaddress_zone" placeholder="Zone" class="form-group col-md-3">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addcontact()" name="" value="Submit" class="sub">
@@ -85,10 +89,39 @@
           </div>
         </form>
       </div>
+  <!-- address ends -->
+
+      <!-- contact changes -->
+       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <form class="form" id="contact-form">
+            <div class="form-div">
+            <label>Home Phone <span class="opt text-danger"><i>*</i></span></label>
+            <input type="text" id="home_phone" placeholder="">
+          </div>
+
+             <div class="form-div">
+            <label>Other Phone</label>
+            <input type="text" id="other_phone" placeholder="">
+          </div>
+
+             <div class="form-div">
+            <label>Work Phone</label>
+            <input type="text" id="work_phone" placeholder="">
+          </div>
+      
+          <div class="sub-can">
+            <input type="button" onclick="addcontact()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+<!-- contact ends -->
+
+<!-- Nationality changes -->
       <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
         <form name="nationality-tab" id="nationality-form" class="form">
-          <div class="form-div">
-            <label>Nationality</label>
+           <div class="form-div">
+            <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
                 <input type="radio" name="nationality" checked="true" value="nepalese">
@@ -111,13 +144,19 @@
               <label>No</label>
             </div>
           </div>
-          <div class="form-div">
-            <label>If yes, please specify your visa type and visa end date </label>
-            <input type="text" id="visatype" placeholder="">
+          <div class="form-group">
+            <p class="title">If yes, please specify your visa type and visa end date </p>
+            <input type="text" name="visa_type" placeholder="Visa Type" class="form-group col-md-2">
+            <input type="date" id="visa_date" placeholder="Visa End Date" class="col-md-2">
           </div>
+          <!-- changes in passport details -->
           <div class="form-div">
-            <label>Citizenship/Passport No. and Place of Issue</label>
-            <input type="number" id="passport" placeholder="">
+            <label>Passport No.</label>
+            <input type="number" id="passport_no" placeholder="">
+          </div>
+              <div class="form-div">
+            <label>Place of Issue</label>
+            <input type="text" id="passport_issue_place" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
@@ -125,18 +164,21 @@
           </div>
         </form>
       </div>
+      <!-- nationality ends -->
+
+      <!-- Emergency contact form -->
       <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
         <form class="form" id="emergency-form">
           <div class="form-div">
-            <label>Name</label>
+            <label>Contact Person's Name</label>
             <input type="text" id="cpname" placeholder="">
           </div>
            <div class="form-div">
-            <label>Address</label>
-            <input type="text" id="cpaddress" placeholder="">
+            <label>Contact Person's Address</label>
+            <textarea name="cpaddress"></textarea>
           </div>
            <div class="form-div">
-            <label>Phone No.</label>
+            <label>Contact Person's Phone No.</label>
             <input type="number" id="cpcontact" placeholder="">
           </div>
           <div class="sub-can">
@@ -145,11 +187,24 @@
           </div>
         </form>
       </div>
+      <!-- emergency ends -->
+
+      <!-- Education -->
       <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
-        <form class="form" id="education-form">
-          <div class="form-div" >
-            <label>Highest Education Degree</label>
-            <input type="text" id="highestdegree" placeholder="">
+       <form class="form" id="education-form">
+          <div class="form-div">
+            <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
+            <select name="highestdegree"> 
+              <option>Bachelor</option>
+              <option>Master</option>
+              <option>PhD</option>
+              <option>High School</option>
+              <option>Middle School</option>
+            </select>
+          </div>
+           <div class="form-div">
+            <label>Degree Title</label>
+            <input type="text" id="degree_title" placeholder="">
           </div>
           <div class="form-div">
             <label>Previous Employer</label>
@@ -161,32 +216,43 @@
           </div>
         </form>
       </div>
+<!-- education ends -->
+
+<!-- health info -->
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-health-tab">
          <form class="form" id="health-form">
            <div class="form-div">
             <label>Blood Group</label>
-            <input type="text" id="bloodgroup" placeholder="">
+            <select id="bloodgroup">
+              <option value="A+ve">A +ve</option>
+              <option value="A-ve">A -ve</option>
+              <option value="B+ve">B +ve</option>
+              <option value="B-ve">B -ve</option>
+              <option value="AB+ve">AB +ve</option>
+              <option value="AB-ve">AB -ve</option>
+              <option value="O+ve">O +ve</option>
+              <option value="O-ve">O -ve</option>
+            </select>
           </div>
           <div class="form-div">
             <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" id="medicalcomplications" placeholder="">
+            <textarea id="medicalcomplications"></textarea>
           </div>
           <div class="form-div">
             <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" id="regularmedication" placeholder="">
+            <textarea id="regularmedication"> </textarea>
           </div>
           <div class="form-div">
-            <label>Any Allergies</label>
-            <div>
+            <label  class="radio-inline">Any Allergies</label>
+            
               <div>
-                <input type="checkbox" name="">
-                <label>Yes</label>
+                <input type="radio" name="allergies">
+                <label  class="radio-inline">Yes</label>
+              
+                <input type="radio" name="allergies" >
+                <label  class="radio-inline">No</label>
               </div>
-              <div>
-                <input type="checkbox" name="">
-                <label>No</label>
-              </div>
-            </div>
+           
           </div>
           <div class="form-div">
             <label>If any, please mention</label>
@@ -198,6 +264,9 @@
           </div>
         </form>
       </div>
+<!-- health info ends here -->
+
+<!-- PAN starts -->
       <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
         <form class="form" id="pan-form">
           <div class="form-div">
@@ -210,5 +279,6 @@
           </div>
         </form>
       </div>
+    <!-- PAN ends -->
     </div>
   </div>
