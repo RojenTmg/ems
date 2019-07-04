@@ -18,6 +18,7 @@
 
     <!-- showing response for general tab-->
  <div style="display: none" id="responseG">
+
  </div>    
  <!-- ends here     -->
     <!-- showing response for contact tab-->
@@ -52,11 +53,11 @@
         </div>
         <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
       </div>
-      <div class="box-body">
-        <form class="form">
+      <div class="box-body" >
+        <form class="form" id="general-form">
           <div class="form-div">
             <label>Title</label>
-            <input type="text" id="title" name="title" placeholder="">
+            <input type="text" id="title" name="title" placeholder=""  >
           </div>
           <div class="form-div">
             <label>First Name</label>
@@ -71,8 +72,8 @@
             <input type="text" id="surname" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="general()" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            <input type="button" onclick="general()" value="Submit" class="sub" id="extra">
+            <input type="submit" name="" value="Cancel" class="can" id="extra">
           </div>
         </form>
       </div>

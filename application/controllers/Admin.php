@@ -8,8 +8,6 @@ public function view($page = 'dashboard')
 			}
 
 			$data['title'] = ucfirst($page);
-			$this->load->helper(array('form', 'url'));
-			$this->load->library('form_validation');
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) {
 				$this->load->view('admin/templates/header');
 			$this->load->view('admin/pages/' . $page, $data);
@@ -20,7 +18,7 @@ public function view($page = 'dashboard')
 }
 public function addGeneral()
 {
-		$status='';
+		$result=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
@@ -30,7 +28,7 @@ public function addGeneral()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$result=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -41,10 +39,9 @@ public function addGeneral()
 				);
 				
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
-
+				$result=array('true');
 			}
-			echo $status;
+			echo json_encode($result);
 }
 public function addContact()
 {
@@ -194,13 +191,14 @@ public function addHealth()
 public function addPan()
 {
 		$status='';
+		$newstatus=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$newstatus=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -211,7 +209,9 @@ public function addPan()
 				$status='true';
 
 			}
-			echo $status;
+			echo '<pre>';
+			print_r($newstatus);
+			
 }
 	}
 ?>
