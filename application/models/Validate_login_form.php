@@ -8,6 +8,7 @@ class Validate_login_form extends CI_Model
 	//validate login id and password
 	function validate_id_password()
 	{
+		
 		$msg='';
 		$id= $this->input->post('user_id');
 		$password=$this->input->post('password');

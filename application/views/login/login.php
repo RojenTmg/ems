@@ -25,6 +25,7 @@
                 if(isset($_SESSION['error_msg']) && $_SESSION['error_msg']!='')
                 {
                     echo '<div class="alert alert-danger">'.$_SESSION['error_msg'].' </div>';
+                    unset($_SESSION['error_msg']);
                 }
                 ?>
               

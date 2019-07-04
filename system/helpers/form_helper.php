@@ -137,6 +137,7 @@ if ( ! function_exists('form_open'))
 	}
 }
 
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('form_open_multipart'))

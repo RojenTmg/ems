@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2019 at 06:59 PM
+-- Generation Time: Jul 04, 2019 at 07:10 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.1.30
 
@@ -54,15 +54,16 @@ CREATE TABLE `employee` (
   `medicalcomplications` text NOT NULL,
   `regularmedication` text NOT NULL,
   `others` text NOT NULL,
-  `pan` int(11) NOT NULL
+  `pan` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `title`, `firstname`, `middlename`, `surname`, `padd`, `caddd`, `dob`, `ctno`, `email`, `user_id`, `password`, `nationality`, `permission`, `visatype`, `passport`, `cpname`, `cpaddress`, `cpcontact`, `highestdegree`, `previousemployer`, `bloodgroup`, `medicalcomplications`, `regularmedication`, `others`, `pan`) VALUES
-(1, 'sdf', 'sdf', 'sdf', 'sdf', 'a', 'b', '2019-07-03 00:00:00', 12, '1@2.com', 100, '001', 'nepalese', 'yes', '1', 2, 'cp', 'ca', 12, '+2', 'none', 'a+ve', 'no', 'none', '', 123);
+INSERT INTO `employee` (`id`, `title`, `firstname`, `middlename`, `surname`, `padd`, `caddd`, `dob`, `ctno`, `email`, `user_id`, `password`, `nationality`, `permission`, `visatype`, `passport`, `cpname`, `cpaddress`, `cpcontact`, `highestdegree`, `previousemployer`, `bloodgroup`, `medicalcomplications`, `regularmedication`, `others`, `pan`, `role`) VALUES
+(1, 'sdf', 'sdf', 'sdf', 'sdf', 'a', 'b', '2019-07-03 00:00:00', 12, '1@2.com', 100, '001', 'nepalese', 'yes', '1', 2, 'cp', 'ca', 12, '+2', 'none', 'a+ve', 'no', 'none', '', 123, 'admin');
 
 --
 -- Indexes for dumped tables
