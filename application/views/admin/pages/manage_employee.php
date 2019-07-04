@@ -58,7 +58,7 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <form class="form">
+        <form class="form" id="contact-form">
           <div class="form-div">
             <label>Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></label>
             <input type="text" id="permanentaddress" placeholder="">
@@ -86,7 +86,7 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
-        <form name="nationality-tab" class="form">
+        <form name="nationality-tab" id="nationality-form" class="form">
           <div class="form-div">
             <label>Nationality</label>
             <div>
@@ -126,17 +126,17 @@
         </form>
       </div>
       <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
-        <form class="form">
+        <form class="form" id="emergency-form">
           <div class="form-div">
-            <label>Incase of emergency: Contact Person's Name</label>
+            <label>Name</label>
             <input type="text" id="cpname" placeholder="">
           </div>
            <div class="form-div">
-            <label>Incase of emergency: Contact Person's Address</label>
+            <label>Address</label>
             <input type="text" id="cpaddress" placeholder="">
           </div>
            <div class="form-div">
-            <label>Incase of emergency: Contact Person's Phone No.</label>
+            <label>Phone No.</label>
             <input type="number" id="cpcontact" placeholder="">
           </div>
           <div class="sub-can">
@@ -146,8 +146,8 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
-        <form class="form">
-          <div class="form-div">
+        <form class="form" id="education-form">
+          <div class="form-div" >
             <label>Highest Education Degree</label>
             <input type="text" id="highestdegree" placeholder="">
           </div>
@@ -162,7 +162,7 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-health-tab">
-         <form class="form">
+         <form class="form" id="health-form">
            <div class="form-div">
             <label>Blood Group</label>
             <input type="text" id="bloodgroup" placeholder="">
@@ -199,7 +199,7 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
-        <form class="form">
+        <form class="form" id="pan-form">
           <div class="form-div">
             <label>PAN Number</label>
             <input type="number" id="pan" placeholder="">
