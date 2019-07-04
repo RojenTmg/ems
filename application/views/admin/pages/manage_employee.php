@@ -24,7 +24,7 @@
       </div>
     </nav>
     <div class="message-div">
-      <div id="message"></div>
+      
     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">

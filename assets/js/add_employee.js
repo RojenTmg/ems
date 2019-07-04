@@ -18,8 +18,9 @@ function showresponse(formname,status){
                            document.getElementById(elements[k].id).style.borderColor="#ced4da";
                             for(var l in JSONObject){
                               if(l=="0") {
-                                document.getElementById('message').innerHTML="success";
-                                 document.getElementById('message').className="message";
+                                $('.message-div').append('<div id="message" class="message">Updated Successfully</div>');  
+                                 $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+
                                 break;
                               }
                                if(elements[k].id==l&&l!="true"){
