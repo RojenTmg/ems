@@ -22,7 +22,7 @@ $route['approver/(:any)'] = 'Approver/view/$1';
 $route['employee/(:any)'] = 'Employee/view/$1';
 
 
-$route['loginUser'] = 'Login/loginUser';
+$route['checkLogin'] = 'Login/checkLogin';
 $route['login'] = 'Login/view';
 $route['logout']='Logout/view';
 
