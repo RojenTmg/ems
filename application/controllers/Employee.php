@@ -7,6 +7,7 @@
 			}
 
 			$data['title'] = ucfirst($page);
+			$data['user']= $this->Manage_employee_model->user_detail();
 
 			$this->load->view('employee/templates/header');
 			$this->load->view('employee/pages/' . $page, $data);

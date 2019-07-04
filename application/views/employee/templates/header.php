@@ -18,7 +18,9 @@
     <?= link_tag('assets/css/dashboard.css?version=51') ?>
     <?= link_tag('assets/css/header.css?version=51') ?>
     <script type="text/javascript" src="<?= base_url('assets/js/dashboard.js') ?>"></script>
-        <script type="text/javascript" src="<?= base_url('assets/js/add_employee.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/add_employee.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/update_employee.js') ?>"></script>
+
 
 </head>
 
@@ -117,10 +119,10 @@
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name"><?php echo $_SESSION['firstname'];?>
+            <strong><?php echo $_SESSION['surname'];?></strong>
           </span>
-          <span class="user-role">Administrator</span>
+          <span class="user-role"><?php echo $_SESSION['type'];?></span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>

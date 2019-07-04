@@ -23,6 +23,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/dashboard.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/add_employee.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/update_employee.js') ?>"></script>
 
 </head>
 

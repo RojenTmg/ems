@@ -3,12 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['admin/addGeneral'] = 'Admin/addGeneral';
+$route['admin/updateGeneral'] = 'Admin/updateGeneral';
+$route['employee/updateGeneral'] = 'Admin/updateGeneral';
 $route['admin/addContact'] = 'Admin/addContact';
 $route['admin/addNationality'] = 'Admin/addNationality';
 $route['admin/addEducation'] = 'Admin/addEducation';
 $route['admin/addEmergency'] = 'Admin/addEmergency';
 $route['admin/addHealth'] = 'Admin/addHealth';
 $route['admin/addPan'] = 'Admin/addPan';
+$route['employee/addContact'] = 'Admin/addContact';
+$route['employee/addNationality'] = 'Admin/addNationality';
+$route['employee/addEducation'] = 'Admin/addEducation';
+$route['employee/addEmergency'] = 'Admin/addEmergency';
+$route['employee/addHealth'] = 'Admin/addHealth';
+$route['employee/addPan'] = 'Admin/addPan';
 
 $route['login'] = 'Login/view';
 $route['admin'] = 'Admin/view';

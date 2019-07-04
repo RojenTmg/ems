@@ -15,7 +15,7 @@ class Validate_login_form extends CI_Model
 
 		$this->db->select('*');
 		$this->db->from('employee');
-		$this->db->where('user_id',$id);
+		$this->db->where('id',$id);
 		$query = $this->db->get();
 		
 		if ($query->num_rows()>0) 
@@ -27,7 +27,10 @@ class Validate_login_form extends CI_Model
 			     if($password == $store_password)
 			     {
 				    $_SESSION['loggedin']=true;
+				    $_SESSION['firstname']=$row->firstname;
+				    $_SESSION['surname']=$row->surname;
 					$_SESSION['type']=$row->role;
+					$_SESSION['userid']=$row->id;
 			     }
 			     else
 			     	$msg=$msg.'Invalid Password.';

@@ -16,7 +16,37 @@ public function view($page = 'dashboard')
 			else
 				redirect('login');
 }
+
+
 public function addGeneral()
+{
+		$result=array();
+		extract($_POST);
+
+		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
+		$this->form_validation->set_rules('firstname','First Name','required');
+		$this->form_validation->set_rules('surname','Surname','required');
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$result=$this->form_validation->error_array();
+			}else
+			{
+				$data=array(
+					'title'=>$title,
+					'firstname'=>$firstname,
+					'middlename'=>$middlename,
+					'surname'=>$surname,
+					'password'=>$password
+				);
+				
+				$this->Manage_employee_model->add_employee($data);
+				$result=array('true');
+			}
+			echo json_encode($result);
+}
+
+public function updateGeneral()
 {
 		$result=array();
 		extract($_POST);
@@ -64,10 +94,10 @@ public function addContact()
 			}else
 			{
 				$data=array(
-					'padd'=>$permanentaddress,
-					'caddd'=>$currentaddress,
+					'permanentaddress'=>$permanentaddress,
+					'currentaddress'=>$currentaddress,
 					'dob'=>$dob,
-					'ctno'=>$contact,
+					'contact'=>$contact,
 					'email'=>$email
 				);
 

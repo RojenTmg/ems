@@ -52,7 +52,7 @@
             <input type="text" id="surname" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="general()" value="Submit" class="sub" id="extra">
+            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra">
             <input type="submit" name="" value="Cancel" class="can" id="extra">
           </div>
         </form>
