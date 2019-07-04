@@ -1,58 +1,30 @@
  <!-- form -->
   <div class="contents">
-    <div class="box profile-progress">
-      <div class="box-head pro-head sp-btn">
-        <p>Profile Strength : <span><b>Beginner</b></span></p>
-        <p>90% completed</p>
-      </div>
-      <div class="box-body">
-        <div class="pro-bar">
-          <div class="bar-completed"></div>
-        </div>  
-      </div>
-    </div>
-
-    <div class="con-head">
-      <h4>Update Profile</h4>
-    </div>
-
-    <!-- showing response for general tab-->
- <div style="display: none" id="responseG">
- </div>    
- <!-- ends here     -->
-    <!-- showing response for contact tab-->
- <div style="display: none" id="responseC">
- </div>    
- <!-- ends here     -->
- <!-- showing response for nationality tab -->
- <div style="display: none" id="responseN">
- </div>    
- <!-- ends here     -->
- <!-- showing response for emergency contact tab -->
- <div style="display: none" id="responseEC">
- </div>    
- <!-- ends here     -->
- <!-- showing response for education tab -->
- <div style="display: none" id="responseE">
- </div>    
- <!-- ends here     -->
-  <!-- showing response for health tab -->
- <div style="display: none" id="responseH">
- </div>    
- <!-- ends here     -->
-  <!-- showing response for PAN tab -->
- <div style="display: none" id="responseP">
- </div>    
- <!-- ends here     -->
-    <div class="box box-tab" id="general" >
-      <div class="box-head" onclick="slide(this)">
-        <div  class="prog-status">
-          <p>General</p>
-          <span class="prog-com">Completed <i class="fa fa-check-circle" aria-hidden="true"></i></span>
+     <!-- progress-bar -->
+     <div class="box profile-progress">
+       <div class="box-head pro-head sp-btn">
+          <p>Profile Strength : <span><b>Beginner</b></span></p>
+          <p>90% completed</p>
         </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
+        <div class="box-body">
+          <div class="pro-bar">
+            <div class="bar-completed"></div>
+          </div>  
+        </div>
+     </div>
+     <!-- nav-tab-form -->
+     <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-eContact-tab" data-toggle="tab" href="#nav-eContact" role="tab" aria-controls="nav-eContact" aria-selected="false">Emergency Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
       </div>
-      <div class="box-body">
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
         <form class="form">
           <div class="form-div">
             <label>Title</label>
@@ -76,17 +48,7 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head"  onclick="slide(this)">
-        <div class="prog-status">
-          <p>Contact</p>
-          <span class="prog-incom">In-Completed <i class="fa fa-info-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form">
           <div class="form-div">
             <label>Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></label>
@@ -114,17 +76,7 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head" onclick="slide(this)">
-        <div class="prog-status">
-          <p>Nationality</p>
-          <span class="prog-com">Completed <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
+      <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
         <form name="nationality-tab" class="form">
           <div class="form-div">
             <label>Nationality</label>
@@ -164,17 +116,7 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head" onclick="slide(this)">
-        <div class="prog-status">
-          <p>Emergency Contact</p>
-          <span class="prog-incom">In-Completed <i class="fa fa-info-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
+      <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
         <form class="form">
           <div class="form-div">
             <label>Incase of emergency: Contact Person's Name</label>
@@ -194,17 +136,7 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head" onclick="slide(this)">
-        <div class="prog-status">
-          <p>Education</p>
-          <span class="prog-com">Completed <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
+      <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
         <form class="form">
           <div class="form-div">
             <label>Highest Education Degree</label>
@@ -220,18 +152,8 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head" onclick="slide(this)">
-        <div class="prog-status">
-          <p>Health</p>
-          <span class="prog-incom">In-Completed <i class="fa fa-info-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
-        <form class="form">
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-health-tab">
+         <form class="form">
            <div class="form-div">
             <label>Blood Group</label>
             <input type="text" id="bloodgroup" placeholder="">
@@ -267,17 +189,7 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="box box-tab">
-      <div class="box-head" onclick="slide(this)">
-        <div class="prog-status">
-          <p>PAN Number</p>
-          <span class="prog-com">Completed <i class="fa fa-check-circle" aria-hidden="true"></i></span>
-        </div>
-        <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-      </div>
-      <div class="box-body">
+      <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
         <form class="form">
           <div class="form-div">
             <label>PAN Number</label>
@@ -290,5 +202,4 @@
         </form>
       </div>
     </div>
-
   </div>

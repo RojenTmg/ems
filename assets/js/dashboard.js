@@ -49,24 +49,24 @@ $("#show-sidebar").click(function() {
   })
 
 
+//####### delete
+// var count = 0;
 
-var count = 0;
-
-function slide(form){
+// function slide(form){
   
-  var count = form.value;
-  var btn = form.childNodes;
+//   var count = form.value;
+//   var btn = form.childNodes;
   
-  if (count === "1") {
-    form.nextElementSibling.style.display = 'none';
-    btn[3].innerHTML = '<i class="fa fa-angle-down" aria-hidden="true"></i>';   
-    form.value="0";
-  }
-  else{
-    btn[3].innerHTML = '<i class="fa fa-angle-up" aria-hidden="true"></i>'; 
-    form.nextElementSibling.style.display = 'block';
-    form.value="1";
+//   if (count === "1") {
+//     form.nextElementSibling.style.display = 'none';
+//     btn[3].innerHTML = '<i class="fa fa-angle-down" aria-hidden="true"></i>';   
+//     form.value="0";
+//   }
+//   else{
+//     btn[3].innerHTML = '<i class="fa fa-angle-up" aria-hidden="true"></i>'; 
+//     form.nextElementSibling.style.display = 'block';
+//     form.value="1";
 
-  }
-}
+//   }
+// }
 
