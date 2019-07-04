@@ -16,15 +16,34 @@
       <h4>Update Profile</h4>
     </div>
 
-    <!-- showing response -->
+    <!-- showing response for general tab-->
  <div style="display: none" id="responseG">
  </div>    
  <!-- ends here     -->
-    <!-- showing response -->
+    <!-- showing response for contact tab-->
  <div style="display: none" id="responseC">
  </div>    
  <!-- ends here     -->
-
+ <!-- showing response for nationality tab -->
+ <div style="display: none" id="responseN">
+ </div>    
+ <!-- ends here     -->
+ <!-- showing response for emergency contact tab -->
+ <div style="display: none" id="responseEC">
+ </div>    
+ <!-- ends here     -->
+ <!-- showing response for education tab -->
+ <div style="display: none" id="responseE">
+ </div>    
+ <!-- ends here     -->
+  <!-- showing response for health tab -->
+ <div style="display: none" id="responseH">
+ </div>    
+ <!-- ends here     -->
+  <!-- showing response for PAN tab -->
+ <div style="display: none" id="responseP">
+ </div>    
+ <!-- ends here     -->
     <div class="box box-tab" id="general" >
       <div class="box-head" onclick="slide(this)">
         <div  class="prog-status">
@@ -106,16 +125,16 @@
         <p id="slide"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
       </div>
       <div class="box-body">
-        <form class="form">
+        <form name="nationality-tab" class="form">
           <div class="form-div">
             <label>Nationality</label>
             <div>
               <div>
-                <input type="checkbox" name="nepalese">
+                <input type="radio" name="nationality" checked="true" value="nepalese">
                 <label>Nepalese</label>
               </div>
               <div>
-                <input type="checkbox" name="non-nepalese">
+                <input type="radio" name="nationality" value="non-nepalese">
                 <label>Non-Nepalese</label>
               </div>
             </div>
@@ -123,24 +142,24 @@
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="checkbox" name="yes">
+              <input type="radio" name="permission" checked="true" value="yes">
               <label>Yes</label>
             </div>
             <div>
-              <input type="checkbox" name="no">
+              <input type="radio" name="permission" value="no">
               <label>No</label>
             </div>
           </div>
           <div class="form-div">
             <label>If yes, please specify your visa type and visa end date </label>
-            <input type="text" name="visatype" placeholder="">
+            <input type="text" id="visatype" placeholder="">
           </div>
           <div class="form-div">
             <label>Citizenship/Passport No. and Place of Issue</label>
-            <input type="text" name="passport" placeholder="">
+            <input type="number" id="passport" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="nationality()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -159,18 +178,18 @@
         <form class="form">
           <div class="form-div">
             <label>Incase of emergency: Contact Person's Name</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="cpname" placeholder="">
           </div>
            <div class="form-div">
             <label>Incase of emergency: Contact Person's Address</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="cpaddress" placeholder="">
           </div>
            <div class="form-div">
             <label>Incase of emergency: Contact Person's Phone No.</label>
-            <input type="number" name="" placeholder="">
+            <input type="number" id="cpcontact" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -189,14 +208,14 @@
         <form class="form">
           <div class="form-div">
             <label>Highest Education Degree</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="highestdegree" placeholder="">
           </div>
           <div class="form-div">
             <label>Previous Employer</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="previousemployer" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -215,15 +234,15 @@
         <form class="form">
            <div class="form-div">
             <label>Blood Group</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="bloodgroup" placeholder="">
           </div>
           <div class="form-div">
             <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="medicalcomplications" placeholder="">
           </div>
           <div class="form-div">
             <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="regularmedication" placeholder="">
           </div>
           <div class="form-div">
             <label>Any Allergies</label>
@@ -240,10 +259,10 @@
           </div>
           <div class="form-div">
             <label>If any, please mention</label>
-            <input type="text" name="" placeholder="">
+            <input type="text" id="others" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
+            <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
@@ -262,11 +281,11 @@
         <form class="form">
           <div class="form-div">
             <label>PAN Number</label>
-            <input type="number" name="" placeholder="">
+            <input type="number" id="pan" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="submit" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button"  name="" value="Cancel" class="can">
           </div>
         </form>
       </div>

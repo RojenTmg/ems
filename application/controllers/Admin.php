@@ -1,7 +1,8 @@
 <?php
 	class Admin extends CI_Controller {
 
-			public function view($page = 'dashboard') {
+public function view($page = 'dashboard') 
+{
 			if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
 				show_404();
 			}
@@ -17,7 +18,8 @@
 			else
 				redirect('login');
 }
-		public function addGeneral(){
+public function addGeneral()
+{
 		$status='';
 		extract($_POST);
 
@@ -43,8 +45,9 @@
 
 			}
 			echo $status;
-		}
-		public function addContact(){
+}
+public function addContact()
+{
 		$status='';
 		extract($_POST);
 
@@ -76,6 +79,139 @@
 
 			}
 			echo $status;
-		}
+}
+public function addNationality()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
+
+		$this->form_validation->set_rules('permission','Permission','required',array('required' => 'You must select a %s.'));
+
+		$this->form_validation->set_rules('visatype','Visa Type','required',array('required' => 'You must provide a %s.'));
+
+		$this->form_validation->set_rules('passport','Passport Number','required',array('required' => 'You must provide a %s.'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'nationality'=>$nationality,
+					'permission'=>$permission,
+					'visatype'=>$visatype,
+					'passport'=>$passport
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addEmergency()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('cpname','Contact Person Name','required',array('required' => 'You must provide detail of %s.'));
+
+		$this->form_validation->set_rules('cpaddress','Address','required',array('required' => 'You must provide address of contact person'));
+
+		$this->form_validation->set_rules('cpcontact','contact','required',array('required' => 'You must provide contact details of person.'));
+
+
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'cpname'=>$cpname,
+					'cpaddress'=>$cpaddress,
+					'cpcontact'=>$cpcontact
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addEducation()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('highestdegree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
+
+		$this->form_validation->set_rules('previousemployer','previousemployer','required',array('required' => 'You must provide name of previous employer'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'highestdegree'=>$highestdegree,
+					'previousemployer'=>$previousemployer
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addHealth()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('bloodgroup','Blood Group','required',array('required' => 'You must provide %s'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'bloodgroup'=>$bloodgroup,
+					'medicalcomplications'=>$medicalcomplications,
+					'regularmedication'=>$regularmedication,
+					'others'=>$others
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
+public function addPan()
+{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=validation_errors();
+			}else
+			{
+				$data=array(
+					'pan'=>$pan
+				);
+
+				$this->Manage_employee_model->update_employee($data);
+				$status='true';
+
+			}
+			echo $status;
+}
 	}
 ?>
