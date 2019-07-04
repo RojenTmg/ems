@@ -8,7 +8,27 @@
       }
       return null;
   }
-
+function showresponse(formname,status){
+               var success='';
+               if(status=="true") success="success";
+               var JSONObject = JSON.parse(status);
+                var elements= document.getElementById(formname).elements;
+                      for(var k in elements){
+                         if(elements[k].type=="text"||elements[k].type=="number"||elements[k].type=="email"||elements[k].nodeName=="select"){
+                           document.getElementById(elements[k].id).style.borderColor="#ced4da";
+                            for(var l in JSONObject){
+                              if(l=="0") {
+                                document.getElementById('message').innerHTML="success";
+                                 document.getElementById('message').className="alert alert-success message";
+                                break;
+                              }
+                               if(elements[k].id==l&&l!="true"){
+                                document.getElementById(l).style.borderColor="#dc3545";
+                               }
+                            }
+                         }
+                      }
+}
 
   function general()
   {
@@ -25,27 +45,8 @@
           {
               if(xmlHttp.readyState==4)
               {
-               var status = xmlHttp.responseText;
-               var success='';
-               if(status=="true") success="success";
-               var JSONObject = JSON.parse(status);
-                var elements= document.getElementById('general-form').elements;
-                      for(var k in elements){
-                         if(elements[k].type=="text"||elements[k].nodeName=="select"){
-                           document.getElementById(elements[k].id).style.borderColor="#ced4da";
-                            for(var l in JSONObject){
-                              if(l=="0") {
-                                document.getElementById('message').innerHTML="success";
-                                 document.getElementById('message').className="alert alert-success message";
-                                $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
-                                break;
-                              }
-                               if(elements[k].id==l&&l!="true"){
-                                document.getElementById(l).style.borderColor="#dc3545";
-                               }
-                            }
-                         }
-                      }
+                var status = xmlHttp.responseText;
+               showresponse('general-form',status);
               }
           }
   }
@@ -68,18 +69,7 @@
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-
-                 document.getElementById('responseC').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseC').className="alert alert-success";
-                          document.getElementById('responseC').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseC').className="alert alert-danger";
-                      document.getElementById('responseC').innerHTML=status;
-                    }
+               showresponse('contact-form',status);
               }
           }
   }
@@ -97,23 +87,12 @@
           data.append('visatype',document.getElementById('visatype').value);
           data.append('passport',document.getElementById('passport').value);
           xmlHttp.send(data);
-
-          xmlHttp.onreadystatechange = function()
+xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                 document.getElementById('responseN').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseN').className="alert alert-success";
-                          document.getElementById('responseN').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseN').className="alert alert-danger";
-                      document.getElementById('responseN').innerHTML=status;
-                    }
+               showresponse('nationality-form',status);
               }
           }
   }
@@ -132,17 +111,7 @@
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                 document.getElementById('responseEC').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseEC').className="alert alert-success";
-                          document.getElementById('responseEC').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseEC').className="alert alert-danger";
-                      document.getElementById('responseEC').innerHTML=status;
-                    }
+               showresponse('emergency-form',status);
               }
           }
   }
@@ -155,29 +124,17 @@
           data.append('highestdegree',document.getElementById('highestdegree').value);
           data.append('previousemployer',document.getElementById('previousemployer').value);
           xmlHttp.send(data);
-
-          xmlHttp.onreadystatechange = function()
+xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                 document.getElementById('responseE').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseE').className="alert alert-success";
-                          document.getElementById('responseE').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseE').className="alert alert-danger";
-                      document.getElementById('responseE').innerHTML=status;
-                    }
+               showresponse('education-form',status);
               }
           }
   }
   function addHealth()
   {
-
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addHealth',true);
           var data = new FormData();
@@ -186,23 +143,12 @@
           data.append('regularmedication',document.getElementById('regularmedication').value);
           data.append('others',document.getElementById('others').value);
           xmlHttp.send(data);
-
-          xmlHttp.onreadystatechange = function()
+xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                 document.getElementById('responseH').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseH').className="alert alert-success";
-                          document.getElementById('responseH').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseH').className="alert alert-danger";
-                      document.getElementById('responseH').innerHTML=status;
-                    }
+               showresponse('health-form',status);
               }
           }
   }
@@ -214,22 +160,12 @@
           data.append('pan',document.getElementById('pan').value);
           xmlHttp.send(data);
 
-          xmlHttp.onreadystatechange = function()
+         xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                 document.getElementById('responseP').style.display="block";
-                       if(status=='true')
-                       {
-                          document.getElementById('responseP').className="alert alert-success";
-                          document.getElementById('responseP').innerHTML="<p>Successfully Updated</p>";
-                       }
-                    else
-                    {
-                      document.getElementById('responseP').className="alert alert-danger";
-                      document.getElementById('responseP').innerHTML=status;
-                    }
+               showresponse('pan-form',status);
               }
           }
   }

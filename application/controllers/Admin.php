@@ -45,7 +45,7 @@ public function addGeneral()
 }
 public function addContact()
 {
-		$status='';
+		$status=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('permanentaddress','Permanent Address','required',array('required' => 'You must provide a %s.'));
@@ -60,7 +60,7 @@ public function addContact()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -72,14 +72,14 @@ public function addContact()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo $status;
+			echo json_encode($status);
 }
 public function addNationality()
 {
-		$status='';
+		$status=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
@@ -92,7 +92,7 @@ public function addNationality()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -103,14 +103,14 @@ public function addNationality()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo $status;
+			echo json_encode($status);
 }
 public function addEmergency()
 {
-		$status='';
+		$status=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('cpname','Contact Person Name','required',array('required' => 'You must provide detail of %s.'));
@@ -123,7 +123,7 @@ public function addEmergency()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -133,14 +133,14 @@ public function addEmergency()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo $status;
+			echo json_encode($status);
 }
 public function addEducation()
 {
-		$status='';
+		$status=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('highestdegree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
@@ -149,7 +149,7 @@ public function addEducation()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -158,21 +158,21 @@ public function addEducation()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo $status;
+			echo json_encode($status);
 }
 public function addHealth()
 {
-		$status='';
+		$status=array();
 		extract($_POST);
 
 		$this->form_validation->set_rules('bloodgroup','Blood Group','required',array('required' => 'You must provide %s'));
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$status=validation_errors();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -183,14 +183,14 @@ public function addHealth()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo $status;
+			echo json_encode($status);
 }
 public function addPan()
 {
-		$status='';
+		$status=array();
 		$newstatus=array();
 		extract($_POST);
 
@@ -198,7 +198,7 @@ public function addPan()
 
 			if($this->form_validation->run()===FALSE)
 			{
-				$newstatus=$this->form_validation->error_array();
+				$status=$this->form_validation->error_array();
 			}else
 			{
 				$data=array(
@@ -206,12 +206,12 @@ public function addPan()
 				);
 
 				$this->Manage_employee_model->update_employee($data);
-				$status='true';
+				$status=array('true');
 
 			}
-			echo '<pre>';
-			print_r($newstatus);
-			
+		
+			echo json_encode($status);
+
 }
-	}
+}
 ?>
