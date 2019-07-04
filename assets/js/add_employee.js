@@ -10,23 +10,26 @@
   }
 function showresponse(formname,status){
                var success='';
+               var check=false;
                if(status=="true") success="success";
                var JSONObject = JSON.parse(status);
                 var elements= document.getElementById(formname).elements;
+
                       for(var k in elements){
                          if(elements[k].type=="text"||elements[k].type=="number"||elements[k].type=="email"||elements[k].nodeName=="select"){
                            document.getElementById(elements[k].id).style.borderColor="#ced4da";
                             for(var l in JSONObject){
                               if(l=="0") {
-                                $('.message-div').append('<div id="message" class="message">Updated Successfully</div>');  
-                                 $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
-
+                              $('.message-div').append('<div id="message" class="message">Updated Successfully</div>');  
+                         $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+                                check=true;
                                 break;
                               }
                                if(elements[k].id==l&&l!="true"){
                                 document.getElementById(l).style.borderColor="#dc3545";
                                }
                             }
+                            if(check) break;
                          }
                       }
 }
