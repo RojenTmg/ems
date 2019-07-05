@@ -1,0 +1,339 @@
+ <!-- form -->
+  <div class="contents">
+     <!-- progress-bar -->
+     <div class="box profile-progress">
+       <div class="box-head pro-head sp-btn">
+          
+          <p>90% completed</p>
+        </div>
+        <div class="box-body">
+          <div class="pro-bar">
+            <div class="bar-completed"></div>
+          </div>  
+        </div>
+     </div>
+     <!-- nav-tab-form -->
+     <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+         <!-- added address tab -->
+          <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-eContact-tab" data-toggle="tab" href="#nav-eContact" role="tab" aria-controls="nav-eContact" aria-selected="false">Emergency Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+       <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="false">Health &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <!-- work tab -->
+      <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
+        <!--document tab  -->
+        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
+      </div>
+    </nav>
+    <div class="message-div">
+      
+    </div>
+      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+        <form class="form" id="general-form">
+          <div class="form-div">
+            <label>Title</label>
+            <select name="title" id="title">
+              <option value="mr">Mr</option>
+              <option value="ms">Ms</option>
+              <option value="mrs">Mrs</option>
+              <option value="dr">Dr</option>
+            </select>
+          </div>
+
+          <div class="form-div">
+            <label>First Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="firstname" placeholder="" >
+          </div>
+          <div class="form-div">
+            <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
+            <input type="text" id="middlename" placeholder="">
+          </div>
+          <div class="form-div">
+            <label>Sur Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="surname" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="general()" value="Submit" class="sub" id="extra">
+            <input type="submit" name="" value="Cancel" class="can" id="extra">
+          </div>
+        </form>
+      </div>
+    <!-- general ends -->
+
+      <!-- address changes-->
+      <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+        <form class="form" id="address-form">
+           <div class="form-group">
+            <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
+              <input type="text" id="permanentaddress_street" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
+             <input type="text" id="permanentaddress_district" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_state" placeholder="State" class="form-group col-md-3">
+            <!-- country will be a dropdown -->
+            <select id="permanentaddress_country"  class="form-group col-md-3">
+              <?php 
+                require 'assets/addresses/country_list.php';
+               ?>
+            </select>
+          
+           
+          </div>
+          <div class="form-group">
+            <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
+             <input type="text" id="currentaddress_street" placeholder="Street" class="form-group col-md-3">
+               <input type="text" id="currentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
+                 <input type="text" id="currentaddress_district" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="currentaddress_state" placeholder="State" class="form-group col-md-3">
+            <!-- country will be a dropdown -->
+            <input type="text" id="currentaddress_country" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
+           
+          
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addcontact()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+  <!-- address ends -->
+
+      <!-- contact changes -->
+       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <form class="form" id="contact-form">
+            <div class="form-div">
+            <label>Home Phone <span class="opt text-danger"><i>*</i></span></label>
+            <input type="text" id="home_phone" placeholder="">
+          </div>
+
+             <div class="form-div">
+            <label>Mobile Phone</label>
+            <input type="text" id="mobile_phone" placeholder="">
+          </div>
+
+             <div class="form-div">
+            <label>Other Phone</label>
+            <textarea rows="4" id="other_phone" placeholder="Enter mulitple number"></textarea>
+          </div>
+      
+          <div class="sub-can">
+            <input type="button" onclick="addcontact()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+<!-- contact ends -->
+
+<!-- Nationality changes -->
+      <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
+        <form name="nationality-tab" id="nationality-form" class="form">
+           <div class="form-div">
+            <label>Nationality<span class="text-danger"><i>*</i></span></label>
+            <div>
+              <div>
+                <input type="radio" name="nationality" checked="true" value="nepalese" onchange="showHideVisa(this)">
+                <label>Nepalese</label>
+              </div>
+              <div>
+                <input type="radio" name="nationality" value="non-nepalese" onchange="showHideVisa(this)">
+                <label>Non-Nepalese</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- non nepalese div -->
+          <div id="non_nepali" style="display: none;">
+          <div class="form-div">
+            <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
+            <div>
+              <input type="radio" name="permission" checked="true" value="yes">
+              <label>Yes</label>
+            </div>
+            <div>
+              <input type="radio" name="permission" value="no">
+              <label>No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <p class="title">If yes, please specify your visa type and visa expiry date </p>
+            <input type="text" name="visa_type" placeholder="Visa Type" class="col-md-3">
+            <input type="date" id="visa_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
+          </div>
+          <!-- changes in passport details -->
+          <div class="form-div">
+            <label>Passport No.</label>
+            <input type="number" id="passport_no" placeholder="">
+          </div>
+              <div class="form-div">
+            <label>Place of Issue</label>
+            <input type="text" id="passport_issue_place" placeholder="">
+          </div>
+
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+      <!-- nationality ends -->
+
+      <!-- Emergency contact form -->
+      <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
+        <form class="form" id="emergency-form">
+          <div class="form-div">
+            <label>Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="cpname" placeholder="">
+          </div>
+          <div class="form-div">
+            <label>Relation<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="cprelation" placeholder="">
+          </div>
+
+           <div class="form-div">
+            <label>Address</label>
+            <textarea name="cpaddress"></textarea>
+          </div>
+           <div class="form-div">
+            <label>Phone No.<span class="text-danger"><i>*</i></span></label>
+            <input type="number" id="cpcontact" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+      <!-- emergency ends -->
+
+      <!-- Education -->
+      <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+       <form class="form" id="education-form">
+          <div class="form-div">
+            <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
+            <select name="highestdegree">          
+              <option>PhD</option>
+              <option>Master</option>
+              <option>Bachelor</option>
+              <option>High School</option>
+              <option>Middle School</option>
+    </div>      </select>
+          </div>
+           <div class="form-div">
+            <label>Degree Title</label>
+            <input type="text" id="degree_title" placeholder="">
+          </div>
+          <div class="form-div">
+            <label>University</label>
+            <input type="text" id="university" placeholder="">
+          </div>
+           <div class="form-div">
+            <label>Institute</label>
+            <input type="text" id="institute" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+<!-- education ends -->
+
+<!-- health info -->
+      <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
+         <form class="form" id="health-form">
+           <div class="form-div">
+            <label>Blood Group</label>
+            <select id="bloodgroup">
+              <option value="A+ve">A +ve</option>
+              <option value="A-ve">A -ve</option>
+              <option value="B+ve">B +ve</option>
+              <option value="B-ve">B -ve</option>
+              <option value="AB+ve">AB +ve</option>
+              <option value="AB-ve">AB -ve</option>
+              <option value="O+ve">O +ve</option>
+              <option value="O-ve">O -ve</option>
+            </select>
+          </div>
+          <div class="form-div">
+            <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
+            <textarea id="medicalcomplications"></textarea>
+          </div>
+          <div class="form-div">
+            <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
+            <textarea id="regularmedication"> </textarea>
+          </div>
+          <div class="form-div">
+            <label  class="radio-inline">Any Allergies</label>
+            
+              <div>
+                <input type="radio" name="allergies">
+                <label  class="radio-inline">Yes</label>
+              
+                <input type="radio" name="allergies" >
+                <label  class="radio-inline">No</label>
+              </div>
+           
+          </div>
+          <div class="form-div">
+            <label>If any, please mention</label>
+            <input type="text" id="others" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
+            <input type="submit" name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+<!-- health info ends here -->
+
+<!-- PAN starts -->
+      <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
+        <form class="form" id="pan-form">
+          <div class="form-div">
+            <label>PAN Number</label>
+            <input type="text" id="pan" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button"  name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+    <!-- PAN ends -->
+
+    <!-- work experience -->
+     <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+        <form class="form" id="work-form">
+          <div class="form-div">
+            <label>Previous Employer</label>
+            <input type="text" id="previous_employer" placeholder="">
+          </div>
+          <div class="sub-can">
+            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button"  name="" value="Cancel" class="can">
+          </div>
+        </form>
+      </div>
+
+
+    <!-- work experience ends-->
+
+    <!-- documents tab -->
+  <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+ <form class="form" id="document-form">
+  <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+
+  <div id="document">
+</div>
+<hr>
+<input type="button" onclick="submitDocument()" value="Submit" class="sub">
+ </form>
+</div>
+
+    <!-- documents ends here -->
