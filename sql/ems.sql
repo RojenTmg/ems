@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2019 at 05:42 PM
+-- Generation Time: Jul 06, 2019 at 06:06 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -132,20 +132,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`emp_id`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`) VALUES
-(234, '', 'asdf', 'asf', 'adsf', '0000-00-00', 1, 1, 'klj', '2019-07-02', 'dcd', '2019-07-03', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(302, 'Mr', 'a', 'a', 'a', '2019-07-23', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(303, 'Mr', 'Tsering', 'Khando', 'Lama', '1929-12-02', 1, 1, '', '0000-00-00', NULL, NULL, 'dragonfiregal.2@gma.con', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2019-07-01', 'Female', '', NULL, NULL, '', NULL, NULL, NULL),
-(304, 'Mr', 'Cx', 'ZXC', 'fdas', '2019-07-10', 1, 1, '', '0000-00-00', NULL, NULL, 'a@adf.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Female', '', NULL, NULL, '', NULL, NULL, NULL),
-(305, 'Mr', 'tsering', 'khando', 'Lama', '2019-07-01', 1, 1, '', '0000-00-00', NULL, NULL, 'dragonfiregal.2@gma.con', 'Nepalese', 'Yes', 'hadasdjf', '2019-07-24', '123asfasdf', 'nepla', 'non', 'kasdk', '', '823984798', 'Bachelor', 'asdf', 'ad', 'asdf', '2019-07-02', 'Female', 'A +ve', '', ' ', 'yes', '', 'asdfa', 'asdfasd'),
-(306, 'Mr', 'fasf', 'asf', 'sa', '2019-07-16', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(307, 'Mr', 'khando', 'l', 'lll', '1828-12-12', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(308, 'Mr', 'a', 'a', 'a', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(309, 'Mr', 'qwrq', 'erqwer', 'qwer', '2019-07-01', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(310, 'Mr', 'awf', 'sfdaf', 'asfd', '2019-07-16', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(311, 'Mr', 'fasf', 'asf', 'asf', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(312, 'Mr', 'adf', 'asdfasf', 'asd', '2019-07-09', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(313, 'Ms', 'asdf', 'sfas', 'asdf', '2019-07-03', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(314, 'Mr', 'asd', 'asdfa', 'sdfas', '2019-07-10', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL);
+(234, '', 'asdf', 'asf', 'adsf', '0000-00-00', 1, 1, 'klj', '2019-07-02', 'dcd', '2019-07-03', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,15 +178,6 @@ CREATE TABLE `employee_documents` (
   `doc_title` varchar(255) DEFAULT NULL,
   `doc_file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_documents`
---
-
-INSERT INTO `employee_documents` (`doc_id`, `emp_id`, `doc_title`, `doc_file`) VALUES
-(1, 313, 'asdf', 'f.txt'),
-(2, 314, 'logo', 'logo.png'),
-(3, 314, 'afasd', 'refre.txt');
 
 -- --------------------------------------------------------
 
@@ -291,26 +269,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(12, 12, '12', 0, 'adf', '2019-07-10', 'ads', '2019-07-09'),
-(123, 234, '234', 0, 'as', '2019-07-17', 'fafd', '2019-07-17'),
-(147, 297, 'ada123', 0, '', '0000-00-00', '', '0000-00-00'),
-(148, 298, 'tete123', 0, '', '0000-00-00', '', '0000-00-00'),
-(149, 299, 'lala123', 0, '', '0000-00-00', '', '0000-00-00'),
-(150, 300, 'tsla123', 0, '', '0000-00-00', '', '0000-00-00'),
-(151, 301, 'tskl123', 0, '', '0000-00-00', '', '0000-00-00'),
-(152, 302, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(153, 303, 'tsla123', 0, '', '0000-00-00', '', '0000-00-00'),
-(154, 304, 'cxfd123', 0, '', '0000-00-00', '', '0000-00-00'),
-(155, 305, 'tsla123', 0, '', '0000-00-00', '', '0000-00-00'),
-(156, 306, 'fasa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(157, 307, 'khll123', 0, '', '0000-00-00', '', '0000-00-00'),
-(158, 308, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(159, 309, 'qwqw123', 0, '', '0000-00-00', '', '0000-00-00'),
-(160, 310, 'awas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(161, 311, 'faas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(162, 312, 'adas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(163, 313, 'asas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(164, 314, 'assd123', 0, '', '0000-00-00', '', '0000-00-00');
+(12, 12, '12', 0, 'adf', '2019-07-10', 'ads', '2019-07-09');
 
 -- --------------------------------------------------------
 
@@ -332,26 +291,7 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 12, '', '0000-00-00', NULL, NULL),
-(2, 123, 'asd', '2019-07-10', 'ad', '2019-07-09'),
-(2, 147, '', '0000-00-00', NULL, NULL),
-(2, 148, '', '0000-00-00', NULL, NULL),
-(2, 149, '', '0000-00-00', NULL, NULL),
-(2, 150, '', '0000-00-00', NULL, NULL),
-(2, 151, '', '0000-00-00', NULL, NULL),
-(2, 152, '', '0000-00-00', NULL, NULL),
-(2, 153, '', '0000-00-00', NULL, NULL),
-(2, 154, '', '0000-00-00', NULL, NULL),
-(2, 155, '', '0000-00-00', NULL, NULL),
-(2, 156, '', '0000-00-00', NULL, NULL),
-(2, 157, '', '0000-00-00', NULL, NULL),
-(2, 158, '', '0000-00-00', NULL, NULL),
-(2, 159, '', '0000-00-00', NULL, NULL),
-(2, 160, '', '0000-00-00', NULL, NULL),
-(2, 161, '', '0000-00-00', NULL, NULL),
-(2, 162, '', '0000-00-00', NULL, NULL),
-(2, 163, '', '0000-00-00', NULL, NULL),
-(2, 164, '', '0000-00-00', NULL, NULL);
+(1, 12, '', '0000-00-00', NULL, NULL);
 
 --
 -- Indexes for dumped tables
