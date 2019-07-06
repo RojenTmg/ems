@@ -101,37 +101,29 @@ public function addAddress()
 		$status=array();
 		extract($_POST);
 
-		$this->form_validation->set_rules('permanentaddress_country','Country','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('currentaddress_street','Current Street','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('currentaddress_district','Current District','required',array('required' => 'You must provide a %s.'));
-
-
-
-			if($this->form_validation->run()===FALSE)
-			{
-				$status=$this->form_validation->error_array();
-			}else
-			{
-				$data=array(
-					'permanentaddress_street'=>$permanentaddress_street,
-					'permanentaddress_municipality'=>$permanentaddress_municipality,
-					'permanentaddress_district'=>$permanentaddress_district,
-					'permanentaddress_state'=>$permanentaddress_state,
-					'permanentaddress_country'=>$permanentaddress_country,
-					'currentaddress_street'=>$currentaddress_street,
-					'currentaddress_municipality'=>$currentaddress_municipality,
-					'currentaddress_district'=>$currentaddress_district,
-					'currentaddress_state'=>$currentaddress_state,
-					'currentaddress_country'=>$currentaddress_country
+		
+				$primaryAdd=array(
+					'street'=>$permanentaddress_street,
+					'municipality'=>$permanentaddress_municipality,
+					'district'=>$permanentaddress_district,
+					'state'=>$permanentaddress_state,
+					'country'=>$permanentaddress_country,
+					
+				);
+				$secondaryAdd=array(
+					'street'=>$currentaddress_street,
+					'municipality'=>$currentaddress_municipality,
+					'district'=>$currentaddress_district,
+					'state'=>$currentaddress_state,
+					'country'=>$currentaddress_country
 				);
 
-				$this->Manage_employee_model->update_address($data,$_SESSION['current_employee_id']);
-				$status=array('true');
+				$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+				$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
 
-			}
-			echo json_encode($status);
+				$status=array('true');
+	echo json_encode($status);
 } 
 
 // contact form
@@ -140,33 +132,18 @@ public function addContact()
 		$status=array();
 		extract($_POST);
 
-		$this->form_validation->set_rules('permanentaddress','Permanent Address','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('currentaddress','Current Address','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('dob','Date of Birth','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('contact','Contact Number','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('email','Email Address','required',array('required' => 'You must provide a %s.'));
-
-			if($this->form_validation->run()===FALSE)
-			{
-				$status=$this->form_validation->error_array();
-			}else
-			{
 				$data=array(
-					'permanentaddress'=>$permanentaddress,
-					'currentaddress'=>$currentaddress,
-					'dob'=>$dob,
-					'contact'=>$contact,
-					'email'=>$email
+					'home_phone'=>$home_phone,
+					'mobile_phone'=>$mobile_phone,
+					'other_phone1'=>$other_phone1,
+					'other_phone2'=>$other_phone2,
+					'other_phone3'=>$other_phone3
 				);
 
-				$this->Manage_employee_model->update_employee($data);
-				$status=array('true');
+				$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
+				$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
 
-			}
+			
 			echo json_encode($status);
 }
 // nationality

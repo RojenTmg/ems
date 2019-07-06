@@ -23,6 +23,8 @@ $route['employee/addWork'] = 'Admin/addWork';
 $route['employee/addPersonalInformation'] = 'Admin/addPersonalInformation';
 $route['admin/addDocuments'] = 'Admin/addDocuments';
 $route['employee/addDocuments'] = 'Admin/addDocuments';
+$route['admin/addAddress'] = 'Admin/addAddress';
+$route['employee/addAddress'] = 'Admin/addAddress';
 
 $route['login'] = 'Login/view';
 $route['admin'] = 'Admin/view';

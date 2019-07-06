@@ -178,13 +178,13 @@
             <input type="text" id="mobile_phone" placeholder="">
           </div>
 
-             <div class="form-div">
-            <label>Other Phone</label>
-            <textarea rows="4" id="other_phone" placeholder="Enter mulitple number"></textarea>
+             <div class="form-group">
+            <p>Other Phone</p>
+           <input type="text" id="other_phone1" placeholder="Phone 1" class="form-group col-md-3">
+           <input type="text" id="other_phone2" placeholder="Phone 2" class="form-group col-md-3">
+           <input type="text" id="other_phone3" placeholder="Phone 3" class="form-group col-md-3">
           </div>
-
-           
-      
+    
           <div class="sub-can">
             <input type="button" onclick="addContact()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
@@ -339,10 +339,10 @@
               <label  class="radio-inline">Any Allergies</label>
               
                 <div>
-                  <input type="radio" id="allergies" value="yes" onchange="showHideAllergy(this)">
+                  <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)">
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio" checked="true" id="allergies" value="no" onchange="showHideAllergy(this)">
+                  <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)">
                   <label  class="radio-inline">No</label>
                 </div>
              

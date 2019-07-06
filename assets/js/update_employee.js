@@ -84,7 +84,7 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-               showresponse('contact-form',status,'Updated Successfully');
+               showresponse('address-form',status,'Updated Successfully');
               }
           }
   }
@@ -95,11 +95,11 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addContact',true);
           var data = new FormData();
-          data.append('permanentaddress',document.getElementById('permanentaddress').value);
-          data.append('currentaddress',document.getElementById('currentaddress').value);
-          data.append('dob',document.getElementById('dob').value);
-          data.append('contact',document.getElementById('contact').value);
-          data.append('email',document.getElementById('email').value);
+          data.append('home_phone',document.getElementById('home_phone').value);
+          data.append('mobile_phone',document.getElementById('mobile_phone').value);
+          data.append('other_phone1',document.getElementById('other_phone1').value);
+          data.append('other_phone2',document.getElementById('other_phone2').value);
+          data.append('other_phone3',document.getElementById('other_phone3').value);
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()

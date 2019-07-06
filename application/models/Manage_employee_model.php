@@ -43,18 +43,60 @@
 
 	// For Address
 		public function update_address($data,$userid=''){
-			if(!isset($_SESSION['user_id'])) $this->load->view('login/login');
 			if($userid==''){
 				$userid=$_SESSION['user_id'];
 			}
-			
-			return $this->db->insert('addresses',$data);
+			$this->db->insert('addresses',$data);
+			$insertedId=$this->db->insert_id();
+			return $insertedId;
+		}
+
+		public function update_employee_address($primary,$secondary,$userid=''){
+			if($userid==''){
+				$userid=$_SESSION['user_id'];
+			}
+			$data=array(
+				'primary_addressId'=>$primary,
+				'secondary_addressId'=>$secondary,
+				'empId'=>$userid
+			);
+			$this->db->insert('employee_addresses',$data);
 
 		}
 
+// for contact form
+public function update_contact($data,$userid=''){
+			if($userid==''){
+				$userid=$_SESSION['user_id'];
+			}
+			$this->db->insert('contacts',$data);
+			$insertedId=$this->db->insert_id();
+			return $insertedId;
+		}
+
+		public function update_employee_contact($contact,$userid=''){
+			if($userid==''){
+				$userid=$_SESSION['user_id'];
+			}
+			$data=array(
+				'contact_id'=>$contact,
+				'emp_id'=>$userid
+			);
+			$this->db->insert('employee_contacts',$data);
+
+		}
+
+
 		// documents
-		public function add_documents($data){
+		public function add_documents($data)
+		{
 			return	$this->db->insert('employee_documents',$data);
+		}
+
+		//contact 
+		public function add_contact($data)
+		{
+			return	$this->db->insert('contacts',$data);
 		}
 
 	}
