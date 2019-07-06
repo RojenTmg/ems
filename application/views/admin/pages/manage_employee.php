@@ -339,10 +339,10 @@
               <label  class="radio-inline">Any Allergies</label>
               
                 <div>
-                  <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)">
+                  <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)" name="allergies">
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)">
+                  <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)" name="allergies">
                   <label  class="radio-inline">No</label>
                 </div>
              

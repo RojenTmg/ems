@@ -75,7 +75,7 @@ function submitDocument(){
 
 //show hide visa info
 function showHideVisa(visa){
-  if(visa.value=='nepalese')
+  if(visa.value=='Nepalese')
     document.getElementById('non_nepali').style.display='none';
   else
   document.getElementById('non_nepali').style.display='block';
@@ -85,7 +85,7 @@ function showHideVisa(visa){
 // show the allergy description textbox if the user selects yes
 function showHideAllergy(allergy)
 {
-     if(allergy.value=='yes')
+     if(allergy.value=='Yes')
     document.getElementById('allergy').style.display='block';
   else
   document.getElementById('allergy').style.display='none';
