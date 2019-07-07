@@ -11,6 +11,15 @@
 
 		}
 
+		public function get_posts($slug = FALSE) {
+			if ($slug === FALSE) {
+				$query = $this->db->get('employees');
+				return $query->result_array();
+			}
+			$query = $this->db->get_where('employees', array('emp_id' => $slug));
+			return $query->row_array();
+		}
+		
 		public function add_employee($data,$password){
 			$this->db->insert('employees',$data);
 			$user_id = $this->db->insert_id();
@@ -38,6 +47,8 @@
 			$user=$this->db->get_where('employees',array('emp_id' => $userid));	
 			return $user->row_array();
 		}
+
+
 
 
 

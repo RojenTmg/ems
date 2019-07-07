@@ -32,6 +32,7 @@ $route['recommender'] = 'Recommender/view';
 $route['approver'] = 'Approver/view';
 $route['employee'] = 'Employee/view';
 
+$route['admin/employee_detail/(:any)'] = 'Admin/viewED/$1';
 $route['admin/(:any)'] = 'Admin/view/$1';
 $route['recommender/(:any)'] = 'Recommender/view/$1';
 $route['approver/(:any)'] = 'Approver/view/$1';

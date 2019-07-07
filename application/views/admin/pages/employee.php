@@ -13,80 +13,41 @@
     <table class="table hover">
       <thead>
         <tr>
-          <th>Employee Name</th>
-          <th>Permanent Address</th>
-          <th>Current Address</th>
-          <th>Email Address</th>
-          <th>Highest Education</th>
-          <th>PAN Number</th>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Created By</th>
+          <th>Nationality</th>
+          <th>Highest Degree</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
-        <tr>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous</td>
-          <td>Anonymous911@gmail.com</td>
-          <td>PhD</td>
-          <td>0234 3241 3415</td>
-        </tr>
+        <?php 
+          foreach ($posts as $post) {
+            ?>
+            <tr id="<?php echo $post['emp_id']; ?>">
+              <td><?php echo $post['emp_id']; ?></td>
+              <td><?php echo $post['title']; ?></td>
+              <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
+              <td><?php echo $post['department_id']; ?></td>
+              <td><?php echo  $post['created_by']; ?></td>
+              <td><?php echo  $post['nationality']; ?></td>
+              <td><?php echo $post['highest_degree']; ?></td>
+            </tr>
+          <?php
+          }
+        ?>
       </tbody>
     </table>
   </div>
 </div>
 </div>
 
-
 <script type="text/javascript">
   $('table tr').click(function() {
-    window.location = '<?= base_url('admin'); ?>/employee_detail';
+    var id = $(this).attr('id');
+    var jId = JSON.parse(id);
+    window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
 </script>
