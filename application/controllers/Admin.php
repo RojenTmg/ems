@@ -141,7 +141,9 @@ public function addContact()
 				);
 
 				$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
-				$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
+				if($this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id'])){
+					$status="true";
+				}
 
 			
 			echo json_encode($status);
@@ -327,6 +329,7 @@ public function addWork()
 
 //function for adding documents
 function addDocuments(){
+		$status='';
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
@@ -340,7 +343,13 @@ function addDocuments(){
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-		$this->Manage_employee_model->add_documents($doc_data);
+if(	$this->Manage_employee_model->add_documents($doc_data))
+		{$status='true';}
+	else{
+		$status='false';
+	}
+
+		echo $status;
 
 }
 }

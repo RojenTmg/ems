@@ -63,8 +63,17 @@ function submitDocument(){
           if(xmlHttp.readyState==4)
           {
            var status = xmlHttp.responseText;
-           msg="Files Uploaded";
-            $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+           if(status=='true')
+           {
+             msg="Files Uploaded";
+             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+           }
+          else{
+             msg="Choose file";
+
+            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+          }
+           
              $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
            document.getElementById("document-form").reset();
           }

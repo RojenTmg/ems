@@ -23,8 +23,9 @@
      <nav>
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
          <!-- general tab -->
-        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
+        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+ 
          <!-- personal details tab -->
         <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
@@ -200,11 +201,11 @@
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
-                <input type="radio" id="nationality" name="nationality" checked="true" value="Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)">
                 <label>Nepalese</label>
               </div>
               <div>
-                <input type="radio" id="nationality" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)">
                 <label>Non-Nepalese</label>
               </div>
             </div>
@@ -215,11 +216,11 @@
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="radio" id="visa_permission" checked="true" value="Yes" name="visa_permission">
+              <input type="radio"  value="Yes" name="visa_permission" >
               <label>Yes</label>
             </div>
             <div>
-              <input type="radio" id="visa_permission" value="No" name="visa_permission">
+              <input type="radio" value="No" name="visa_permission">
               <label>No</label>
             </div>
           </div>
@@ -339,10 +340,10 @@
               <label  class="radio-inline">Any Allergies</label>
               
                 <div>
-                  <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)" name="allergies">
+                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies">
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)" name="allergies">
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies">
                   <label  class="radio-inline">No</label>
                 </div>
              

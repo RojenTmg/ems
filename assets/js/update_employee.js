@@ -118,8 +118,8 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addNationality',true);
           var data = new FormData();
-          data.append('nationality',document.getElementById('nationality').value);
-          data.append('visa_permission',document.getElementById('visa_permission').value);
+          data.append('nationality',getSelectedValue('nationality'));
+          data.append('visa_permission',getSelectedValue('visa_permission'));
           data.append('visa_type',document.getElementById('visa_type').value);
           data.append('visa_expiry_date',document.getElementById('visa_expiry_date').value);
           data.append('passport_no',document.getElementById('passport_no').value);
@@ -189,7 +189,7 @@ xmlHttp.onreadystatechange = function()
           data.append('blood_group',document.getElementById('blood_group').value);
           data.append('medical_complications',document.getElementById('medical_complications').value);
           data.append('regular_medication',document.getElementById('regular_medication').value);
-          data.append('allergies',document.getElementById('allergies').value);
+          data.append('allergies',getSelectedValue('allergies'));
           data.append('allergy_description',document.getElementById('allergy_description').value);
           xmlHttp.send(data);
 xmlHttp.onreadystatechange = function()
