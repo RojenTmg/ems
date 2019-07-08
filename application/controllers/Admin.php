@@ -8,6 +8,7 @@ public function view($page = 'dashboard')
 			}
 
 			$data['title'] = ucfirst($page);
+			$data['posts'] = $this->Manage_employee_model->get_posts();
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) {
 				$this->load->view('admin/templates/header');
 			$this->load->view('admin/pages/' . $page, $data);
@@ -15,6 +16,19 @@ public function view($page = 'dashboard')
 			}
 			else
 				redirect('login');
+}
+
+// viewing registered employees
+public function viewED($slug = NULL) {
+	$data['post'] = $this->Manage_employee_model->get_posts($slug);
+	if (empty($data['post'])) {
+		show_404();
+	}
+	$data['title'] = $data['post']['title'];
+
+	$this->load->view('admin/templates/header');
+			$this->load->view('admin/pages/employee_detail', $data);
+			$this->load->view('admin/templates/footer');
 }
 
 // this fucntion adds general data of add staff form
