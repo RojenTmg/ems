@@ -18,21 +18,38 @@ function showresponse(formname,status,msg)
   var elements= document.getElementById(formname).elements;
   for(var k in elements)
   {
-     if(elements[k].type=="text"||elements[k].type=="number"||elements[k].type=="date"||elements[k].type=="email"||elements[k].nodeName=="select"){
+     if(elements[k].type=="text"||elements[k].type=="number"||elements[k].type=="date"||elements[k].type=="email"||elements[k].nodeName=="select")
+     {
        document.getElementById(elements[k].id).style.borderColor="#ced4da";
-        for(var l in JSONObject){
-          if(l=="0") {
-     $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
-     $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+        for(var l in JSONObject)
+        {
+
+          if(l=="0")
+          {
+
+            // $('.message-div').
+            $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
+           
           }
-           if(elements[k].id==l&&l!="true"){
+           if(elements[k].id==l && l!="true")
+           {
             document.getElementById(l).style.borderColor="#dc3545";
            }
         }
-        if(check) break;
-     }
+// once the data is inserted, the red border disappears
+        if(check)
+        { 
+         for(var m in elements)
+         {
+          if(elements[m].type=="text"||elements[m].type=="number"||elements[m].type=="date"||elements[m].type=="email"||elements[m].nodeName=="select")
+          {
+           document.getElementById(elements[m].id).style.borderColor="#ced4da";
+         }}
+           break;
+           }      
+      }
   }
 }
 
@@ -84,6 +101,7 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                // console.log(status);
                showresponse('address-form',status,'Updated Successfully');
               }
           }
@@ -249,17 +267,31 @@ xmlHttp.onreadystatechange = function()
  function addWork()
  {
   var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addWork',true);
-          var data = new FormData();
-          data.append('previous_employer',document.getElementById('previous_employer').value);
-          xmlHttp.send(data);
+  xmlHttp.open('POST','addWork',true);
+  var data = new FormData();
+  data.append('previous_employer',document.getElementById('previous_employer').value);
+  xmlHttp.send(data);
 
-         xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                var status = xmlHttp.responseText;
-               showresponse('work-form',status,'Updated Successfully');
-              }
-          }
+ xmlHttp.onreadystatechange = function()
+  {
+      if(xmlHttp.readyState==4)
+      {
+        var status = xmlHttp.responseText;
+       showresponse('work-form',status,'Updated Successfully');
+      }
+  }
  }
+
+ // to make enter button submit form 
+   $(document).ready(function() {
+    $(window).keydown(function(event){
+        if((event.keyCode == 13) && ($(event.target)[0]!=$("textarea")[0])) {
+            event.preventDefault();
+            return false;
+        }
+    });
+  });
+
+
+
+

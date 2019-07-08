@@ -5,10 +5,11 @@
           var data = new FormData();
           var first_name =document.getElementById('first_name').value;
           var last_name=document.getElementById('last_name').value
+          var middle_name= document.getElementById('middle_name').value;
           var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
           data.append('title',document.getElementById('title').value);
           data.append('first_name',first_name);
-          data.append('middle_name',document.getElementById('middle_name').value);
+          data.append('middle_name',middle_name);
           data.append('last_name',last_name);
           data.append('join_date',document.getElementById('join_date').value);
           data.append('password',password);
@@ -21,9 +22,14 @@
               {
                 var status = xmlHttp.responseText;
                showresponse('general-form',status,'Employee Added Successfully');
-               document.getElementById("general-form").reset();
+               displayName(first_name,middle_name,last_name);
               }
           }
+  }
+  // display current entering employee's name
+  function displayName(fname,mname="",lname)
+  {
+    $('#current_employee_name').text(fname+" "+mname+" "+lname);
   }
 
 
@@ -48,7 +54,16 @@ function submitDocument(){
 
   var doc_title = document.getElementsByName('doc_title');
   var doc_file = document.getElementsByName('userfile');
-
+  var count=0;
+  
+  for( i = 0; i < doc_title.length; i++ )
+     {
+     if(doc_title[i].value==''||doc_file[i].files.length==0){
+        var msg="Select a file and title";
+            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+      return false;
+     }
+  }
     for( i = 0; i < doc_title.length; i++ )
      {
       var xmlHttp = new XMLHttpRequest();
@@ -69,6 +84,7 @@ function submitDocument(){
              $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
            }
           else{
+            count++;
              msg="Choose file";
 
             $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
@@ -81,6 +97,7 @@ function submitDocument(){
       
     }
 }
+
 
 //show hide visa info
 function showHideVisa(visa){

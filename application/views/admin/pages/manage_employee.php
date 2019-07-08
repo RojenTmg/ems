@@ -1,19 +1,24 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
       if (isset($_SESSION['current_employee_id'])) {
-        unset($_SESSION['current_employee_id']); }
+        unset($_SESSION['current_employee_id']); 
+      }
       ?>
       
  <!-- form -->
   <div class="contents">
      <!-- progress-bar -->
      <div class="box profile-progress">
-       <div class="box-head pro-head sp-btn">
-          
-          <p>90% completed</p>
+       <div class="box-head pro-head sp-btn " >
+     <!-- show name above the progress bar and DONE button added -->
+          <p id="current_employee_name"> </p> 
+          <!-- button -->
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Done" onclick="location.reload()">
         </div>
         <div class="box-body">
+           <p>90% completed</p>
           <div class="pro-bar">
+
             <div class="bar-completed"></div>
           </div>  
         </div>
@@ -60,7 +65,7 @@
       </div>
     </nav>
     <div class="message-div">
-      
+      <!-- <div id="message" class="message"> </div> -->
     </div>
       <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -77,15 +82,15 @@
 
           <div class="form-div">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="first_name" placeholder="" >
+            <input type="text" id="first_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
-            <input type="text" id="middle_name" placeholder="">
+            <input type="text" id="middle_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="last_name" placeholder="">
+            <input type="text" id="last_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <!-- date of join added -->
            <div class="form-div">
@@ -93,8 +98,8 @@
             <input type="date" id="join_date" value=<?php echo date('Y-m-d');?>>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra">
-            <input type="submit" name="" value="Cancel" class="can" id="extra">
+            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
+            <input type="reset" name="" value="Cancel" class="can" id="">
           </div>
         </form>
       </div>
@@ -170,12 +175,12 @@
        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form" id="contact-form">
             <div class="form-div">
-            <label>Home Phone <span class="opt text-danger"><i>*</i></span></label>
+            <label>Home Phone </label>
             <input type="text" id="home_phone" placeholder="">
           </div>
 
              <div class="form-div">
-            <label>Mobile Phone</label>
+            <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
             <input type="text" id="mobile_phone" placeholder="">
           </div>
 
@@ -201,7 +206,7 @@
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
-                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" checked="true">
                 <label>Nepalese</label>
               </div>
               <div>
@@ -220,7 +225,7 @@
               <label>Yes</label>
             </div>
             <div>
-              <input type="radio" value="No" name="visa_permission">
+              <input type="radio" value="No" name="visa_permission" checked="true">
               <label>No</label>
             </div>
           </div>
@@ -232,11 +237,11 @@
           </div>
           <!-- changes in passport details -->
           <div class="form-div">
-            <label>Citizenship/Passport No.</label>
+            <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_no" placeholder="">
           </div>
               <div class="form-div">
-            <label>Place of Issue</label>
+            <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" placeholder="">
           </div>
 
@@ -267,7 +272,7 @@
           </div>
            <div class="form-div">
             <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="number" id="e_phone" placeholder="">
+            <input type="text" id="e_phone" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
@@ -282,7 +287,8 @@
        <form class="form" id="education-form">
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
-            <select id="highest_degree">          
+            <select id="highest_degree">  
+              <option value="None">None</option>        
               <option value="PhD">PhD</option>
               <option value="Master">Master</option>
               <option value="Bachelor">Bachelor</option>
@@ -340,10 +346,10 @@
               <label  class="radio-inline">Any Allergies</label>
               
                 <div>
-                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies">
+                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" >
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies">
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" checked="true">
                   <label  class="radio-inline">No</label>
                 </div>
              
@@ -411,3 +417,7 @@
  </form>
 </div>
     <!-- documents ends here -->
+
+
+
+
