@@ -22,9 +22,9 @@ class Validate_login_form extends CI_Model
 		{
 		foreach($query->result() as $row)
   			{
-  						 	// $store_password = $this->encrypt->decode($row->password);
-  				if($row->is_logged_in==0)
-  				{
+			 	// $store_password = $this->encrypt->decode($row->password);
+  				// if($row->is_logged_in==0)
+  				// {
   						$store_password=$row->user_pass;
 			     if($password == $store_password)
 			     {
@@ -64,9 +64,9 @@ class Validate_login_form extends CI_Model
 						     }
 				     else
 				     	$msg=$msg.'Invalid Password.';
-	  				}
-	  				else
-  						$msg=$msg."User is already logged in. ";
+	  				// }
+	  				// else
+  					// 	$msg=$msg."User is already logged in. ";
 
   			 
 						

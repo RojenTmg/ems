@@ -1,31 +1,37 @@
-<!-- unset the existing session in the reload of page -->
-<?php 
-if (isset($_SESSION['current_employee_id'])) {
-  unset($_SESSION['current_employee_id']); }
-  ?>
-
-  <!-- form -->
+ <!-- unset the existing session in the reload of page -->
+     <?php 
+      if (isset($_SESSION['current_employee_id'])) {
+        unset($_SESSION['current_employee_id']); 
+      }
+      ?>
+      
+ <!-- form -->
   <div class="contents">
-    <!-- progress-bar -->
-    <div class="box profile-progress">
-      <div class="box-head pro-head sp-btn">
+     <!-- progress-bar -->
+     <div class="box profile-progress">
+       <div class="box-head pro-head sp-btn " >
+     <!-- show name above the progress bar and DONE button added -->
+          <p id="current_employee_name"> </p> 
+          <!-- button -->
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Done" onclick="location.reload()">
+        </div>
+        <div class="box-body">
+           <p>90% completed</p>
+          <div class="pro-bar">
 
-        <p>90% completed</p>
-      </div>
-      <div class="box-body">
-        <div class="pro-bar">
-          <div class="bar-completed"></div>
-        </div>  
-      </div>
-    </div>
+            <div class="bar-completed"></div>
+          </div>  
+        </div>
+     </div>
 
-    <!-- nav-tab-form -->
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <!-- general tab -->
+     <!-- nav-tab-form -->
+     <nav>
+       <div class="nav nav-tabs" id="nav-tab" role="tablist">
+         <!-- general tab -->
+
         <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-
-        <!-- personal details tab -->
+ 
+         <!-- personal details tab -->
         <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
 
@@ -60,6 +66,7 @@ if (isset($_SESSION['current_employee_id'])) {
     </nav>
     <div class="message-div">
 
+      <!-- <div id="message" class="message"> </div> -->
     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -76,15 +83,15 @@ if (isset($_SESSION['current_employee_id'])) {
 
           <div class="form-div">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="first_name" placeholder="" >
+            <input type="text" id="first_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
-            <input type="text" id="middle_name" placeholder="">
+            <input type="text" id="middle_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="last_name" placeholder="">
+            <input type="text" id="last_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <!-- date of join added -->
           <div class="form-div">
@@ -92,8 +99,8 @@ if (isset($_SESSION['current_employee_id'])) {
             <input type="date" id="join_date" value=<?php echo date('Y-m-d');?>>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra">
-            <input type="submit" name="" value="Cancel" class="can" id="extra">
+            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
+            <input type="reset" name="" value="Cancel" class="can" id="">
           </div>
         </form>
       </div>
@@ -168,13 +175,14 @@ if (isset($_SESSION['current_employee_id'])) {
       <!-- contact changes -->
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form" id="contact-form">
-          <div class="form-div">
-            <label>Home Phone <span class="opt text-danger"><i>*</i></span></label>
+
+            <div class="form-div">
+            <label>Home Phone </label>
             <input type="text" id="home_phone" placeholder="">
           </div>
 
-          <div class="form-div">
-            <label>Mobile Phone</label>
+             <div class="form-div">
+            <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
             <input type="text" id="mobile_phone" placeholder="">
           </div>
 
@@ -200,11 +208,11 @@ if (isset($_SESSION['current_employee_id'])) {
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
-                <input type="radio" id="nationality" name="nationality" checked="true" value="Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" checked="true">
                 <label>Nepalese</label>
               </div>
               <div>
-                <input type="radio" id="nationality" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)">
                 <label>Non-Nepalese</label>
               </div>
             </div>
@@ -212,30 +220,26 @@ if (isset($_SESSION['current_employee_id'])) {
 
           <!-- non nepalese div -->
           <div id="non_nepali" style="display: none;">
-            <div class="form-div">
-              <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
-              <div>
-                <input type="radio" id="visa_permission" checked="true" value="Yes" name="visa_permission">
-                <label>Yes</label>
-              </div>
-              <div>
-                <input type="radio" id="visa_permission" value="No" name="visa_permission">
-                <label>No</label>
-              </div>
+
+          <div class="form-div">
+            <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
+            <div>
+              <input type="radio"  value="Yes" name="visa_permission" >
+              <label>Yes</label>
             </div>
-            <div class="form-group">
-              <p class="title">If yes, please specify your visa type and visa expiry date </p>
-              <input type="text" id="visa_type" placeholder="Visa Type" class="col-md-3">
-              <input type="date" id="visa_expiry_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
+            <div>
+              <input type="radio" value="No" name="visa_permission" checked="true">
+              <label>No</label>
             </div>
           </div>
           <!-- changes in passport details -->
           <div class="form-div">
-            <label>Citizenship/Passport No.</label>
+            <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_no" placeholder="">
           </div>
-          <div class="form-div">
-            <label>Place of Issue</label>
+
+              <div class="form-div">
+            <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" placeholder="">
           </div>
 
@@ -266,7 +270,7 @@ if (isset($_SESSION['current_employee_id'])) {
           </div>
           <div class="form-div">
             <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="number" id="e_phone" placeholder="">
+            <input type="text" id="e_phone" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
@@ -281,7 +285,8 @@ if (isset($_SESSION['current_employee_id'])) {
         <form class="form" id="education-form">
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
-            <select id="highest_degree">          
+            <select id="highest_degree">  
+              <option value="None">None</option>        
               <option value="PhD">PhD</option>
               <option value="Master">Master</option>
               <option value="Bachelor">Bachelor</option>
@@ -337,15 +342,14 @@ if (isset($_SESSION['current_employee_id'])) {
             </div>
             <div class="form-div">
               <label  class="radio-inline">Any Allergies</label>
-
-              <div>
-                <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)" name="allergies">
-                <label  class="radio-inline">Yes</label>
-
-                <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)" name="allergies">
-                <label  class="radio-inline">No</label>
-              </div>
-
+                <div>
+                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" >
+                  <label  class="radio-inline">Yes</label>
+                
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" checked="true">
+                  <label  class="radio-inline">No</label>
+                </div>
+             
             </div>
             <!-- allerygy tab changes show hide -->
             <div id="allergy" style="display:none; ">  
@@ -406,7 +410,8 @@ if (isset($_SESSION['current_employee_id'])) {
           </div>
           <hr>
 
-          <input type="button" onclick="submitDocument()" value="Submit" class="sub">
-        </form>
-      </div>
-      <!-- documents ends here -->
+
+<input type="button" onclick="submitDocument()" value="Submit" class="sub">
+ </form>
+</div>
+    <!-- documents ends here -->

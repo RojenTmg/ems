@@ -62,8 +62,11 @@ public function addGeneral()
 					'department_id'=>'1'
 				);
 				
-				$this->Manage_employee_model->add_employee($data,$password);
-				array_push($result, 'true');
+				if($this->Manage_employee_model->add_employee($data,$password))
+				{
+					array_push($result, 'true');
+				}
+				
 			}
 			echo json_encode($result);
 }
@@ -121,6 +124,18 @@ public function addAddress()
 		$status=array();
 		extract($_POST);
 
+
+		//validate
+		$this->form_validation->set_rules('currentaddress_street','Current street','required|trim',array('required' => 'You must provide a %s.'));
+
+		$this->form_validation->set_rules('currentaddress_municipality','Current municipality','required|trim',array('required' => 'You must provide a %s.'));
+
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=$this->form_validation->error_array();
+			}else
+			{
+		
 				$primaryAdd=array(
 					'street'=>$permanentaddress_street,
 					'municipality'=>$permanentaddress_municipality,
@@ -137,38 +152,78 @@ public function addAddress()
 					'country'=>$currentaddress_country
 				);
 
-				alert($this->Manage_employee_model->getAddress($primaryAdd));
-				alert($this->Manage_employee_model->getAddress($secondaryAdd));
-				die();
-				
-				// $data1['address'] = $this->Manage_employee_model->getAddress($primaryAdd);
-				// if (empty($data1['address'])) {
-				// 	$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
-				// } else {
-				// 	$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+
+				// if(!empty($permanentaddress_street)||!empty($permanentaddress_municipality)||!empty($permanentaddress_district)||!empty($permanentaddress_state))
+				// {
+					
 				// }
 
-				// $data2['address'] = $this->Manage_employee_model->getAddress($secondaryAdd);
-				// if (empty($data2['address'])) {
-				// 	$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
-				// } else {
-				// 	$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
-				// }
+				$primary = array(
+				'street' => $permanentaddress_street, 
+				'municipality' => $permanentaddress_municipality,
+				'district' => $permanentaddress_district,
+				'country'=>$permanentaddress_country);
 
-				// $primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
-				// $secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
-				// $this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+				$secondary = array(
+				'street' => $currentaddress_street, 
+				'municipality' => $currentaddress_municipality,
+				'district' => $currentaddress_district,
+				'country'=>$currentaddress_country);
+
+				$error='';
+				$check='';
+
+				if($primary==NULL){
+					$check=NULL;
+					$error=NULL;
+				}
+				else{
+					$query=$this->db->get_where("addresses",$primary);
+					$check=$query->row_array();
+				}
+
+				if($check==NULL){
+					if($error==NULL){
+						$primary_id='1';
+					}
+					else{
+						$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+					}
+				}
+				else{
+					$primary_id=$check['address_id'];
+				}
+
+				$query=$this->db->get_where("addresses",$secondary);
+				$check=$query->row_array();
+
+				if($check==NULL){
+					$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				}
+				else{
+					$secondary_id=$check['address_id'];
+				}
+
+				$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
 
 				$status=array('true');
+			}
 	echo json_encode($status);
 } 
+
 
 // contact form
 public function addContact()
 {
 		$status=array();
 		extract($_POST);
+		$this->form_validation->set_rules('mobile_phone','Mobile phone','required|trim',array('required' => 'You must provide a %s.'));
 
+			if($this->form_validation->run()===FALSE)
+			{
+				$status=$this->form_validation->error_array();
+			}else
+			{
 				$data=array(
 					'home_phone'=>$home_phone,
 					'mobile_phone'=>$mobile_phone,
@@ -178,9 +233,11 @@ public function addContact()
 				);
 
 				$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
-				$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
+				if($this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id'])){
+					$status="true";
+				}
 
-			
+			}
 			echo json_encode($status);
 }
 // nationality
@@ -193,13 +250,10 @@ public function addNationality()
 
 		$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
 
-		$this->form_validation->set_rules('visa_type','Visa Type','required',array('required' => 'You must provide a %s.'));
+	
+		$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 
-		$this->form_validation->set_rules('visa_expiry_date','Visa Expiry Date','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('passport_no','Passport Number','required',array('required' => 'You must provide a %s.'));
-
-		$this->form_validation->set_rules('passport_issue_place','Place of Issue','required',array('required' => 'You must provide a %s.'));
+		$this->form_validation->set_rules('passport_issue_place','Place of Issue','required|trim',array('required' => 'You must provide a %s.'));
 
 			if($this->form_validation->run()===FALSE)
 			{
@@ -228,11 +282,11 @@ public function addEmergency()
 		$status=array();
 		extract($_POST);
 
-		$this->form_validation->set_rules('e_name','Contact Person Name','required',array('required' => 'You must provide detail of %s.'));
+		$this->form_validation->set_rules('e_name','Contact Person Name','required|trim',array('required' => 'You must provide detail of %s.'));
 
-		$this->form_validation->set_rules('e_relation','Relation','required',array('required' => 'You must provide relation to the person.'));
+		$this->form_validation->set_rules('e_relation','Relation','required|trim',array('required' => 'You must provide relation to the person.'));
 
-		$this->form_validation->set_rules('e_phone','Contact No.','required',array('required' => 'You must provide contact details of person.'));
+		$this->form_validation->set_rules('e_phone','Contact No.','required|trim',array('required' => 'You must provide contact details of person.'));
 
 
 
@@ -263,7 +317,7 @@ public function addEducation()
 
 		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
 
-		$this->form_validation->set_rules('institute','Institute','required',array('required' => 'You must provide name of the Institute.'));
+		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
 
 			if($this->form_validation->run()===FALSE)
 			{
@@ -364,6 +418,7 @@ public function addWork()
 
 //function for adding documents
 function addDocuments(){
+		$status='';
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
@@ -377,7 +432,13 @@ function addDocuments(){
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-		$this->Manage_employee_model->add_documents($doc_data);
+if(	$this->Manage_employee_model->add_documents($doc_data))
+		{$status='true';}
+	else{
+		$status='false';
+	}
+
+		echo $status;
 
 }
 }
