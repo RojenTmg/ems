@@ -1,67 +1,67 @@
- <!-- unset the existing session in the reload of page -->
-     <?php 
-      if (isset($_SESSION['current_employee_id'])) {
-        unset($_SESSION['current_employee_id']); }
-      ?>
-      
- <!-- form -->
-  <div class="contents">
-     <!-- progress-bar -->
-     <div class="box profile-progress">
-       <div class="box-head pro-head sp-btn">
-          
-          <p>90% completed</p>
-        </div>
-        <div class="box-body">
-          <div class="pro-bar">
-            <div class="bar-completed"></div>
-          </div>  
-        </div>
-     </div>
+<!-- unset the existing session in the reload of page -->
+<?php 
+if (isset($_SESSION['current_employee_id'])) {
+  unset($_SESSION['current_employee_id']); }
+  ?>
 
-     <!-- nav-tab-form -->
-     <nav>
-       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-         <!-- general tab -->
+  <!-- form -->
+  <div class="contents">
+    <!-- progress-bar -->
+    <div class="box profile-progress">
+      <div class="box-head pro-head sp-btn">
+
+        <p>90% completed</p>
+      </div>
+      <div class="box-body">
+        <div class="pro-bar">
+          <div class="bar-completed"></div>
+        </div>  
+      </div>
+    </div>
+
+    <!-- nav-tab-form -->
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <!-- general tab -->
         <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
-         <!-- personal details tab -->
+        <!-- personal details tab -->
         <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
 
-       <!-- added address tab -->
+        <!-- added address tab -->
         <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
         <!-- contact tab -->
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
-       
-       <!-- nationality tab -->
+
+        <!-- nationality tab -->
         <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
         <!-- emergency tab -->
         <a class="nav-item nav-link" id="nav-eContact-tab" data-toggle="tab" href="#nav-eContact" role="tab" aria-controls="nav-eContact" aria-selected="false">Emergency Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
-        
+
         <!-- education tab -->
         <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-      
-      <!-- health tab -->
-       <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="false">Health &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
-       
-       <!-- pan tab -->
-       <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
-      
+
+        <!-- health tab -->
+        <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="false">Health &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+
+        <!-- pan tab -->
+        <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+
         <!-- work tab -->
-      <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
-        
-      <!--document tab  -->
-      <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
-       <!--TAB ENDS  -->
+        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
+
+        <!--document tab  -->
+        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <!--TAB ENDS  -->
       </div>
     </nav>
     <div class="message-div">
-      
+
     </div>
-      <div class="tab-content" id="nav-tabContent">
+    <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
         <form class="form" id="general-form">
           <div class="form-div">
@@ -87,7 +87,7 @@
             <input type="text" id="last_name" placeholder="">
           </div>
           <!-- date of join added -->
-           <div class="form-div">
+          <div class="form-div">
             <label>Date of Join<span class="text-danger"><i>*</i></span></label>
             <input type="date" id="join_date" value=<?php echo date('Y-m-d');?>>
           </div>
@@ -97,19 +97,19 @@
           </div>
         </form>
       </div>
-    <!-- general ends -->
+      <!-- general ends -->
 
-    <!-- personal details starts here -->
-     <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
+      <!-- personal details starts here -->
+      <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
         <form class="form" id="personal-form">
-            <div class="form-div">
-           <label>Gender</label>
-           <select id="gender">
-             <option value="Male">Male</option>
-             <option value="Female">Female</option>
-             <option value="Others">Others</option>
-           </select>
-           </div> 
+          <div class="form-div">
+            <label>Gender</label>
+            <select id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div> 
 
           <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
@@ -118,7 +118,7 @@
 
           <div class="form-div">
             <label>Email</label>
-              <input type="email" id="email" placeholder="">
+            <input type="email" id="email" placeholder="">
           </div>
 
           <div class="sub-can">
@@ -127,32 +127,32 @@
           </div>
         </form>
       </div>
-  <!-- personal details ends here -->
+      <!-- personal details ends here -->
 
 
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
         <form class="form" id="address-form">
-           <div class="form-group">
+          <div class="form-group">
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
-              <input type="text" id="permanentaddress_street" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_street" placeholder="Street" class="form-group col-md-3">
             <input type="text" id="permanentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
-             <input type="text" id="permanentaddress_district" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_district" placeholder="District" class="form-group col-md-3">
             <input type="text" id="permanentaddress_state" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
             <select id="permanentaddress_country"  class="form-group col-md-3">
               <?php 
-                require 'assets/addresses/country_list.php';
-               ?>
+              require 'assets/addresses/country_list.php';
+              ?>
             </select>
-          
-           
+
+
           </div>
           <div class="form-group">
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
-             <input type="text" id="currentaddress_street" placeholder="Street" class="form-group col-md-3">
-               <input type="text" id="currentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
-                 <input type="text" id="currentaddress_district" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="currentaddress_street" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="currentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
+            <input type="text" id="currentaddress_district" placeholder="District" class="form-group col-md-3">
             <input type="text" id="currentaddress_state" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
             <input type="text" id="currentaddress_country" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
@@ -163,40 +163,40 @@
           </div>
         </form>
       </div>
-  <!-- address ends -->
+      <!-- address ends -->
 
       <!-- contact changes -->
-       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form" id="contact-form">
-            <div class="form-div">
+          <div class="form-div">
             <label>Home Phone <span class="opt text-danger"><i>*</i></span></label>
             <input type="text" id="home_phone" placeholder="">
           </div>
 
-             <div class="form-div">
+          <div class="form-div">
             <label>Mobile Phone</label>
             <input type="text" id="mobile_phone" placeholder="">
           </div>
 
-             <div class="form-group">
+          <div class="form-group">
             <p>Other Phone</p>
-           <input type="text" id="other_phone1" placeholder="Phone 1" class="form-group col-md-3">
-           <input type="text" id="other_phone2" placeholder="Phone 2" class="form-group col-md-3">
-           <input type="text" id="other_phone3" placeholder="Phone 3" class="form-group col-md-3">
+            <input type="text" id="other_phone1" placeholder="Phone 1" class="form-group col-md-3">
+            <input type="text" id="other_phone2" placeholder="Phone 2" class="form-group col-md-3">
+            <input type="text" id="other_phone3" placeholder="Phone 3" class="form-group col-md-3">
           </div>
-    
+
           <div class="sub-can">
             <input type="button" onclick="addContact()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
           </div>
         </form>
       </div>
-<!-- contact ends -->
+      <!-- contact ends -->
 
-<!-- Nationality changes -->
+      <!-- Nationality changes -->
       <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
         <form name="nationality-tab" id="nationality-form" class="form">
-           <div class="form-div">
+          <div class="form-div">
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
@@ -212,34 +212,34 @@
 
           <!-- non nepalese div -->
           <div id="non_nepali" style="display: none;">
-          <div class="form-div">
-            <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
-            <div>
-              <input type="radio" id="visa_permission" checked="true" value="Yes" name="visa_permission">
-              <label>Yes</label>
+            <div class="form-div">
+              <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
+              <div>
+                <input type="radio" id="visa_permission" checked="true" value="Yes" name="visa_permission">
+                <label>Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="visa_permission" value="No" name="visa_permission">
+                <label>No</label>
+              </div>
             </div>
-            <div>
-              <input type="radio" id="visa_permission" value="No" name="visa_permission">
-              <label>No</label>
+            <div class="form-group">
+              <p class="title">If yes, please specify your visa type and visa expiry date </p>
+              <input type="text" id="visa_type" placeholder="Visa Type" class="col-md-3">
+              <input type="date" id="visa_expiry_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
             </div>
-          </div>
-          <div class="form-group">
-            <p class="title">If yes, please specify your visa type and visa expiry date </p>
-            <input type="text" id="visa_type" placeholder="Visa Type" class="col-md-3">
-            <input type="date" id="visa_expiry_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
-          </div>
           </div>
           <!-- changes in passport details -->
           <div class="form-div">
             <label>Citizenship/Passport No.</label>
             <input type="text" id="passport_no" placeholder="">
           </div>
-              <div class="form-div">
+          <div class="form-div">
             <label>Place of Issue</label>
             <input type="text" id="passport_issue_place" placeholder="">
           </div>
 
-          
+
           <div class="sub-can">
             <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
             <input type="submit" name="" value="Cancel" class="can">
@@ -260,11 +260,11 @@
             <input type="text" id="e_relation" placeholder="">
           </div>
 
-           <div class="form-div">
+          <div class="form-div">
             <label>Address</label>
             <textarea id="e_address"></textarea>
           </div>
-           <div class="form-div">
+          <div class="form-div">
             <label>Phone No.<span class="text-danger"><i>*</i></span></label>
             <input type="number" id="e_phone" placeholder="">
           </div>
@@ -278,7 +278,7 @@
 
       <!-- Education -->
       <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
-       <form class="form" id="education-form">
+        <form class="form" id="education-form">
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">          
@@ -287,9 +287,9 @@
               <option value="Bachelor">Bachelor</option>
               <option value="High School">High School</option>
               <option value="Middle School">Middle School</option>
-    </div>      </select>
+            </div>      </select>
           </div>
-           <div class="form-div">
+          <div class="form-div">
             <label>Degree Title</label>
             <input type="text" id="degree_title" placeholder="">
           </div>
@@ -297,7 +297,7 @@
             <label>University</label>
             <input type="text" id="university" placeholder="">
           </div>
-           <div class="form-div">
+          <div class="form-div">
             <label>Institute</label>
             <input type="text" id="institute" placeholder="">
           </div>
@@ -307,14 +307,14 @@
           </div>
         </form>
       </div>
-<!-- education ends -->
+      <!-- education ends -->
 
-  <!-- health info -->
-        <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
-           <form class="form" id="health-form">
-               <div class="form-div">
-           
-             <div class="form-div">
+      <!-- health info -->
+      <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
+        <form class="form" id="health-form">
+          <div class="form-div">
+
+            <div class="form-div">
               <label>Blood Group</label>
               <select id="blood_group">
                 <option value="A +ve">A +ve</option>
@@ -337,37 +337,37 @@
             </div>
             <div class="form-div">
               <label  class="radio-inline">Any Allergies</label>
-              
-                <div>
-                  <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)" name="allergies">
-                  <label  class="radio-inline">Yes</label>
-                
-                  <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)" name="allergies">
-                  <label  class="radio-inline">No</label>
-                </div>
-             
+
+              <div>
+                <input type="radio" id="allergies" value="Yes" onchange="showHideAllergy(this)" name="allergies">
+                <label  class="radio-inline">Yes</label>
+
+                <input type="radio" checked="true" id="allergies" value="No" onchange="showHideAllergy(this)" name="allergies">
+                <label  class="radio-inline">No</label>
+              </div>
+
             </div>
             <!-- allerygy tab changes show hide -->
             <div id="allergy" style="display:none; ">  
-            <div class="form-div">
-              <label>If any, please mention</label>
-              <input type="text" id="allergy_description" placeholder="">
+              <div class="form-div">
+                <label>If any, please mention</label>
+                <input type="text" id="allergy_description" placeholder="">
+              </div>
             </div>
-          </div>
             <div class="sub-can">
               <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
               <input type="submit" name="" value="Cancel" class="can">
             </div>
           </div>
-          </form>
-        </div>
-    
-  <!-- health info ends here -->
+        </form>
+      </div>
 
-<!-- PAN starts -->
+      <!-- health info ends here -->
+
+      <!-- PAN starts -->
       <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
         <form class="form" id="pan-form">
-             <!-- hidden id -->
+          <!-- hidden id -->
           <input type="hidden" id="emp_id">
 
           <div class="form-div">
@@ -380,10 +380,10 @@
           </div>
         </form>
       </div>
-    <!-- PAN ends -->
+      <!-- PAN ends -->
 
-    <!-- work experience -->
-     <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+      <!-- work experience -->
+      <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
           <div class="form-div">
             <label>Previous Employer</label>
@@ -395,18 +395,18 @@
           </div>
         </form>
       </div>
-    <!-- work experience ends-->
+      <!-- work experience ends-->
 
-    <!-- documents tab -->
-  <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
- <form class="form" id="document-form" enctype="multipart/form-data">
-  <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+      <!-- documents tab -->
+      <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+        <form class="form" id="document-form" enctype="multipart/form-data">
+          <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
 
-  <div id="document">
-</div>
-<hr>
+          <div id="document">
+          </div>
+          <hr>
 
-<input type="button" onclick="submitDocument()" value="Submit" class="sub">
- </form>
-</div>
-    <!-- documents ends here -->
+          <input type="button" onclick="submitDocument()" value="Submit" class="sub">
+        </form>
+      </div>
+      <!-- documents ends here -->

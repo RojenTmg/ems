@@ -31,6 +31,15 @@ public function viewED($slug = NULL) {
 			$this->load->view('admin/templates/footer');
 }
 
+public function archiveEmployee() {
+
+		extract($_POST);
+		$this->Manage_employee_model->archiveEmployee($emp_id);
+		echo 'success';
+
+		// echo 'true';
+}
+
 // this fucntion adds general data of add staff form
 public function addGeneral()
 {			
@@ -115,7 +124,6 @@ public function addAddress()
 		$status=array();
 		extract($_POST);
 
-		
 				$primaryAdd=array(
 					'street'=>$permanentaddress_street,
 					'municipality'=>$permanentaddress_municipality,
@@ -132,9 +140,27 @@ public function addAddress()
 					'country'=>$currentaddress_country
 				);
 
-				$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
-				$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
-				$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+				alert($this->Manage_employee_model->getAddress($primaryAdd));
+				alert($this->Manage_employee_model->getAddress($secondaryAdd));
+				die();
+				
+				// $data1['address'] = $this->Manage_employee_model->getAddress($primaryAdd);
+				// if (empty($data1['address'])) {
+				// 	$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+				// } else {
+				// 	$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+				// }
+
+				// $data2['address'] = $this->Manage_employee_model->getAddress($secondaryAdd);
+				// if (empty($data2['address'])) {
+				// 	$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				// } else {
+				// 	$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+				// }
+
+				// $primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+				// $secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				// $this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
 
 				$status=array('true');
 	echo json_encode($status);

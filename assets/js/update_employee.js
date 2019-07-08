@@ -1,3 +1,27 @@
+  // archive employee
+   function archiveEmployee(id)
+  {
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','archiveEmployee',true);
+          var data = new FormData();
+          data.append('emp_id', id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+                var status = xmlHttp.responseText;
+                // $(this).parents("tr").remove();
+                $(this).parent().css({"display": "none"});
+                alert(status);
+                // $(this).parents("tr").style.background = 'red';
+               // showresponse('general-form',status,'Updated Successfully');
+              }
+          }
+  }
+
+
   // this function returns the value of radio button of same group
   function getSelectedValue(groupName) {
       var radios = document.getElementsByName(groupName);

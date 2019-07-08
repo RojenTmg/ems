@@ -659,9 +659,11 @@ body {
 }
 .sub:hover {
   background-color: #3b4562;
+  cursor: pointer;
 }
 .can:hover {
   background-color: #4c546d;
+  cursor: pointer;
   color: #fff;
 }
 
@@ -719,11 +721,58 @@ background-color: #4c546d;
 }
 .table td:last-child , .table th:last-child {
   min-width: 200px;
-
 }
 .hover tbody tr:hover {
   background-color: #e8e8ed;
 }
+/*-----------------------------tool-tip-table-theme-------------------------------------------------*/
+.btn-edit, .btn-archive {
+  border: none;
+  background-color: #ffffff00;
+  margin: 0 20px 0 0;
+  cursor: pointer;
+}
+.tooltip1 {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  /*visibility: hidden;*/
+  display: none;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  /*left: -20px;*/
+  width: 180px;
+  padding-bottom: 10px;
+}
+.tooltiptext .tip-can, .tooltiptext .tip-arch {
+  padding: 5px 10px; 
+  background-color: #c1c1c1;
+  color: #f1f3ef;
+  border-radius: 5px;
+ } 
+ .tooltiptext .tip-arch {
+  background-color: #dc3545;
+  color: #fff;
+  margin-left: 10px;
+ }
+/*.tooltip1:hover .tooltiptext {
+  visibility: visible;
+}*/
+
+/*.tooltip1 .tooltiptext {
+  visibility: visible;
+}*/
+
 .granted, .pending, .denied {
   padding: 1px 8px;
   display: block;

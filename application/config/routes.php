@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+$route['admin/archiveEmployee'] = 'Admin/archiveEmployee';
 $route['admin/addGeneral'] = 'Admin/addGeneral';
 $route['admin/updateGeneral'] = 'Admin/updateGeneral';
 $route['employee/updateGeneral'] = 'Admin/updateGeneral';
