@@ -75,9 +75,8 @@
     window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
 
-  $('#myTable tr').click(function(){
-    $(this).remove();
-    return false;
+  $('table tr .btn-archive .tip-arch').click(function(){
+    $(this).closest('tr').remove();
 });
 
   // $('.tip-arch').click(function(ev) {

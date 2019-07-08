@@ -35,9 +35,6 @@ public function archiveEmployee() {
 
 		extract($_POST);
 		$this->Manage_employee_model->archiveEmployee($emp_id);
-		echo 'success';
-
-		// echo 'true';
 }
 
 // this fucntion adds general data of add staff form
