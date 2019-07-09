@@ -20,7 +20,6 @@
           <th>Title</th>
           <th>Name</th>
           <th>Department</th>
-          <th>Created By</th>
           <th>Nationality</th>
           <th>Highest Degree</th>
           <th style="padding-left: 50px;">Action</th>
@@ -35,7 +34,6 @@
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
               <td><?php echo $post['department_id']; ?></td>
-              <td><?php echo $post['created_by']; ?></td>
               <td><?php echo $post['nationality']; ?></td>
               <td><?php echo $post['highest_degree']; ?></td>
               <td>
@@ -75,9 +73,15 @@
     window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
 
+  $('table tr .btn-edit').click(function(ev){
+    var id = $(this).closest('tr').attr('id');
+    window.location =  '<?= site_url('admin/manage_employee/'); ?>' + id;
+    ev.stopPropagation();
+  });
+
   $('table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
-});
+  });
 
   // $('.tip-arch').click(function(ev) {
   //   alert($(this).attr('id'));

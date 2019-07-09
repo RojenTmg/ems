@@ -27,12 +27,23 @@ public function viewED($slug = NULL) {
 	$data['title'] = $data['post']['title'];
 
 	$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/employee_detail', $data);
-			$this->load->view('admin/templates/footer');
+	$this->load->view('admin/pages/employee_detail', $data);
+	$this->load->view('admin/templates/footer');
+}
+
+public function editEmp($slug = NULL) {
+	$data['post'] = $this->Manage_employee_model->get_posts($slug);
+	if (empty($data['post'])) {
+		show_404();
+	}
+	$data['title'] = $data['post']['title'];
+
+	$this->load->view('admin/templates/header');
+	$this->load->view('admin/pages/manage_employee', $data);
+	$this->load->view('admin/templates/footer');
 }
 
 public function archiveEmployee() {
-
 		extract($_POST);
 		$this->Manage_employee_model->archiveEmployee($emp_id);
 }
