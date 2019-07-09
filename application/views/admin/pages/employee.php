@@ -14,6 +14,7 @@
       <thead class="thead-dark">
       
         <tr>
+
           <th  style="width: 5%;">SN</th>
           <th  style="width: 5%;">Id</th>
           <th  style="width: 5%;">Title</th>
@@ -23,6 +24,7 @@
           <th  style="width: 15%;">Nationality</th>
           <th  style="width: 15%;">Highest Degree</th>
           <th style="width: 20%">Action</th>
+
         </tr>
       </thead>
       <tbody>
@@ -75,9 +77,15 @@
     window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
 
+  $('table tr .btn-edit').click(function(ev){
+    var id = $(this).closest('tr').attr('id');
+    window.location =  '<?= site_url('admin/manage_employee/'); ?>' + id;
+    ev.stopPropagation();
+  });
+
   $('table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
-});
+  });
 
   // $('.tip-arch').click(function(ev) {
   //   alert($(this).attr('id'));

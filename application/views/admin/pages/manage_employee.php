@@ -16,7 +16,7 @@
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
      <!-- show name above the progress bar and DONE button added -->
-          <p id="current_employee_name"> </p> 
+          <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
              <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Done" onclick="location.reload()">
         </div>
@@ -81,29 +81,29 @@
           <div class="form-div">
             <label>Title</label>
             <select name="title" id="title">
-              <option value="Mr">Mr</option>
-              <option value="Ms">Ms</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Dr">Dr</option>
+              <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
+              <option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
+              <option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
+              <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
             </select>
           </div>
 
           <div class="form-div">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="first_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
-            <input type="text" id="middle_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="middle_name" placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <div class="form-div">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="last_name" placeholder="" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <!-- date of join added -->
           <div class="form-div">
             <label>Date of Join<span class="text-danger"><i>*</i></span></label>
-            <input type="date" id="join_date" value="<?php echo date('Y-m-d');?>" class="col-md-2" max="<?php echo date('Y-m-d');?>"> 
+            <input type="date" id="join_date" value="<?php if(isset($post['join_date'])) echo $post['join_date']; else echo date('Y-m-d'); ?>" class="col-md-2" max="<?php echo date('Y-m-d');?>"> 
           </div>
           <div class="sub-can">
             <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
@@ -119,20 +119,20 @@
           <div class="form-div">
             <label>Gender</label>
             <select id="gender">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Others">Others</option>
+              <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
+              <option value="Female" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Female') { echo "selected"; }} ?>>Female</option>
+              <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
 
           <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
-            <input type="date" id="dob" class="col-md-2">
+            <input type="date"  value="<?php if(isset($post['dob'])) echo $post['dob']; ?>" id="dob" class="col-md-2">
           </div>
 
           <div class="form-div">
             <label>Email</label>
-            <input type="email" id="email" placeholder="">
+            <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
 
           <div class="sub-can">
@@ -149,12 +149,12 @@
         <form class="form" id="address-form">
           <div class="form-group">
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
-            <input type="text" id="permanentaddress_street" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_district" placeholder="District" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_state" placeholder="State" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_street" value="<?php if(isset($post['permanentaddress_street'])) echo $post['permanentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['permanentaddress_municipality'])) echo $post['permanentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_district" value="<?php if(isset($post['permanentaddress_district'])) echo $post['permanentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="permanentaddress_state" value="<?php if(isset($post['permanentaddress_state'])) echo $post['permanentaddress_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
-            <select id="permanentaddress_country"  class="form-group col-md-3">
+            <select id="permanentaddress_country" value="<?php if(isset($post['permanentaddress_country'])) echo $post['permanentaddress_country']; ?>" class="form-group col-md-3">
               <?php 
               require 'assets/addresses/country_list.php';
               ?>
@@ -164,23 +164,12 @@
           </div>
           <div class="form-group">
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
-            <input type="text" id="currentaddress_street" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="currentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" placeholder="District" class="form-group col-md-3">
-            <!-- state changed to  dropdown -->
-            <select id="currentaddress_state" class="form-group col-md-3">
-              <option value="Province 1">Province 1</option>
-              <option value="Province 2">Province 2</option>
-              <option value="Province 3">Province 3</option>
-              <option value="Province 4">Province 4</option>
-              <option value="Province 5">Province 5</option>
-              <option value="Province 6">Province 6</option>
-              <option value="Province 7">Province 7</option>
-
-            </select>
-            
+            <input type="text" id="currentaddress_street" value="<?php if(isset($post['currentaddress_street'])) echo $post['currentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['currentaddress_municipality'])) echo $post['currentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+            <input type="text" id="currentaddress_district" value="<?php if(isset($post['currentaddress_district'])) echo $post['currentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="currentaddress_state" value="<?php if(isset($post['currentaddress_state'])) echo $post['currentaddress_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
-            <input type="text" id="currentaddress_country" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
+            <input type="text" id="currentaddress_country" value="<?php if(isset($post['currentaddress_country'])) echo $post['currentaddress_country']; ?>" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Submit" class="sub">
@@ -196,19 +185,19 @@
 
             <div class="form-div">
             <label>Home Phone </label>
-            <input type="text" id="home_phone" placeholder="">
+            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
           </div>
 
              <div class="form-div">
             <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
-            <input type="text" id="mobile_phone" placeholder="">
+            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="">
           </div>
 
           <div class="form-group">
             <p>Other Phone</p>
-            <input type="text" id="other_phone1" placeholder="Phone 1" class="form-group col-md-3">
-            <input type="text" id="other_phone2" placeholder="Phone 2" class="form-group col-md-3">
-            <input type="text" id="other_phone3" placeholder="Phone 3" class="form-group col-md-3">
+            <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1" class="form-group col-md-3">
+            <input type="text" id="other_phone2" value="<?php if(isset($post['other_phone2'])) echo $post['other_phone2']; ?>" placeholder="Phone 2" class="form-group col-md-3">
+            <input type="text" id="other_phone3" value="<?php if(isset($post['other_phone3'])) echo $post['other_phone3']; ?>" placeholder="Phone 3" class="form-group col-md-3">
           </div>
 
           <div class="sub-can">
@@ -226,11 +215,11 @@
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
-                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" checked="true">
+                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" <?php if(isset($post['nationality'])) { if ($post['nationality'] == 'Nepalese') { echo "checked"; }} else { echo "checked";} ?>>
                 <label>Nepalese</label>
               </div>
               <div>
-                <input type="radio" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)">
+                <input type="radio" name="nationality" value="Non-Nepalese" onchange="showHideVisa(this)" <?php if(isset($post['nationality'])) { if ($post['nationality'] == 'Non-Nepalese') { echo "checked"; }} ?>>
                 <label>Non-Nepalese</label>
               </div>
             </div>
@@ -242,31 +231,31 @@
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="radio"  value="Yes" name="visa_permission" >
+              <input type="radio"  value="Yes" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'Yes') { echo "checked"; }} ?>>
               <label>Yes</label>
             </div>
             <div>
-              <input type="radio" value="No" name="visa_permission" checked="true">
+              <input type="radio" value="No" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'No') { echo "checked"; }} else { echo "checked";} ?>>
               <label>No</label>
             </div>
           </div>
 
             <div class="form-group">
             <p class="title">If yes, please specify your visa type and visa expiry date </p>
-            <input type="text" id="visa_type" placeholder="Visa Type" class="col-md-3">
-            <input type="date" id="visa_expiry_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
+            <input type="text" id="visa_type" value="<?php if(isset($post['visa_type'])) echo $post['visa_type']; ?>" placeholder="Visa Type" class="col-md-3">
+            <input type="date" id="visa_expiry_date" value="<?php if(isset($post['visa_expiry_date'])) echo $post['visa_expiry_date']; else echo date('Y-m-d'); ?>" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" class="col-md-3">
           </div>
 
         </div>
           <!-- changes in passport details -->
           <div class="form-div">
             <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="passport_no" placeholder="">
+            <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
               <div class="form-div">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="passport_issue_place" placeholder="">
+            <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
 
 
@@ -283,20 +272,20 @@
         <form class="form" id="emergency-form">
           <div class="form-div">
             <label>Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_name" placeholder="">
+            <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
           </div>
           <div class="form-div">
             <label>Relation<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_relation" placeholder="">
+            <input type="text" id="e_relation" value="<?php if(isset($post['e_relation'])) echo $post['e_relation'];?>" placeholder="">
           </div>
 
           <div class="form-div">
             <label>Address</label>
-            <textarea id="e_address"></textarea>
+            <textarea id="e_address"><?php if(isset($post['e_address'])) echo $post['e_address'];?></textarea>
           </div>
           <div class="form-div">
             <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_phone" placeholder="">
+            <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
@@ -312,25 +301,25 @@
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">  
-              <option value="None">None</option>        
-              <option value="PhD">PhD</option>
-              <option value="Master">Master</option>
-              <option value="Bachelor">Bachelor</option>
-              <option value="High School">High School</option>
-              <option value="Middle School">Middle School</option>
+              <option value="None" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'None') { echo "selected"; }} ?>>None</option>        
+              <option value="PhD" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'PhD') { echo "selected"; }} ?>>PhD</option>
+              <option value="Master" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Master') { echo "selected"; }} ?>>Master</option>
+              <option value="Bachelor" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Bachelor') { echo "selected"; }} ?>>Bachelor</option>
+              <option value="High School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'High School') { echo "selected"; }} ?>>High School</option>
+              <option value="Middle School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Middle School') { echo "selected"; }} ?>>Middle School</option>
             </div>      </select>
           </div>
           <div class="form-div">
             <label>Degree Title</label>
-            <input type="text" id="degree_title" placeholder="">
+            <input type="text" id="degree_title" value="<?php if(isset($post['degree_title'])) echo $post['degree_title'];?>" placeholder="">
           </div>
           <div class="form-div">
             <label>University</label>
-            <input type="text" id="university" placeholder="">
+            <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
           <div class="form-div">
             <label>Institute</label>
-            <input type="text" id="institute" placeholder="">
+            <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
@@ -348,31 +337,31 @@
             <div class="form-div">
               <label>Blood Group</label>
               <select id="blood_group">
-                <option value="A +ve">A +ve</option>
-                <option value="A -ve">A -ve</option>
-                <option value="B +ve">B +ve</option>
-                <option value="B -ve">B -ve</option>
-                <option value="AB +ve">AB +ve</option>
-                <option value="AB -ve">AB -ve</option>
-                <option value="O +ve">O +ve</option>
-                <option value="O -ve">O -ve</option>
+                <option value="A +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A +ve') { echo "selected"; }} ?>>A +ve</option>
+                <option value="A -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A -ve') { echo "selected"; }} ?>>A -ve</option>
+                <option value="B +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'B +ve') { echo "selected"; }} ?>>B +ve</option>
+                <option value="B -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'B -ve') { echo "selected"; }} ?>>B -ve</option>
+                <option value="AB +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'AB +ve') { echo "selected"; }} ?>>AB +ve</option>
+                <option value="AB -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'AB -ve') { echo "selected"; }} ?>>AB -ve</option>
+                <option value="O +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'O +ve') { echo "selected"; }} ?>>O +ve</option>
+                <option value="O -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'O -ve') { echo "selected"; }} ?>>O -ve</option>
               </select>
             </div>
             <div class="form-div">
               <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
-              <textarea id="medical_complications"></textarea>
+              <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
             </div>
             <div class="form-div">
               <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
-              <textarea id="regular_medication"> </textarea>
+              <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
             </div>
             <div class="form-div">
               <label  class="radio-inline">Any Allergies</label>
                 <div>
-                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" >
+                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?>>
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" checked="true">
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'No') { echo "checked"; }} else { echo "checked"; } ?>>
                   <label  class="radio-inline">No</label>
                 </div>
              
@@ -381,7 +370,7 @@
             <div id="allergy" style="display:none; ">  
               <div class="form-div">
                 <label>If any, please mention</label>
-                <input type="text" id="allergy_description" placeholder="">
+                <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>">
               </div>
             </div>
             <div class="sub-can">
@@ -402,7 +391,7 @@
 
           <div class="form-div">
             <label>PAN Number</label>
-            <input type="text" id="pan" placeholder="">
+            <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
