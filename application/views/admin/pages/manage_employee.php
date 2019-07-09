@@ -236,6 +236,14 @@
               <label>No</label>
             </div>
           </div>
+
+            <div class="form-group">
+            <p class="title">If yes, please specify your visa type and visa expiry date </p>
+            <input type="text" id="visa_type" placeholder="Visa Type" class="col-md-3">
+            <input type="date" id="visa_expiry_date" placeholder="Visa End Date" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" class="col-md-3">
+          </div>
+
+        </div>
           <!-- changes in passport details -->
           <div class="form-div">
             <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
