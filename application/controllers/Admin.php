@@ -456,7 +456,7 @@ function progressBar(){
 
 			//showing percentage in the progress bar
 		    $total=0;
-		    $filled=3;
+		    $filled=0;
 		    $percentage=0;
 		      foreach ($employee_tbl as $row) {
 		        $total++;

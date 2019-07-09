@@ -903,7 +903,7 @@ background-color: #4c546d;
   height: 100%;
   border-radius: 15px;
   background-color: #cfcfcf;
-  animation: progress_bar 3s  linear;
+  /*animation: progress_bar 3s  linear;*/
 
 }
 
