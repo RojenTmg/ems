@@ -31,6 +31,12 @@ public function viewED($slug = NULL) {
 			$this->load->view('admin/templates/footer');
 }
 
+public function archiveEmployee() {
+
+		extract($_POST);
+		$this->Manage_employee_model->archiveEmployee($emp_id);
+}
+
 // this fucntion adds general data of add staff form
 public function addGeneral()
 {			
@@ -118,6 +124,7 @@ public function addAddress()
 		$status=array();
 		extract($_POST);
 
+
 		//validate
 		$this->form_validation->set_rules('currentaddress_street','Current street','required|trim',array('required' => 'You must provide a %s.'));
 
@@ -144,6 +151,7 @@ public function addAddress()
 					'state'=>$currentaddress_state,
 					'country'=>$currentaddress_country
 				);
+
 
 				// if(!empty($permanentaddress_street)||!empty($permanentaddress_municipality)||!empty($permanentaddress_district)||!empty($permanentaddress_state))
 				// {
