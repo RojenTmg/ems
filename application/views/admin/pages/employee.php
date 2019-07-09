@@ -9,13 +9,14 @@
     </div>
   </div>
   <div class="box-body" style="overflow-x:auto;">
-    <table class="table hover">
+    <table class="table hover employee_table" >
       <thead>
         <colgroup>
           <col width="30px;">
           <col width="30px;">
         </colgroup>
         <tr>
+          <th>SN</th>
           <th>Id</th>
           <th>Title</th>
           <th>Name</th>
@@ -27,9 +28,11 @@
       </thead>
       <tbody>
         <?php 
+        $sn=1;
           foreach ($posts as $post) {
             ?>
             <tr id="<?php echo $post['emp_id']; ?>">
+              <td><?php echo $sn; $sn++;?></td>
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
