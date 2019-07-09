@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    
     <title>Admin</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
-    <!-- 
-    <link href="<?= base_url('assets/css/all.css') ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>"> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,11 +20,15 @@
     <?= link_tag('assets/css/header.css?version=51') ?>
     <?= link_tag('assets/css/style.css?version=51') ?>
 
-    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script> -->
     <script type="text/javascript" src="<?= base_url('assets/js/dashboard.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/add_employee.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/update_employee.js') ?>"></script>
 
+<<<<<<< HEAD
 <!-- online -->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -37,25 +41,28 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+=======
+     
+>>>>>>> afc5ab89e220c3a9d4448d48a84216f6ba0979c8
 
 </head>
 
 <body>
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="<?= base_url('admin'); ?>">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('admin'); ?>">
           <i class="fa fa-home"></i>
           Home
           <span class="sr-only">(current)</span>
           </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-envelope-o">
@@ -64,14 +71,15 @@
           Link
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">
           <i class="fa fa-envelope-o">
             <span class="badge badge-warning">11</span>
           </i>
           Disabled
         </a>
-      </li>
+      </li> -->
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-envelope-o">
@@ -86,9 +94,15 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-    </ul>
-    <ul class="navbar-nav ">
       <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('admin'); ?>/manage_employee">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add Staff
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="<?= base_url('admin'); ?>/manage_employee">
           <i class="fa fa-plus" aria-hidden="true"></i>
           Add Staff
@@ -101,20 +115,39 @@
           </i>
           Test
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-globe">
             <span class="badge badge-success">11</span>
           </i>
           Test
         </a>
-      </li>
+      </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
+    <div onclick="displayFunctionType();" class="drop-down-item" id="show-profile">
+      <div class="pro-file">
+        <?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>
+        <span><strong> Rojen Moktan &nbsp;&nbsp;&nbsp;  </strong></span>
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </div>
+      <div class="drop-down">
+        <ul>
+          <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
+          <li><a href="<?= base_url('admin'); ?>/manage_employee"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-out">
+      <a href="<?= base_url('logout'); ?>">
+        <i class="fa fa-power-off" title="logout"></i>
+      </a>
+    </div>
+
   </div>
 </nav>
 <div class="page-wrapper chiller-theme">
@@ -311,9 +344,9 @@
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
-       <a href="<?= base_url('logout'); ?>">
+       <!-- <a href="<?= base_url('logout'); ?>">
         <i class="fa fa-power-off"></i>
-      </a>
+      </a> -->
     </div>
   </nav>
   <!-- sidebar-wrapper  -->

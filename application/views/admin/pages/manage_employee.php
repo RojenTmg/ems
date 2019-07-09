@@ -8,7 +8,10 @@
  <!-- form -->
   <div class="contents">
     <!-- title -->
-    <h4>Add Employee</h4>
+    <div class="con-head sp-btn">
+      <h4>Add Employee</h4>
+      <a href="<?= base_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+    </div>
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
