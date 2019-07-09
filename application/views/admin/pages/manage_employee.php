@@ -100,11 +100,11 @@
           <!-- date of join added -->
           <div class="form-div">
             <label>Date of Join<span class="text-danger"><i>*</i></span></label>
-            <input type="date" id="join_date" value=<?php echo date('Y-m-d');?>>
+            <input type="date" id="join_date" value="<?php echo date('Y-m-d');?>" class="col-md-2" max="<?php echo date('Y-m-d');?>"> 
           </div>
           <div class="sub-can">
             <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
-            <input type="reset" name="" value="Cancel" class="can" id="">
+            
           </div>
         </form>
       </div>
@@ -124,7 +124,7 @@
 
           <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
-            <input type="date" id="dob" placeholder="">
+            <input type="date" id="dob" class="col-md-2">
           </div>
 
           <div class="form-div">
@@ -134,7 +134,7 @@
 
           <div class="sub-can">
             <input type="button" onclick="addPersonalInformation()" name="" value="Submit" class="sub">
-            <input type="reset"  name="" value="Cancel" class="can">
+          
           </div>
         </form>
       </div>
@@ -170,7 +170,7 @@
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -199,7 +199,7 @@
 
           <div class="sub-can">
             <input type="button" onclick="addContact()" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -258,7 +258,7 @@
 
           <div class="sub-can">
             <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -286,7 +286,7 @@
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -320,7 +320,7 @@
           </div>
           <div class="sub-can">
             <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
-            <input type="submit" name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -372,7 +372,7 @@
             </div>
             <div class="sub-can">
               <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
-              <input type="submit" name="" value="Cancel" class="can">
+              
             </div>
           </div>
         </form>
@@ -392,7 +392,7 @@
           </div>
           <div class="sub-can">
             <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
-            <input type="button"  name="" value="Cancel" class="can">
+            
           </div>
         </form>
       </div>
@@ -401,13 +401,17 @@
       <!-- work experience -->
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
-          <div class="form-div">
-            <label>Previous Employer</label>
-            <input type="text" id="previous_employer" placeholder="">
+
+          <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
+           <div class="form-div">
           </div>
+          <div id="work-experience">
+         <!-- the form appends here -->
+        </div>
+        <div class="form-div">
           <div class="sub-can">
-            <input type="button" onclick="addWork()" name="" value="Submit" class="sub">
-            <input type="reset"  name="" value="Cancel" class="can">
+            <input type="button" onclick="submitWork()" name="" value="Submit" class="sub">
+           </div> 
           </div>
         </form>
       </div>

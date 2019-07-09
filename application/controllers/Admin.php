@@ -243,37 +243,37 @@ public function addContact()
 // nationality
 public function addNationality()
 {
-		$status=array();
-		extract($_POST);
+	$status=array();
+	extract($_POST);
 
-		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
+	$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
 
-		$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
+	$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
 
-	
-		$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 
-		$this->form_validation->set_rules('passport_issue_place','Place of Issue','required|trim',array('required' => 'You must provide a %s.'));
+	$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 
-			if($this->form_validation->run()===FALSE)
-			{
-				$status=$this->form_validation->error_array();
-			}else
-			{
-				$data=array(
-					'nationality'=>$nationality,
-					'visa_permission'=>$visa_permission,
-					'visa_type'=>$visa_type,
-					'visa_expiry_date'=>$visa_expiry_date,
-					'passport_no'=>$passport_no,
-					'passport_issue_place'=>$passport_issue_place
-				);
+	$this->form_validation->set_rules('passport_issue_place','Place of Issue','required|trim',array('required' => 'You must provide a %s.'));
 
-				$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
-				$status=array('true');
+		if($this->form_validation->run()===FALSE)
+		{
+			$status=$this->form_validation->error_array();
+		}else
+		{
+			$data=array(
+				'nationality'=>$nationality,
+				'visa_permission'=>$visa_permission,
+				'visa_type'=>$visa_type,
+				'visa_expiry_date'=>$visa_expiry_date,
+				'passport_no'=>$passport_no,
+				'passport_issue_place'=>$passport_issue_place
+			);
 
-			}
-			echo json_encode($status);
+			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$status=array('true');
+
+		}
+		echo json_encode($status);
 }
 
 // Emergency contact
@@ -393,28 +393,26 @@ public function addPan()
 // for work experience
 public function addWork()
 {
-		$status=array();
+		$status='';
 		extract($_POST);
 
-		$this->form_validation->set_rules('previous_employer','Previous Employer','required',array('required' => 'Please provide the previous employer information.'));
+		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
-			if($this->form_validation->run()===FALSE)
-			{
-				$status=$this->form_validation->error_array();
-			}else
-			{
-				$data=array(
-					'previous_employer'=>$previous_employer
+			$data=array(
+					'responsibility'=>$responsibility,
+					'organization'=>$organization,
+					'from_date'=>$from_date,
+					'to_date'=>$to_date,
+					'emp_id'=>$_SESSION['current_employee_id']
 				);
 
-				$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
-				$status=array('true');
-
-			}
+				$this->Manage_employee_model->add_work_experience($data);
+				$status='true';
 		
-			echo json_encode($status);
+			echo $status;
 
 }
+
 
 //function for adding documents
 function addDocuments(){
@@ -425,18 +423,26 @@ function addDocuments(){
 		$realName= $_FILES['document']['name'];
 		$target_path = 'assets/files/'.$realName;
 		move_uploaded_file($tmpName,$target_path);
-
-		$doc_data=array(
-			'doc_title'=>$doc_title,
+		if($doc_title=='')
+		{
+			$doc_data=array(
+			'doc_title'=>$realName,
 			'doc_file'=>$realName,
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
+		}
+else{
+		$doc_data=array(
+			'doc_title'=>$doc_title,
+			'doc_file'=>$realName,
+			'emp_id'=>$_SESSION['current_employee_id']
+		);}
+
 if(	$this->Manage_employee_model->add_documents($doc_data))
 		{$status='true';}
-	else{
-		$status='false';
-	}
+
+	else{ $status='false'; }
 
 		echo $status;
 
@@ -451,8 +457,6 @@ function progressBar(){
 			$employee_addresses_tbl=$this->Manage_employee_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
 
 			$employee_documents_tbl=$this->Manage_employee_model->user_detail('employee_documents',array('emp_id' => $_SESSION['current_employee_id']));
-
-
 
 			//showing percentage in the progress bar
 		    $total=0;
