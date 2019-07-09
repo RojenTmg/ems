@@ -34,20 +34,20 @@
 
 <body>
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="<?= base_url('admin'); ?>">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('admin'); ?>">
           <i class="fa fa-home"></i>
           Home
           <span class="sr-only">(current)</span>
           </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-envelope-o">
@@ -56,14 +56,15 @@
           Link
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">
           <i class="fa fa-envelope-o">
             <span class="badge badge-warning">11</span>
           </i>
           Disabled
         </a>
-      </li>
+      </li> -->
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-envelope-o">
@@ -78,9 +79,15 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-    </ul>
-    <ul class="navbar-nav ">
       <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('admin'); ?>/manage_employee">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add Staff
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="<?= base_url('admin'); ?>/manage_employee">
           <i class="fa fa-plus" aria-hidden="true"></i>
           Add Staff
@@ -93,20 +100,39 @@
           </i>
           Test
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-globe">
             <span class="badge badge-success">11</span>
           </i>
           Test
         </a>
-      </li>
+      </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
+    <div onclick="displayFunctionType();" class="drop-down-item" id="show-profile">
+      <div class="pro-file">
+        <?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>
+        <span><strong> Rojen Moktan &nbsp;&nbsp;&nbsp;  </strong></span>
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </div>
+      <div class="drop-down">
+        <ul>
+          <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
+          <li><a href="<?= base_url('admin'); ?>/manage_employee"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-out">
+      <a href="<?= base_url('logout'); ?>">
+        <i class="fa fa-power-off" title="logout"></i>
+      </a>
+    </div>
+
   </div>
 </nav>
 <div class="page-wrapper chiller-theme">
@@ -303,9 +329,9 @@
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
-       <a href="<?= base_url('logout'); ?>">
+       <!-- <a href="<?= base_url('logout'); ?>">
         <i class="fa fa-power-off"></i>
-      </a>
+      </a> -->
     </div>
   </nav>
   <!-- sidebar-wrapper  -->

@@ -73,3 +73,16 @@ $("#show-sidebar").click(function() {
 //   }
 // }
 
+var temp = 0;
+function displayFunctionType() {
+    var staff = document.getElementsByClassName('drop-down')[0];
+
+    if (temp % 2 == 0) {
+      staff.style.display = 'block';
+      temp++; 
+    }
+    else {
+      staff.style.display = 'none';
+      temp++;         
+    }
+}
