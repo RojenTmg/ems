@@ -22,15 +22,15 @@
 				return $query->result_array();
 			}
 
-			$this->db->select('*');
-		    $this->db->from('employees e'); 
-		    $this->db->join('departments d', 'e.department_id=d.department_id', 'inner');
-		    $this->db->join('employee_addresses ea', 'e.emp_id=ea.empId', 'inner');
-		    $this->db->join('employee_contacts ec', 'e.emp_id=ec.emp_id', 'inner');
-		    $this->db->where('e.emp_id',$slug);
-		    $query = $this->db->get(); 
+			// $this->db->select('*');
+		 //    $this->db->from('employees e'); 
+		 //    $this->db->join('departments d', 'e.department_id=d.department_id', 'inner');
+		 //    $this->db->join('employee_addresses ea', 'e.emp_id=ea.empId', 'inner');
+		 //    $this->db->join('employee_contacts ec', 'e.emp_id=ec.emp_id', 'inner');
+		 //    $this->db->where('e.emp_id',$slug);
+		 //    $query = $this->db->get(); 
 
-			// $query = $this->db->get_where('employees', array('emp_id' => $slug));
+			$query = $this->db->get_where('employees', array('emp_id' => $slug));
 
 			return $query->row_array();
 		}
