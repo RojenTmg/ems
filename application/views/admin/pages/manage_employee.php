@@ -7,6 +7,8 @@
       
  <!-- form -->
   <div class="contents">
+    <!-- title -->
+    <h4>Add Employee</h4>
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
@@ -16,10 +18,12 @@
              <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Done" onclick="location.reload()">
         </div>
         <div class="box-body">
-           <p>90% completed</p>
+            <p id="completedPercent">
+              <!-- show percentage completed here -->
+            </p>
           <div class="pro-bar">
 
-            <div class="bar-completed"></div>
+            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar" ></div>
           </div>  
         </div>
      </div>

@@ -25,6 +25,9 @@ $route['admin/addDocuments'] = 'Admin/addDocuments';
 $route['employee/addDocuments'] = 'Admin/addDocuments';
 $route['admin/addAddress'] = 'Admin/addAddress';
 $route['employee/addAddress'] = 'Admin/addAddress';
+$route['admin/progressBar'] = 'Admin/progressBar';
+$route['employee/progressBar'] = 'Admin/progressBar';
+
 
 $route['login'] = 'Login/view';
 $route['admin'] = 'Admin/view';

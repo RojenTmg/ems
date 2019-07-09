@@ -433,5 +433,72 @@ if(	$this->Manage_employee_model->add_documents($doc_data))
 		echo $status;
 
 }
+
+// calculate percentage of form
+function progressBar(){
+			$employee_tbl= $this->Manage_employee_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
+
+			$employee_contacts_tbl=$this->Manage_employee_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
+
+			$employee_addresses_tbl=$this->Manage_employee_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
+
+			$employee_documents_tbl=$this->Manage_employee_model->user_detail('employee_documents',array('emp_id' => $_SESSION['current_employee_id']));
+
+
+
+			//showing percentage in the progress bar
+		    $total=0;
+		    $filled=3;
+		    $percentage=0;
+		      foreach ($employee_tbl as $row) {
+		        $total++;
+		        if($row!=NULL) $filled++;
+		      }
+		      if(!empty($employee_contacts_tbl)){
+			      foreach ($employee_contacts_tbl as $row) {
+			        $total++;
+			        if($row!=NULL) $filled++;
+			      }
+			  }
+			   if(!empty($employee_addresses_tbl)){
+			      foreach ($employee_addresses_tbl as $row) {
+			        $total++;
+			        if($row!=NULL) $filled++;
+			      }
+				}
+		      if(!empty($employee_documents_tbl)){
+			      foreach ($employee_documents_tbl as $row) {
+			        $total++;
+			        if($row!=NULL) $filled++;
+			      }
+			  }
+
+		      
+		      $percentage=(int)(($filled/$total)*100);
+
+		      // for showing profile strength
+		      $strength='';
+		      if($percentage>=100) {
+		      	$color='#28a745';
+		      }
+		      else if($percentage>70){
+		      	$color='#ffc107';
+		      }
+		      else if($percentage>30){
+		      	$color='#dc3545';
+		      }
+		      else {
+		      	$color='#dc3545';
+		      }
+		      //sending data
+
+		      $progress_data=array(
+		      	'color'=>$color,
+		      	'percentage'=>$percentage
+		      );
+
+
+		     echo json_encode($progress_data);
+}
 }
 ?>

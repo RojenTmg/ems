@@ -39,12 +39,8 @@
 			return $this->db->insert('user_roles',$userRoleData);
 		}
 
-		public function user_detail($userid=''){
-			if(!isset($_SESSION['user_id'])) $this->load->view('login/login');
-			if($userid==''){
-				$userid=$_SESSION['user_id'];
-			}
-			$user=$this->db->get_where('employees',array('emp_id' => $userid));	
+		public function user_detail($tablename,$userid){
+			$user=$this->db->get_where($tablename,$userid);	
 			return $user->row_array();
 		}
 

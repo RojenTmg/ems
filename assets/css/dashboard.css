@@ -853,8 +853,8 @@ background-color: #4c546d;
 .bar-completed {
   height: 100%;
   border-radius: 15px;
-  background-color: #dc3545;
-  /*animation: progress_bar 3s  linear;*/
+  background-color: #cfcfcf;
+  animation: progress_bar 3s  linear;
 
 }
 

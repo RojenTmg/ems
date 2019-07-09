@@ -27,7 +27,7 @@ function showresponse(formname,status,msg)
           if(l=="0")
           {
 
-            // $('.message-div').
+            $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
             $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
@@ -48,9 +48,11 @@ function showresponse(formname,status,msg)
            document.getElementById(elements[m].id).style.borderColor="#ced4da";
          }}
            break;
-           }      
+       }      
       }
   }
+    //updating progress bar
+  showprogress();
 }
 
   function general()
@@ -105,6 +107,7 @@ function showresponse(formname,status,msg)
                showresponse('address-form',status,'Updated Successfully');
               }
           }
+        
   }
 
 // contact form
@@ -292,6 +295,35 @@ xmlHttp.onreadystatechange = function()
     });
   });
 
+// for progresss bar
+
+function showprogress(){
+  var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','progressBar',true);
+          var data = new FormData();
+        xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+                var status=xmlHttp.responseText;
+                var  json = JSON.parse(status);
+                for(var k in json){
+
+                    if(k=="percentage"){
+                    document.getElementById('completedPercent').innerHTML=json[k]+'% Completed';
+                    var percent=json[k]+'%';
+                    document.getElementById('bar').style.width=percent;
+
+                  }
+                    if(k=="color")
+                    document.getElementById('bar').style.backgroundColor=json[k];
+                    
+                }
+              }
+          }
+}
 
 
 
