@@ -965,12 +965,11 @@ background-color: #4c546d;
 }
 
 @keyframes pop-up {
-  0% { opacity: 0; display: block; }
+  0% { opacity: o; display: block; }
   10% { opacity: 1; }
   80% { opacity: 1; }
-  100% {opacity:0; }
+  100% {opacity:1; }
 }
-
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .drop-down-item {
   margin: 0 15px 0 30px;
@@ -1069,3 +1068,4 @@ background-color: #4c546d;
   text-shadow: 0.3px 0.3px #6c757d;
   text-decoration: none;
 }  
+  

@@ -58,8 +58,8 @@ function submitDocument(){
   
   for( i = 0; i < doc_title.length; i++ )
      {
-     if(doc_title[i].value==''||doc_file[i].files.length==0){
-        var msg="Select a file and title";
+     if(doc_file[i].files.length==0){
+        var msg="Select a file first.";
             $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
       return false;
      }
@@ -89,9 +89,6 @@ function submitDocument(){
 
             $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
           }
-           
-             $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
-           document.getElementById("document-form").reset();
           }
       }
       
