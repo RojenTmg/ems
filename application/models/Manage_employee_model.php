@@ -113,4 +113,10 @@ public function update_contact($data,$userid=''){
 			return	$this->db->insert('contacts',$data);
 		}
 
+		//work experience
+		public function add_work_experience($value){
+			return $this->db->insert('employee_work_experience',$value);
+		}
+		
+
 	}

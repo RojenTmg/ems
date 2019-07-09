@@ -46,7 +46,7 @@ function showresponse(formname,status,msg)
           {
 
             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
-            $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+            // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
            
@@ -263,12 +263,17 @@ xmlHttp.onreadystatechange = function()
   //to add personal details
     function addPersonalInformation()
   {
-          var xmlHttp = new XMLHttpRequest();
+    var email=document.getElementById('email').value;
+    if (!vaildateEmail(email)) {
+         document.getElementById('email').style.borderColor="red";
+      }
+    else{
+        var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addPersonalInformation',true);
           var data = new FormData();
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',document.getElementById('dob').value);
-          data.append('email',document.getElementById('email').value);
+          data.append('email',email);
 
           xmlHttp.send(data);
 
@@ -279,29 +284,9 @@ xmlHttp.onreadystatechange = function()
                 var status = xmlHttp.responseText;
                showresponse('personal-form',status,'Updated Successfully');
               }
-          }
-  }
-
-
-
-// for work experience
- function addWork()
- {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open('POST','addWork',true);
-  var data = new FormData();
-  data.append('previous_employer',document.getElementById('previous_employer').value);
-  xmlHttp.send(data);
-
- xmlHttp.onreadystatechange = function()
-  {
-      if(xmlHttp.readyState==4)
-      {
-        var status = xmlHttp.responseText;
-       showresponse('work-form',status,'Updated Successfully');
-      }
-  }
- }
+          } 
+        }
+}
 
  // to make enter button submit form 
    $(document).ready(function() {
@@ -344,4 +329,80 @@ function showprogress(){
 }
 
 
+// employee work experience
 
+function addExperience() 
+{
+  $('#work-experience').append('<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"></div>');
+  $('#work-experience').append('<div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization"></div>');
+  $('#work-experience').append('<div class="row"><label class="col-md-2 ">From</label>');
+  $('#work-experience').append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
+  $('#work-experience').append(' <label class="col-md-2 ">To</label>');
+  $('#work-experience').append('<input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
+
+  // $('#work-experience').append('<i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>');
+  $('#work-experience').append('<hr>');}
+
+
+// submit employee work experience to the table
+function submitWork(){
+
+  var responsibility = document.getElementsByName('responsibility');
+  var organization = document.getElementsByName('organization');
+  var from_date = document.getElementsByName('from_date');
+  var to_date= document.getElementsByName('to_date');
+  var count=0;
+  
+  for( i = 0; i < responsibility.length; i++ )
+     {
+     if(responsibility[i].value==''||organization[i].value==''){
+        var msg="Enter Responsibility and Orgranization name";
+            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+      return false;
+     }
+  }
+    for( i = 0; i < responsibility.length; i++ )
+     {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open('POST','addWork',true);
+      var data = new FormData();
+      data.append('responsibility',responsibility[i].value);
+      data.append('organization',organization[i].value);
+      data.append('from_date',from_date[i].value);
+      data.append('to_date',to_date[i].value);
+      xmlHttp.send(data);
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
+          {
+           var status = xmlHttp.responseText;
+           if(status=='true')
+           {
+             msg="Updated";
+             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+           }
+          else{
+            count++;
+             msg="Enter information";
+
+            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+          }
+          }
+      }
+      
+    }
+}
+
+// check email id 
+function vaildateEmail(email)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(email.match(mailformat))
+{
+return true;
+}
+else
+{
+return false;
+}
+}
