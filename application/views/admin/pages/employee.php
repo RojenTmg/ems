@@ -9,18 +9,19 @@
     </div>
   </div>
   <div class="box-body" style="overflow-x:auto;">
-    <table class="table hover">
+    <table class="table hover employee_table" >
       <thead>
         <colgroup>
           <col width="30px;">
           <col width="30px;">
         </colgroup>
         <tr>
+          <th>SN</th>
           <th>Id</th>
           <th>Title</th>
           <th>Name</th>
           <th>Department</th>
-          <th>Created By</th>
+          <!-- created by removed -->
           <th>Nationality</th>
           <th>Highest Degree</th>
           <th style="padding-left: 50px;">Action</th>
@@ -28,14 +29,15 @@
       </thead>
       <tbody>
         <?php 
+        $sn=1;
           foreach ($posts as $post) {
             ?>
             <tr id="<?php echo $post['emp_id']; ?>">
+              <td><?php echo $sn; $sn++;?></td>
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
               <td><?php echo $post['department_id']; ?></td>
-              <td><?php echo $post['created_by']; ?></td>
               <td><?php echo $post['nationality']; ?></td>
               <td><?php echo $post['highest_degree']; ?></td>
               <td>

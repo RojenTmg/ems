@@ -91,7 +91,7 @@ public function update_contact($data,$userid=''){
 			return $insertedId;
 		}
 
-		public function update_employee_contact($contact,$userid=''){
+public function update_employee_contact($contact,$userid=''){
 			if($userid==''){
 				$userid=$_SESSION['user_id'];
 			}

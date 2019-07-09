@@ -970,3 +970,8 @@ background-color: #4c546d;
   80% { opacity: 1; }
   100% {opacity:1; }
 }
+
+/*list of employees*/
+.employee_table :hover{
+  cursor: pointer;
+}

@@ -164,7 +164,18 @@
             <input type="text" id="currentaddress_street" placeholder="Street" class="form-group col-md-3">
             <input type="text" id="currentaddress_municipality" placeholder="Municipality" class="form-group col-md-3">
             <input type="text" id="currentaddress_district" placeholder="District" class="form-group col-md-3">
-            <input type="text" id="currentaddress_state" placeholder="State" class="form-group col-md-3">
+            <!-- state changed to  dropdown -->
+            <select id="currentaddress_state" class="form-group col-md-3">
+              <option value="Province 1">Province 1</option>
+              <option value="Province 2">Province 2</option>
+              <option value="Province 3">Province 3</option>
+              <option value="Province 4">Province 4</option>
+              <option value="Province 5">Province 5</option>
+              <option value="Province 6">Province 6</option>
+              <option value="Province 7">Province 7</option>
+
+            </select>
+            
             <!-- country will be a dropdown -->
             <input type="text" id="currentaddress_country" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
           </div>
