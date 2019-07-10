@@ -13,16 +13,14 @@
   <div class="box-body table-responsive" style="overflow-x:auto;">
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
-      
         <tr>
-
-          <th  style="width: 5%;">Id</th>
-          <th  style="width: 5%;">Title</th>
-          <th  style="width: 25%;">Name</th>
-          <th  style="width: 15%;">Department</th>
-          <th  style="width: 15%;">Nationality</th>
-          <th  style="width: 15%;">Highest Degree</th>
-          <th style="width: 20%">Action</th>
+          <th  style="width: 2%; background-color: #444a50;">Id</th>
+          <th  style="width: 2%; background-color: #444a50;">Title</th>
+          <th  style="width: 25%; background-color: #444a50;">Name</th>
+          <th  style="width: 15%; background-color: #444a50;">Department</th>
+          <th  style="width: 15%; background-color: #444a50;">Nationality</th>
+          <th  style="width: 15%; background-color: #444a50;">Highest Degree</th>
+          <th style="width: 15%; background-color: #444a50;">Action</th>
 
         </tr>
       </thead>
@@ -90,7 +88,7 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
     $('.arch-msg-div').append('<div class="arch-msg">Employee Archived Successfully</div>');
-    $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 
   // $('.tip-arch').click(function(ev) {
