@@ -9,7 +9,7 @@
 
 			<div class="head-name">
 				<div class="item-1"><?php echo $post['first_name'] . ' ' .  $post['middle_name'] . ' ' .  $post['last_name'];  ?></div>
-				<div class="item-2"><?php echo $post['department_id']; ?></div>
+				<div class="item-2"><?php echo $post['deptName']; ?></div>
 		</div>
 
 		</div>
@@ -56,12 +56,12 @@
 
 			<div class="body-row border-bottom">
 				<div class="item-1">Permanent Address</div>
-				<div class="item-2"><?php echo $post['last_name']; ?></div>
+				<div class="item-2"><?php echo $post['p_street'] . ' ' . $post['p_municipality'] . ' ' . $post['p_district'] . ' ' . $post['p_state'] . ' ' . $post['p_country']; ?></div>
 			</div>
 
 			<div class="body-row border-bottom">
 				<div class="item-1">Temporary Address</div>
-				<div class="item-2"><?php echo $post['last_name']; ?></div>
+				<div class="item-2"><?php echo $post['t_street'] . ' ' . $post['t_municipality'] . ' ' . $post['t_district'] . ' ' . $post['t_state'] . ' ' . $post['t_country']; ?></div>
 			</div>
 
 			<div class="body-row border-bottom">

@@ -741,7 +741,7 @@ body {
   outline: 1px solid #dee2e6;
 }
 .btn-edit {
-  color: #3ad;
+  color: #00f000;
 }
 .btn-archive {
   color: #dc3545;
@@ -1088,6 +1088,7 @@ body {
 
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 #small-link {
+  font-size: 1.1em;
   color: #6c757d;
   font-weight: 600;
 }
