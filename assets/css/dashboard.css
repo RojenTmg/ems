@@ -824,7 +824,7 @@ background-color: #4c546d;
   display: flex;
   align-items: center;
   /*background-color: #e2dbd3;*/
-  background-color: #dfe9e9;
+  background-color: #fff ;
   padding: 25px 20px 25px 100px;
 }
 .head-pic img {
@@ -845,7 +845,7 @@ background-color: #4c546d;
 }
 .detail-body {
   padding: 30px 0 20px 0;
-  margin: 0 100px
+  margin: 0 1% 0 1% ;
 }
 .body-row {
   display: flex;
@@ -1073,4 +1073,3 @@ background-color: #4c546d;
   text-shadow: 0.3px 0.3px #6c757d;
   text-decoration: none;
 }  
-  

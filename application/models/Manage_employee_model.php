@@ -16,8 +16,11 @@
 
 		}
 
-		public function get_posts($slug = FALSE) {
-			if ($slug === FALSE) {
+		public function get_posts($slug = FALSE)
+		{
+			if ($slug === FALSE) 
+			{
+				$this->db->order_by('emp_id', 'DESC');
 				$query = $this->db->get('employees');
 				return $query->result_array();
 			}

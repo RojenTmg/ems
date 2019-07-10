@@ -9,10 +9,11 @@ public function view($page = 'dashboard')
 
 			$data['title'] = ucfirst($page);
 			$data['posts'] = $this->Manage_employee_model->get_posts();
-			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) {
+			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+			{
 				$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/' . $page, $data);
-			$this->load->view('admin/templates/footer');
+				$this->load->view('admin/pages/'.$page, $data);
+				$this->load->view('admin/templates/footer');
 			}
 			else
 				redirect('login');
@@ -25,7 +26,7 @@ public function viewED($slug = NULL) {
 		show_404();
 	}
 	$data['title'] = $data['post']['title'];
-
+	
 	$this->load->view('admin/templates/header');
 	$this->load->view('admin/pages/employee_detail', $data);
 	$this->load->view('admin/templates/footer');

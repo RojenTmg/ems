@@ -1,6 +1,7 @@
 <div class="contents">
-  <div class="con-sub-head">
+  <div class="con-sub-head sp-btn">
       <h5>Recently Added Employee</h5>
+      <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
@@ -8,22 +9,22 @@
       <p>Recent Employees</p>
     </div>
   </div>
-  <div class="box-body" style="overflow-x:auto;">
-    <table class="table hover employee_table" >
-      <thead>
-        <colgroup>
-          <col width="30px;">
-          <col width="30px;">
-        </colgroup>
+  <div class="box-body table-responsive" style="overflow-x:auto;">
+    <table class="table table-bordered hover employee_table" >
+      <thead class="thead-dark">
+      
         <tr>
-          <th>SN</th>
-          <th>Id</th>
-          <th>Title</th>
-          <th>Name</th>
-          <th>Department</th>
-          <th>Nationality</th>
-          <th>Highest Degree</th>
-          <th style="padding-left: 50px;">Action</th>
+
+          <th  style="width: 5%;">SN</th>
+          <th  style="width: 5%;">Id</th>
+          <th  style="width: 5%;">Title</th>
+          <th  style="width: 25%;">Name</th>
+          <th  style="width: 15%;">Department</th>
+          <!-- created by removed -->
+          <th  style="width: 15%;">Nationality</th>
+          <th  style="width: 15%;">Highest Degree</th>
+          <th style="width: 20%">Action</th>
+
         </tr>
       </thead>
       <tbody>
