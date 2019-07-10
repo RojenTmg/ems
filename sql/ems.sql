@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2019 at 07:39 AM
+-- Generation Time: Jul 10, 2019 at 06:25 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -46,29 +46,7 @@ CREATE TABLE `addresses` (
 --
 
 INSERT INTO `addresses` (`address_id`, `street`, `municipality`, `district`, `state`, `country`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, '12', '12', '12', '12', 'AI', '', '0000-00-00', '', '0000-00-00'),
-(2, '12', '12', '12', '12', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(3, 'afa', '', '', 'fasf', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(4, 'afa', 'asdf', 'asd', 'fasdf', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(5, 'ad', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(6, 'ad', 'sd', 'ds', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(7, 'ad', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(8, 'ad', 'sd', 'ds', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(9, '', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(10, 'SFD', 'FA', 'S', 'S', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(11, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(12, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(13, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(14, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(15, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(16, 'a', 'd', 'ad', 'ad', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(17, 'te', 'te', 'te', '', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(18, '', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(19, 'a', 'a', 'a', '', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(20, '', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(21, 'a', 'a', 'a', '', 'Nepal', '', '0000-00-00', '', '0000-00-00'),
-(22, '', '', '', '', 'NP', '', '0000-00-00', '', '0000-00-00'),
-(23, 'tyguiygugtutiyi', 'at7it7i', 'aui', 't', 'Nepal', '', '0000-00-00', '', '0000-00-00');
+(1, '', '', '', '12', 'AI', '', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -95,19 +73,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`contact_id`, `home_phone`, `mobile_phone`, `other_phone1`, `other_phone2`, `other_phone3`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`) VALUES
-(14, '', '', '', '', '', '', 0, '', 0, ''),
-(15, '', '', '', '', '', '', 0, '', 0, ''),
-(16, '123123', '123213', '123', '123', '123', '', 0, '', 0, ''),
-(17, '123123', '123213', '123', '123', '123', '', 0, '', 0, ''),
-(18, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(19, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(20, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(21, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(22, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(23, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(24, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(25, '12', '12', '12', '', '', '', 0, '', 0, ''),
-(26, '12', '12', '12', '', '', '', 0, '', 0, '');
+(14, '', '', '', '', '', '', 0, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -116,9 +82,8 @@ INSERT INTO `contacts` (`contact_id`, `home_phone`, `mobile_phone`, `other_phone
 --
 
 CREATE TABLE `departments` (
-  `department_id` int(11) NOT NULL,
-  `dept_head_id` int(11) NOT NULL,
-  `deptName` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `department_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
   `created_date` date NOT NULL,
   `modified_by` varchar(50) NOT NULL,
@@ -129,8 +94,8 @@ CREATE TABLE `departments` (
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`department_id`, `dept_head_id`, `deptName`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 12, 'kasjdfk', 'klj', '2019-07-16', 'kl', '2019-07-26');
+INSERT INTO `departments` (`id`, `department_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(1, 'kasjdfk', 'klj', '2019-07-16', 'kl', '2019-07-26');
 
 -- --------------------------------------------------------
 
@@ -140,6 +105,7 @@ INSERT INTO `departments` (`department_id`, `dept_head_id`, `deptName`, `created
 
 CREATE TABLE `employees` (
   `emp_id` int(11) NOT NULL,
+  `is_department_head` enum('0','1') NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) DEFAULT NULL,
@@ -177,35 +143,6 @@ CREATE TABLE `employees` (
   `previous_employer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`emp_id`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`) VALUES
-(1, 'Mr', 'albin', '', 'bhat', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, 'dragonfiregal.2@gma.con', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2019-03-06', 'Female', '', NULL, NULL, '', NULL, NULL, NULL),
-(2, 'Mr', 'adf', 'adsf', 'asdf', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Nepalese', 'Yes', 'tou', '2019-07-07', '123adas', 'kathamnu', NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(3, 'Mr', 'a', 'a', 'a', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Nepalese', 'Yes', 'ad', '2019-07-07', 'adsf', 'ad', NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(4, 'Mr', 'test', '', 'tes', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Nepalese', 'Yes', 'ads', '2019-07-07', 'asd', 'sad', NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(5, 'Mr', 'a', '', 'a', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(6, 'Mr', 'arfas', 'asdfasd', 'fas', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Non-Nepalese', 'No', 'as', '2019-07-07', 'adsf', 'asd', 'albin', 'bha', 'khasd', '123123', '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(7, 'Mr', 'nani', '', 'k', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(8, 'Mr', 'ani', 'nn', 'n', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', 'AB +ve', 'non', ' adf', 'No', '', '123df', 'adsfasd'),
-(9, 'Mr', 'enter', '', 'adk', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(10, 'Mr', 'afd', 'as', 'asd', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(11, 'Mr', 'kadh', '', 'kadskj', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(12, 'Mr', 'e', '', 'e', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, '', 'Non-Nepalese', 'Yes', 'asd', '2019-07-07', 'as', 'as', NULL, NULL, NULL, NULL, 'PhD', 'xdgx', 'gxg', 'xgt', '0000-00-00', 'Male', 'A +ve', ' dfvfdv', ' dvxcv', 'Yes', 'cv cx', NULL, NULL),
-(13, 'Mr', 'adf', 'a', 'ad', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(14, 'Mr', 'as', 'as', 'as', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(15, 'Mr', 'adf', 'adfa', 'df', '2019-07-07', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(16, 'Mr', 'adf', 'sdf', 'asdf', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, 'cvx', 'vxcvz', 'kljjkljl', '123', 'PhD', 'df', 'ghdf', 'd', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(17, 'Mr', 'nknl', '', 'nnkkkn', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(18, 'Mr', 'new', 'ew', 'ew', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Nepalese', 'null', '', '2019-07-08', 'af', 'ads', NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(19, 'Mr', 'asd', '', 'asd', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(20, 'Mr', 'a', 'a', 'a', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(21, 'Mr', 'test', '', 'test', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(22, 'Mr', 'a', 'a', 'a', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(23, 'Mr', 'a', '', 'a', '2019-07-08', 1, 1, '', '0000-00-00', NULL, NULL, NULL, 'Non-Nepalese', 'No', '', '2019-07-08', 'sd', 'sdfsd', NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', 'A +ve', 'e', ' ew', 'No', '', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -234,7 +171,14 @@ INSERT INTO `employee_addresses` (`empId`, `primary_addressId`, `secondary_addre
 (19, 9, 10, '', '0000-00-00', '', '0000-00-00'),
 (22, 18, 19, '', '0000-00-00', '', '0000-00-00'),
 (22, 20, 21, '', '0000-00-00', '', '0000-00-00'),
-(22, 22, 23, '', '0000-00-00', '', '0000-00-00');
+(22, 22, 23, '', '0000-00-00', '', '0000-00-00'),
+(47, 24, 25, '', '0000-00-00', '', '0000-00-00'),
+(127, 1, 26, '', '0000-00-00', '', '0000-00-00'),
+(133, 9, 27, '', '0000-00-00', '', '0000-00-00'),
+(134, 1, 28, '', '0000-00-00', '', '0000-00-00'),
+(136, 1, 29, '', '0000-00-00', '', '0000-00-00'),
+(137, 9, 30, '', '0000-00-00', '', '0000-00-00'),
+(158, 1, 31, '', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -268,7 +212,48 @@ INSERT INTO `employee_contacts` (`emp_id`, `contact_id`, `created_by`, `created_
 (2, 23, '', '0000-00-00', '', '0000-00-00'),
 (2, 24, '', '0000-00-00', '', '0000-00-00'),
 (2, 25, '', '0000-00-00', '', '0000-00-00'),
-(2, 26, '', '0000-00-00', '', '0000-00-00');
+(2, 26, '', '0000-00-00', '', '0000-00-00'),
+(127, 27, '', '0000-00-00', '', '0000-00-00'),
+(134, 28, '', '0000-00-00', '', '0000-00-00'),
+(134, 29, '', '0000-00-00', '', '0000-00-00'),
+(12, 30, '', '0000-00-00', '', '0000-00-00'),
+(155, 31, '', '0000-00-00', '', '0000-00-00'),
+(155, 32, '', '0000-00-00', '', '0000-00-00'),
+(155, 33, '', '0000-00-00', '', '0000-00-00'),
+(155, 34, '', '0000-00-00', '', '0000-00-00'),
+(155, 35, '', '0000-00-00', '', '0000-00-00'),
+(155, 36, '', '0000-00-00', '', '0000-00-00'),
+(155, 37, '', '0000-00-00', '', '0000-00-00'),
+(155, 38, '', '0000-00-00', '', '0000-00-00'),
+(155, 39, '', '0000-00-00', '', '0000-00-00'),
+(155, 40, '', '0000-00-00', '', '0000-00-00'),
+(155, 41, '', '0000-00-00', '', '0000-00-00'),
+(155, 42, '', '0000-00-00', '', '0000-00-00'),
+(155, 43, '', '0000-00-00', '', '0000-00-00'),
+(155, 44, '', '0000-00-00', '', '0000-00-00'),
+(155, 45, '', '0000-00-00', '', '0000-00-00'),
+(155, 46, '', '0000-00-00', '', '0000-00-00'),
+(155, 47, '', '0000-00-00', '', '0000-00-00'),
+(155, 48, '', '0000-00-00', '', '0000-00-00'),
+(155, 49, '', '0000-00-00', '', '0000-00-00'),
+(155, 50, '', '0000-00-00', '', '0000-00-00'),
+(155, 51, '', '0000-00-00', '', '0000-00-00'),
+(155, 52, '', '0000-00-00', '', '0000-00-00'),
+(155, 53, '', '0000-00-00', '', '0000-00-00'),
+(155, 54, '', '0000-00-00', '', '0000-00-00'),
+(156, 55, '', '0000-00-00', '', '0000-00-00'),
+(156, 56, '', '0000-00-00', '', '0000-00-00'),
+(156, 57, '', '0000-00-00', '', '0000-00-00'),
+(156, 58, '', '0000-00-00', '', '0000-00-00'),
+(156, 59, '', '0000-00-00', '', '0000-00-00'),
+(156, 60, '', '0000-00-00', '', '0000-00-00'),
+(156, 61, '', '0000-00-00', '', '0000-00-00'),
+(156, 62, '', '0000-00-00', '', '0000-00-00'),
+(156, 63, '', '0000-00-00', '', '0000-00-00'),
+(156, 64, '', '0000-00-00', '', '0000-00-00'),
+(156, 65, '', '0000-00-00', '', '0000-00-00'),
+(157, 66, '', '0000-00-00', '', '0000-00-00'),
+(158, 67, '', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -283,19 +268,24 @@ CREATE TABLE `employee_documents` (
   `doc_file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `employee_documents`
+-- Table structure for table `employee_work_experience`
 --
 
-INSERT INTO `employee_documents` (`doc_id`, `emp_id`, `doc_title`, `doc_file`) VALUES
-(1, 9, 'changes', 'changes.txt'),
-(2, 10, 'b', 'changes.txt'),
-(3, 10, 'a', '4880daceafafb96328cca9829d2ff35b1403e9e1.torrent'),
-(4, 10, 'v', '[hinditorrent.xyz] Sanju (2018) (WEBRiP) (1080p).torrent'),
-(5, 14, 'asd', '[hinditorrent.xyz] Sanju (2018) (WEBRiP) (1080p).torrent'),
-(6, 14, 'adf', '[hinditorrent.xyz] Sanju (2018) (WEBRiP) (1080p).torrent'),
-(7, 15, 'add', '[hinditorrent.xyz] Sanju (2018) (WEBRiP) (1080p).torrent'),
-(8, 15, '', '2340086.pdf_');
+CREATE TABLE `employee_work_experience` (
+  `id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `responsibility` varchar(255) NOT NULL,
+  `organization` varchar(255) NOT NULL,
+  `contact_person_name` varchar(255) NOT NULL,
+  `contact_person_phone` varchar(255) NOT NULL,
+  `contact_address` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -387,30 +377,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(12, 12, '12', 1, 'adf', '2019-07-10', 'ads', '2019-07-09'),
-(13, 1, 'albh123', 0, '', '0000-00-00', '', '0000-00-00'),
-(14, 2, 'adas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(15, 3, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(16, 4, 'tete123', 0, '', '0000-00-00', '', '0000-00-00'),
-(17, 5, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(18, 6, 'arfa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(19, 7, 'nak123', 0, '', '0000-00-00', '', '0000-00-00'),
-(20, 8, 'ann123', 0, '', '0000-00-00', '', '0000-00-00'),
-(21, 9, 'enad123', 0, '', '0000-00-00', '', '0000-00-00'),
-(22, 10, 'afas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(23, 11, 'kaka123', 0, '', '0000-00-00', '', '0000-00-00'),
-(24, 12, 'ee123', 1, '', '0000-00-00', '', '0000-00-00'),
-(25, 13, 'adad123', 0, '', '0000-00-00', '', '0000-00-00'),
-(26, 14, 'asas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(27, 15, 'addf123', 0, '', '0000-00-00', '', '0000-00-00'),
-(28, 16, 'adas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(29, 17, 'nknn123', 0, '', '0000-00-00', '', '0000-00-00'),
-(30, 18, 'neew123', 0, '', '0000-00-00', '', '0000-00-00'),
-(31, 19, 'asas123', 0, '', '0000-00-00', '', '0000-00-00'),
-(32, 20, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(33, 21, 'tete123', 0, '', '0000-00-00', '', '0000-00-00'),
-(34, 22, 'aa123', 0, '', '0000-00-00', '', '0000-00-00'),
-(35, 23, 'aa123', 0, '', '0000-00-00', '', '0000-00-00');
+(12, 12, '12', 1, 'adf', '2019-07-10', 'ads', '2019-07-09');
 
 -- --------------------------------------------------------
 
@@ -432,30 +399,7 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 12, '', '0000-00-00', NULL, NULL),
-(2, 13, '', '0000-00-00', NULL, NULL),
-(2, 14, '', '0000-00-00', NULL, NULL),
-(2, 15, '', '0000-00-00', NULL, NULL),
-(2, 16, '', '0000-00-00', NULL, NULL),
-(2, 17, '', '0000-00-00', NULL, NULL),
-(2, 18, '', '0000-00-00', NULL, NULL),
-(2, 19, '', '0000-00-00', NULL, NULL),
-(2, 20, '', '0000-00-00', NULL, NULL),
-(2, 21, '', '0000-00-00', NULL, NULL),
-(2, 22, '', '0000-00-00', NULL, NULL),
-(2, 23, '', '0000-00-00', NULL, NULL),
-(2, 24, '', '0000-00-00', NULL, NULL),
-(2, 25, '', '0000-00-00', NULL, NULL),
-(2, 26, '', '0000-00-00', NULL, NULL),
-(2, 27, '', '0000-00-00', NULL, NULL),
-(2, 28, '', '0000-00-00', NULL, NULL),
-(2, 29, '', '0000-00-00', NULL, NULL),
-(2, 30, '', '0000-00-00', NULL, NULL),
-(2, 31, '', '0000-00-00', NULL, NULL),
-(2, 32, '', '0000-00-00', NULL, NULL),
-(2, 33, '', '0000-00-00', NULL, NULL),
-(2, 34, '', '0000-00-00', NULL, NULL),
-(2, 35, '', '0000-00-00', NULL, NULL);
+(1, 12, '', '0000-00-00', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -477,7 +421,7 @@ ALTER TABLE `contacts`
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
-  ADD PRIMARY KEY (`department_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `employees`
@@ -492,6 +436,12 @@ ALTER TABLE `employees`
 ALTER TABLE `employee_documents`
   ADD PRIMARY KEY (`doc_id`),
   ADD KEY `emp_id` (`emp_id`);
+
+--
+-- Indexes for table `employee_work_experience`
+--
+ALTER TABLE `employee_work_experience`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `modules`
@@ -541,31 +491,37 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `employee_documents`
 --
 ALTER TABLE `employee_documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `employee_work_experience`
+--
+ALTER TABLE `employee_work_experience`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -577,7 +533,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- Constraints for dumped tables
@@ -587,7 +543,7 @@ ALTER TABLE `users`
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
-  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`department_id`);
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
 
 --
 -- Constraints for table `employee_documents`
