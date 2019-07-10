@@ -970,13 +970,11 @@ background-color: #4c546d;
   80% { opacity: 1; }
   100% {opacity:1; }
 }
-<<<<<<< HEAD
 
 /*list of employees*/
 .employee_table :hover{
   cursor: pointer;
 }
-=======
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .drop-down-item {
   margin: 0 15px 0 30px;
@@ -1076,4 +1074,3 @@ background-color: #4c546d;
   text-decoration: none;
 }  
   
->>>>>>> afc5ab89e220c3a9d4448d48a84216f6ba0979c8
