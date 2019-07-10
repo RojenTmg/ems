@@ -26,14 +26,14 @@
       </thead>
       <tbody>
         <?php 
-        $sn=1;
+        // echo $posts;  die();
           foreach ($posts as $post) {
             ?>
             <tr id="<?php echo $post['emp_id']; ?>">
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
-              <td><?php echo $post['department_id']; ?></td>
+              <td><?php echo $post['deptName']; ?></td>
               <td><?php echo $post['nationality']; ?></td>
               <td><?php echo $post['highest_degree']; ?></td>
               <td>

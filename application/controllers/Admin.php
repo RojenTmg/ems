@@ -38,8 +38,6 @@ class Admin extends CI_Controller {
 		if (empty($data['post'])) {
 			show_404();
 		}
-		$data['title'] = $data['post']['title'];
-
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/pages/employee_detail', $data);
 		$this->load->view('admin/templates/footer');
