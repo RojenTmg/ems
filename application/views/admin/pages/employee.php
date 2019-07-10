@@ -5,25 +5,22 @@
   </div>
   <div class="box">
   <div class="box-head">
-    <div>
+    <div class="sp-btn">
       <p>Recent Employees</p>
+      <div class="arch-msg-div"></div>
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
-      
         <tr>
-
-          <th  style="width: 5%;">SN</th>
-          <th  style="width: 5%;">Id</th>
-          <th  style="width: 5%;">Title</th>
-          <th  style="width: 25%;">Name</th>
-          <th  style="width: 15%;">Department</th>
-          <!-- created by removed -->
-          <th  style="width: 15%;">Nationality</th>
-          <th  style="width: 15%;">Highest Degree</th>
-          <th style="width: 20%">Action</th>
+          <th  style="width: 2%; background-color: #444a50;">Id</th>
+          <th  style="width: 2%; background-color: #444a50;">Title</th>
+          <th  style="width: 25%; background-color: #444a50;">Name</th>
+          <th  style="width: 15%; background-color: #444a50;">Department</th>
+          <th  style="width: 15%; background-color: #444a50;">Nationality</th>
+          <th  style="width: 15%; background-color: #444a50;">Highest Degree</th>
+          <th style="width: 15%; background-color: #444a50;">Action</th>
 
         </tr>
       </thead>
@@ -33,7 +30,6 @@
           foreach ($posts as $post) {
             ?>
             <tr id="<?php echo $post['emp_id']; ?>">
-              <td><?php echo $sn; $sn++;?></td>
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
@@ -58,7 +54,13 @@
     </table>
   </div>
 </div>
+<div class="page-limit">
+    <?= $this->pagination->create_links(); ?>
 </div>
+</div>
+
+
+
 
 <script type="text/javascript">
 
@@ -67,24 +69,26 @@
     ev.stopPropagation();
   });
 
-  $('table tr .btn-archive').click(function(ev) {
+  $('.table tr .btn-archive').click(function(ev) {
     $(this).children()[1].style.display = 'block';
     ev.stopPropagation();
   });
 
-  $('table tr').click(function() {
+  $('.table tbody tr').click(function() {
     var id = $(this).attr('id');
     window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
 
-  $('table tr .btn-edit').click(function(ev){
+  $('.table tr .btn-edit').click(function(ev){
     var id = $(this).closest('tr').attr('id');
     window.location =  '<?= site_url('admin/manage_employee/'); ?>' + id;
     ev.stopPropagation();
   });
 
-  $('table tr .btn-archive .tip-arch').click(function(){
+  $('.table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
+    $('.arch-msg-div').append('<div class="arch-msg">Employee Archived Successfully</div>');
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 
   // $('.tip-arch').click(function(ev) {

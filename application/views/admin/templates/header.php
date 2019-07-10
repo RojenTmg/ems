@@ -124,7 +124,7 @@
     <div onclick="displayFunctionType();" class="drop-down-item" id="show-profile">
       <div class="pro-file">
         <?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>
-        <span><strong> Rojen Moktan &nbsp;&nbsp;&nbsp;  </strong></span>
+        <span><strong> Anonymous &nbsp;&nbsp;&nbsp;  </strong></span>
         <i class="fa fa-caret-down" aria-hidden="true"></i>
       </div>
       <div class="drop-down">

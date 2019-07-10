@@ -9,7 +9,7 @@
   <div class="contents">
     <!-- title -->
     <div class="con-head sp-btn">
-      <h4>Add Employee</h4>
+      <h4>Manage Employee</h4>
       <a href="<?= base_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
      <!-- progress-bar -->
@@ -18,15 +18,16 @@
      <!-- show name above the progress bar and DONE button added -->
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
-             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add new record" onclick="location.reload()">
+
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add new record" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
+
         </div>
         <div class="box-body">
             <p id="completedPercent">
               <!-- show percentage completed here -->
             </p>
           <div class="pro-bar">
-
-            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar" ></div>
+            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar"></div>
           </div>  
         </div>
      </div>
@@ -72,7 +73,6 @@
       </div>
     </nav>
     <div class="message-div">
-
       <!-- <div id="message" class="message"> </div> -->
     </div>
     <div class="tab-content" id="nav-tabContent">
