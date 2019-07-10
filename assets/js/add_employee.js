@@ -4,14 +4,15 @@
           xmlHttp.open('POST','addGeneral',true);
           var data = new FormData();
           var first_name =document.getElementById('first_name').value;
-          var last_name=document.getElementById('last_name').value
+          var last_name=document.getElementById('last_name').value;
           var middle_name= document.getElementById('middle_name').value;
+          var join_date=document.getElementById('year').value+'-'+document.getElementById('month').value+'-'+document.getElementById('day').value;
           var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
           data.append('title',document.getElementById('title').value);
           data.append('first_name',first_name);
           data.append('middle_name',middle_name);
           data.append('last_name',last_name);
-          data.append('join_date',document.getElementById('join_date').value);
+          data.append('join_date',join_date);
           data.append('password',password);
           xmlHttp.send(data);
 
