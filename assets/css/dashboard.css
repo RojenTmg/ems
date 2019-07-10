@@ -714,7 +714,7 @@ body {
   background-color: #ffffff00;
 }
 .table .can:hover {
-background-color: #4c546d;
+  background-color: #4c546d;
 }
 .table td, .table th {
   min-width: 150px;
@@ -725,12 +725,21 @@ background-color: #4c546d;
 .hover tbody tr:hover {
   background-color: #e8e8ed;
 }
+.thead-dark tr td {
+  background-color: #343a40 !important;
+}
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
 .btn-edit, .btn-archive {
   border: none;
   background-color: #ffffff00;
   margin: 0 20px 0 0;
   cursor: pointer;
+}
+.btn-edit {
+  color: #3ad;
+}
+.btn-archive {
+  color: #dc3545;
 }
 .tooltip1 {
   position: relative;
@@ -954,7 +963,7 @@ background-color: #4c546d;
   width: 300px;
   margin: 10px 20px 0;
 }
-.message {
+.message, .arch-msg {
   display: block;
   background-color: #d4edda !important;
   border: 1px solid #c3e6cb;
@@ -965,12 +974,20 @@ background-color: #4c546d;
 }
 
 @keyframes pop-up {
-  0% { opacity: o; display: block; }
+  0% { opacity: 0; display: block; }
   10% { opacity: 1; }
   80% { opacity: 1; }
   100% {opacity:1; }
 }
-
+.arch-msg {
+  animation: pop-ups 3s linear forwards;
+}
+@keyframes pop-ups {
+  0% { opacity: 0; display: block; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% {opacity:0; }
+}
 /*list of employees*/
 .employee_table :hover{
   cursor: pointer;
@@ -1067,9 +1084,30 @@ background-color: #4c546d;
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 #small-link {
   color: #6c757d;
+  font-weight: 600;
 }
 
 #small-link:hover {
   text-shadow: 0.3px 0.3px #6c757d;
   text-decoration: none;
 }  
+
+/*-----------------------------prfile-picture-theme-------------------------------------------------*/
+.page-limit {
+  width: 100%;
+  text-align: center;
+}
+.page-limit a, .page-limit strong {
+  color: #000;
+  padding: 7px 12px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+
+.page-limit strong {
+  background-color: #337ab7;
+  border: 0.2px solid #337ab7;
+  border-radius: 3px;
+  color: #fff;
+}

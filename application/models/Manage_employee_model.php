@@ -16,6 +16,14 @@
 
 		}
 
+		public function employeeList($limit, $offset) {
+			$query = $this->db->select()
+							  ->from('employees')
+							  ->limit($limit, $offset)
+							  ->get();
+			return $query->result_array();
+		}
+		
 		public function get_posts($slug = FALSE)
 		{
 			if ($slug === FALSE) 
@@ -133,3 +141,6 @@ public function update_employee_contact($contact,$userid=''){
 		
 
 	}
+
+
+
