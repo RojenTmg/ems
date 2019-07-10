@@ -18,7 +18,9 @@
      <!-- show name above the progress bar and DONE button added -->
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
-             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Done" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
+
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add new record" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
+
         </div>
         <div class="box-body">
             <p id="completedPercent">
@@ -101,7 +103,44 @@
           <!-- date of join added -->
           <div class="form-div">
             <label>Date of Join<span class="text-danger"><i>*</i></span></label>
-            <input type="date" id="join_date" value="<?php if(isset($post['join_date'])) echo $post['join_date']; else echo date('Y-m-d'); ?>" class="col-md-2" max="<?php echo date('Y-m-d');?>"> 
+            <!-- date -->
+            <div class="row">
+            <select name="day" id="day" class="col-md-1 mr-5 ml-3 ">
+        <?php 
+          $start_date = 1;
+          $end_date   = 31;
+          for( $j=$start_date; $j<=$end_date; $j++ ) {
+            echo '<option value='.$j.'>'.$j.'</option>';
+          }
+        ?>
+      </select>
+      <!-- month -->
+             <select id="month"   name="month"  class="col-md-2 mr-5" /> 
+                <option value="1">January</option>       
+                <option value="2">February</option>       
+                <option value="3">March</option>       
+                <option value="4">April</option>       
+                <option value="5">May</option>       
+                <option value="6">June</option>       
+                <option value="7">July</option>       
+                <option value="8">August</option>       
+                <option value="9">September</option>       
+                <option value="10">October</option>       
+                <option value="11">November</option>       
+                <option value="12">December</option>       
+              </select>
+            <!-- year -->
+             <select id="year" name="year " class="col-md-1">
+        <?php 
+          $year = date('Y');
+          $min = $year - 60;
+          $max = $year;
+          for( $i=$max; $i>=$min; $i-- ) {
+            echo '<option value='.$i.'>'.$i.'</option>';
+          }
+        ?>
+      </select>
+      </div>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
@@ -125,7 +164,44 @@
 
           <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
-            <input type="date"  value="<?php if(isset($post['dob'])) echo $post['dob']; ?>" id="dob" class="col-md-2">
+             <!-- date -->
+            <div class="row">
+            <select name="day" id="birth_day" class="col-md-1 mr-5 ml-3 ">
+        <?php 
+          $start_date = 1;
+          $end_date   = 31;
+          for( $j=$start_date; $j<=$end_date; $j++ ) {
+            echo '<option value='.$j.'>'.$j.'</option>';
+          }
+        ?>
+      </select>
+      <!-- month -->
+             <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
+                <option value="1">January</option>       
+                <option value="2">February</option>       
+                <option value="3">March</option>       
+                <option value="4">April</option>       
+                <option value="5">May</option>       
+                <option value="6">June</option>       
+                <option value="7">July</option>       
+                <option value="8">August</option>       
+                <option value="9">September</option>       
+                <option value="10">October</option>       
+                <option value="11">November</option>       
+                <option value="12">December</option>       
+              </select>
+            <!-- year -->
+             <select id="birth_year" name="year " class="col-md-1">
+        <?php 
+          $year = date('Y');
+          $min = $year - 60;
+          $max = $year;
+          for( $i=$max; $i>=$min; $i-- ) {
+            echo '<option value='.$i.'>'.$i.'</option>';
+          }
+        ?>
+      </select>
+      </div>
           </div>
 
           <div class="form-div">
@@ -406,10 +482,12 @@
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
-          <div id="work-experience">
+          <p class="title" id="add_doc_title"></p>
+              <div id="work-experience" class="bg-light">
+
          <!-- the form appends here -->
         </div>
-        <div class="form-div">
+        <div class="form-div ">
           <div class="sub-can">
             <input type="button" onclick="submitWork()" name="" value="Submit" class="sub">
            </div> 

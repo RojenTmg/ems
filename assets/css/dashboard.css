@@ -1098,6 +1098,10 @@ body {
   text-decoration: none;
 }  
 
+
+.item-1{
+  font-weight:bold;
+}
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .page-limit {
   width: 100%;
@@ -1116,4 +1120,3 @@ body {
   border: 0.2px solid #337ab7;
   border-radius: 3px;
   color: #fff;
-}

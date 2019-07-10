@@ -130,3 +130,7 @@
 .container, .register {
     margin: 0 !important;
 }
+
+.column{
+    padding: 1% 1%;
+}
