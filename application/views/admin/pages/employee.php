@@ -33,7 +33,7 @@
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>
               <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
-              <td><?php echo $post['deptName']; ?></td>
+              <td><?php echo $post['department_name']; ?></td>
               <td><?php echo $post['nationality']; ?></td>
               <td><?php echo $post['highest_degree']; ?></td>
               <td>
