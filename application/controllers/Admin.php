@@ -204,12 +204,6 @@ class Admin extends CI_Controller {
 				'country'=>$currentaddress_country
 			);
 
-
-// if(!empty($permanentaddress_street)||!empty($permanentaddress_municipality)||!empty($permanentaddress_district)||!empty($permanentaddress_state))
-// {
-
-// }
-
 			$primary = array(
 				'street' => $permanentaddress_street, 
 				'municipality' => $permanentaddress_municipality,
@@ -222,12 +216,13 @@ class Admin extends CI_Controller {
 				'district' => $currentaddress_district,
 				'country'=>$currentaddress_country);
 
-			$error='';
-			$check='';
+			// error is yes when empty field is submitted by user
+			$error='none';
+			// check is used in whether the adress is already in database or not
+			$check=NULL;
 
-			if($primary==NULL){
-				$check=NULL;
-				$error=NULL;
+			if(empty($permanentaddress_street)||empty($permanentaddress_municipality)||empty($permanentaddress_district)||empty($permanentaddress_country)) {
+				$error='yes';
 			}
 			else{
 				$query=$this->db->get_where("addresses",$primary);
@@ -235,7 +230,7 @@ class Admin extends CI_Controller {
 			}
 
 			if($check==NULL){
-				if($error==NULL){
+				if($error=='yes'){
 					$primary_id='1';
 				}
 				else{
@@ -249,7 +244,7 @@ class Admin extends CI_Controller {
 			$query=$this->db->get_where("addresses",$secondary);
 			$check=$query->row_array();
 
-			if($check==NULL){
+			if($check==''){
 				$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
 			}
 			else{
@@ -262,6 +257,7 @@ class Admin extends CI_Controller {
 		}
 		echo json_encode($status);
 	} 
+
 
 
 // contact form
