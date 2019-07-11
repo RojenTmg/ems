@@ -21,12 +21,6 @@
 			$this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
 
-			// echo $query;
-			// die();
-			// $query = $this->db->select()
-			// 				  ->from('employees')
-			// 				  ->limit($limit, $offset)
-			// 				  ->get();
 			return $query->result_array();
 		}
 		public function archivedEmployeeList() {

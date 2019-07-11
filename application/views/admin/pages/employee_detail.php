@@ -59,27 +59,37 @@
 
 			<div class="body-row ">
 				<div class="item-1">Permanent Address</div>
-				<div class="item-2"><?php echo $post['p_street'] . ' ' . $post['p_municipality'] . ' ' . $post['p_district'] . ' ' . $post['p_state'] . ' ' . $post['p_country']; ?></div>
+				<div class="item-2"><?php if (!empty($post['p_street'])) echo $post['p_street'] . ', '; 
+									      if (!empty($post['p_municipality'])) echo $post['p_municipality'] . ', ';
+									      if (!empty($post['p_district'])) echo $post['p_district'] . ', ';
+									      if (!empty($post['p_state'])) echo $post['p_state'] . ', ';
+									      if (!empty($post['p_country'])) echo $post['p_country'] ; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Temporary Address</div>
-				<div class="item-2"><?php echo $post['t_street'] . ' ' . $post['t_municipality'] . ' ' . $post['t_district'] . ' ' . $post['t_state'] . ' ' . $post['t_country']; ?></div>
+				<div class="item-2"><?php if (!empty($post['t_street'])) echo $post['t_street'] . ', '; 
+									      if (!empty($post['t_municipality'])) echo $post['t_municipality'] . ', ';
+									      if (!empty($post['t_district'])) echo $post['t_district'] . ', ';
+									      if (!empty($post['t_state'])) echo $post['t_state'] . ', ';
+									      if (!empty($post['t_country'])) echo $post['t_country'] ; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Home Phone</div>
-				<div class="item-2"><?php echo $post['last_name']; ?></div>
+				<div class="item-2"><?php echo $post['home_phone']; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Mobile Phone</div>
-				<div class="item-2"><?php echo $post['last_name']; ?></div>
+				<div class="item-2"><?php echo $post['mobile_phone']; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Other Phones</div>
-				<div class="item-2"><?php echo $post['last_name']; ?></div>
+				<div class="item-2"><?php if (!empty($post['other_phone1'])) echo $post['other_phone1'] . ', '; 
+									      if (!empty($post['other_phone2'])) echo $post['other_phone2'] . ', ';
+									      if (!empty($post['other_phone3'])) echo $post['other_phone3'] ; ?></div>
 			</div>
 
 				<div class="body-row ">
