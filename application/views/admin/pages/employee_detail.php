@@ -1,6 +1,6 @@
 <div class="contents">
 	<div class="emp-detail">
-		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to List</a>
+		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee list</a>
 		<div class="detail-head">
 			<div class="head-pic">
 				<?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>
@@ -9,7 +9,7 @@
 
 			<div class="head-name">
 				<div class="item-1"><?php echo $post['first_name'] . ' ' .  $post['middle_name'] . ' ' .  $post['last_name'];  ?></div>
-				<div class="item-2"><?php echo $post['deptName']; ?></div>
+				<div class="item-2"><?php echo $post['department_name']; ?></div>
 		</div>
 
 		</div>
@@ -88,11 +88,36 @@
 			</div>
 		</div>
 	</div>
-	<!-- basic info ends -->
+	<!-- basic info ends -->	
+	<!-- education -->
+		<div class="column ">
+			<div class="card">
+			<h5 class="card-header text-center alert alert-dark">Education</h5>	
+			<div class="body-row ">
+				<div class="item-1">Highest Degree</div>
+				<div class="item-2"><?php echo $post['highest_degree']; ?></div>
+			</div>
+			<div class="body-row ">
+				<div class="item-1">Degree Title</div>
+				<div class="item-2"><?php echo $post['degree_title']; ?></div>
+			</div>
+			<div class="body-row ">
+				<div class="item-1">University</div>
+				<div class="item-2"><?php echo $post['university']; ?></div>
+			</div>
+			<div class="body-row ">
+				<div class="item-1">Institute</div>
+				<div class="item-2"><?php echo $post['institute']; ?></div>
+			</div>
+		</div>
+	</div>
 
-	
-</div> 
+<!-- col1 end -->
 <!-- education ends here -->
+
+</div> 
+
+
 <div class="column col-md-4">
 	
 			<!-- Nationality -->
@@ -127,47 +152,10 @@
 		</div>
 		</div>
 <!-- nationality ends  -->
-		<div class="column ">
-			<div class="card">
-			<h5 class="card-header text-center alert alert-dark">Education</h5>	
-			<div class="body-row ">
-				<div class="item-1">Highest Degree</div>
-				<div class="item-2"><?php echo $post['highest_degree']; ?></div>
-			</div>
-			<div class="body-row ">
-				<div class="item-1">Degree Title</div>
-				<div class="item-2"><?php echo $post['degree_title']; ?></div>
-			</div>
-			<div class="body-row ">
-				<div class="item-1">University</div>
-				<div class="item-2"><?php echo $post['university']; ?></div>
-			</div>
-			<div class="body-row ">
-				<div class="item-1">Institute</div>
-				<div class="item-2"><?php echo $post['institute']; ?></div>
-			</div>
-		</div>
-	</div>
 
-<!-- col1 end -->
-<!-- education ends here -->
 
-<!-- works -->
-			<div class="column">
-				<div class="card">
-				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
-				<div class="body-row ">
-					<div class="item-1">Previous Employer</div>
-					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
-				</div>
-			</div>
-</div>
-		<!-- work ends here  -->
 
-		
-</div>
-		<!-- Emergency contact -->
-<div class="column col-md-4">
+				<!-- Emergency contact -->
 		<div class="column ">
 				<div class="card">
 			<h5 class="card-header text-center alert alert-dark">Emergency Contact</h5>
@@ -193,18 +181,7 @@
 </div>	
 
 	<!-- emergency ends here -->
-		<!-- pan -->
-		<div class="column ">
-				<div class="card">
-			<h5 class="card-header text-center alert alert-dark">PAN</h5>
-			<div class="body-row ">
-				<div class="item-1">PAN</div>
-				<div class="item-2"><?php echo $post['pan']; ?></div>
-			</div>
-		</div>
-	</div>
-		<!-- pan ends here -->
-		<!-- health starts here -->
+<!-- health starts here -->
 <div class="column ">
 				<div class="card">
 	<h5 class="card-header text-center alert alert-dark">Health</h5>
@@ -231,6 +208,60 @@
 		</div>
 	</div>
 		<!-- health ends here -->
+
+
+		
+</div>
+
+<div class="column col-md-4">
+	<!-- works -->
+			<div class="column">
+				<div class="card">
+				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
+				<div class="body-row ">
+					<div class="item-1">Organization</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+				<div class="body-row ">
+					<div class="item-1">Responsibility</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+
+				<div class="body-row ">
+					<div class="item-1">Contact Person</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+
+				<div class="body-row ">
+					<div class="item-1">Contact No.</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+
+				<div class="body-row ">
+					<div class="item-1">Contact Address</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+
+				<div class="body-row ">
+					<div class="item-1">Time</div>
+					<div class="item-2"><?php echo $post['previous_employer']; ?></div>
+				</div>
+			</div>
+</div>
+		<!-- work ends here  -->
+
+		<!-- pan -->
+		<div class="column ">
+				<div class="card">
+			<h5 class="card-header text-center alert alert-dark">PAN</h5>
+			<div class="body-row ">
+				<div class="item-1">PAN</div>
+				<div class="item-2"><?php echo $post['pan']; ?></div>
+			</div>
+		</div>
+	</div>
+		<!-- pan ends here -->
+		
 		</div>
 	</div>
 	</div>

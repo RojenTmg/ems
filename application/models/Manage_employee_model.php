@@ -17,7 +17,7 @@
 		}
 
 		public function employeeList($limit, $offset) {
-			$this->db->join('departments', 'departments.department_id=employees.department_id');
+			$this->db->join('departments', 'departments.id=employees.department_id');
 			$this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
 
@@ -29,12 +29,19 @@
 			// 				  ->get();
 			return $query->result_array();
 		}
+		public function archivedEmployeeList() {
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			// $this->db->limit($limit, $offset); 
+			$query = $this->db->get('employees');
+
+			return $query->result_array();
+		}
 		
 		public function get_posts($slug = FALSE)
 		{
 			if ($slug === FALSE) 
 			{	
-				$this->db->join('departments', 'departments.department_id=employees.department_id');
+				$this->db->join('departments', 'departments.id=employees.department_id');
 				$this->db->order_by('emp_id', 'DESC');
 				$query = $this->db->get('employees');
 				return $query->result_array();
@@ -44,12 +51,12 @@
 					a.street as p_street, a.municipality as p_municipality, a.district as p_district, a.state as p_state, a.country as p_country, 
 					asec.street as t_street, asec.municipality as t_municipality, asec.district as t_district, asec.state as t_state, asec.country as t_country 
 					FROM employees e
-					JOIN departments d ON d.department_id = e.department_id
+					JOIN departments d ON d.id = e.department_id
 					LEFT JOIN employee_addresses ea ON ea.empId = e.emp_id
 					LEFT JOIN addresses a ON a.address_id = ea.primary_addressId
 					LEFT JOIN addresses asec ON asec.address_id = ea.secondary_addressId 
 					LEFT JOIN employee_contacts ec ON ec.emp_id = e.emp_id
-					LEFT JOIN contacts c ON c.contact_id = ec.primary_contact_id WHERE e.emp_id=".$slug;
+					LEFT JOIN contacts c ON c.contact_id = ec.contact_id WHERE e.emp_id=".$slug;
 			$query = $this->db->query($q);
 
 			return $query->row_array();

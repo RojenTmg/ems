@@ -17,6 +17,27 @@ class Admin extends CI_Controller {
 		else
 			redirect('login');
 	}
+	public function viewArchived() 
+	{
+
+
+		$data['title'] = ucfirst('Archived Employee');
+		$data['posts']=$this->Manage_employee_model->archivedEmployeeList();
+		// echo "adsfasd";
+		// die();
+
+		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+		{
+			$this->load->view('admin/templates/header');
+			$this->load->view('admin/pages/archived_employees', $data['posts']);
+			$this->load->view('admin/templates/footer');
+		}
+		else
+			redirect('login');
+	}
+
+
+
 
 	public function employee() {
 		$posts = $this->Manage_employee_model->get_posts();

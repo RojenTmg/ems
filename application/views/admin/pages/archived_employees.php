@@ -1,6 +1,6 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Recently Added Employee</h5>
+      <h5>Archived Employees</h5>
       <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
@@ -11,7 +11,6 @@
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
-     <a href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
         <tr>
@@ -30,7 +29,7 @@
         // echo $posts;  die();
           foreach ($posts as $post) {
             // check archived or not
-            if($post['is_active']==1){            ?>
+            if($post['is_active']==0){            ?>
             <tr id="<?php echo $post['emp_id']; ?>">
               <td><?php echo $post['emp_id']; ?></td>
               <td><?php echo $post['title']; ?></td>

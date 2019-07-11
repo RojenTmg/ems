@@ -30,12 +30,15 @@ $route['admin/progressBar'] = 'Admin/progressBar';
 $route['employee/progressBar'] = 'Admin/progressBar';
 
 
+
+
 $route['login'] = 'Login/view';
 $route['admin'] = 'Admin/view';
 $route['recommender'] = 'Recommender/view';
 $route['approver'] = 'Approver/view';
 $route['employee'] = 'Employee/view';
 
+$route['admin/archived_employees'] = 'Admin/viewArchived';
 $route['admin/employee'] = 'Admin/employee';
 $route['admin/manage_employee/(:any)'] = 'Admin/editEmp/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin/viewED/$1';
