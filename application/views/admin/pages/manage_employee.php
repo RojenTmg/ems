@@ -9,7 +9,7 @@
   <div class="contents">
     <!-- title -->
     <div class="con-head sp-btn">
-      <h4>Manage Employee</h4>
+      <h4>Manage Staff</h4>
       <a href="<?= base_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
      <!-- progress-bar -->

@@ -3,7 +3,7 @@
 		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee list</a>
 		<div class="detail-head">
 			<div class="head-pic">
-				<?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>
+				<?= img(array('src'=>'assets/images/images.jpg', 'alt'=> 'employee image')); ?>
 			</div>
 
 
@@ -72,7 +72,7 @@
 									      if (!empty($post['t_municipality'])) echo $post['t_municipality'] . ', ';
 									      if (!empty($post['t_district'])) echo $post['t_district'] . ', ';
 									      if (!empty($post['t_state'])) echo $post['t_state'] . ', ';
-									      if (!empty($post['t_country'])) echo $post['t_country'] ; ?></div>
+									      if (!empty($post['t_country'])) echo $post['t_country']; ?></div>
 			</div>
 
 			<div class="body-row ">
@@ -171,21 +171,21 @@
 			<h5 class="card-header text-center alert alert-dark">Emergency Contact</h5>
 			<div class="body-row ">
 				<div class="item-1">Name</div>
-				<div class="item-2"><?php echo $post['pan']; ?></div>
+				<div class="item-2"><?php echo $post['e_name']; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Relation</div>
-				<div class="item-2"><?php echo $post['pan']; ?></div>
+				<div class="item-2"><?php echo $post['e_relation']; ?></div>
 			</div>
 			<div class="body-row ">
 				<div class="item-1">Contact</div>
-				<div class="item-2"><?php echo $post['pan']; ?></div>
+				<div class="item-2"><?php echo $post['e_phone']; ?></div>
 			</div>
 
 			<div class="body-row ">
 				<div class="item-1">Address</div>
-				<div class="item-2"><?php echo $post['pan']; ?></div>
+				<div class="item-2"><?php echo $post['e_address']; ?></div>
 			</div>
 		</div>
 </div>	

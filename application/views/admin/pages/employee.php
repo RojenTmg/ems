@@ -1,17 +1,17 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Employee's</h5>
+      <h5>Staff</h5>
       <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-      <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
+      <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Staff</p>
       <div class="arch-msg-div"></div>
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
-     <a href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
+     <!-- <a href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a> -->
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
         <tr>
@@ -63,6 +63,22 @@
 </div>
 </div>
 
+<?php 
+  if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) {
+    ?>
+    <div id="simpleModal" class="modal">
+      <div class="modal-content">
+        <div class="container register register-left">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <h3>Staff Not Found!!!</h3>
+                <a href="<?= site_url('admin/employee');?>">Go back to Employee List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+  }
+?>
 
 
 
