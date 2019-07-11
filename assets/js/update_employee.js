@@ -379,14 +379,11 @@ $(tag).append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style
 
 // to remove form from the work experience form
 function removeWorkExperience(exp)
-{console.log(exp.parentNode().nodeName);
+{
   
-    var parentNode= exp.parentNode().nodeName();
-    var node = document.getElementById(parentNode);
+    var node= exp.parentNode.parentNode;
     while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
-
+    z    node.removeChild(node.firstChild);   }
 }
 
 // submit employee work experience to the table
