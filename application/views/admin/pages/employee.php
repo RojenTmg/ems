@@ -1,17 +1,19 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Employee's</h5>
+      <h5>Staff</h5>
       <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-      <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
-      <div class="arch-msg-div"></div>
+<!-- user icon -->
+       <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
+       <div class="arch-msg-div"></div>
+         <a class="float-right" href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Staff</a>
+  
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
-     <a href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
         <tr>
@@ -92,6 +94,7 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
     $('.arch-msg-div').append('<div class="arch-msg">Employee Deleted Successfully</div>');
+
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 

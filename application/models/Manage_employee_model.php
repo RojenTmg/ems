@@ -1,9 +1,18 @@
 <?php
 	class Manage_employee_model extends CI_Model{
 		
-		public function archiveEmployee($id) {
+		// archive
+		public function archiveEmployee($id) 
+		{
 			$this->db->where('emp_id',$id);	
 			$this->db->update('employees', ['is_active'=>'0',]);
+		}
+
+		// unarchive
+		public function unArchiveEmployee($id)
+		{
+			$this->db->where('emp_id',$id);	
+			$this->db->update('employees', ['is_active'=>'1',]);
 		}
 
 		public function update_employee($data,$userid=''){

@@ -868,8 +868,8 @@ body {
 }
 .body-row .item-1 {
   text-align: right;
-  margin-right: 50px;
-  width: 200px;
+  margin-right: 2em;
+  width: 10em;
 }
 .body-row .item-2 {
 }
