@@ -1,6 +1,6 @@
 <div class="contents">
 	<div class="emp-detail">
-		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to List</a>
+		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee List</a>
 		<div class="detail-head">
 			<div class="head-pic">
 				<?= img(array('src'=>'assets/images/default.png', 'alt'=> 'employee image')); ?>

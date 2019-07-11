@@ -19,7 +19,7 @@
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
 
-             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add new record" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add Staff" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
 
         </div>
         <div class="box-body">

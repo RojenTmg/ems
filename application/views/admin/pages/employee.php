@@ -1,12 +1,12 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Recently Added Employee</h5>
+      <h5>Employee's</h5>
       <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-      <p>Recent Employees</p>
+      <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
       <div class="arch-msg-div"></div>
     </div>
   </div>
@@ -38,11 +38,11 @@
               <td><?php echo $post['highest_degree']; ?></td>
               <td>
                 <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                <button class="btn-archive tooltip1" title="Archive" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-archive" aria-hidden="true"></i>
+                <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
                   <div class="tooltiptext">
                     <p>Are you sure?</p>
                     <span class="tip-can">Cancel</span>
-                    <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Archive</span>
+                    <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Delete</span>
                   </div>
                 </button>
               </td>
@@ -87,7 +87,7 @@
 
   $('.table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
-    $('.arch-msg-div').append('<div class="arch-msg">Employee Archived Successfully</div>');
+    $('.arch-msg-div').append('<div class="arch-msg">Employee Deleted Successfully</div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 
