@@ -23,6 +23,13 @@
 
 			return $query->result_array();
 		}
+		public function archivedEmployeeList() {
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			// $this->db->limit($limit, $offset); 
+			$query = $this->db->get('employees');
+
+			return $query->result_array();
+		}
 		
 		public function get_posts($slug = FALSE)
 		{
