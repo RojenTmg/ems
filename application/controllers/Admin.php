@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 			show_404();
 		}
 
+		$data['count'] = count($this->Manage_employee_model->get_posts());
 		$data['title'] = ucfirst($page);
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{
@@ -42,7 +43,7 @@ class Admin extends CI_Controller {
 
 		$config = [
 			'base_url' => base_url('admin/employee'),
-			'per_page' => 10,
+			'per_page' => 2,
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);

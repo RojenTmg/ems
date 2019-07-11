@@ -539,6 +539,7 @@ body {
 }
 .hl-cont {
   color: #000;
+  font-weight: 500;
   font-size: 1.5em;
 }
 .hl-cont span {
@@ -1105,7 +1106,7 @@ body {
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .page-limit {
   width: 100%;
-  text-align: center;
+  /*text-align: center;*/
 }
 .page-limit a, .page-limit strong {
   color: #000;

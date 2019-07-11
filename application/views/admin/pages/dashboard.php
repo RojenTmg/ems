@@ -11,12 +11,12 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Total Employee</div>
-                <div class="hl-cont">300</div>
+                <div class="hl-cont"><?php echo $count; ?></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
+                <!-- <div><span>Since this year</span></div> -->
+                <!-- <div><span>5.35%</span></div> -->
             </div>
           </a>
           </div>
@@ -32,8 +32,8 @@
               </div>
             </div>
              <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
+                <!-- <div><span>Since this year</span></div> -->
+                <!-- <div><span>5.35%</span></div> -->
             </div>
           </a>
           </div>
