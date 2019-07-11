@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+$route['admin/archived_employees'] = 'Admin/viewArchived';
 $route['admin/archiveEmployee'] = 'Admin/archiveEmployee';
+$route['admin/unArchiveEmployee'] = 'Admin/unArchiveEmployee';
+
 $route['admin/addGeneral'] = 'Admin/addGeneral';
 $route['admin/updateGeneral'] = 'Admin/updateGeneral';
 $route['employee/updateGeneral'] = 'Admin/updateGeneral';
@@ -38,7 +41,6 @@ $route['recommender'] = 'Recommender/view';
 $route['approver'] = 'Approver/view';
 $route['employee'] = 'Employee/view';
 
-$route['admin/archived_employees'] = 'Admin/viewArchived';
 $route['admin/employee'] = 'Admin/employee';
 $route['admin/manage_employee/(:any)'] = 'Admin/editEmp/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin/viewED/$1';

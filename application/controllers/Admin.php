@@ -19,8 +19,6 @@ class Admin extends CI_Controller {
 	}
 	public function viewArchived() 
 	{
-
-
 		$data['title'] = ucfirst('Archived Employee');
 		$data['posts']=$this->Manage_employee_model->archivedEmployeeList();
 		// echo "adsfasd";
@@ -29,7 +27,7 @@ class Admin extends CI_Controller {
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{
 			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/archived_employees', $data['posts']);
+			$this->load->view('admin/pages/archived_employees', $data);
 			$this->load->view('admin/templates/footer');
 		}
 		else
@@ -76,10 +74,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function archiveEmployee() {
+// to archive staff
+	public function archiveEmployee()
+	 {
 		extract($_POST);
 		$this->Manage_employee_model->archiveEmployee($emp_id);
 	}
+
+// unarchive staff
+
+	public function unArchiveEmployee()
+	{
+		extract($_POST);
+		$this->Manage_employee_model->unArchiveEmployee($emp_id);	}
 
 // this fucntion adds general data of add staff form
 	public function addGeneral()
