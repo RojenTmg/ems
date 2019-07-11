@@ -1,16 +1,16 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Employee's</h5>
+      <h5>Staff</h5>
       <a href="http://localhost/ems/admin" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-
-      <p>Recent Employees</p>
+<!-- user icon -->
+       <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
          <a class="float-right" href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
-      <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
+    
       <div class="arch-msg-div"></div>
     </div>
   </div>
