@@ -65,6 +65,22 @@
 </div>
 </div>
 
+<?php 
+  if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) {
+    ?>
+    <div id="simpleModal" class="modal">
+      <div class="modal-content">
+        <div class="container register register-left">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <h3>Staff Not Found!!!</h3>
+                <a href="<?= site_url('admin/employee');?>">Go back to Employee List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+  }
+?>
 
 
 

@@ -56,11 +56,23 @@ class Admin extends CI_Controller {
 	public function viewED($slug = NULL) {
 		$data['post'] = $this->Manage_employee_model->get_posts($slug);
 		if (empty($data['post'])) {
-			show_404();
+			$posts = $this->Manage_employee_model->get_posts();
+			$config = [
+				'base_url' => base_url('admin/employee'),
+				'per_page' => 2,
+				'total_rows' =>count($posts)
+			];
+			$this->pagination->initialize($config);
+			$data['posts'] = $this->Manage_employee_model->employeeList($config['per_page'], $this->uri->segment(3));
+			$data['posts']['user_not_found'] = true;
+			$this->load->view('admin/templates/header');
+			$this->load->view('admin/pages/employee', $data);
+			$this->load->view('admin/templates/footer');
+		} else {
+			$this->load->view('admin/templates/header');
+			$this->load->view('admin/pages/employee_detail', $data);
+			$this->load->view('admin/templates/footer');
 		}
-		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/employee_detail', $data);
-		$this->load->view('admin/templates/footer');
 	}
 
 	public function editEmp($slug = NULL) {

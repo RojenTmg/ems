@@ -1121,3 +1121,19 @@ body {
   border: 0.2px solid #337ab7;
   border-radius: 3px;
   color: #fff;
+}
+/*-----------------------------prfile-picture-theme-------------------------------------------------*/
+.modal-content {
+  background-color: #95a6b9 !important;
+}
+.register i {
+  margin: 20px 0 10px !important;
+}
+.register a {
+  padding: 5px 20px;
+  display: inline-block;
+  margin-top: 40px;
+  background-color: #87c540;
+  border-radius: 10px;
+  color: #fff;
+}
