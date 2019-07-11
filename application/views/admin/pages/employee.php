@@ -10,8 +10,7 @@
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
          <a class="float-right" href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
-    
-      <div class="arch-msg-div"></div>
+  
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
@@ -94,9 +93,6 @@
 
   $('.table tr .btn-archive .tip-arch').click(function(){
     $(this).closest('tr').remove();
-
-    $('.arch-msg-div').append('<div class="arch-msg">Staff Archived Successfully</div>');
-
     $('.arch-msg-div').append('<div class="arch-msg">Employee Deleted Successfully</div>');
 
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
