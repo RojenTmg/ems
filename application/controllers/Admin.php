@@ -495,13 +495,17 @@ class Admin extends CI_Controller {
 
 // calculate percentage of form
 		function progressBar(){
+
+			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree');
 			$employee_tbl= $this->Manage_employee_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
 
+			$this->db->select('contact_id');
 			$employee_contacts_tbl=$this->Manage_employee_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
 
+			$this->db->select('secondary_addressId');
 			$employee_addresses_tbl=$this->Manage_employee_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
 
-			$employee_documents_tbl=$this->Manage_employee_model->user_detail('employee_documents',array('emp_id' => $_SESSION['current_employee_id']));
+	
 
 //showing percentage in the progress bar
 			$total=0;
@@ -519,12 +523,6 @@ class Admin extends CI_Controller {
 			}
 			if(!empty($employee_addresses_tbl)){
 				foreach ($employee_addresses_tbl as $row) {
-					$total++;
-					if($row!=NULL) $filled++;
-				}
-			}
-			if(!empty($employee_documents_tbl)){
-				foreach ($employee_documents_tbl as $row) {
 					$total++;
 					if($row!=NULL) $filled++;
 				}

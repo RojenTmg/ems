@@ -22,7 +22,7 @@
              <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add Staff" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
 
         </div>
-        <div class="box-body">
+        <div id="progress-bar-body" style="display: none" class="box-body">
             <p id="completedPercent">
               <!-- show percentage completed here -->
             </p>

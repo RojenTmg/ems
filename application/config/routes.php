@@ -55,5 +55,5 @@ $route['logout']='Logout/view';
 
 $route['default_controller'] = 'Login/view';
 
-$route['404_override'] = '';
+$route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;

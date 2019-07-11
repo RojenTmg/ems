@@ -52,7 +52,7 @@
 					LEFT JOIN employee_contacts ec ON ec.emp_id = e.emp_id
 					LEFT JOIN contacts c ON c.contact_id = ec.contact_id WHERE e.emp_id=".$slug;
 			$query = $this->db->query($q);
-
+			$_SESSION['current_employee_id']=$slug;
 			return $query->row_array();
 		}
 		
