@@ -1,9 +1,18 @@
 <?php
 	class Manage_employee_model extends CI_Model{
 		
-		public function archiveEmployee($id) {
+		// archive
+		public function archiveEmployee($id) 
+		{
 			$this->db->where('emp_id',$id);	
 			$this->db->update('employees', ['is_active'=>'0',]);
+		}
+
+		// unarchive
+		public function unArchiveEmployee($id)
+		{
+			$this->db->where('emp_id',$id);	
+			$this->db->update('employees', ['is_active'=>'1',]);
 		}
 
 		public function update_employee($data,$userid=''){
@@ -52,7 +61,7 @@
 					LEFT JOIN employee_contacts ec ON ec.emp_id = e.emp_id
 					LEFT JOIN contacts c ON c.contact_id = ec.contact_id WHERE e.emp_id=".$slug;
 			$query = $this->db->query($q);
-
+			$_SESSION['current_employee_id']=$slug;
 			return $query->row_array();
 		}
 		

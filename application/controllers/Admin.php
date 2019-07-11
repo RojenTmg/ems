@@ -28,7 +28,7 @@ class Admin extends CI_Controller {
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{
 			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/archived_employees', $data['posts']);
+			$this->load->view('admin/pages/archived_employees', $data);
 			$this->load->view('admin/templates/footer');
 		}
 		else
@@ -87,10 +87,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function archiveEmployee() {
+// to archive staff
+	public function archiveEmployee()
+	 {
 		extract($_POST);
 		$this->Manage_employee_model->archiveEmployee($emp_id);
 	}
+
+// unarchive staff
+
+	public function unArchiveEmployee()
+	{
+		extract($_POST);
+		$this->Manage_employee_model->unArchiveEmployee($emp_id);	}
 
 // this fucntion adds general data of add staff form
 	public function addGeneral()
@@ -207,12 +216,6 @@ class Admin extends CI_Controller {
 				'country'=>$currentaddress_country
 			);
 
-
-// if(!empty($permanentaddress_street)||!empty($permanentaddress_municipality)||!empty($permanentaddress_district)||!empty($permanentaddress_state))
-// {
-
-// }
-
 			$primary = array(
 				'street' => $permanentaddress_street, 
 				'municipality' => $permanentaddress_municipality,
@@ -225,12 +228,13 @@ class Admin extends CI_Controller {
 				'district' => $currentaddress_district,
 				'country'=>$currentaddress_country);
 
-			$error='';
-			$check='';
+			// error is yes when empty field is submitted by user
+			$error='none';
+			// check is used in whether the adress is already in database or not
+			$check=NULL;
 
-			if($primary==NULL){
-				$check=NULL;
-				$error=NULL;
+			if(empty($permanentaddress_street)||empty($permanentaddress_municipality)||empty($permanentaddress_district)||empty($permanentaddress_country)) {
+				$error='yes';
 			}
 			else{
 				$query=$this->db->get_where("addresses",$primary);
@@ -238,7 +242,7 @@ class Admin extends CI_Controller {
 			}
 
 			if($check==NULL){
-				if($error==NULL){
+				if($error=='yes'){
 					$primary_id='1';
 				}
 				else{
@@ -252,7 +256,7 @@ class Admin extends CI_Controller {
 			$query=$this->db->get_where("addresses",$secondary);
 			$check=$query->row_array();
 
-			if($check==NULL){
+			if($check==''){
 				$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
 			}
 			else{
@@ -265,6 +269,7 @@ class Admin extends CI_Controller {
 		}
 		echo json_encode($status);
 	} 
+
 
 
 // contact form
@@ -505,13 +510,17 @@ class Admin extends CI_Controller {
 
 // calculate percentage of form
 		function progressBar(){
+
+			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree');
 			$employee_tbl= $this->Manage_employee_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
 
+			$this->db->select('contact_id');
 			$employee_contacts_tbl=$this->Manage_employee_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
 
+			$this->db->select('secondary_addressId');
 			$employee_addresses_tbl=$this->Manage_employee_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
 
-			$employee_documents_tbl=$this->Manage_employee_model->user_detail('employee_documents',array('emp_id' => $_SESSION['current_employee_id']));
+	
 
 //showing percentage in the progress bar
 			$total=0;
@@ -529,12 +538,6 @@ class Admin extends CI_Controller {
 			}
 			if(!empty($employee_addresses_tbl)){
 				foreach ($employee_addresses_tbl as $row) {
-					$total++;
-					if($row!=NULL) $filled++;
-				}
-			}
-			if(!empty($employee_documents_tbl)){
-				foreach ($employee_documents_tbl as $row) {
 					$total++;
 					if($row!=NULL) $filled++;
 				}

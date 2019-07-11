@@ -867,9 +867,9 @@ body {
   padding: 5px 0 10px;
 }
 .body-row .item-1 {
-  /*text-align: right;*/
-  margin-left: 30px;
-  width: 200px;
+  text-align: right;
+  margin-right: 2em;
+  width: 10em;
 }
 .body-row .item-2 {
 }

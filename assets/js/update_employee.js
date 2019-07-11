@@ -1,4 +1,4 @@
-  // archive employee
+  // delete/archive employee
    function archiveEmployee(id)
   {
           var xmlHttp = new XMLHttpRequest();
@@ -16,6 +16,25 @@
   }
 
 
+    // restore/ unarchive employee
+   function unArchiveEmployee(id)
+  {
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','unArchiveEmployee',true);
+          var data = new FormData();
+          data.append('emp_id', id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+              }
+          }
+  }
+
+
+
   // this function returns the value of radio button of same group
   function getSelectedValue(groupName) {
       var radios = document.getElementsByName(groupName);
@@ -30,6 +49,8 @@
   // display message if added successfully and red textbox if the required fields are empty
 function showresponse(formname,status,msg)
 {
+                  console.log(status);
+
   var check=false;
   var JSONObject;
   JSONObject=JSON.parse(status);
@@ -316,6 +337,7 @@ function showprogress(){
                 for(var k in json){
 
                     if(k=="percentage"){
+                     document.getElementById('progress-bar-body').style.display="block";
                     document.getElementById('completedPercent').innerHTML=json[k]+'% Completed';
                     var percent=json[k]+'%';
                     document.getElementById('bar').style.width=percent;
@@ -331,28 +353,37 @@ function showprogress(){
 
 
 // employee work experience
-
+var count=0;
 function addExperience() 
 {
-   $('#add_doc_title').html('Adding Work Experience');
-   $('#work-experience').append('<div class="row" id="cross"><i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i></div>');
-    $('#work-experience').append('<div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization"></div>');
-  $('#work-experience').append('<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"></div>');
-  $('#work-experience').append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
-   $('#work-experience').append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
-    $('#work-experience').append('<div class="form-div"><input type="text" id="address" name="contact_address" placeholder="Contact Address"></div>');
-  $('#work-experience').append('<div class="row"><label class="col-md-2 ">From</label>');
-  $('#work-experience').append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
-  $('#work-experience').append(' <label class="col-md-2 ">To</label>');
-  $('#work-experience').append('<input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
-$('#work-experience').append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>');
+  count++;
+  var experienceForm="form"+count;
+  var tag='#'+experienceForm;
+  console.log(tag);
+
+$('#add_doc_title').html('Adding Work Experience');
+$('#work-experience').append('<div id="'+experienceForm+'">  </div>');
+
+$(tag).append('<div class="row" id="cross"><i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i></div>');
+$(tag).append('<div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization"></div>');
+$(tag).append('<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"></div>');
+$(tag).append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
+$(tag).append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
+$(tag).append('<div class="form-div"><input type="text" id="address" name="contact_address" placeholder="Contact Address"></div>');
+$(tag).append('<div class="row"><label class="col-md-2 ">From</label>');
+$(tag).append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
+$(tag).append(' <label class="col-md-2 ">To</label>');
+$(tag).append('<input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
+$(tag).append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>');
  }
 
 // to remove form from the work experience form
-function removeWorkExperience(doc)
+function removeWorkExperience(exp)
 {
-  doc.remove();
-  doc.parents().siblings().remove();
+  
+    var node= exp.parentNode.parentNode;
+    while (node.firstChild) {
+    z    node.removeChild(node.firstChild);   }
 }
 
 // submit employee work experience to the table
