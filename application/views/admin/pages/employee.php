@@ -9,7 +9,7 @@
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
-         <a class="float-right" href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Employees</a>
+         <a class="float-right" href="http://localhost/ems/admin/archived_employees" id="small-link"> View Archived Staff</a>
   
     </div>
   </div>

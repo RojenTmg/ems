@@ -1,7 +1,7 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
       <h5>Archived Employees</h5>
-      <a href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee List</a>
+      <a href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Staff List</a>
   </div>
   <div class="box">
   <div class="box-head">
