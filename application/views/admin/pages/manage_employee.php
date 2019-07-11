@@ -392,7 +392,7 @@
             <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
           <div class="form-div">
-            <label>Institute</label>
+            <label>Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
           <div class="sub-can">

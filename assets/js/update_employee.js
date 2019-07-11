@@ -383,7 +383,7 @@ function removeWorkExperience(exp)
   
     var node= exp.parentNode.parentNode;
     while (node.firstChild) {
-    z    node.removeChild(node.firstChild);   }
+        node.removeChild(node.firstChild);   }
 }
 
 // submit employee work experience to the table
