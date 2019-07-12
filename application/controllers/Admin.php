@@ -293,9 +293,9 @@ class Admin extends CI_Controller {
 			);
 
 			$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
-			if($this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id'])){
+			$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
 				$status=array('true');
-			}
+			
 
 		}
 		echo json_encode($status);
