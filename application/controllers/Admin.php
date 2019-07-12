@@ -290,9 +290,9 @@ class Admin extends CI_Controller {
 			);
 
 			$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
-			if($this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id'])){
+			$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
 				$status=array('true');
-			}
+			
 
 		}
 		echo json_encode($status);
@@ -508,7 +508,7 @@ class Admin extends CI_Controller {
 // calculate percentage of form
 		function progressBar(){
 
-			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree');
+			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
 			$employee_tbl= $this->Manage_employee_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
 
 			$this->db->select('contact_id');

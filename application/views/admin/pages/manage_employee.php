@@ -73,7 +73,7 @@
       </div>
     </nav>
     <div class="message-div">
-      <!-- <div id="message" class="message"> </div> -->
+      <div id="message" class="message" style="display: none;"> </div>
     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -392,7 +392,7 @@
             <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
           <div class="form-div">
-            <label>Institute</label>
+            <label>Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
           <div class="sub-can">

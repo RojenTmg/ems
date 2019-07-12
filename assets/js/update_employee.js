@@ -49,7 +49,7 @@
   // display message if added successfully and red textbox if the required fields are empty
 function showresponse(formname,status,msg)
 {
-                  console.log(status);
+    console.log(status);
 
   var check=false;
   var JSONObject;
@@ -61,12 +61,12 @@ function showresponse(formname,status,msg)
      {
        document.getElementById(elements[k].id).style.borderColor="#ced4da";
         for(var l in JSONObject)
-        {
-
+        { 
           if(l=="0")
           {
-
-            $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+            // mesg div displays updated or added
+            $('#message').css('display','block');
+            $('#message').html(msg); 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
@@ -383,7 +383,7 @@ function removeWorkExperience(exp)
   
     var node= exp.parentNode.parentNode;
     while (node.firstChild) {
-    z    node.removeChild(node.firstChild);   }
+        node.removeChild(node.firstChild);   }
 }
 
 // submit employee work experience to the table
