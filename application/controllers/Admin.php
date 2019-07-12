@@ -35,15 +35,12 @@ class Admin extends CI_Controller {
 			redirect('login');
 	}
 
-
-
-
 	public function employee() {
 		$posts = $this->Manage_employee_model->get_posts();
 
 		$config = [
 			'base_url' => base_url('admin/employee'),
-			'per_page' => 2,
+			'per_page' => 3,
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);
@@ -59,7 +56,7 @@ class Admin extends CI_Controller {
 			$posts = $this->Manage_employee_model->get_posts();
 			$config = [
 				'base_url' => base_url('admin/employee'),
-				'per_page' => 2,
+				'per_page' => 3,
 				'total_rows' =>count($posts)
 			];
 			$this->pagination->initialize($config);
