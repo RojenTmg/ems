@@ -1,5 +1,5 @@
 <?php
-class Admin extends CI_Controller {
+class Admin_controller extends CI_Controller {
 
 	public function view($page = 'dashboard') 
 	{
@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 			show_404();
 		}
 
-		$data['count'] = count($this->Manage_employee_model->get_posts());
+		$data['count'] = count($this->Admin_model->getEmployeeDetails());
 		$data['title'] = ucfirst($page);
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{
@@ -21,7 +21,7 @@ class Admin extends CI_Controller {
 	public function viewArchived() 
 	{
 		$data['title'] = ucfirst('Archived Employee');
-		$data['posts']=$this->Manage_employee_model->archivedEmployeeList();
+		$data['posts']=$this->Admin_model->archivedEmployeeList();
 		// echo "adsfasd";
 		// die();
 
@@ -36,7 +36,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function employee() {
-		$posts = $this->Manage_employee_model->get_posts();
+		$posts = $this->Admin_model->getEmployeeDetails();
 
 		$config = [
 			'base_url' => base_url('admin/employee'),
@@ -44,23 +44,23 @@ class Admin extends CI_Controller {
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);
-		$data['posts'] = $this->Manage_employee_model->employeeList($config['per_page'], $this->uri->segment(3));
+		$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/pages/employee', $data);
 		$this->load->view('admin/templates/footer');
 	}
 // viewing single registered employees
-	public function viewED($slug = NULL) {
-		$data['post'] = $this->Manage_employee_model->get_posts($slug);
+	public function viewED($id = NULL) {
+		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 		if (empty($data['post'])) {
-			$posts = $this->Manage_employee_model->get_posts();
+			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
 				'base_url' => base_url('admin/employee'),
 				'per_page' => 3,
 				'total_rows' =>count($posts)
 			];
 			$this->pagination->initialize($config);
-			$data['posts'] = $this->Manage_employee_model->employeeList($config['per_page'], $this->uri->segment(3));
+			$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 			$data['posts']['user_not_found'] = true;
 			$this->load->view('admin/templates/header');
 			$this->load->view('admin/pages/employee', $data);
@@ -73,7 +73,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function editEmp($slug = NULL) {
-		$data['post'] = $this->Manage_employee_model->get_posts($slug);
+		$data['post'] = $this->Admin_model->getEmployeeDetails($slug);
 		if (empty($data['post'])) {
 			show_404();
 		}
@@ -88,7 +88,12 @@ class Admin extends CI_Controller {
 	public function archiveEmployee()
 	 {
 		extract($_POST);
-		$this->Manage_employee_model->archiveEmployee($emp_id);
+		$data= array('is_active'=>0);
+		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/pages/archived_employees', $data);
+		$this->load->view('admin/templates/footer');
+
 	}
 
 // unarchive staff
@@ -96,7 +101,9 @@ class Admin extends CI_Controller {
 	public function unArchiveEmployee()
 	{
 		extract($_POST);
-		$this->Manage_employee_model->unArchiveEmployee($emp_id);	}
+		$data= array('is_active'=>1);
+		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+	}
 
 // this fucntion adds general data of add staff form
 	public function addGeneral()
@@ -123,7 +130,7 @@ class Admin extends CI_Controller {
 				'department_id'=>'1'
 			);
 
-			if($this->Manage_employee_model->add_employee($data,$password))
+			if($this->Admin_model->add_employee($data,$password))
 			{
 				array_push($result, 'true');
 			}
@@ -155,7 +162,7 @@ class Admin extends CI_Controller {
 				'surname'=>$surname
 			);
 
-			$this->Manage_employee_model->update_employee($data);
+			$this->Admin_model->update_employee($data);
 			$result=array('true');
 		}
 		echo json_encode($result);
@@ -172,7 +179,7 @@ class Admin extends CI_Controller {
 			'email'=>$email
 		);
 
-		$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+		$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 		$status=array('true');
 
 
@@ -184,7 +191,6 @@ class Admin extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
-
 
 //validate
 		$this->form_validation->set_rules('currentaddress_street','Current street','required|trim',array('required' => 'You must provide a %s.'));
@@ -243,7 +249,7 @@ class Admin extends CI_Controller {
 					$primary_id='1';
 				}
 				else{
-					$primary_id=$this->Manage_employee_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+					$primary_id=$this->Admin_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
 				}
 			}
 			else{
@@ -254,13 +260,13 @@ class Admin extends CI_Controller {
 			$check=$query->row_array();
 
 			if($check==''){
-				$secondary_id=$this->Manage_employee_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				$secondary_id=$this->Admin_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
 			}
 			else{
 				$secondary_id=$check['address_id'];
 			}
 
-			$this->Manage_employee_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
 
 			$status=array('true');
 		}
@@ -289,8 +295,8 @@ class Admin extends CI_Controller {
 				'other_phone3'=>$other_phone3
 			);
 
-			$contact_id=$this->Manage_employee_model->update_contact($data,$_SESSION['current_employee_id']);
-			$this->Manage_employee_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
+			$contact_id=$this->Admin_model->update_contact($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
 				$status=array('true');
 			
 
@@ -326,7 +332,7 @@ class Admin extends CI_Controller {
 				'passport_issue_place'=>$passport_issue_place
 			);
 
-			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 			$status=array('true');
 
 		}
@@ -359,7 +365,7 @@ class Admin extends CI_Controller {
 				'e_phone'=>$e_phone
 			);
 
-			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 			$status=array('true');
 
 		}
@@ -388,7 +394,7 @@ class Admin extends CI_Controller {
 				'institute'=>$institute
 			);
 
-			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 			$status=array('true');
 
 		}
@@ -416,7 +422,7 @@ class Admin extends CI_Controller {
 				'allergy_description'=>$allergy_description
 			);
 
-			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 			$status=array('true');
 
 		}
@@ -438,7 +444,7 @@ class Admin extends CI_Controller {
 				'pan'=>$pan
 			);
 
-			$this->Manage_employee_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
 			$status=array('true');
 
 		}
@@ -463,7 +469,7 @@ class Admin extends CI_Controller {
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-		$this->Manage_employee_model->add_work_experience($data);
+		$this->Admin_model->add_work_experience($data);
 		$status='true';
 
 		echo $status;
@@ -496,7 +502,7 @@ class Admin extends CI_Controller {
 				'emp_id'=>$_SESSION['current_employee_id']
 			);}
 
-			if(	$this->Manage_employee_model->add_documents($doc_data))
+			if(	$this->Admin_model->add_documents($doc_data))
 				{$status='true';}
 
 			else{ $status='false'; }
@@ -509,13 +515,13 @@ class Admin extends CI_Controller {
 		function progressBar(){
 
 			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
-			$employee_tbl= $this->Manage_employee_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
+			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
 
 			$this->db->select('contact_id');
-			$employee_contacts_tbl=$this->Manage_employee_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
+			$employee_contacts_tbl=$this->Admin_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
 
 			$this->db->select('secondary_addressId');
-			$employee_addresses_tbl=$this->Manage_employee_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
+			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
 
 	
 
