@@ -89,7 +89,7 @@ class Admin_controller extends CI_Controller {
 	 {
 		extract($_POST);
 		$data= array('is_active'=>0);
-		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/pages/archived_employees', $data);
 		$this->load->view('admin/templates/footer');
@@ -102,7 +102,7 @@ class Admin_controller extends CI_Controller {
 	{
 		extract($_POST);
 		$data= array('is_active'=>1);
-		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
 	}
 
 // this fucntion adds general data of add staff form

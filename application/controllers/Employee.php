@@ -7,7 +7,7 @@
 			}
 
 			$data['title'] = ucfirst($page);
-			$data['user']= $this->Manage_employee_model->user_detail();
+			$data['user']= $this->Admin_model->user_detail();
 
 			//showing percentage in the progress bar
 		    $total=0;
