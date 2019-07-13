@@ -49,6 +49,8 @@ class Admin_controller extends CI_Controller {
 		$this->load->view('admin/pages/employee', $data);
 		$this->load->view('admin/templates/footer');
 	}
+
+
 // viewing single registered employees
 	public function viewED($id = NULL) {
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
@@ -469,7 +471,11 @@ class Admin_controller extends CI_Controller {
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-		$this->Admin_model->add_work_experience($data);
+
+		$this->Admin_model->insert('employee_work_experience',$data);
+
+		// $this->Admin_model->add_work_experience($data);
+
 		$status='true';
 
 		echo $status;
@@ -502,7 +508,10 @@ class Admin_controller extends CI_Controller {
 				'emp_id'=>$_SESSION['current_employee_id']
 			);}
 
-			if(	$this->Admin_model->add_documents($doc_data))
+
+			if(	$this->Admin_model->insert('employee_documents',$doc_data))
+
+			// if(	$this->Admin_model->add_documents($doc_data))
 				{$status='true';}
 
 			else{ $status='false'; }

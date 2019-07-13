@@ -131,5 +131,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Manage_employee_model','Leave_form_model','Validate_login_form','Logout_user_model');
+$autoload['model'] = array('Admin_model','Leave_form_model','Validate_login_form','Logout_user_model');
 

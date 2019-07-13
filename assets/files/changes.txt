@@ -1,9 +1,0 @@
-Admin.php ==> added addDocuments function
-add_employee.js ==> submitDocument funciton
-Mange_employ_model==> add documents function
-
-manageemploye vanne view file ma 
-
-<form class="form" id="document-form" enctype='multipart/form-data'>
-
-enctype add gareko xa  

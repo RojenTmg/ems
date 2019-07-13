@@ -1,21 +1,9 @@
 <?php
 	class Admin_model extends CI_Model {
 		
-		// archive
-		public function archiveEmployee($id) 
+		
+		public function update_employee($data,$userid='')
 		{
-			$this->db->where('emp_id',$id);	
-			$this->db->update('employees', ['is_active'=>'0',]);
-		}
-
-		// unarchive
-		public function unArchiveEmployee($id)
-		{
-			$this->db->where('emp_id',$id);	
-			$this->db->update('employees', ['is_active'=>'1',]);
-		}
-
-		public function update_employee($data,$userid=''){
 			if(!isset($_SESSION['user_id'])) $this->load->view('login/login');
 			if($userid==''){
 				$userid=$_SESSION['user_id'];
@@ -39,8 +27,9 @@
 			return $query->result_array();
 		}
 		
-				
+	
 		public function add_employee($data,$password){
+			// save('employees',$data, $pk = '',$id='')
 			$this->db->insert('employees',$data);
 			$user_id = $this->db->insert_id();
 			// this helps to set session id for admin to add more info
@@ -129,6 +118,33 @@
 		//work experience
 		public function add_work_experience($value){
 			return $this->db->insert('employee_work_experience',$value);
+		}
+
+
+
+	
+	// update function
+		public function update($tablename,$data,$pk,$id)
+		{
+			$this->db->where($pk, $id);
+			$this->db->update($tablename, $data);
+			return true;
+		}
+
+		// insert function
+		 public function insert($tablename,$data)
+		 {
+			$this->db->insert($tablename,$data);
+			return true;
+		}
+
+
+		// public save function\
+		public function save($tablename,$data, $pk = '',$id='')
+		{
+			try{ insert_table($tablename,$data); }
+	       
+	   		catch(Exception $e){  update_table($tablename,$data, $pk);  }
 		}
 		
 		// querying all data related to employee
