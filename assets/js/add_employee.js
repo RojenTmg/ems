@@ -61,7 +61,10 @@ function submitDocument(){
      {
      if(doc_file[i].files.length==0){
         var msg="Select a file first.";
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+        $('#message').css('background-color','#ffefea !important');
+              $('#message').css('color','red');
+           $('#message').css('display','block');
+            $('#message').html(msg); 
       return false;
      }
      if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf" ) {
@@ -70,7 +73,10 @@ function submitDocument(){
      else{
              var msg="Select a doc or pdf file only";
        console.log(doc_file[i].files[0]['type']);
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+        $('#message').css('background-color','#ffefea !important');
+        $('#message').css('color','red');
+          $('#message').css('display','block');
+            $('#message').html(msg); 
       return false;
      }
   }

@@ -52,6 +52,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/pages/employee', $data);
 		$this->load->view('admin/templates/footer');
 	}
+
+
 // viewing single registered employees
 	public function viewED($slug = NULL) {
 		$data['post'] = $this->Manage_employee_model->get_posts($slug);
@@ -91,7 +93,12 @@ class Admin extends CI_Controller {
 	public function archiveEmployee()
 	 {
 		extract($_POST);
-		$this->Manage_employee_model->archiveEmployee($emp_id);
+		$data= array('is_active'=>0);
+		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/pages/archived_employees', $data);
+		$this->load->view('admin/templates/footer');
+
 	}
 
 // unarchive staff
@@ -99,7 +106,9 @@ class Admin extends CI_Controller {
 	public function unArchiveEmployee()
 	{
 		extract($_POST);
-		$this->Manage_employee_model->unArchiveEmployee($emp_id);	}
+		$data= array('is_active'=>1);
+		$this->Manage_employee_model->update('employees',$data,'emp_id',$emp_id);
+	}
 
 // this fucntion adds general data of add staff form
 	public function addGeneral()
@@ -466,7 +475,7 @@ class Admin extends CI_Controller {
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-		$this->Manage_employee_model->add_work_experience($data);
+		$this->Manage_employee_model->insert('employee_work_experience',$data);
 		$status='true';
 
 		echo $status;
@@ -499,7 +508,7 @@ class Admin extends CI_Controller {
 				'emp_id'=>$_SESSION['current_employee_id']
 			);}
 
-			if(	$this->Manage_employee_model->add_documents($doc_data))
+			if(	$this->Manage_employee_model->insert('employee_documents',$doc_data))
 				{$status='true';}
 
 			else{ $status='false'; }
