@@ -94,8 +94,9 @@
 									      if (!empty($post['other_phone3'])) echo $post['other_phone3'] ; ?></div>
 			</div>
 
-				<div class="body-row ">
+			<div class="body-row ">
 				<div class="item-1 text-left" >Email Id</div>
+				<!-- <div class="item-2 text-left"><?php echo $post['email']; ?></div> -->
 				<div class="item-2 text-left"><?php echo $post['email']; ?></div>
 			</div>
 

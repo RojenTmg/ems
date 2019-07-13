@@ -13,4 +13,4 @@ class Logout_user_model extends CI_Model
         $this->db->update('users', $data);
 	}
 }
- ?>
+?>
