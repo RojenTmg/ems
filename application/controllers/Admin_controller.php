@@ -471,11 +471,11 @@ class Admin_controller extends CI_Controller {
 			'emp_id'=>$_SESSION['current_employee_id']
 		);
 
-<<<<<<< HEAD:application/controllers/Admin.php
-		$this->Manage_employee_model->insert('employee_work_experience',$data);
-=======
-		$this->Admin_model->add_work_experience($data);
->>>>>>> d893b1aa11e1babdc08f5300a8d8736142bdb7d7:application/controllers/Admin_controller.php
+
+		$this->Admin_model->insert('employee_work_experience',$data);
+
+		// $this->Admin_model->add_work_experience($data);
+
 		$status='true';
 
 		echo $status;
@@ -508,11 +508,10 @@ class Admin_controller extends CI_Controller {
 				'emp_id'=>$_SESSION['current_employee_id']
 			);}
 
-<<<<<<< HEAD:application/controllers/Admin.php
-			if(	$this->Manage_employee_model->insert('employee_documents',$doc_data))
-=======
-			if(	$this->Admin_model->add_documents($doc_data))
->>>>>>> d893b1aa11e1babdc08f5300a8d8736142bdb7d7:application/controllers/Admin_controller.php
+
+			if(	$this->Admin_model->insert('employee_documents',$doc_data))
+
+			// if(	$this->Admin_model->add_documents($doc_data))
 				{$status='true';}
 
 			else{ $status='false'; }
