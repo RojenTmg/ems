@@ -108,7 +108,7 @@
 
   $('.table tr .btn-edit').click(function(ev){
     var id = $(this).closest('tr').attr('id');
-    window.location =  '<?= site_url('admin/manage_employee/'); ?>' + id;
+    window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
     ev.stopPropagation();
   });
 
