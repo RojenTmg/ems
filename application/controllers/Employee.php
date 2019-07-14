@@ -1,5 +1,12 @@
 <?php
 	class Employee extends CI_Controller {
+ public function __construct()
+        {
+                parent::__construct();
+               if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true) {
+					redirect('login');
+				}
+        }
 
 		public function view($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {

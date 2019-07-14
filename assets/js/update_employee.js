@@ -306,6 +306,7 @@ xmlHttp.onreadystatechange = function()
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                console.log(status);
                showresponse('personal-form',status,'Updated Successfully');
               }
           } 
