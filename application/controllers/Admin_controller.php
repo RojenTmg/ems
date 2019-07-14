@@ -531,14 +531,21 @@ class Admin_controller extends CI_Controller {
 // calculate percentage of form
 		function progressBar(){
 
+			if(isset($_SESSION['current_employee_id'])){
+				$id=$_SESSION['current_employee_id'];
+			}
+			else{
+				$id=$_SESSION['user_id'];
+			}
+
 			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
-			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $_SESSION['current_employee_id']));
+			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $id));
 
 			$this->db->select('contact_id');
-			$employee_contacts_tbl=$this->Admin_model->user_detail('employee_contacts',array('emp_id' => $_SESSION['current_employee_id']));
+			$employee_contacts_tbl=$this->Admin_model->user_detail('employee_contacts',array('emp_id' => $id));
 
 			$this->db->select('secondary_addressId');
-			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('empId' => $_SESSION['current_employee_id']));
+			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('empId' => $id));
 
 	
 
