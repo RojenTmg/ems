@@ -48,7 +48,7 @@ class Admin_controller extends CI_Controller {
 
 		$config = [
 			'base_url' => base_url('admin/employee_list'),
-			'per_page' => 3,
+			'per_page' => 10,
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);
@@ -66,7 +66,7 @@ class Admin_controller extends CI_Controller {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
 				'base_url' => base_url('admin/employee_list'),
-				'per_page' => 3,
+				'per_page' => 10,
 				'total_rows' =>count($posts)
 			];
 			$this->pagination->initialize($config);
