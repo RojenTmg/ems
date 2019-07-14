@@ -1,7 +1,7 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
       <h5>Staff</h5>
-      <a href="<?= site_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+      <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">

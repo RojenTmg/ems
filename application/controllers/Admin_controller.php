@@ -1,67 +1,72 @@
 <?php
 class Admin_controller extends CI_Controller {
 
- public function __construct()
+ 	public function __construct()
         {
-                parent::__construct();
-               if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true) {
-					redirect('login');
-				}
+            parent::__construct();
+           if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true) {
+				redirect('login');
+			}
         }
-        
-	public function view($page = 'dashboard') 
-	{
-		if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
-			show_404();
-		}
-
-		$data['count'] = count($this->Admin_model->getEmployeeDetails());
-		$data['title'] = ucfirst($page);
-		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-		{
-			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/'.$page, $data);
-			$this->load->view('admin/templates/footer');
-		}
-		else
-			redirect('login');
-	}
-	public function viewArchived() 
-	{
-		$data['title'] = ucfirst('Archived Employee');
-		$data['posts']=$this->Admin_model->archivedEmployeeList();
-		// echo "adsfasd";
-		// die();
-
-		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-		{
-			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/employee_archive', $data);
-			$this->load->view('admin/templates/footer');
-		}
-		else
-			redirect('login');
-	}
-
-	public function employee() {
-		$posts = $this->Admin_model->getEmployeeDetails();
-
-		$config = [
-			'base_url' => base_url('admin/employee_list'),
-			'per_page' => 10,
-			'total_rows' =>count($posts)
-		];
-		$this->pagination->initialize($config);
-		$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
-		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/employee_list', $data);
+		
+	public function view($page, $title = 'EMS', $data = FALSE) {
+		$this->load->view('admin/templates/header', $title);
+		$this->load->view('admin/pages/' . $page . '', $data);
 		$this->load->view('admin/templates/footer');
 	}
 
+	// public function generalPage($page = 'dashboard') 
+	// {
+	// 	if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
+	// 		show_404();
+	// 	}
 
-// viewing single registered employees
-	public function viewED($id = NULL) {
+	// 	$data['title'] = ucfirst($page);
+	// 	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+	// 		$this->view($page, $data);
+	// 	else
+	// 		redirect('login');
+	// }
+
+	public function dashboard() 
+	{
+		$title['title'] = 'Dashboard';
+		$data['count'] = count($this->Admin_model->getEmployeeDetails());
+		
+		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+			$this->view('dashboard', $title, $data);
+		else
+			redirect('login');
+	}
+	
+	public function employeeArchive() 
+	{
+		$title['title'] = 'Archived Employee\'s';
+		$data['posts']=$this->Admin_model->archivedEmployeeList();
+
+		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+			$this->view('employee_archive', $title, $data);
+		else
+			redirect('login');
+	}
+
+	public function employeeAssign() 
+	{
+		$title['title'] = 'Assign Employee';
+
+		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+			$this->view('employee_assign', $title);
+		else
+			redirect('login');
+	}
+
+	// viewing single registered employees
+	public function employeeDetail($id = NULL) 
+	{
+		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
+		$data['work_experience'] = $this->Database_model->find('employee_work_experience', $id);
+		$data['documents'] = $this->Database_model->find('employee_documents', $id);
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
@@ -72,27 +77,43 @@ class Admin_controller extends CI_Controller {
 			$this->pagination->initialize($config);
 			$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 			$data['posts']['user_not_found'] = true;
-			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/employee_list', $data);
-			$this->load->view('admin/templates/footer');
+			$this->view('employee_list', $title, $data);
 		} else {
-			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/employee_detail', $data);
-			$this->load->view('admin/templates/footer');
+			$this->view('employee_detail', $title, $data);			
 		}
 	}
 
-	public function editEmp($slug = NULL) {
-		$data['post'] = $this->Admin_model->getEmployeeDetails($slug);
-		if (empty($data['post'])) {
-			show_404();
-		}
-		$data['title'] = $data['post']['title'];
+	public function employeeList() 
+	{
+		$title['title'] = 'Employee List';
+		$posts = $this->Admin_model->getEmployeeDetails();
 
-		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/employee_manage', $data);
-		$this->load->view('admin/templates/footer');
+		$config = [
+			'base_url' => base_url('admin/employee_list'),
+			'per_page' => 10,
+			'total_rows' =>count($posts)
+		];
+		$this->pagination->initialize($config);
+		$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
+		$this->view('employee_list', $title, $data);
 	}
+
+	public function employeeManage($id = NULL) 
+	{
+		$title['title'] = 'Manage Employee';
+
+		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+		{
+			if ($id != NULL) {
+				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
+				$this->view('employee_manage', $title, $data);
+			} else
+				$this->view('employee_manage', $title);
+		} else
+			redirect('login');
+	}
+
+
 
 // to archive staff
 	public function archiveEmployee()
@@ -100,20 +121,18 @@ class Admin_controller extends CI_Controller {
 		extract($_POST);
 		$data= array('is_active'=>0);
 		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
-		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/employee_archive', $data);
-		$this->load->view('admin/templates/footer');
-
+		$this->view('employee_archive', $data);
 	}
 
 // unarchive staff
-
 	public function unArchiveEmployee()
 	{
 		extract($_POST);
 		$data= array('is_active'=>1);
 		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
 	}
+
+
 
 // this fucntion adds general data of add staff form
 	public function addGeneral()
