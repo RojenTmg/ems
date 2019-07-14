@@ -1,5 +1,6 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
+
       if (isset($_SESSION['current_employee_id'])) {
         unset($_SESSION['current_employee_id']); 
       }

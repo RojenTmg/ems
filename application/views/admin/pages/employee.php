@@ -105,6 +105,7 @@
     var id = $(this).closest('tr').attr('id');
     window.location =  '<?= site_url('admin/manage_employee/'); ?>' + id;
     ev.stopPropagation();
+    $_SESSION['current_employee_id']=id;
   });
 
   $('.table tr .btn-archive .tip-arch').click(function(){
