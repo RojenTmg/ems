@@ -141,7 +141,7 @@
 			<div class="column">
 			<div class="card">
 				<h5 class="card-header text-center alert alert-dark">Nationality</h5>
-				<div class="card-body">
+			<div class="card-body">
 			<div class="body-row ">
 				<div class="item-1 text-left" >Nationality</div>
 				<div class="item-2 text-left"><?php echo $post['nationality']; ?></div>
@@ -175,26 +175,27 @@
 
 
 				<!-- Emergency contact -->
+
 		<div class="column ">
 				<div class="card">
 			<h5 class="card-header text-center alert alert-dark">Emergency Contact</h5>
 			<div class="card-body">
 			<div class="body-row ">
-				<div class="item-1">Name</div>
+				<div class="item-1 text-left">Name</div>
 				<div class="item-2"><?php echo $post['e_name']; ?></div>
 			</div>
 
 			<div class="body-row ">
-				<div class="item-1">Relation</div>
+				<div class="item-1 text-left">Relation</div>
 				<div class="item-2"><?php echo $post['e_relation']; ?></div>
 			</div>
 			<div class="body-row ">
-				<div class="item-1">Contact</div>
+				<div class="item-1 text-left">Contact</div>
 				<div class="item-2"><?php echo $post['e_phone']; ?></div>
 			</div>
 
 			<div class="body-row ">
-				<div class="item-1">Address</div>
+				<div class="item-1 text-left">Address</div>
 				<div class="item-2"><?php echo $post['e_address']; ?></div>
 			</div>
 		</div>

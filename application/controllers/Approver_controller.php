@@ -1,5 +1,5 @@
 <?php
-	class Approver extends CI_Controller {
+	class Approver_controller extends CI_Controller {
 
 		public function view($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/approver/pages/' . $page . '.php')) {

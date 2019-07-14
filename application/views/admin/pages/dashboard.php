@@ -4,7 +4,7 @@
     </div>
     <div class="con-sum">
           <div class="sum-item">
-          <a href="<?= base_url('admin');?>/employee">
+          <a href="<?= base_url('admin');?>/employee_list">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fa fa-users" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
           </a>
           </div>
           <div class="sum-item">
-          <a href="<?= base_url('admin');?>/assign_employee">
+          <a href="<?= base_url('admin');?>/employee_assign">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

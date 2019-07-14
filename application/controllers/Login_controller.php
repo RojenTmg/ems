@@ -1,5 +1,5 @@
 <?php
-    class Login extends CI_Controller 
+    class Login_controller extends CI_Controller 
     {
 
         public function view() 

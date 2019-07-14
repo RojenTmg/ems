@@ -1,5 +1,5 @@
 <?php
-	class Recommender extends CI_Controller {
+	class Recommender_controller extends CI_Controller {
 
 		public function view($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/recommender/pages/' . $page . '.php')) {

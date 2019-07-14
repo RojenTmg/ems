@@ -28,7 +28,7 @@ class Admin_controller extends CI_Controller {
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{
 			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/archived_employees', $data);
+			$this->load->view('admin/pages/employee_archive', $data);
 			$this->load->view('admin/templates/footer');
 		}
 		else
@@ -39,14 +39,14 @@ class Admin_controller extends CI_Controller {
 		$posts = $this->Admin_model->getEmployeeDetails();
 
 		$config = [
-			'base_url' => base_url('admin/employee'),
+			'base_url' => base_url('admin/employee_list'),
 			'per_page' => 3,
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);
 		$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/employee', $data);
+		$this->load->view('admin/pages/employee_list', $data);
 		$this->load->view('admin/templates/footer');
 	}
 
@@ -57,7 +57,7 @@ class Admin_controller extends CI_Controller {
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
-				'base_url' => base_url('admin/employee'),
+				'base_url' => base_url('admin/employee_list'),
 				'per_page' => 3,
 				'total_rows' =>count($posts)
 			];
@@ -65,7 +65,7 @@ class Admin_controller extends CI_Controller {
 			$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 			$data['posts']['user_not_found'] = true;
 			$this->load->view('admin/templates/header');
-			$this->load->view('admin/pages/employee', $data);
+			$this->load->view('admin/pages/employee_list', $data);
 			$this->load->view('admin/templates/footer');
 		} else {
 			$this->load->view('admin/templates/header');
@@ -82,7 +82,7 @@ class Admin_controller extends CI_Controller {
 		$data['title'] = $data['post']['title'];
 
 		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/manage_employee', $data);
+		$this->load->view('admin/pages/employee_manage', $data);
 		$this->load->view('admin/templates/footer');
 	}
 
@@ -93,7 +93,7 @@ class Admin_controller extends CI_Controller {
 		$data= array('is_active'=>0);
 		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
 		$this->load->view('admin/templates/header');
-		$this->load->view('admin/pages/archived_employees', $data);
+		$this->load->view('admin/pages/employee_archive', $data);
 		$this->load->view('admin/templates/footer');
 
 	}

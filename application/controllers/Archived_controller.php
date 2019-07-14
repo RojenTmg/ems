@@ -1,5 +1,5 @@
 <?php
-	class Archived extends CI_Controller {
+	class Archived_controller extends CI_Controller {
 
 		public function view($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {

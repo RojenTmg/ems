@@ -1,5 +1,5 @@
 <?php
-	class Logout extends CI_Controller
+	class Logout_controller extends CI_Controller
 	 {
 		public function view()
 		{

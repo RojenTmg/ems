@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$route['admin/archived_employees'] = 'Admin_controller/viewArchived';
+$route['admin/employee_archive'] = 'Admin_controller/viewArchived';
 $route['admin/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 
@@ -35,27 +35,28 @@ $route['employee/progressBar'] = 'Admin_controller/progressBar';
 
 
 
-$route['login'] = 'Login/view';
+$route['login'] = 'Login_controller/view';
 $route['admin'] = 'Admin_controller/view';
-$route['recommender'] = 'Recommender/view';
-$route['approver'] = 'Approver/view';
-$route['employee'] = 'Employee/view';
+$route['recommender'] = 'Recommender_controller/view';
+$route['approver'] = 'Approver_controller/view';
+$route['employee'] = 'Employee_controller/view';
 
-$route['admin/employee'] = 'Admin_controller/employee';
-$route['admin/manage_employee/(:any)'] = 'Admin_controller/editEmp/$1';
+$route['admin/employee_list'] = 'Admin_controller/employee';
+$route['admin/employee_list/(:any)'] = 'Admin_controller/employee';
+$route['admin/employee_manage/(:any)'] = 'Admin_controller/editEmp/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin_controller/viewED/$1';
 $route['admin/(:any)'] = 'Admin_controller/view/$1';
-$route['recommender/(:any)'] = 'Recommender/view/$1';
-$route['approver/(:any)'] = 'Approver/view/$1';
-$route['employee/(:any)'] = 'Employee/view/$1';
+$route['recommender/(:any)'] = 'Recommender_controller/view/$1';
+$route['approver/(:any)'] = 'Approver_controller/view/$1';
+$route['employee/(:any)'] = 'Employee_controller/view/$1';
 
 
-$route['checkLogin'] = 'Login/checkLogin';
-$route['login'] = 'Login/view';
-$route['logout']='Logout/view';
+$route['checkLogin'] = 'Login_controller/checkLogin';
+$route['login'] = 'Login_controller/view';
+$route['logout']='Logout_controller/view';
 
 
-$route['default_controller'] = 'Login/view';
+$route['default_controller'] = 'Login_controller/view';
 
 $route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;
