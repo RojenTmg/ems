@@ -189,7 +189,14 @@ class Admin_controller extends CI_Controller {
 			'email'=>$email
 		);
 
-		$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+		if(isset($_SESSION['current_employee_id'])){
+			$id=$_SESSION['current_employee_id'];
+		}
+		else{
+			$id=$_SESSION['user_id'];
+		}
+
+		$this->Admin_model->update_employee($data,$id);
 		$status=array('true');
 
 
@@ -259,7 +266,14 @@ class Admin_controller extends CI_Controller {
 					$primary_id='1';
 				}
 				else{
-					$primary_id=$this->Admin_model->update_address($primaryAdd,$_SESSION['current_employee_id']);
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
+					$primary_id=$this->Admin_model->update_address($primaryAdd,$id);
 				}
 			}
 			else{
@@ -270,13 +284,25 @@ class Admin_controller extends CI_Controller {
 			$check=$query->row_array();
 
 			if($check==''){
-				$secondary_id=$this->Admin_model->update_address($secondaryAdd,$_SESSION['current_employee_id']);
+				if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+				$secondary_id=$this->Admin_model->update_address($secondaryAdd,$id);
 			}
 			else{
 				$secondary_id=$check['address_id'];
 			}
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$this->Admin_model->update_employee_address($primary_id,$secondary_id,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee_address($primary_id,$secondary_id,$id);
 
 			$status=array('true');
 		}
@@ -304,9 +330,15 @@ class Admin_controller extends CI_Controller {
 				'other_phone2'=>$other_phone2,
 				'other_phone3'=>$other_phone3
 			);
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$contact_id=$this->Admin_model->update_contact($data,$_SESSION['current_employee_id']);
-			$this->Admin_model->update_employee_contact($contact_id,$_SESSION['current_employee_id']);
+			$contact_id=$this->Admin_model->update_contact($data,$id);
+			$this->Admin_model->update_employee_contact($contact_id,$id);
 				$status=array('true');
 			
 
@@ -342,7 +374,14 @@ class Admin_controller extends CI_Controller {
 				'passport_issue_place'=>$passport_issue_place
 			);
 
-			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
+			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
 		}
@@ -374,8 +413,14 @@ class Admin_controller extends CI_Controller {
 				'e_address'=>$e_address,
 				'e_phone'=>$e_phone
 			);
+			if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
 		}
@@ -403,8 +448,14 @@ class Admin_controller extends CI_Controller {
 				'university'=>$university,
 				'institute'=>$institute
 			);
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
 		}
@@ -431,8 +482,14 @@ class Admin_controller extends CI_Controller {
 				'allergies'=>$allergies,
 				'allergy_description'=>$allergy_description
 			);
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
 		}
@@ -452,9 +509,15 @@ class Admin_controller extends CI_Controller {
 		{
 			$data=array(
 				'pan'=>$pan
-			);
+			);	
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
 
-			$this->Admin_model->update_employee($data,$_SESSION['current_employee_id']);
+			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
 		}
@@ -471,12 +534,19 @@ class Admin_controller extends CI_Controller {
 
 		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
 		$data=array(
 			'responsibility'=>$responsibility,
 			'organization'=>$organization,
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
-			'emp_id'=>$_SESSION['current_employee_id']
+			'emp_id'=>$id
 		);
 
 
@@ -500,12 +570,20 @@ class Admin_controller extends CI_Controller {
 		$realName= $_FILES['document']['name'];
 		$target_path = 'assets/files/'.$realName;
 		move_uploaded_file($tmpName,$target_path);
+
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
 		if($doc_title=='')
 		{
 			$doc_data=array(
 				'doc_title'=>$realName,
 				'doc_file'=>$realName,
-				'emp_id'=>$_SESSION['current_employee_id']
+				'emp_id'=>$id
 			);
 
 		}
@@ -513,7 +591,7 @@ class Admin_controller extends CI_Controller {
 			$doc_data=array(
 				'doc_title'=>$doc_title,
 				'doc_file'=>$realName,
-				'emp_id'=>$_SESSION['current_employee_id']
+				'emp_id'=>$id
 			);}
 
 

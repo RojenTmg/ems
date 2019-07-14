@@ -2,19 +2,12 @@
   <div class="contents">
     <!-- title -->
     <div class="con-head sp-btn">
-      <h4>Manage Staff</h4>
-      <a href="<?= base_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+      <h4>Manage Profile</h4>
+      <a href="<?= base_url() ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
      <!-- progress-bar -->
      <div class="box profile-progress">
-       <div class="box-head pro-head sp-btn " >
-     <!-- show name above the progress bar and DONE button added -->
-          <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
-          <!-- button -->
 
-             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add Staff" onclick="location = '<?= site_url('admin/manage_employee'); ?>'">
-
-        </div>
         <div id="progress-bar-body" style="display: none" class="box-body">
             <p id="completedPercent">
               <!-- show percentage completed here -->
@@ -293,7 +286,7 @@
           </div>
 
           <!-- non nepalese div -->
-          <div id="non_nepali" style="display: none;">
+          <div id="non_nepali"  <?php if(isset($post['nationality'])&&$post['nationality']=='Non-Nepalese') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?>  >
 
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
