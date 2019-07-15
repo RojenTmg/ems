@@ -73,8 +73,8 @@
 				<div class="item-2 text-left"><?php if (!empty($post['t_street'])) echo $post['t_street'] . ', '; 
 									      if (!empty($post['t_municipality'])) echo $post['t_municipality'] . ', ';
 									      if (!empty($post['t_district'])) echo $post['t_district'] . ', ';
-									      if (!empty($post['t_state'])) echo $post['t_state'] . ', ';
-									      if (!empty($post['t_country'])) echo $post['t_country']; ?></div>
+									      if (!empty($post['t_state'])) echo $post['t_state'] . ', Nepal';
+									      ?></div>
 			</div>
 
 			<div class="body-row ">
