@@ -1,7 +1,9 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
+     $updating=false;
       if($this->uri->segment(3))
      {
+      $updating=true;
         $_SESSION['current_employee_id']=$this->uri->segment(3);
          
      }
@@ -80,7 +82,9 @@
       </div>
     </nav>
     <div class="message-div">
-      <div id="message" class="message" style="display: none;"> </div>
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div>
     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -150,7 +154,7 @@
       </div>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
+            <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
             
           </div>
         </form>
@@ -531,7 +535,7 @@
                   <label class="col-md-2 ">To</label>
                   <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>">
                 </div>
-                <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
+
               <?php
                   }
                 }
@@ -574,3 +578,7 @@
  </form>
 </div>
     <!-- documents ends here -->
+
+<script type="text/javascript">
+  check_complete();
+</script>

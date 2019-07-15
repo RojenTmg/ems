@@ -506,4 +506,6 @@ echo '<option value='.$i.'>'.$i.'</option>';
 <!-- showing progress bar of staff -->
     <script type="text/javascript">
       showprogress();
+        check_complete();
+
     </script>
