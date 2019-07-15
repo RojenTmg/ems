@@ -642,6 +642,7 @@ class Admin_controller extends CI_Controller {
 			if(isset($_SESSION['current_employee_id'])){
 				$id=$_SESSION['current_employee_id'];
 			}
+     
 			else{
 				$id=$_SESSION['user_id'];
 			}
@@ -678,7 +679,8 @@ class Admin_controller extends CI_Controller {
 				}
 			}
 
-
+			if($total==0) $percentage=0;
+			else
 			$percentage=(int)(($filled/$total)*100);
 
 // for showing profile strength

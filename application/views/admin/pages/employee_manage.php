@@ -4,8 +4,7 @@
       if($this->uri->segment(3))
      {
       $updating=true;
-        $_SESSION['current_employee_id']=$this->uri->segment(3);
-         
+        $_SESSION['current_employee_id']=$this->uri->segment(3);       
      }
       else{
         if (isset($_SESSION['current_employee_id'])) {
