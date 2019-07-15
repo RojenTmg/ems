@@ -336,10 +336,11 @@ function showresponse(formname,status,msg)
           if(l=="0")
           {
             // mesg div displays updated or added
-            $('#message').css('display','block');
-            $('#message').css('background','#ffefea !important');
-            $('#message').css('color','green');
-            $('#message').html(msg); 
+
+          $('#'+formname).find('#message').css('display','block');
+          $('#'+formname).find('#message').css('background','#ffefea !important');
+           $('#'+formname).find('#message').css('color','green');
+           $('#'+formname).find('#message').html(msg); 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
@@ -644,10 +645,8 @@ $(tag).append('<div class="form-div"><input type="text"  name="responsibility" i
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address"></div>');
-$(tag).append('<div class="row"><label class="col-md-2 ">From</label>');
-$(tag).append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
-$(tag).append(' <label class="col-md-2 ">To</label>');
-$(tag).append('<input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
+$(tag).append('<div class="form-div"><label class="col-md-2 ">From</label><input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value=""> </div>');
+$(tag).append('<div class="form-div"> <label class="col-md-2 ">To</label><input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
 $(tag).append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>');
  }
 
@@ -776,10 +775,11 @@ function check_complete(){
 
     if(first_name!=''&&last_name!='') completeIcon('nav-general-tab'); else inCompleteIcon('nav-general-tab');
     if(email!=''&&dob!='') completeIcon('nav-personal-tab'); else inCompleteIcon('nav-personal-tab');
-    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!=''&&current_country!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
+    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
-    if(e_name!=''&&e_relation!=''&&e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
+    if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
+    if(blood_group!=''&& allergies!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
 

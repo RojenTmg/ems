@@ -39,6 +39,7 @@ $route['employee/progressBar'] = 'Admin_controller/progressBar';
 
 // for edit
 $route['admin/employee_manage/employee_archive'] = 'Admin_controller/viewArchived';
+$route['admin/employee_manage/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/employee_manage/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/employee_manage/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 $route['admin/employee_manage/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';

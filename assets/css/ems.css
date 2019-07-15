@@ -1299,3 +1299,7 @@ body {
   border-radius: 10px;
   color: #fff;
 }
+
+.card{
+  margin-bottom: 2%;
+}

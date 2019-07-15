@@ -251,7 +251,7 @@ class Admin_controller extends CI_Controller {
 				'municipality'=>$permanentaddress_municipality,
 				'district'=>$permanentaddress_district,
 				'state'=>$permanentaddress_state,
-				'country'=>$permanentaddress_country,
+				'country'=>$permanentaddress_country
 
 			);
 			$secondaryAdd=array(
@@ -265,12 +265,15 @@ class Admin_controller extends CI_Controller {
 				'street' => $permanentaddress_street, 
 				'municipality' => $permanentaddress_municipality,
 				'district' => $permanentaddress_district,
+				'state'=>$permanentaddress_state,
 				'country'=>$permanentaddress_country);
 
 			$secondary = array(
 				'street' => $currentaddress_street, 
 				'municipality' => $currentaddress_municipality,
-				'district' => $currentaddress_district);
+				'district' => $currentaddress_district,
+			'state'=>$currentaddress_state
+		);
 
 			// error is yes when empty field is submitted by user
 			$error='none';
