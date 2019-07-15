@@ -74,67 +74,67 @@
           </thead>
           <tbody>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Casual</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>2</td>
+              <td>Graham Mathew</td>
+              <td>Asad Cox</td>
+              <td>Andrew Dimitri</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Yearly</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>1</td>
+              <td>Adam Stevensor</td>
+              <td>Benjamin Corke</td>
+              <td>Japhet Horton</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Subtitutional</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>3</td>
+              <td>Aneseley Brown</td>
+              <td>Daneil Gridlestor</td>
+              <td>Ian Riggs</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Sick</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>7</td>
+              <td>Gerrsd Swan</td>
+              <td>Jyane Dodd</td>
+              <td>Jaime Well</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Casual</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>4</td>
+              <td>Lalita Hunt</td>
+              <td>Michael Su</td>
+              <td>Peter Gornall</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Yearly</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
               <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>Kapil Hunt</td>
+              <td>Mike Jhonson</td>
+              <td>Mario Dave</td>
             </tr>
             <tr>
-              <td>Yearly Leave</td>
+              <td>Substitutional</td>
               <td>06-19-2019</td>
               <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
-              <td>Anonymous</td>
+              <td>1</td>
+              <td>Peter Marquis</td>
+              <td>Justin Brown</td>
+              <td>Mohammad Albert</td>
             </tr>
           </tbody>
         </table>
