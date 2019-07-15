@@ -634,8 +634,11 @@ function submitWork(){
   for( i = 0; i < responsibility.length; i++ )
      {
      if(responsibility[i].value==''||organization[i].value==''){
-        var msg="Enter Responsibility and Orgranization name";
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+        var msg="Enter complete information";
+            $('#message').css('background','red');
+              $('#message').css('color','red');
+              $('#message').css('display','block');
+              $('#message').html(msg); 
       return false;
      }
   }
@@ -660,19 +663,19 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-             $('#message').css('background','#ffefea !important');
-            $('#message').css('color','green');
-            $('#message').css('display','block');
-            $('#message').html(msg); 
+              $('#message').css('background','#ffefea !important');
+              $('#message').css('color','green');
+              $('#message').css('display','block');
+              $('#message').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-               $('#message').css('background','red');
-            $('#message').css('color','red');
-            $('#message').css('display','block');
-            $('#message').html(msg); 
+              $('#message').css('background','red');
+              $('#message').css('color','red');
+              $('#message').css('display','block');
+              $('#message').html(msg); 
           }
           }
       }
