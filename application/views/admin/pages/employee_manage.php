@@ -121,24 +121,26 @@
           $start_date = 1;
           $end_date   = 31;
           for( $j=$start_date; $j<=$end_date; $j++ ) {
-            echo '<option value='.$j.'>'.$j.'</option>';
+          ?>
+            <option value=<?php echo $j;?><?php if(isset($post['join_date'])) { if (date("d", strtotime($post['join_date'])) == $j) { echo ' selected'; }}?>><?php echo $j; ?></option>
+          <?php
           }
         ?>
       </select>
       <!-- month -->
              <select id="month"   name="month"  class="col-md-2 mr-5" /> 
-                <option value="1">January</option>       
-                <option value="2">February</option>       
-                <option value="3">March</option>       
-                <option value="4">April</option>       
-                <option value="5">May</option>       
-                <option value="6">June</option>       
-                <option value="7">July</option>       
-                <option value="8">August</option>       
-                <option value="9">September</option>       
-                <option value="10">October</option>       
-                <option value="11">November</option>       
-                <option value="12">December</option>       
+                <option value="1" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '01') { echo 'selected'; }} ?>>January</option>       
+                <option value="2" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '02') { echo 'selected'; }} ?>>February</option>       
+                <option value="3" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '03') { echo 'selected'; }} ?>>March</option>       
+                <option value="4" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '04') { echo 'selected'; }} ?> >April</option>       
+                <option value="5" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '05') { echo 'selected'; }} ?>>May</option>       
+                <option value="6" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '06') { echo 'selected'; }} ?>>June</option>       
+                <option value="7" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '07') { echo 'selected'; }} ?>>July</option>       
+                <option value="8" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '08') { echo 'selected'; }} ?>>August</option>       
+                <option value="9" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '09') { echo 'selected'; }} ?>>September</option>       
+                <option value="10" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '10') { echo 'selected'; }} ?>>October</option>       
+                <option value="11" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '11') { echo 'selected'; }} ?>>November</option>       
+                <option value="12" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '12') { echo 'selected'; }} ?>>December</option>       
               </select>
             <!-- year -->
              <select id="year" name="year " class="col-md-1">
@@ -147,7 +149,9 @@
           $min = $year - 60;
           $max = $year;
           for( $i=$max; $i>=$min; $i-- ) {
-            echo '<option value='.$i.'>'.$i.'</option>';
+          ?>
+           <option value=<?php echo $i;?><?php if(isset($post['join_date'])) { if (date("Y", strtotime($post['join_date'])) == $i) { echo ' selected'; }}?>><?php echo $i; ?></option>
+          <?php
           }
         ?>
       </select>
@@ -155,7 +159,6 @@
           </div>
           <div class="sub-can">
             <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
-            
           </div>
         </form>
       </div>
@@ -182,24 +185,26 @@
           $start_date = 1;
           $end_date   = 31;
           for( $j=$start_date; $j<=$end_date; $j++ ) {
-            echo '<option value='.$j.'>'.$j.'</option>';
+          ?>
+            <option value=<?php echo $j;?><?php if(isset($post['dob'])) { if (date("d", strtotime($post['dob'])) == $j) { echo ' selected'; }}?>><?php echo $j; ?></option>
+          <?php
           }
         ?>
       </select>
       <!-- month -->
              <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
-                <option value="1">January</option>       
-                <option value="2">February</option>       
-                <option value="3">March</option>       
-                <option value="4">April</option>       
-                <option value="5">May</option>       
-                <option value="6">June</option>       
-                <option value="7">July</option>       
-                <option value="8">August</option>       
-                <option value="9">September</option>       
-                <option value="10">October</option>       
-                <option value="11">November</option>       
-                <option value="12">December</option>       
+                <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
+                <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
+                <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
+                <option value="4" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '04') { echo 'selected'; }} ?> >April</option>       
+                <option value="5" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '05') { echo 'selected'; }} ?>>May</option>       
+                <option value="6" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '06') { echo 'selected'; }} ?>>June</option>       
+                <option value="7" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '07') { echo 'selected'; }} ?>>July</option>       
+                <option value="8" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '08') { echo 'selected'; }} ?>>August</option>       
+                <option value="9" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '09') { echo 'selected'; }} ?>>September</option>       
+                <option value="10" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '10') { echo 'selected'; }} ?>>October</option>       
+                <option value="11" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '11') { echo 'selected'; }} ?>>November</option>       
+                <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
              <select id="birth_year" name="year " class="col-md-1">
@@ -208,7 +213,9 @@
           $min = $year - 60;
           $max = $year;
           for( $i=$max; $i>=$min; $i-- ) {
-            echo '<option value='.$i.'>'.$i.'</option>';
+          ?>
+           <option value=<?php echo $i;?><?php if(isset($post['dob'])) { if (date("Y", strtotime($post['dob'])) == $i) { echo ' selected'; }}?>><?php echo $i; ?></option>
+          <?php
           }
         ?>
       </select>
@@ -232,39 +239,35 @@
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
         <form class="form" id="address-form">
-          <div class="form-group">
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
-            <input type="text" id="permanentaddress_street" value="<?php if(isset($post['permanentaddress_street'])) echo $post['permanentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['permanentaddress_municipality'])) echo $post['permanentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_district" value="<?php if(isset($post['permanentaddress_district'])) echo $post['permanentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_state" value="<?php if(isset($post['permanentaddress_state'])) echo $post['permanentaddress_state']; ?>" placeholder="State" class="form-group col-md-3">
+            <div class="form-group add-frm-grp">
+              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
-            <select id="permanentaddress_country" value="<?php if(isset($post['permanentaddress_country'])) echo $post['permanentaddress_country']; ?>" class="form-group col-md-3">
-              <?php 
-              require 'assets/addresses/country_list.php';
-              ?>
-            </select>
-
-
+              <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
+                <?php 
+                require 'assets/addresses/country_list.php';
+                ?>
+              </select>
           </div>
           <div class="form-group">
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
-            <input type="text" id="currentaddress_street" value="<?php if(isset($post['currentaddress_street'])) echo $post['currentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['currentaddress_municipality'])) echo $post['currentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" value="<?php if(isset($post['currentaddress_district'])) echo $post['currentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
+            <input type="text" id="currentaddress_street" value="<?php if(isset($post['t_street'])) echo $post['t_street']; ?>" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['t_municipality'])) echo $post['t_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+            <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3">
 
               <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
-              <option value="Province 1">Province 1</option>
-              <option value="Province 2">Province 2</option>
-              <option value="Province 3">Province 3</option>
-              <option value="Province 4">Province 4</option>
-              <option value="Province 5">Province 5</option>
-              <option value="Province 6">Province 6</option>
-              <option value="Province 7">Province 7</option>
+              <option value="Province 1" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 1') { echo "selected"; }} ?>>Province 1</option>
+              <option value="Province 2" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 2') { echo "selected"; }} ?>>Province 2</option>
+              <option value="Province 3" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 3') { echo "selected"; }} ?>>Province 3</option>
+              <option value="Province 4" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 4') { echo "selected"; }} ?>>Province 4</option>
+              <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
+              <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
+              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7s') { echo "selected"; }} ?>>Province 7</option>
 
             </select>
-            <!-- country will be a dropdown -->
-            <input type="text" id="currentaddress_country" value="<?php if(isset($post['currentaddress_country'])) echo $post['currentaddress_country']; ?>" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Submit" class="sub">

@@ -746,7 +746,7 @@ function check_complete(){
   var current_municipality=document.getElementById('currentaddress_municipality').value;
   var current_district=document.getElementById('currentaddress_district').value;
   var current_state=document.getElementById('currentaddress_state').value;
-  var current_country= document.getElementById('currentaddress_country').value;
+  // var current_country= document.getElementById('currentaddress_country').value;
   //contact
   var mobile_phone=document.getElementById('mobile_phone').value;
   //nationality
