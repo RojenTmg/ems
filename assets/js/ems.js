@@ -226,19 +226,19 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
-              $('#message').css('background-color','#ffefea !important');
-              $('#message').css('color','green');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+              $('#document-form').find('#message').css('background-color','#ffefea !important');
+              $('#document-form').find('#message').css('color','green');
+              $('#document-form').find('#message').css('display','block');
+              $('#document-form').find('#message').html(msg); 
            }
           else{
             count++;
              msg="Choose file";
 
-              $('#message').css('background-color','#ffefea !important');
-              $('#message').css('color','red');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+              $('#document-form').find('#message').css('background-color','#ffefea !important');
+              $('#document-form').find('#message').css('color','red');
+              $('#document-form').find('#message').css('display','block');
+              $('#document-form').find('#message').html(msg); 
           }
           }
       }
@@ -675,10 +675,11 @@ function submitWork(){
      {
      if(responsibility[i].value==''||organization[i].value==''){
         var msg="Enter complete information";
-            $('#message').css('background','red');
-              $('#message').css('color','red');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+
+            $('#work-form').find('#message').css('background','red');
+              $('#work-form').find('#message').css('color','red');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
       return false;
      }
   }
@@ -703,19 +704,19 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-              $('#message').css('background','#ffefea !important');
-              $('#message').css('color','green');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+              $('#work-form').find('#message').css('background','#ffefea !important');
+              $('#work-form').find('#message').css('color','green');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-              $('#message').css('background','red');
-              $('#message').css('color','red');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+             $('#work-form').find('#message').css('background','red');
+             $('#work-form').find('#message').css('color','red');
+             $('#work-form').find('#message').css('display','block');
+             $('#work-form').find('#message').html(msg); 
           }
           }
       }
@@ -779,7 +780,7 @@ function check_complete(){
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
-    if(blood_group!=''&& allergies!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
+    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
 

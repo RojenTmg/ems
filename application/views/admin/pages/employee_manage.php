@@ -231,7 +231,7 @@
           </div>
 
           <div class="form-div">
-            <label>Email</label>
+            <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
 
@@ -522,7 +522,7 @@
           <input type="hidden" id="emp_id">
 
           <div class="form-div">
-            <label>PAN Number</label>
+            <label>PAN Number<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
           <div class="sub-can">
