@@ -47,14 +47,14 @@
           <span class="sr-only">(current)</span>
           </a>
       </li> -->
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-envelope-o">
             <span class="badge badge-danger">11</span>
           </i>
           Link
         </a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">
           <i class="fa fa-envelope-o">
@@ -64,7 +64,7 @@
         </a>
       </li> -->
 
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-envelope-o">
             <span class="badge badge-primary">11</span>
@@ -77,10 +77,10 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('admin'); ?>/employee_manage">
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
           Add Staff
         </a>
       </li>
@@ -122,7 +122,7 @@
       <div class="drop-down">
         <ul>
           <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
-          <li><a href="<?= base_url('admin'); ?>/employee_manage"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
+          <li><a href="<?= base_url('admin'); ?>/employee_manage"><i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
           <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
         </ul>
       </div>
@@ -164,7 +164,7 @@
         </div>
       </div>
       <!-- sidebar-header  -->
-      <div class="sidebar-search">
+      <!-- <div class="sidebar-search">
         <div>
           <div class="input-group">
             <input type="text" class="form-control search-menu" placeholder="Search...">
@@ -175,20 +175,41 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- sidebar-search  -->
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
             <span>General</span>
           </li>
-          <li class="sidebar-dropdown">
-          <a href="<?= base_url('admin'); ?>">
-              <i class="fa fa-tachometer-alt"></i>
+          <li>
+          <a href="<?= site_url(); ?>">
+              <i class="fa fa-home" aria-hidden="true"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <li class="sidebar-dropdown">
+          <li>
+          <li>
+          <li>
+            <a href="<?= site_url('admin/employee_manage'); ?>">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <span>Add Staff</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?= site_url('admin/employee_list'); ?>">
+              <i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i>
+              <span>Employee List</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?= site_url('admin/employee_list'); ?>">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <span>Assign Employee</span>
+            </a>
+          </li>
+
+         <!--  <li class="sidebar-dropdown">
           <a href="#">
               <i class="fa fa-tachometer-alt"></i>
               <span>Home Page</span>
@@ -316,14 +337,14 @@
               <i class="fa fa-folder"></i>
               <span>Examples</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
       <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
+      <!-- <a href="#">
         <i class="fa fa-bell"></i>
         <span class="badge badge-pill badge-warning notification">3</span>
       </a>
@@ -334,7 +355,7 @@
       <a href="#">
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
-      </a>
+      </a> -->
        <!-- <a href="<?= base_url('logout'); ?>">
         <i class="fa fa-power-off"></i>
       </a> -->

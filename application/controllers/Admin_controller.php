@@ -34,6 +34,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Dashboard';
 		$data['count'] = count($this->Admin_model->getEmployeeDetails());
+		// $data['since_this_month'] = count($this->Database_model->find('employees', 'created_date', date()));
+		// echo date('M'); die();
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			$this->view('dashboard', $title, $data);
@@ -67,8 +69,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
-		$data['work_experience'] = $this->Database_model->find('employee_work_experience', $id);
-		$data['documents'] = $this->Database_model->find('employee_documents', $id);
+		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
+		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
@@ -108,6 +110,9 @@ class Admin_controller extends CI_Controller {
 		{
 			if ($id != NULL) {
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
+				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
+				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
+		
 				$this->view('employee_manage', $title, $data);
 			} else
 				$this->view('employee_manage', $title);
@@ -645,7 +650,7 @@ class Admin_controller extends CI_Controller {
 			$employee_contacts_tbl=$this->Admin_model->user_detail('employee_contacts',array('emp_id' => $id));
 
 			$this->db->select('secondary_addressId');
-			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('empId' => $id));
+			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('emp_id' => $id));
 
 	
 

@@ -82,7 +82,9 @@
       </div>
     </nav>
     <div class="message-div">
-      <div id="message" class="message" style="display: none;"> </div>
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div>
     </div>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -502,8 +504,42 @@
           </div>
           <p class="title" id="add_doc_title"></p>
               <div id="work-experience" class="bg-light">
+              <!-- the form appends here -->
+              <?php 
+                if (!empty($work_experience)) {
+                  foreach ($work_experience as $value) {
+              ?>
 
-         <!-- the form appends here -->
+                <div class="row" id="cross">
+                  <i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i>
+                </div>
+                <div class="form-div">
+                  <input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>">
+                </div>
+                <div class="form-div">
+                  <input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility" value="<?php echo $value['responsibility']; ?>">
+                </div>
+                <div class="form-div">
+                  <input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>">
+                </div>
+                <div class="form-div">
+                  <input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>">
+                </div>
+                <div class="form-div">
+                  <input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>">
+                </div>
+                <!-- <div class="row"><label class="col-md-2 ">From</label> -->
+                <div class="row">
+                  <label class="col-md-2 ">From</label>
+                  <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>">
+                  <label class="col-md-2 ">To</label>
+                  <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>">
+                </div>
+                <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
+              <?php
+                  }
+                }
+              ?>
         </div>
         <div class="form-div ">
           <div class="sub-can">
@@ -520,6 +556,20 @@
           <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
 
           <div id="document">
+
+            <?php 
+                if (!empty($documents)) {
+                  foreach ($documents as $value) {
+              ?>
+              <div class="form-group">
+                <input type="text" name="doc_title" class=" col-md-2" placeholder="Enter the title" value="<?php echo $value['doc_title']; ?>">
+                <a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>" class=" col-md-3"><?php echo $value['doc_file']; ?></a> 
+                <i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>
+              <hr>
+              <?php
+                  }
+                }
+              ?>
           </div>
           <hr>
 

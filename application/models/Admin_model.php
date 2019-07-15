@@ -75,7 +75,7 @@
 			$data=array(
 				'primary_addressId'=>$primary,
 				'secondary_addressId'=>$secondary,
-				'empId'=>$userid
+				'emp_id'=>$userid
 			);
 			$this->db->insert('employee_addresses',$data);
 
@@ -155,7 +155,7 @@
 				               asec.street as t_street, asec.municipality as t_municipality, asec.district as t_district, asec.state as t_state, asec.country as t_country 
 					    FROM employees e
 					    JOIN departments d ON d.id = e.department_id
-					    LEFT JOIN employee_addresses ea ON ea.empId = e.emp_id
+					    LEFT JOIN employee_addresses ea ON ea.emp_id = e.emp_id
 					    LEFT JOIN addresses a ON a.address_id = ea.primary_addressId
 					    LEFT JOIN addresses asec ON asec.address_id = ea.secondary_addressId 
 					    LEFT JOIN employee_contacts ec ON ec.emp_id = e.emp_id
