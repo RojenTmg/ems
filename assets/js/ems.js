@@ -624,6 +624,9 @@ function submitWork(){
 
   var responsibility = document.getElementsByName('responsibility');
   var organization = document.getElementsByName('organization');
+   var contact_person_name = document.getElementsByName('contact_person_name');
+   var contact_person_phone = document.getElementsByName('contact_person_phone');
+   var contact_person_address = document.getElementsByName('contact_person_address');
   var from_date = document.getElementsByName('from_date');
   var to_date= document.getElementsByName('to_date');
   var count=0;
@@ -645,6 +648,9 @@ function submitWork(){
       data.append('organization',organization[i].value);
       data.append('from_date',from_date[i].value);
       data.append('to_date',to_date[i].value);
+        data.append('contact_person_name',contact_person_name[i].value);
+          data.append('contact_person_phone',contact_person_phone[i].value);
+            data.append('contact_person_address',contact_person_address[i].value);
       xmlHttp.send(data);
       xmlHttp.onreadystatechange = function()
       {
@@ -654,13 +660,19 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+               $('#message').css('background','#ffefea !important');
+            $('#message').css('color','green');
+            $('#message').css('display','block');
+            $('#message').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+               $('#message').css('background','red');
+            $('#message').css('color','red');
+            $('#message').css('display','block');
+            $('#message').html(msg); 
           }
           }
       }
