@@ -4,8 +4,7 @@
       if($this->uri->segment(3))
      {
       $updating=true;
-        $_SESSION['current_employee_id']=$this->uri->segment(3);
-         
+        $_SESSION['current_employee_id']=$this->uri->segment(3);       
      }
       else{
         if (isset($_SESSION['current_employee_id'])) {
@@ -154,7 +153,7 @@
       </div>
           </div>
           <div class="sub-can">
-            <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
+            <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
             
           </div>
         </form>

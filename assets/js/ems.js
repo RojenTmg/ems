@@ -116,7 +116,10 @@ function displayFunctionType() {
               {
                 var status = xmlHttp.responseText;
                showresponse('general-form',status,'Employee Added Successfully');
-               displayName(first_name,middle_name,last_name);
+                displayName(first_name,middle_name,last_name);
+               document.getElementById('generalButton').value="Update";
+              document.getElementById( "generalButton" ).setAttribute( "onClick", "javascript: updateGeneral();" );
+              
               }
           }
   }
