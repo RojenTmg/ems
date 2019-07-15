@@ -295,9 +295,9 @@ function showresponse(formname,status,msg)
           if(l=="0")
           {
             // mesg div displays updated or added
-             $('#message').css('background','#ffefea !important');
-            $('#message').css('color','green');
             $('#message').css('display','block');
+            $('#message').css('background','#ffefea !important');
+            $('#message').css('color','green');
             $('#message').html(msg); 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;

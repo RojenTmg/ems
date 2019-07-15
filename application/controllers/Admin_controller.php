@@ -643,7 +643,7 @@ class Admin_controller extends CI_Controller {
 			$employee_contacts_tbl=$this->Admin_model->user_detail('employee_contacts',array('emp_id' => $id));
 
 			$this->db->select('secondary_addressId');
-			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('empId' => $id));
+			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('emp_id' => $id));
 
 	
 

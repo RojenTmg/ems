@@ -50,7 +50,7 @@
           </div>
           <div class="form-div">
             <label>No. of Days</label>
-            <input type="text" name="days" disabled="disabled" placeholder="5" id="days">
+            <input type="text" name="days" disabled="disabled" placeholder="5" id="duration">
           </div>
           <div class="form-div">
             <label>Substitute Staff</label>
