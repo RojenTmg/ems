@@ -307,8 +307,7 @@
           </div>
 
           <!-- non nepalese div -->
-          <div id="non_nepali" style="display: none;">
-
+           <div id="non_nepali"  <?php if(isset($post['nationality'])&&$post['nationality']=='Non-Nepalese') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?>  >
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
