@@ -29,12 +29,9 @@
 		////////////////////// SELECT Query Functions ////////////////////////
 
 		// find a specific data 
-		public function find($table, $where = [], $select = '*') 
+		public function find($table, $id) 
 		{
-			$this->db->select($select);
-			$this->db->where($where);
-			$query = $this->db->get($table);
-			return $query->row_array();
+			return $this->db->query('SELECT * from ' . $table . ' WHERE emp_id = ' . $id . '')->result_array();
 		}
 
 		// find all data from a specific table

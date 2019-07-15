@@ -1,5 +1,6 @@
 <?php
 	class Employee_controller extends CI_Controller {
+
 		public function __construct()
         {
                 parent::__construct();
@@ -7,8 +8,8 @@
 					redirect('login');
 				}
         }
-
-		public function view($page = 'dashboard') {
+        
+		public function generalPage($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {
 				show_404();
 			}

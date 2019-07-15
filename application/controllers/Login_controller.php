@@ -2,7 +2,7 @@
     class Login_controller extends CI_Controller 
     {
 
-        public function view() 
+        public function generalPage() 
         {
             if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) {
                 if( $_SESSION['type']=='admin')

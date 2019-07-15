@@ -1,7 +1,7 @@
 <?php
 	class Logout_controller extends CI_Controller
 	 {
-		public function view()
+		public function generalPage()
 		{
 			//make user logged out
 			$this->Logout_user_model->logout();

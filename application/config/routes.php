@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$route['admin/employee_archive'] = 'Admin_controller/viewArchived';
+$route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
 $route['admin/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 
@@ -54,28 +54,33 @@ $route['admin/employee_manage/addWork'] = 'Admin_controller/addWork';
 
 
 
-$route['login'] = 'Login_controller/view';
-$route['admin'] = 'Admin_controller/view';
-$route['recommender'] = 'Recommender_controller/view';
-$route['approver'] = 'Approver_controller/view';
-$route['employee'] = 'Employee_controller/view';
-
-$route['admin/employee_list'] = 'Admin_controller/employee';
-$route['admin/employee_list/(:any)'] = 'Admin_controller/employee';
-$route['admin/employee_manage/(:any)'] = 'Admin_controller/editEmp/$1';
-$route['admin/employee_detail/(:any)'] = 'Admin_controller/viewED/$1';
-$route['admin/(:any)'] = 'Admin_controller/view/$1';
-$route['recommender/(:any)'] = 'Recommender_controller/view/$1';
-$route['approver/(:any)'] = 'Approver_controller/view/$1';
-$route['employee/(:any)'] = 'Employee_controller/view/$1';
 
 
+$route['admin/employee_list/(:any)'] = 'Admin_controller/employeeList';
+$route['admin/employee_manage/(:any)'] = 'Admin_controller/employeeManage/$1';
+$route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
+
+$route['admin/dashboard'] = 'Admin_controller/dashboard';
+$route['admin/employee_list'] = 'Admin_controller/employeeList';
+$route['admin/employee_manage'] = 'Admin_controller/employeeManage';
+$route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
+
+// $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
+// $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';
+// $route['recommender/(:any)'] = 'Recommender_controller/generalPage/$1';
+// $route['employee/(:any)'] = 'Employee_controller/generalPage/$1';
+
+$route['admin'] = 'Admin_controller/dashboard';
+$route['approver'] = 'Approver_controller/generalPage';
+$route['recommender'] = 'Recommender_controller/generalPage';
+$route['employee'] = 'Employee_controller/generalPage';
+
+$route['login'] = 'Login_controller/generalPage';
 $route['checkLogin'] = 'Login_controller/checkLogin';
-$route['login'] = 'Login_controller/view';
-$route['logout']='Logout_controller/view';
+$route['logout']='Logout_controller/generalPage';
 
 
-$route['default_controller'] = 'Login_controller/view';
+$route['default_controller'] = 'Login_controller/generalPage';
 
 $route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;

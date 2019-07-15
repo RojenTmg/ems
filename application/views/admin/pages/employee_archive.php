@@ -39,7 +39,7 @@
               <td><?php echo $post['highest_degree']; ?></td>
               <td>
                 <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                <button class="btn-archive tooltip1" title="Restore" id="<?php echo $post['emp_id']; ?>"><i class="fas fa-undo-alt" aria-hidden="true"></i>
+                <button class="btn-archive tooltip1" title="Restore" id="<?php echo $post['emp_id']; ?>"><i class="fas fa-undo-alt res-color" aria-hidden="true"></i>
                   <div class="tooltiptext">
                     <p>Are you sure?</p>
                     <span class="tip-can">Cancel</span>
@@ -89,8 +89,14 @@
   });
 
   $('.table tr .btn-archive .tip-arch').click(function(){
+    var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove();
-    $('.arch-msg-div').append('<div class="arch-msg">Restored</div>');
+    $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fas fa-undo-alt" aria-hidden="true"></i></span><div class="msg-text"><p>Restore Successful !</p>Employee with Id no. ' + id + '  restored successfully.</div></div>');
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+  });
+
+  $('.arch-msg-div').click(function(){
+    $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 

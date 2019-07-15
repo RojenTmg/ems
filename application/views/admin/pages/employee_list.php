@@ -1,14 +1,14 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
       <h5>Staff</h5>
-      <a href="<?= site_url('admin'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+      <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
-       <div class="arch-msg-div"><!-- <div class="arch-msg">Employee Deleted Successfully &nbsp; <span id="close-msg">X</span></div> --></div>
+       <div class="arch-msg-div"></div>
          <a class="float-right" href="<?= site_url('admin/employee_archive'); ?>" id="small-link"> View Archived Staff</a>
   
     </div>
@@ -113,13 +113,15 @@
   });
 
   $('.table tr .btn-archive .tip-arch').click(function(){
+    var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
-    // $('.arch-msg-div').append('<div class="arch-msg">Employee Deleted Successfully &nbsp; <span id="close-msg">X</span></div>');
-    // $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+    $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 
-  $('.arch-msg-div #close-msg').click(function(){
-    $(this).closest('.arch-msg').remove();
+  $('.arch-msg-div').click(function(){
+    $('.arch-msg-div .arch-msg').addClass('msg-remove');
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
 
   // $('.tip-arch').click(function(ev) {

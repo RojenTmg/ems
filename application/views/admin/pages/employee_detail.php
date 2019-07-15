@@ -1,6 +1,6 @@
 <div class="contents">
 	<div class="emp-detail">
-		<a class="float-right" href="http://localhost/ems/admin/employee" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee list</a>
+		<a class="float-right" href="<?= site_url('admin/employee_list'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Employee list</a>
 		<div class="detail-head">
 			<div class="head-pic">
 				<?= img(array('src'=>'assets/images/images.jpg', 'alt'=> 'employee image')); ?>
@@ -239,41 +239,77 @@
 
 <div class="column col-md-4">
 	<!-- works -->
-			<div class="column">
-				<div class="card">
+		<div class="column">
+			<div class="card">
 				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
+				
+				<?php 
+					foreach ($work_experience as $value) {
+				?>
 				<div class="card-body">
-				<div class="body-row ">
-					<div class="item-1 text-left" >Organization</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
-				</div>
-				<div class="body-row ">
-					<div class="item-1 text-left" >Responsibility</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
-				</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Organization</div>
+						<div class="item-2 text-left"><?php echo $value['organization']; ?></div>
+					</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Responsibility</div>
+						<div class="item-2 text-left"><?php echo $value['responsibility']; ?></div>
+					</div>
 
-				<div class="body-row ">
-					<div class="item-1 text-left" >Contact Person</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
-				</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Contact Person</div>
+						<div class="item-2 text-left"><?php echo $value['contact_person_name']; ?></div>
+					</div>
 
-				<div class="body-row ">
-					<div class="item-1 text-left" >Contact No.</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
-				</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Contact No.</div>
+						<div class="item-2 text-left"><?php echo $value['contact_person_phone']; ?></div>
+					</div>
 
-				<div class="body-row ">
-					<div class="item-1 text-left" >Contact Address</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
-				</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Contact Address</div>
+						<div class="item-2 text-left"><?php echo $value['contact_address']; ?></div>
+					</div>
 
-				<div class="body-row ">
-					<div class="item-1 text-left" >Time</div>
-					<div class="item-2 text-left"><?php echo $post['previous_employer']; ?></div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Time</div>
+						<div class="item-2 text-left"><?php echo $value['from_date'] . ' - ' . $value['to_date']; ?></div>
+					</div>
 				</div>
+				<?php
+					}
+				?>
 			</div>
+		</div>
+
+		<div class="column">
+			<div class="card">
+				<h5 class="card-header text-center alert alert-dark">Documents</h5>
+				
+				<?php 
+					foreach ($documents as $value) {
+				?>
+				<div class="card-body">
+					<div class="body-row ">
+						<div class="item-1 text-left" >Document Id</div>
+						<div class="item-2 text-left"><?php echo $value['doc_id']; ?></div>
+					</div>
+					<div class="body-row ">
+						<div class="item-1 text-left" >Title</div>
+						<div class="item-2 text-left"><?php echo $value['doc_title']; ?></div>
+					</div>
+
+					<div class="body-row ">
+						<div class="item-1 text-left" >File</div>
+						<div class="item-2 text-left"><a href=""><?php echo $value['doc_file']; ?></a></div>
+					</div>
+
+				</div>
+				<?php
+					}
+				?>
 			</div>
-</div>
+		</div>
 		<!-- work ends here  -->
 
 		<!-- pan -->
@@ -290,7 +326,7 @@
 	</div>
 		<!-- pan ends here -->
 		
-		</div>
+</div>
 	</div>
 	</div>
 	</div>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     
-    <title>Admin</title>
+    <title><?php echo $title; ?></title>
 
     <!-- Stylesheets -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -18,7 +18,6 @@
 
     <!-- Script Files -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -30,9 +29,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
 
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-
-    
-
 </head>
 
 <body>
@@ -119,7 +115,7 @@
     </form> -->
     <div class="drop-down-item" id="show-profile">
       <div class="pro-file">
-        <img src="<?= base_url(); ?>/assets/images/default.png" onclick="displayFunctionType();">
+        <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
         <span><strong> Administrator &nbsp;&nbsp;&nbsp;  </strong></span>
         <!-- <i class="fa fa-caret-down" aria-hidden="true"></i> -->
       </div>
@@ -127,6 +123,7 @@
         <ul>
           <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
           <li><a href="<?= base_url('admin'); ?>/employee_manage"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
+          <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
         </ul>
       </div>
     </div>
@@ -152,12 +149,12 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          <img class="img-responsive img-rounded" src="<?= base_url(); ?>/assets/images/images.jpg"
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
+            <strong>Administrator</strong>
           </span>
           <span class="user-role">Administrator</span>
           <span class="user-status">
@@ -186,23 +183,29 @@
             <span>General</span>
           </li>
           <li class="sidebar-dropdown">
-            <a href="#">
+          <a href="<?= base_url('admin'); ?>">
               <i class="fa fa-tachometer-alt"></i>
               <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+          <a href="#">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Home Page</span>
               <span class="badge badge-pill badge-warning">New</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Dashboard 1
+                  <a href="#">Home Page 1
                     <span class="badge badge-pill badge-success">Pro</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Dashboard 2</a>
+                  <a href="#">Home Page 2</a>
                 </li>
                 <li>
-                  <a href="#">Dashboard 3</a>
+                  <a href="#">Home Page 3</a>
                 </li>
               </ul>
             </div>
