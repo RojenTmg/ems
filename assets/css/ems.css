@@ -1115,8 +1115,8 @@ body {
   background-color: #fff;
   padding: 0;
   width: 300px;
-  margin: 0.5% 0 0 0;
-    animation: none;
+  margin: 5px 0 0 0;
+  animation: none;
 }
 .arch-msg {
   display: flex;
