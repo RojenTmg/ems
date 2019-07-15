@@ -120,6 +120,38 @@ function displayFunctionType() {
               }
           }
   }
+
+
+
+ function updateGeneral()
+  {
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','updateGeneral',true);
+          var data = new FormData();
+          var first_name =document.getElementById('first_name').value;
+          var last_name=document.getElementById('last_name').value;
+          var middle_name= document.getElementById('middle_name').value;
+          var join_date=document.getElementById('year').value+'-'+document.getElementById('month').value+'-'+document.getElementById('day').value;
+          data.append('title',document.getElementById('title').value);
+          data.append('first_name',first_name);
+          data.append('middle_name',middle_name);
+          data.append('last_name',last_name);
+          data.append('join_date',join_date);
+          xmlHttp.send(data);
+
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+                var status = xmlHttp.responseText;
+               showresponse('general-form',status,'Updated Successfully');
+               displayName(first_name,middle_name,last_name);
+              }
+          }
+  }
+
+
   // display current entering employee's name
   function displayName(fname,mname="",lname)
   {
@@ -165,7 +197,6 @@ function submitDocument(){
      }
      else{
              var msg="Select a doc or pdf file only";
-       console.log(doc_file[i].files[0]['type']);
         $('#message').css('background-color','#ffefea !important');
         $('#message').css('color','red');
           $('#message').css('display','block');
@@ -279,7 +310,6 @@ function showHideAllergy(allergy)
   // display message if added successfully and red textbox if the required fields are empty
 function showresponse(formname,status,msg)
 {
-    console.log(status);
 
   var check=false;
   var JSONObject;
@@ -324,6 +354,9 @@ function showresponse(formname,status,msg)
   }
     //updating progress bar
   showprogress();
+
+  // change tab icon
+  check_complete();
 }
 
   function general()
@@ -374,7 +407,6 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                // console.log(status);
                showresponse('address-form',status,'Updated Successfully');
               }
           }
@@ -536,7 +568,6 @@ xmlHttp.onreadystatechange = function()
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                console.log(status);
                showresponse('personal-form',status,'Updated Successfully');
               }
           } 
@@ -592,7 +623,6 @@ function addExperience()
   count++;
   var experienceForm="form"+count;
   var tag='#'+experienceForm;
-  console.log(tag);
 
 $('#add_doc_title').html('Adding Work Experience');
 $('#work-experience').append('<div id="'+experienceForm+'">  </div>');
@@ -692,4 +722,61 @@ else
 {
 return false;
 }
+}
+
+
+
+
+
+
+// for the icon status on each tab
+
+function check_complete(){
+  //general tab
+  var first_name =document.getElementById('first_name').value;
+  var last_name=document.getElementById('last_name').value;
+  //personal details
+  var email=document.getElementById('email').value;
+  var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
+  //address
+  var current_street=document.getElementById('currentaddress_street').value;
+  var current_municipality=document.getElementById('currentaddress_municipality').value;
+  var current_district=document.getElementById('currentaddress_district').value;
+  var current_state=document.getElementById('currentaddress_state').value;
+  var current_country= document.getElementById('currentaddress_country').value;
+  //contact
+  var mobile_phone=document.getElementById('mobile_phone').value;
+  //nationality
+  var passport_no=document.getElementById('passport_no').value;
+  var issue_place=document.getElementById('passport_issue_place').value;
+  //emergency contact
+  var e_name=document.getElementById('e_name').value;
+  var e_relation=document.getElementById('e_relation').value;
+  var e_phone=document.getElementById('e_phone').value;
+  //Education
+  var institute=document.getElementById('institute').value;
+  //PAN
+  var pan=document.getElementById('pan').value;
+
+
+
+    if(first_name!=''&&last_name!='') completeIcon('nav-general-tab'); else inCompleteIcon('nav-general-tab');
+    if(email!=''&&dob!='') completeIcon('nav-personal-tab'); else inCompleteIcon('nav-personal-tab');
+    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!=''&&current_country!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
+    if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
+    if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
+    if(e_name!=''&&e_relation!=''&&e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
+    if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
+    if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
+
+
+}
+
+function completeIcon(tabId){
+  document.getElementById(tabId).childNodes[1].className="fa fa-check-circle prog-com";
+
+}
+
+function inCompleteIcon(tabId){
+    document.getElementById(tabId).childNodes[1].className="fa fa-info-circle prog-incom";
 }

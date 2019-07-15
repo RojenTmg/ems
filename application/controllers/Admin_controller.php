@@ -176,9 +176,8 @@ class Admin_controller extends CI_Controller {
 		extract($_POST);
 
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
-		$this->form_validation->set_rules('firstname','First Name','required');
-		$this->form_validation->set_rules('middlename','Middle Name','required');
-		$this->form_validation->set_rules('surname','Surname','required');
+		$this->form_validation->set_rules('first_name','First Name','required|trim');
+		$this->form_validation->set_rules('last_name','Last Name','required|trim');
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -187,13 +186,16 @@ class Admin_controller extends CI_Controller {
 		{
 			$data=array(
 				'title'=>$title,
-				'firstname'=>$firstname,
-				'middlename'=>$middlename,
-				'surname'=>$surname
+				'first_name'=>$first_name,
+				'middle_name'=>$middle_name,
+				'last_name'=>$last_name,
+				'join_date'=>$join_date,
+				'is_active'=>'1',
+				'department_id'=>'1'
 			);
 
-			$this->Admin_model->update_employee($data);
-			$result=array('true');
+		if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
+				array_push($result, 'true');
 		}
 		echo json_encode($result);
 	}

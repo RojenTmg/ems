@@ -1,7 +1,9 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
+     $updating=false;
       if($this->uri->segment(3))
      {
+      $updating=true;
         $_SESSION['current_employee_id']=$this->uri->segment(3);
          
      }
@@ -150,7 +152,7 @@
       </div>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
+            <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
             
           </div>
         </form>
@@ -526,3 +528,7 @@
  </form>
 </div>
     <!-- documents ends here -->
+
+<script type="text/javascript">
+  check_complete();
+</script>
