@@ -35,6 +35,23 @@ $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['employee/progressBar'] = 'Admin_controller/progressBar';
 
 
+// for edit
+$route['admin/employee_manage/employee_archive'] = 'Admin_controller/viewArchived';
+$route['admin/employee_manage/archiveEmployee'] = 'Admin_controller/archiveEmployee';
+$route['admin/employee_manage/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
+$route['admin/employee_manage/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
+
+$route['admin/employee_manage/addGeneral'] = 'Admin_controller/addGeneral';
+$route['admin/employee_manage/updateGeneral'] = 'Admin_controller/updateGeneral';
+$route['admin/employee_manage/addContact'] = 'Admin_controller/addContact';
+$route['admin/employee_manage/addNationality'] = 'Admin_controller/addNationality';
+$route['admin/employee_manage/addEducation'] = 'Admin_controller/addEducation';
+$route['admin/employee_manage/addEmergency'] = 'Admin_controller/addEmergency';
+$route['admin/employee_manage/addHealth'] = 'Admin_controller/addHealth';
+$route['admin/employee_manage/addPan'] = 'Admin_controller/addPan';
+$route['admin/employee_manage/addWork'] = 'Admin_controller/addWork';
+
+
 
 
 $route['login'] = 'Login_controller/view';

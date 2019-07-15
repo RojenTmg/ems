@@ -58,83 +58,79 @@
         <!--TAB ENDS  -->
       </div>
     </nav>
-    <div class="message-div">
-      <div id="message" class="message" style="display: none;"> </div>
-    </div>
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-        <form class="form" id="general-form">
-          <div class="form-div">
-            <label>Title</label>
-            <select name="title" id="title">
-              <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
-              <option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
-              <option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
-              <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
-            </select>
-          </div>
+   <div class="message-div">
+<div id="message" class="message" style="display: none;"> </div>
+</div>
+<div class="tab-content" id="nav-tabContent">
+<div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+<form class="form" id="general-form">
+<div class="form-div">
+<label>Title</label> 
+<select name="title" disabled="true" id="title">
+<option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
+<option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
+<option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
+<option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
+</select>
+</div>
 
-          <div class="form-div">
-            <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-          </div>
-          <div class="form-div">
-            <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
-            <input type="text" id="middle_name" placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-          </div>
-          <div class="form-div">
-            <label>Last Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-          </div>
-          <!-- date of join added -->
-          <div class="form-div">
-            <label>Date of Join<span class="text-danger"><i>*</i></span></label>
-            <!-- date -->
-            <div class="row">
-            <select name="day" id="day" class="col-md-1 mr-5 ml-3 ">
-        <?php 
-          $start_date = 1;
-          $end_date   = 31;
-          for( $j=$start_date; $j<=$end_date; $j++ ) {
-            echo '<option value='.$j.'>'.$j.'</option>';
-          }
-        ?>
-      </select>
-      <!-- month -->
-             <select id="month"   name="month"  class="col-md-2 mr-5" /> 
-                <option value="1">January</option>       
-                <option value="2">February</option>       
-                <option value="3">March</option>       
-                <option value="4">April</option>       
-                <option value="5">May</option>       
-                <option value="6">June</option>       
-                <option value="7">July</option>       
-                <option value="8">August</option>       
-                <option value="9">September</option>       
-                <option value="10">October</option>       
-                <option value="11">November</option>       
-                <option value="12">December</option>       
-              </select>
-            <!-- year -->
-             <select id="year" name="year " class="col-md-1">
-        <?php 
-          $year = date('Y');
-          $min = $year - 60;
-          $max = $year;
-          for( $i=$max; $i>=$min; $i-- ) {
-            echo '<option value='.$i.'>'.$i.'</option>';
-          }
-        ?>
-      </select>
-      </div>
-          </div>
-          <div class="sub-can">
-            <input type="button" onclick="addGeneral()" value="Submit" class="sub" id="extra" name="submit-general">
-            
-          </div>
-        </form>
-      </div>
-      <!-- general ends -->
+<div class="form-div">
+<label>First Name<span class="text-danger"><i>*</i></span></label>
+<input type="text" id="first_name" placeholder="" disabled="true" value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+</div>
+<div class="form-div">
+<label>Middle Name <span class="opt"><i>(Optional)</i></span></label>
+<input type="text" id="middle_name" placeholder="" disabled="true" value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+</div>
+<div class="form-div">
+<label>Last Name<span class="text-danger"><i>*</i></span></label>
+<input type="text" id="last_name" placeholder="" disabled="true" value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+</div>
+<!-- date of join added -->
+<div class="form-div">
+<label>Date of Join<span class="text-danger"><i>*</i></span></label>
+<!-- date -->
+<div class="row">
+<select name="day" disabled="true" id="day" class="col-md-1 mr-5 ml-3 ">
+<?php 
+$start_date = 1;
+$end_date = 31;
+for( $j=$start_date; $j<=$end_date; $j++ ) {
+echo '<option value='.$j.'>'.$j.'</option>';
+}
+?>
+</select>
+<!-- month -->
+<select id="month" disabled="true" name="month" class="col-md-2 mr-5" /> 
+<option value="1">January</option> 
+<option value="2">February</option> 
+<option value="3">March</option> 
+<option value="4">April</option> 
+<option value="5">May</option> 
+<option value="6">June</option> 
+<option value="7">July</option> 
+<option value="8">August</option> 
+<option value="9">September</option> 
+<option value="10">October</option> 
+<option value="11">November</option> 
+<option value="12">December</option> 
+</select>
+<!-- year -->
+<select id="year" disabled="true" name="year " class="col-md-1">
+<?php 
+$year = date('Y');
+$min = $year - 60;
+$max = $year;
+for( $i=$max; $i>=$min; $i-- ) {
+echo '<option value='.$i.'>'.$i.'</option>';
+}
+?>
+</select>
+</div>
+</div> 
+</form>
+</div>
+<!-- general ends -->
 
       <!-- personal details starts here -->
       <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
