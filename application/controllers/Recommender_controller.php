@@ -1,7 +1,7 @@
 <?php
 	class Recommender_controller extends CI_Controller {
 
-		public function view($page = 'dashboard') {
+		public function generalPage($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/recommender/pages/' . $page . '.php')) {
 				show_404();
 			}

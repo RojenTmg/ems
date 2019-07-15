@@ -3,13 +3,15 @@ class Admin_controller extends CI_Controller {
 
  	public function __construct()
         {
-            parent::__construct();
+           parent::__construct();
            if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true) {
 				redirect('login');
 			}
         }
 		
 	public function view($page, $title = 'EMS', $data = FALSE) {
+		if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) 
+			show_404();
 		$this->load->view('admin/templates/header', $title);
 		$this->load->view('admin/pages/' . $page . '', $data);
 		$this->load->view('admin/templates/footer');
@@ -121,7 +123,6 @@ class Admin_controller extends CI_Controller {
 		extract($_POST);
 		$data= array('is_active'=>0);
 		$this->Admin_model->update('employees',$data,'emp_id',$emp_id);
-		$this->view('employee_archive', $data);
 	}
 
 // unarchive staff

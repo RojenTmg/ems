@@ -9,7 +9,7 @@
 				}
         }
         
-		public function view($page = 'dashboard') {
+		public function generalPage($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {
 				show_404();
 			}

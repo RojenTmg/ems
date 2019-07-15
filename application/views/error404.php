@@ -17,6 +17,11 @@ main{
     font-size: 22px;
     margin: 14px 0;
   }
+   #errorLink-div {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
+  }
   #errorLink{
       font-size: 20px;
       padding: 12px;
@@ -284,7 +289,9 @@ main{
   </svg>
 
   <p id="errorText">The page you are looking for could not be found.</p>
-  <a id="errorLink" href="<?=site_url();?>">Go Back To Dashboard</a>
+  <div id="errorLink-div">
+    <a id="errorLink" href="<?=site_url();?>">Go Back To Dashboard</a>
+  </div>
 </main>
 </main>
 </div>

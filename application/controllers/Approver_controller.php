@@ -1,7 +1,7 @@
 <?php
 	class Approver_controller extends CI_Controller {
 
-		public function view($page = 'dashboard') {
+		public function generalPage($page = 'dashboard') {
 			if (!file_exists(APPPATH . 'views/approver/pages/' . $page . '.php')) {
 				show_404();
 			}

@@ -10,7 +10,6 @@
              unset($_SESSION['current_employee_id']); 
       }
       }
-echo  $_SESSION['current_employee_id'];
       ?>
       
  <!-- form -->
