@@ -573,6 +573,9 @@ class Admin_controller extends CI_Controller {
 			'organization'=>$organization,
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
+			'contact_address'=> $contact_address,
+			'contact_person_name'=> $contact_person_name,
+			'contact_person_phone'=> $contact_person_phone,
 			'emp_id'=>$id
 		);
 

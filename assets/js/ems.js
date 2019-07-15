@@ -656,7 +656,7 @@ function submitWork(){
   var organization = document.getElementsByName('organization');
    var contact_person_name = document.getElementsByName('contact_person_name');
    var contact_person_phone = document.getElementsByName('contact_person_phone');
-   var contact_person_address = document.getElementsByName('contact_address');
+   var contact_address = document.getElementsByName('contact_address');
   var from_date = document.getElementsByName('from_date');
   var to_date= document.getElementsByName('to_date');
   var count=0;
@@ -683,7 +683,7 @@ function submitWork(){
       data.append('to_date',to_date[i].value);
         data.append('contact_person_name',contact_person_name[i].value);
           data.append('contact_person_phone',contact_person_phone[i].value);
-            data.append('contact_address',contact_person_address[i].value);
+            data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
       xmlHttp.onreadystatechange = function()
       {
