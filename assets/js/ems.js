@@ -602,7 +602,7 @@ $(tag).append('<div class="form-div"><input type="text" id="organization" name="
 $(tag).append('<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
-$(tag).append('<div class="form-div"><input type="text" id="address" name="contact_address" placeholder="Contact Address"></div>');
+$(tag).append('<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address"></div>');
 $(tag).append('<div class="row"><label class="col-md-2 ">From</label>');
 $(tag).append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
 $(tag).append(' <label class="col-md-2 ">To</label>');
@@ -626,7 +626,7 @@ function submitWork(){
   var organization = document.getElementsByName('organization');
    var contact_person_name = document.getElementsByName('contact_person_name');
    var contact_person_phone = document.getElementsByName('contact_person_phone');
-   var contact_person_address = document.getElementsByName('contact_person_address');
+   var contact_person_address = document.getElementsByName('contact_address');
   var from_date = document.getElementsByName('from_date');
   var to_date= document.getElementsByName('to_date');
   var count=0;
@@ -650,7 +650,7 @@ function submitWork(){
       data.append('to_date',to_date[i].value);
         data.append('contact_person_name',contact_person_name[i].value);
           data.append('contact_person_phone',contact_person_phone[i].value);
-            data.append('contact_person_address',contact_person_address[i].value);
+            data.append('contact_address',contact_person_address[i].value);
       xmlHttp.send(data);
       xmlHttp.onreadystatechange = function()
       {
@@ -660,7 +660,7 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-               $('#message').css('background','#ffefea !important');
+             $('#message').css('background','#ffefea !important');
             $('#message').css('color','green');
             $('#message').css('display','block');
             $('#message').html(msg); 
