@@ -34,8 +34,7 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Dashboard';
 		$data['count'] = count($this->Admin_model->getEmployeeDetails());
-		// $data['since_this_month'] = count($this->Database_model->find('employees', 'created_date', date()));
-		// echo date('M'); die();
+		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			$this->view('dashboard', $title, $data);
@@ -75,7 +74,7 @@ class Admin_controller extends CI_Controller {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
 				'base_url' => base_url('admin/employee_list'),
-				'per_page' => 10,
+				'per_page' => 4,
 				'total_rows' =>count($posts)
 			];
 			$this->pagination->initialize($config);
@@ -94,7 +93,7 @@ class Admin_controller extends CI_Controller {
 
 		$config = [
 			'base_url' => base_url('admin/employee_list'),
-			'per_page' => 10,
+			'per_page' => 4,
 			'total_rows' =>count($posts)
 		];
 		$this->pagination->initialize($config);
@@ -259,8 +258,7 @@ class Admin_controller extends CI_Controller {
 				'street'=>$currentaddress_street,
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
-				'state'=>$currentaddress_state,
-				'country'=>$currentaddress_country
+				'state'=>$currentaddress_state
 			);
 
 			$primary = array(
@@ -272,8 +270,7 @@ class Admin_controller extends CI_Controller {
 			$secondary = array(
 				'street' => $currentaddress_street, 
 				'municipality' => $currentaddress_municipality,
-				'district' => $currentaddress_district,
-				'country'=>$currentaddress_country);
+				'district' => $currentaddress_district);
 
 			// error is yes when empty field is submitted by user
 			$error='none';
@@ -573,6 +570,9 @@ class Admin_controller extends CI_Controller {
 			'organization'=>$organization,
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
+			'contact_address'=> $contact_address,
+			'contact_person_name'=> $contact_person_name,
+			'contact_person_phone'=> $contact_person_phone,
 			'emp_id'=>$id
 		);
 

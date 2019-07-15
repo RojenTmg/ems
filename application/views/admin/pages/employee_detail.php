@@ -285,29 +285,25 @@
 		<div class="column">
 			<div class="card">
 				<h5 class="card-header text-center alert alert-dark">Documents</h5>
-				
-				<?php 
+				<div class="card-body" style="padding: 0;">
+					<table class="table" style="overflow: scroll">
+						<thead>
+							<th>Title</th>
+							<th>File</th>
+						</thead>
+					<?php 
 					foreach ($documents as $value) {
 				?>
-				<div class="card-body">
-					<div class="body-row ">
-						<div class="item-1 text-left" >Document Id</div>
-						<div class="item-2 text-left"><?php echo $value['doc_id']; ?></div>
-					</div>
-					<div class="body-row ">
-						<div class="item-1 text-left" >Title</div>
-						<div class="item-2 text-left"><?php echo $value['doc_title']; ?></div>
-					</div>
-
-					<div class="body-row ">
-						<div class="item-1 text-left" >File</div>
-						<div class="item-2 text-left"><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></div>
-					</div>
-
-				</div>
+				<tr>
+					<td><?php echo $value['doc_title']; ?></td>
+					<td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+				</tr>
+			
 				<?php
 					}
 				?>
+			</table>
+					</div>
 			</div>
 		</div>
 		<!-- work ends here  -->

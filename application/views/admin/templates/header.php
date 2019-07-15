@@ -178,6 +178,19 @@
       </div> -->
       <!-- sidebar-search  -->
       <div class="sidebar-menu">
+
+        <ul>
+          <li class="header-menu">
+            <span>Profile</span>
+          </li>
+          <li>
+          <a href="<?= site_url(); ?>">
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+              <span>My Profile</span>
+            </a>
+          </li>
+        </ul>
+
         <ul>
           <li class="header-menu">
             <span>General</span>
@@ -188,8 +201,6 @@
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
-          <li>
           <li>
             <a href="<?= site_url('admin/employee_manage'); ?>">
               <i class="fa fa-user-plus" aria-hidden="true"></i>

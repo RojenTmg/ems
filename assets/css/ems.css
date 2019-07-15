@@ -742,6 +742,10 @@ body {
   padding: 8px 15px;
   flex: 80%;
 }
+.form-group input, .form-group select, .form-group textarea, .form-group input[type="date"] {
+  border: 0.5px solid #ced4da;
+  padding: 8px 15px !important;  
+}
 .form-div > div {
   flex: 80%;
 }
@@ -1084,13 +1088,7 @@ body {
   height: 40px;
 }
 
-#message {
-  background-color: #fff;
-  margin: 0;
-  padding: 0 10px;
-  width: 300px;
-  margin: 10px 20px 0;
-}
+
 .arch-msg-div {
   position: fixed;
   margin: 10px 20px 0 0;
@@ -1107,11 +1105,22 @@ body {
   animation: pop-up 7s linear forwards;
 }
 
+
+
 @keyframes pop-up {
   0% { opacity: 0; display: block; }
   5% { opacity: 1; }
   90% { opacity: 1; }
   100% {opacity: 0; display: none; }
+}
+
+
+#message {
+  background-color: #fff;
+  padding: 0;
+  width: 300px;
+  margin: 5px 0 0 0;
+  animation: none;
 }
 .arch-msg {
   display: flex;

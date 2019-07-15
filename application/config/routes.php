@@ -42,7 +42,7 @@ $route['admin/employee_manage/employee_archive'] = 'Admin_controller/viewArchive
 $route['admin/employee_manage/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/employee_manage/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 $route['admin/employee_manage/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
-
+$route['admin/employee_manage/addDocuments'] = 'Admin_controller/addDocuments';
 $route['admin/employee_manage/addGeneral'] = 'Admin_controller/addGeneral';
 $route['admin/employee_manage/updateGeneral'] = 'Admin_controller/updateGeneral';
 $route['admin/employee_manage/addContact'] = 'Admin_controller/addContact';

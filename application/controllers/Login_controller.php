@@ -5,7 +5,7 @@
         public function generalPage() 
         {
             if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) {
-                if( $_SESSION['type']=='admin')
+                if($_SESSION['type']=='admin')
                 redirect('admin');
                 else
                     redirect('employee');

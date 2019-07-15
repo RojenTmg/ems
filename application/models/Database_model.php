@@ -41,7 +41,7 @@
 			$query = $this->db->get($table);
 			return $query->row_array();
 		}
-		
+
 		////////////////////// DELETE Query Functions ////////////////////////
 
 	}
