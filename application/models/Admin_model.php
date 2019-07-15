@@ -173,6 +173,12 @@
 			return $query->row_array();
 		}
 
+		public function findAllByCertainMonth($table, $field, $DMY, $date)
+		{
+			return $this->db->query('SELECT * FROM ' . $table . ' WHERE '. $DMY.'(' . $field . ') = ' . $date . '')->result_array();
+			// return $this->db->query('SELECT id FROM ' . $table . ' WHERE MONTH(' . $field . ') = ' . $date . '')->result_array();
+		}
+
 	}
 
 

@@ -16,7 +16,7 @@
             </div>
              <div class="item-2 sp-btn">
                 <div><span>Since this month</span></div>
-                <div><span>5 emp. added</span></div>
+                <div><span><?php echo $emp_added_this_month; ?> emp. added</span></div>
             </div>
           </a>
           </div>
@@ -32,7 +32,7 @@
               </div>
             </div>
              <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
+                <div><span>Since this month</span></div>
                 <div><span>5.35%</span></div>
             </div>
           </a>

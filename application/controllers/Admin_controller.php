@@ -34,8 +34,7 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Dashboard';
 		$data['count'] = count($this->Admin_model->getEmployeeDetails());
-		// $data['since_this_month'] = count($this->Database_model->find('employees', 'created_date', date()));
-		// echo date('M'); die();
+		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			$this->view('dashboard', $title, $data);
