@@ -158,7 +158,7 @@
       </div>
           </div>
           <div class="sub-can">
-            <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
@@ -464,7 +464,7 @@
              
             </div>
             <!-- allerygy tab changes show hide -->
-            <div id="allergy" style="display:none; ">  
+            <div id="allergy" <?php if(isset($post['allergies'])&&$post['allergies']=='Yes') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?> >  
               <div class="form-div">
                 <label>If any, please mention</label>
                 <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>">

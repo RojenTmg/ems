@@ -91,6 +91,7 @@ function displayFunctionType() {
 
 ////////////////////  Add Employee through different Tabs /////////////////////
 
+// changes in add 
  function addGeneral()
   {
           var xmlHttp = new XMLHttpRequest();
@@ -116,10 +117,14 @@ function displayFunctionType() {
               {
                 var status = xmlHttp.responseText;
                showresponse('general-form',status,'Employee Added Successfully');
-               displayName(first_name,middle_name,last_name);
+                displayName(first_name,middle_name,last_name);
+               document.getElementById('generalButton').value="Update";
+              document.getElementById( "generalButton" ).setAttribute( "onClick", "javascript: updateGeneral();" );
+              
               }
           }
   }
+
 
 
 
@@ -221,13 +226,19 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
-             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+              $('#message').css('background-color','#ffefea !important');
+              $('#message').css('color','green');
+              $('#message').css('display','block');
+              $('#message').html(msg); 
            }
           else{
             count++;
              msg="Choose file";
 
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+              $('#message').css('background-color','#ffefea !important');
+              $('#message').css('color','red');
+              $('#message').css('display','block');
+              $('#message').html(msg); 
           }
           }
       }
@@ -398,7 +409,7 @@ function showresponse(formname,status,msg)
           data.append('currentaddress_municipality',document.getElementById('currentaddress_municipality').value);
           data.append('currentaddress_district',document.getElementById('currentaddress_district').value);
           data.append('currentaddress_state',document.getElementById('currentaddress_state').value);
-          data.append('currentaddress_country',document.getElementById('currentaddress_country').value);
+        
      
           xmlHttp.send(data);
 

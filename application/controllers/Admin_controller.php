@@ -258,8 +258,7 @@ class Admin_controller extends CI_Controller {
 				'street'=>$currentaddress_street,
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
-				'state'=>$currentaddress_state,
-				'country'=>$currentaddress_country
+				'state'=>$currentaddress_state
 			);
 
 			$primary = array(
@@ -271,8 +270,7 @@ class Admin_controller extends CI_Controller {
 			$secondary = array(
 				'street' => $currentaddress_street, 
 				'municipality' => $currentaddress_municipality,
-				'district' => $currentaddress_district,
-				'country'=>$currentaddress_country);
+				'district' => $currentaddress_district);
 
 			// error is yes when empty field is submitted by user
 			$error='none';
