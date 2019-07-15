@@ -35,6 +35,8 @@ $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['employee/progressBar'] = 'Admin_controller/progressBar';
 
 
+
+
 // for edit
 $route['admin/employee_manage/employee_archive'] = 'Admin_controller/viewArchived';
 $route['admin/employee_manage/archiveEmployee'] = 'Admin_controller/archiveEmployee';
@@ -65,10 +67,10 @@ $route['admin/employee_list'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 
-// $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
-// $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';
-// $route['recommender/(:any)'] = 'Recommender_controller/generalPage/$1';
-// $route['employee/(:any)'] = 'Employee_controller/generalPage/$1';
+$route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
+$route['approver/(:any)'] = 'Approver_controller/generalPage/$1';
+$route['recommender/(:any)'] = 'Recommender_controller/generalPage/$1';
+$route['employee/(:any)'] = 'Employee_controller/generalPage/$1';
 
 $route['admin'] = 'Admin_controller/dashboard';
 $route['approver'] = 'Approver_controller/generalPage';

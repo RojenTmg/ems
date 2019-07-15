@@ -4,7 +4,7 @@
 		public function __construct()
         {
                 parent::__construct();
-               if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true) {
+               if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true|| $_SESSION['type']!='employee') {
 					redirect('login');
 				}
         }
