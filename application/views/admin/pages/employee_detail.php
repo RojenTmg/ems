@@ -301,7 +301,7 @@
 
 					<div class="body-row ">
 						<div class="item-1 text-left" >File</div>
-						<div class="item-2 text-left"><a href=""><?php echo $value['doc_file']; ?></a></div>
+						<div class="item-2 text-left"><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></div>
 					</div>
 
 				</div>
