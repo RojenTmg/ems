@@ -3,7 +3,7 @@
       <h5>Staff</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
-  <div class="sp-btn">
+  <div class="sp-btn align-bottom">
     <div class="emp-link">
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
       <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
@@ -27,13 +27,13 @@
     <table class="table table-bordered hover employee_table" >
       <thead class="thead-dark">
         <tr>
-          <th  style="width: 2%; background-color: #444a50;">Id</th>
-          <th  style="width: 2%; background-color: #444a50;">Title</th>
-          <th  style="width: 25%; background-color: #444a50;">Name</th>
-          <th  style="width: 15%; background-color: #444a50;">Department</th>
-          <th  style="width: 15%; background-color: #444a50;">Nationality</th>
-          <th  style="width: 15%; background-color: #444a50;">Highest Degree</th>
-          <th style="width: 15%; background-color: #444a50;">Action</th>
+          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Id</th>
+          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Title</th>
+          <th  style="width: 25%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Name</th>
+          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Department</th>
+          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Nationality</th>
+          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Highest Degree</th>
+          <th style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Action</th>
 
         </tr>
       </thead>

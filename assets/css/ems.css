@@ -608,7 +608,6 @@ body {
 
 
 
-
 /*-----------------------------content-theme-------------------------------------------------*/
 .contents {
   padding: 25px 40px 40px;
@@ -858,9 +857,6 @@ body {
 }
 .hover tbody tr:hover {
   background-color: #e8e8ed;
-}
-.thead-dark tr td {
-  background-color: #fff !important;
 }
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
 
@@ -1318,7 +1314,7 @@ body {
 
 /*-----------------------------horiziontal-line-theme-------------------------------------------------*/
 .hr {
-  margin: 10px 0 40px;
+  margin: 10px 0 30px;
 }
 .card{
   margin-bottom: 2%;
