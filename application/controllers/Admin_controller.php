@@ -124,10 +124,11 @@ class Admin_controller extends CI_Controller {
 		$id = $this->input->post('search_emp');
 		$title['title'] = 'Employee Search List';
 		$perPage = 10;
+		$data['count'] = count($this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id));
 		$config = [
 			'base_url' => base_url('admin/employee_search'),
 			'per_page' => $perPage,
-			'total_rows' =>count($this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id))
+			'total_rows' => $data['count']
 		];
 		$this->pagination->initialize($config);
 		$data['posts'] = $this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id);

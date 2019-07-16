@@ -624,10 +624,8 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.align-bottom {
-  align-items: baseline !important;
-}
 .emp-link {
+  margin-bottom: -20px;
   padding: 0;
 }
 .emp-link a {
@@ -1311,7 +1309,7 @@ body {
 
 /*-----------------------------horiziontal-line-theme-------------------------------------------------*/
 .hr {
-  margin-bottom: 40px;
+  margin: 10px 0 40px;
 }
 .card{
   margin-bottom: 2%;

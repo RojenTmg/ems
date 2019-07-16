@@ -1,15 +1,15 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Staff</h5>
+      <h5>Search Staff</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
-  <div class="sp-btn align-bottom">
+  <div class="sp-btn">
     <div class="emp-link">
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
       <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
     </div>
    <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
-      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp">
+      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp" required="required">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
    </form> 
   </div>
@@ -20,7 +20,7 @@
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
-  
+       <i>( <?php echo $count; ?> staff found in total )</i>
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
