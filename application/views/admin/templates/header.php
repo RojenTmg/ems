@@ -127,6 +127,7 @@
         </ul>
       </div>
     </div>
+    
     <!-- <div class="log-out">
       <a href="<?= base_url('logout'); ?>">
         <i class="fa fa-power-off" title="logout"></i>
