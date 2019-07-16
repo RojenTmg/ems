@@ -1,6 +1,6 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Archived Employees</h5>
+      <h5>Archived Staff</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
       
   </div>
