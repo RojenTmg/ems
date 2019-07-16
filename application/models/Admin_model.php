@@ -21,12 +21,12 @@
 		}
 
 		public function employeeSearch($limit, $offset, $id) {
-			$this->db->join('departments', 'departments.id=employees.department_id');
-			$this->db->limit($limit, $offset); 
-			$this->db->where('emp_id', $id); 
-			$query = $this->db->get('employees');
-
-			return $query->result_array();
+			if (isset($offset)) $offset = $offset; else $offset = '0';
+			$project = 'SELECT * FROM employees AS e 
+						JOIN departments AS d ON d.id = e.department_id 
+						WHERE e.emp_id = ' . (int)$id . 
+						' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%" LIMIT '.$limit.' OFFSET ' . $offset . '';
+			return $this->db->query($project)->result_array();
 		}
 
 		public function archivedEmployeeList() {

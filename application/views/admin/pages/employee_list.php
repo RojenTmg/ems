@@ -39,37 +39,41 @@
       </thead>
       <tbody>
         <?php
+          $user_not_found = FALSE;
+          if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) $user_not_found=TRUE;
         // echo $posts;  die();
-          foreach ($posts as $post) {
-            // check archived or not
-            if($post['is_active']==1){            ?>
-            <tr id="<?php echo $post['emp_id']; ?>">
-              <td><?php echo $post['emp_id']; ?></td>
-              <td><?php echo $post['title']; ?></td>
-              <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
-              <td><?php echo $post['department_name']; ?></td>
-              <td><?php echo $post['nationality']; ?></td>
-              <td><?php echo $post['highest_degree']; ?></td>
-              <td>
-                <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
-                  <div class="tooltiptext">
-                    <p>Are you sure?</p>
-                    <span class="tip-can">Cancel</span>
-                    <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Delete</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
+          if ($user_not_found != TRUE) {
+            foreach ($posts as $post) {
+              // check archived or not
+              if($post['is_active']==1){            ?>
+              <tr id="<?php echo $post['emp_id']; ?>">
+                <td><?php echo $post['emp_id']; ?></td>
+                <td><?php echo $post['title']; ?></td>
+                <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
+                <td><?php echo $post['department_name']; ?></td>
+                <td><?php echo $post['nationality']; ?></td>
+                <td><?php echo $post['highest_degree']; ?></td>
+                <td>
+                  <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
+                    <div class="tooltiptext">
+                      <p>Are you sure?</p>
+                      <span class="tip-can">Cancel</span>
+                      <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Delete</span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
 
-          <?php
-          }
+            <?php
+            }
+            }
           }
         ?>
       </tbody>
     </table>
         <?php
-          if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) {
+          if ($user_not_found == TRUE) {
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>
