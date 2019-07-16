@@ -553,6 +553,7 @@
                 <div class="row" id="cross">
                   <i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i>
                 </div>
+               <div class="form-div"><input type="text" style="display: none" name="exp_id" value="<?php echo $value['id'];?>"></div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
 <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
 <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
@@ -572,7 +573,7 @@
         </div>
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" onclick="submitWork()" name="" value="Submit" class="sub">
+            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="submitWork()" value="Submit" ';?> class="sub">
            </div> 
           </div>
         </form>

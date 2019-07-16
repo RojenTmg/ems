@@ -584,6 +584,44 @@ class Admin_controller extends CI_Controller {
 
 	}
 
+// for work experience
+	public function updateWork()
+	{
+		$status='';
+		extract($_POST);
+
+		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
+
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
+		$data=array(
+			'responsibility'=>$responsibility,
+			'organization'=>$organization,
+			'from_date'=>$from_date,
+			'to_date'=>$to_date,
+			'contact_address'=> $contact_address,
+			'contact_person_name'=> $contact_person_name,
+			'contact_person_phone'=> $contact_person_phone,
+			'emp_id'=>$id
+		);
+		if($exp_id=='')
+		$this->Admin_model->insert('employee_work_experience',$data);
+		else
+		$this->Admin_model->update_work_experience($data,$exp_id);
+
+		// $this->Admin_model->add_work_experience($data);
+
+		$status='true';
+
+		echo $status;
+
+	}
+
 
 //function for adding documents
 	function addDocuments(){

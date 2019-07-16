@@ -53,6 +53,8 @@ $route['admin/employee_manage/addEmergency'] = 'Admin_controller/addEmergency';
 $route['admin/employee_manage/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/employee_manage/addPan'] = 'Admin_controller/addPan';
 $route['admin/employee_manage/addWork'] = 'Admin_controller/addWork';
+$route['admin/employee_manage/updateWork'] = 'Admin_controller/updateWork';
+
 $route['admin/employee_manage/progressBar'] = 'Admin_controller/progressBar';
 
 
