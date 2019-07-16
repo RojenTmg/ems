@@ -179,10 +179,6 @@ function removeDocument(doc){
 
 }
 
-function removeDocument2(doc){
-  doc.remove();
-}
-
 // add document to table
 function submitDocument(){
 
@@ -769,9 +765,9 @@ function updateWork(){
       data.append('organization',organization[i].value);
       data.append('from_date',from_date[i].value);
       data.append('to_date',to_date[i].value);
-        data.append('contact_person_name',contact_person_name[i].value);
-          data.append('contact_person_phone',contact_person_phone[i].value);
-            data.append('contact_address',contact_address[i].value);
+      data.append('contact_person_name',contact_person_name[i].value);
+      data.append('contact_person_phone',contact_person_phone[i].value);
+      data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
       xmlHttp.onreadystatechange = function()
       {
@@ -891,7 +887,7 @@ function inCompleteIcon(tabId){
           {
               if(xmlHttp.readyState==4)
               {
-            $( "#document" ).load(window.location.href + " #document" );
+                $("#document").load(window.location.href + " #document" );
               }
           }
   }
@@ -900,6 +896,7 @@ function inCompleteIcon(tabId){
   // delete work experience data from edit form
   function deleteWorkExperience(id)
   {
+
     var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','deleteWorkExperience',true);
           var data = new FormData();
@@ -910,7 +907,11 @@ function inCompleteIcon(tabId){
           {
               if(xmlHttp.readyState==4)
               {
-            $( "#work-experience" ).load(window.location.href + " #work-experience" );
+
+                 $("#work-experience" ).load(window.location.href + " #work-experience" );
               }
           }
   }
+
+
+ 

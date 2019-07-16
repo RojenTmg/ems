@@ -544,22 +544,21 @@
            <div class="form-div">
           </div>
           <p class="title" id="add_doc_title"></p>
-              <div id="work-experience" class="bg-light">
+             
               <!-- the form appends here -->
               <?php 
                 if (!empty($work_experience)) {
                   foreach ($work_experience as $value) {
               ?>
-                <div class="row" id="cross">
-                  <i class="fa fa-trash col-md-12 text-right fa-2x text-danger" aria-hidden="true" onclick="showConfirmMessage()" class="form-group col-md-2 "></i>
+               <div id="work-experience" class="bg-light">
+                <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
 
-                   <div class="tooltiptext" style="display: none;" id="deleteFileMessage">
+                       <div class="tooltiptext" id="deleteFileMessage">
                         <p>Are you sure?</p>
                         <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick=" deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
+                        <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
                       </div>
-                   
-                </div>
+            
                <div class="form-div"><input type="text" style="display: none" name="exp_id" value="<?php echo $value['id'];?>"></div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
               <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
@@ -573,11 +572,12 @@
               <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
               <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
 
+                 </div>
               <?php
                   }
                 }
               ?>
-        </div>
+     
         <div class="form-div ">
           <div class="sub-can">
             <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="submitWork()" value="Submit" ';?> class="sub">
@@ -611,14 +611,13 @@
           <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
           <!-- delete button -->
           <td>
-                <!-- <button onclick="showConfirmMessage()" class="btn-archive tooltip1"> <i class="fa fa-trash" aria-hidden="true"></i> </button> -->
-                <input type="button" name="" value="Delete" class="btn btn-danger" onclick="showConfirmMessage()">
-                       <div class="tooltiptext" style="display: none;" id="deleteFileMessage">
+                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+
+                       <div class="tooltiptext" id="deleteFileMessage">
                         <p>Are you sure?</p>
                         <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+                        <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
                       </div>
-                   
             </td>
            </tr>
         <?php   } ?>
@@ -633,17 +632,17 @@
 <script type="text/javascript">
   check_complete();
 
- function showConfirmMessage()
- {
-  $('#deleteFileMessage').css('display','block');
+ $('.fa-trash').click(function(ev) {
+    $(this).siblings().css({"display": "block"});
+    ev.stopPropagation();
+  });
 
-
- }
 
    $('.tip-can').click(function(ev) {
     $(this).parent().css({"display": "none"});
     ev.stopPropagation();
   });
+
 
 
 
