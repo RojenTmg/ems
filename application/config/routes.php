@@ -55,6 +55,8 @@ $route['admin/employee_manage/addEmergency'] = 'Admin_controller/addEmergency';
 $route['admin/employee_manage/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/employee_manage/addPan'] = 'Admin_controller/addPan';
 $route['admin/employee_manage/addWork'] = 'Admin_controller/addWork';
+$route['admin/employee_manage/updateWork'] = 'Admin_controller/updateWork';
+
 $route['admin/employee_manage/progressBar'] = 'Admin_controller/progressBar';
 
 
@@ -68,6 +70,7 @@ $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
 $route['admin/dashboard'] = 'Admin_controller/dashboard';
 $route['admin/employee_list'] = 'Admin_controller/employeeList';
+$route['admin/employee_search'] = 'Admin_controller/employeeSearch';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 

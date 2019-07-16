@@ -730,6 +730,80 @@ function submitWork(){
     }
 }
 
+// update employee work experience to the table
+function updateWork(){
+
+  var exp_id = document.getElementsByName('exp_id');
+  var responsibility = document.getElementsByName('responsibility');
+  var organization = document.getElementsByName('organization');
+   var contact_person_name = document.getElementsByName('contact_person_name');
+   var contact_person_phone = document.getElementsByName('contact_person_phone');
+   var contact_address = document.getElementsByName('contact_address');
+  var from_date = document.getElementsByName('from_date');
+  var to_date= document.getElementsByName('to_date');
+  var count=0;
+  
+  for( i = 0; i < responsibility.length; i++ )
+     {
+     if(responsibility[i].value==''||organization[i].value==''){
+        var msg="Enter complete information";
+
+            $('#work-form').find('#message').css('background','red');
+              $('#work-form').find('#message').css('color','red');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
+      return false;
+     }
+  }
+    for( i = 0; i < responsibility.length; i++ )
+     {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open('POST','updateWork',true);
+      var data = new FormData();
+      if(exp_id[i])
+      data.append('exp_id',exp_id[i].value);
+      else
+       data.append('exp_id','');
+
+      data.append('responsibility',responsibility[i].value);
+      data.append('organization',organization[i].value);
+      data.append('from_date',from_date[i].value);
+      data.append('to_date',to_date[i].value);
+        data.append('contact_person_name',contact_person_name[i].value);
+          data.append('contact_person_phone',contact_person_phone[i].value);
+            data.append('contact_address',contact_address[i].value);
+      xmlHttp.send(data);
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
+          {
+           var status = xmlHttp.responseText;
+           if(status=='true')
+           {
+             msg="Updated";
+              $('#work-form').find('#message').css('background','#ffefea !important');
+              $('#work-form').find('#message').css('color','green');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
+           }
+          else{
+            count++;
+             msg="Enter information";
+
+             $('#work-form').find('#message').css('background','red');
+             $('#work-form').find('#message').css('color','red');
+             $('#work-form').find('#message').css('display','block');
+             $('#work-form').find('#message').html(msg); 
+          }
+          $("#work-experience").load(location.href+" #work-experience>*","");
+
+          }
+
+      }
+      
+    }
+}
+
 // check email id 
 function vaildateEmail(email)
 {

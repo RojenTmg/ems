@@ -3,13 +3,23 @@
       <h5>Staff</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
+  <div class="sp-btn align-bottom">
+    <div class="emp-link">
+      <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
+      <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
+    </div>
+   <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
+      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form> 
+  </div>
+   <hr class="hr">
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
-         <a class="float-right" href="<?= site_url('admin/employee_archive'); ?>" id="small-link"> View Archived Staff</a>
   
     </div>
   </div>
@@ -29,37 +39,41 @@
       </thead>
       <tbody>
         <?php
+          $user_not_found = FALSE;
+          if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) $user_not_found=TRUE;
         // echo $posts;  die();
-          foreach ($posts as $post) {
-            // check archived or not
-            if($post['is_active']==1){            ?>
-            <tr id="<?php echo $post['emp_id']; ?>">
-              <td><?php echo $post['emp_id']; ?></td>
-              <td><?php echo $post['title']; ?></td>
-              <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
-              <td><?php echo $post['department_name']; ?></td>
-              <td><?php echo $post['nationality']; ?></td>
-              <td><?php echo $post['highest_degree']; ?></td>
-              <td>
-                <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
-                  <div class="tooltiptext">
-                    <p>Are you sure?</p>
-                    <span class="tip-can">Cancel</span>
-                    <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Delete</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
+          if ($user_not_found != TRUE) {
+            foreach ($posts as $post) {
+              // check archived or not
+              if($post['is_active']==1){            ?>
+              <tr id="<?php echo $post['emp_id']; ?>">
+                <td><?php echo $post['emp_id']; ?></td>
+                <td><?php echo $post['title']; ?></td>
+                <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
+                <td><?php echo $post['department_name']; ?></td>
+                <td><?php echo $post['nationality']; ?></td>
+                <td><?php echo $post['highest_degree']; ?></td>
+                <td>
+                  <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
+                    <div class="tooltiptext">
+                      <p>Are you sure?</p>
+                      <span class="tip-can">Cancel</span>
+                      <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="archiveEmployee(<?php echo $post['emp_id']; ?>)" >Delete</span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
 
-          <?php
-          }
+            <?php
+            }
+            }
           }
         ?>
       </tbody>
     </table>
         <?php
-          if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) {
+          if ($user_not_found == TRUE) {
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>

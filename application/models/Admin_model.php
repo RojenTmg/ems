@@ -19,6 +19,16 @@
 
 			return $query->result_array();
 		}
+
+		public function employeeSearch($limit, $offset, $id) {
+			if (isset($offset)) $offset = $offset; else $offset = '0';
+			$project = 'SELECT * FROM employees AS e 
+						JOIN departments AS d ON d.id = e.department_id 
+						WHERE e.emp_id = ' . (int)$id . 
+						' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%" LIMIT '.$limit.' OFFSET ' . $offset . '';
+			return $this->db->query($project)->result_array();
+		}
+
 		public function archivedEmployeeList() {
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			// $this->db->limit($limit, $offset); 
@@ -77,7 +87,23 @@
 				'secondary_addressId'=>$secondary,
 				'emp_id'=>$userid
 			);
+
+
+			// first checking whether the emp_id exists or not
+			// If emp_id exists then updating table
+			// else inserting row
+
+			$this->db->where('emp_id',$userid);
+			$check = $this->db->get('employee_addresses');
+
+			if ( $check->num_rows() > 0 ) 
+			{
+			$this->db->where('emp_id',$userid);
+			$this->db->update('employee_addresses',$data);
+			} else {
+			$this->db->set('emp_id', $userid);
 			$this->db->insert('employee_addresses',$data);
+			}
 
 		}
 
@@ -100,8 +126,23 @@
 			$data=array(
 				'contact_id'=>$contact,
 				'emp_id'=>$userid
-			);
+			);	
+
+			// first checking whether the emp_id exists or not
+			// If emp_id exists then updating table
+			// else inserting row
+
+			$this->db->where('emp_id',$userid);
+			$check = $this->db->get('employee_contacts');
+
+			if ( $check->num_rows() > 0 ) 
+			{
+			$this->db->where('emp_id',$userid);
+			$this->db->update('employee_contacts',$data);
+			} else {
+			$this->db->set('emp_id', $userid);
 			$this->db->insert('employee_contacts',$data);
+			}
 		}
 
 
@@ -119,6 +160,12 @@
 		public function add_work_experience($value){
 			return $this->db->insert('employee_work_experience',$value);
 		}
+		//work experience
+		public function update_work_experience($value,$id){
+			$this->db->where('id',$id);
+		return $this->db->update('employee_work_experience',$value);
+		}
+			
 
 
 
