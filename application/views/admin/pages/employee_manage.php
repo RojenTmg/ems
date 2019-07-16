@@ -4,8 +4,7 @@
       if($this->uri->segment(3))
      {
       $updating=true;
-        $_SESSION['current_employee_id']=$this->uri->segment(3);
-         
+        $_SESSION['current_employee_id']=$this->uri->segment(3);       
      }
       else{
         if (isset($_SESSION['current_employee_id'])) {
@@ -74,21 +73,26 @@
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- work tab -->
-        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
+        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience </a> 
 
         <!--document tab  -->
-        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents </a>
         <!--TAB ENDS  -->
       </div>
     </nav>
-    <div class="message-div">
+   <!--  <div class="message-div">
       <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
        </div>
-    </div>
+    </div> -->
+
+    <!--General starts here -->
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
         <form class="form" id="general-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Title</label>
             <select name="title" id="title">
@@ -158,7 +162,7 @@
       </div>
           </div>
           <div class="sub-can">
-            <input type="button" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub" id="extra" name="submit-general">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
@@ -167,6 +171,10 @@
       <!-- personal details starts here -->
       <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
         <form class="form" id="personal-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Gender</label>
             <select id="gender">
@@ -223,7 +231,7 @@
           </div>
 
           <div class="form-div">
-            <label>Email</label>
+            <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
 
@@ -239,6 +247,10 @@
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
         <form class="form" id="address-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
             <div class="form-group add-frm-grp">
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
@@ -280,7 +292,10 @@
       <!-- contact changes -->
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form" id="contact-form">
-
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
             <div class="form-div">
             <label>Home Phone </label>
             <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
@@ -309,6 +324,10 @@
       <!-- Nationality changes -->
       <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
         <form name="nationality-tab" id="nationality-form" class="form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
@@ -367,6 +386,10 @@
       <!-- Emergency contact form -->
       <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
         <form class="form" id="emergency-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
@@ -395,6 +418,10 @@
       <!-- Education -->
       <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
         <form class="form" id="education-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">  
@@ -429,6 +456,10 @@
       <!-- health info -->
       <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
         <form class="form" id="health-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
 
             <div class="form-div">
@@ -464,7 +495,7 @@
              
             </div>
             <!-- allerygy tab changes show hide -->
-            <div id="allergy" style="display:none; ">  
+            <div id="allergy" <?php if(isset($post['allergies'])&&$post['allergies']=='Yes') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?> >  
               <div class="form-div">
                 <label>If any, please mention</label>
                 <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>">
@@ -483,11 +514,15 @@
       <!-- PAN starts -->
       <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
         <form class="form" id="pan-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <!-- hidden id -->
           <input type="hidden" id="emp_id">
 
           <div class="form-div">
-            <label>PAN Number</label>
+            <label>PAN Number<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
           <div class="sub-can">
@@ -501,7 +536,10 @@
       <!-- work experience -->
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
-
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
@@ -512,32 +550,20 @@
                 if (!empty($work_experience)) {
                   foreach ($work_experience as $value) {
               ?>
-
                 <div class="row" id="cross">
                   <i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i>
                 </div>
-                <div class="form-div">
-                  <input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>">
-                </div>
-                <div class="form-div">
-                  <input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility" value="<?php echo $value['responsibility']; ?>">
-                </div>
-                <div class="form-div">
-                  <input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>">
-                </div>
-                <div class="form-div">
-                  <input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>">
-                </div>
-                <div class="form-div">
-                  <input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>">
-                </div>
-                <!-- <div class="row"><label class="col-md-2 ">From</label> -->
-                <div class="row">
-                  <label class="col-md-2 ">From</label>
-                  <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>">
-                  <label class="col-md-2 ">To</label>
-                  <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>">
-                </div>
+              <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
+<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
+<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
+<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
+<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
+<div class="form-div"><label class="col-md-2 ">From</label>
+<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
+<div class="form-group">
+ <label class="col-md-2 ">To</label>
+<input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
+<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
 
               <?php
                   }
@@ -556,6 +582,10 @@
       <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
         <form class="form" id="document-form" enctype="multipart/form-data">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
 
           <div id="document">

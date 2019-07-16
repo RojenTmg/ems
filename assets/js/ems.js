@@ -91,6 +91,7 @@ function displayFunctionType() {
 
 ////////////////////  Add Employee through different Tabs /////////////////////
 
+// changes in add 
  function addGeneral()
   {
           var xmlHttp = new XMLHttpRequest();
@@ -116,10 +117,14 @@ function displayFunctionType() {
               {
                 var status = xmlHttp.responseText;
                showresponse('general-form',status,'Employee Added Successfully');
-               displayName(first_name,middle_name,last_name);
+                displayName(first_name,middle_name,last_name);
+               document.getElementById('generalButton').value="Update";
+              document.getElementById( "generalButton" ).setAttribute( "onClick", "javascript: updateGeneral();" );
+              
               }
           }
   }
+
 
 
 
@@ -221,13 +226,19 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
-             $('.message-div').append('<div id="message" class="message">'+msg+'</div>');  
+              $('#document-form').find('#message').css('background-color','#ffefea !important');
+              $('#document-form').find('#message').css('color','green');
+              $('#document-form').find('#message').css('display','block');
+              $('#document-form').find('#message').html(msg); 
            }
           else{
             count++;
              msg="Choose file";
 
-            $('.message-div').append('<div id="message" class="message text-danger">'+msg+'</div>');  
+              $('#document-form').find('#message').css('background-color','#ffefea !important');
+              $('#document-form').find('#message').css('color','red');
+              $('#document-form').find('#message').css('display','block');
+              $('#document-form').find('#message').html(msg); 
           }
           }
       }
@@ -325,10 +336,11 @@ function showresponse(formname,status,msg)
           if(l=="0")
           {
             // mesg div displays updated or added
-            $('#message').css('display','block');
-            $('#message').css('background','#ffefea !important');
-            $('#message').css('color','green');
-            $('#message').html(msg); 
+
+          $('#'+formname).find('#message').css('display','block');
+          $('#'+formname).find('#message').css('background','#ffefea !important');
+           $('#'+formname).find('#message').css('color','green');
+           $('#'+formname).find('#message').html(msg); 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
@@ -398,7 +410,7 @@ function showresponse(formname,status,msg)
           data.append('currentaddress_municipality',document.getElementById('currentaddress_municipality').value);
           data.append('currentaddress_district',document.getElementById('currentaddress_district').value);
           data.append('currentaddress_state',document.getElementById('currentaddress_state').value);
-          data.append('currentaddress_country',document.getElementById('currentaddress_country').value);
+        
      
           xmlHttp.send(data);
 
@@ -633,10 +645,8 @@ $(tag).append('<div class="form-div"><input type="text"  name="responsibility" i
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
 $(tag).append('<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address"></div>');
-$(tag).append('<div class="row"><label class="col-md-2 ">From</label>');
-$(tag).append('<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="">');
-$(tag).append(' <label class="col-md-2 ">To</label>');
-$(tag).append('<input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
+$(tag).append('<div class="form-div"><label class="col-md-2 ">From</label><input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value=""> </div>');
+$(tag).append('<div class="form-div"> <label class="col-md-2 ">To</label><input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
 $(tag).append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>');
  }
 
@@ -665,10 +675,11 @@ function submitWork(){
      {
      if(responsibility[i].value==''||organization[i].value==''){
         var msg="Enter complete information";
-            $('#message').css('background','red');
-              $('#message').css('color','red');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+
+            $('#work-form').find('#message').css('background','red');
+              $('#work-form').find('#message').css('color','red');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
       return false;
      }
   }
@@ -693,19 +704,19 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-              $('#message').css('background','#ffefea !important');
-              $('#message').css('color','green');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+              $('#work-form').find('#message').css('background','#ffefea !important');
+              $('#work-form').find('#message').css('color','green');
+              $('#work-form').find('#message').css('display','block');
+              $('#work-form').find('#message').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-              $('#message').css('background','red');
-              $('#message').css('color','red');
-              $('#message').css('display','block');
-              $('#message').html(msg); 
+             $('#work-form').find('#message').css('background','red');
+             $('#work-form').find('#message').css('color','red');
+             $('#work-form').find('#message').css('display','block');
+             $('#work-form').find('#message').html(msg); 
           }
           }
       }
@@ -765,10 +776,11 @@ function check_complete(){
 
     if(first_name!=''&&last_name!='') completeIcon('nav-general-tab'); else inCompleteIcon('nav-general-tab');
     if(email!=''&&dob!='') completeIcon('nav-personal-tab'); else inCompleteIcon('nav-personal-tab');
-    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!=''&&current_country!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
+    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
-    if(e_name!=''&&e_relation!=''&&e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
+    if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
+    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
 

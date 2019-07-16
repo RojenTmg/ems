@@ -274,39 +274,18 @@ class Admin_controller extends CI_Controller {
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
 				'state'=>$currentaddress_state,
-				'country'=>$currentaddress_country
+				'country'=>'NP'
 			);
 
-			$primary = array(
-				'street' => $permanentaddress_street, 
-				'municipality' => $permanentaddress_municipality,
-				'district' => $permanentaddress_district,
-				'country'=>$permanentaddress_country);
-
-			$secondary = array(
-				'street' => $currentaddress_street, 
-				'municipality' => $currentaddress_municipality,
-				'district' => $currentaddress_district,
-				'country'=>$currentaddress_country);
-
-			// error is yes when empty field is submitted by user
-			$error='none';
 			// check is used in whether the adress is already in database or not
 			$check=NULL;
 
-			if(empty($permanentaddress_street)||empty($permanentaddress_municipality)||empty($permanentaddress_district)||empty($permanentaddress_country)) {
-				$error='yes';
-			}
-			else{
-				$query=$this->db->get_where("addresses",$primary);
+	
+				$query=$this->db->get_where("addresses",$primaryAdd);
 				$check=$query->row_array();
-			}
+		
 
 			if($check==NULL){
-				if($error=='yes'){
-					$primary_id='1';
-				}
-				else{
 					if(isset($_SESSION['current_employee_id'])){
 						$id=$_SESSION['current_employee_id'];
 					}
@@ -315,13 +294,13 @@ class Admin_controller extends CI_Controller {
 					}
 
 					$primary_id=$this->Admin_model->update_address($primaryAdd,$id);
-				}
+					
 			}
 			else{
 				$primary_id=$check['address_id'];
 			}
 
-			$query=$this->db->get_where("addresses",$secondary);
+			$query=$this->db->get_where("addresses",$secondaryAdd);
 			$check=$query->row_array();
 
 			if($check==''){
@@ -349,6 +328,7 @@ class Admin_controller extends CI_Controller {
 		}
 		echo json_encode($status);
 	} 
+
 
 
 
@@ -656,6 +636,7 @@ class Admin_controller extends CI_Controller {
 			if(isset($_SESSION['current_employee_id'])){
 				$id=$_SESSION['current_employee_id'];
 			}
+     
 			else{
 				$id=$_SESSION['user_id'];
 			}
@@ -692,7 +673,8 @@ class Admin_controller extends CI_Controller {
 				}
 			}
 
-
+			if($total==0) $percentage=0;
+			else
 			$percentage=(int)(($filled/$total)*100);
 
 // for showing profile strength
