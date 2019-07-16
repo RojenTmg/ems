@@ -624,7 +624,16 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.align-bottom {
+  align-items: baseline !important;
+}
+.emp-link {
+  padding: 0;
+}
+.emp-link a {
+  padding: 0;
+  margin-right: 20px;
+}
 
 /*-----------------------------content-summary-------------------------------------------------*/
 .con-sum {
@@ -1298,4 +1307,9 @@ body {
   background-color: #87c540;
   border-radius: 10px;
   color: #fff;
+}
+
+/*-----------------------------horiziontal-line-theme-------------------------------------------------*/
+.hr {
+  margin-bottom: 40px;
 }

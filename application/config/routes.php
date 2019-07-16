@@ -64,6 +64,7 @@ $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
 $route['admin/dashboard'] = 'Admin_controller/dashboard';
 $route['admin/employee_list'] = 'Admin_controller/employeeList';
+$route['admin/employee_search'] = 'Admin_controller/employeeSearch';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 

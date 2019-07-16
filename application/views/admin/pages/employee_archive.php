@@ -3,6 +3,17 @@
       <h5>Archived Employees</h5>
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Staff List</a>
   </div>
+  <div class="sp-btn align-bottom">
+    <div class="emp-link">
+      <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
+      <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
+    </div>
+   <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
+      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form> 
+  </div>
+   <hr class="hr">
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">

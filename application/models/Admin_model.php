@@ -19,6 +19,16 @@
 
 			return $query->result_array();
 		}
+
+		public function employeeSearch($limit, $offset, $id) {
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			$this->db->limit($limit, $offset); 
+			$this->db->where('emp_id', $id); 
+			$query = $this->db->get('employees');
+
+			return $query->result_array();
+		}
+
 		public function archivedEmployeeList() {
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			// $this->db->limit($limit, $offset); 

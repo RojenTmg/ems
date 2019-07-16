@@ -119,6 +119,21 @@ class Admin_controller extends CI_Controller {
 			redirect('login');
 	}
 
+	public function employeeSearch() 
+	{ 
+		$id = $this->input->post('search_emp');
+		$title['title'] = 'Employee Search List';
+		$posts = $this->Database_model->find('employees', 'emp_id', $id);
+
+		$config = [
+			'base_url' => base_url('admin/employee_search'),
+			'per_page' => 10,
+			'total_rows' =>count($posts)
+		];
+		$this->pagination->initialize($config);
+		$data['posts'] = $this->Admin_model->employeeSearch($config['per_page'], $this->uri->segment(3), $id);
+		$this->view('employee_search', $title, $data);
+	}
 
 
 // to archive staff
