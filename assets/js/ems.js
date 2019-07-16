@@ -240,7 +240,10 @@ function submitDocument(){
               $('#document-form').find('#message').html(msg); 
           }
 
-           $( "#document" ).load(window.location.href + " #document" );
+              //  $('#nav-document-tab').addClass("active");
+              // document.getElementById("nav-document-tab").setAttribute("aria-selected", true);
+               window.location.reload(true);
+
               
           }
       }
@@ -719,6 +722,8 @@ function submitWork(){
              $('#work-form').find('#message').css('color','red');
              $('#work-form').find('#message').css('display','block');
              $('#work-form').find('#message').html(msg); 
+
+
           }
           }
       }
@@ -791,9 +796,8 @@ function updateWork(){
              $('#work-form').find('#message').css('display','block');
              $('#work-form').find('#message').html(msg); 
           }
-          $("#work-experience").load(location.href+" #work-experience");
-          window.location.reload(true);
 
+            window.location.reload(true);
           }
 
       }
@@ -888,7 +892,8 @@ function inCompleteIcon(tabId){
           {
               if(xmlHttp.readyState==4)
               {
-                $("#document").load(window.location.href + " #document" );
+                            
+              window.location.reload(true);
               }
           }
   }
@@ -909,8 +914,7 @@ function inCompleteIcon(tabId){
               if(xmlHttp.readyState==4)
               {
 
-                 $("#work-experience" ).load(window.location.href + " #work-experience" );
-                 window.location.reload(true);
+                   window.location.reload(true);
               }
           }
   }
