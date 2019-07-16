@@ -611,7 +611,8 @@
           <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
           <!-- delete button -->
           <td>
-                <button onclick="showConfirmMessage()" class="btn-archive tooltip1"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                <!-- <button onclick="showConfirmMessage()" class="btn-archive tooltip1"> <i class="fa fa-trash" aria-hidden="true"></i> </button> -->
+                <input type="button" name="" value="Delete" class="btn btn-danger" onclick="showConfirmMessage()">
                        <div class="tooltiptext" style="display: none;" id="deleteFileMessage">
                         <p>Are you sure?</p>
                         <span class="tip-can">Cancel</span>
