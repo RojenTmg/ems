@@ -38,31 +38,31 @@
       <tbody>
         <?php 
         // echo $posts;  die();
-          foreach ($posts as $post) {
-            // check archived or not
-            if($post['is_active']==0){            ?>
-            <tr id="<?php echo $post['emp_id']; ?>">
-              <td><?php echo $post['emp_id']; ?></td>
-              <td><?php echo $post['title']; ?></td>
-              <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
-              <td><?php echo $post['department_name']; ?></td>
-              <td><?php echo $post['nationality']; ?></td>
-              <td><?php echo $post['highest_degree']; ?></td>
-              <td>
-                <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                <button class="btn-archive tooltip1" title="Restore" id="<?php echo $post['emp_id']; ?>"><i class="fas fa-undo-alt res-color" aria-hidden="true"></i>
-                  <div class="tooltiptext">
-                    <p>Are you sure?</p>
-                    <span class="tip-can">Cancel</span>
-                    <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="unArchiveEmployee(<?php echo $post['emp_id']; ?>)" >Restore</span>
-                  </div>
-                </button>
-              </td>
-            </tr>
+            foreach ($posts as $post) {
+              // check archived or not
+              if($post['is_active']==0){            ?>
+              <tr id="<?php echo $post['emp_id']; ?>">
+                <td><?php echo $post['emp_id']; ?></td>
+                <td><?php echo $post['title']; ?></td>
+                <td><?php echo $post['first_name'] . ' ' . $post['middle_name'] . ' ' .  $post['last_name']; ?></td>
+                <td><?php echo $post['department_name']; ?></td>
+                <td><?php echo $post['nationality']; ?></td>
+                <td><?php echo $post['highest_degree']; ?></td>
+                <td>
+                  <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button class="btn-archive tooltip1" title="Restore" id="<?php echo $post['emp_id']; ?>"><i class="fas fa-undo-alt res-color" aria-hidden="true"></i>
+                    <div class="tooltiptext">
+                      <p>Are you sure?</p>
+                      <span class="tip-can">Cancel</span>
+                      <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="unArchiveEmployee(<?php echo $post['emp_id']; ?>)" >Restore</span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
 
-          <?php
-          }
-          }
+            <?php
+            }
+            }
         ?>
       </tbody>
     </table>
