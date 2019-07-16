@@ -608,7 +608,6 @@ body {
 
 
 
-
 /*-----------------------------content-theme-------------------------------------------------*/
 .contents {
   padding: 25px 40px 40px;
@@ -858,9 +857,6 @@ body {
 }
 .hover tbody tr:hover {
   background-color: #e8e8ed;
-}
-.thead-dark tr td {
-  background-color: #fff !important;
 }
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
 
@@ -1178,7 +1174,7 @@ body {
 }
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .drop-down-item {
-  margin: 0 15px 0 30px;
+  margin: 0 0 0 30px;
   padding: 5px 20px;
   color: #fff;
   /*color: #d6dffa;*/
@@ -1204,7 +1200,7 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-left: 15px;
 }
 .drop-down-item img:hover {
   cursor: pointer;
@@ -1322,7 +1318,7 @@ body {
 
 /*-----------------------------horiziontal-line-theme-------------------------------------------------*/
 .hr {
-  margin: 10px 0 40px;
+  margin: 10px 0 30px;
 }
 .card{
   margin-bottom: 2%;
