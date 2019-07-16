@@ -551,19 +551,26 @@
                   foreach ($work_experience as $value) {
               ?>
                 <div class="row" id="cross">
-                  <i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i>
+                  <i class="fa fa-trash col-md-12 text-right fa-2x text-danger" aria-hidden="true" onclick="showConfirmMessage()" class="form-group col-md-2 "></i>
+
+                   <div class="tooltiptext" style="display: none;" id="deleteFileMessage">
+                        <p>Are you sure?</p>
+                        <span class="tip-can">Cancel</span>
+                        <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick=" deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
+                      </div>
+                   
                 </div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
-<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
-<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
-<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
-<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
-<div class="form-div"><label class="col-md-2 ">From</label>
-<input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
-<div class="form-group">
- <label class="col-md-2 ">To</label>
-<input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
-<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
+              <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
+              <div class="form-div"><label class="col-md-2 ">From</label>
+              <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
+              <div class="form-group">
+               <label class="col-md-2 ">To</label>
+              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
+              <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
 
               <?php
                   }
@@ -587,26 +594,35 @@
         <!-- add edit message displayed here -->
        </div></div>
           <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
-
-          <div id="document">
-
-            <?php 
-                if (!empty($documents)) {
-                  foreach ($documents as $value) {
-              ?>
-              <div class="form-group">
-                <input type="text" name="doc_title" class=" col-md-2" placeholder="Enter the title" value="<?php echo $value['doc_title']; ?>">
-                <a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>" class=" col-md-3"><?php echo $value['doc_file']; ?></a> 
-                <i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>
-              <hr>
-              <?php
-                  }
-                }
-              ?>
-          </div>
-          <hr>
-
-
+          <div class="form-group"></div>
+          <div id="document"> 
+           <table class="table" style="overflow: scroll">
+            <thead>
+              <th>Title</th>
+              <th>File</th>
+              <th>Action</th>
+            </thead>
+          <?php 
+          foreach ($documents as $value) {
+        ?>
+        <tr>
+          <td><?php echo $value['doc_title']; ?></td>
+          <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+          <!-- delete button -->
+          <td>
+                <button onclick="showConfirmMessage()" class="btn-archive tooltip1"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                       <div class="tooltiptext" style="display: none;" id="deleteFileMessage">
+                        <p>Are you sure?</p>
+                        <span class="tip-can">Cancel</span>
+                        <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+                      </div>
+                   
+            </td>
+           </tr>
+        <?php   } ?>
+      </table>
+      <hr>
+  </div>
 <input type="button" onclick="submitDocument()" value="Submit" class="sub">
  </form>
 </div>
@@ -614,4 +630,19 @@
 
 <script type="text/javascript">
   check_complete();
+
+ function showConfirmMessage()
+ {
+  $('#deleteFileMessage').css('display','block');
+
+
+ }
+
+   $('.tip-can').click(function(ev) {
+    $(this).parent().css({"display": "none"});
+    ev.stopPropagation();
+  });
+
+
+
 </script>

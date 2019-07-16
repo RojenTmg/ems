@@ -165,18 +165,21 @@ function displayFunctionType() {
 
 
 function addDocument(){
-$('#document').append('<div class="form-group">');
 $('#document').append('<input type="text" name="doc_title" class=" col-md-2" placeholder="Enter the title">');
 $('#document').append('<input type="file" id="doc_file" name="userfile"  class=" col-md-3">');
 $('#document').append('<i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>');
 $('#document').append('<hr>');
-$('#document').append('</div>');
 }
 
 function removeDocument(doc){
   doc.nextSibling.remove();
   doc.previousSibling.remove();
   doc.previousSibling.remove();
+  doc.remove();
+
+}
+
+function removeDocument2(doc){
   doc.remove();
 }
 
@@ -240,6 +243,9 @@ function submitDocument(){
               $('#document-form').find('#message').css('display','block');
               $('#document-form').find('#message').html(msg); 
           }
+
+           $( "#document" ).load(window.location.href + " #document" );
+              
           }
       }
       
@@ -795,3 +801,42 @@ function completeIcon(tabId){
 function inCompleteIcon(tabId){
     document.getElementById(tabId).childNodes[1].className="fa fa-info-circle prog-incom";
 }
+
+
+
+// delete files permanently from the edit option
+ function removeFile(id)
+  {       
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','deleteFile',true);
+          var data = new FormData();
+          data.append('doc_id', id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+            $( "#document" ).load(window.location.href + " #document" );
+              }
+          }
+  }
+
+
+  // delete work experience data from edit form
+  function deleteWorkExperience(id)
+  {
+    var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','deleteWorkExperience',true);
+          var data = new FormData();
+          data.append('id', id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+            $( "#work-experience" ).load(window.location.href + " #work-experience" );
+              }
+          }
+  }

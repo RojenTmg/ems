@@ -856,6 +856,11 @@ body {
   background-color: #fff !important;
 }
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
+
+/*added css*/
+.tip-arch, .tip-can:hover{
+  cursor: pointer;
+}
 .btn-edit, .btn-archive {
   border: none;
   background-color: #ffffff00;
@@ -874,6 +879,10 @@ body {
   color: #dc3545;
 }
 .tooltip1 {
+  position: relative;
+  display: inline-block;
+}
+.tooltip2 {
   position: relative;
   display: inline-block;
 }

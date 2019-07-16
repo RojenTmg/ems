@@ -614,6 +614,30 @@ class Admin_controller extends CI_Controller {
 			echo $status;
 
 		}
+	// <!-- delete files from the database -->
+	 function deleteFile()
+	 {
+		extract($_POST);
+		$this->db->where('doc_id',$doc_id);
+			$getFile = $this->db->get('employee_documents');
+			$document= $getFile->row_array();
+
+			$filename=$document['doc_file'];
+			$path='assets/files/'.$filename;
+		$this->Admin_model->deleteFile($path,$doc_id);
+	}
+
+
+	// delete work Experience from the database
+	function deleteWorkExperience()
+	{
+		extract($_POST);
+		// $this->db->where('id',$id);
+		// 	$getrow = $this->db->get('employee_work_experience');
+		// 	$row= $getrow->row_array();
+
+		$this->Admin_model->deleteWorkExperience($id);
+	}
 
 // calculate percentage of form
 		function progressBar(){
@@ -687,4 +711,9 @@ class Admin_controller extends CI_Controller {
 			echo json_encode($progress_data);
 		}
 	}
+
+
+
+
+
 	?>

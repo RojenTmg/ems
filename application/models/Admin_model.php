@@ -179,6 +179,22 @@
 			// return $this->db->query('SELECT id FROM ' . $table . ' WHERE MONTH(' . $field . ') = ' . $date . '')->result_array();
 		}
 
+		// delete Files from the database
+		public function deleteFile($path,$id)
+		{
+			$this->db->where('doc_id',$id);
+			$this->db->delete('employee_documents');
+			 unlink($path);
+
+		}
+
+		// to delete work experience record from the database
+		public function deleteWorkExperience($id)
+		{
+			$this->db->where('id',$id);
+			$this->db->delete('employee_work_experience');
+		}
+
 	}
 
 
