@@ -544,21 +544,22 @@
            <div class="form-div">
           </div>
           <p class="title" id="add_doc_title"></p>
-             
+             <div id="work-experience" class="bg-light"></div>
               <!-- the form appends here -->
               <?php 
                 if (!empty($work_experience)) {
                   foreach ($work_experience as $value) {
               ?>
-               <div id="work-experience" class="bg-light">
+               <div id="list-experience" class="bg-light">
+                <div id="deleteExp">
                 <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
 
-                       <div class="tooltiptext" id="deleteFileMessage">
+                       <div class="tooltiptext float-right" id="deleteFileMessage">
                         <p>Are you sure?</p>
                         <span class="tip-can">Cancel</span>
                         <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
                       </div>
-            
+                </div>
                <div class="form-div"><input type="text" style="display: none" name="exp_id" value="<?php echo $value['id'];?>"></div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
               <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
@@ -596,7 +597,8 @@
        </div></div>
           <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
           <div class="form-group"></div>
-          <div id="document"> 
+          <div id="document"> </div>
+          <div id="list_doc">
            <table class="table" style="overflow: scroll">
             <thead>
               <th>Title</th>
@@ -604,6 +606,7 @@
               <th>Action</th>
             </thead>
           <?php 
+          if(!empty($documents)){
           foreach ($documents as $value) {
         ?>
         <tr>
@@ -611,16 +614,16 @@
           <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
           <!-- delete button -->
           <td>
-                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
-                       <div class="tooltiptext" id="deleteFileMessage">
-                        <p>Are you sure?</p>
-                        <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
-                      </div>
+               <div class="tooltiptext float-right" id="deleteFileMessage">
+                <p>Are you sure?</p>
+                <span class="tip-can">Cancel</span>
+                <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+              </div>
             </td>
            </tr>
-        <?php   } ?>
+        <?php   } } ?>
       </table>
       <hr>
   </div>

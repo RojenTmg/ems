@@ -115,8 +115,9 @@
     </form> -->
     <div class="drop-down-item" id="show-profile">
       <div class="pro-file">
+         <span><strong> Administrator &nbsp;&nbsp;&nbsp;  </strong></span>
         <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
-        <span><strong> Administrator &nbsp;&nbsp;&nbsp;  </strong></span>
+       
         <!-- <i class="fa fa-caret-down" aria-hidden="true"></i> -->
       </div>
       <div class="drop-down">
@@ -127,11 +128,11 @@
         </ul>
       </div>
     </div>
-    <div class="log-out">
+   <!--  <div class="log-out">
       <a href="<?= base_url('logout'); ?>">
         <i class="fa fa-power-off" title="logout"></i>
-      </a>
-    </div>
+      </a> -->
+    <!-- </div> -->
 
   </div>
 </nav>
@@ -142,7 +143,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="#"> </a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>

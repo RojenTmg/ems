@@ -911,6 +911,10 @@ body {
   width: 180px;
   padding-bottom: 10px;
 }
+
+#deleteExp .tooltiptext{
+  position: unset;
+}
 .tooltiptext .tip-can, .tooltiptext .tip-arch {
   padding: 5px 10px; 
   background-color: #c1c1c1;
@@ -1322,4 +1326,8 @@ body {
 }
 .card{
   margin-bottom: 2%;
+}
+
+.fa-trash:hover{
+  cursor: pointer;
 }

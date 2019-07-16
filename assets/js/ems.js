@@ -791,7 +791,8 @@ function updateWork(){
              $('#work-form').find('#message').css('display','block');
              $('#work-form').find('#message').html(msg); 
           }
-          $("#work-experience").load(location.href+" #work-experience>*","");
+          $("#work-experience").load(location.href+" #work-experience");
+          window.location.reload(true);
 
           }
 
@@ -909,6 +910,7 @@ function inCompleteIcon(tabId){
               {
 
                  $("#work-experience" ).load(window.location.href + " #work-experience" );
+                 window.location.reload(true);
               }
           }
   }

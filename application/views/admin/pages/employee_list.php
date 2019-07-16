@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
-    <table class="table table-bordered hover employee_table" >
+    <table class="table table-bordered hover employee_table" id="example" >
       <thead class="thead-dark">
         <tr>
           <th  style="width: 2%; background-color: #444a50;">Id</th>
@@ -142,4 +142,10 @@
   //   alert($(this).attr('id'));
   //   ev.stopPropagation();
   // });
+
+
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+
 </script>
