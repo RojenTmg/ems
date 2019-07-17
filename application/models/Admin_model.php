@@ -14,10 +14,11 @@
 
 		public function employeeList($limit, $offset) {
 			$this->db->join('departments', 'departments.id=employees.department_id');
-			$this->db->limit($limit, $offset); 
 			$this->db->where('is_active', '1');
+			$this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
-
+			// echo count($query->result_array()); die();
+			// echo '<pre>' . var_dump($query->result_array()) . '</pre>'; die();
 			return $query->result_array();
 		}
 
@@ -217,8 +218,10 @@
 					    LEFT JOIN contacts c ON c.contact_id = ec.contact_id";
 
 			if ($id === FALSE) {	
+				$project = $project . ' WHERE e.is_active = ' . 1;
 				$this->db->order_by('emp_id', 'DESC');
 				$query = $this->db->query($project);
+				// var_dump($query->result_array()); die();
 				return $query->result_array();
 			}
 

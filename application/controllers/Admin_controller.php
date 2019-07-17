@@ -19,9 +19,16 @@ class Admin_controller extends CI_Controller {
 
 	public function showingEntries($total, $from, $to) {
 		if (empty($from)) $from = '0';
+
 		$data['total'] = $total;
-		$data['from'] = $from;
-		$data['to'] = $data['from'] + $to;
+		if ($from >= $total) {
+			$data['from'] = 0;
+			$data['to'] = 0;
+		}
+		else {
+			$data['from'] = $from;
+			$data['to'] = $data['from'] + $to;
+		}
 		return $data;
 	}
 
@@ -99,17 +106,16 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Employee List';
 
-		$posts = $this->Admin_model->getEmployeeDetails();
+		$posts = $this->Database_model->find('employees', 'is_active', '1');
 		$perPage = 4;
 		$data['posts'] = $this->Admin_model->employeeList($perPage, $this->uri->segment(3));
-		$data['showing_entries'] = $this->showingEntries(count($posts) - 1, $this->uri->segment(3), count($data['posts']));
+		$data['showing_entries'] = $this->showingEntries(count($posts), $this->uri->segment(3), count($data['posts']));
 		$config = [
 			'base_url' => base_url('admin/employee_list'),
 			'per_page' => $perPage,
 			'total_rows' => $data['showing_entries']['total']
 		];
 		$this->pagination->initialize($config);
-
 		$this->view('employee_list', $title, $data);
 	}
 
