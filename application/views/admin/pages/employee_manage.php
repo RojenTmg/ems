@@ -356,7 +356,7 @@
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="radio"  value="Yes" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'Yes') { echo "checked"; }} ?>>
+              <input type="radio"  value="Yes" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'Yes') { echo "checked"; }} ?> checked=''>
               <label>Yes</label>
             </div>
             <div>
