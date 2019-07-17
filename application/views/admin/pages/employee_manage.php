@@ -40,6 +40,15 @@
         </div>
      </div>
 
+     <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
+
+
      <!-- nav-tab-form -->
      <nav>
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -648,6 +657,13 @@
     ev.stopPropagation();
   });
 
+// to close message
+
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#messagediv").css('display','none');
+    });
+});  
 
 
 

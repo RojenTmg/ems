@@ -151,6 +151,7 @@ function displayFunctionType() {
               {
                 var status = xmlHttp.responseText;
                showresponse('general-form',status,'Updated Successfully');
+
                displayName(first_name,middle_name,last_name);
               }
           }
@@ -190,10 +191,11 @@ function submitDocument(){
      {
      if(doc_file[i].files.length==0){
         var msg="Select a file first.";
-        $('#document-form').find('#message').css('background-color','#ffefea !important');
-        $('#document-form').find('#message').css('color','red');
-        $('#document-form').find('#message').css('display','block');
-        $('#document-form').find('#message').html(msg); 
+       $('#messagediv').removeClass('alert-success');
+       $('#messagediv').addClass('alert-danger');
+       $('#messagediv').css('color','red');
+       $('#messagediv').css('display','block');
+       $('#showmessage').html(msg); 
       return false;
      }
      if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf" ) {
@@ -201,10 +203,11 @@ function submitDocument(){
      }
      else{
              var msg="Select a doc or pdf file only";
-          $('#document-form').find('#message').css('background-color','#ffefea !important');
-          $('#document-form').find('#message').css('color','red');
-            $('#document-form').find('#message').css('display','block');
-              $('#document-form').find('#message').html(msg); 
+           $('#messagediv').removeClass('alert-success');
+           $('#messagediv').addClass('alert-danger');
+       $('#messagediv').css('color','red');
+       $('#messagediv').css('display','block');
+       $('#showmessage').html(msg); 
       return false;
      }
   }
@@ -225,19 +228,18 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
-              $('#document-form').find('#message').css('background-color','#ffefea !important');
-              $('#document-form').find('#message').css('color','green');
-              $('#document-form').find('#message').css('display','block');
-              $('#document-form').find('#message').html(msg); 
+              $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
            }
           else{
             count++;
              msg="Choose file";
 
-              $('#document-form').find('#message').css('background-color','#ffefea !important');
-              $('#document-form').find('#message').css('color','red');
-              $('#document-form').find('#message').css('display','block');
-              $('#document-form').find('#message').html(msg); 
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
           }
 
               //  $('#nav-document-tab').addClass("active");
@@ -326,7 +328,6 @@ function showHideAllergy(allergy)
   // display message if added successfully and red textbox if the required fields are empty
 function showresponse(formname,status,msg)
 {
-
   var check=false;
   var JSONObject;
   JSONObject=JSON.parse(status);
@@ -341,11 +342,17 @@ function showresponse(formname,status,msg)
           if(l=="0")
           {
             // mesg div displays updated or added
+            if($('#messagediv').hasClass('alert-danger')){
 
-          $('#'+formname).find('#message').css('display','block');
-          $('#'+formname).find('#message').css('background','#ffefea !important');
-           $('#'+formname).find('#message').css('color','green');
-           $('#'+formname).find('#message').html(msg); 
+             $('#messagediv').removeClass('alert-danger');
+               $('#messagediv').addClass('alert-success');
+            }
+            
+           $('#messagediv').css('display','block');
+            $('#messagediv').css('background','#ffadad !important');
+            $('#messagediv').css('color','green');
+            $('#showmessage').html(msg); 
+
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
             break;
@@ -681,10 +688,11 @@ function submitWork(){
      if(responsibility[i].value==''||organization[i].value==''){
         var msg="Enter complete information";
 
-            $('#work-form').find('#message').css('background','red');
-              $('#work-form').find('#message').css('color','red');
-              $('#work-form').find('#message').css('display','block');
-              $('#work-form').find('#message').html(msg); 
+             $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
       return false;
      }
   }
@@ -709,19 +717,20 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-              $('#work-form').find('#message').css('background','#ffefea !important');
-              $('#work-form').find('#message').css('color','green');
-              $('#work-form').find('#message').css('display','block');
-              $('#work-form').find('#message').html(msg); 
+              $('#messagediv').css('background','#ffadad !important');
+              $('#messagediv').css('color','green');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-             $('#work-form').find('#message').css('background','red');
-             $('#work-form').find('#message').css('color','red');
-             $('#work-form').find('#message').css('display','block');
-             $('#work-form').find('#message').html(msg); 
+            $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+             $('#messagediv').css('color','red');
+             $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
 
 
           }
@@ -749,10 +758,11 @@ function updateWork(){
      if(responsibility[i].value==''||organization[i].value==''){
         var msg="Enter complete information";
 
-            $('#work-form').find('#message').css('background','red');
-              $('#work-form').find('#message').css('color','red');
-              $('#work-form').find('#message').css('display','block');
-              $('#work-form').find('#message').html(msg); 
+             $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+                $('#showmessage').html(msg); 
       return false;
      }
   }
@@ -782,19 +792,20 @@ function updateWork(){
            if(status=='true')
            {
              msg="Updated";
-              $('#work-form').find('#message').css('background','#ffefea !important');
-              $('#work-form').find('#message').css('color','green');
-              $('#work-form').find('#message').css('display','block');
-              $('#work-form').find('#message').html(msg); 
+               $('#messagediv').css('background','#ffadad !important');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+                $('#showmessage').html(msg); 
            }
           else{
             count++;
              msg="Enter information";
 
-             $('#work-form').find('#message').css('background','red');
-             $('#work-form').find('#message').css('color','red');
-             $('#work-form').find('#message').css('display','block');
-             $('#work-form').find('#message').html(msg); 
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
           }
 
             window.location.reload(true);
