@@ -27,7 +27,7 @@
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
 
-             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add Staff" onclick="location = '<?= site_url('admin/employee_manage'); ?>'">
+             <input id="done-btn" class="float-right btn btn-success" type="button" name="done" value="Add New Staff" onclick="location = '<?= site_url('admin/employee_manage'); ?>'">
 
         </div>
         <div id="progress-bar-body" style="display: none" class="box-body">
@@ -162,7 +162,7 @@
       </div>
           </div>
           <div class="sub-can">
-             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Submit"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
@@ -236,7 +236,7 @@
           </div>
 
           <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
           
           </div>
         </form>
@@ -282,7 +282,7 @@
             </select>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addAddress()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addAddress()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -314,7 +314,7 @@
           </div>
 
           <div class="sub-can">
-            <input type="button" onclick="addContact()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addContact()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -376,7 +376,7 @@
 
 
           <div class="sub-can">
-            <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addNationality()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -408,7 +408,7 @@
             <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEmergency()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -446,7 +446,7 @@
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEducation()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -502,7 +502,7 @@
               </div>
             </div>
             <div class="sub-can">
-              <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
+              <input type="button" onclick="addHealth()" name="" value="Save" class="sub">
               
             </div>
           </div>
@@ -526,7 +526,7 @@
             <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addPan()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -581,7 +581,7 @@
      
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="submitWork()" value="Submit" ';?> class="sub">
+            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="submitWork()" value="Save" ';?> class="sub">
            </div> 
           </div>
         </form>
@@ -629,7 +629,7 @@
       </table>
       <hr>
   </div>
-<input type="button" onclick="submitDocument()" value="Submit" class="sub">
+<input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
 </div>
     <!-- documents ends here -->

@@ -42,6 +42,10 @@
 			return $query->row_array();
 		}
 
+		public function FunctionName($value='')
+		{
+			# code...
+		}
 		////////////////////// DELETE Query Functions ////////////////////////
 
 	}
