@@ -41,7 +41,7 @@ class Admin_controller extends CI_Controller {
 	public function dashboard() 
 	{
 		$title['title'] = 'Dashboard';
-		$data['count'] = count($this->Admin_model->getEmployeeDetails());
+		$data['count'] = count($this->Database_model->findAll('employees'));
 		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
@@ -77,7 +77,7 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-		$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id,'doc_id');
+		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
 
@@ -122,7 +122,7 @@ class Admin_controller extends CI_Controller {
 			if ($id != NULL) {
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-				$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id, 'doc_id');
+				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		
 				$this->view('employee_manage', $title, $data);
 			} else
