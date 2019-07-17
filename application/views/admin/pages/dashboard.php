@@ -37,7 +37,7 @@
             </div>
           </a>
           </div>
-          <div class="sum-item">
+          <!-- <div class="sum-item">
           <a href="<?= base_url('admin'); ?>">
             
           </a>
@@ -46,7 +46,7 @@
           <a href="<?= base_url('admin'); ?>">
             
           </a>
-          </div>
+          </div> -->
     </div>
         <div>
       <div class="con-sub-head">

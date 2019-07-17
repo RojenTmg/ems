@@ -77,10 +77,13 @@
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>
-  </div>
-</div>
-<div class="page-limit">
+<div class="page-limit sp-btn">
+    <i>Showing 0 to 4 of 5 entries</i>
+    <div>
     <?= $this->pagination->create_links(); ?>
+    </div>
+</div>
+  </div>
 </div>
 </div>
 
