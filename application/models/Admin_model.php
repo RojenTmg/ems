@@ -13,6 +13,7 @@
 		}
 
 		public function employeeList($limit, $offset) {
+			$this->db->where('is_active', '1');
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			$this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
@@ -36,6 +37,7 @@
 			return $this->db->query($project)->result_array();
 		}
 		public function archivedEmployeeList() {
+			$this->db->where('is_active', '0');
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			// $this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');

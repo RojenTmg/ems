@@ -44,8 +44,7 @@
         // echo $posts;  die();
           if ($user_not_found != TRUE) {
             foreach ($posts as $post) {
-              // check archived or not
-              if($post['is_active']==1){            ?>
+              // check archived or not           ?>
               <tr id="<?php echo $post['emp_id']; ?>">
                 <td><?php echo $post['emp_id']; ?></td>
                 <td><?php echo $post['title']; ?></td>
@@ -66,7 +65,7 @@
               </tr>
 
             <?php
-            }
+            
             }
           }
         ?>
@@ -153,9 +152,5 @@
   //   ev.stopPropagation();
   // });
 
-
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
 
 </script>

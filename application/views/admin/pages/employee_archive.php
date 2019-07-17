@@ -40,8 +40,7 @@
         <?php 
         // echo $posts;  die();
             foreach ($posts as $post) {
-              // check archived or not
-              if($post['is_active']==0){            ?>
+              // check archived or not         ?>
               <tr id="<?php echo $post['emp_id']; ?>">
                 <td><?php echo $post['emp_id']; ?></td>
                 <td><?php echo $post['title']; ?></td>
@@ -62,7 +61,7 @@
               </tr>
 
             <?php
-            }
+            
             }
         ?>
       </tbody>
