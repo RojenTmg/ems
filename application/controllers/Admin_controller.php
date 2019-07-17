@@ -17,6 +17,14 @@ class Admin_controller extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
+	public function showingEntries($total, $from, $to) {
+		if (empty($from)) $from = '0';
+		$data['total'] = $total;
+		$data['from'] = $from;
+		$data['to'] = $data['from'] + $to;
+		return $data;
+	}
+
 	// public function generalPage($page = 'dashboard') 
 	// {
 	// 	if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
@@ -33,7 +41,7 @@ class Admin_controller extends CI_Controller {
 	public function dashboard() 
 	{
 		$title['title'] = 'Dashboard';
-		$data['count'] = count($this->Admin_model->getEmployeeDetails());
+		$data['count'] = count($this->Database_model->findAll('employees'));
 		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
@@ -69,9 +77,10 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-		$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id,'doc_id');
+		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
+
 			$config = [
 				'base_url' => base_url('admin/employee_list'),
 				'per_page' => 4,
@@ -89,15 +98,18 @@ class Admin_controller extends CI_Controller {
 	public function employeeList() 
 	{
 		$title['title'] = 'Employee List';
-		$posts = $this->Admin_model->getEmployeeDetails();
 
+		$posts = $this->Admin_model->getEmployeeDetails();
+		$perPage = 4;
+		$data['posts'] = $this->Admin_model->employeeList($perPage, $this->uri->segment(3));
+		$data['showing_entries'] = $this->showingEntries(count($posts) - 1, $this->uri->segment(3), count($data['posts']));
 		$config = [
 			'base_url' => base_url('admin/employee_list'),
-			'per_page' => 4,
-			'total_rows' =>count($posts)
+			'per_page' => $perPage,
+			'total_rows' => $data['showing_entries']['total']
 		];
 		$this->pagination->initialize($config);
-		$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
+
 		$this->view('employee_list', $title, $data);
 	}
 
@@ -110,7 +122,7 @@ class Admin_controller extends CI_Controller {
 			if ($id != NULL) {
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-				$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id, 'doc_id');
+				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		
 				$this->view('employee_manage', $title, $data);
 			} else
@@ -123,15 +135,18 @@ class Admin_controller extends CI_Controller {
 	{ 
 		$id = $this->input->post('search_emp');
 		$title['title'] = 'Employee Search List';
-		$perPage = 10;
-		$data['count'] = count($this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id));
+
+		$posts = $this->Admin_model->employeeSearchTotal($id);
+		$perPage = 4;
+		$data['posts'] = $this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id);
+		$data['showing_entries'] = $this->showingEntries(count($posts), $this->uri->segment(3), count($data['posts']));
 		$config = [
 			'base_url' => base_url('admin/employee_search'),
 			'per_page' => $perPage,
-			'total_rows' => $data['count']
+			'total_rows' => $data['showing_entries']['total']
 		];
 		$this->pagination->initialize($config);
-		$data['posts'] = $this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id);
+		
 		if (empty($data['posts'])) 
 			$data['posts']['user_not_found'] = TRUE;
 		$this->view('employee_search', $title, $data);

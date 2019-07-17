@@ -18,9 +18,8 @@
   <div class="box-head">
     <div class="sp-btn">
 <!-- user icon -->
-       <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
+       <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Searched Users</p>
        <div class="arch-msg-div"></div>
-       <i>( <?php echo $count; ?> staff found in total )</i>
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
@@ -73,11 +72,21 @@
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>
-</div>
-<div class="page-limit">
+<div class="page-limit sp-btn">
+    <i>
+      <?php 
+        if (!empty($showing_entries)) 
+          echo 'Showing ' . $showing_entries['from'] . ' to ' . $showing_entries['to'] . ' of ' . $showing_entries['total'] . ' entries'; 
+      ?>
+    </i>
+    <div>
     <?= $this->pagination->create_links(); ?>
+    </div>
+</div>
+  </div>
 </div>
 </div>
+
 
 
 <script type="text/javascript">

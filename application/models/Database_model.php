@@ -39,7 +39,7 @@
 		{
 			$query = $this->db->select($select);
 			$query = $this->db->get($table);
-			return $query->row_array();
+			return $query->result_array();
 		}
 
 		public function findDescending($table, $field, $id, $sort_id)
