@@ -47,6 +47,11 @@
 				<div class="item-2 text-left"><?php echo $post['last_name']; ?></div>
 			</div>
 
+			<div class="body-row ">
+				<div class="item-1 text-left" >Date of join</div>
+				<div class="item-2 text-left"><?php echo $post['join_date']; ?></div>
+			</div>
+
 				<div class="body-row ">
 				<div class="item-1 text-left" >Gender</div>
 				<div class="item-2 text-left"><?php echo $post['gender']; ?></div>

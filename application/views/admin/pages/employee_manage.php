@@ -125,52 +125,12 @@
             <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
           <!-- date of join added -->
-          <div class="form-div">
-            <label>Date of Join<span class="text-danger"><i>*</i></span></label>
-            <!-- date -->
-            <div class="row">
-            <select name="day" id="day" class="col-md-1 mr-5 ml-3 ">
-        <?php 
-          $start_date = 1;
-          $end_date   = 31;
-          for( $j=$start_date; $j<=$end_date; $j++ ) {
-          ?>
-            <option value=<?php echo $j;?><?php if(isset($post['join_date'])) { if (date("d", strtotime($post['join_date'])) == $j) { echo ' selected'; }}?>><?php echo $j; ?></option>
-          <?php
-          }
-        ?>
-      </select>
-      <!-- month -->
-             <select id="month"   name="month"  class="col-md-2 mr-5" /> 
-                <option value="1" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '01') { echo 'selected'; }} ?>>January</option>       
-                <option value="2" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '02') { echo 'selected'; }} ?>>February</option>       
-                <option value="3" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '03') { echo 'selected'; }} ?>>March</option>       
-                <option value="4" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '04') { echo 'selected'; }} ?> >April</option>       
-                <option value="5" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '05') { echo 'selected'; }} ?>>May</option>       
-                <option value="6" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '06') { echo 'selected'; }} ?>>June</option>       
-                <option value="7" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '07') { echo 'selected'; }} ?>>July</option>       
-                <option value="8" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '08') { echo 'selected'; }} ?>>August</option>       
-                <option value="9" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '09') { echo 'selected'; }} ?>>September</option>       
-                <option value="10" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '10') { echo 'selected'; }} ?>>October</option>       
-                <option value="11" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '11') { echo 'selected'; }} ?>>November</option>       
-                <option value="12" <?php if(isset($post['join_date'])) { if ( date("m", strtotime($post['join_date'])) == '12') { echo 'selected'; }} ?>>December</option>       
-              </select>
-            <!-- year -->
-             <select id="year" name="year " class="col-md-1">
-        <?php 
-          $year = date('Y');
-          $min = $year - 60;
-          $max = $year;
-          for( $i=$max; $i>=$min; $i-- ) {
-          ?>
-           <option value=<?php echo $i;?><?php if(isset($post['join_date'])) { if (date("Y", strtotime($post['join_date'])) == $i) { echo ' selected'; }}?>><?php echo $i; ?></option>
-          <?php
-          }
-        ?>
-      </select>
-      </div>
-          </div>
-          <div class="sub-can">
+ <div class="form-div">
+  <label>Join Date</label>
+            <input type="date" name="join_date" id="join_date" value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';    ?>>
+
+ </div>           
+                 <div class="sub-can">
              <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
