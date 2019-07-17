@@ -12,35 +12,35 @@
 			return $this->db->update('employees',$data);
 		}
 
-		public function employeeList($limit, $offset) {
+		public function employeeList() {
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			$this->db->where('is_active', '1');
-			$this->db->limit($limit, $offset); 
+			// $this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
 			// echo count($query->result_array()); die();
 			// echo '<pre>' . var_dump($query->result_array()) . '</pre>'; die();
 			return $query->result_array();
 		}
 
-		public function employeeSearch($limit, $offset, $id) {
-			if (isset($offset)) $offset = $offset; else $offset = '0';
-			$project = 'SELECT * FROM employees AS e 
-						JOIN departments AS d ON d.id = e.department_id 
-						WHERE e.emp_id = ' . (int)$id . 
-						' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%" LIMIT '.$limit.' OFFSET ' . $offset . '';
-			return $this->db->query($project)->result_array();
-		}
-		public function employeeSearchTotal($id) {
-			$project = 'SELECT * FROM employees AS e 
-						JOIN departments AS d ON d.id = e.department_id 
-						WHERE e.emp_id = ' . (int)$id . 
-						' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%"';
-			return $this->db->query($project)->result_array();
-		}
+		// public function employeeSearch($id) {
+		// 	if (isset($offset)) $offset = $offset; else $offset = '0';
+		// 	$project = 'SELECT * FROM employees AS e 
+		// 				JOIN departments AS d ON d.id = e.department_id 
+		// 				WHERE e.emp_id = ' . (int)$id . 
+		// 				' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%"';
+		// 	return $this->db->query($project)->result_array();
+		// }
+		// public function employeeSearchTotal($id) {
+		// 	$project = 'SELECT * FROM employees AS e 
+		// 				JOIN departments AS d ON d.id = e.department_id 
+		// 				WHERE e.emp_id = ' . (int)$id . 
+		// 				' OR e.first_name LIKE "%' . $id . '%" OR e.middle_name LIKE "%' . $id . '%" OR e.last_name LIKE "%' . $id . '%"';
+		// 	return $this->db->query($project)->result_array();
+		// }
+		
 		public function archivedEmployeeList() {
 			$this->db->where('is_active', '0');
 			$this->db->join('departments', 'departments.id=employees.department_id');
-			// $this->db->limit($limit, $offset); 
 			$query = $this->db->get('employees');
 
 			return $query->result_array();

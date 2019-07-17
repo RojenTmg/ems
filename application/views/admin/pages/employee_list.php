@@ -8,10 +8,6 @@
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
       <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
     </div>
-   <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
-      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp"  required="required">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form> 
   </div>
    <hr class="hr">
   <div class="box">
@@ -20,7 +16,10 @@
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
-  
+        <!-- <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
+      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp" required="required">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form> -->
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
@@ -76,7 +75,7 @@
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>
-<div class="page-limit sp-btn">
+<!-- <div class="page-limit sp-btn">
     <i id="sh-ent">
       <?php 
         if (!empty($showing_entries)) 
@@ -86,7 +85,7 @@
     <div>
     <?= $this->pagination->create_links(); ?>
     </div>
-</div>
+</div> -->
   </div>
 </div>
 </div>

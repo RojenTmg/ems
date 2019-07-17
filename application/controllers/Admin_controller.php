@@ -86,15 +86,6 @@ class Admin_controller extends CI_Controller {
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		if (empty($data['post'])) {
-			$posts = $this->Admin_model->getEmployeeDetails();
-
-			$config = [
-				'base_url' => base_url('admin/employee_list'),
-				'per_page' => 4,
-				'total_rows' =>count($posts)
-			];
-			$this->pagination->initialize($config);
-			$data['posts'] = $this->Admin_model->employeeList($config['per_page'], $this->uri->segment(3));
 			$data['posts']['user_not_found'] = true;
 			$this->view('employee_list', $title, $data);
 		} else {
@@ -105,17 +96,7 @@ class Admin_controller extends CI_Controller {
 	public function employeeList() 
 	{
 		$title['title'] = 'Employee List';
-
-		$posts = $this->Database_model->find('employees', 'is_active', '1');
-		$perPage = 4;
-		$data['posts'] = $this->Admin_model->employeeList($perPage, $this->uri->segment(3));
-		$data['showing_entries'] = $this->showingEntries(count($posts), $this->uri->segment(3), count($data['posts']));
-		$config = [
-			'base_url' => base_url('admin/employee_list'),
-			'per_page' => $perPage,
-			'total_rows' => $data['showing_entries']['total']
-		];
-		$this->pagination->initialize($config);
+		$data['posts'] = $this->Admin_model->employeeList();
 		$this->view('employee_list', $title, $data);
 	}
 
@@ -137,27 +118,25 @@ class Admin_controller extends CI_Controller {
 			redirect('login');
 	}
 
-	public function employeeSearch() 
-	{ 
-		$id = $this->input->post('search_emp');
-		$title['title'] = 'Employee Search List';
-
-		$posts = $this->Admin_model->employeeSearchTotal($id);
-		$perPage = 4;
-		$data['posts'] = $this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id);
-		$data['showing_entries'] = $this->showingEntries(count($posts), $this->uri->segment(3), count($data['posts']));
-		$config = [
-			'base_url' => base_url('admin/employee_search'),
-			'per_page' => $perPage,
-			'total_rows' => $data['showing_entries']['total']
-		];
-		$this->pagination->initialize($config);
+	// public function employeeSearch() 
+	// { 
+	// 	$id = $this->input->post('search_emp');
+	// 	$title['title'] = 'Employee Search List';
+	// 	$posts = $this->Admin_model->employeeSearchTotal($id);
+	// 	$perPage = 4;
+	// 	$data['posts'] = $this->Admin_model->employeeSearch($perPage, $this->uri->segment(3), $id);
+	// 	$data['showing_entries'] = $this->showingEntries(count($posts), $this->uri->segment(3), count($data['posts']));
+	// 	$config = [
+	// 		'base_url' => base_url('admin/employee_search'),
+	// 		'per_page' => $perPage,
+	// 		'total_rows' => $data['showing_entries']['total']
+	// 	];
+	// 	$this->pagination->initialize($config);
 		
-		if (empty($data['posts'])) 
-			$data['posts']['user_not_found'] = TRUE;
-		$this->view('employee_search', $title, $data);
-	}
-
+	// 	if (empty($data['posts'])) 
+	// 		$data['posts']['user_not_found'] = TRUE;
+	// 	$this->view('employee_search', $title, $data);
+	// }
 
 // to archive staff
 	public function archiveEmployee()
