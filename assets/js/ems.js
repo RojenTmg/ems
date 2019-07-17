@@ -100,7 +100,7 @@ function displayFunctionType() {
           var first_name =document.getElementById('first_name').value;
           var last_name=document.getElementById('last_name').value;
           var middle_name= document.getElementById('middle_name').value;
-          var join_date=document.getElementById('year').value+'-'+document.getElementById('month').value+'-'+document.getElementById('day').value;
+          var join_date=document.getElementById('join_date').value;
           var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
           data.append('title',document.getElementById('title').value);
           data.append('first_name',first_name);
@@ -136,7 +136,7 @@ function displayFunctionType() {
           var first_name =document.getElementById('first_name').value;
           var last_name=document.getElementById('last_name').value;
           var middle_name= document.getElementById('middle_name').value;
-          var join_date=document.getElementById('year').value+'-'+document.getElementById('month').value+'-'+document.getElementById('day').value;
+          var join_date=document.getElementById('join_date').value;
           data.append('title',document.getElementById('title').value);
           data.append('first_name',first_name);
           data.append('middle_name',middle_name);
@@ -903,7 +903,13 @@ function inCompleteIcon(tabId){
           {
               if(xmlHttp.readyState==4)
               {
-                            
+             msg="Deleted Successfully.";
+
+               // $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-success');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
               window.location.reload(true);
               }
           }
@@ -925,7 +931,14 @@ function inCompleteIcon(tabId){
               if(xmlHttp.readyState==4)
               {
 
-                   window.location.reload(true);
+                msg="Deleted Successfully.";
+
+               // $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-success');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+              window.location.reload(true);
               }
           }
   }

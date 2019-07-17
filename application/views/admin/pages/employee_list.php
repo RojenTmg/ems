@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
-    <table class="table table-bordered hover employee_table" id="example" >
+    <table class="table table-bordered hover employee_table" id="datatable" >
       <thead class="thead-dark">
         <tr>
           <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Id</th>
@@ -155,4 +155,7 @@
   // });
 
 
+  $(document).ready(function(){
+    $('#datatable').dataTable();
+  });
 </script>

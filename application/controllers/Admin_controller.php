@@ -413,7 +413,7 @@ class Admin_controller extends CI_Controller {
 			{
 				$data=array(
 				'nationality'=>$nationality,
-				'visa_permission'=>'',
+				'visa_permission'=>'Not required',
 				'visa_type'=>'',
 				'visa_expiry_date'=>'',
 				'passport_no'=>$passport_no,
