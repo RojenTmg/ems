@@ -13,9 +13,9 @@
 		}
 
 		public function employeeList($limit, $offset) {
-			$this->db->where('is_active', '1');
 			$this->db->join('departments', 'departments.id=employees.department_id');
 			$this->db->limit($limit, $offset); 
+			$this->db->where('is_active', '1');
 			$query = $this->db->get('employees');
 
 			return $query->result_array();
