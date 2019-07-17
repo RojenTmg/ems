@@ -67,12 +67,21 @@
         ?>
       </tbody>
     </table>
+    <div class="page-limit sp-btn">
+    <i>
+      <?php 
+        if (!empty($showing_entries)) 
+          echo 'Showing ' . $showing_entries['from'] . ' to ' . $showing_entries['to'] . ' of ' . $showing_entries['total'] . ' entries'; 
+      ?>
+    </i>
+    <div>
+    <?= $this->pagination->create_links(); ?>
+    </div>
+</div>
   </div>
 </div>
-<div class="page-limit">
-    <?= $this->pagination->create_links(); ?>
 </div>
-</div>
+
 
 
 

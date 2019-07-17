@@ -78,7 +78,12 @@
           }
         ?>
 <div class="page-limit sp-btn">
-    <i>Showing 0 to 4 of 5 entries</i>
+    <i id="sh-ent">
+      <?php 
+        if (!empty($showing_entries)) 
+          echo 'Showing ' . $showing_entries['from'] . ' to ' . $showing_entries['to'] . ' of ' . $showing_entries['total'] . ' entries'; 
+      ?>
+    </i>
     <div>
     <?= $this->pagination->create_links(); ?>
     </div>
@@ -132,6 +137,8 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
+    $('#sh-ent').text('Showing ' + <?php echo $showing_entries['from']; ?> + ' to ' + <?php echo $showing_entries['to'] - 1; ?> + ' of ' + <?php echo $showing_entries['total'] - 1; ?> + ' entries');
+    // $('#sh-ent').text('asdfd');
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
