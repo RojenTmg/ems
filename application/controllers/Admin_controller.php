@@ -403,7 +403,19 @@ class Admin_controller extends CI_Controller {
 			$status=$this->form_validation->error_array();
 		}else
 		{
-			$data=array(
+			if($nationality=='Nepalese')
+			{
+				$data=array(
+				'nationality'=>$nationality,
+				'visa_permission'=>'',
+				'visa_type'=>'',
+				'visa_expiry_date'=>'',
+				'passport_no'=>$passport_no,
+				'passport_issue_place'=>$passport_issue_place
+			);
+			}
+			else{
+				$data=array(
 				'nationality'=>$nationality,
 				'visa_permission'=>$visa_permission,
 				'visa_type'=>$visa_type,
@@ -411,6 +423,8 @@ class Admin_controller extends CI_Controller {
 				'passport_no'=>$passport_no,
 				'passport_issue_place'=>$passport_issue_place
 			);
+			}
+			
 
 					if(isset($_SESSION['current_employee_id'])){
 						$id=$_SESSION['current_employee_id'];
