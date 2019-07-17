@@ -69,7 +69,7 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
+		$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id,'doc_id');
 		if (empty($data['post'])) {
 			$posts = $this->Admin_model->getEmployeeDetails();
 			$config = [
@@ -110,7 +110,7 @@ class Admin_controller extends CI_Controller {
 			if ($id != NULL) {
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
+				$data['documents'] = $this->Database_model->findDescending('employee_documents', 'emp_id', $id, 'doc_id');
 		
 				$this->view('employee_manage', $title, $data);
 			} else
