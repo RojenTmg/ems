@@ -42,9 +42,9 @@
 			return $query->row_array();
 		}
 
-		public function FunctionName($value='')
+		public function findDescending($table, $field, $id, $sort_id)
 		{
-			# code...
+			return $this->db->query('SELECT * FROM ' . $table . ' WHERE ' . $field . ' = ' . $id . 'ORDER BY'. $sort_id. 'DESC')->result_array();
 		}
 		////////////////////// DELETE Query Functions ////////////////////////
 
