@@ -599,14 +599,16 @@
           <div class="form-group"></div>
           <div id="document"> </div>
           <div id="list_doc">
-           <table class="table" style="overflow: scroll">
+         
+          <?php 
+          if(!empty($documents)){?>
+              <table class="table" style="overflow: scroll">
             <thead>
               <th>Title</th>
               <th>File</th>
               <th>Action</th>
             </thead>
-          <?php 
-          if(!empty($documents)){
+            <?php 
           foreach ($documents as $value) {
         ?>
         <tr>
