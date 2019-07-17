@@ -64,14 +64,12 @@ $route['admin/employee_manage/progressBar'] = 'Admin_controller/progressBar';
 
 
 
-$route['admin/employee_list/(:any)'] = 'Admin_controller/employeeList';
-$route['admin/employee_search/(:any)'] = 'Admin_controller/employeeSearch/$1';
+// $route['admin/employee_list/(:any)'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage/(:any)'] = 'Admin_controller/employeeManage/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
 $route['admin/dashboard'] = 'Admin_controller/dashboard';
 $route['admin/employee_list'] = 'Admin_controller/employeeList';
-$route['admin/employee_search'] = 'Admin_controller/employeeSearch';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 

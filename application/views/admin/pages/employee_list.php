@@ -8,10 +8,6 @@
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
       <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
     </div>
-   <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
-      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp"  required="required">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form> 
   </div>
    <hr class="hr">
   <div class="box">
@@ -20,7 +16,10 @@
 <!-- user icon -->
        <p><i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i> Registered Users</p>
        <div class="arch-msg-div"></div>
-  
+        <!-- <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
+      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp" required="required">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form> -->
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto;">
@@ -76,17 +75,17 @@
              echo  '<h4 style="text-align: center; margin-top: 30px;">Staff Not Found!!!</h4>';
           }
         ?>
-<div class="page-limit sp-btn">
+<!-- <div class="page-limit sp-btn">
     <i id="sh-ent">
       <?php 
         if (!empty($showing_entries)) 
-          echo 'Showing ' . $showing_entries['from'] . ' to ' . $showing_entries['to'] . ' of ' . $showing_entries['total'] . ' entries'; 
+          echo 'Showing <i id="from">' . $showing_entries['from'] . '</i> to <i id="to">' . $showing_entries['to'] . '</i> of <i id="total">' . $showing_entries['total'] . '</i> entries'; 
       ?>
     </i>
     <div>
     <?= $this->pagination->create_links(); ?>
     </div>
-</div>
+</div> -->
   </div>
 </div>
 </div>
@@ -136,10 +135,12 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
-    $('#sh-ent').text('Showing ' + <?php echo $showing_entries['from']; ?> + ' to ' + <?php echo $showing_entries['to'] - 1; ?> + ' of ' + <?php echo $showing_entries['total'] - 1; ?> + ' entries');
-    // $('#sh-ent').text('asdfd');
+    $('#to').text(($('#to').text() - 1));
+    $('#total').text(($('#total').text() - 1));
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+    // window.location =  '<?= site_url('admin/employee_list'); ?>';
+
   });
 
   $('.arch-msg-div').click(function(){

@@ -9,10 +9,6 @@
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
       <a href="<?= site_url('admin/employee_archive'); ?>" id="small-link">Archived Staff</a>
     </div>
-   <form class="form-inline my-2 my-lg-0" method="POST" action=" <?= site_url('admin/employee_search'); ?>">
-      <input class="form-control mr-sm-2" type="text" style="width: 300px;" placeholder="Search" aria-label="Search" name="search_emp"  required="required">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form> 
   </div>
    <hr class="hr">
   <div class="box">
@@ -23,7 +19,7 @@
     </div>
   </div>
   <div class="box-body table-responsive" style="overflow-x:auto; ">
-    <table class="table table-bordered hover employee_table" >
+    <table class="table table-bordered hover employee_table">
       <thead class="thead-dark">
         <tr>
           <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Id</th>
