@@ -89,7 +89,7 @@
 <body>
 <div class="sidenav">
          <div class="login-main-text">
-            <h2>EMS<br> Login Page</h2>
+            <h2>NAMI EMS</h2><br> <h3>Login Page</h3>
             <p>Login from here to access.</p>
          </div>
       </div>

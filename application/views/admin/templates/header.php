@@ -116,7 +116,7 @@
     <div class="drop-down-item" id="show-profile">
       <div class="pro-file">
 
-         <span><strong> Administrator &nbsp;&nbsp;&nbsp;  </strong></span>
+         <span><strong>Administrator</strong></span>
         <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
        
         <!-- <i class="fa fa-caret-down" aria-hidden="true"></i> -->

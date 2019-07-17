@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-    <title>Employee</title>
+    
+    <title><?php echo $title; ?></title>
 
     <!-- Stylesheets -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -14,100 +15,42 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <?= link_tag('assets/css/ems.css?version=51') ?>
 
-
     <!-- Script Files -->
-     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script type="text/javascript" src="<?= base_url('assets/js/ems.j s') ?>"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   
-
-    <!-- for table -->
-   
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-   <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-
 </head>
 
 <body>
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="">Navbar</a>
+  <a class="navbar-brand" href="<?= base_url('employee'); ?>">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('employee'); ?>">
-          <i class="fa fa-home"></i>
-          Home
-          <span class="sr-only">(current)</span>
-          </a>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-danger">11</span>
-          </i>
-          Link
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-warning">11</span>
-          </i>
-          Disabled
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-primary">11</span>
-          </i>
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
-    </ul>
-    <ul class="navbar-nav ">
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('employee'); ?>/update_profile">
-          <i class="fa fa-id-card" aria-hidden="true"></i>
-          Update Profile
-        </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('employee'); ?>/leave_form">
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
           Request Leave
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-globe">
-            <span class="badge badge-success">11</span>
-          </i>
-          Notifications
-        </a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <ul class="navbar-nav">
+    </ul>
+    <div class="drop-down-item" id="show-profile">
+      <div class="pro-file">
+         <span><strong> Christopher Columbus</strong></span>
+        <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
+      </div>
+      <div class="drop-down">
+        <ul>
+          <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
+          <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
 <div class="page-wrapper chiller-theme">
@@ -117,173 +60,74 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+
+        <a href="#">NAMI College</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          <img class="img-responsive img-rounded" src="<?= base_url(); ?>/assets/images/images.jpg"
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name"><?php echo $_SESSION['firstname'];?>
-            <strong><?php echo $_SESSION['surname'];?></strong>
+          <span class="user-name">
+            <strong>Christopher</strong>
           </span>
-          <span class="user-role"><?php echo $_SESSION['type'];?></span>
+          <span class="user-role"><?php echo $_SESSION['type']; ?></span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
           </span>
         </div>
       </div>
-      <!-- sidebar-header  -->
-      <div class="sidebar-search">
-        <div>
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- sidebar-search  -->
       <div class="sidebar-menu">
+
+        <ul>
+          <li class="header-menu">
+            <span>Profile</span>
+          </li>
+          <li>
+          <a href="<?= site_url(); ?>">
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+              <span>My Profile</span>
+            </a>
+          </li>
+          <li>
+          <a href="<?= base_url('employee'); ?>/update_profile">
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+              <span>Update Profile</span>
+            </a>
+          </li>
+        </ul>
+
         <ul>
           <li class="header-menu">
             <span>General</span>
           </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-tachometer-alt"></i>
+          <li>
+          <a href="<?= site_url(); ?>">
+              <i class="fa fa-home" aria-hidden="true"></i>
               <span>Dashboard</span>
-              <span class="badge badge-pill badge-warning">New</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>E-commerce</span>
-              <span class="badge badge-pill badge-danger">3</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Products
-
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Orders</a>
-                </li>
-                <li>
-                  <a href="#">Credit cart</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="far fa-gem"></i>
-              <span>Components</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">General</a>
-                </li>
-                <li>
-                  <a href="#">Panels</a>
-                </li>
-                <li>
-                  <a href="#">Tables</a>
-                </li>
-                <li>
-                  <a href="#">Icons</a>
-                </li>
-                <li>
-                  <a href="#">Forms</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-chart-line"></i>
-              <span>Charts</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-globe"></i>
-              <span>Maps</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Google maps</a>
-                </li>
-                <li>
-                  <a href="#">Open street map</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="header-menu">
-            <span>Extra</span>
           </li>
           <li>
-            <a href="#">
-              <i class="fa fa-book"></i>
-              <span>Documentation</span>
-              <span class="badge badge-pill badge-primary">Beta</span>
+            <a href="<?= base_url('employee'); ?>/leave_form">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <span>Request Leave</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-calendar"></i>
-              <span>Calendar</span>
+              <i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i>
+              <span></span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-folder"></i>
-              <span>Examples</span>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <span></span>
             </a>
           </li>
         </ul>
@@ -292,26 +136,5 @@
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-      <a href="<?= base_url('logout'); ?>">
-        <i class="fa fa-power-off"></i>
-      </a>
     </div>
   </nav>
-  <!-- sidebar-wrapper  -->
-
-  <!-- page-content-starts" -->
-
-
-<!-- <li><a href="<?php echo base_url(); ?>">Home</a></li> -->
