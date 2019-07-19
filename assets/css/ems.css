@@ -725,7 +725,7 @@ body {
 .box-head {
   color: #646984;
   border-bottom: 1px solid #f2f3f8;
-  padding: 10px 20px 16px;
+  padding: 16px 20px 16px;
 }
 .border-btm {
   color: #646984;
@@ -737,7 +737,7 @@ body {
   margin: 0;
 }
 .box-body {
-  padding: 30px 20px 40px;
+  padding: 20px 20px 40px;
 }
 .form {
   padding: 0 20px 20px;
@@ -790,7 +790,7 @@ body {
 .sub, .can {
   border: none;
   margin-right: 10px;
-  padding: 5px 15px;
+  padding: 5px 25px;
   transition: background 0.2s, color 0.2s;
 }
 .sub {
@@ -856,7 +856,7 @@ body {
   margin: 20px 0 20px;
   border: none;
 }
-#datatable_length, .dataTables_filter {
+.dataTables_filter {
   margin-bottom: 10px;
 }
 #datatable_length select {
@@ -1135,6 +1135,12 @@ body {
   height: 40px;
 }
 
+#messagediv button {
+  padding-top: 8px;
+}
+#showmessage {
+  margin-bottom: 0;
+}
 
 .arch-msg-div {
   position: fixed;

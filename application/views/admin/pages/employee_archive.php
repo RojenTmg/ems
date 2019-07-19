@@ -14,7 +14,7 @@
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-      <p>Recent Employees</p>
+      <p>Archived Employees</p>
       <div class="arch-msg-div"></div>
     </div>
   </div>

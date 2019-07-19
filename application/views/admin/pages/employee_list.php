@@ -135,8 +135,17 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
-    $('#to').text(($('#to').text() - 1));
-    $('#total').text(($('#total').text() - 1));
+    // $('#datatable').dataTable().reload();
+    // var mytbl = $("#datatable").datatable();
+    // mytbl.ajax.reload;
+    // $('#datatable').dataTable( ).api().ajax.reload();
+
+    table = $("#datatable").datatable()
+    $("#my-button").click(function() {
+        table.fnDestroy();
+        table = $("#table_data").dataTable();
+    });
+
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
     // window.location =  '<?= site_url('admin/employee_list'); ?>';
