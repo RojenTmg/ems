@@ -290,6 +290,7 @@ function showHideAllergy(allergy)
           {
               if(xmlHttp.readyState==4)
               {
+                $('#datatable').reload();
               }
           }
   }
