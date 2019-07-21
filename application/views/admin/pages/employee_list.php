@@ -140,15 +140,34 @@
     // mytbl.ajax.reload;
     // $('#datatable').dataTable( ).api().ajax.reload();
 
-    table = $("#datatable").datatable()
-    $("#my-button").click(function() {
-        table.fnDestroy();
-        table = $("#table_data").dataTable();
-    });
 
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
     // window.location =  '<?= site_url('admin/employee_list'); ?>';
+    // alert('1');
+
+    // // $("#datatable").fnDestroy();
+    // $('#datatable').DataTable().clear().destroy();
+    // // $("#datatable").dataTable();
+    // $(document).ready(function(){
+
+    // alert('3');
+    //   $('#datatable').dataTable();
+    // alert('4');
+    // });
+    // // $("#my-button").click(function() {
+        
+    // // });
+    // alert('1');
+     // $("#datatable").DataTable().fnReloadAjax('employee_list.php');
+     // $("#datatable").api().ajax.reload();
+     // $('#datatable').dataTable().api().ajax.reload();
+
+     // $('#datatable').DataTable().destroy();
+     // fetch_data();
+
+     // $('#datatable').dataTable().api().ajax.reload();
+
 
   });
 

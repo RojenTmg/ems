@@ -953,6 +953,9 @@ body {
   color: #fff;
   margin-left: 10px;
  }
+ .tooltiptext .tip-res {
+  background-color: #87c540;
+ }
 /*.tooltip1:hover .tooltiptext {
   visibility: visible;
 }*/
