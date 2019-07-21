@@ -54,14 +54,14 @@
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
          <!-- general tab -->
 
-        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
          <!-- personal details tab -->
-        <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
 
         <!-- added address tab -->
-        <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
         <!-- contact tab -->
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
@@ -127,7 +127,7 @@
           <!-- date of join added -->
  <div class="form-div">
   <label>Join Date</label>
-            <input type="date" name="join_date" id="join_date" value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';    ?>>
+            <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
 
  </div>           
                  <div class="sub-can">
@@ -529,7 +529,8 @@
                         <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
                       </div>
                 </div>
-               <div class="form-div"><input type="text" style="display: none" name="exp_id" value="<?php echo $value['id'];?>"></div>
+               <div class="form-div">
+                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
               <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
               <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
@@ -550,7 +551,7 @@
      
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="submitWork()" value="Save" ';?> class="sub">
+            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="updateWork()" value="Save" ';?> class="sub">
            </div> 
           </div>
         </form>
@@ -600,21 +601,54 @@
   </div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
+
 </div>
     <!-- documents ends here -->
+<script type="text/javascript">
+    <?php if(isset($_SESSION['current_employee_id'])){ ?>
+      
+     toggleNav('show');
+    <?php  } else { ?>
+      toggleNav('hide');
+    <?php } 
 
+    if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
+     $_SESSION['path']='';
+      ?>
+
+              document.getElementById('nav-document').className='tab-pane fade active show';
+              document.getElementById('nav-document-tab').className='nav-item nav-link active';
+                document.getElementById('nav-general').className='tab-pane fade  ';
+              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php
+ } 
+if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
+     $_SESSION['path']='';
+      ?>
+
+              document.getElementById('nav-work').className='tab-pane fade active show';
+              document.getElementById('nav-work-tab').className='nav-item nav-link active';
+                document.getElementById('nav-general').className='tab-pane fade  ';
+              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php } ?>
+
+
+      </script>
+
+
+
+ 
 <script type="text/javascript">
   check_complete();
+  showprogress();
 
- $('.fa-trash').click(function(ev) {
+ $('.fa-trash').on('click',function(ev) {
     $(this).siblings().css({"display": "block"});
-    ev.stopPropagation();
   });
 
 
-   $('.tip-can').click(function(ev) {
+   $('.tip-can').on('click',function(ev) {
     $(this).parent().css({"display": "none"});
-    ev.stopPropagation();
   });
 
 // to close message
