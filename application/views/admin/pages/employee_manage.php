@@ -127,7 +127,7 @@
           <!-- date of join added -->
  <div class="form-div">
   <label>Join Date</label>
-            <input type="date" name="join_date" id="join_date" value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';    ?>>
+            <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
 
  </div>           
                  <div class="sub-can">
@@ -529,7 +529,8 @@
                         <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
                       </div>
                 </div>
-               <div class="form-div"><input type="text" style="display: none" name="exp_id" value="<?php echo $value['id'];?>"></div>
+               <div class="form-div">
+                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
               <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
               <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
               <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
