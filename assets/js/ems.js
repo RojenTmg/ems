@@ -110,7 +110,18 @@ function displayFunctionType() {
           data.append('password',password);
           xmlHttp.send(data);
 
+          if(checkCurrentDate('join_date')==false)
+          {
+             msg="Invalid Date of Join";
 
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+          }
+          else
+          {
           xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
@@ -122,6 +133,7 @@ function displayFunctionType() {
               document.getElementById( "generalButton" ).setAttribute( "onClick", "javascript: updateGeneral();" );
               
               }
+          }
           }
   }
 
@@ -244,7 +256,7 @@ function submitDocument(){
 
               //  $('#nav-document-tab').addClass("active");
               // document.getElementById("nav-document-tab").setAttribute("aria-selected", true);
-               window.location.reload(true);
+             
 
               
           }
@@ -345,8 +357,8 @@ function showresponse(formname,status,msg)
             // mesg div displays updated or added
             if($('#messagediv').hasClass('alert-danger')){
 
-             $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
+            $('#messagediv').removeClass('alert-danger');
+            $('#messagediv').addClass('alert-success');
             }
             
            $('#messagediv').css('display','block');
@@ -547,6 +559,7 @@ xmlHttp.onreadystatechange = function()
               {
                 var status = xmlHttp.responseText;
                showresponse('health-form',status,'Updated Successfully');
+               completeIcon('nav-health-tab');
               }
           }
   }
@@ -577,6 +590,17 @@ xmlHttp.onreadystatechange = function()
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
     if (!vaildateEmail(email)) {
          document.getElementById('email').style.borderColor="red";
+      }
+
+      if(new Date(dob)> new Date())
+      {
+         msg="Invalid Date of Birth";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
       }
     else{
         var xmlHttp = new XMLHttpRequest();
@@ -706,10 +730,14 @@ function submitWork(){
       data.append('organization',organization[i].value);
       data.append('from_date',from_date[i].value);
       data.append('to_date',to_date[i].value);
-        data.append('contact_person_name',contact_person_name[i].value);
-          data.append('contact_person_phone',contact_person_phone[i].value);
-            data.append('contact_address',contact_address[i].value);
+      data.append('contact_person_name',contact_person_name[i].value);
+      data.append('contact_person_phone',contact_person_phone[i].value);
+      data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
+
+      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      {
+
       xmlHttp.onreadystatechange = function()
       {
           if(xmlHttp.readyState==4)
@@ -718,10 +746,18 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-              $('#messagediv').css('background','#ffadad !important');
-              $('#messagediv').css('color','green');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+             if($('#messagediv').hasClass('alert-danger')){
+
+            $('#messagediv').removeClass('alert-danger');
+            $('#messagediv').addClass('alert-success');
+            }
+            
+           $('#messagediv').css('display','block');
+            $('#messagediv').css('background','#ffadad !important');
+            $('#messagediv').css('color','green');
+            $('#showmessage').html(msg); 
+
+              
            }
           else{
             count++;
@@ -739,6 +775,18 @@ function submitWork(){
       }
       
     }
+
+    else
+    {
+      msg= "From date and To date Error!";
+       $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+             $('#messagediv').css('color','red');
+             $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+    }
+
+      }
 }
 
 // update employee work experience to the table
@@ -752,6 +800,7 @@ function updateWork(){
    var contact_address = document.getElementsByName('contact_address');
   var from_date = document.getElementsByName('from_date');
   var to_date= document.getElementsByName('to_date');
+
   var count=0;
   
   for( i = 0; i < responsibility.length; i++ )
@@ -759,11 +808,11 @@ function updateWork(){
      if(responsibility[i].value==''||organization[i].value==''){
         var msg="Enter complete information";
 
-             $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-               $('#messagediv').css('display','block');
-                $('#showmessage').html(msg); 
+          $('#messagediv').removeClass('alert-success');
+          $('#messagediv').addClass('alert-danger');
+          $('#messagediv').css('color','red');
+          $('#messagediv').css('display','block');
+          $('#showmessage').html(msg); 
       return false;
      }
   }
@@ -809,7 +858,6 @@ function updateWork(){
                $('#showmessage').html(msg); 
           }
 
-            window.location.reload(true);
           }
 
       }
@@ -873,7 +921,6 @@ function check_complete(){
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
-    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
 
@@ -911,7 +958,6 @@ function inCompleteIcon(tabId){
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
-              window.location.reload(true);
               }
           }
   }
@@ -938,11 +984,36 @@ function inCompleteIcon(tabId){
                $('#messagediv').addClass('alert-success');
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              window.location.reload(true);
-              }
+              $('#showmessage').html(msg); }
+
           }
   }
+
+
+  // start and end date validation
+  function DateCheck()
+  {
+    var StartDate= document.getElementById('from_date').value;
+    var EndDate= document.getElementById('to_date').value;
+    var eDate = new Date(EndDate);
+    var sDate = new Date(StartDate);
+    if(StartDate!= '' && EndDate!= '' && sDate> eDate) {  return false; }
+    else return true;
+
+  }
+
+
+  // check date is not more than current date 
+function checkCurrentDate($date)
+{
+  var date = document.getElementById($date).value;
+  var curDate = new Date();
+  var enterDate= new Date(date);
+  if(enterDate> curDate )
+    return false;
+  else
+    return true;
+}
 
 
  
