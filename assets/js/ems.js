@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 $(document).ready((function ($) {
 
   $(".menu-icon").on("click", function() {
@@ -115,12 +122,11 @@ function displayFunctionType() {
           {
               if(xmlHttp.readyState==4)
               {
+
                 var status = xmlHttp.responseText;
-               showresponse('general-form',status,'Employee Added Successfully');
-                displayName(first_name,middle_name,last_name);
-               document.getElementById('generalButton').value="Update";
-              document.getElementById( "generalButton" ).setAttribute( "onClick", "javascript: updateGeneral();" );
-              
+                var id=JSON.parse(status);
+                location.href='employee_manage/'+id;
+             
               }
           }
   }
@@ -240,11 +246,12 @@ function submitDocument(){
                $('#messagediv').css('color','red');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
-          }
+        }
 
-              //  $('#nav-document-tab').addClass("active");
-              // document.getElementById("nav-document-tab").setAttribute("aria-selected", true);
-               window.location.reload(true);
+            location.reload();
+            
+
+
 
               
           }
@@ -382,6 +389,10 @@ function showresponse(formname,status,msg)
 
   // change tab icon
   check_complete();
+
+  //show nav
+ toggleNav("show");
+
 }
 
   function general()
@@ -735,6 +746,7 @@ function submitWork(){
 
 
           }
+          location.reload();
           }
       }
       
@@ -873,7 +885,6 @@ function check_complete(){
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
-    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
 
@@ -882,7 +893,35 @@ function check_complete(){
 
 function completeIcon(tabId){
   document.getElementById(tabId).childNodes[1].className="fa fa-check-circle prog-com";
+}
 
+function toggleNav(status=''){
+  if(status=="show"){
+    document.getElementById('nav-personal-tab').style.display="block";
+    document.getElementById('nav-address-tab').style.display="block";
+    document.getElementById('nav-contact-tab').style.display="block";
+    document.getElementById('nav-nationality-tab').style.display="block";
+    document.getElementById('nav-eContact-tab').style.display="block";
+    document.getElementById('nav-health-tab').style.display="block";
+    document.getElementById('nav-education-tab').style.display="block";
+    document.getElementById('nav-pan-tab').style.display="block";
+    document.getElementById('nav-work-tab').style.display="block";
+    document.getElementById('nav-document-tab').style.display="block";
+  
+  }
+  if(status=="hide"){
+        document.getElementById('nav-personal-tab').style.display="none";
+        document.getElementById('nav-address-tab').style.display="none";
+        document.getElementById('nav-contact-tab').style.display="none";
+        document.getElementById('nav-nationality-tab').style.display="none";
+        document.getElementById('nav-eContact-tab').style.display="none";
+        document.getElementById('nav-health-tab').style.display="none";
+        document.getElementById('nav-education-tab').style.display="none";
+        document.getElementById('nav-pan-tab').style.display="none";
+        document.getElementById('nav-work-tab').style.display="none";
+        document.getElementById('nav-document-tab').style.display="none";
+
+  }
 }
 
 function inCompleteIcon(tabId){
@@ -911,8 +950,9 @@ function inCompleteIcon(tabId){
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
-              window.location.reload(true);
+              location.reload();
               }
+
           }
   }
 

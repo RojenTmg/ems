@@ -32,19 +32,6 @@ class Admin_controller extends CI_Controller {
 		return $data;
 	}
 
-	// public function generalPage($page = 'dashboard') 
-	// {
-	// 	if (!file_exists(APPPATH . 'views/admin/pages/' . $page . '.php')) {
-	// 		show_404();
-	// 	}
-
-	// 	$data['title'] = ucfirst($page);
-	// 	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-	// 		$this->view($page, $data);
-	// 	else
-	// 		redirect('login');
-	// }
-
 	public function dashboard() 
 	{
 		$title['title'] = 'Dashboard';
@@ -181,9 +168,11 @@ class Admin_controller extends CI_Controller {
 				'department_id'=>'1'
 			);
 
-			if($this->Admin_model->add_employee($data,$password))
+			if($id=$this->Admin_model->add_employee($data,$password))
 			{
-				array_push($result, 'true');
+				array_push($result, $id);
+
+
 			}
 
 		}
@@ -566,6 +555,8 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function addWork()
 	{
+					$_SESSION['path']="work";
+
 		$status='';
 		extract($_POST);
 
@@ -603,6 +594,7 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function updateWork()
 	{
+			$_SESSION['path']="work";
 		$status='';
 		extract($_POST);
 
@@ -641,6 +633,7 @@ class Admin_controller extends CI_Controller {
 
 //function for adding documents
 	function addDocuments(){
+		$_SESSION['path']="document"; 
 		$status='';
 		extract($_POST);
 
@@ -686,6 +679,7 @@ class Admin_controller extends CI_Controller {
 	// <!-- delete files from the database -->
 	 function deleteFile()
 	 {
+	 	$_SESSION['path']="document";
 		extract($_POST);
 		$this->db->where('doc_id',$doc_id);
 			$getFile = $this->db->get('employee_documents');
@@ -700,6 +694,7 @@ class Admin_controller extends CI_Controller {
 	// delete work Experience from the database
 	function deleteWorkExperience()
 	{
+		$_SESSION['path']="work";
 		extract($_POST);
 		// $this->db->where('id',$id);
 		// 	$getrow = $this->db->get('employee_work_experience');

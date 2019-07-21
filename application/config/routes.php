@@ -17,6 +17,10 @@ $route['admin/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/addPan'] = 'Admin_controller/addPan';
 $route['admin/addWork'] = 'Admin_controller/addWork';
 
+
+
+
+
 $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
 
 $route['employee/addContact'] = 'Admin_controller/addContact';
@@ -33,6 +37,8 @@ $route['admin/addAddress'] = 'Admin_controller/addAddress';
 $route['employee/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['employee/progressBar'] = 'Admin_controller/progressBar';
+
+
 
 
 
