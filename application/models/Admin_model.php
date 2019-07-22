@@ -1,7 +1,21 @@
 <?php
 	class Admin_model extends CI_Model {
 		
-		
+		public function assign($data){
+			$this->db->where('emp_id',$id);
+			$list=$this->db->get('employee_approvers');
+			$getList= $list->row_array();
+			if($list=='')
+			return $this->db->insert('employee_approvers',$data);
+			else
+			return $this->db->update('employee_approvers',$data);
+
+		}
+		public function getAssign($id){
+			$this->db->where('emp_id',$id);
+			$list=$this->db->get('employee_approvers');
+			return $list->row_array();
+		}
 		public function update_employee($data,$userid='')
 		{
 			if(!isset($_SESSION['user_id'])) $this->load->view('login/login');
@@ -31,7 +45,8 @@
 		}
 		
 	
-		public function add_employee($data,$password){
+		public function add_employee($data,$password)
+		{
 			// save('employees',$data, $pk = '',$id='')
 			$this->db->insert('employees',$data);
 			$user_id = $this->db->insert_id();
@@ -40,7 +55,7 @@
 			$_SESSION['current_employee_id']=$this->db->insert_id();
 			$userData=array(
 					'user_id'=>$user_id,
-					'user_pass'=>$password,
+					'user_pass'=>$password
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();

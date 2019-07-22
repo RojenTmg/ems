@@ -81,11 +81,17 @@
         <!-- pan tab -->
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
+        <!--assign tab  -->
+        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+
         <!-- work tab -->
         <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience </a> 
 
         <!--document tab  -->
         <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents </a>
+
+        
+
         <!--TAB ENDS  -->
       </div>
     </nav>
@@ -604,6 +610,68 @@
 
 </div>
     <!-- documents ends here -->
+
+
+
+
+
+
+
+ <!-- employee assign tab starts here -->
+  <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
+    <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
+        <form class="form" style="height: 200px;">
+          <div class="form-div form-div-horz">
+            <label>Recommender</label>
+                <select class='fstdropdown-select' id="recommender" >
+                  <option value="">Select option</option>
+                  <?php foreach ($empList as $row) {
+                      if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                    ?>
+                   <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+          <div class="form-div form-div-horz">
+            <label>Approver</label>
+               <select class='fstdropdown-select' id="approver">
+                   <option  value="">Select option</option>
+                  <?php foreach ($empList as $row) {
+                   if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                   ?>
+                   <option <?php if($assigned!=''&&$assigned['approver_id']==$row['emp_id']) echo "selected";?> value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+         
+
+
+          <div class="form-div form-div-horz">
+            <label></label>
+            <div class="sub-can">
+              <input type="button" onclick="assign()" name="" value="Submit" class="sub">
+            </div>
+          </div> 
+        </form>
+      </div>
+
+
+ <!-- employee assign tab ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
     <?php if(isset($_SESSION['current_employee_id'])){ ?>
       
@@ -662,3 +730,5 @@ $(document).ready(function(){
 
 
 </script>
+
+   <script src="<?= site_url('assets/js/fstdropdown.js')?> "></script>

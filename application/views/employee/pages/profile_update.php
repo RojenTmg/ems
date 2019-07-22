@@ -176,7 +176,7 @@ echo '<option value='.$i.'>'.$i.'</option>';
              <select id="birth_year" name="year " class="col-md-1">
         <?php 
           $year = date('Y');
-          $min = $year - 60;
+          $min = $year - 80;
           $max = $year;
           for( $i=$max; $i>=$min; $i-- ) {
             echo '<option value='.$i.'>'.$i.'</option>';

@@ -10,7 +10,7 @@
     </div>
   </div>
    <hr class="hr">
-  <div class="box">
+  <div class="box" id="table-area">
   <div class="box-head">
     <div class="sp-btn">
 <!-- user icon -->
@@ -42,7 +42,9 @@
           if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) $user_not_found=TRUE;
         // echo $posts;  die();
           if ($user_not_found != TRUE) {
-            foreach ($posts as $post) {
+ 
+            foreach ($posts as $value=>$post) {
+             
               // check archived or not           ?>
               <tr id="<?php echo $post['emp_id']; ?>">
                 <td><?php echo $post['emp_id']; ?></td>
@@ -135,10 +137,14 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
+    
     // $('#datatable').dataTable().reload();
     // var mytbl = $("#datatable").datatable();
     // mytbl.ajax.reload;
-    // $('#datatable').dataTable( ).api().ajax.reload();
+    // $('#datatable').DataTable().ajax.reload();
+    // table = $("#datatable").dataTable(); 
+     // $("#datatable").fnDestroy();
+    
 
 
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');

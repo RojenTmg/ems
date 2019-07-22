@@ -92,7 +92,15 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Manage Employee';
 
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-		{
+		{	
+			$data['empList']=$this->Admin_model->employeeList();
+			if(isset($_SESSION['current_employee_id'])){
+				 $id=$_SESSION['current_employee_id']; 
+				$data['assigned']=$this->Admin_model->getAssign($id);
+			}
+			else{
+				$data['assigned']='';
+			}
 			if ($id != NULL) {
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
@@ -774,6 +782,22 @@ class Admin_controller extends CI_Controller {
 
 			echo json_encode($progress_data);
 		}
+
+
+		public function assign(){
+			if(isset($_SESSION['current_employee_id'])){
+				extract($_POST);
+				$data=[
+					'approver_id'=>$approver_id,
+					'recommender_id'=>$recommender_id,
+					'emp_id'=>$_SESSION['current_employee_id'],
+					'created_by'=>$_SESSION['user_id']	
+				];			
+				if($this->Admin_model->assign($data)) echo json_encode("true"); else json_encode("Unable to assign");
+			}
+		}
+
+
 	}
 
 
