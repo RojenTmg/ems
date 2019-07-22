@@ -1,7 +1,21 @@
 <?php
 	class Admin_model extends CI_Model {
 		
-		
+		public function assign($data){
+			$this->db->where('emp_id',$id);
+			$list=$this->db->get('employee_approvers');
+			$getList= $list->row_array();
+			if($list=='')
+			return $this->db->insert('employee_approvers',$data);
+			else
+			return $this->db->update('employee_approvers',$data);
+
+		}
+		public function getAssign($id){
+			$this->db->where('emp_id',$id);
+			$list=$this->db->get('employee_approvers');
+			return $list->row_array();
+		}
 		public function update_employee($data,$userid='')
 		{
 			if(!isset($_SESSION['user_id'])) $this->load->view('login/login');

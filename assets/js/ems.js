@@ -865,6 +865,7 @@ function updateWork(){
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
+          location.reload();
 
           }
 
@@ -920,6 +921,10 @@ function check_complete(){
   var institute=document.getElementById('institute').value;
   //PAN
   var pan=document.getElementById('pan').value;
+  //assign
+  var recommender= document.getElementById('recommender').value;
+  var approver = document.getElementById('approver').value;
+
 
 
 
@@ -931,6 +936,7 @@ function check_complete(){
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
+    if(recommender!=''&&approver!='') completeIcon('nav-assign-tab'); else inCompleteIcon('nav-assign-tab');
 
 
 }
@@ -951,6 +957,7 @@ function toggleNav(status=''){
     document.getElementById('nav-pan-tab').style.display="block";
     document.getElementById('nav-work-tab').style.display="block";
     document.getElementById('nav-document-tab').style.display="block";
+    document.getElementById('nav-assign-tab').style.display="block";
   
   }
   if(status=="hide"){
@@ -964,6 +971,7 @@ function toggleNav(status=''){
         document.getElementById('nav-pan-tab').style.display="none";
         document.getElementById('nav-work-tab').style.display="none";
         document.getElementById('nav-document-tab').style.display="none";
+        document.getElementById('nav-assign-tab').style.display="none";
 
   }
 }
@@ -1053,6 +1061,43 @@ function checkCurrentDate($date)
   else
     return true;
 }
+// function to assign employee
+function assign(){
+  var recommender=document.getElementById('recommender').value;
+  var approver= document.getElementById('approver').value;
 
 
- 
+  if(recommender==''||approver==''){
+                    msg="Assign a Employee";
+
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+              return 0;
+            }
+  
+
+
+   var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','assign',true);
+          var data = new FormData();
+          data.append('recommender_id',recommender);
+          data.append('approver_id',approver);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+
+                msg="Assigned Successfully.";
+
+               $('#messagediv').removeClass('alert-danger');
+               $('#messagediv').addClass('alert-success');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); }
+
+          }
+ }
