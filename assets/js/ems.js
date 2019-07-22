@@ -162,7 +162,18 @@ function displayFunctionType() {
           data.append('join_date',join_date);
           xmlHttp.send(data);
 
+          if(checkCurrentDate('join_date')==false)
+          {
+             msg="Invalid Date of Join";
 
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+          }
+          else
+          {
           xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
@@ -173,6 +184,7 @@ function displayFunctionType() {
                displayName(first_name,middle_name,last_name);
               }
           }
+        }
   }
 
 
@@ -305,7 +317,8 @@ function showHideAllergy(allergy)
           {
               if(xmlHttp.readyState==4)
               {
-                $('#datatable').reload();
+                // $('#datatable').ajax.reload();
+               
               }
           }
   }
