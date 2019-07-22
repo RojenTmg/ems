@@ -612,7 +612,31 @@ xmlHttp.onreadystatechange = function()
          document.getElementById('email').style.borderColor="red";
       }
 
-      if(new Date(dob)> new Date())
+    if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
+    {
+       msg="Select appropriate date.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+
+    }
+
+    else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
+    {
+       msg="Select appropriate date.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+
+    }
+
+    else if(new Date(dob)> new Date())
       {
          msg="Invalid Date of Birth";
 
@@ -623,7 +647,7 @@ xmlHttp.onreadystatechange = function()
                $('#showmessage').html(msg); 
       }
 
-      if(getAge(dob)<18){
+     else  if(getAge(dob)<18){
          msg="Age cannot be less than 18.";
 
               $('#messagediv').removeClass('alert-success');
@@ -1122,6 +1146,7 @@ function assign(){
           }
  }
 
+// check age
  function getAge(dateString) 
 {
     var today = new Date();
@@ -1134,4 +1159,3 @@ function assign(){
     }
     return age;
 }
-
