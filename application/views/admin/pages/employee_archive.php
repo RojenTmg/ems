@@ -14,7 +14,7 @@
   <div class="box">
   <div class="box-head">
     <div class="sp-btn">
-      <p>Recent Employees</p>
+      <p>Archived Employees</p>
       <div class="arch-msg-div"></div>
     </div>
   </div>
@@ -50,7 +50,7 @@
                     <div class="tooltiptext">
                       <p>Are you sure?</p>
                       <span class="tip-can">Cancel</span>
-                      <span class="tip-arch" id="<?php echo $post['emp_id']; ?>" onclick="unArchiveEmployee(<?php echo $post['emp_id']; ?>)" >Restore</span>
+                      <span class="tip-arch tip-res" id="<?php echo $post['emp_id']; ?>" onclick="unArchiveEmployee(<?php echo $post['emp_id']; ?>)" >Restore</span>
                     </div>
                   </button>
                 </td>
