@@ -623,6 +623,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.leave-date .form-div {
+  width: 49%;
+}
 .emp-link {
   /*margin-bottom: -20px;*/
   padding: 0;
@@ -852,9 +855,9 @@ body {
 
 
 /*-----------------------------table-theme-------------------------------------------------*/
-#datatable {
-  margin: 20px 0 20px;
-  border: none;
+.employee_table {
+  margin: 20px 0 20px !important;
+  border-bottom: none !important;
 }
 #dt-head {
   background: linear-gradient(#fff, #d1d2d4); 
@@ -980,6 +983,7 @@ body {
   width: 120px;
   text-align: center;
   color: #fff;
+  margin: auto;
 }
 .granted {
   background-color: #28a745dd;
@@ -1171,8 +1175,6 @@ body {
   animation: pop-up 7s linear forwards;
 }
 
-
-
 @keyframes pop-up {
   0% { opacity: 0; display: block; }
   5% { opacity: 1; }
@@ -1199,6 +1201,9 @@ body {
 }
 .arch-msg .msg-text {
   margin-left: 10px;
+}
+..msg-text p {
+  margin-bottom: 0;
 }
 .arch-msg:hover {
   cursor: pointer;
