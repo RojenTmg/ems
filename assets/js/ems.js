@@ -318,7 +318,7 @@ function showHideAllergy(allergy)
               if(xmlHttp.readyState==4)
               {
                 // $('#datatable').ajax.reload();
-               
+
               }
           }
   }
@@ -622,7 +622,17 @@ xmlHttp.onreadystatechange = function()
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
       }
-    else{
+
+      if(getAge(dob)<18){
+         msg="Age cannot be less than 18.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+      }
+          else{
         var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addPersonalInformation',true);
           var data = new FormData();
@@ -1067,5 +1077,18 @@ function checkCurrentDate($date)
     return true;
 }
 
+// age  calculation
 
+function getAge(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
  

@@ -31,7 +31,8 @@
 		}
 		
 	
-		public function add_employee($data,$password){
+		public function add_employee($data,$password)
+		{
 			// save('employees',$data, $pk = '',$id='')
 			$this->db->insert('employees',$data);
 			$user_id = $this->db->insert_id();
@@ -40,7 +41,7 @@
 			$_SESSION['current_employee_id']=$this->db->insert_id();
 			$userData=array(
 					'user_id'=>$user_id,
-					'user_pass'=>$password,
+					'user_pass'=>$password
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();
