@@ -17,20 +17,20 @@ class Admin_controller extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function showingEntries($total, $from, $to) {
-		if (empty($from)) $from = '0';
+	// public function showingEntries($total, $from, $to) {
+	// 	if (empty($from)) $from = '0';
 
-		$data['total'] = $total;
-		if ($from >= $total) {
-			$data['from'] = 0;
-			$data['to'] = 0;
-		}
-		else {
-			$data['from'] = $from;
-			$data['to'] = $data['from'] + $to;
-		}
-		return $data;
-	}
+	// 	$data['total'] = $total;
+	// 	if ($from >= $total) {
+	// 		$data['from'] = 0;
+	// 		$data['to'] = 0;
+	// 	}
+	// 	else {
+	// 		$data['from'] = $from;
+	// 		$data['to'] = $data['from'] + $to;
+	// 	}
+	// 	return $data;
+	// }
 
 	public function dashboard() 
 	{

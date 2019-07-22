@@ -81,6 +81,9 @@ $route['admin/employee_list'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 
+$route['employee/dashboard'] = 'Employee_controller/dashboard';
+$route['employee/leave_form'] = 'Employee_controller/leaveForm';
+
 $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
 $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';
 $route['recommender/(:any)'] = 'Recommender_controller/generalPage/$1';
@@ -89,7 +92,7 @@ $route['employee/(:any)'] = 'Employee_controller/generalPage/$1';
 $route['admin'] = 'Admin_controller/dashboard';
 $route['approver'] = 'Approver_controller/generalPage';
 $route['recommender'] = 'Recommender_controller/generalPage';
-$route['employee'] = 'Employee_controller/generalPage';
+$route['employee'] = 'Employee_controller/dashboard';
 
 $route['login'] = 'Login_controller/generalPage';
 $route['checkLogin'] = 'Login_controller/checkLogin';
