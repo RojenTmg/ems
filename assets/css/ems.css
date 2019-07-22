@@ -856,6 +856,16 @@ body {
   margin: 20px 0 20px;
   border: none;
 }
+#dt-head {
+  background: linear-gradient(#fff, #d1d2d4); 
+  color: #000; 
+  border: 1px solid #dee2e6;
+}
+#dt-head:hover i {
+  transform: scale(1.2);
+  color: blue;
+}
+
 .dataTables_filter {
   margin-bottom: 10px;
 }

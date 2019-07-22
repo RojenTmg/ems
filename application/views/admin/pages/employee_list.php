@@ -26,13 +26,13 @@
     <table class="table table-bordered hover employee_table" id="datatable" >
       <thead class="thead-dark">
         <tr>
-          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Id</th>
-          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Title</th>
-          <th  style="width: 25%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Name</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Department</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Nationality</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Highest Degree</th>
-          <th style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Action</th>
+          <th id="dt-head" style="width: 2%;"><div class="sp-btn"><span>Id</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 2%;"><div class="sp-btn"><span>Title</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 25%;"><div class="sp-btn"><span>Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Department</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Nationality</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Highest Degree</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;">Action</th>
 
         </tr>
       </thead>
