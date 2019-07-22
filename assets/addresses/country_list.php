@@ -8,6 +8,7 @@
 
 <?php
 foreach($country_array as $key => $value):
-echo '<option value="'.$value.'">'.$value.'</option>'; //close your tags!!
+	if($value=="Nepal") $check="selected"; else $check='';
+echo '<option  value="'.$value.'"'.$check.'>'.$value.'</option>'; //close your tags!!
 endforeach;
 ?>
