@@ -1079,7 +1079,7 @@ function inCompleteIcon(tabId){
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
-
+              location.reload();
           }
   }
 

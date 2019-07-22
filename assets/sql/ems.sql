@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2019 at 09:14 AM
+-- Generation Time: Jul 22, 2019 at 05:35 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -41,6 +41,14 @@ CREATE TABLE `addresses` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`address_id`, `street`, `municipality`, `district`, `state`, `country`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(1, '', '', '', '', 'Afghanistan', '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14'),
+(2, 'ad', 'asdf', 'sadf', 'Province 1', 'NP', '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14');
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +68,13 @@ CREATE TABLE `contacts` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`contact_id`, `home_phone`, `mobile_phone`, `other_phone1`, `other_phone2`, `other_phone3`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`) VALUES
+(1, '', 'adfadsf', '', '', '', '', '2019-07-22 08:25:20', '', '2019-07-22 08:25:20', '');
 
 -- --------------------------------------------------------
 
@@ -129,6 +144,40 @@ CREATE TABLE `employees` (
   `previous_employer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`) VALUES
+(1, '0', 'Mr', 'adfadf', 'asfd', 'asdf', '2019-07-22', 0, 1, '', '2019-07-22 07:18:04', NULL, '2019-07-22 07:18:04', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2002-11-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL),
+(2, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:31', NULL, '2019-07-22 07:29:31', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(3, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:34', NULL, '2019-07-22 07:29:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(4, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(5, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(6, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(7, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(8, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(9, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(10, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(11, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(12, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:39', NULL, '2019-07-22 07:29:39', 'a@adf.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2000-12-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL),
+(13, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:39', NULL, '2019-07-22 07:29:39', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(14, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:40', NULL, '2019-07-22 07:29:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(15, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:40', NULL, '2019-07-22 07:29:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(16, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:44', NULL, '2019-07-22 07:29:44', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(17, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:45', NULL, '2019-07-22 07:29:45', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(18, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:45', NULL, '2019-07-22 07:29:45', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(19, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:33', NULL, '2019-07-22 07:30:33', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(20, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(21, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(22, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(23, '0', 'Mr', 'FASDF', 'ADF', 'ASF', '2019-07-22', 1, 1, '', '2019-07-22 07:31:00', NULL, '2019-07-22 07:31:00', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(24, '0', 'Mr', 'F', 'ADF', 'ASDF', '2019-07-22', 1, 1, '', '2019-07-22 07:32:14', NULL, '2019-07-22 07:32:14', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(25, '0', 'Mr', 'AFAF', '', 'AFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:37:40', NULL, '2019-07-22 07:37:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(26, '0', 'Mr', 'test', '', 'test', '2019-07-22', 1, 1, '', '2019-07-22 08:01:04', NULL, '2019-07-22 08:01:04', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(27, '0', 'Mr', 't', '', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:04:19', NULL, '2019-07-22 08:04:19', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(28, '0', 'Mr', 'tes', 'tes', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15', 'a@adf.com', 'Non-Nepalese', 'Yes', 'adsf', '2019-07-22', 'fasd', 'sdf', 'fs', 'sdfsdf', '', 'sdf', 'Master', 'non', 'asd', 'fasd', '1994-11-30', 'Male', 'B +ve', '', '', 'No', '', 'qew', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -137,13 +186,20 @@ CREATE TABLE `employees` (
 
 CREATE TABLE `employee_addresses` (
   `emp_id` int(11) NOT NULL,
-  `primary_addressId` int(11) NOT NULL,
-  `secondary_addressId` int(11) NOT NULL,
+  `primary_addressId` int(11) DEFAULT NULL,
+  `secondary_addressId` int(11) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee_addresses`
+--
+
+INSERT INTO `employee_addresses` (`emp_id`, `primary_addressId`, `secondary_addressId`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(28, 1, 2, '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14');
 
 -- --------------------------------------------------------
 
@@ -175,6 +231,13 @@ CREATE TABLE `employee_contacts` (
   `modified_by` varchar(50) NOT NULL,
   `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee_contacts`
+--
+
+INSERT INTO `employee_contacts` (`emp_id`, `contact_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(28, 1, '', '2019-07-22 14:10:20', '', '2019-07-22 14:10:20');
 
 -- --------------------------------------------------------
 
@@ -214,6 +277,8 @@ CREATE TABLE `employee_leaves` (
   `leave_applied_date` date NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
+  `substitute` int(11) NOT NULL,
+  `reason` text NOT NULL,
   `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
   `created_by` varchar(255) NOT NULL,
@@ -354,8 +419,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'admin', 'ad', '2019-07-09 12:30:00', 'adfs', '2019-07-08 12:30:00'),
-(2, 'employee', 'ad', '2019-07-09 12:30:00', 'a', '2019-07-08 12:30:00');
+(1, 'admin', '', '2019-07-22 08:11:52', NULL, '2019-07-22 08:11:52'),
+(2, 'employee', '', '2019-07-22 08:11:52', NULL, '2019-07-22 08:11:52');
 
 -- --------------------------------------------------------
 
@@ -390,6 +455,14 @@ CREATE TABLE `users` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(1, 123, 'admin', 1, '', '2019-07-22 08:11:13', '', '2019-07-22 08:11:13'),
+(2, 28, 'tete123', 0, '', '2019-07-22 08:13:15', '', '2019-07-22 08:13:15');
+
 -- --------------------------------------------------------
 
 --
@@ -404,6 +477,14 @@ CREATE TABLE `user_roles` (
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(1, 1, '', '2019-07-22 08:12:10', NULL, '2019-07-22 08:12:10'),
+(2, 2, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15');
 
 --
 -- Indexes for dumped tables
@@ -554,22 +635,58 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `modules`
+--
+ALTER TABLE `modules`
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
   MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -585,8 +702,9 @@ ALTER TABLE `employees`
 -- Constraints for table `employee_addresses`
 --
 ALTER TABLE `employee_addresses`
-  ADD CONSTRAINT `employee_addresses_ibfk_1` FOREIGN KEY (`primary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_addresses_ibfk_2` FOREIGN KEY (`secondary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `employee_addresses_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_addresses_ibfk_2` FOREIGN KEY (`primary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `employee_addresses_ibfk_3` FOREIGN KEY (`secondary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `employee_approvers`
@@ -595,13 +713,6 @@ ALTER TABLE `employee_approvers`
   ADD CONSTRAINT `employee_approvers_ibfk_1` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `employee_approvers_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_approvers_ibfk_3` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Constraints for table `employee_contacts`
---
-ALTER TABLE `employee_contacts`
-  ADD CONSTRAINT `employee_contacts_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_contacts_ibfk_2` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `employee_documents`
@@ -643,16 +754,14 @@ ALTER TABLE `leave_packages`
 -- Constraints for table `role_permission_modules`
 --
 ALTER TABLE `role_permission_modules`
-  ADD CONSTRAINT `role_permission_modules_ibfk_1` FOREIGN KEY (`module_id`) REFERENCES `modules` (`module_id`),
-  ADD CONSTRAINT `role_permission_modules_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`permission_id`),
-  ADD CONSTRAINT `role_permission_modules_ibfk_3` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
+  ADD CONSTRAINT `role_permission_modules_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
-  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_num`);
+  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_num`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
