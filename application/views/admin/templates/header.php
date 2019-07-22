@@ -10,6 +10,7 @@
     <title><?php echo $title; ?></title>
 
 
+
     <!-- offline bootstrap -->
    <?= link_tag('assets/css/bootstrap.min.css') ?>
 
@@ -17,6 +18,7 @@
 
   <!-- offline jquery -->
    <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.js') ?>"></script>
+
 
 
     <!-- Stylesheets -->
@@ -41,6 +43,7 @@
 
 
  <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
+
 
 
 <!-- for datatable -->

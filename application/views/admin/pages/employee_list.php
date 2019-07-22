@@ -10,7 +10,7 @@
     </div>
   </div>
    <hr class="hr">
-  <div class="box">
+  <div class="box" id="table-area">
   <div class="box-head">
     <div class="sp-btn">
 <!-- user icon -->
@@ -26,13 +26,13 @@
     <table class="table table-bordered hover employee_table" id="datatable" >
       <thead class="thead-dark">
         <tr>
-          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Id</th>
-          <th  style="width: 2%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Title</th>
-          <th  style="width: 25%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Name</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Department</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Nationality</th>
-          <th  style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Highest Degree</th>
-          <th style="width: 15%; background: linear-gradient(#fff, #d1d2d4); color: #000; border: 1px solid #dee2e6">Action</th>
+          <th id="dt-head" style="width: 2%;"><div class="sp-btn"><span>Id</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 2%;"><div class="sp-btn"><span>Title</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 25%;"><div class="sp-btn"><span>Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Department</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Nationality</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Highest Degree</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+          <th id="dt-head" style="width: 15%;">Action</th>
 
         </tr>
       </thead>
@@ -135,11 +135,43 @@
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
-    $('#to').text(($('#to').text() - 1));
-    $('#total').text(($('#total').text() - 1));
+
+    // $('#datatable').dataTable().reload();
+    // var mytbl = $("#datatable").datatable();
+    // mytbl.ajax.reload;
+    // $('#datatable').DataTable().ajax.reload();
+    // table = $("#datatable").dataTable(); 
+     $("#datatable").fnDestroy();
+    
+
+
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
     // window.location =  '<?= site_url('admin/employee_list'); ?>';
+    // alert('1');
+
+    // // $("#datatable").fnDestroy();
+    // $('#datatable').DataTable().clear().destroy();
+    // // $("#datatable").dataTable();
+    // $(document).ready(function(){
+
+    // alert('3');
+    //   $('#datatable').dataTable();
+    // alert('4');
+    // });
+    // // $("#my-button").click(function() {
+        
+    // // });
+    // alert('1');
+     // $("#datatable").DataTable().fnReloadAjax('employee_list.php');
+     // $("#datatable").api().ajax.reload();
+     // $('#datatable').dataTable().api().ajax.reload();
+
+     // $('#datatable').DataTable().destroy();
+     // fetch_data();
+
+     // $('#datatable').dataTable().api().ajax.reload();
+
 
   });
 

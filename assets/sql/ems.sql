@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2019 at 06:45 AM
+-- Generation Time: Jul 22, 2019 at 09:14 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -81,7 +81,7 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `department_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'IT', '', '2019-07-15 18:15:00', '', '2019-07-25 18:15:00');
+(1, 'IT', '', '2019-07-15 12:30:00', '', '2019-07-25 12:30:00');
 
 -- --------------------------------------------------------
 
@@ -148,12 +148,32 @@ CREATE TABLE `employee_addresses` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employee_approvers`
+--
+
+CREATE TABLE `employee_approvers` (
+  `approver_id` int(11) DEFAULT NULL,
+  `emp_id` int(11) DEFAULT NULL,
+  `recommender_id` int(11) DEFAULT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee_contacts`
 --
 
 CREATE TABLE `employee_contacts` (
   `emp_id` int(11) NOT NULL,
-  `contact_id` int(11) NOT NULL
+  `contact_id` int(11) NOT NULL,
+  `created_by` varchar(50) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -180,21 +200,42 @@ CREATE TABLE `employee_documents` (
 --
 
 CREATE TABLE `employee_leaves` (
-  `approved_date` date NOT NULL,
-  `approver_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `from_date` date NOT NULL,
+  `leave_id` int(11) NOT NULL,
+  `recommender_id` int(11) DEFAULT NULL,
+  `approver_id` int(11) DEFAULT NULL,
+  `package_id` int(11) DEFAULT NULL,
   `is_approved` enum('0','1') NOT NULL,
   `is_current_day` enum('0','1') NOT NULL,
   `is_half_day` enum('0','1') NOT NULL,
   `is_package_applied` enum('0','1') NOT NULL,
   `is_recommended` enum('0','1') NOT NULL,
   `leave_applied_date` date NOT NULL,
-  `leave_id` int(11) NOT NULL,
-  `package_id` int(11) NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
-  `recommender_id` int(11) NOT NULL,
-  `to_date` date NOT NULL
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_leave_balance`
+--
+
+CREATE TABLE `employee_leave_balance` (
+  `emp_id` int(11) NOT NULL,
+  `leave_id` int(11) DEFAULT NULL,
+  `remain_days` int(11) NOT NULL,
+  `created_by` varchar(50) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -222,24 +263,16 @@ CREATE TABLE `employee_work_experience` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employe_approvers`
---
-
-CREATE TABLE `employe_approvers` (
-  `approver_id` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `recommendar_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `leaves`
 --
 
 CREATE TABLE `leaves` (
   `leave_id` int(11) NOT NULL,
-  `leave_name` varchar(255) NOT NULL
+  `leave_name` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -250,7 +283,11 @@ CREATE TABLE `leaves` (
 
 CREATE TABLE `leave_packages` (
   `leave_id` int(11) NOT NULL,
-  `package_id` int(11) NOT NULL
+  `package_id` int(11) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -276,7 +313,11 @@ CREATE TABLE `modules` (
 
 CREATE TABLE `packages` (
   `package_id` int(11) NOT NULL,
-  `package_name` varchar(255) NOT NULL
+  `package_name` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -313,8 +354,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'admin', 'ad', '2019-07-09 18:15:00', 'adfs', '2019-07-08 18:15:00'),
-(2, 'employee', 'ad', '2019-07-09 18:15:00', 'a', '2019-07-08 18:15:00');
+(1, 'admin', 'ad', '2019-07-09 12:30:00', 'adfs', '2019-07-08 12:30:00'),
+(2, 'employee', 'ad', '2019-07-09 12:30:00', 'a', '2019-07-08 12:30:00');
 
 -- --------------------------------------------------------
 
@@ -397,9 +438,25 @@ ALTER TABLE `employees`
 -- Indexes for table `employee_addresses`
 --
 ALTER TABLE `employee_addresses`
-  ADD PRIMARY KEY (`emp_id`,`primary_addressId`,`secondary_addressId`),
+  ADD PRIMARY KEY (`emp_id`),
   ADD KEY `primary_addressId` (`primary_addressId`),
   ADD KEY `secondary_addressId` (`secondary_addressId`);
+
+--
+-- Indexes for table `employee_approvers`
+--
+ALTER TABLE `employee_approvers`
+  ADD KEY `approver_id` (`approver_id`),
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `recommendar_id` (`recommender_id`);
+
+--
+-- Indexes for table `employee_contacts`
+--
+ALTER TABLE `employee_contacts`
+  ADD PRIMARY KEY (`emp_id`),
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `contact_id` (`contact_id`);
 
 --
 -- Indexes for table `employee_documents`
@@ -407,6 +464,24 @@ ALTER TABLE `employee_addresses`
 ALTER TABLE `employee_documents`
   ADD PRIMARY KEY (`doc_id`),
   ADD KEY `emp_id` (`emp_id`);
+
+--
+-- Indexes for table `employee_leaves`
+--
+ALTER TABLE `employee_leaves`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `approver_id` (`approver_id`),
+  ADD KEY `leave_id` (`leave_id`),
+  ADD KEY `package_id` (`package_id`),
+  ADD KEY `recommender_id` (`recommender_id`);
+
+--
+-- Indexes for table `employee_leave_balance`
+--
+ALTER TABLE `employee_leave_balance`
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `leave_id` (`leave_id`);
 
 --
 -- Indexes for table `employee_work_experience`
@@ -422,10 +497,23 @@ ALTER TABLE `leaves`
   ADD PRIMARY KEY (`leave_id`);
 
 --
+-- Indexes for table `leave_packages`
+--
+ALTER TABLE `leave_packages`
+  ADD PRIMARY KEY (`leave_id`,`package_id`),
+  ADD KEY `package_id` (`package_id`);
+
+--
 -- Indexes for table `modules`
 --
 ALTER TABLE `modules`
   ADD PRIMARY KEY (`module_id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+  ADD PRIMARY KEY (`package_id`);
 
 --
 -- Indexes for table `permissions`
@@ -466,22 +554,10 @@ ALTER TABLE `user_roles`
 --
 
 --
--- AUTO_INCREMENT for table `addresses`
---
-ALTER TABLE `addresses`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `departments`
---
-ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -490,34 +566,10 @@ ALTER TABLE `employees`
   MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `employee_documents`
+-- AUTO_INCREMENT for table `packages`
 --
-ALTER TABLE `employee_documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `employee_work_experience`
---
-ALTER TABLE `employee_work_experience`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `leaves`
---
-ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `packages`
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -533,9 +585,23 @@ ALTER TABLE `employees`
 -- Constraints for table `employee_addresses`
 --
 ALTER TABLE `employee_addresses`
-  ADD CONSTRAINT `employee_addresses_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_addresses_ibfk_2` FOREIGN KEY (`primary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `employee_addresses_ibfk_3` FOREIGN KEY (`secondary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `employee_addresses_ibfk_1` FOREIGN KEY (`primary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_addresses_ibfk_2` FOREIGN KEY (`secondary_addressId`) REFERENCES `addresses` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `employee_approvers`
+--
+ALTER TABLE `employee_approvers`
+  ADD CONSTRAINT `employee_approvers_ibfk_1` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `employee_approvers_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_approvers_ibfk_3` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
+-- Constraints for table `employee_contacts`
+--
+ALTER TABLE `employee_contacts`
+  ADD CONSTRAINT `employee_contacts_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_contacts_ibfk_2` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `employee_documents`
@@ -544,10 +610,34 @@ ALTER TABLE `employee_documents`
   ADD CONSTRAINT `employee_documents_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `employee_leaves`
+--
+ALTER TABLE `employee_leaves`
+  ADD CONSTRAINT `employee_leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_leaves_ibfk_2` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `employee_leaves_ibfk_3` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_leaves_ibfk_4` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `employee_leaves_ibfk_5` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
+-- Constraints for table `employee_leave_balance`
+--
+ALTER TABLE `employee_leave_balance`
+  ADD CONSTRAINT `employee_leave_balance_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employee_leave_balance_ibfk_2` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
 -- Constraints for table `employee_work_experience`
 --
 ALTER TABLE `employee_work_experience`
   ADD CONSTRAINT `employee_work_experience_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `leave_packages`
+--
+ALTER TABLE `leave_packages`
+  ADD CONSTRAINT `leave_packages_ibfk_1` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `leave_packages_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_permission_modules`
