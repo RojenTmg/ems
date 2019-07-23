@@ -46,6 +46,51 @@ $(window).on("scroll", function() {
 })
 
 
+
+
+
+////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
+
+$('#half-day').click(function() {
+    $('#to_date').attr('disabled', true);
+    $('#duration').val('0.5');
+    $('#to_date').val($('#from_date').val());
+    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  });
+
+  $('#full-day').click(function() {
+    $('#to_date').attr('disabled', true);
+    $('#duration').val('1');
+    $('#to_date').val($('#from_date').val());
+    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  });
+
+  $('#multiple-days').click(function() {
+    $('#duration').val('1');
+    $('#to_date').attr('disabled', false);
+    document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+  });
+
+
+  $('#from_date').change(function() {
+    document.getElementById("to_date").setAttribute("min", $(this).val());
+    if (document.getElementById('multiple-days').checked) {
+      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+    } else {
+      $('#to_date').val($(this).val());
+    }
+  });
+
+  $('#to_date').change(function() {
+      document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+  });
+
+
+
+
+
+
 //####### delete
 // var count = 0;
 
