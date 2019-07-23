@@ -53,7 +53,12 @@
 
 			return $query->result_array();
 		}
-		
+		// leave page
+
+		public function leaveManage() {
+			$query = $this->db->get('leaves');
+			return $query->result_array();
+		}
 	
 		public function add_employee($data,$password)
 		{

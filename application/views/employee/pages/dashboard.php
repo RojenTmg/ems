@@ -80,82 +80,43 @@
       <div class="box-head">
         <div class="sp-btn">
           <p>Recent Messages</p>
-          <a href="<?= base_url('employee'); ?>/all_leaves">View All</a>
         </div>
       </div>
       <div class="box-body" style="overflow-x:auto;">
-        <table class="table">
-          <thead>
+        <table class="table table-bordered hover employee_table" id="datatable1" >
+          <thead class="thead-dark">
             <tr>
-              <th>Type of Leave</th>
-              <th>From</th>
-              <th>To</th>
-              <th>No. of Days</th>
-              <th>Duty Performed by</th>
-              <th>Status</th>
+              <th id="dt-head" style="width: 2%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 5%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 5%; text-align: center;">Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="pending">Pending</span></td>
-            </tr>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="pending">Pending</span></td>
-            </tr>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="granted">Approved</span></td>
-            </tr>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="granted">Approved</span></td>
-            </tr>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="denied">Denied</span></td>
-            </tr>
-            <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="granted">Approved</span></td>
-            </tr>
-             <tr>
-              <td>Yearly Leave</td>
-              <td>06-19-2019</td>
-              <td>06-25-2019</td>
-              <td>6</td>
-              <td>Anonymous</td>
-              <td><span class="granted">Approved</span></td>
-            </tr>
+            <?php
+                foreach ($employee_leaves as $value) { ?>
+                  <tr>
+                    <td><?php echo $value['leave_id']; ?></td>
+                    <td><?php echo $value['from_date']; ?></td>
+                    <td><?php echo $value['to_date']; ?></td>
+                    <td><?php echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400); ?></td>
+                    <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
+                    <td><?php ?> <span class="pending">Pending</span> </td>
+                  </tr>
+                <?php } ?>
           </tbody>
         </table>
+
       </div>
     </div>
     </div>
   </div>  
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#datatable1').dataTable();
+    });
+  </script>
     

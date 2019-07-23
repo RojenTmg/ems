@@ -14,16 +14,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <?= link_tag('assets/css/ems.css?version=51') ?>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
 
     <!-- Script Files -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- for datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/datatables.min.js"></script>
+
 </head>
 
 <body>
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="<?= base_url('employee'); ?>">Logo</a>
+  <a class="navbar-brand" href="<?= site_url('employee/dashboard'); ?>">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -95,7 +104,7 @@
             </a>
           </li>
           <li>
-          <a href="<?= base_url('employee'); ?>/update_profile">
+          <a href="<?= base_url('employee'); ?>/profile_update">
               <i class="fa fa-address-card" aria-hidden="true"></i>
               <span>Update Profile</span>
             </a>
@@ -113,7 +122,7 @@
             </a>
           </li>
           <li>
-            <a href="<?= base_url('employee'); ?>/leave_form">
+            <a href="<?= site_url('employee/leave_form'); ?>/leave_form">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <span>Request Leave</span>
             </a>

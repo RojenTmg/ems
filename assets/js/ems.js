@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 $(document).ready((function ($) {
 
   $(".menu-icon").on("click", function() {
@@ -53,6 +46,51 @@ $(window).on("scroll", function() {
 })
 
 
+
+
+
+////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
+
+$('#half-day').click(function() {
+    $('#to_date').attr('disabled', true);
+    $('#duration').val('0.5');
+    $('#to_date').val($('#from_date').val());
+    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  });
+
+  $('#full-day').click(function() {
+    $('#to_date').attr('disabled', true);
+    $('#duration').val('1');
+    $('#to_date').val($('#from_date').val());
+    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  });
+
+  $('#multiple-days').click(function() {
+    $('#duration').val('1');
+    $('#to_date').attr('disabled', false);
+    document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+  });
+
+
+  $('#from_date').change(function() {
+    document.getElementById("to_date").setAttribute("min", $(this).val());
+    if (document.getElementById('multiple-days').checked) {
+      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+    } else {
+      $('#to_date').val($(this).val());
+    }
+  });
+
+  $('#to_date').change(function() {
+      document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+  });
+
+
+
+
+
+
 //####### delete
 // var count = 0;
 
@@ -91,6 +129,124 @@ function displayFunctionType() {
 }
 
 
+////////////////////  Notification Messages /////////////////////
+$(document).ready(function(){
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+});
+
+// $('.tip-can').click(function(ev) {
+//   $(this).parent().css({"display": "none"});
+//   ev.stopPropagation();
+// });
+
+// $('.table tr .btn-archive').click(function(ev) {
+//   $(this).children()[1].style.display = 'block';
+//   ev.stopPropagation();
+// });
+
+// $('.table tbody tr').click(function() {
+//   var id = $(this).attr('id');
+//   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
+// });
+
+// $('.table tr .btn-edit').click(function(ev){
+//   var id = $(this).closest('tr').attr('id');
+//   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
+//   ev.stopPropagation();
+// });
+
+// $('.table tr .btn-archive .tip-arch').click(function(){
+//   var id = $(this).closest('tr').attr('id');
+//   $(this).closest('tr').remove(); 
+//   // $('#datatable').dataTable().reload();
+//   // var mytbl = $("#datatable").datatable();
+//   // mytbl.ajax.reload;
+//   // $('#datatable').dataTable( ).api().ajax.reload();
+
+
+//   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
+//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+//   // window.location =  '<?= site_url('admin/employee_list'); ?>';
+//   // alert('1');
+
+//   // // $("#datatable").fnDestroy();
+//   // $('#datatable').DataTable().clear().destroy();
+//   // // $("#datatable").dataTable();
+//   // $(document).ready(function(){
+
+//   // alert('3');
+//   //   $('#datatable').dataTable();
+//   // alert('4');
+//   // });
+//   // // $("#my-button").click(function() {
+      
+//   // // });
+//   // alert('1');
+//    // $("#datatable").DataTable().fnReloadAjax('employee_list.php');
+//    // $("#datatable").api().ajax.reload();
+//    // $('#datatable').dataTable().api().ajax.reload();
+
+//    // $('#datatable').DataTable().destroy();
+//    // fetch_data();
+
+//    // $('#datatable').dataTable().api().ajax.reload();
+
+
+// });
+
+// $('.arch-msg-div').click(function(){
+//   $('.arch-msg-div .arch-msg').addClass('msg-remove');
+//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+// });
+
+// // $('.tip-arch').click(function(ev) {
+// //   alert($(this).attr('id'));
+// //   ev.stopPropagation();
+// // });
+
+
+// $(document).ready(function(){
+//   $('#datatable').dataTable();
+// });
+
+
+
+
+
+/// archive
+
+  // // $('.tip-can').click(function(ev) {
+  // //   $(this).parent().css({"display": "none"});
+  // //   ev.stopPropagation();
+  // // });
+
+  // // $('.table tr .btn-archive').click(function(ev) {
+  // //   $(this).children()[1].style.display = 'block';
+  // //   ev.stopPropagation();
+  // // });
+
+  // // $('.table tbody tr').click(function() {
+  // //   var id = $(this).attr('id');
+  // //   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
+  // // });
+
+  // // $('.table tr .btn-edit').click(function(ev){
+  // //   var id = $(this).closest('tr').attr('id');
+  // //   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
+  // //   ev.stopPropagation();
+  // // });
+
+  // $('.table tr .btn-archive .tip-arch').click(function(){
+  //   var id = $(this).closest('tr').attr('id');
+  //   $(this).closest('tr').remove();
+  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fas fa-undo-alt" aria-hidden="true"></i></span><div class="msg-text"><p>Restore Successful !</p>Employee with Id no. ' + id + '  restored successfully.</div></div>');
+  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+  // });
+
+  // $('.arch-msg-div').click(function(){
+  //   $('.arch-msg-div .arch-msg').addClass('msg-remove');
+  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+  // });
 
 
 
@@ -612,7 +768,31 @@ xmlHttp.onreadystatechange = function()
          document.getElementById('email').style.borderColor="red";
       }
 
-      if(new Date(dob)> new Date())
+    if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
+    {
+       msg="Select appropriate date.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+
+    }
+
+    else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
+    {
+       msg="Select appropriate date.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+
+    }
+
+    else if(new Date(dob)> new Date())
       {
          msg="Invalid Date of Birth";
 
@@ -623,7 +803,7 @@ xmlHttp.onreadystatechange = function()
                $('#showmessage').html(msg); 
       }
 
-      if(getAge(dob)<18){
+     else  if(getAge(dob)<18){
          msg="Age cannot be less than 18.";
 
               $('#messagediv').removeClass('alert-success');
@@ -1055,7 +1235,7 @@ function inCompleteIcon(tabId){
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
-
+              location.reload();
           }
   }
 
@@ -1189,6 +1369,7 @@ function assign(){
           }
  }
 
+// check age
  function getAge(dateString) 
 {
     var today = new Date();
@@ -1201,4 +1382,3 @@ function assign(){
     }
     return age;
 }
-
