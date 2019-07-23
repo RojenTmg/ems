@@ -27,7 +27,6 @@
           </div>
           <div class="form-ckbx">
             <label>Half / Full day leave</label>
-
             <div>
               <div>
                 <input type="radio" name="is_half_day" value="0" checked="checked">
@@ -48,10 +47,10 @@
               <label>To</label>
               <input type="date" name="to_date" id="to_date" value="<?php echo date('Y-m-d'); ?>">
             </div>
-          </div>
-          <div class="form-div">
-            <label>No. of Days</label>
-            <input type="text" name="" disabled="disabled" placeholder="5" id="duration">
+            <div class="form-div">
+              <label>No. of Days</label>
+              <input type="text" name="" disabled="disabled" placeholder="5" id="duration">
+            </div>
           </div>
           <div class="form-div">
             <label>Duty Performed by</label>
