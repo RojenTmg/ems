@@ -101,7 +101,7 @@
                     <td><?php echo $value['leave_id']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
-                    <td><?php echo (strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400; ?></td>
+                    <td><?php echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400); ?></td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
                     <td><?php ?> <span class="pending">Pending</span> </td>
                   </tr>

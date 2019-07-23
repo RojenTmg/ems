@@ -624,7 +624,10 @@ body {
   align-items: center;
 }
 .leave-date .form-div {
-  width: 49%;
+  width: 42%;
+}
+.leave-date .form-div:last-child {
+  width: 14%;
 }
 .emp-link {
   /*margin-bottom: -20px;*/

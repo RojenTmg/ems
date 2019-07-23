@@ -27,31 +27,34 @@
           </div>
           <div class="form-ckbx">
             <label>Half / Full day leave</label>
-
             <div>
               <div>
-                <input type="radio" name="is_half_day" value="0" checked="checked">
-                <label>Full Day Leave</label> 
+                <input type="radio" name="is_half_day" id="half-day" value="1" checked="checked">
+                <label>Half Day</label>
               </div>
               <div>
-                <input type="radio" name="is_half_day"  value="1">
-                <label>Half Day Leave</label>
+                <input type="radio" name="is_half_day" id="full-day" value="0">
+                <label>Full Day</label> 
+              </div>
+              <div>
+                <input type="radio" name="is_half_day" id="multiple-days" value="1">
+                <label>Multiple Days</label>
               </div>
             </div>
           </div>
           <div class="sp-btn leave-date">
             <div class="form-div">
               <label>From</label>
-              <input type="date" name="from_date" id="from_date" value="<?php echo date('Y-m-d'); ?>">
+              <input type="date" name="from_date" id="from_date" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
             </div>
             <div class="form-div">
               <label>To</label>
-              <input type="date" name="to_date" id="to_date" value="<?php echo date('Y-m-d'); ?>">
+              <input type="date" name="to_date" id="to_date" disabled="disabled" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
             </div>
-          </div>
-          <div class="form-div">
-            <label>No. of Days</label>
-            <input type="text" name="" disabled="disabled" placeholder="5" id="duration">
+            <div class="form-div">
+              <label>No. of Days</label>
+              <input type="text" name="" disabled="disabled" value="0.5" id="duration">
+            </div>
           </div>
           <div class="form-div">
             <label>Duty Performed by</label>
