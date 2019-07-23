@@ -21,14 +21,14 @@
           </a>
           </div>
           <div class="sum-item">
-          <a href="<?= base_url('admin');?>/employee_assign">
+          <a href="<?= base_url('admin');?>/employee_list">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Assign Employee</div>
-                <div class="hl-cont"><span><em> (no. of emp. left to be assigned) &nbsp;</em></span>10</div>
+                <div class="hl-cont"><span><em> (no. of emp. left to be assigned) &nbsp;</em></span><?php echo $remaining; ?></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
