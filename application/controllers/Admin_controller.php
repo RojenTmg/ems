@@ -113,6 +113,15 @@ class Admin_controller extends CI_Controller {
 			redirect('login');
 	}
 
+	// leave page
+
+	public function leaveManage() 
+	{
+		$title['title'] = 'Leaves';
+		$data['posts'] = $this->Admin_model->leaveManage();
+		$this->view('leave_manage', $title, $data);
+	}
+
 	// public function employeeSearch() 
 	// { 
 	// 	$id = $this->input->post('search_emp');

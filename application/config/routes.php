@@ -80,9 +80,10 @@ $route['admin/dashboard'] = 'Admin_controller/dashboard';
 $route['admin/employee_list'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
-
+$route['admin/leave_manage'] = 'Admin_controller/leaveManage';
 $route['employee/dashboard'] = 'Employee_controller/dashboard';
 $route['employee/leave_form'] = 'Employee_controller/leaveForm';
+
 
 $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
 $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';

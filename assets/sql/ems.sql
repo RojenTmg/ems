@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2019 at 05:35 PM
+-- Generation Time: Jul 23, 2019 at 10:14 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -176,7 +176,10 @@ INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, 
 (25, '0', 'Mr', 'AFAF', '', 'AFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:37:40', NULL, '2019-07-22 07:37:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
 (26, '0', 'Mr', 'test', '', 'test', '2019-07-22', 1, 1, '', '2019-07-22 08:01:04', NULL, '2019-07-22 08:01:04', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
 (27, '0', 'Mr', 't', '', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:04:19', NULL, '2019-07-22 08:04:19', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(28, '0', 'Mr', 'tes', 'tes', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15', 'a@adf.com', 'Non-Nepalese', 'Yes', 'adsf', '2019-07-22', 'fasd', 'sdf', 'fs', 'sdfsdf', '', 'sdf', 'Master', 'non', 'asd', 'fasd', '1994-11-30', 'Male', 'B +ve', '', '', 'No', '', 'qew', NULL);
+(28, '0', 'Mr', 'tes', 'tes', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15', 'a@adf.com', 'Non-Nepalese', 'Yes', 'adsf', '2019-07-22', 'fasd', 'sdf', 'fs', 'sdfsdf', '', 'sdf', 'Master', 'non', 'asd', 'fasd', '1994-11-30', 'Male', 'B +ve', '', '', 'No', '', 'qew', NULL),
+(29, '0', 'Mr', 'First name', '', 'Last name', '2019-07-23', 1, 1, '', '2019-07-23 04:48:20', NULL, '2019-07-23 04:48:20', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(30, '0', 'Mr', 'jj', 'ih', 'll', '2019-07-23', 1, 1, '', '2019-07-23 07:55:13', NULL, '2019-07-23 07:55:13', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
+(31, '0', 'Mr', 'te', '', 'te', '2019-07-23', 1, 1, '', '2019-07-23 07:58:18', NULL, '2019-07-23 07:58:18', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2000-11-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -277,7 +280,7 @@ CREATE TABLE `employee_leaves` (
   `leave_applied_date` date NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `substitute` int(11) NOT NULL,
+  `duty_performed_by` int(11) NOT NULL,
   `reason` text NOT NULL,
   `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
@@ -295,7 +298,7 @@ CREATE TABLE `employee_leaves` (
 
 CREATE TABLE `employee_leave_balance` (
   `emp_id` int(11) NOT NULL,
-  `leave_id` int(11) DEFAULT NULL,
+  `leave_id` int(11) NOT NULL,
   `remain_days` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -340,6 +343,14 @@ CREATE TABLE `leaves` (
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `leaves`
+--
+
+INSERT INTO `leaves` (`leave_id`, `leave_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(1, 'testing leave', '', '2019-07-23 06:26:52', NULL, '2019-07-23 06:26:52'),
+(2, 'testing leave2', '', '2019-07-23 07:16:55', NULL, '2019-07-23 07:16:55');
+
 -- --------------------------------------------------------
 
 --
@@ -349,6 +360,7 @@ CREATE TABLE `leaves` (
 CREATE TABLE `leave_packages` (
   `leave_id` int(11) NOT NULL,
   `package_id` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
   `created_by` varchar(255) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
@@ -461,7 +473,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (1, 123, 'admin', 1, '', '2019-07-22 08:11:13', '', '2019-07-22 08:11:13'),
-(2, 28, 'tete123', 0, '', '2019-07-22 08:13:15', '', '2019-07-22 08:13:15');
+(2, 28, 'tete123', 0, '', '2019-07-22 08:13:15', '', '2019-07-22 08:13:15'),
+(3, 29, 'fila123', 0, '', '2019-07-23 04:48:20', '', '2019-07-23 04:48:20'),
+(4, 30, 'jjll123', 0, '', '2019-07-23 07:55:13', '', '2019-07-23 07:55:13'),
+(5, 31, 'tete123', 0, '', '2019-07-23 07:58:18', '', '2019-07-23 07:58:18');
 
 -- --------------------------------------------------------
 
@@ -484,7 +499,10 @@ CREATE TABLE `user_roles` (
 
 INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (1, 1, '', '2019-07-22 08:12:10', NULL, '2019-07-22 08:12:10'),
-(2, 2, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15');
+(2, 2, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15'),
+(2, 3, '', '2019-07-23 04:48:20', NULL, '2019-07-23 04:48:20'),
+(2, 4, '', '2019-07-23 07:55:13', NULL, '2019-07-23 07:55:13'),
+(2, 5, '', '2019-07-23 07:58:18', NULL, '2019-07-23 07:58:18');
 
 --
 -- Indexes for dumped tables
@@ -561,6 +579,7 @@ ALTER TABLE `employee_leaves`
 -- Indexes for table `employee_leave_balance`
 --
 ALTER TABLE `employee_leave_balance`
+  ADD PRIMARY KEY (`emp_id`,`leave_id`),
   ADD KEY `emp_id` (`emp_id`),
   ADD KEY `leave_id` (`leave_id`);
 
@@ -656,7 +675,19 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `employee_leaves`
+--
+ALTER TABLE `employee_leaves`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `leaves`
+--
+ALTER TABLE `leaves`
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -686,7 +717,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -726,16 +757,16 @@ ALTER TABLE `employee_documents`
 ALTER TABLE `employee_leaves`
   ADD CONSTRAINT `employee_leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_leaves_ibfk_2` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `employee_leaves_ibfk_3` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_leaves_ibfk_4` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `employee_leaves_ibfk_5` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `employee_leaves_ibfk_5` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `employee_leaves_ibfk_6` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employee_leave_balance`
 --
 ALTER TABLE `employee_leave_balance`
   ADD CONSTRAINT `employee_leave_balance_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_leave_balance_ibfk_2` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `employee_leave_balance_ibfk_2` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employee_work_experience`
@@ -747,8 +778,8 @@ ALTER TABLE `employee_work_experience`
 -- Constraints for table `leave_packages`
 --
 ALTER TABLE `leave_packages`
-  ADD CONSTRAINT `leave_packages_ibfk_1` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `leave_packages_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `leave_packages_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `leave_packages_ibfk_3` FOREIGN KEY (`leave_id`) REFERENCES `leaves` (`leave_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_permission_modules`
