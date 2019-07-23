@@ -188,8 +188,6 @@ class Admin_controller extends CI_Controller {
 			if($id=$this->Admin_model->add_employee($data,$password))
 			{
 				array_push($result, $id);
-
-
 			}
 
 		}

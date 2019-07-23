@@ -13,7 +13,7 @@
   			List
   		</div>
   		<div class="box-body">
-  		<table class="table table-bordered hover">
+  		<table class="table table-bordered hover table-responsive">
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>
@@ -62,7 +62,7 @@
 
   				<div class="sub-can">
               	<button class="sub" type="submit" name="submit">Save</button>
-            </div>
+	            </div>
   			</form>
   		</div>	
   	</div>
@@ -82,7 +82,7 @@
   			List
   		</div>
   		<div class="box-body">
-  		<table class="table table-bordered hover">
+  		<table class="table table-bordered hover table-responsive">
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>

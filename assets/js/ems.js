@@ -257,46 +257,55 @@ $(document).ready(function(){
 // changes in add 
  function addGeneral()
   {
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addGeneral',true);
-          var data = new FormData();
-          var first_name =document.getElementById('first_name').value;
-          var last_name=document.getElementById('last_name').value;
-          var middle_name= document.getElementById('middle_name').value;
-          var join_date=document.getElementById('join_date').value;
-          var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
-          data.append('title',document.getElementById('title').value);
-          data.append('first_name',first_name);
-          data.append('middle_name',middle_name);
-          data.append('last_name',last_name);
-          data.append('join_date',join_date);
-          data.append('password',password);
-          xmlHttp.send(data);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addGeneral',true);
+    var data = new FormData();
+    var first_name =document.getElementById('first_name').value;
+    var last_name=document.getElementById('last_name').value;
+    var middle_name= document.getElementById('middle_name').value;
+    var join_date=document.getElementById('join_date').value;
+    var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
+    data.append('title',document.getElementById('title').value);
+    data.append('first_name',first_name);
+    data.append('middle_name',middle_name);
+    data.append('last_name',last_name);
+    data.append('join_date',join_date);
+    data.append('password',password);
+    xmlHttp.send(data);
 
-          if(checkCurrentDate('join_date')==false)
+    if(checkCurrentDate('join_date')==false)
+    {
+       msg="Invalid Date of Join";
+        $('#messagediv').removeClass('alert-success');
+        $('#messagediv').addClass('alert-danger');
+        $('#messagediv').css('color','red');
+        $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+    }
+    else
+    {
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
           {
-             msg="Invalid Date of Join";
 
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+            var status = xmlHttp.responseText;
+            var id=JSON.parse(status);
+           if(isNaN(id))
+            showresponse('general-form',status,'Added Successfully');
+          else  {
+            location.href='employee_manage/'+id;
+              // //show nav
+              // toggleNav("show");
           }
-          else
-          {
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
+           
 
-                var status = xmlHttp.responseText;
-                var id=JSON.parse(status);
-                location.href='employee_manage/'+id;
-             
-              }
+             // if(id!="false")
+             // location.href='employee_manage/'+id;      
+
           }
-          }
+      }
+    }
   }
 
 
@@ -567,8 +576,6 @@ function showresponse(formname,status,msg)
   // change tab icon
   check_complete();
 
-  //show nav
- toggleNav("show");
 
 }
 
