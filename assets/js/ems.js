@@ -1278,7 +1278,7 @@ function assign(){
 
 
   if(recommender==''||approver==''){
-                    msg="Assign a Employee";
+                    msg="Assign an Employee";
 
                $('#messagediv').addClass('alert-danger');
                $('#messagediv').css('color','red');
@@ -1287,7 +1287,7 @@ function assign(){
               return 0;
             }
   var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','assign',true);
+          xmlHttp.open('POST','assignEmployee',true);
           var data = new FormData();
           data.append('recommender_id',recommender);
           data.append('approver_id',approver);
@@ -1297,8 +1297,75 @@ function assign(){
           {
               if(xmlHttp.readyState==4)
               {
-
                 msg="Assigned Successfully.";
+
+               $('#messagediv').removeClass('alert-danger');
+               $('#messagediv').addClass('alert-success');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); }
+
+          }
+ }
+ function saveLeave(){
+  var leave_name=document.getElementById('leave_name').value;
+  var leave_id=document.getElementById('leave_id').value;
+
+
+            if(leave_name==''){
+               msg="Enter leave name";
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+              return 0;
+            }
+  var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','saveLeave',true);
+          var data = new FormData();
+          data.append('leave_name',leave_name);
+          data.append('id',leave_id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+                msg="Leave Added Successfully";
+
+               $('#messagediv').removeClass('alert-danger');
+               $('#messagediv').addClass('alert-success');
+               $('#messagediv').css('color','green');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); }
+
+          }
+ }
+  function savePackage(){
+  var package_name=document.getElementById('package_name').value;
+  var package_id=document.getElementById('package_id').value;
+
+
+            if(package_name==''){
+               msg="Enter leave name";
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+               $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+              return 0;
+            }
+  var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','saveLeave',true);
+          var data = new FormData();
+          data.append('package_name',package_name);
+          data.append('id',package_id);
+          xmlHttp.send(data);
+
+          xmlHttp.onreadystatechange = function()
+          {
+              if(xmlHttp.readyState==4)
+              {
+                msg="Package Added Successfully";
 
                $('#messagediv').removeClass('alert-danger');
                $('#messagediv').addClass('alert-success');
