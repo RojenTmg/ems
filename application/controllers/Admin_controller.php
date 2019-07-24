@@ -116,7 +116,7 @@ class Admin_controller extends CI_Controller {
 			if(isset($_SESSION['current_employee_id'])){
 				 $id=$_SESSION['current_employee_id']; 
 				$data['assigned']=$this->Admin_model->getAssign($id);
-			}
+				$data['packagelist']=$this->Admin_model->packageManage();			}
 			else{
 				$data['assigned']='';
 			}
