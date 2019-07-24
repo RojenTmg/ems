@@ -933,13 +933,21 @@ class Admin_controller extends CI_Controller {
 					'created_by'=>$_SESSION['user_id'],
 					'package_id'=>$package_id
 				];
-				$this->db->where('package_id',$package_id);
-				$this->db->update('packages',$data);
-				$this->addLeaveToPackage($arrayLeave,$arrayDuration,$package_id,'update');
-				echo "updated";
-	
+				$leave=$this->db->where('package_name',$package_name);
+				$list=$this->db->get('packages');
+				$getList= $list->row_array();
+				if(count($getList)==0)
+				{
+					$this->db->where('package_id',$package_id);
+					$this->db->update('packages',$data);
+					$this->addLeaveToPackage($arrayLeave,$arrayDuration,$package_id,'update');
+					echo "updated";
+				}
+				else echo "already";
 			}
+	
 		}
+		
 
 		function addLeaveToPackage($leave,$duration,$id,$operation){
 
