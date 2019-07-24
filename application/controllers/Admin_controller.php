@@ -140,9 +140,9 @@ class Admin_controller extends CI_Controller {
 		$data['posts'] = $this->Admin_model->leaveManage();
 
 		$data['packages']=$this->Admin_model->packageManage();
-
-
-
+		// echo "<pre>";
+		// print_r($data['packages']);
+		
 		if($id!=''){
 
 		$data['detailLeave']=$this->Admin_model->getLeaveDetails($id);
@@ -893,11 +893,6 @@ class Admin_controller extends CI_Controller {
 
 			$arrayLeave=json_decode($leaveArr, true);
 			$arrayDuration=json_decode($durationArr, true);
-
-			
-
-			
-
 
 			$data=[ 'package_name'=>$package_name, 'created_by'=>$_SESSION['user_id'] ];
 

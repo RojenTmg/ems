@@ -21,12 +21,12 @@
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
-        <table  id="leave" class="table table-bordered hover ">
-          <thead class="thead-dark">
+        <table  id="leave" class="table table-striped table-bordered  ">
+          <thead class="">
             <tr>
-              <th>SN</th>
-              <th>Leave Name</th>
-              <th>Action</th>
+              <th class="text-center">SN</th>
+              <th class="text-center">Leave Name</th>
+              <th class="text-center">Action</th>
             </tr>
           </thead>
           <!-- table body -->
@@ -35,13 +35,13 @@
             <?php foreach ($posts as $value=>$post) { ?>
             <tr id="
               <?php echo $post['leave_id']; ?>">
-              <td>
+              <td class="text-center">
                 <?php echo $sn; $sn++ ?>
               </td>
-              <td>
+              <td class="text-center">
                 <?php echo $post['leave_name']; ?>
               </td>
-              <td>
+              <td class="text-center">
              
                     <a href="<?= site_url('admin/leave_manage/'); ?><?php echo $post['leave_id']; ?>" >
                   <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -118,27 +118,74 @@
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
-                <table id="package"  class="table table-bordered hover ">
-                  <thead class="thead-dark">
+                <table id="package"  class="table table-bordered ">
+                  <thead class="">
                     <tr>
-                      <th>SN</th>
-                      <th>Package Name</th>
-                      <th>Action</th>
+                      <th class="text-center">SN</th>
+                      <th class="text-center">Package Name</th>
+                      <th class="text-center">Leaves</th>
+                      <th class="text-center">Duration (Days)</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <!-- table body -->
                   <tbody>
-                    <?php $sn =1; ?>
-                    <?php foreach ($packages as $pack=>$package) { ?>
+                    <?php 
+                    $sn =1;
+                     $counts = array_count_values( array_column($packages, 'package_id')); 
+
+                     ?>
+                    <?php foreach ($packages as $pack=>$package) { 
+                      ?>
+                    
                     <tr id="
                       <?php echo $package['package_id']; ?>">
-                      <td>
+                      <td class="text-center">
                         <?php echo $sn; $sn++ ?>
                       </td>
-                      <td>
+                    <!-- packagename -->
+                     <td class="text-center">
                         <?php echo $package['package_name']; ?>
                       </td>
-                      <td>
+                       <?php   
+                          $p_id= $package['package_id'];
+
+                            $package_leave= $this->Database_model->find('leave_packages','package_id',$p_id);
+                            ?>
+                      <td class="text-center">
+                         <?php
+
+                            foreach ($package_leave as $key => $value) 
+                            {
+                              $leave_name= $this->Database_model->find('leaves','leave_id',$value['leave_id']);
+                               foreach ($leave_name as $key => $leave_array) 
+                               {
+                                echo $leave_array['leave_name'].'<br>';
+                                }
+                            }
+                          
+                           ?>
+
+                      </td>
+
+                      <!-- duration -->
+                     <td class="text-center">
+                          <?php   
+                          foreach ($package_leave as $key => $value) 
+                            {
+                              $leave_name= $this->Database_model->find('leaves','leave_id',$value['leave_id']);
+                               foreach ($leave_name as $key => $leave_array) 
+                               {
+                                echo $value['duration'].'<br>';
+                                }
+                            }
+                          
+                           ?>
+
+                      </td>
+
+                      <!-- action -->
+                      <td class="text-center">
                         <button class="btn-edit" title="Edit">
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
