@@ -70,7 +70,7 @@
     <div class="sidebar-content">
       <div class="sidebar-brand">
 
-        <a href="#">NAMI College</a>
+        <a href="#">EMS</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>

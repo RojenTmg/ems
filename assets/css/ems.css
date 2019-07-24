@@ -950,7 +950,15 @@ body {
   position: absolute;
   z-index: 1;
   width: 180px;
+  left: -5px;
   padding-bottom: 10px;
+}
+
+@media screen and (max-width: 991px){
+  .tooltiptext {
+    position: absolute;
+    left: -150px;
+  }
 }
 
 
