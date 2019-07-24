@@ -1344,11 +1344,13 @@ function assign()
           if(reply=="inserted"){
            msg="Leave Added Successfully";
            $('#messagediv').addClass('alert-success');
+             $('#messagediv').css('color','green');
            
           }
           if(reply=="updated"){
              msg="Leave Updated Successfully";
              $('#messagediv').addClass('alert-success');
+             $('#messagediv').css('color','green');
          }
          if(reply=="already"){
              msg="Leave Already Exists";
@@ -1378,20 +1380,30 @@ function assign()
         if(xmlHttp.readyState==4)
         {
          msg="Deleted Successfully.";
-
-         // $('#messagediv').removeClass('alert-success');
-         $('#messagediv').addClass('alert-success');
-         $('#messagediv').css('color','green');
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv').addClass('alert-danger');
+         $('#messagediv').css('color','red');
          $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
         // location.reload();
+         dismissModal();
+        $( "#leave" ).load(window.location.href + " #leave" );
 
         }
 
     }
  }
 
- // delete Package
+// for delete button to dismiss the modal
+function dismissModal()
+{
+      $('#leaveModal').css('display','none');
+        $('#leaveModal').attr('aria-hidden', 'true');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+} 
+
+// delete Package
  function deletePackage(id)
  {
    var xmlHttp = new XMLHttpRequest();
@@ -1404,14 +1416,15 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-          msg="Deleted Successfully.";
+         msg="Deleted Successfully.";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+          dismissModal();
+          $( "#package" ).load(window.location.href + " #package" );
 
-         // $('#messagediv').removeClass('alert-success');
-         $('#messagediv').addClass('alert-success');
-         $('#messagediv').css('color','green');
-         $('#messagediv').css('display','block');
-        $('#showmessage').html(msg); 
-        // location.reload();
 
         }
 
@@ -1451,10 +1464,12 @@ function assign()
           if(reply=="inserted"){
            msg="Package Added Successfully";
            $('#messagediv1').addClass('alert-success');
+             $('#messagediv1').css('color','green');
           }
           if(reply=="updated"){
              msg="Package Updated Successfully";
              $('#messagediv1').addClass('alert-success');
+             $('#messagediv1').css('color','green');
          }
          if(reply=="already"){
              msg="Package Already Exists";

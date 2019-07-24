@@ -872,10 +872,8 @@ class Admin_controller extends CI_Controller {
 
 		public function deleteLeave(){
 			extract($_POST);
-			$data=[
-				'leave_id'=>$id
-			];
-			// $this->db-where('package_id',$id);
+			$data=[ 'leave_id'=>$leave_id ];
+			// $this->db-where('leave_id',$id);
 			$this->db->delete('leaves',$data);
 			
 		}
@@ -910,11 +908,9 @@ class Admin_controller extends CI_Controller {
 		}
 		public function deletePackage(){
 			extract($_POST);
-			$data=[
-				'package_id'=>$id
-			];
+			$data=[ 'package_id'=>$package_id ];
 			// $this->db-where('package_id',$id);
-			$this->db->delete('packages',array('package_id',$id));
+			$this->db->delete('packages',$data);
 		}
 
 
