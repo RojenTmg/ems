@@ -36,6 +36,10 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Dashboard';
 		$data['count'] = count($this->Database_model->findAll('employees'));
+		$data['assigned']=count($this->Admin_model->assignList());
+
+		$data['remaining']=$data['count']-$data['assigned'];
+
 		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
@@ -64,6 +68,21 @@ class Admin_controller extends CI_Controller {
 		else
 			redirect('login');
 	}
+
+
+
+		public function assignEmployee(){
+				extract($_POST);
+				$id=$_SESSION['current_employee_id'];
+				$data=[
+					'approver_id'=>$approver_id,
+					'recommender_id'=>$recommender_id,
+					'emp_id'=>$id,
+					'created_by'=>$_SESSION['user_id']	
+				];	
+				$this->Admin_model->assign($data,$id);
+			
+		}
 
 	// viewing single registered employees
 	public function employeeDetail($id = NULL) 
@@ -97,7 +116,7 @@ class Admin_controller extends CI_Controller {
 			if(isset($_SESSION['current_employee_id'])){
 				 $id=$_SESSION['current_employee_id']; 
 				$data['assigned']=$this->Admin_model->getAssign($id);
-			}
+				$data['packagelist']=$this->Admin_model->packageManage();			}
 			else{
 				$data['assigned']='';
 			}
@@ -111,6 +130,17 @@ class Admin_controller extends CI_Controller {
 				$this->view('employee_manage', $title);
 		} else
 			redirect('login');
+	}
+
+	// leave page
+
+	public function leaveManage() 
+	{
+		$title['title'] = 'Leaves';
+		$data['posts'] = $this->Admin_model->leaveManage();
+
+		$data['packages']=$this->Admin_model->packageManage();
+		$this->view('leave_manage', $title, $data);
 	}
 
 	// public function employeeSearch() 
@@ -179,8 +209,6 @@ class Admin_controller extends CI_Controller {
 			if($id=$this->Admin_model->add_employee($data,$password))
 			{
 				array_push($result, $id);
-
-
 			}
 
 		}
@@ -722,7 +750,7 @@ class Admin_controller extends CI_Controller {
 				$id=$_SESSION['user_id'];
 			}
 
-			$this->db->select('first_name, last_name,dob,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
+			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
 			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $id));
 
 			$this->db->select('contact_id');
@@ -730,6 +758,9 @@ class Admin_controller extends CI_Controller {
 
 			$this->db->select('secondary_addressId');
 			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('emp_id' => $id));
+
+			$this->db->select('recommender_id','approver_id');
+			$employee_assign=$this->Admin_model->user_detail('employee_approvers',array('emp_id'=>$id));
 
 	
 
@@ -747,11 +778,26 @@ class Admin_controller extends CI_Controller {
 					if($row!=NULL) $filled++;
 				}
 			}
+			else{
+				$total=$total+1;
+			}
 			if(!empty($employee_addresses_tbl)){
 				foreach ($employee_addresses_tbl as $row) {
 					$total++;
 					if($row!=NULL) $filled++;
 				}
+			}
+			else{
+				$total++;
+			}
+			if(!empty(($employee_assign))){
+				foreach ($employee_assign as $row) {
+					$total++;
+					if($row!=NULL) $filled++;
+				}
+			}
+			else{
+				$total+=2;
 			}
 
 			if($total==0) $percentage=0;
@@ -784,24 +830,96 @@ class Admin_controller extends CI_Controller {
 		}
 
 
-		public function assign(){
-			if(isset($_SESSION['current_employee_id'])){
-				extract($_POST);
+
+// while adding leave, if same leave is already in database,
+// 	error is shown else leave is created.
+
+// while editing leave, leave name is updated
+
+		public function saveLeave()
+		{
+			extract($_POST);
+			$data=[
+				'leave_name'=>$leave_name,
+				'created_by'=>$_SESSION['user_id']
+			];
+
+			if($leave_id=='')
+			{
+				$leave=$this->db->where('leave_name',$leave_name);
+				$list=$this->db->get('leaves');
+				$getList= $list->row_array();
+				if(count($getList)==0)
+				{
+					$this->db->insert('leaves',$data);
+					echo "inserted";
+				}
+
+				else echo "already";
+				}			
+			else{
 				$data=[
-					'approver_id'=>$approver_id,
-					'recommender_id'=>$recommender_id,
-					'emp_id'=>$_SESSION['current_employee_id'],
-					'created_by'=>$_SESSION['user_id']	
-				];			
-				if($this->Admin_model->assign($data)) echo json_encode("true"); else json_encode("Unable to assign");
+					'leave_name'=>$leave_name,
+					'created_by'=>$_SESSION['user_id'],
+					'leave_id'=>$leave_id
+				];
+				$this->db->where('leave_id',$leave_id);
+				$this->db->update('leaves',$data);
+				echo "updated";
 			}
+
+		}
+
+		public function deleteLeave(){
+			extract($_POST);
+			$data=[
+				'leave_id'=>$id
+			];
+			// $this->db-where('package_id',$id);
+			$this->db->delete('leaves',$data);
+			
+		}
+
+		public function savePackage(){
+			extract($_POST);
+			$data=[
+				'package_name'=>$package_name,
+				'created_by'=>$_SESSION['user_id'],
+			];
+			if($package_id==''){
+				$leave=$this->db->where('package_name',$package_name);
+				$list=$this->db->get('packages');
+				$getList= $list->row_array();
+				if(count($getList)==0){
+					$this->db->insert('packages',$data);
+					echo "inserted";
+				 }
+				 else echo "already";
+				
+			}
+			else{
+				$data=[
+				'package_name'=>$package_name,
+				'created_by'=>$_SESSION['user_id'],
+				'package_id'=>$package_id
+				];
+				$this->db->where('package_id',$package_id);
+				$this->db->update('packages',$data);	
+				echo "updated";
+			}
+		}
+		public function deletePackage(){
+			extract($_POST);
+			$data=[
+				'package_id'=>$id
+			];
+			// $this->db-where('package_id',$id);
+			$this->db->delete('packages',array('package_id',$id));
 		}
 
 
+
+
+
 	}
-
-
-
-
-
 	?>

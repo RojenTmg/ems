@@ -492,7 +492,8 @@
           <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
-       </div></div>
+       </div>
+     </div>
           <!-- hidden id -->
           <input type="hidden" id="emp_id">
 
@@ -619,13 +620,23 @@
 
  <!-- employee assign tab starts here -->
   <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
-    <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-        <form class="form" style="height: 200px;">
+  
+        <form class="form" id="assign-form" >
+            <div class="form-div">
+              <div class="form-div"></div>
+            </div>
+           <div class="form-div form-div-horz">
+            <label>Package <span class="text-danger"><i>*</i></span></label>
+                <select  id="package" >
+                  <option value="">Select package</option>
+                  <?php foreach ($packagelist as $pack) {  ?>
+                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+          <hr>
           <div class="form-div form-div-horz">
-            <label>Recommender</label>
+            <label>Recommender <span class="text-danger"><i>*</i></span></label>
                 <select class='fstdropdown-select' id="recommender" >
                   <option value="">Select option</option>
                   <?php foreach ($empList as $row) {
@@ -636,7 +647,7 @@
                 </select> 
           </div>
           <div class="form-div form-div-horz">
-            <label>Approver</label>
+            <label>Approver <span class="text-danger"><i>*</i></span></label>
                <select class='fstdropdown-select' id="approver">
                    <option  value="">Select option</option>
                   <?php foreach ($empList as $row) {
@@ -646,15 +657,11 @@
                  <?php } ?>
                 </select> 
           </div>
-         
 
-
-          <div class="form-div form-div-horz">
-            <label></label>
-            <div class="sub-can">
-              <input type="button" onclick="assign()" name="" value="Submit" class="sub">
-            </div>
-          </div> 
+          <div class="sub-can">
+            <input type="button" onclick="assign()" name="" value="Save" class="sub">
+       
+          </div>
         </form>
       </div>
 

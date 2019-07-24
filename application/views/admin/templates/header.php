@@ -54,7 +54,6 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/fstdropdown.css') ?> ">
 
 
-
 </head>
 
 <body>
@@ -110,6 +109,17 @@
           Add Staff
         </a>
       </li>
+
+      <!-- add leave and package -->
+
+       <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('admin'); ?>/leave_manage">
+          <i class="fa fa-calendar-check" aria-hidden="true"></i>
+          Leaves
+        </a>
+      </li>
+
+
     </ul>
     <ul class="navbar-nav">
       <!-- <li class="nav-item">

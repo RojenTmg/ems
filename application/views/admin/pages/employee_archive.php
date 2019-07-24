@@ -45,7 +45,6 @@
                 <td><?php echo $post['nationality']; ?></td>
                 <td><?php echo $post['highest_degree']; ?></td>
                 <td>
-                  <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn-archive tooltip1" title="Restore" id="<?php echo $post['emp_id']; ?>"><i class="fas fa-undo-alt res-color" aria-hidden="true"></i>
                     <div class="tooltiptext">
                       <p>Are you sure?</p>
@@ -76,3 +75,17 @@
   </div>
 </div>
 </div>
+
+<script type="text/javascript">
+
+  $('.tip-can').click(function(ev) {
+    $(this).parent().css({"display": "none"});
+    ev.stopPropagation();
+  });
+
+  $('.table tr .btn-archive').click(function(ev) {
+    $(this).children()[1].style.display = 'block';
+    ev.stopPropagation();
+  });
+
+  </script>

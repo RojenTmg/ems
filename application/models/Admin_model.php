@@ -1,15 +1,25 @@
 <?php
 	class Admin_model extends CI_Model {
 		
-		public function assign($data){
-			$this->db->where('emp_id',$id);
+		public function assign($data,$id){
+			$this->db->where('emp_id',$id);	
 			$list=$this->db->get('employee_approvers');
-			$getList= $list->row_array();
-			if($list=='')
-			return $this->db->insert('employee_approvers',$data);
-			else
-			return $this->db->update('employee_approvers',$data);
 
+			$getList= $list->row_array();
+			if(count($getList)==0)
+			return $this->db->insert('employee_approvers',$data);
+			else{
+			$this->db->where('emp_id',$id);	
+			return $this->db->update('employee_approvers',$data);
+			}
+
+		}
+
+	
+
+		public function assignList(){
+			$result=$this->db->get('employee_approvers');
+			return $result->result_array();
 		}
 		public function getAssign($id){
 			$this->db->where('emp_id',$id);
@@ -43,8 +53,22 @@
 
 			return $query->result_array();
 		}
-		
+		// leave page
+		public function leaveManage() 
+		{
+			$query = $this->db->get('leaves');
+			return $query->result_array();
+		}
+		// package lists
+
+		public function packageManage() {
+			$query = $this->db->get('packages');
+			return $query->result_array();
+		}
 	
+
+
+
 		public function add_employee($data,$password)
 		{
 			// save('employees',$data, $pk = '',$id='')

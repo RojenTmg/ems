@@ -1369,7 +1369,7 @@ body {
 }
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
 .modal-content {
-  background-color: #95a6b9 !important;
+  background-color: #fff;
 }
 .register i {
   margin: 20px 0 10px !important;
@@ -1394,3 +1394,5 @@ body {
 .fa-trash:hover{
   cursor: pointer;
 }
+
+
