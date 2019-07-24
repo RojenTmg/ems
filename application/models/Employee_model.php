@@ -5,6 +5,7 @@
 		{
 			$project = "SELECT *
 					    FROM employee_leaves el
+					    LEFT JOIN leaves l ON l.leave_id = el.leave_id
 					    LEFT JOIN employees e ON e.emp_id = el.duty_performed_by ORDER BY el.id DESC";
 
 			if ($id === FALSE) {	

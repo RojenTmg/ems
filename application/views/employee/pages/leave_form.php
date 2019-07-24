@@ -18,11 +18,10 @@
           <div class="form-div">
             <label>Type of Leave</label>
             <select name="leave_id" id="type">
-              <option value="1">Casual Leave</option>
-              <option value="2">Sick Leave</option>
-              <option value="3">Substitute Leave</option>
-              <option value="4">Annual Leave</option>
-              <option value="5">Others</option>
+              <?php foreach ($leaves as $value) {
+                echo '<option value="' . $value['leave_id']. '">' . $value['leave_name']. '</option>';
+              }   
+              ?>
             </select>
           </div>
           <div class="form-ckbx">
@@ -37,7 +36,7 @@
                 <label>Full Day</label> 
               </div>
               <div>
-                <input type="radio" name="is_half_day" id="multiple-days" value="1">
+                <input type="radio" name="is_half_day" id="multiple-days" value="2">
                 <label>Multiple Days</label>
               </div>
             </div>

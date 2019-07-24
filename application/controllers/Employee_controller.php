@@ -51,6 +51,8 @@
 		{
 			$title['title'] = 'Leave Form';
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
+			$data['leaves'] = $this->Database_model->findAll('leaves');
+
 
 			if ($this->input->post('submit') !== NULL) {
 				$leave = $this->input->post();
@@ -58,11 +60,13 @@
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id
 					'leave_id'=> (int)$leave['leave_id'],
 					'from_date'=> $leave['from_date'],
-					'to_date'=> $leave['to_date'],
 					'duty_performed_by'=> (int)$leave['duty_performed_by'],
 					'reason'=> $leave['reason']
 				);
 
+				if (!empty($leave['to_date'])) {
+					$leaveData['to_date'] = $leave['to_date'];
+				}
 				if ($leave['is_half_day'] == 1)  {
 					$leaveData['is_half_day'] = '1';
 				}

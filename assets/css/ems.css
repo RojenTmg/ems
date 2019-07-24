@@ -115,9 +115,14 @@
     top: -7px;
   }
 }
-
-
-
+/*
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  top: 0;
+}
+*/
 
 
 @keyframes swing {
@@ -213,9 +218,11 @@ body {
 }
 /*----------------show sidebar button----------------*/
 #show-sidebar {
-  position: fixed;
+  position: sticky;
   left: 0;
-  top: 87px;
+  top: 3px;
+  margin-top: 5px;
+  z-index: 5;
   border-radius: 0 4px 4px 0px;
   width: 35px;
   transition-delay: 0.3s;
@@ -610,6 +617,7 @@ body {
 
 /*-----------------------------content-theme-------------------------------------------------*/
 .contents {
+  margin-top: -36px;
   padding: 25px 40px 40px;
 }
 .con-head, .con-sub-head {
