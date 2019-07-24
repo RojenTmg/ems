@@ -141,12 +141,16 @@ class Admin_controller extends CI_Controller {
 
 		$data['packages']=$this->Admin_model->packageManage();
 
+
+
 		if($id!=''){
 
 		$data['detailLeave']=$this->Admin_model->getLeaveDetails($id);
 		}
 		$this->view('leave_manage', $title, $data);
 	}
+
+	
 
 	// public function employeeSearch() 
 	// { 
@@ -886,6 +890,15 @@ class Admin_controller extends CI_Controller {
 // save package
 		public function savePackage(){
 			extract($_POST);
+
+			$arrayLeave=json_decode($leaveArr, true);
+			$arrayDuration=json_decode($durationArr, true);
+
+			
+
+			
+
+
 			$data=[ 'package_name'=>$package_name, 'created_by'=>$_SESSION['user_id'] ];
 
 			if($package_id=='')
@@ -897,6 +910,8 @@ class Admin_controller extends CI_Controller {
 				if(count($getList)==0)
 				{
 					$this->db->insert('packages',$data);
+					$pkgId=$this->db->insert_id();
+					$this->addLeaveToPackage($arrayLeave,$arrayDuration,$pkgId,'insert');
 					echo "inserted";
 				}
 				else
@@ -909,7 +924,28 @@ class Admin_controller extends CI_Controller {
 				'package_id'=>$package_id
 				];
 				$this->db->where('package_id',$package_id);
-				$this->db->update('packages',$data);	
+				$this->db->update('packages',$data);
+				addLeaveToPackage($arrayLeave,$arrayDuration,$pkgId,'insert');
+				echo "updated";
+	
+			}
+		}
+
+		function addLeaveToPackage($leave,$duration,$id,$operation){
+
+			if($operation=="insert"){
+				foreach ($leave as $index => $leaveId) {
+					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
+					$this->db->insert('leave_packages',$data);
+				}
+			}
+			if($operation=="update"){
+				foreach ($leave as $index => $leaveId) {
+					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
+					$this->db->where('package_id');
+					$this->db->delete('leave_packages');
+					$this->db->insert('leave_packages',$data);
+				}
 			}
 		}
 

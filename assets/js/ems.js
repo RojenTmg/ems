@@ -1337,6 +1337,7 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
+          var msg='';
          $('#messagediv').removeClass('alert-danger');
           $('#messagediv').removeClass('alert-warning');
 
@@ -1455,6 +1456,22 @@ function dismissModal()
     data.append('package_name',package_name);
     data.append('package_id',package_id);
 
+      // getting all the leaves and their durations
+      var leave = document.getElementsByName('leave-list');
+      var leaveArr=[];
+      var durationArr=[];
+      for( i = 0; i < leave.length; i++ ) {
+          if( leave[i].checked ) {
+             var duration=leave[i].nextElementSibling.nextElementSibling.value;
+             var leaveID=leave[i].value;
+             leaveArr.push(leaveID);
+             durationArr.push(duration);
+          }
+      }
+
+      data.append('leaveArr',JSON.stringify(leaveArr));
+      data.append('durationArr',JSON.stringify(durationArr));
+
     xmlHttp.send(data);
 
     xmlHttp.onreadystatechange = function()
@@ -1489,6 +1506,9 @@ function dismissModal()
     }
  }
 }
+
+
+
 
 
 // check age

@@ -197,8 +197,8 @@
             
         
               <div class="custom-control custom-switch">
-              <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" id="check-<?php echo $leave['leave_name']; ?>" value="<?php echo $leave['leave_id']; ?>">
-              <label class="custom-control-label col-md-8 mb-3" for="check-<?php echo $leave['leave_name']; ?>"><?php echo $leave['leave_name']; ?></label>
+              <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" value="<?php echo $leave['leave_id'];?>" id="pkg-<?php echo $leave['leave_id']; ?>" value="<?php echo $leave['leave_id']; ?>">
+              <label class="custom-control-label col-md-8 mb-3" for="pkg-<?php echo $leave['leave_id']; ?>"><?php echo $leave['leave_name']; ?></label>
                 <input type="number" min="1"  max="365" disabled="true" style=" width: 5em; height: 2em;" name="duration" id="duration" >
             
             </div>
