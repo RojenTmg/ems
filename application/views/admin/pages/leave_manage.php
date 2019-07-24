@@ -4,13 +4,7 @@
       <h5>Leaves</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
- <!-- area to show success and erorr messages -->
 
-     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
-      <p id="showmessage"> </p>
-    <button type="button" class="close" >&times;</button>
-        </div>
- <!-- area finishes here -->
 
   <!-- View list div -->
   <div class="row"  >
@@ -20,7 +14,7 @@
   			List
   		</div>
   		<div class="box-body overflow-auto"  style="height:25em;">
-  		<table  id="leave" style="max-height: 400px; overflow-y: scroll;" class="table table-bordered hover table-responsive">
+  		<table  id="leave" class="table table-bordered hover table-responsive">
 
   			<thead class="thead-dark">
   				<tr>
@@ -76,9 +70,16 @@
   		</div>
 
   		<div class="box-body">
-        <div id="messagediv"> <div id="showmessage"> </div> </div>
+         <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
+
   			<form class="form" method="POST" action="">
-  				<input type="hidden" name="leave_id" id="leave_id" value="">
+  				<input type="hidden" name="leave_id" id="leave_id" >
   				<div class="form-div">
   					<label>Title</label>
   					<input type="text" name="leave_name" id="leave_name" value="">
@@ -115,7 +116,7 @@
   			List
   		</div>
       <div class="box-body overflow-auto" style="height:25em;">
-  		<table id="package" style="max-height: 400px; overflow-y: scroll;"  class="table table-bordered hover table-responsive">
+  		<table id="package"  class="table table-bordered hover table-responsive">
 
   			<thead class="thead-dark">
   				<tr>
@@ -176,7 +177,13 @@
   		</div>
 
   		<div class="box-body">
-        <div id="messagediv1"> <div id="showmessage1"> </div> </div>
+        <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
+      <p id="showmessage1"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
   			<form class="form" method="POST" action="">
   				<input type="hidden" name="package_id" id="package_id">
   				<div class="form-div">

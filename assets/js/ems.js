@@ -1338,33 +1338,32 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-
-          msg="Leave Added Successfully";
-
          $('#messagediv').removeClass('alert-danger');
-         $('#messagediv').addClass('alert-success');
-         $('#messagediv').css('color','green');
-         $('#messagediv').css('display','block');
-         $('#showmessage').html(msg); 
-            $( "#leave" ).load(window.location.href + " #leave" );
+          $('#messagediv').removeClass('alert-warning');
 
-        
-    
+          var reply= xmlHttp.responseText
+          if(reply=="inserted"){
+           msg="Leave Added Successfully";
+           $('#messagediv').addClass('alert-success');
+           
+          }
+          if(reply=="updated"){
+             msg="Leave Updated Successfully";
+             $('#messagediv').addClass('alert-success');
+         }
+         if(reply=="already"){
+             msg="Leave Already Exists";
+             $('#messagediv').addClass('alert-warning');
+           
+         }
+        $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        $( "#leave" ).load(window.location.href + " #leave" );
 
-  
-
-          // location.reload();    
-          msg="Leave Added Successfully";
-
-         $('#messagediv').removeClass('alert-danger');
-         $('#messagediv').addClass('alert-success');
-         $('#messagediv').css('color','green');
-         $('#messagediv').css('display','block');
-        $('#showmessage').html(msg); }
-    }
-
-  }
+        }
  }
+}
+}
 
  // delete Leave
  function deleteLeave(id)
@@ -1445,18 +1444,32 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-          msg="Package Added Successfully";
-
+        
          $('#messagediv1').removeClass('alert-danger');
-         $('#messagediv1').addClass('alert-success');
-         $('#messagediv1').css('color','green');
-         $('#messagediv1').css('display','block');
+         $('#messagediv1').removeClass('alert-warning');
+
+          var reply= xmlHttp.responseText
+          if(reply=="inserted"){
+           msg="Package Added Successfully";
+           $('#messagediv1').addClass('alert-success');
+          }
+          if(reply=="updated"){
+             msg="Package Updated Successfully";
+             $('#messagediv1').addClass('alert-success');
+         }
+         if(reply=="already"){
+             msg="Package Already Exists";
+             $('#messagediv1').addClass('alert-warning');
+           
+         }
+        $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
         $( "#package" ).load(window.location.href + " #package" );
 
 
     }
  }
+}
 
 // check age
  function getAge(dateString) 

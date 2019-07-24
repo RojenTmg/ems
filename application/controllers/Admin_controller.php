@@ -852,12 +852,11 @@ class Admin_controller extends CI_Controller {
 				if(count($getList)==0)
 				{
 					$this->db->insert('leaves',$data);
+					echo "inserted";
 				}
 
-				else{
-
-				}
-			}
+				else echo "already";
+				}			
 			else{
 				$data=[
 					'leave_name'=>$leave_name,
@@ -866,6 +865,7 @@ class Admin_controller extends CI_Controller {
 				];
 				$this->db->where('leave_id',$leave_id);
 				$this->db->update('leaves',$data);
+				echo "updated";
 			}
 
 		}
@@ -892,7 +892,9 @@ class Admin_controller extends CI_Controller {
 				$getList= $list->row_array();
 				if(count($getList)==0){
 					$this->db->insert('packages',$data);
+					echo "inserted";
 				 }
+				 else echo "already";
 				
 			}
 			else{
@@ -903,6 +905,7 @@ class Admin_controller extends CI_Controller {
 				];
 				$this->db->where('package_id',$package_id);
 				$this->db->update('packages',$data);	
+				echo "updated";
 			}
 		}
 		public function deletePackage(){
