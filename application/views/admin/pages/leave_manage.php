@@ -24,9 +24,9 @@
         <table  id="leave" class="table table-striped table-bordered  ">
           <thead class="">
             <tr>
-              <th class="text-center">SN</th>
-              <th class="text-center">Leave Name</th>
-              <th class="text-center">Action</th>
+              <th class="text-center" width="1%">SN</th>
+              <th class="text-center" width="80%">Leave Name</th>
+              <th class="text-center" width="19%">Action</th>
             </tr>
           </thead>
           <!-- table body -->
@@ -122,11 +122,11 @@
                   <thead class="">
                     <tr>
 
-                      <th class="text-center">SN</th>
-                      <th class="text-center">Package Name</th>
-                      <th class="text-center">Leaves</th>
-                      <th class="text-center">Duration (Days)</th>
-                      <th class="text-center">Action</th>
+                      <th class="text-center" width="1%">SN</th>
+                      <th class="text-center"  width="39%">Package Name</th>
+                      <th class="text-center"  width="25%">Leaves</th>
+                      <th class="text-center" width="20%">Duration (Days)</th>
+                      <th class="text-center"  width="15%">Action</th>
 
                     </tr>
                   </thead>

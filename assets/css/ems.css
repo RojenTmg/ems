@@ -904,10 +904,10 @@ body {
   background-color: #4c546d;
 }
 .table td, .table th {
-  min-width: 150px;
+  /*min-width: 150px;*/
 }
 .table td:last-child , .table th:last-child {
-  min-width: 200px;
+  /*min-width: 200px;*/
 }
 .hover tbody tr:hover {
   background-color: #e8e8ed;
@@ -958,7 +958,7 @@ body {
   position: absolute;
   z-index: 1;
   width: 180px;
-  left: -5px;
+  left: -150px;
   padding-bottom: 10px;
 }
 
