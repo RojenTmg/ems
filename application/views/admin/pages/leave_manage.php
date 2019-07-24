@@ -4,6 +4,13 @@
       <h5>Leaves</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
+ <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
 
   <!-- View list div -->
   <div class="row"  >
@@ -12,8 +19,9 @@
   		<div class="box-head">
   			List
   		</div>
-  		<div class="box-body" style="overflow-y: scroll;">
+  		<div class="box-body overflow-auto"  style="height:25em;">
   		<table  id="leave" style="max-height: 400px; overflow-y: scroll;" class="table table-bordered hover table-responsive">
+
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>
@@ -31,13 +39,28 @@
   						<td><?php echo $post['leave_name']; ?></td>
   						<td>
   						 <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                 		 <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['leave_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
-                    		<div class="tooltiptext">
-		                      <p>Are you sure?</p>
-		                      <span class="tip-can">Cancel</span>
-		                      <span class="tip-arch" id="<?php echo $post['leave_id']; ?>" onclick="archiveEmployee(<?php echo $post['leave_id']; ?>)" >Delete</span>
-		                    </div>
-                  </button></td>
+            	 <a href="#leaveModal" class="trigger-btn" data-toggle="modal"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                
+                <div id="leaveModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                  <div class="modal-content" >
+                    <div class="modal-header">
+                      
+                      <h4 class="modal-title">Are you sure?</h4>  
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Do you really want to delete these records? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                      <input type="button" class="btn btn-danger" value="Delete" onclick="deleteLeave(<?php echo $post['leave_id']; ?>)">
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+               </td>
   					</tr>
   				<?php } ?>
   			</tbody>
@@ -75,6 +98,15 @@
   <div class="con-sub-head sp-btn">
       <h5>Packages</h5>
   </div>
+  <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv2">
+      <p id="showmessage2"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
+ 
+
   <!-- lower div for packages -->
    <div class="row">
   	<!-- left table area box-->
@@ -82,8 +114,9 @@
   		<div class="box-head">
   			List
   		</div>
-  		<div class="box-body">
+      <div class="box-body overflow-auto" style="height:25em;">
   		<table id="package" style="max-height: 400px; overflow-y: scroll;"  class="table table-bordered hover table-responsive">
+
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>
@@ -95,25 +128,45 @@
   			<!-- table body -->
   			<tbody>
   				<?php $sn =1; ?>
-  				<?php foreach ($package as $value=>$pkg) { ?>
-  					<tr id="<?php echo $pkg['package_id']; ?>">
+
+  				<?php foreach ($packages as $pack=>$package) { ?>
+  					<tr id="<?php echo $package['package_id']; ?>">
   						<td><?php echo $sn; $sn++ ?></td>
-  						<td><?php echo $pkg['package_name']; ?></td>
+  						<td><?php echo $package['package_name']; ?></td>
   						<td>
   						 <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                 		 <button class="btn-archive tooltip1" title="Delete" id="<?php echo $pkg['package_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
-                    		<div class="tooltiptext">
-		                      <p>Are you sure?</p>
-		                      <span class="tip-can">Cancel</span>
-		                      <span class="tip-arch" id="<?php echo $pkg['package_id']; ?>" onclick="archiveEmployee(<?php echo $pkg['package_id']; ?>)" >Delete</span>
-		                    </div>
-                  </button></td>
+                <a href="#packageModal" class="trigger-btn" data-toggle="modal"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                   <!-- Modal HTML -->
+              <div id="packageModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                  <div class="modal-content" >
+                    <div class="modal-header">
+                      
+                      <h4 class="modal-title">Are you sure?</h4>  
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Do you really want to delete these records? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                      <input type="button" class="btn btn-danger" value="Delete" onclick="deletePackage(<?php echo $package['package_id']; ?>)">
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+
+                </td>
+
   					</tr>
   				<?php } ?>
   			</tbody>
   		</table>
   		</div>
+
 	</div>
+ 
 	<!-- left box ends -->
 
 	<!-- right form area -->

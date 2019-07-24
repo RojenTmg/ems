@@ -1338,6 +1338,7 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
+
           msg="Leave Added Successfully";
 
          $('#messagediv').removeClass('alert-danger');
@@ -1347,10 +1348,76 @@ function assign()
          $('#showmessage').html(msg); 
             $( "#leave" ).load(window.location.href + " #leave" );
 
-        }
+        
+    
+
+  
+
+          // location.reload();    
+          msg="Leave Added Successfully";
+
+         $('#messagediv').removeClass('alert-danger');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); }
     }
 
   }
+ }
+
+ // delete Leave
+ function deleteLeave(id)
+ {
+   var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','deleteLeave',true);
+    var data = new FormData();
+    data.append('leave_id', id);
+    xmlHttp.send(data);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+         msg="Deleted Successfully.";
+
+         // $('#messagediv').removeClass('alert-success');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        // location.reload();
+
+        }
+
+    }
+ }
+
+ // delete Package
+ function deletePackage(id)
+ {
+   var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','deletePackage',true);
+    var data = new FormData();
+    data.append('package_id', id);
+    xmlHttp.send(data);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          msg="Deleted Successfully.";
+
+         // $('#messagediv').removeClass('alert-success');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        // location.reload();
+
+        }
+
+    }
  }
 
  // add package
@@ -1359,11 +1426,12 @@ function assign()
   var package_id=document.getElementById('package_id').value;
    if(package_name=='')
    {
-     msg="Enter leave name";
+     msg="Enter package name";
      $('#messagediv1').addClass('alert-danger');
      $('#messagediv1').css('color','red');
      $('#messagediv1').css('display','block');
     $('#showmessage1').html(msg); 
+
     return 0;
   }
     var xmlHttp = new XMLHttpRequest();
@@ -1383,7 +1451,7 @@ function assign()
          $('#messagediv1').addClass('alert-success');
          $('#messagediv1').css('color','green');
          $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); }
+        $('#showmessage1').html(msg); 
         $( "#package" ).load(window.location.href + " #package" );
 
 

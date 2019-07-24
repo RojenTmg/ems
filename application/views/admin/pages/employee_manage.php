@@ -624,6 +624,16 @@
         <!-- add edit message displayed here -->
        </div></div>
         <form class="form" style="height: 200px;">
+           <div class="form-div form-div-horz">
+            <label>Package</label>
+                <select  id="package" >
+                  <option value="">Select package</option>
+                  <?php foreach ($packagelist as $pack) {  ?>
+                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+          <hr>
           <div class="form-div form-div-horz">
             <label>Recommender</label>
                 <select class='fstdropdown-select' id="recommender" >

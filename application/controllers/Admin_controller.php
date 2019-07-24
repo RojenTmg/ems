@@ -116,7 +116,7 @@ class Admin_controller extends CI_Controller {
 			if(isset($_SESSION['current_employee_id'])){
 				 $id=$_SESSION['current_employee_id']; 
 				$data['assigned']=$this->Admin_model->getAssign($id);
-			}
+				$data['packagelist']=$this->Admin_model->packageManage();			}
 			else{
 				$data['assigned']='';
 			}
@@ -138,8 +138,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Leaves';
 		$data['posts'] = $this->Admin_model->leaveManage();
-		$data['package'] = $this->Admin_model->packageManage();
 
+		$data['packages']=$this->Admin_model->packageManage();
 		$this->view('leave_manage', $title, $data);
 	}
 
@@ -872,8 +872,12 @@ class Admin_controller extends CI_Controller {
 
 		public function deleteLeave(){
 			extract($_POST);
-			$this->db-where('leave_id',$id);
-			$this->db->delete('leaves');
+			$data=[
+				'leave_id'=>$id
+			];
+			// $this->db-where('package_id',$id);
+			$this->db->delete('leaves',$data);
+			
 		}
 
 		public function savePackage(){
@@ -903,8 +907,11 @@ class Admin_controller extends CI_Controller {
 		}
 		public function deletePackage(){
 			extract($_POST);
-			$this->db-where('package_id',$id);
-			$this->db->delete('packages');
+			$data=[
+				'package_id'=>$id
+			];
+			// $this->db-where('package_id',$id);
+			$this->db->delete('packages',array('package_id',$id));
 		}
 
 
