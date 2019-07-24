@@ -1362,6 +1362,10 @@ function assign()
         $('#showmessage').html(msg); 
         $( "#leave" ).load(window.location.href + " #leave" );
 
+
+        $('#leave_id').val('');
+        $('#leave_name').val('');
+
         }
  }
 }
@@ -1427,6 +1431,7 @@ function dismissModal()
           $( "#package" ).load(window.location.href + " #package" );
 
 
+
         }
 
     }
@@ -1438,10 +1443,24 @@ function dismissModal()
   var package_id=document.getElementById('package_id').value;
   var leave_list= document.getElementsByName('leave-list');
   var duration= document.getElementsByName('duration');
+      // getting all the leaves and their durations
+      var leave = document.getElementsByName('leave-list');
   var msg;
-   if(package_name=='')
+  var leaveArr=[];
+  var durationArr=[];
+      for( i = 0; i < leave.length; i++ ) {
+          if( leave[i].checked ) {
+             var duration=leave[i].nextElementSibling.nextElementSibling.value;
+             var leaveID=leave[i].value;
+             leaveArr.push(leaveID);
+             durationArr.push(duration);
+          }
+      }
+
+
+   if(package_name==''||leaveArr.length==0||durationArr.length==0)
    {
-     msg="Enter package name";
+     msg="Enter package name and select leave type";
      $('#messagediv1').addClass('alert-danger');
      $('#messagediv1').css('color','red');
      $('#messagediv1').css('display','block');
@@ -1455,20 +1474,6 @@ function dismissModal()
     var data = new FormData();
     data.append('package_name',package_name);
     data.append('package_id',package_id);
-
-      // getting all the leaves and their durations
-      var leave = document.getElementsByName('leave-list');
-      var leaveArr=[];
-      var durationArr=[];
-      for( i = 0; i < leave.length; i++ ) {
-          if( leave[i].checked ) {
-             var duration=leave[i].nextElementSibling.nextElementSibling.value;
-             var leaveID=leave[i].value;
-             leaveArr.push(leaveID);
-             durationArr.push(duration);
-          }
-      }
-
       data.append('leaveArr',JSON.stringify(leaveArr));
       data.append('durationArr',JSON.stringify(durationArr));
 
@@ -1478,6 +1483,7 @@ function dismissModal()
     {
         if(xmlHttp.readyState==4)
         {
+          console.log(xmlHttp.responseText);
         
          $('#messagediv1').removeClass('alert-danger');
          $('#messagediv1').removeClass('alert-warning');
@@ -1500,13 +1506,49 @@ function dismissModal()
          }
         $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
+      var form= document.getElementById('package-form');
+      clearForm(form);
         $( "#package" ).load(window.location.href + " #package" );
+
+
+
+
+
 
 
     }
  }
 }
 
+
+function editLeave(id){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','leaveManage',true);
+    var data = new FormData();
+    data.append('id',id);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       document.open();
+       document.write(xmlHttp.responseText);
+       document.close();
+      }
+    }
+} 
+function editPackage(id){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','leaveManage',true);
+    var data = new FormData();
+    data.append('pkgId',id);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       document.open();
+       document.write(xmlHttp.responseText);
+       document.close();
+      }
+    }
+} 
 
 
 
@@ -1537,3 +1579,47 @@ function dismissModal()
 
     }
   }
+
+  function clearForm(oForm) {
+    
+  var elements = oForm.elements; 
+    
+  oForm.reset();
+
+  var duration = document.getElementsByName('duration');
+  for(i=0;i<duration.length;i++){
+    duration[i].value='';
+    duration[i].disabled=true;
+  }
+
+  for(i=0; i<elements.length; i++) {
+      
+  field_type = elements[i].type.toLowerCase();
+  
+  switch(field_type) {
+  
+    case "text": 
+    case "password": 
+    case "textarea":
+          case "hidden":  
+      
+      elements[i].value = ""; 
+      break;
+        
+    case "radio":
+    case "checkbox":
+        if (elements[i].checked) {
+          elements[i].checked = false; 
+      }
+      break;
+
+    case "select-one":
+    case "select-multi":
+                elements[i].selectedIndex = -1;
+      break;
+
+    default: 
+      break;
+  }
+    }
+}

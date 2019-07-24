@@ -77,6 +77,8 @@ $route['admin/employee_manage/(:any)'] = 'Admin_controller/employeeManage/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
 $route['admin/leave_manage/(:any)'] = 'Admin_controller/leaveManage/$1';
+$route['admin/leaveManage'] = 'Admin_controller/leaveManage/';
+
 // $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
 $route['admin/dashboard'] = 'Admin_controller/dashboard';

@@ -43,9 +43,9 @@
               </td>
               <td>
              
-                    <a href="<?= site_url('admin/leave_manage/'); ?><?php echo $post['leave_id']; ?>" >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a>
+                    <button  class="btn-edit" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
                
                 <a href="#leaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
                   <i class="fa fa-trash text-danger" aria-hidden="true"></i>
@@ -77,11 +77,11 @@
       <!-- left box ends -->
 
       <!-- right form area -->
-      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
-        <div class="box-head">
+      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded"  >
+        <div class="box-head" >
         Add new Leave Type
       </div>
-        <div class="box-body ">
+        <div class="box-body" >
   
           <form class="form" method="POST" action="">
             <input type="hidden" name="leave_id" id="leave_id" value="<?php if(isset($detailLeave['leave_id'])) echo $detailLeave['leave_id']; ?>">
@@ -123,23 +123,70 @@
                     <tr>
                       <th>SN</th>
                       <th>Package Name</th>
+                      <th>Leaves</th>
+                      <th>Duration (Days)</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <!-- table body -->
                   <tbody>
-                    <?php $sn =1; ?>
-                    <?php foreach ($packages as $pack=>$package) { ?>
+                    <?php 
+                    $sn =1;
+                     $counts = array_count_values( array_column($packages, 'package_id')); 
+
+                     ?>
+                    <?php foreach ($packages as $pack=>$package) { 
+                      ?>
+                    
                     <tr id="
                       <?php echo $package['package_id']; ?>">
                       <td>
                         <?php echo $sn; $sn++ ?>
                       </td>
-                      <td>
+                    <!-- packagename -->
+                     <td>
                         <?php echo $package['package_name']; ?>
                       </td>
+                       <?php   
+                          $p_id= $package['package_id'];
+
+                            $package_leave= $this->Database_model->find('leave_packages','package_id',$p_id);
+                            ?>
                       <td>
-                        <button class="btn-edit" title="Edit">
+                         <?php
+
+                            foreach ($package_leave as $key => $value) 
+                            {
+                              $leave_name= $this->Database_model->find('leaves','leave_id',$value['leave_id']);
+                               foreach ($leave_name as $key => $leave_array) 
+                               {
+                                echo $leave_array['leave_name'].'<br>';
+                                }
+                            }
+                          
+                           ?>
+
+                      </td>
+
+                      <!-- duration -->
+                     <td>
+                          <?php   
+                          foreach ($package_leave as $key => $value) 
+                            {
+                              $leave_name= $this->Database_model->find('leaves','leave_id',$value['leave_id']);
+                               foreach ($leave_name as $key => $leave_array) 
+                               {
+                                echo $value['duration'].'<br>';
+                                }
+                            }
+                          
+                           ?>
+
+                      </td>
+
+                      <!-- action -->
+                      <td>
+                       <button onclick="editPackage(<?php echo $package['package_id'];?>)" class="btn-edit" title="Edit">
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                         <a href="#packageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">
@@ -180,11 +227,11 @@
 
       <div class="box-body">
  
-        <form class="form" method="POST" action="">
-          <input type="hidden" name="package_id" id="package_id">
+        <form class="form" method="POST" action="" id="package-form">
+            <input type="hidden" name="package_id" id="package_id" value="<?php if(isset($detailPackage['package_id'])) echo $detailPackage['package_id']; ?>">
           <div class="form-div">
             <label>Title</label>
-            <input type="text" name="package_name" id="package_name">
+            <input type="text" name="package_name" value="<?php if(isset($detailPackage['package_name'])) echo $detailPackage['package_name'];?>" id="package_name">
           </div>
 
           <div class="form-group row" style="max-height: 300px; overflow-y: scroll;">
@@ -197,9 +244,40 @@
             
         
               <div class="custom-control custom-switch">
-              <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" value="<?php echo $leave['leave_id'];?>" id="pkg-<?php echo $leave['leave_id']; ?>" value="<?php echo $leave['leave_id']; ?>">
+              <input 
+              <?php 
+              if(isset($selectedPackages))
+              { 
+                foreach ($selectedPackages as $row){
+                  if($row['leave_id']==$leave['leave_id']){
+                    echo "checked"; 
+                    break;
+                  }
+                } 
+              } 
+              ?>
+              type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" value="<?php echo $leave['leave_id'];?>" id="pkg-<?php echo $leave['leave_id']; ?>" value="<?php echo $leave['leave_id']; ?>">
               <label class="custom-control-label col-md-8 mb-3" for="pkg-<?php echo $leave['leave_id']; ?>"><?php echo $leave['leave_name']; ?></label>
-                <input type="number" min="1"  max="365" disabled="true" style=" width: 5em; height: 2em;" name="duration" id="duration" >
+                <input
+              <?php 
+              $found=false;
+                if(isset($selectedPackages))
+                { 
+                  foreach ($selectedPackages as $row){
+                    $found=false;
+                      if($row['leave_id']==$leave['leave_id']){
+                        echo 'value="'.$row['duration'].'"';
+                        $found=true;
+                        break;
+                      }  
+                  }
+                 
+
+                }
+                 if($found==false) echo "disabled";
+                 
+              ?>
+               type="number" min="1"  max="365"  style=" width: 5em; height: 2em;" name="duration" id="duration" >
             
             </div>
               </div>
@@ -207,6 +285,7 @@
           </div>
           <div class="sub-can">
                 <input type="button" name="" class="sub" onclick="savePackage()" value="Save">
+                
             </div>
 
         </form>

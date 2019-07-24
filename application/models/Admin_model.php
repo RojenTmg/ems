@@ -64,10 +64,24 @@
 		{
 			$this->db->where('leave_id',$id);
 			$query = $this->db->get('leaves');
+			return $query->row_array();
+		}
+		// update
+		public function getPackageName($id)
+		{
+			$this->db->where('package_id',$id);
+			$query = $this->db->get('packages');
+			return $query->row_array();
+		}
+		public function getPackageDetails($id)
+		{
+			$this->db->where('package_id',$id);
+			$query=$this->db->get('leave_packages');
 			return $query->result_array();
 		}
-		// package lists
 
+
+		// package lists
 		public function packageManage() {
 			$query = $this->db->get('packages');
 			return $query->result_array();
