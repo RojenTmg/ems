@@ -1271,8 +1271,10 @@ function checkCurrentDate($date)
   else
     return true;
 }
+
 // function to assign employee
-function assign(){
+function assign()
+{
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
@@ -1307,73 +1309,135 @@ function assign(){
 
           }
  }
- function saveLeave(){
+
+
+ // add leave
+  function saveLeave()
+  {
   var leave_name=document.getElementById('leave_name').value;
   var leave_id=document.getElementById('leave_id').value;
+  if(leave_name=='')
+  {
+     msg="Enter leave name";
+     $('#messagediv').addClass('alert-danger');
+     $('#messagediv').css('color','red');
+     $('#messagediv').css('display','block');
+    $('#showmessage').html(msg); 
+    return 0;
+  }
+  else
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','saveLeave',true);
+    var data = new FormData();
+    data.append('leave_name',leave_name);
+    data.append('leave_id',leave_id);
+    xmlHttp.send(data);
 
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          // location.reload();    
+          msg="Leave Added Successfully";
 
-            if(leave_name==''){
-               msg="Enter leave name";
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              return 0;
-            }
-  var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','saveLeave',true);
-          var data = new FormData();
-          data.append('leave_name',leave_name);
-          data.append('id',leave_id);
-          xmlHttp.send(data);
+         $('#messagediv').removeClass('alert-danger');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); }
+    }
 
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                msg="Leave Added Successfully";
-
-               $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); }
-
-          }
+  }
  }
+
+ // delete Leave
+ function deleteLeave(id)
+ {
+   var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','deleteLeave',true);
+    var data = new FormData();
+    data.append('leave_id', id);
+    xmlHttp.send(data);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+         msg="Deleted Successfully.";
+
+         // $('#messagediv').removeClass('alert-success');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        // location.reload();
+
+        }
+
+    }
+ }
+
+ // delete Package
+ function deletePackage(id)
+ {
+   var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','deletePackage',true);
+    var data = new FormData();
+    data.append('package_id', id);
+    xmlHttp.send(data);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          msg="Deleted Successfully.";
+
+         // $('#messagediv').removeClass('alert-success');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        // location.reload();
+
+        }
+
+    }
+ }
+
+ // add package
   function savePackage(){
   var package_name=document.getElementById('package_name').value;
   var package_id=document.getElementById('package_id').value;
+   if(package_name=='')
+   {
+     msg="Enter Package name";
+     $('#messagediv2').addClass('alert-danger');
+     $('#messagediv2').css('color','red');
+     $('#messagediv2').css('display','block');
+    $('#showmessage2').html(msg); 
+    return 0;
+  }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','savePackage',true);
+    var data = new FormData();
+    data.append('package_name',package_name);
+    data.append('package_id',package_id);
+    xmlHttp.send(data);
 
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          msg="Package Added Successfully";
 
-            if(package_name==''){
-               msg="Enter leave name";
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              return 0;
-            }
-  var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','saveLeave',true);
-          var data = new FormData();
-          data.append('package_name',package_name);
-          data.append('id',package_id);
-          xmlHttp.send(data);
+         $('#messagediv2').removeClass('alert-danger');
+         $('#messagediv2').addClass('alert-success');
+         $('#messagediv2').css('color','green');
+         $('#messagediv2').css('display','block');
+        $('#showmessage2').html(msg); }
 
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                msg="Package Added Successfully";
-
-               $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); }
-
-          }
+    }
  }
 
 // check age

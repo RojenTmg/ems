@@ -81,6 +81,11 @@ $route['admin/employee_list'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';
 $route['admin/employee_assign'] = 'Admin_controller/employeeAssign';
 $route['admin/leave_manage'] = 'Admin_controller/leaveManage';
+$route['admin/saveLeave'] = 'Admin_controller/saveLeave';
+$route['admin/deleteLeave'] = 'Admin_controller/deleteLeave';
+$route['admin/deletePackage'] = 'Admin_controller/deletePackage';
+$route['admin/savePackage'] = 'Admin_controller/savePackage';
+
 $route['employee/dashboard'] = 'Employee_controller/dashboard';
 $route['employee/leave_form'] = 'Employee_controller/leaveForm';
 

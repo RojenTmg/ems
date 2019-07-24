@@ -54,12 +54,18 @@
 			return $query->result_array();
 		}
 		// leave page
-
-		public function leaveManage() {
+		public function leaveManage() 
+		{
 			$query = $this->db->get('leaves');
 			return $query->result_array();
 		}
-	
+		// package lists
+		public function packageManage($value='')
+		{
+			$query = $this->db->get('packages');
+			return $query->result_array();
+		}
+
 		public function add_employee($data,$password)
 		{
 			// save('employees',$data, $pk = '',$id='')
