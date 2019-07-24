@@ -142,10 +142,9 @@ class Admin_controller extends CI_Controller {
 
 		$data['packages']=$this->Admin_model->packageManage();
 
-
-
 		if(isset($_POST['id'])){
 			extract($_POST);
+
 		$data['detailLeave']=$this->Admin_model->getLeaveDetails($id);
 		}
 

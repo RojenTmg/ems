@@ -83,13 +83,10 @@
 
 		// package lists
 		public function packageManage() {
-			$query = $this->db->get('packages');
+			$query = $this->db->get('packages'); 
 			return $query->result_array();
-		}
-	
-
-
-
+ 			}
+  
 		public function add_employee($data,$password)
 		{
 			// save('employees',$data, $pk = '',$id='')

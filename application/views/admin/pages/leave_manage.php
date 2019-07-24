@@ -21,12 +21,12 @@
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
-        <table  id="leave" class="table table-bordered hover ">
-          <thead class="thead-dark">
+        <table  id="leave" class="table table-striped table-bordered  ">
+          <thead class="">
             <tr>
-              <th>SN</th>
-              <th>Leave Name</th>
-              <th>Action</th>
+              <th class="text-center">SN</th>
+              <th class="text-center">Leave Name</th>
+              <th class="text-center">Action</th>
             </tr>
           </thead>
           <!-- table body -->
@@ -35,13 +35,13 @@
             <?php foreach ($posts as $value=>$post) { ?>
             <tr id="
               <?php echo $post['leave_id']; ?>">
-              <td>
+              <td class="text-center">
                 <?php echo $sn; $sn++ ?>
               </td>
-              <td>
+              <td class="text-center">
                 <?php echo $post['leave_name']; ?>
               </td>
-              <td>
+              <td class="text-center">
              
                     <button  class="btn-edit" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -118,14 +118,16 @@
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
-                <table id="package"  class="table table-bordered hover ">
-                  <thead class="thead-dark">
+                <table id="package"  class="table table-bordered ">
+                  <thead class="">
                     <tr>
-                      <th>SN</th>
-                      <th>Package Name</th>
-                      <th>Leaves</th>
-                      <th>Duration (Days)</th>
-                      <th>Action</th>
+
+                      <th class="text-center">SN</th>
+                      <th class="text-center">Package Name</th>
+                      <th class="text-center">Leaves</th>
+                      <th class="text-center">Duration (Days)</th>
+                      <th class="text-center">Action</th>
+
                     </tr>
                   </thead>
                   <!-- table body -->
@@ -140,11 +142,12 @@
                     
                     <tr id="
                       <?php echo $package['package_id']; ?>">
-                      <td>
+                      <td class="text-center">
                         <?php echo $sn; $sn++ ?>
                       </td>
                     <!-- packagename -->
-                     <td>
+
+                     <td class="text-center">
                         <?php echo $package['package_name']; ?>
                       </td>
                        <?php   
@@ -152,7 +155,8 @@
 
                             $package_leave= $this->Database_model->find('leave_packages','package_id',$p_id);
                             ?>
-                      <td>
+
+                      <td class="text-center">
                          <?php
 
                             foreach ($package_leave as $key => $value) 
@@ -169,7 +173,8 @@
                       </td>
 
                       <!-- duration -->
-                     <td>
+
+                     <td class="text-center">
                           <?php   
                           foreach ($package_leave as $key => $value) 
                             {
@@ -185,8 +190,9 @@
                       </td>
 
                       <!-- action -->
-                      <td>
+                      <td class="text-center">
                        <button onclick="editPackage(<?php echo $package['package_id'];?>)" class="btn-edit" title="Edit">
+
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                         <a href="#packageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">
