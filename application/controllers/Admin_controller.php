@@ -878,22 +878,24 @@ class Admin_controller extends CI_Controller {
 			
 		}
 
+// save package
 		public function savePackage(){
 			extract($_POST);
-			$data=[
-				'package_name'=>$package_name,
-				'created_by'=>$_SESSION['user_id'],
-			];
-			if($package_id==''){
+			$data=[ 'package_name'=>$package_name, 'created_by'=>$_SESSION['user_id'] ];
+
+			if($package_id=='')
+			{
 				$leave=$this->db->where('package_name',$package_name);
 				$list=$this->db->get('packages');
 				$getList= $list->row_array();
-				if(count($getList)==0){
+
+				if(count($getList)==0)
+				{
 					$this->db->insert('packages',$data);
 					echo "inserted";
-				 }
-				 else echo "already";
-				
+				}
+				else
+					echo "already";
 			}
 			else{
 				$data=[
@@ -903,9 +905,10 @@ class Admin_controller extends CI_Controller {
 				];
 				$this->db->where('package_id',$package_id);
 				$this->db->update('packages',$data);	
-				echo "updated";
 			}
 		}
+
+		// delete package
 		public function deletePackage(){
 			extract($_POST);
 			$data=[ 'package_id'=>$package_id ];

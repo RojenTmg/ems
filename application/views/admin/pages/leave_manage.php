@@ -100,6 +100,13 @@
           <div class="con-sub-head sp-btn">
             <h5>Packages</h5>
           </div>
+                 <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
+      <p id="showmessage1"> </p>
+    <button type="button" class="close close1" >&times;</button>
+        </div>
+ <!-- area finishes here -->
            <!-- area to show success and erorr messages -->
           <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
             <p id="showmessage1"></p>
@@ -167,48 +174,55 @@
                 </div>
               </div>
               <!-- left box ends -->
-              <!-- right form area -->
-              <div class="box col-md-4">
-                <div class="box-head">
-                Create new Package
-              </div>
-                <div class="box-body">
-                 
-                  <form class="form" method="POST" action="">
-                    <input type="hidden" name="package_id" id="package_id">
-                      <div class="form-div">
-                        <label>Title</label>
-                        <input type="text" name="package_name" id="package_name">
-                        </div>
-                        <div class="form-group row" style="max-height: 300px; overflow-y: scroll;">
-                          <div class="col-sm-12" >
-              Select leave type:
+           
+  <!-- right form area -->
+    <div class="box col-md-4">
+      <div class="box-head">
+        Create new Package
+      </div>
+
+      <div class="box-body">
+ 
+        <form class="form" method="POST" action="">
+          <input type="hidden" name="package_id" id="package_id">
+          <div class="form-div">
+            <label>Title</label>
+            <input type="text" name="package_name" id="package_name">
+          </div>
+
+          <div class="form-group row" style="max-height: 300px; overflow-y: scroll;">
+            <div class="col-sm-12 text-danger" >
+              Select leave type and no. of days for each:
+              <hr>
             </div>
-                          <?php foreach ($posts as $key => $leave) {?>
-                          <div class="col-sm-12 "  >
-                            <div class="custom-control custom-switch">
-                              <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" id="
-                                <?php echo $leave['leave_name']; ?>">
-                                <label class="custom-control-label col-md-8 mb-3" for="
-                                  <?php echo $leave['leave_name']; ?>">
-                                  <?php echo $leave['leave_name']; ?>
-                                </label>
-                                <input type="number" min="0"  max="365" disabled="true" style=" width: 5em; height: 2em;" name="days" id="days" >
-                                </div>
-                              </div>
-                              <?php } ?>
-                            </div>
-                            <div class="sub-can">
-                              <input type="button" name="" class="sub" onclick="savePackage()" value="Save">
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- right box ends -->
-                    </div>
-                    <!-- lower div ends -->
-                  </div>
+            <?php foreach ($posts as $key => $leave) {?>
+            <div class="col-sm-12 "  >
+            
+        
+              <div class="custom-control custom-switch">
+              <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" id="check-<?php echo $leave['leave_name']; ?>" value="<?php echo $leave['leave_id']; ?>">
+              <label class="custom-control-label col-md-8 mb-3" for="check-<?php echo $leave['leave_name']; ?>"><?php echo $leave['leave_name']; ?></label>
+                <input type="number" min="1"  max="365" disabled="true" style=" width: 5em; height: 2em;" name="duration" id="duration" >
+            
+            </div>
+              </div>
+          <?php } ?>
+          </div>
+          <div class="sub-can">
+                <input type="button" name="" class="sub" onclick="savePackage()" value="Save">
+            </div>
+
+        </form>
+        </div>
+      </div>  
+    </div>
+    <!-- right box ends -->
+  </div>
+  <!-- lower div ends -->
+
+
+</div>
+
                 </div>
                 <!-- end of the template -->
 <!-- js -->

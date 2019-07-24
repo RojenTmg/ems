@@ -1435,21 +1435,26 @@ function dismissModal()
   function savePackage(){
   var package_name=document.getElementById('package_name').value;
   var package_id=document.getElementById('package_id').value;
+  var leave_list= document.getElementsByName('leave-list');
+  var duration= document.getElementsByName('duration');
+  var msg;
    if(package_name=='')
    {
      msg="Enter package name";
      $('#messagediv1').addClass('alert-danger');
      $('#messagediv1').css('color','red');
      $('#messagediv1').css('display','block');
-    $('#showmessage1').html(msg); 
+     $('#showmessage1').html(msg); 
 
     return 0;
   }
-    var xmlHttp = new XMLHttpRequest();
+ 
+   var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','savePackage',true);
     var data = new FormData();
     data.append('package_name',package_name);
     data.append('package_id',package_id);
+
     xmlHttp.send(data);
 
     xmlHttp.onreadystatechange = function()
@@ -1484,6 +1489,7 @@ function dismissModal()
     }
  }
 }
+
 
 // check age
  function getAge(dateString) 
