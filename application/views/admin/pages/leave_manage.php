@@ -46,10 +46,10 @@
                 <button class="btn-edit" title="Edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
-                <a href="#leaveModal" class="trigger-btn" data-toggle="modal">
+                <a href="#leaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
                   <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                 </a>
-                <div id="leaveModal" class="modal fade">
+                <div id="leaveModal<?php echo $post['leave_id']; ?>" class="modal fade">
                   <div class="modal-dialog modal-confirm">
                     <div class="modal-content" >
                       <div class="modal-header">
@@ -61,8 +61,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                        <input type="button" class="btn btn-danger" value="Delete" onclick="deleteLeave(
-                          <?php echo $post['leave_id']; ?>)">
+                        <input type="button" class="btn btn-danger" value="Delete" onclick="deleteLeave(<?php echo $post['leave_id']; ?>)">
                         </div>
                       </div>
                     </div>
@@ -139,11 +138,11 @@
                         <button class="btn-edit" title="Edit">
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
-                        <a href="#packageModal" class="trigger-btn" data-toggle="modal">
+                        <a href="#packageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">
                           <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
                         <!-- Modal HTML -->
-                        <div id="packageModal" class="modal fade">
+                        <div id="packageModal<?php echo $package['package_id']; ?>" class="modal fade">
                           <div class="modal-dialog modal-confirm">
                             <div class="modal-content" >
                               <div class="modal-header">
@@ -155,8 +154,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                                <input type="button" class="btn btn-danger" value="Delete" onclick="deletePackage(
-                                  <?php echo $package['package_id']; ?>)">
+                                <input type="button" class="btn btn-danger" value="Delete" onclick="deletePackage(<?php echo $package['package_id']; ?>)">
                                 </div>
                               </div>
                             </div>
