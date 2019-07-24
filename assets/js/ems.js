@@ -1271,8 +1271,10 @@ function checkCurrentDate($date)
   else
     return true;
 }
+
 // function to assign employee
-function assign(){
+function assign()
+{
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
@@ -1307,73 +1309,85 @@ function assign(){
 
           }
  }
- function saveLeave(){
+
+
+ // add leave
+  function saveLeave()
+  {
   var leave_name=document.getElementById('leave_name').value;
   var leave_id=document.getElementById('leave_id').value;
+  if(leave_name=='')
+  {
+     msg="Enter leave name";
+     $('#messagediv').addClass('alert-danger');
+     $('#messagediv').css('color','red');
+     $('#messagediv').css('display','block');
+    $('#showmessage').html(msg); 
+    return 0;
+  }
+  else
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','saveLeave',true);
+    var data = new FormData();
+    data.append('leave_name',leave_name);
+    data.append('leave_id',leave_id);
+    xmlHttp.send(data);
 
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          msg="Leave Added Successfully";
 
-            if(leave_name==''){
-               msg="Enter leave name";
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              return 0;
-            }
-  var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','saveLeave',true);
-          var data = new FormData();
-          data.append('leave_name',leave_name);
-          data.append('id',leave_id);
-          xmlHttp.send(data);
+         $('#messagediv').removeClass('alert-danger');
+         $('#messagediv').addClass('alert-success');
+         $('#messagediv').css('color','green');
+         $('#messagediv').css('display','block');
+         $('#showmessage').html(msg); 
+            $( "#leave" ).load(window.location.href + " #leave" );
 
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                msg="Leave Added Successfully";
+        }
+    }
 
-               $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); }
-
-          }
+  }
  }
+
+ // add package
   function savePackage(){
   var package_name=document.getElementById('package_name').value;
   var package_id=document.getElementById('package_id').value;
+   if(package_name=='')
+   {
+     msg="Enter leave name";
+     $('#messagediv1').addClass('alert-danger');
+     $('#messagediv1').css('color','red');
+     $('#messagediv1').css('display','block');
+    $('#showmessage1').html(msg); 
+    return 0;
+  }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','savePackage',true);
+    var data = new FormData();
+    data.append('package_name',package_name);
+    data.append('package_id',package_id);
+    xmlHttp.send(data);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          msg="Package Added Successfully";
+
+         $('#messagediv1').removeClass('alert-danger');
+         $('#messagediv1').addClass('alert-success');
+         $('#messagediv1').css('color','green');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); }
+        $( "#package" ).load(window.location.href + " #package" );
 
 
-            if(package_name==''){
-               msg="Enter leave name";
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              return 0;
-            }
-  var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','saveLeave',true);
-          var data = new FormData();
-          data.append('package_name',package_name);
-          data.append('id',package_id);
-          xmlHttp.send(data);
-
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                msg="Package Added Successfully";
-
-               $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); }
-
-          }
+    }
  }
 
 // check age
@@ -1389,3 +1403,16 @@ function assign(){
     }
     return age;
 }
+
+
+ function toggleLeave(box){
+      if(box.checked==true){
+      box.nextElementSibling.nextElementSibling.disabled=false;
+      box.nextElementSibling.nextElementSibling.value=1;
+    }
+     else{  
+      box.nextElementSibling.nextElementSibling.disabled=true;
+      box.nextElementSibling.nextElementSibling.value='';
+
+    }
+  }

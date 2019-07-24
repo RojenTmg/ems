@@ -59,6 +59,10 @@
 			$query = $this->db->get('leaves');
 			return $query->result_array();
 		}
+		public function packageManage() {
+			$query = $this->db->get('packages');
+			return $query->result_array();
+		}
 	
 		public function add_employee($data,$password)
 		{

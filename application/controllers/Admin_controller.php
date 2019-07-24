@@ -138,6 +138,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Leaves';
 		$data['posts'] = $this->Admin_model->leaveManage();
+		$data['package'] = $this->Admin_model->packageManage();
+
 		$this->view('leave_manage', $title, $data);
 	}
 
@@ -834,32 +836,38 @@ class Admin_controller extends CI_Controller {
 
 // while editing leave, leave name is updated
 
-		public function saveLeave(){
+		public function saveLeave()
+		{
 			extract($_POST);
 			$data=[
 				'leave_name'=>$leave_name,
 				'created_by'=>$_SESSION['user_id']
 			];
 
-			if($id==''){
+			if($leave_id=='')
+			{
 				$leave=$this->db->where('leave_name',$leave_name);
 				$list=$this->db->get('leaves');
 				$getList= $list->row_array();
-				if(count($getList)==0){
+				if(count($getList)==0)
+				{
 					$this->db->insert('leaves',$data);
-					echo "true";
 				}
-				else echo "false";
+
+				else{
+
+				}
 			}
 			else{
 				$data=[
 					'leave_name'=>$leave_name,
 					'created_by'=>$_SESSION['user_id'],
-					'leave_id'=>$id
+					'leave_id'=>$leave_id
 				];
-				$this->db->where('leave_id',$id);
+				$this->db->where('leave_id',$leave_id);
 				$this->db->update('leaves',$data);
 			}
+
 		}
 
 		public function deleteLeave(){
@@ -874,23 +882,22 @@ class Admin_controller extends CI_Controller {
 				'package_name'=>$package_name,
 				'created_by'=>$_SESSION['user_id'],
 			];
-			if($id==''){
+			if($package_id==''){
 				$leave=$this->db->where('package_name',$package_name);
 				$list=$this->db->get('packages');
 				$getList= $list->row_array();
 				if(count($getList)==0){
 					$this->db->insert('packages',$data);
-					echo "true";
-				}
-				else echo "false";
+				 }
+				
 			}
 			else{
 				$data=[
 				'package_name'=>$package_name,
 				'created_by'=>$_SESSION['user_id'],
-				'package_id'=>$id
+				'package_id'=>$package_id
 				];
-				$this->db->where('package_id',$id);
+				$this->db->where('package_id',$package_id);
 				$this->db->update('packages',$data);	
 			}
 		}
@@ -899,12 +906,6 @@ class Admin_controller extends CI_Controller {
 			$this->db-where('package_id',$id);
 			$this->db->delete('packages');
 		}
-
-
-
-
-
-
 
 
 
