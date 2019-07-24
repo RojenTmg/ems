@@ -71,7 +71,6 @@ $('#half-day').click(function() {
     document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
   });
 
-
   $('#from_date').change(function() {
     document.getElementById("to_date").setAttribute("min", $(this).val());
     if (document.getElementById('multiple-days').checked) {
