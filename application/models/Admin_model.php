@@ -60,11 +60,14 @@
 			return $query->result_array();
 		}
 		// package lists
-		public function packageManage($value='')
-		{
+
+		public function packageManage() {
 			$query = $this->db->get('packages');
 			return $query->result_array();
 		}
+	
+
+
 
 		public function add_employee($data,$password)
 		{

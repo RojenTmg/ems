@@ -1338,18 +1338,32 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-          // location.reload();    
-          msg="Leave Added Successfully";
-
          $('#messagediv').removeClass('alert-danger');
-         $('#messagediv').addClass('alert-success');
-         $('#messagediv').css('color','green');
-         $('#messagediv').css('display','block');
-        $('#showmessage').html(msg); }
-    }
+          $('#messagediv').removeClass('alert-warning');
 
-  }
+          var reply= xmlHttp.responseText
+          if(reply=="inserted"){
+           msg="Leave Added Successfully";
+           $('#messagediv').addClass('alert-success');
+           
+          }
+          if(reply=="updated"){
+             msg="Leave Updated Successfully";
+             $('#messagediv').addClass('alert-success');
+         }
+         if(reply=="already"){
+             msg="Leave Already Exists";
+             $('#messagediv').addClass('alert-warning');
+           
+         }
+        $('#messagediv').css('display','block');
+        $('#showmessage').html(msg); 
+        $( "#leave" ).load(window.location.href + " #leave" );
+
+        }
  }
+}
+}
 
  // delete Leave
  function deleteLeave(id)
@@ -1411,11 +1425,12 @@ function assign()
   var package_id=document.getElementById('package_id').value;
    if(package_name=='')
    {
-     msg="Enter Package name";
-     $('#messagediv2').addClass('alert-danger');
-     $('#messagediv2').css('color','red');
-     $('#messagediv2').css('display','block');
-    $('#showmessage2').html(msg); 
+     msg="Enter package name";
+     $('#messagediv1').addClass('alert-danger');
+     $('#messagediv1').css('color','red');
+     $('#messagediv1').css('display','block');
+    $('#showmessage1').html(msg); 
+
     return 0;
   }
     var xmlHttp = new XMLHttpRequest();
@@ -1429,16 +1444,32 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-          msg="Package Added Successfully";
+        
+         $('#messagediv1').removeClass('alert-danger');
+         $('#messagediv1').removeClass('alert-warning');
 
-         $('#messagediv2').removeClass('alert-danger');
-         $('#messagediv2').addClass('alert-success');
-         $('#messagediv2').css('color','green');
-         $('#messagediv2').css('display','block');
-        $('#showmessage2').html(msg); }
+          var reply= xmlHttp.responseText
+          if(reply=="inserted"){
+           msg="Package Added Successfully";
+           $('#messagediv1').addClass('alert-success');
+          }
+          if(reply=="updated"){
+             msg="Package Updated Successfully";
+             $('#messagediv1').addClass('alert-success');
+         }
+         if(reply=="already"){
+             msg="Package Already Exists";
+             $('#messagediv1').addClass('alert-warning');
+           
+         }
+        $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+        $( "#package" ).load(window.location.href + " #package" );
+
 
     }
  }
+}
 
 // check age
  function getAge(dateString) 
@@ -1453,3 +1484,16 @@ function assign()
     }
     return age;
 }
+
+
+ function toggleLeave(box){
+      if(box.checked==true){
+      box.nextElementSibling.nextElementSibling.disabled=false;
+      box.nextElementSibling.nextElementSibling.value=1;
+    }
+     else{  
+      box.nextElementSibling.nextElementSibling.disabled=true;
+      box.nextElementSibling.nextElementSibling.value='';
+
+    }
+  }

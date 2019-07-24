@@ -4,23 +4,18 @@
       <h5>Leaves</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
- <!-- area to show success and erorr messages -->
 
-     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
-      <p id="showmessage"> </p>
-    <button type="button" class="close" >&times;</button>
-        </div>
- <!-- area finishes here -->
 
   <!-- View list div -->
-  <div class="row">
+  <div class="row"  >
   	<!-- left table area box-->
   	<div class="box col-md-7 mr-5">
   		<div class="box-head">
   			List
   		</div>
   		<div class="box-body overflow-auto"  style="height:25em;">
-  		<table class="table table-bordered hover ">
+  		<table  id="leave" class="table table-bordered hover table-responsive">
+
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>
@@ -75,8 +70,16 @@
   		</div>
 
   		<div class="box-body">
+         <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
+
   			<form class="form" method="POST" action="">
-  				<input type="hidden" name="leave_id" id="leave_id" value="">
+  				<input type="hidden" name="leave_id" id="leave_id" >
   				<div class="form-div">
   					<label>Title</label>
   					<input type="text" name="leave_name" id="leave_name" value="">
@@ -112,8 +115,9 @@
   		<div class="box-head">
   			List
   		</div>
-  		<div class="box-body overflow-auto" style="height:25em;">
-  		<table class="table table-bordered hover ">
+      <div class="box-body overflow-auto" style="height:25em;">
+  		<table id="package"  class="table table-bordered hover table-responsive">
+
   			<thead class="thead-dark">
   				<tr>
   					<th>SN</th>
@@ -125,6 +129,7 @@
   			<!-- table body -->
   			<tbody>
   				<?php $sn =1; ?>
+
   				<?php foreach ($packages as $pack=>$package) { ?>
   					<tr id="<?php echo $package['package_id']; ?>">
   						<td><?php echo $sn; $sn++ ?></td>
@@ -154,6 +159,7 @@
 
 
                 </td>
+
   					</tr>
   				<?php } ?>
   			</tbody>
@@ -171,6 +177,13 @@
   		</div>
 
   		<div class="box-body">
+        <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
+      <p id="showmessage1"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
   			<form class="form" method="POST" action="">
   				<input type="hidden" name="package_id" id="package_id">
   				<div class="form-div">
@@ -178,8 +191,8 @@
   					<input type="text" name="package_name" id="package_name">
   				</div>
 
-  				<div class="form-group row">
-  					<div class="col-sm-12">
+  				<div class="form-group row" style="max-height: 300px; overflow-y: scroll;">
+  					<div class="col-sm-12" >
   						Select leave type:
   					</div>
   					<?php foreach ($posts as $key => $leave) {?>
@@ -187,9 +200,9 @@
   					
   			
 		  				<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="<?php echo $leave['leave_name']; ?>">
-						  <label class="custom-control-label col-md-6 mb-3" for="<?php echo $leave['leave_name']; ?>"><?php echo $leave['leave_name']; ?></label>
-  							<input type="number" name="days" id="days" style="width: 5em; height: 2em;">
+						  <input type="checkbox" name="leave-list" onchange="toggleLeave(this)" class="custom-control-input" id="<?php echo $leave['leave_name']; ?>">
+						  <label class="custom-control-label col-md-8 mb-3" for="<?php echo $leave['leave_name']; ?>"><?php echo $leave['leave_name']; ?></label>
+  							<input type="number" min="0"  max="365" disabled="true" style=" width: 5em; height: 2em;" name="days" id="days" >
   					
 						</div>
 							</div>
