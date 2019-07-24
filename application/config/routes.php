@@ -76,6 +76,9 @@ $route['admin/employee_manage/progressBar'] = 'Admin_controller/progressBar';
 $route['admin/employee_manage/(:any)'] = 'Admin_controller/employeeManage/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
 
+$route['admin/leave_manage/(:any)'] = 'Admin_controller/leaveManage/$1';
+// $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
+
 $route['admin/dashboard'] = 'Admin_controller/dashboard';
 $route['admin/employee_list'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage'] = 'Admin_controller/employeeManage';

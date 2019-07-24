@@ -134,12 +134,17 @@ class Admin_controller extends CI_Controller {
 
 	// leave page
 
-	public function leaveManage() 
+	public function leaveManage($id= '') 
 	{
 		$title['title'] = 'Leaves';
 		$data['posts'] = $this->Admin_model->leaveManage();
 
 		$data['packages']=$this->Admin_model->packageManage();
+
+		if($id!=''){
+
+		$data['detailLeave']=$this->Admin_model->getLeaveDetails($id);
+		}
 		$this->view('leave_manage', $title, $data);
 	}
 

@@ -59,6 +59,13 @@
 			$query = $this->db->get('leaves');
 			return $query->result_array();
 		}
+		// update
+		public function getLeaveDetails($id)
+		{
+			$this->db->where('leave_id',$id);
+			$query = $this->db->get('leaves');
+			return $query->result_array();
+		}
 		// package lists
 
 		public function packageManage() {

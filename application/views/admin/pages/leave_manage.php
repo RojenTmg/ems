@@ -2,8 +2,7 @@
   <!-- title area -->
   <div class="con-sub-head sp-btn">
     <h5>Leaves</h5>
-    <a href="
-      <?= site_url('admin/dashboard'); ?>" id="small-link">
+    <a href=" <?= site_url('admin/dashboard'); ?>" id="small-link">
       <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard
     </a>
   </div>
@@ -17,12 +16,12 @@
   <!-- View list div -->
   <div class="row"  >
     <!-- left table area box-->
-    <div class="box col-md-7 mr-5">
+    <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
       <div class="box-head">
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
-        <table  id="leave" class="table table-bordered hover table-responsive">
+        <table  id="leave" class="table table-bordered hover ">
           <thead class="thead-dark">
             <tr>
               <th>SN</th>
@@ -43,9 +42,11 @@
                 <?php echo $post['leave_name']; ?>
               </td>
               <td>
-                <button class="btn-edit" title="Edit">
+             
+                    <a href="<?= site_url('admin/leave_manage/'); ?><?php echo $post['leave_id']; ?>" >
                   <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
+                </a>
+               
                 <a href="#leaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
                   <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                 </a>
@@ -74,18 +75,19 @@
         </div>
       </div>
       <!-- left box ends -->
+
       <!-- right form area -->
-      <div class="box col-md-4">
+      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
         <div class="box-head">
         Add new Leave Type
       </div>
-        <div class="box-body">
+        <div class="box-body ">
   
           <form class="form" method="POST" action="">
-            <input type="hidden" name="leave_id" id="leave_id" >
+            <input type="hidden" name="leave_id" id="leave_id" value="<?php if(isset($detailLeave['leave_id'])) echo $detailLeave['leave_id']; ?>">
               <div class="form-div">
                 <label>Title</label>
-                <input type="text" name="leave_name" id="leave_name" value="">
+                <input type="text" name="leave_name" id="leave_name" value="<?php if(isset($detailLeave['leave_name'])) echo $detailLeave['leave_name']; ?>">
                 </div>
                 <div class="sub-can">
                   <input type="button" name="" class="sub" onclick="saveLeave()" value="Save">
@@ -107,21 +109,16 @@
     <button type="button" class="close close1" >&times;</button>
         </div>
  <!-- area finishes here -->
-           <!-- area to show success and erorr messages -->
-          <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
-            <p id="showmessage1"></p>
-            <button type="button" class="close close1" >&times;</button>
-          </div>
-          <!-- area finishes here -->
+         
           <!-- lower div for packages -->
           <div class="row">
             <!-- left table area box-->
-            <div class="box col-md-7 mr-5">
+            <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
               <div class="box-head">
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
-                <table id="package"  class="table table-bordered hover table-responsive">
+                <table id="package"  class="table table-bordered hover ">
                   <thead class="thead-dark">
                     <tr>
                       <th>SN</th>
@@ -176,7 +173,7 @@
               <!-- left box ends -->
            
   <!-- right form area -->
-    <div class="box col-md-4">
+    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
       <div class="box-head">
         Create new Package
       </div>
