@@ -2,12 +2,11 @@
      <?php 
      $updating=false;
          if (isset($_SESSION['current_employee_id'])) {
-             unset($_SESSION['current_employee_id']); 
-     
-      }
+             unset($_SESSION['current_employee_id']); }
+             
       if($this->uri->segment(3))
      {
-      $updating=true;
+         $updating=true;
         $_SESSION['current_employee_id']=$this->uri->segment(3);       
      }
      
@@ -628,10 +627,10 @@
             </div>
            <div class="form-div form-div-horz">
             <label>Package <span class="text-danger"><i>*</i></span></label>
-                <select  id="package" >
+                <select  id="package_id" >
                   <option value="">Select package</option>
                   <?php foreach ($packagelist as $pack) {  ?>
-                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
+                   <option <?php if($post['package_id']==$pack['package_id']) echo "selected"; ?> value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
                  <?php } ?>
                 </select> 
           </div>

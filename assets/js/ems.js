@@ -1274,6 +1274,7 @@ function checkCurrentDate($date)
 // function to assign employee
 function assign()
 {
+  var package_id = document.getElementById('package_id').value;
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
@@ -1292,6 +1293,7 @@ function assign()
           var data = new FormData();
           data.append('recommender_id',recommender);
           data.append('approver_id',approver);
+          data.append('package_id',package_id);
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()
