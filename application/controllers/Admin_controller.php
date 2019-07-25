@@ -739,7 +739,9 @@ class Admin_controller extends CI_Controller {
 			if(	$this->Admin_model->insert('employee_documents',$doc_data))
 
 			// if(	$this->Admin_model->add_documents($doc_data))
-				{$status='true';}
+				{
+					$status='true';
+				}
 
 			else{ $status='false'; }
 
@@ -784,7 +786,7 @@ class Admin_controller extends CI_Controller {
 				$id=$_SESSION['user_id'];
 			}
 
-			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
+			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute,blood_group,pan');
 			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $id));
 
 			$this->db->select('contact_id');

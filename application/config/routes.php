@@ -43,6 +43,11 @@ $route['employee/profile_update/addDocuments'] = 'Employee_controller/addDocumen
 $route['employee/profile_update/addAddress'] = 'Employee_controller/addAddress';
 $route['employee/profile_update/progressBar'] = 'Employee_controller/progressBar';
 
+$route['employee/profile_update/updateWork'] = 'Employee_controller/updateWork';
+$route['employee/profile_update/deleteWorkExperience'] = 'Employee_controller/deleteWorkExperience';
+$route['employee/profile_update/deleteFile'] = 'Employee_controller/deleteFile';
+
+
 $route['employee/profile_update/(:any)'] = 'Employee_controller/profileupdate/$1';
 
 

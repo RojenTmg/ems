@@ -76,7 +76,7 @@
     </ul>
     <div class="drop-down-item" id="show-profile">
       <div class="pro-file">
-         <span><strong> Christopher Columbus</strong></span>
+         <span><strong> <?php echo $_SESSION['firstname'].' '.$_SESSION['middlename'].' '.$_SESSION['surname'];?></strong></span>
         <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
       </div>
       <div class="drop-down">
@@ -108,7 +108,7 @@
         </div>
         <div class="user-info">
           <span class="user-name">
-            <strong>Christopher</strong>
+            <strong><?php echo $_SESSION['firstname'].' '.$_SESSION['surname'];?></strong>
           </span>
           <span class="user-role"><?php echo $_SESSION['type']; ?></span>
           <span class="user-status">

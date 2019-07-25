@@ -290,7 +290,7 @@ function submitDocument(){
        $('#showmessage').html(msg); 
       return false;
      }
-     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf" ) {
+     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF" ) {
 
      }
      else{
@@ -624,10 +624,22 @@ xmlHttp.onreadystatechange = function()
   // add health information
   function addHealth()
   {
+      var blood_group=document.getElementById('blood_group').value;
+      if(blood_group==''){
+           msg="Select a blood group.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return 0;  
+      }
+
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addHealth',true);
           var data = new FormData();
-          data.append('blood_group',document.getElementById('blood_group').value);
+          data.append('blood_group',blood_group);
           data.append('medical_complications',document.getElementById('medical_complications').value);
           data.append('regular_medication',document.getElementById('regular_medication').value);
           data.append('allergies',getSelectedValue('allergies'));
@@ -639,7 +651,6 @@ xmlHttp.onreadystatechange = function()
               {
                 var status = xmlHttp.responseText;
                showresponse('health-form',status,'Updated Successfully');
-               completeIcon('nav-health-tab');
               }
           }
   }
@@ -972,7 +983,7 @@ function updateWork(){
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
-          location.reload();
+          // location.reload();
 
           }
 
@@ -1026,6 +1037,8 @@ function check_complete(){
   var e_phone=document.getElementById('e_phone').value;
   //Education
   var institute=document.getElementById('institute').value;
+  //Health
+  var blood_group = document.getElementById('blood_group').value;
   //PAN
   var pan=document.getElementById('pan').value;
   //assign
@@ -1042,6 +1055,7 @@ function check_complete(){
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
+    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
     if(recommender!=''&&approver!='') completeIcon('nav-assign-tab'); else inCompleteIcon('nav-assign-tab');
 
@@ -1207,6 +1221,7 @@ function assign()
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
               check_complete();
+              showprogress();
 
           }
  }
