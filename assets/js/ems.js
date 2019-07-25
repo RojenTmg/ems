@@ -1313,6 +1313,7 @@ function assign()
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
+              check_complete();
 
           }
  }
@@ -1369,7 +1370,7 @@ function assign()
         $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
         $( "#leave" ).load(window.location.href + " #leave" );
-
+        $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         $('#leave_id').val('');
         $('#leave_name').val('');
@@ -1401,6 +1402,8 @@ function assign()
         // location.reload();
          dismissModal();
         $( "#leave" ).load(window.location.href + " #leave" );
+        $( "#package-form" ).load(window.location.href + " #package-form" );
+
 
         }
 
@@ -1512,6 +1515,12 @@ function dismissModal()
              $('#messagediv1').addClass('alert-warning');
            
          }
+          if(reply=="invalidDuration"){
+             msg="Invalid leave duration";
+             $('#messagediv1').addClass('alert-warning');
+           
+         }
+
         $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
       var form= document.getElementById('package-form');
