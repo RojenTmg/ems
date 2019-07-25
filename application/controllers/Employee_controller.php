@@ -121,6 +121,7 @@
 				$title['title'] = 'Recommendation List';
 
 				$recommender_data['recommendations']=$this->Employee_model->recommendationList();
+				$recommender_data['duty_by']=$this->Admin_model->employeeList();
 				$this->view('recommendation_list', $title, $recommender_data);
 				
 
@@ -131,16 +132,20 @@
 		// leave recommend to approver
 		public function recommendLeave()
 		{
-			$status='';
+			
 			extract($_POST);
 			$data=array('is_recommended'=>'1');
 			$this->db->where('id',$l_id);
-			if($this->db->update('employee_leaves',$data))
-				$status = 'true';
-			else
-				$status = 'false';
-
-			echo $status;
+			$this->db->update('employee_leaves',$data);
+		
+		}
+		// deny leave by recommender
+		public function denyLeave()
+		{
+			extract($_POST);
+			$data=array('is_denied'=>'1');
+			$this->db->where('id',$l_id);
+			$this->db->update('employee_leaves',$data);
 		}
 
 

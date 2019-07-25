@@ -1561,11 +1561,6 @@ function recommendLeave(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-          var status = xmlHttp.responseText;
-          if(status=='true')
-          {
-            location.reload();
-          }
-    }
+    location.reload();
   }
 }
