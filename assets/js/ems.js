@@ -51,7 +51,17 @@ $(window).on("scroll", function() {
 
 ////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
 
-$('#half-day').click(function() {
+  $('#leave_name').change(function() {
+      if ($('#leave_name').val() == 1) {
+        $('#multiple-days').attr('disabled', true);
+      }
+      else {
+        $('#multiple-days').attr('disabled', false);        
+      }
+  });
+
+
+  $('#half-day').click(function() {
     $('#to_date').attr('disabled', true);
     $('#duration').val('0.5');
     $('#to_date').val($('#from_date').val());
