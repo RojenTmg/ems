@@ -410,41 +410,7 @@
 
 	}
 
-// for work experience
-	public function addWork()
-	{
-					$_SESSION['path']="work";
 
-		$status='';
-		extract($_POST);
-
-		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
-
-					
-						$id=$_SESSION['user_id'];
-					
-
-		$data=array(
-			'responsibility'=>$responsibility,
-			'organization'=>$organization,
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'contact_address'=> $contact_address,
-			'contact_person_name'=> $contact_person_name,
-			'contact_person_phone'=> $contact_person_phone,
-			'emp_id'=>$id
-		);
-
-
-		$this->Admin_model->insert('employee_work_experience',$data);
-
-		// $this->Admin_model->add_work_experience($data);
-
-		$status='true';
-
-		echo $status;
-
-	}
 
 // for work experience
 	public function updateWork()
@@ -559,7 +525,7 @@
 				$id=$_SESSION['user_id'];
 			
 
-			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
+			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute,blood_group,pan');
 			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $id));
 
 			$this->db->select('contact_id');
@@ -568,8 +534,7 @@
 			$this->db->select('secondary_addressId');
 			$employee_addresses_tbl=$this->Admin_model->user_detail('employee_addresses',array('emp_id' => $id));
 
-			$this->db->select('recommender_id','approver_id');
-			$employee_assign=$this->Admin_model->user_detail('employee_approvers',array('emp_id'=>$id));
+			
 
 	
 
@@ -599,15 +564,7 @@
 			else{
 				$total++;
 			}
-			if(!empty(($employee_assign))){
-				foreach ($employee_assign as $row) {
-					$total++;
-					if($row!=NULL) $filled++;
-				}
-			}
-			else{
-				$total+=2;
-			}
+			
 
 			if($total==0) $percentage=0;
 			else

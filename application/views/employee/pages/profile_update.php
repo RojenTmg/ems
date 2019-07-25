@@ -427,8 +427,9 @@
           <div class="form-div">
 
             <div class="form-div">
-              <label>Blood Group</label>
+              <label>Blood Group <span class="text-danger"><i>*</i></span></label>
               <select id="blood_group">
+                <option value="">Select Blood Group</option>
                 <option value="A +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A +ve') { echo "selected"; }} ?>>A +ve</option>
                 <option value="A -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A -ve') { echo "selected"; }} ?>>A -ve</option>
                 <option value="B +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'B +ve') { echo "selected"; }} ?>>B +ve</option>
@@ -547,7 +548,7 @@
      
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" onclick="updateWork()"  value="Save" ;?> class="sub">
+            <input type="button" onclick="updateWork()"  value="Save"  class="sub">
            </div> 
           </div>
         </form>

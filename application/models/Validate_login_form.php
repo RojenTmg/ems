@@ -55,7 +55,10 @@ class Validate_login_form extends CI_Model
 					$_SESSION['user_id']=$row->user_id;
 
 
-					$users=$this->Admin_model->user_detail('employees',$_SESSION['user_id']);
+					$this->db->where('emp_id',$row->user_id);
+					$users=$this->db->get('employees');
+					$users=$users->row_array();
+					
 
 					$_SESSION['firstname']=$users['first_name'];
 					$_SESSION['middlename']=$users['middle_name'];
