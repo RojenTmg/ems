@@ -17,7 +17,7 @@
           <!-- type of leave -->
           <div class="form-div">
             <label>Type of Leave</label>
-            <select name="leave_id" id="type">
+            <select name="leave_id" id="leave_name">
               <?php foreach ($leaves as $value) {
                 echo '<option value="' . $value['leave_id']. '">' . $value['leave_name']. '</option>';
               }   
@@ -28,15 +28,15 @@
             <label>Half / Full day leave</label>
             <div>
               <div>
-                <input type="radio" name="is_half_day" id="half-day" value="1" checked="checked">
+                <input type="radio" name="duration_type" id="half-day" value="half" checked="checked">
                 <label>Half Day</label>
               </div>
               <div>
-                <input type="radio" name="is_half_day" id="full-day" value="0">
+                <input type="radio" name="duration_type" id="full-day" value="full">
                 <label>Full Day</label> 
               </div>
               <div>
-                <input type="radio" name="is_half_day" id="multiple-days" value="2">
+                <input type="radio" name="duration_type" id="multiple-days" value="multiple" disabled="disabled">
                 <label>Multiple Days</label>
               </div>
             </div>

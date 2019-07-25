@@ -226,14 +226,15 @@
               <!-- left box ends -->
            
   <!-- right form area -->
-    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded" >
       <div class="box-head">
         Create new Package
       </div>
 
       <div class="box-body">
- 
+        <div id="formdiv">
         <form class="form" method="POST" action="" id="package-form">
+          
             <input type="hidden" name="package_id" id="package_id" value="<?php if(isset($detailPackage['package_id'])) echo $detailPackage['package_id']; ?>">
           <div class="form-div">
             <label>Title</label>
@@ -293,8 +294,9 @@
                 <input type="button" name="" class="sub" onclick="savePackage()" value="Save">
                 
             </div>
-
+         
         </form>
+         </div>
         </div>
       </div>  
     </div>

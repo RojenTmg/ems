@@ -51,7 +51,17 @@ $(window).on("scroll", function() {
 
 ////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
 
-$('#half-day').click(function() {
+  $('#leave_name').change(function() {
+      if ($('#leave_name').val() == 1) {
+        $('#multiple-days').attr('disabled', true);
+      }
+      else {
+        $('#multiple-days').attr('disabled', false);        
+      }
+  });
+
+
+  $('#half-day').click(function() {
     $('#to_date').attr('disabled', true);
     $('#duration').val('0.5');
     $('#to_date').val($('#from_date').val());
@@ -84,8 +94,6 @@ $('#half-day').click(function() {
       document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
       $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
   });
-
-
 
 
 
@@ -1307,6 +1315,7 @@ function assign()
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
+              check_complete();
 
           }
  }
@@ -1363,7 +1372,7 @@ function assign()
         $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
         $( "#leave" ).load(window.location.href + " #leave" );
-
+        $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         $('#leave_id').val('');
         $('#leave_name').val('');
@@ -1395,6 +1404,8 @@ function assign()
         // location.reload();
          dismissModal();
         $( "#leave" ).load(window.location.href + " #leave" );
+        $( "#package-form" ).load(window.location.href + " #package-form" );
+
 
         }
 
@@ -1506,6 +1517,12 @@ function dismissModal()
              $('#messagediv1').addClass('alert-warning');
            
          }
+          if(reply=="invalidDuration"){
+             msg="Invalid leave duration";
+             $('#messagediv1').addClass('alert-warning');
+           
+         }
+
         $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
       var form= document.getElementById('package-form');

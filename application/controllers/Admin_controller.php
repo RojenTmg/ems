@@ -121,12 +121,15 @@ class Admin_controller extends CI_Controller {
 	public function employeeManage($id = NULL) 
 	{
 		$title['title'] = 'Manage Employee';
+		if (isset($_SESSION['current_employee_id'])) {
+               unset($_SESSION['current_employee_id']); 
+            }
 
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{	
 			$data['empList']=$this->Admin_model->employeeList();
-			if(isset($_SESSION['current_employee_id'])){
-				 $id=$_SESSION['current_employee_id']; 
+			if($this->uri->segment(3)){
+				 $id=$this->uri->segment(3);   
 				$data['assigned']=$this->Admin_model->getAssign($id);
 				$data['packagelist']=$this->Admin_model->packageManage();			}
 			else{
@@ -237,6 +240,7 @@ class Admin_controller extends CI_Controller {
 
 			if($id=$this->Admin_model->add_employee($data,$password))
 			{
+				
 				array_push($result, $id);
 			}
 
@@ -920,6 +924,12 @@ class Admin_controller extends CI_Controller {
 
 			$arrayLeave=json_decode($leaveArr, true);
 			$arrayDuration=json_decode($durationArr, true);
+			foreach ($arrayDuration as $row) {
+				if($row<1){
+				echo "invalidDuration";
+				return 0;
+				}
+			}
 
 			$data=[ 'package_name'=>$package_name, 'created_by'=>$_SESSION['user_id'] ];
 
@@ -945,17 +955,13 @@ class Admin_controller extends CI_Controller {
 					'created_by'=>$_SESSION['user_id'],
 					'package_id'=>$package_id
 				];
-				$leave=$this->db->where('package_name',$package_name);
-				$list=$this->db->get('packages');
-				$getList= $list->row_array();
-				if(count($getList)==0)
-				{
+				
 					$this->db->where('package_id',$package_id);
 					$this->db->update('packages',$data);
 					$this->addLeaveToPackage($arrayLeave,$arrayDuration,$package_id,'update');
 					echo "updated";
-				}
-				else echo "already";
+				
+				
 			}
 	
 		}

@@ -1,15 +1,21 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
-     $updating=false;
-         if (isset($_SESSION['current_employee_id'])) {
-             unset($_SESSION['current_employee_id']); }
-             
-      if($this->uri->segment(3))
-     {
-         $updating=true;
-        $_SESSION['current_employee_id']=$this->uri->segment(3);       
-     }
+
+       $updating=false;
+           if (isset($_SESSION['current_employee_id'])) {
+               unset($_SESSION['current_employee_id']); 
+        }
+
+      ?>
+
      
+      <?php
+          if($this->uri->segment(3))
+         {
+          $updating=true;
+            $_SESSION['current_employee_id']=$this->uri->segment(3);       
+         }
+         
     
       ?>
       
