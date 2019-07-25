@@ -8,7 +8,8 @@
 					redirect('login');
 				}
         }
-        public function view($page, $title = 'EMS', $data = FALSE) {
+        public function view($page, $title = 'EMS', $data = FALSE)
+         {
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) 
 				show_404();
 
@@ -17,7 +18,8 @@
 			$this->load->view('employee/templates/footer');
 		}
 
-		public function generalPage($page = 'dashboard') {
+		public function generalPage($page = 'dashboard') 
+		{
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {
 				show_404();
 			}
@@ -49,7 +51,7 @@
 
 
 		public function profileupdate($id = NULL) 
-	{
+		{
 		$title['title'] = 'Update Profile';
 
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
@@ -110,7 +112,7 @@
 
 		}
 
-		// approvers page
+		// recommenders page
 		public function recommendationList()
 		{
 
@@ -120,11 +122,25 @@
 
 				$recommender_data['recommendations']=$this->Employee_model->recommendationList();
 				$this->view('recommendation_list', $title, $recommender_data);
-				// echo "<pre>";
-				// print_r($recommender_data);
+				
 
 			}
-			else { redirect('login');
+			else { redirect('login');}
+		}
+
+		// leave recommend to approver
+		public function recommendLeave()
+		{
+			$status='';
+			extract($_POST);
+			$data=array('is_recommended'=>'1');
+			$this->db->where('id',$l_id);
+			if($this->db->update('employee_leaves',$data))
+				$status = 'true';
+			else
+				$status = 'false';
+
+			echo $status;
 		}
 
 
@@ -143,8 +159,6 @@
 
 		$this->Admin_model->update_employee($data,$id);
 		$status=array('true');
-
-
 		echo json_encode($status);
 	}
 
@@ -657,17 +671,4 @@
 			echo json_encode($progress_data);
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-	}
 }

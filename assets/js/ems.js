@@ -1387,7 +1387,6 @@ function dismissModal()
     {
         if(xmlHttp.readyState==4)
         {
-          console.log(xmlHttp.responseText);
         
          $('#messagediv1').removeClass('alert-danger');
          $('#messagediv1').removeClass('alert-warning');
@@ -1532,4 +1531,26 @@ function editPackage(id){
       break;
   }
     }
+}
+
+
+// recommend leaves to approver
+function recommendLeave(l_id)
+{
+  
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','recommendLeave',true);
+  var data = new FormData();
+  data.append('l_id',l_id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+          var status = xmlHttp.responseText;
+          if(status=='true')
+          {
+            location.reload();
+          }
+    }
+  }
 }

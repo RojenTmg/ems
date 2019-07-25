@@ -547,7 +547,7 @@
      
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" onclick="updateWork()"  value="Save" ;?> class="sub">
+            <input type="button" onclick="updateWork()"  value="Save"  class="sub">
            </div> 
           </div>
         </form>
