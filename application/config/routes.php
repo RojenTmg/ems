@@ -27,6 +27,9 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
+
+$route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
+
 $route['employee/profile_update/addContact'] = 'Employee_controller/addContact';
 $route['employee/profile_update/addNationality'] = 'Employee_controller/addNationality';
 $route['employee/profile_update/addEducation'] = 'Employee_controller/addEducation';
@@ -45,6 +48,7 @@ $route['employee/profile_update/deleteFile'] = 'Employee_controller/deleteFile';
 
 
 $route['employee/profile_update/(:any)'] = 'Employee_controller/profileupdate/$1';
+
 
 
 

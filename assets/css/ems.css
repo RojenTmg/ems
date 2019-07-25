@@ -1403,4 +1403,8 @@ body {
   cursor: pointer;
 }
 
+.leave-packages
+{
+  justify-content: space-around; 
+}
 
