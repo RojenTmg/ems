@@ -77,6 +77,25 @@
 			else {
 				$this->view('leave_form', $title, $data);
 			}
+
+
+		}
+
+		// approvers page
+		public function recommendationList()
+		{
+
+			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+			{
+				$title['title'] = 'Recommendation List';
+
+				$recommender_data['recommendations']=$this->Employee_model->recommendationList();
+				$this->view('recommendation_list', $title, $recommender_data);
+				// echo "<pre>";
+				// print_r($recommender_data);
+
+			}
+			else { redirect('login');
 		}
 	}
-?>
+}

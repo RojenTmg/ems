@@ -43,8 +43,7 @@
         // echo $posts;  die();
           if ($user_not_found != TRUE) {
  
-            foreach ($posts as $value=>$post) {
-             
+            foreach ($posts as $value=>$post) { 
               // check archived or not           ?>
               <tr id="<?php echo $post['emp_id']; ?>">
                 <td><?php echo $post['emp_id']; ?></td>

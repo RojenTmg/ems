@@ -38,6 +38,8 @@ $route['employee/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['employee/progressBar'] = 'Admin_controller/progressBar';
 
+$route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
+
 
 
 

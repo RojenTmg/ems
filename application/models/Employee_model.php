@@ -20,4 +20,16 @@
 			
 			return $query->row_array();
 		}
+
+
+		// fetch leaves information
+		public function recommendationList()
+		{
+			
+			$this->db->join('employees', 'employee_leaves.emp_id = employees.emp_id');
+			$this->db->join('leaves', 'employee_leaves.leave_id = leaves.leave_id');
+			$this->db->where('employee_leaves.is_recommended', '0');
+			$query = $this->db->get('employee_leaves');
+			return $query->result_array();
+		}
 	}

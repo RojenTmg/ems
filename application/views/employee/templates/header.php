@@ -122,15 +122,15 @@
             </a>
           </li>
           <li>
-            <a href="<?= site_url('employee/leave_form'); ?>/leave_form">
+            <a href="<?= site_url('employee/leave_form'); ?>">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <span>Request Leave</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="<?= site_url('employee/recommendation_list'); ?>">
               <i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i>
-              <span></span>
+              <span>Recommendation Lists</span>
             </a>
           </li>
           <li>
