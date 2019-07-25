@@ -9,24 +9,50 @@
     
     <title><?php echo $title; ?></title>
 
+
+
+    <!-- offline bootstrap -->
+   <?= link_tag('assets/css/bootstrap.min.css') ?>
+
+   
+
+  <!-- offline jquery -->
+   <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.js') ?>"></script>
+
+
+
     <!-- Stylesheets -->
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <?= link_tag('assets/css/all.css') ?>
+         <?= link_tag('assets/css/fontawesome.min.css') ?>
+
+
     <?= link_tag('assets/css/ems.css?version=51') ?>
-    
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
 
     <!-- Script Files -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <!-- for datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/datatables.min.js"></script>
+<!-- offline file bootstrap js -->
+<script type="text/javascript" src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
+
+
+
+<!-- offline file bootstrap js -->
+<script type="text/javascript" src="<?= base_url('assets/js/jquery-3.3.1.slim.min.js') ?>"></script>
+
+<!-- offline file bootstrap js -->
+<script type="text/javascript" src="<?= base_url('assets/js/popper.min.js') ?>"></script>
+
+
+ <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
+
+
+
+<!-- for datatable -->
+<!-- offline datatables css -->
+ <?= link_tag('assets/css/datatables.min.css') ?>
+ <script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js') ?>"></script>
+
+<link rel="stylesheet" href="<?= base_url('assets/css/fstdropdown.css') ?> ">
+
 
 </head>
 
@@ -104,7 +130,7 @@
             </a>
           </li>
           <li>
-          <a href="<?= base_url('employee'); ?>/profile_update">
+          <a href="<?= base_url('employee'); ?>/profile_update/<?php echo $_SESSION['user_id'];?>">
               <i class="fa fa-address-card" aria-hidden="true"></i>
               <span>Update Profile</span>
             </a>
