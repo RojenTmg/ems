@@ -3,7 +3,7 @@
        $updating=false;
            if (isset($_SESSION['current_employee_id'])) {
                unset($_SESSION['current_employee_id']); 
-        }
+            }
 
       ?>
      

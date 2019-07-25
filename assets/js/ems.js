@@ -98,28 +98,6 @@ $(window).on("scroll", function() {
 
 
 
-
-
-//####### delete
-// var count = 0;
-
-// function slide(form){
-
-//   var count = form.value;
-//   var btn = form.childNodes;
-
-//   if (count === "1") {
-//     form.nextElementSibling.style.display = 'none';
-//     btn[3].innerHTML = '<i class="fa fa-angle-down" aria-hidden="true"></i>';   
-//     form.value="0";
-//   }
-//   else{
-//     btn[3].innerHTML = '<i class="fa fa-angle-up" aria-hidden="true"></i>'; 
-//     form.nextElementSibling.style.display = 'block';
-//     form.value="1";
-
-//   }
-// }
   
 
 ////////////////////  Drop-down Menu - When Clicking Profile Bar /////////////////////
@@ -143,119 +121,7 @@ $(document).ready(function(){
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
 
-// $('.tip-can').click(function(ev) {
-//   $(this).parent().css({"display": "none"});
-//   ev.stopPropagation();
-// });
 
-// $('.table tr .btn-archive').click(function(ev) {
-//   $(this).children()[1].style.display = 'block';
-//   ev.stopPropagation();
-// });
-
-// $('.table tbody tr').click(function() {
-//   var id = $(this).attr('id');
-//   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-// });
-
-// $('.table tr .btn-edit').click(function(ev){
-//   var id = $(this).closest('tr').attr('id');
-//   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
-//   ev.stopPropagation();
-// });
-
-// $('.table tr .btn-archive .tip-arch').click(function(){
-//   var id = $(this).closest('tr').attr('id');
-//   $(this).closest('tr').remove(); 
-//   // $('#datatable').dataTable().reload();
-//   // var mytbl = $("#datatable").datatable();
-//   // mytbl.ajax.reload;
-//   // $('#datatable').dataTable( ).api().ajax.reload();
-
-
-//   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
-//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-//   // window.location =  '<?= site_url('admin/employee_list'); ?>';
-//   // alert('1');
-
-//   // // $("#datatable").fnDestroy();
-//   // $('#datatable').DataTable().clear().destroy();
-//   // // $("#datatable").dataTable();
-//   // $(document).ready(function(){
-
-//   // alert('3');
-//   //   $('#datatable').dataTable();
-//   // alert('4');
-//   // });
-//   // // $("#my-button").click(function() {
-      
-//   // // });
-//   // alert('1');
-//    // $("#datatable").DataTable().fnReloadAjax('employee_list.php');
-//    // $("#datatable").api().ajax.reload();
-//    // $('#datatable').dataTable().api().ajax.reload();
-
-//    // $('#datatable').DataTable().destroy();
-//    // fetch_data();
-
-//    // $('#datatable').dataTable().api().ajax.reload();
-
-
-// });
-
-// $('.arch-msg-div').click(function(){
-//   $('.arch-msg-div .arch-msg').addClass('msg-remove');
-//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-// });
-
-// // $('.tip-arch').click(function(ev) {
-// //   alert($(this).attr('id'));
-// //   ev.stopPropagation();
-// // });
-
-
-// $(document).ready(function(){
-//   $('#datatable').dataTable();
-// });
-
-
-
-
-
-/// archive
-
-  // // $('.tip-can').click(function(ev) {
-  // //   $(this).parent().css({"display": "none"});
-  // //   ev.stopPropagation();
-  // // });
-
-  // // $('.table tr .btn-archive').click(function(ev) {
-  // //   $(this).children()[1].style.display = 'block';
-  // //   ev.stopPropagation();
-  // // });
-
-  // // $('.table tbody tr').click(function() {
-  // //   var id = $(this).attr('id');
-  // //   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-  // // });
-
-  // // $('.table tr .btn-edit').click(function(ev){
-  // //   var id = $(this).closest('tr').attr('id');
-  // //   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
-  // //   ev.stopPropagation();
-  // // });
-
-  // $('.table tr .btn-archive .tip-arch').click(function(){
-  //   var id = $(this).closest('tr').attr('id');
-  //   $(this).closest('tr').remove();
-  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fas fa-undo-alt" aria-hidden="true"></i></span><div class="msg-text"><p>Restore Successful !</p>Employee with Id no. ' + id + '  restored successfully.</div></div>');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  // });
-
-  // $('.arch-msg-div').click(function(){
-  //   $('.arch-msg-div .arch-msg').addClass('msg-remove');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  // });
 
 
 
@@ -1194,6 +1060,7 @@ function toggleNav(status=''){
 
   }
 }
+
 
 function inCompleteIcon(tabId){
     document.getElementById(tabId).childNodes[1].className="fa fa-info-circle prog-incom";
