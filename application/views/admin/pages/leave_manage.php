@@ -16,11 +16,12 @@
   <!-- View list div -->
   <div class="row"  >
     <!-- left table area box-->
-    <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="box col-md-7 mr-5 shadow-sm p-3 mb-5 bg-white rounded">
       <div class="box-head">
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
+        <div id="leavetable">
         <table  id="leave" class="table table-striped table-bordered  ">
           <thead class="">
             <tr>
@@ -38,7 +39,7 @@
               <td class="text-center">
                 <?php echo $sn; $sn++ ?>
               </td>
-              <td class="text-center">
+              <td class="">
                 <?php echo $post['leave_name']; ?>
               </td>
               <td class="text-center">
@@ -72,12 +73,13 @@
               <?php } ?>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
       <!-- left box ends -->
 
       <!-- right form area -->
-      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded"  >
+      <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded"  >
         <div class="box-head" >
         Add new Leave Type
       </div>
@@ -113,18 +115,19 @@
           <!-- lower div for packages -->
           <div class="row">
             <!-- left table area box-->
-            <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="box col-md-7 mr-5 shadow-sm p-3 mb-5 bg-white rounded">
               <div class="box-head">
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
+              <div id="packagetable">
                 <table id="package"  class="table table-bordered ">
                   <thead class="">
                     <tr>
 
                       <th class="text-center" width="1%">SN</th>
-                      <th class="text-center"  width="39%">Package Name</th>
-                      <th class="text-center"  width="25%">Leaves</th>
+                      <th class=""  width="39%">Package Name</th>
+                      <th class=""  width="25%">Leaves</th>
                       <th class="text-center" width="20%">Duration (Days)</th>
                       <th class="text-center"  width="15%">Action</th>
 
@@ -147,7 +150,7 @@
                       </td>
                     <!-- packagename -->
 
-                     <td class="text-center">
+                     <td class="">
                         <?php echo $package['package_name']; ?>
                       </td>
                        <?php   
@@ -156,7 +159,7 @@
                             $package_leave= $this->Database_model->find('leave_packages','package_id',$p_id);
                             ?>
 
-                      <td class="text-center">
+                      <td class="">
                          <?php
 
                             foreach ($package_leave as $key => $value) 
@@ -221,12 +224,13 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
               <!-- left box ends -->
            
   <!-- right form area -->
-    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded" >
+    <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded" >
       <div class="box-head">
         Create new Package
       </div>

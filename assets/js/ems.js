@@ -98,6 +98,28 @@ $(window).on("scroll", function() {
 
 
 
+
+//####### delete
+// var count = 0;
+
+// function slide(form){
+
+//   var count = form.value;
+//   var btn = form.childNodes;
+
+//   if (count === "1") {
+//     form.nextElementSibling.style.display = 'none';
+//     btn[3].innerHTML = '<i class="fa fa-angle-down" aria-hidden="true"></i>';   
+//     form.value="0";
+//   }
+//   else{
+//     btn[3].innerHTML = '<i class="fa fa-angle-up" aria-hidden="true"></i>'; 
+//     form.nextElementSibling.style.display = 'block';
+//     form.value="1";
+
+//   }
+// }
+
   
 
 ////////////////////  Drop-down Menu - When Clicking Profile Bar /////////////////////
@@ -1151,6 +1173,7 @@ function checkCurrentDate($date)
 // function to assign employee
 function assign()
 {
+  var package_id = document.getElementById('package_id').value;
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
@@ -1169,6 +1192,7 @@ function assign()
           var data = new FormData();
           data.append('recommender_id',recommender);
           data.append('approver_id',approver);
+          data.append('package_id',package_id);
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()
@@ -1238,7 +1262,7 @@ function assign()
          }
         $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
-        $( "#leave" ).load(window.location.href + " #leave" );
+        $( "#leavetable" ).load(window.location.href + " #leave" );
         $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         $('#leave_id').val('');
@@ -1270,8 +1294,8 @@ function assign()
         $('#showmessage').html(msg); 
         // location.reload();
          dismissModal();
-        $( "#leave" ).load(window.location.href + " #leave" );
-        $( "#package-form" ).load(window.location.href + " #package-form" );
+        $( "#leavetable" ).load(window.location.href + " #leave" );
+        $( "#formdiv" ).load(window.location.href + " #package-form" );
 
 
         }
@@ -1308,9 +1332,9 @@ function dismissModal()
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
           dismissModal();
-          $( "#package" ).load(window.location.href + " #package" );
+          $( "#packagetable" ).load(window.location.href + " #package" );
 
-
+          $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         }
 
@@ -1394,7 +1418,7 @@ function dismissModal()
         $('#showmessage1').html(msg); 
       var form= document.getElementById('package-form');
       clearForm(form);
-        $( "#package" ).load(window.location.href + " #package" );
+        $( "#packagetable" ).load(window.location.href + " #package" );
 
 
 
