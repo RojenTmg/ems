@@ -60,18 +60,13 @@
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id
 					'leave_id'=> (int)$leave['leave_id'],
 					'from_date'=> $leave['from_date'],
+					'duration_type' => $leave['duration_type'],
 					'duty_performed_by'=> (int)$leave['duty_performed_by'],
 					'reason'=> $leave['reason']
 				);
 
 				if (!empty($leave['to_date'])) {
 					$leaveData['to_date'] = $leave['to_date'];
-				}
-				if ($leave['is_half_day'] == 1)  {
-					$leaveData['is_half_day'] = '1';
-				}
-				else {
-					$leaveData['is_half_day'] = '0';
 				}
 
 				$this->Database_model->insert('employee_leaves', $leaveData);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2019 at 10:14 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: Jul 25, 2019 at 09:19 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,14 +41,6 @@ CREATE TABLE `addresses` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `addresses`
---
-
-INSERT INTO `addresses` (`address_id`, `street`, `municipality`, `district`, `state`, `country`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, '', '', '', '', 'Afghanistan', '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14'),
-(2, 'ad', 'asdf', 'sadf', 'Province 1', 'NP', '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14');
-
 -- --------------------------------------------------------
 
 --
@@ -69,13 +61,6 @@ CREATE TABLE `contacts` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `contacts`
---
-
-INSERT INTO `contacts` (`contact_id`, `home_phone`, `mobile_phone`, `other_phone1`, `other_phone2`, `other_phone3`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`) VALUES
-(1, '', 'adfadsf', '', '', '', '', '2019-07-22 08:25:20', '', '2019-07-22 08:25:20', '');
-
 -- --------------------------------------------------------
 
 --
@@ -90,13 +75,6 @@ CREATE TABLE `departments` (
   `modified_by` varchar(50) NOT NULL,
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `departments`
---
-
-INSERT INTO `departments` (`id`, `department_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'IT', '', '2019-07-15 12:30:00', '', '2019-07-25 12:30:00');
 
 -- --------------------------------------------------------
 
@@ -141,45 +119,12 @@ CREATE TABLE `employees` (
   `allergies` varchar(255) NOT NULL,
   `allergy_description` text,
   `pan` varchar(255) DEFAULT NULL,
-  `previous_employer` varchar(255) DEFAULT NULL
+  `previous_employer` varchar(255) DEFAULT NULL,
+  `package_id` int(11) DEFAULT NULL,
+  `is_approver` enum('0','1') NOT NULL DEFAULT '0',
+  `is_recommender` enum('0','1') NOT NULL DEFAULT '0',
+  `is_on_leave` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`) VALUES
-(1, '0', 'Mr', 'adfadf', 'asfd', 'asdf', '2019-07-22', 0, 1, '', '2019-07-22 07:18:04', NULL, '2019-07-22 07:18:04', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2002-11-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL),
-(2, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:31', NULL, '2019-07-22 07:29:31', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(3, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:34', NULL, '2019-07-22 07:29:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(4, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(5, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(6, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(7, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(8, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:36', NULL, '2019-07-22 07:29:36', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(9, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(10, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(11, '0', 'Mr', 'belo', '', 'BOV', '2019-07-22', 0, 1, '', '2019-07-22 07:29:37', NULL, '2019-07-22 07:29:37', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(12, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:39', NULL, '2019-07-22 07:29:39', 'a@adf.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2000-12-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL),
-(13, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:39', NULL, '2019-07-22 07:29:39', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(14, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:40', NULL, '2019-07-22 07:29:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(15, '0', 'Mr', 'belo', 'SDS', 'BOV', '2019-07-22', 1, 1, '', '2019-07-22 07:29:40', NULL, '2019-07-22 07:29:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(16, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:44', NULL, '2019-07-22 07:29:44', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(17, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:45', NULL, '2019-07-22 07:29:45', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(18, '0', 'Mr', 'FASD', '', 'ASFD', '2019-07-22', 1, 1, '', '2019-07-22 07:29:45', NULL, '2019-07-22 07:29:45', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(19, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:33', NULL, '2019-07-22 07:30:33', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(20, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(21, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(22, '0', 'Mr', 'AFADFA', '', 'ADFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:30:34', NULL, '2019-07-22 07:30:34', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(23, '0', 'Mr', 'FASDF', 'ADF', 'ASF', '2019-07-22', 1, 1, '', '2019-07-22 07:31:00', NULL, '2019-07-22 07:31:00', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(24, '0', 'Mr', 'F', 'ADF', 'ASDF', '2019-07-22', 1, 1, '', '2019-07-22 07:32:14', NULL, '2019-07-22 07:32:14', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(25, '0', 'Mr', 'AFAF', '', 'AFDA', '2019-07-22', 1, 1, '', '2019-07-22 07:37:40', NULL, '2019-07-22 07:37:40', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(26, '0', 'Mr', 'test', '', 'test', '2019-07-22', 1, 1, '', '2019-07-22 08:01:04', NULL, '2019-07-22 08:01:04', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(27, '0', 'Mr', 't', '', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:04:19', NULL, '2019-07-22 08:04:19', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(28, '0', 'Mr', 'tes', 'tes', 'te', '2019-07-22', 1, 1, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15', 'a@adf.com', 'Non-Nepalese', 'Yes', 'adsf', '2019-07-22', 'fasd', 'sdf', 'fs', 'sdfsdf', '', 'sdf', 'Master', 'non', 'asd', 'fasd', '1994-11-30', 'Male', 'B +ve', '', '', 'No', '', 'qew', NULL),
-(29, '0', 'Mr', 'First name', '', 'Last name', '2019-07-23', 1, 1, '', '2019-07-23 04:48:20', NULL, '2019-07-23 04:48:20', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(30, '0', 'Mr', 'jj', 'ih', 'll', '2019-07-23', 1, 1, '', '2019-07-23 07:55:13', NULL, '2019-07-23 07:55:13', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL),
-(31, '0', 'Mr', 'te', '', 'te', '2019-07-23', 1, 1, '', '2019-07-23 07:58:18', NULL, '2019-07-23 07:58:18', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '2000-11-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -196,13 +141,6 @@ CREATE TABLE `employee_addresses` (
   `modified_by` varchar(50) NOT NULL,
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_addresses`
---
-
-INSERT INTO `employee_addresses` (`emp_id`, `primary_addressId`, `secondary_addressId`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(28, 1, 2, '', '2019-07-22 08:25:14', '', '2019-07-22 08:25:14');
 
 -- --------------------------------------------------------
 
@@ -235,13 +173,6 @@ CREATE TABLE `employee_contacts` (
   `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `employee_contacts`
---
-
-INSERT INTO `employee_contacts` (`emp_id`, `contact_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(28, 1, '', '2019-07-22 14:10:20', '', '2019-07-22 14:10:20');
-
 -- --------------------------------------------------------
 
 --
@@ -273,15 +204,14 @@ CREATE TABLE `employee_leaves` (
   `approver_id` int(11) DEFAULT NULL,
   `package_id` int(11) DEFAULT NULL,
   `is_approved` enum('0','1') NOT NULL,
-  `is_current_day` enum('0','1') NOT NULL,
-  `is_half_day` enum('0','1') NOT NULL,
-  `is_package_applied` enum('0','1') NOT NULL,
+  `duration_type` varchar(255) NOT NULL,
   `is_recommended` enum('0','1') NOT NULL,
   `leave_applied_date` date NOT NULL,
   `from_date` date NOT NULL,
-  `to_date` date NOT NULL,
+  `to_date` date DEFAULT NULL,
   `duty_performed_by` int(11) NOT NULL,
   `reason` text NOT NULL,
+  `denial_reason` text,
   `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
   `created_by` varchar(255) NOT NULL,
@@ -342,14 +272,6 @@ CREATE TABLE `leaves` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `leaves`
---
-
-INSERT INTO `leaves` (`leave_id`, `leave_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'testing leave', '', '2019-07-23 06:26:52', NULL, '2019-07-23 06:26:52'),
-(2, 'testing leave2', '', '2019-07-23 07:16:55', NULL, '2019-07-23 07:16:55');
 
 -- --------------------------------------------------------
 
@@ -426,14 +348,6 @@ CREATE TABLE `roles` (
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`role_id`, `role_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'admin', '', '2019-07-22 08:11:52', NULL, '2019-07-22 08:11:52'),
-(2, 'employee', '', '2019-07-22 08:11:52', NULL, '2019-07-22 08:11:52');
-
 -- --------------------------------------------------------
 
 --
@@ -467,17 +381,6 @@ CREATE TABLE `users` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 123, 'admin', 1, '', '2019-07-22 08:11:13', '', '2019-07-22 08:11:13'),
-(2, 28, 'tete123', 0, '', '2019-07-22 08:13:15', '', '2019-07-22 08:13:15'),
-(3, 29, 'fila123', 0, '', '2019-07-23 04:48:20', '', '2019-07-23 04:48:20'),
-(4, 30, 'jjll123', 0, '', '2019-07-23 07:55:13', '', '2019-07-23 07:55:13'),
-(5, 31, 'tete123', 0, '', '2019-07-23 07:58:18', '', '2019-07-23 07:58:18');
-
 -- --------------------------------------------------------
 
 --
@@ -492,17 +395,6 @@ CREATE TABLE `user_roles` (
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_roles`
---
-
-INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 1, '', '2019-07-22 08:12:10', NULL, '2019-07-22 08:12:10'),
-(2, 2, '', '2019-07-22 08:13:15', NULL, '2019-07-22 08:13:15'),
-(2, 3, '', '2019-07-23 04:48:20', NULL, '2019-07-23 04:48:20'),
-(2, 4, '', '2019-07-23 07:55:13', NULL, '2019-07-23 07:55:13'),
-(2, 5, '', '2019-07-23 07:58:18', NULL, '2019-07-23 07:58:18');
 
 --
 -- Indexes for dumped tables
@@ -531,7 +423,8 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`emp_id`),
-  ADD KEY `departmentId` (`department_id`);
+  ADD KEY `departmentId` (`department_id`),
+  ADD KEY `package_id` (`package_id`);
 
 --
 -- Indexes for table `employee_addresses`
@@ -657,37 +550,37 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
 -- AUTO_INCREMENT for table `employee_leaves`
 --
 ALTER TABLE `employee_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -699,7 +592,7 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -717,7 +610,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- Constraints for dumped tables
@@ -727,7 +620,8 @@ ALTER TABLE `users`
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
-  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `employee_addresses`
