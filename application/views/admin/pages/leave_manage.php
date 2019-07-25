@@ -16,11 +16,12 @@
   <!-- View list div -->
   <div class="row"  >
     <!-- left table area box-->
-    <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="box col-md-7 mr-5 shadow-sm p-3 mb-5 bg-white rounded">
       <div class="box-head">
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
+        <div id="leavetable">
         <table  id="leave" class="table table-striped table-bordered  ">
           <thead class="">
             <tr>
@@ -72,12 +73,13 @@
               <?php } ?>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
       <!-- left box ends -->
 
       <!-- right form area -->
-      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded"  >
+      <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded"  >
         <div class="box-head" >
         Add new Leave Type
       </div>
@@ -113,11 +115,12 @@
           <!-- lower div for packages -->
           <div class="row">
             <!-- left table area box-->
-            <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="box col-md-7 mr-5 shadow-sm p-3 mb-5 bg-white rounded">
               <div class="box-head">
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
+              <div id="packagetable">
                 <table id="package"  class="table table-bordered ">
                   <thead class="">
                     <tr>
@@ -221,12 +224,13 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
               <!-- left box ends -->
            
   <!-- right form area -->
-    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded" >
+    <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded" >
       <div class="box-head">
         Create new Package
       </div>

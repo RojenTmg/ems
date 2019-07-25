@@ -58,6 +58,7 @@ class Validate_login_form extends CI_Model
 					$users=$this->Admin_model->user_detail('employees',$_SESSION['user_id']);
 
 					$_SESSION['firstname']=$users['first_name'];
+					$_SESSION['middlename']=$users['middle_name'];
 					$_SESSION['surname']=$users['last_name'];
 					$data = [ 'is_logged_in' => '1' ];
 
