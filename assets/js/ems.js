@@ -1327,6 +1327,15 @@ function dismissModal()
         $('.modal-backdrop').remove();
 } 
 
+function dismissDenyModal()
+{
+      $('.modal').css('display','none');
+        $('#exampleModalCenter').attr('aria-hidden', 'true');
+        $('body').removeClass('modal-open');
+        $('.modal').removeClass('show');
+        $('.modal-backdrop').remove();
+} 
+
 // delete Package
  function deletePackage(id)
  {
@@ -1563,4 +1572,30 @@ function recommendLeave(l_id)
   {
     location.reload();
   }
+}
+}
+
+//deny leave by recommender
+function denyLeave(id)
+{
+  var reason = document.getElementById('denial_reason').value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','denyLeave',true);
+  var data = new FormData();
+  data.append('denial_reason',reason);
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Leave request denied.";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable1" );
+  }
+}
 }

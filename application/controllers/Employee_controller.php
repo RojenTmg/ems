@@ -134,7 +134,7 @@
 		{
 			
 			extract($_POST);
-			$data=array('is_recommended'=>'1');
+			$data=array('is_recommended'=>'recommended');
 			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
 		
@@ -143,8 +143,8 @@
 		public function denyLeave()
 		{
 			extract($_POST);
-			$data=array('is_denied'=>'1');
-			$this->db->where('id',$l_id);
+			$data=array('is_recommended'=>'denied', 'denial_reason'=>$denial_reason);
+			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
 
