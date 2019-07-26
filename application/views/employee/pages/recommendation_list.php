@@ -64,7 +64,7 @@
   <i class="fa fa-arrow-right" aria-hidden="true"></i>Recommend</button> 
   <?php } if($posts['is_recommended']=='recommended') {?>  <button class="btn btn-primary" onclick="recommendLeave(<?php echo $posts['id']; ?>)" disabled=""> Recommended<?php } ?>
   <?php if ($posts['is_recommended']=='denied'){ ?>
-    <button type="button" disabled=" " class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  Denied </button>
+    <button  class="" data-toggle="modal" data-target="">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
   <?php } else {?>
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  Deny </button>
 <?php } ?>
