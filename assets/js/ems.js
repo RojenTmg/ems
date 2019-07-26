@@ -860,7 +860,7 @@ function submitWork(){
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
 
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() || checkCurrentDate('from_date') || checkCurrentDate('to_date') )
       {
 
       xmlHttp.onreadystatechange = function()
