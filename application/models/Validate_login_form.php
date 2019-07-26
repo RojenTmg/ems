@@ -54,15 +54,18 @@ class Validate_login_form extends CI_Model
 					$_SESSION['loggedin']=true;
 					$_SESSION['user_id']=$row->user_id;
 
-
-					$this->db->where('emp_id',$row->user_id);
-					$users=$this->db->get('employees');
-					$users=$users->row_array();
 					
+					$users=$this->Database_model->find('employees', 'emp_id', $_SESSION['user_id']);
+	
+					foreach ($users as $value) {
+						$_SESSION['title']=$value['title'];
+						$_SESSION['firstname']=$value['first_name'];
+						$_SESSION['middlename']=$value['middle_name'];
+						$_SESSION['surname']=$value['last_name'];
+						$_SESSION['is_approver']=$value['is_approver'];
+						$_SESSION['is_recommender']=$value['is_recommender'];
+					}
 
-					$_SESSION['firstname']=$users['first_name'];
-					$_SESSION['middlename']=$users['middle_name'];
-					$_SESSION['surname']=$users['last_name'];
 					$data = [ 'is_logged_in' => '1' ];
 
 					$this->db->where('user_id', $id);

@@ -74,12 +74,12 @@
     </div>
     <div>
       <div class="con-sub-head">
-          <h5>Recent Messages</h5>
+          <h5>Leave Requests</h5>
       </div>
       <div class="box">
       <div class="box-head">
         <div class="sp-btn">
-          <p>Recent Messages</p>
+          <p>Recent Leave Requests</p>
         </div>
       </div>
       <div class="box-body" style="overflow-x:auto;">

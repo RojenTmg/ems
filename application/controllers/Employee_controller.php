@@ -236,6 +236,34 @@
 		echo json_encode($status);
 	} 
 
+	public function profile()
+		{	
+			$data['post'] = $this->Database_model->getEmployeeDetails($_SESSION['user_id']);
+			$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $_SESSION['user_id']);
+			$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $_SESSION['user_id']);
+		
+			$title['title'] = $data['post']['first_name'] .' '. $data['post']['middle_name'] .' '. $data['post']['last_name'];
+
+			$this->view('profile', $title, $data);
+		}
+
+		public function leaveApprove()
+		{
+			extract($_POST);
+			var_dump($_POST); die();
+			$data= array('is_approved'=>'1');
+			// echo "string"; die();
+			$this->Admin_model->update('employee_leaves',$data,'id',$leave_id);
+		}
+
+		public function appLeaveApprove()
+		{	
+			$title['title'] = 'Approve Leaves';
+			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+
+			$this->view('app_leave_approve', $title, $data);
+		}
+
 
 
 

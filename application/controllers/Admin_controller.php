@@ -100,7 +100,7 @@ class Admin_controller extends CI_Controller {
 	public function employeeDetail($id = NULL) 
 	{
 		$title['title'] = 'Employee Detail';
-		$data['post'] = $this->Admin_model->getEmployeeDetails($id);
+		$data['post'] = $this->Database_model->getEmployeeDetails($id);
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		if (empty($data['post'])) {
@@ -136,7 +136,7 @@ class Admin_controller extends CI_Controller {
 				$data['assigned']='';
 			}
 			if ($id != NULL) {
-				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
+				$data['post'] = $this->Database_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		

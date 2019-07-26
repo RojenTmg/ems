@@ -66,7 +66,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('employee'); ?>/leave_form">
+        <a class="nav-link" href="<?= site_url('employee/leave_form'); ?>">
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Request Leave
         </a>
@@ -76,12 +76,12 @@
     </ul>
     <div class="drop-down-item" id="show-profile">
       <div class="pro-file">
-         <span><strong> <?php echo $_SESSION['firstname'].' '.$_SESSION['middlename'].' '.$_SESSION['surname'];?></strong></span>
+         <span><strong><?php echo $_SESSION['firstname'] .' '. $_SESSION['middlename'] .' '. $_SESSION['surname']; ?></strong></span>
         <img src="<?= base_url(); ?>/assets/images/images.jpg" onclick="displayFunctionType();">
       </div>
       <div class="drop-down">
         <ul>
-          <li><a href=""><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
+          <li><a href="<?= site_url('employee/profile'); ?>"><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
           <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
         </ul>
       </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="user-info">
           <span class="user-name">
-            <strong><?php echo $_SESSION['firstname'].' '.$_SESSION['surname'];?></strong>
+            <strong><?php echo $_SESSION['title'] . '. ' . $_SESSION['firstname']; ?></strong>
           </span>
           <span class="user-role"><?php echo $_SESSION['type']; ?></span>
           <span class="user-status">
@@ -123,7 +123,7 @@
             <span>Profile</span>
           </li>
           <li>
-          <a href="<?= site_url(); ?>">
+          <a href="<?= site_url('employee/profile'); ?>">
               <i class="fa fa-address-card" aria-hidden="true"></i>
               <span>My Profile</span>
             </a>
@@ -141,7 +141,7 @@
             <span>General</span>
           </li>
           <li>
-          <a href="<?= site_url(); ?>">
+          <a href="<?= site_url('employee'); ?>">
               <i class="fa fa-home" aria-hidden="true"></i>
               <span>Dashboard</span>
             </a>
@@ -152,18 +152,28 @@
               <span>Request Leave</span>
             </a>
           </li>
+          <?php 
+           if ($_SESSION['is_approver'] == 1) {
+            ?>
+            <li>
+              <a href="<?= site_url('employee/app_leave_approve'); ?>">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <span>Approve Leaves</span>
+              </a>
+            </li>
+            <?php
+            } 
+           if ($_SESSION['is_approver'] == 1) {
+            ?>
           <li>
             <a href="<?= site_url('employee/recommendation_list'); ?>">
               <i class="fa fa-users" aria-hidden="true" style="font-size: 0.9em;"></i>
               <span>Recommendation Lists</span>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              <span></span>
-            </a>
-          </li>
+          <?php
+            } 
+          ?>
         </ul>
       </div>
       <!-- sidebar-menu  -->
