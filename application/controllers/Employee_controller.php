@@ -233,9 +233,10 @@
 
 			$status=array('true');
 		}
-<<<<<<< HEAD
+		echo json_encode($status);
+	} 
 
-		public function profile()
+	public function profile()
 		{	
 			$data['post'] = $this->Database_model->getEmployeeDetails($_SESSION['user_id']);
 			$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $_SESSION['user_id']);
@@ -262,10 +263,6 @@
 
 			$this->view('app_leave_approve', $title, $data);
 		}
-
-=======
-		echo json_encode($status);
-	} 
 
 
 
@@ -299,7 +296,6 @@
 
 		}
 		echo json_encode($status);
->>>>>>> 16a0e4d467f55f3c5031fa70a2f0b7825f587b44
 	}
 // nationality
 	public function addNationality()
