@@ -49,6 +49,35 @@
 		}
 		////////////////////// DELETE Query Functions ////////////////////////
 
+
+
+		// querying all data related to employee
+		public function getEmployeeDetails($id = FALSE) {
+
+			$project = "SELECT *, e.email AS email,
+				               a.street AS p_street, a.municipality AS p_municipality, a.district AS p_district, a.state AS p_state, a.country AS p_country, 
+				               asec.street AS t_street, asec.municipality AS t_municipality, asec.district AS t_district, asec.state AS t_state, asec.country AS t_country 
+					    FROM employees e
+					    JOIN departments d ON d.id = e.department_id
+					    LEFT JOIN employee_addresses ea ON ea.emp_id = e.emp_id
+					    LEFT JOIN addresses a ON a.address_id = ea.primary_addressId
+					    LEFT JOIN addresses asec ON asec.address_id = ea.secondary_addressId 
+					    LEFT JOIN employee_contacts ec ON ec.emp_id = e.emp_id
+					    LEFT JOIN contacts c ON c.contact_id = ec.contact_id";
+
+			if ($id === FALSE) {	
+				$project = $project . ' WHERE e.is_active = ' . 1;
+				$this->db->order_by('emp_id', 'DESC');
+				$query = $this->db->query($project);
+				// var_dump($query->result_array()); die();
+				return $query->result_array();
+			}
+
+			$project = $project . ' WHERE e.emp_id = ' . $id;
+			$query = $this->db->query($project);
+			
+			return $query->row_array();
+		}
 	}
 
 

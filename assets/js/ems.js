@@ -473,6 +473,21 @@ function showHideAllergy(allergy)
 
 
 
+function leaveApproveF(id)
+      {
+              var xmlHttp = new XMLHttpRequest();
+              xmlHttp.open('POST','leaveApproveRequest',true);
+              var data = new FormData();
+              data.append('id', id);
+              xmlHttp.send(data);
+              // alert('asdf');
+              xmlHttp.onreadystatechange = function()
+              {
+                  if(xmlHttp.readyState==4)
+                  {
+                  }
+              }
+      }
 
 
 ////////////////////  Update Employee through different Tabs /////////////////////
