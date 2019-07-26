@@ -1,11 +1,13 @@
  <!-- unset the existing session in the reload of page -->
      <?php 
+
        $updating=false;
            if (isset($_SESSION['current_employee_id'])) {
                unset($_SESSION['current_employee_id']); 
-        }
+            }
 
       ?>
+
      
       <?php
           if($this->uri->segment(3))
@@ -442,8 +444,9 @@
           <div class="form-div">
 
             <div class="form-div">
-              <label>Blood Group</label>
+              <label>Blood Group <span class="text-danger"><i>*</i></span></label>
               <select id="blood_group">
+                <option value="">Select Blood Group</option>
                 <option value="A +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A +ve') { echo "selected"; }} ?>>A +ve</option>
                 <option value="A -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A -ve') { echo "selected"; }} ?>>A -ve</option>
                 <option value="B +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'B +ve') { echo "selected"; }} ?>>B +ve</option>
@@ -551,7 +554,7 @@
               <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
               <div class="form-group">
                <label class="col-md-2 ">To</label>
-              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
+              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
               <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
 
                  </div>
@@ -631,10 +634,10 @@
             </div>
            <div class="form-div form-div-horz">
             <label>Package <span class="text-danger"><i>*</i></span></label>
-                <select  id="package" >
+                <select  id="package_id" >
                   <option value="">Select package</option>
                   <?php foreach ($packagelist as $pack) {  ?>
-                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
+                   <option <?php if($post['package_id']==$pack['package_id']) echo "selected"; ?> value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
                  <?php } ?>
                 </select> 
           </div>

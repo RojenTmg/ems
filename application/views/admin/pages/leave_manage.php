@@ -1,26 +1,28 @@
 <div class="contents">
   <!-- title area -->
   <div class="con-sub-head sp-btn">
-    <h5>Leaves</h5>
-    <a href=" <?= site_url('admin/dashboard'); ?>" id="small-link">
+    <h5 class="ml-2">Leaves</h5>
+    <a href=" <?= site_url('admin/dashboard'); ?>" id="small-link" class="mr-3">
       <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard
     </a>
   </div>
-    <!-- area to show success and erorr messages -->
-    <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+        <!-- area to show success and erorr messages -->
+    <div class="ml-3  alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
       <p id="showmessage"></p>
       <button type="button" class="close" >&times;</button>
     </div>
     <!-- area finishes here -->
 
   <!-- View list div -->
-  <div class="row"  >
+  <div class="row leave-packages"  >
+
     <!-- left table area box-->
-    <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="box col-md-7  shadow-sm p-3 mb-5 bg-white rounded">
       <div class="box-head">
         List
       </div>
       <div class="box-body overflow-auto"  style="height:25em;">
+        <div id="leavetable">
         <table  id="leave" class="table table-striped table-bordered  ">
           <thead class="">
             <tr>
@@ -38,7 +40,7 @@
               <td class="text-center">
                 <?php echo $sn; $sn++ ?>
               </td>
-              <td class="text-center">
+              <td class="">
                 <?php echo $post['leave_name']; ?>
               </td>
               <td class="text-center">
@@ -72,12 +74,13 @@
               <?php } ?>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
       <!-- left box ends -->
 
       <!-- right form area -->
-      <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded"  >
+      <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded"  >
         <div class="box-head" >
         Add new Leave Type
       </div>
@@ -100,31 +103,32 @@
           <!-- upper div ends -->
           <!-- for package div -->
           <div class="con-sub-head sp-btn">
-            <h5>Packages</h5>
+            <h5 class="ml-2">Packages</h5>
           </div>
                  <!-- area to show success and erorr messages -->
 
-     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
+     <div class="ml-3 alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv1">
       <p id="showmessage1"> </p>
     <button type="button" class="close close1" >&times;</button>
         </div>
  <!-- area finishes here -->
          
           <!-- lower div for packages -->
-          <div class="row">
+          <div class="row leave-packages">
             <!-- left table area box-->
-            <div class="box col-md-7 mr-5 shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="box col-md-7  shadow-sm p-3 mb-5 bg-white rounded">
               <div class="box-head">
         List
       </div>
               <div class="box-body overflow-auto" style="height:25em;">
+              <div id="packagetable">
                 <table id="package"  class="table table-bordered ">
                   <thead class="">
                     <tr>
 
                       <th class="text-center" width="1%">SN</th>
-                      <th class="text-center"  width="39%">Package Name</th>
-                      <th class="text-center"  width="25%">Leaves</th>
+                      <th class=""  width="39%">Package Name</th>
+                      <th class=""  width="25%">Leaves</th>
                       <th class="text-center" width="20%">Duration (Days)</th>
                       <th class="text-center"  width="15%">Action</th>
 
@@ -147,7 +151,7 @@
                       </td>
                     <!-- packagename -->
 
-                     <td class="text-center">
+                     <td class="">
                         <?php echo $package['package_name']; ?>
                       </td>
                        <?php   
@@ -156,7 +160,7 @@
                             $package_leave= $this->Database_model->find('leave_packages','package_id',$p_id);
                             ?>
 
-                      <td class="text-center">
+                      <td class="">
                          <?php
 
                             foreach ($package_leave as $key => $value) 
@@ -221,12 +225,13 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
               <!-- left box ends -->
            
   <!-- right form area -->
-    <div class="box col-md-4 shadow-lg p-3 mb-5 bg-white rounded" >
+    <div class="box col-md-4 shadow-sm p-3 mb-5 bg-white rounded" >
       <div class="box-head">
         Create new Package
       </div>

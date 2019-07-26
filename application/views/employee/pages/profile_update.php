@@ -1,13 +1,26 @@
+<!-- check whetether the user is editing own profile or not -->
+<?php
+          if($this->uri->segment(3))
+         {
+          if($_SESSION['user_id']!=$this->uri->segment(3))
+           redirect('employee/dashboard');   
+         }
+
+ ?>
+      
  <!-- form -->
   <div class="contents">
     <!-- title -->
     <div class="con-head sp-btn">
-      <h4>Manage Profile</h4>
-      <a href="<?= base_url() ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+      <h4>Update Profile</h4>
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
      <!-- progress-bar -->
      <div class="box profile-progress">
+       <div class="box-head pro-head sp-btn " >
 
+
+        </div>
         <div id="progress-bar-body" style="display: none" class="box-body">
             <p id="completedPercent">
               <!-- show percentage completed here -->
@@ -18,19 +31,28 @@
         </div>
      </div>
 
+     <!-- area to show success and erorr messages -->
+
+     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"> </p>
+    <button type="button" class="close" >&times;</button>
+        </div>
+ <!-- area finishes here -->
+
+
      <!-- nav-tab-form -->
      <nav>
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
          <!-- general tab -->
 
-        <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
          <!-- personal details tab -->
-        <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
 
         <!-- added address tab -->
-        <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
         <!-- contact tab -->
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
@@ -50,91 +72,73 @@
         <!-- pan tab -->
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
+        <!--assign tab  -->
+        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+
         <!-- work tab -->
-        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
+        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience </a> 
 
         <!--document tab  -->
-        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents </a>
+
+        
+
         <!--TAB ENDS  -->
       </div>
     </nav>
-   <div class="message-div">
-<div id="message" class="message" style="display: none;"> </div>
-</div>
-<div class="tab-content" id="nav-tabContent">
-<div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-<form class="form" id="general-form">
-<div class="form-div">
-<label>Title</label> 
-<select name="title" disabled="true" id="title">
-<option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
-<option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
-<option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
-<option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
-</select>
-</div>
+   <!--  <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+       </div>
+    </div> -->
 
-<div class="form-div">
-<label>First Name<span class="text-danger"><i>*</i></span></label>
-<input type="text" id="first_name" placeholder="" disabled="true" value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-</div>
-<div class="form-div">
-<label>Middle Name <span class="opt"><i>(Optional)</i></span></label>
-<input type="text" id="middle_name" placeholder="" disabled="true" value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-</div>
-<div class="form-div">
-<label>Last Name<span class="text-danger"><i>*</i></span></label>
-<input type="text" id="last_name" placeholder="" disabled="true" value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
-</div>
-<!-- date of join added -->
-<div class="form-div">
-<label>Date of Join<span class="text-danger"><i>*</i></span></label>
-<!-- date -->
-<div class="row">
-<select name="day" disabled="true" id="day" class="col-md-1 mr-5 ml-3 ">
-<?php 
-$start_date = 1;
-$end_date = 31;
-for( $j=$start_date; $j<=$end_date; $j++ ) {
-echo '<option value='.$j.'>'.$j.'</option>';
-}
-?>
-</select>
-<!-- month -->
-<select id="month" disabled="true" name="month" class="col-md-2 mr-5" /> 
-<option value="1">January</option> 
-<option value="2">February</option> 
-<option value="3">March</option> 
-<option value="4">April</option> 
-<option value="5">May</option> 
-<option value="6">June</option> 
-<option value="7">July</option> 
-<option value="8">August</option> 
-<option value="9">September</option> 
-<option value="10">October</option> 
-<option value="11">November</option> 
-<option value="12">December</option> 
-</select>
-<!-- year -->
-<select id="year" disabled="true" name="year " class="col-md-1">
-<?php 
-$year = date('Y');
-$min = $year - 60;
-$max = $year;
-for( $i=$max; $i>=$min; $i-- ) {
-echo '<option value='.$i.'>'.$i.'</option>';
-}
-?>
-</select>
-</div>
-</div> 
-</form>
-</div>
-<!-- general ends -->
+    <!--General starts here -->
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+        <form class="form" id="general-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
+          <div class="form-div">
+            <label>Title</label>
+            <select disabled name="title" id="title">
+              <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
+              <option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
+              <option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
+              <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
+            </select>
+          </div>
+
+          <div class="form-div">
+            <label>First Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text"  disabled id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+          </div>
+          <div class="form-div">
+            <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
+            <input type="text" id="middle_name" disabled placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+          </div>
+          <div class="form-div">
+            <label>Last Name<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="last_name" disabled placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+          </div>
+          <!-- date of join added -->
+ <div class="form-div">
+  <label>Join Date</label>
+            <input type="date" name="join_date" disabled id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
+
+ </div>           
+                 
+        </form>
+      </div>
+      <!-- general ends -->
 
       <!-- personal details starts here -->
       <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
         <form class="form" id="personal-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Gender</label>
             <select id="gender">
@@ -153,33 +157,37 @@ echo '<option value='.$i.'>'.$i.'</option>';
           $start_date = 1;
           $end_date   = 31;
           for( $j=$start_date; $j<=$end_date; $j++ ) {
-            echo '<option value='.$j.'>'.$j.'</option>';
+          ?>
+            <option value=<?php echo $j;?><?php if(isset($post['dob'])) { if (date("d", strtotime($post['dob'])) == $j) { echo ' selected'; }}?>><?php echo $j; ?></option>
+          <?php
           }
         ?>
       </select>
       <!-- month -->
              <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
-                <option value="1">January</option>       
-                <option value="2">February</option>       
-                <option value="3">March</option>       
-                <option value="4">April</option>       
-                <option value="5">May</option>       
-                <option value="6">June</option>       
-                <option value="7">July</option>       
-                <option value="8">August</option>       
-                <option value="9">September</option>       
-                <option value="10">October</option>       
-                <option value="11">November</option>       
-                <option value="12">December</option>       
+                <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
+                <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
+                <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
+                <option value="4" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '04') { echo 'selected'; }} ?> >April</option>       
+                <option value="5" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '05') { echo 'selected'; }} ?>>May</option>       
+                <option value="6" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '06') { echo 'selected'; }} ?>>June</option>       
+                <option value="7" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '07') { echo 'selected'; }} ?>>July</option>       
+                <option value="8" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '08') { echo 'selected'; }} ?>>August</option>       
+                <option value="9" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '09') { echo 'selected'; }} ?>>September</option>       
+                <option value="10" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '10') { echo 'selected'; }} ?>>October</option>       
+                <option value="11" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '11') { echo 'selected'; }} ?>>November</option>       
+                <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
              <select id="birth_year" name="year " class="col-md-1">
         <?php 
           $year = date('Y');
-          $min = $year - 80;
+          $min = $year - 60;
           $max = $year;
           for( $i=$max; $i>=$min; $i-- ) {
-            echo '<option value='.$i.'>'.$i.'</option>';
+          ?>
+           <option value=<?php echo $i;?><?php if(isset($post['dob'])) { if (date("Y", strtotime($post['dob'])) == $i) { echo ' selected'; }}?>><?php echo $i; ?></option>
+          <?php
           }
         ?>
       </select>
@@ -187,12 +195,12 @@ echo '<option value='.$i.'>'.$i.'</option>';
           </div>
 
           <div class="form-div">
-            <label>Email</label>
+            <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
 
           <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
           
           </div>
         </form>
@@ -203,42 +211,42 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
         <form class="form" id="address-form">
-          <div class="form-group">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
-            <input type="text" id="permanentaddress_street" value="<?php if(isset($post['permanentaddress_street'])) echo $post['permanentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['permanentaddress_municipality'])) echo $post['permanentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_district" value="<?php if(isset($post['permanentaddress_district'])) echo $post['permanentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
-            <input type="text" id="permanentaddress_state" value="<?php if(isset($post['permanentaddress_state'])) echo $post['permanentaddress_state']; ?>" placeholder="State" class="form-group col-md-3">
+            <div class="form-group add-frm-grp">
+              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
-            <select id="permanentaddress_country" value="<?php if(isset($post['permanentaddress_country'])) echo $post['permanentaddress_country']; ?>" class="form-group col-md-3">
-              <?php 
-              require 'assets/addresses/country_list.php';
-              ?>
-            </select>
-
-
+              <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
+                <?php 
+                require 'assets/addresses/country_list.php';
+                ?>
+              </select>
           </div>
           <div class="form-group">
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
-            <input type="text" id="currentaddress_street" value="<?php if(isset($post['currentaddress_street'])) echo $post['currentaddress_street']; ?>" placeholder="Street" class="form-group col-md-3">
-            <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['currentaddress_municipality'])) echo $post['currentaddress_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" value="<?php if(isset($post['currentaddress_district'])) echo $post['currentaddress_district']; ?>" placeholder="District" class="form-group col-md-3">
-        
-            <select name="currentaddress_state" id="currentaddress_state">
-              <option value="Province 1">Province 1</option>
-              <option value="Province 2">Province 2</option>
-              <option value="Province 3">Province 3</option>
-              <option value="Province 4">Province 4</option>
-              <option value="Province 5">Province 5</option>
-              <option value="Province 6">Province 6</option>
-              <option value="Province 7">Province 7</option>
+            <input type="text" id="currentaddress_street" value="<?php if(isset($post['t_street'])) echo $post['t_street']; ?>" placeholder="Street" class="form-group col-md-3">
+            <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['t_municipality'])) echo $post['t_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+            <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3">
+
+              <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
+              <option value="Province 1" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 1') { echo "selected"; }} ?>>Province 1</option>
+              <option value="Province 2" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 2') { echo "selected"; }} ?>>Province 2</option>
+              <option value="Province 3" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 3') { echo "selected"; }} ?>>Province 3</option>
+              <option value="Province 4" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 4') { echo "selected"; }} ?>>Province 4</option>
+              <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
+              <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
+              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7s') { echo "selected"; }} ?>>Province 7</option>
 
             </select>
-            <!-- country will be a dropdown -->
-            <input type="text" id="currentaddress_country" value="<?php if(isset($post['currentaddress_country'])) echo $post['currentaddress_country']; ?>" placeholder="Country" class="form-group col-md-3" value="Nepal" disabled="true">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addAddress()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addAddress()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -248,7 +256,10 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- contact changes -->
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <form class="form" id="contact-form">
-
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
             <div class="form-div">
             <label>Home Phone </label>
             <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
@@ -267,7 +278,7 @@ echo '<option value='.$i.'>'.$i.'</option>';
           </div>
 
           <div class="sub-can">
-            <input type="button" onclick="addContact()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addContact()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -277,6 +288,10 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- Nationality changes -->
       <div class="tab-pane fade" id="nav-nationality" role="tabpanel" aria-labelledby="nav-nationality-tab">
         <form name="nationality-tab" id="nationality-form" class="form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
@@ -292,12 +307,11 @@ echo '<option value='.$i.'>'.$i.'</option>';
           </div>
 
           <!-- non nepalese div -->
-          <div id="non_nepali"  <?php if(isset($post['nationality'])&&$post['nationality']=='Non-Nepalese') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?>  >
-
+           <div id="non_nepali"  <?php if(isset($post['nationality'])&&$post['nationality']=='Non-Nepalese') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?>  >
           <div class="form-div">
             <label>If Non-Nepalese, do you have a visa/permission/right to work in Nepal?</label>
             <div>
-              <input type="radio"  value="Yes" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'Yes') { echo "checked"; }} ?>>
+              <input type="radio"  value="Yes" name="visa_permission" <?php if(isset($post['visa_permission'])) { if ($post['visa_permission'] == 'Yes') { echo "checked"; }} ?> checked=''>
               <label>Yes</label>
             </div>
             <div>
@@ -326,7 +340,7 @@ echo '<option value='.$i.'>'.$i.'</option>';
 
 
           <div class="sub-can">
-            <input type="button" onclick="addNationality()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addNationality()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -336,6 +350,10 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- Emergency contact form -->
       <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
         <form class="form" id="emergency-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
@@ -354,7 +372,7 @@ echo '<option value='.$i.'>'.$i.'</option>';
             <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addEmergency()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEmergency()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -364,6 +382,10 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- Education -->
       <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
         <form class="form" id="education-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">  
@@ -388,7 +410,7 @@ echo '<option value='.$i.'>'.$i.'</option>';
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addEducation()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addEducation()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -398,11 +420,16 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- health info -->
       <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
         <form class="form" id="health-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <div class="form-div">
 
             <div class="form-div">
-              <label>Blood Group</label>
+              <label>Blood Group <span class="text-danger"><i>*</i></span></label>
               <select id="blood_group">
+                <option value="">Select Blood Group</option>
                 <option value="A +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A +ve') { echo "selected"; }} ?>>A +ve</option>
                 <option value="A -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'A -ve') { echo "selected"; }} ?>>A -ve</option>
                 <option value="B +ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'B +ve') { echo "selected"; }} ?>>B +ve</option>
@@ -433,14 +460,14 @@ echo '<option value='.$i.'>'.$i.'</option>';
              
             </div>
             <!-- allerygy tab changes show hide -->
-            <div id="allergy" style="display:none; ">  
+            <div id="allergy" <?php if(isset($post['allergies'])&&$post['allergies']=='Yes') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?> >  
               <div class="form-div">
                 <label>If any, please mention</label>
                 <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>">
               </div>
             </div>
             <div class="sub-can">
-              <input type="button" onclick="addHealth()" name="" value="Submit" class="sub">
+              <input type="button" onclick="addHealth()" name="" value="Save" class="sub">
               
             </div>
           </div>
@@ -452,15 +479,20 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- PAN starts -->
       <div class="tab-pane fade" id="nav-pan" role="tabpanel" aria-labelledby="nav-pan-tab">
         <form class="form" id="pan-form">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div>
+     </div>
           <!-- hidden id -->
           <input type="hidden" id="emp_id">
 
           <div class="form-div">
-            <label>PAN Number</label>
+            <label>PAN Number<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addPan()" name="" value="Submit" class="sub">
+            <input type="button" onclick="addPan()" name="" value="Save" class="sub">
             
           </div>
         </form>
@@ -470,18 +502,53 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- work experience -->
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
-
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
           <p class="title" id="add_doc_title"></p>
-              <div id="work-experience" class="bg-light">
+             <div id="work-experience" class="bg-light"></div>
+              <!-- the form appends here -->
+              <?php 
+                if (!empty($work_experience)) {
+                  foreach ($work_experience as $value) {
+              ?>
+               <div id="list-experience" class="bg-light">
+                <div id="deleteExp">
+                <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
 
-         <!-- the form appends here -->
-        </div>
+                       <div class="tooltiptext float-right" id="deleteFileMessage">
+                        <p>Are you sure?</p>
+                        <span class="tip-can">Cancel</span>
+                        <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
+                      </div>
+                </div>
+               <div class="form-div">
+                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
+              <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
+              <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
+              <div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
+              <div class="form-div"><label class="col-md-2 ">From</label>
+              <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
+              <div class="form-group">
+               <label class="col-md-2 ">To</label>
+              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
+              <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
+
+                 </div>
+              <?php
+                  }
+                }
+              ?>
+     
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" onclick="submitWork()" name="" value="Submit" class="sub">
+            <input type="button" onclick="updateWork()"  value="Save"  class="sub">
            </div> 
           </div>
         </form>
@@ -491,21 +558,175 @@ echo '<option value='.$i.'>'.$i.'</option>';
       <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
         <form class="form" id="document-form" enctype="multipart/form-data">
+          <div class="message-div">
+      <div id="message" class="message" style="display: none;">
+        <!-- add edit message displayed here -->
+       </div></div>
           <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+          <div class="form-group"></div>
+          <div id="document"> </div>
+          <div id="list_doc">
+         
+          <?php 
+          if(!empty($documents)){?>
+              <table class="table" style="overflow: scroll">
+            <thead>
+              <th>Title</th>
+              <th>File</th>
+              <th>Action</th>
+            </thead>
+            <?php 
+          foreach ($documents as $value) {
+        ?>
+        <tr>
+          <td><?php echo $value['doc_title']; ?></td>
+          <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+          <!-- delete button -->
+          <td>
+             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
-          <div id="document">
-          </div>
-          <hr>
-
-
-<input type="button" onclick="submitDocument()" value="Submit" class="sub">
+               <div class="tooltiptext float-right" id="deleteFileMessage">
+                <p>Are you sure?</p>
+                <span class="tip-can">Cancel</span>
+                <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+              </div>
+            </td>
+           </tr>
+        <?php   } } ?>
+      </table>
+      <hr>
+  </div>
+<input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
+
 </div>
     <!-- documents ends here -->
 
-<!-- showing progress bar of staff -->
-    <script type="text/javascript">
-      showprogress();
-        check_complete();
 
-    </script>
+
+
+
+
+
+ <!-- employee assign tab starts here -->
+  <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
+  
+        <form class="form" id="assign-form" >
+            <div class="form-div">
+              <div class="form-div"></div>
+            </div>
+           <div class="form-div form-div-horz">
+            <label>Package <span class="text-danger"><i>*</i></span></label>
+                <select disabled  id="package" >
+                  <option value="">Select package</option>
+                  <?php foreach ($packagelist as $pack) {  ?>
+                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+          <hr>
+          <div class="form-div form-div-horz">
+            <label>Recommender <span class="text-danger"><i>*</i></span></label>
+                <select class='fstdropdown-select' id="recommender" >
+                  <option value="">Select option</option>
+                  <?php foreach ($empList as $row) {
+                      if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                    ?>
+                   <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+          <div class="form-div form-div-horz">
+            <label>Approver <span class="text-danger"><i>*</i></span></label>
+               <select class='fstdropdown-select' id="approver">
+                   <option  value="">Select option</option>
+                  <?php foreach ($empList as $row) {
+                   if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                   ?>
+                   <option <?php if($assigned!=''&&$assigned['approver_id']==$row['emp_id']) echo "selected";?> value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                 <?php } ?>
+                </select> 
+          </div>
+
+          <div class="sub-can">
+            <input type="button" onclick="assign()" name="" value="Save" class="sub">
+       
+          </div>
+        </form>
+      </div>
+
+
+ <!-- employee assign tab ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+   toggleNav('show');
+
+   <?php
+
+    if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
+     $_SESSION['path']='';
+      ?>
+
+              document.getElementById('nav-document').className='tab-pane fade active show';
+              document.getElementById('nav-document-tab').className='nav-item nav-link active';
+                document.getElementById('nav-general').className='tab-pane fade  ';
+              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php
+ } 
+if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
+     $_SESSION['path']='';
+      ?>
+
+              document.getElementById('nav-work').className='tab-pane fade active show';
+              document.getElementById('nav-work-tab').className='nav-item nav-link active';
+                document.getElementById('nav-general').className='tab-pane fade  ';
+              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php } ?>
+
+
+      </script>
+
+
+
+ 
+<script type="text/javascript">
+  check_complete();
+  showprogress();
+
+      document.getElementById('nav-assign-tab').style.display="none";
+
+
+
+ $('.fa-trash').on('click',function(ev) {
+    $(this).siblings().css({"display": "block"});
+  });
+
+
+   $('.tip-can').on('click',function(ev) {
+    $(this).parent().css({"display": "none"});
+  });
+
+// to close message
+
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#messagediv").css('display','none');
+    });
+});  
+
+
+
+</script>
+
+   <script src="<?= site_url('assets/js/fstdropdown.js')?> "></script>

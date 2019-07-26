@@ -74,6 +74,7 @@ class Admin_controller extends CI_Controller {
 		public function assignEmployee(){
 				extract($_POST);
 				$id=$_SESSION['current_employee_id'];
+				
 				$data=[
 					'approver_id'=>$approver_id,
 					'recommender_id'=>$recommender_id,
@@ -81,6 +82,17 @@ class Admin_controller extends CI_Controller {
 					'created_by'=>$_SESSION['user_id']	
 				];	
 				$this->Admin_model->assign($data,$id);
+
+				// adding package to employee table
+				$data2=['package_id'=>$package_id];
+				$this->Admin_model->update_employee($data2,$id);
+
+				//is approver or recommender to employee table
+				$data3=['is_approver'=>'1'];
+				$this->Admin_model->update_employee($data3,$approver_id);
+
+				$data4=['is_recommender'=>'1'];
+				$this->Admin_model->update_employee($data4,$recommender_id);
 			
 		}
 
@@ -160,6 +172,7 @@ class Admin_controller extends CI_Controller {
 
 		$this->view('leave_manage', $title, $data);
 	}
+
 
 
 
@@ -726,7 +739,9 @@ class Admin_controller extends CI_Controller {
 			if(	$this->Admin_model->insert('employee_documents',$doc_data))
 
 			// if(	$this->Admin_model->add_documents($doc_data))
-				{$status='true';}
+				{
+					$status='true';
+				}
 
 			else{ $status='false'; }
 
@@ -771,7 +786,7 @@ class Admin_controller extends CI_Controller {
 				$id=$_SESSION['user_id'];
 			}
 
-			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute');
+			$this->db->select('first_name, last_name,dob,email,nationality,passport_no,passport_issue_place,e_name,e_relation,e_phone,highest_degree,institute,blood_group,pan');
 			$employee_tbl= $this->Admin_model->user_detail('employees',array('emp_id' => $id));
 
 			$this->db->select('contact_id');

@@ -98,6 +98,7 @@ $(window).on("scroll", function() {
 
 
 
+
 //####### delete
 // var count = 0;
 
@@ -118,6 +119,7 @@ $(window).on("scroll", function() {
 
 //   }
 // }
+
   
 
 ////////////////////  Drop-down Menu - When Clicking Profile Bar /////////////////////
@@ -141,119 +143,7 @@ $(document).ready(function(){
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
 
-// $('.tip-can').click(function(ev) {
-//   $(this).parent().css({"display": "none"});
-//   ev.stopPropagation();
-// });
 
-// $('.table tr .btn-archive').click(function(ev) {
-//   $(this).children()[1].style.display = 'block';
-//   ev.stopPropagation();
-// });
-
-// $('.table tbody tr').click(function() {
-//   var id = $(this).attr('id');
-//   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-// });
-
-// $('.table tr .btn-edit').click(function(ev){
-//   var id = $(this).closest('tr').attr('id');
-//   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
-//   ev.stopPropagation();
-// });
-
-// $('.table tr .btn-archive .tip-arch').click(function(){
-//   var id = $(this).closest('tr').attr('id');
-//   $(this).closest('tr').remove(); 
-//   // $('#datatable').dataTable().reload();
-//   // var mytbl = $("#datatable").datatable();
-//   // mytbl.ajax.reload;
-//   // $('#datatable').dataTable( ).api().ajax.reload();
-
-
-//   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
-//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-//   // window.location =  '<?= site_url('admin/employee_list'); ?>';
-//   // alert('1');
-
-//   // // $("#datatable").fnDestroy();
-//   // $('#datatable').DataTable().clear().destroy();
-//   // // $("#datatable").dataTable();
-//   // $(document).ready(function(){
-
-//   // alert('3');
-//   //   $('#datatable').dataTable();
-//   // alert('4');
-//   // });
-//   // // $("#my-button").click(function() {
-      
-//   // // });
-//   // alert('1');
-//    // $("#datatable").DataTable().fnReloadAjax('employee_list.php');
-//    // $("#datatable").api().ajax.reload();
-//    // $('#datatable').dataTable().api().ajax.reload();
-
-//    // $('#datatable').DataTable().destroy();
-//    // fetch_data();
-
-//    // $('#datatable').dataTable().api().ajax.reload();
-
-
-// });
-
-// $('.arch-msg-div').click(function(){
-//   $('.arch-msg-div .arch-msg').addClass('msg-remove');
-//   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-// });
-
-// // $('.tip-arch').click(function(ev) {
-// //   alert($(this).attr('id'));
-// //   ev.stopPropagation();
-// // });
-
-
-// $(document).ready(function(){
-//   $('#datatable').dataTable();
-// });
-
-
-
-
-
-/// archive
-
-  // // $('.tip-can').click(function(ev) {
-  // //   $(this).parent().css({"display": "none"});
-  // //   ev.stopPropagation();
-  // // });
-
-  // // $('.table tr .btn-archive').click(function(ev) {
-  // //   $(this).children()[1].style.display = 'block';
-  // //   ev.stopPropagation();
-  // // });
-
-  // // $('.table tbody tr').click(function() {
-  // //   var id = $(this).attr('id');
-  // //   window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-  // // });
-
-  // // $('.table tr .btn-edit').click(function(ev){
-  // //   var id = $(this).closest('tr').attr('id');
-  // //   window.location =  '<?= site_url('admin/employee_manage/'); ?>' + id;
-  // //   ev.stopPropagation();
-  // // });
-
-  // $('.table tr .btn-archive .tip-arch').click(function(){
-  //   var id = $(this).closest('tr').attr('id');
-  //   $(this).closest('tr').remove();
-  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fas fa-undo-alt" aria-hidden="true"></i></span><div class="msg-text"><p>Restore Successful !</p>Employee with Id no. ' + id + '  restored successfully.</div></div>');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  // });
-
-  // $('.arch-msg-div').click(function(){
-  //   $('.arch-msg-div .arch-msg').addClass('msg-remove');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  // });
 
 
 
@@ -400,7 +290,7 @@ function submitDocument(){
        $('#showmessage').html(msg); 
       return false;
      }
-     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf" ) {
+     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF" ) {
 
      }
      else{
@@ -749,10 +639,22 @@ xmlHttp.onreadystatechange = function()
   // add health information
   function addHealth()
   {
+      var blood_group=document.getElementById('blood_group').value;
+      if(blood_group==''){
+           msg="Select a blood group.";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return 0;  
+      }
+
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addHealth',true);
           var data = new FormData();
-          data.append('blood_group',document.getElementById('blood_group').value);
+          data.append('blood_group',blood_group);
           data.append('medical_complications',document.getElementById('medical_complications').value);
           data.append('regular_medication',document.getElementById('regular_medication').value);
           data.append('allergies',getSelectedValue('allergies'));
@@ -764,7 +666,6 @@ xmlHttp.onreadystatechange = function()
               {
                 var status = xmlHttp.responseText;
                showresponse('health-form',status,'Updated Successfully');
-               completeIcon('nav-health-tab');
               }
           }
   }
@@ -974,7 +875,7 @@ function submitWork(){
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
 
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() || checkCurrentDate('from_date') || checkCurrentDate('to_date') )
       {
 
       xmlHttp.onreadystatechange = function()
@@ -1097,7 +998,7 @@ function updateWork(){
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
-          location.reload();
+          // location.reload();
 
           }
 
@@ -1151,6 +1052,8 @@ function check_complete(){
   var e_phone=document.getElementById('e_phone').value;
   //Education
   var institute=document.getElementById('institute').value;
+  //Health
+  var blood_group = document.getElementById('blood_group').value;
   //PAN
   var pan=document.getElementById('pan').value;
   //assign
@@ -1167,6 +1070,7 @@ function check_complete(){
     if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
+    if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
     if(recommender!=''&&approver!='') completeIcon('nav-assign-tab'); else inCompleteIcon('nav-assign-tab');
 
@@ -1207,6 +1111,7 @@ function toggleNav(status=''){
 
   }
 }
+
 
 function inCompleteIcon(tabId){
     document.getElementById(tabId).childNodes[1].className="fa fa-info-circle prog-incom";
@@ -1297,6 +1202,7 @@ function checkCurrentDate($date)
 // function to assign employee
 function assign()
 {
+  var package_id = document.getElementById('package_id').value;
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
@@ -1315,6 +1221,7 @@ function assign()
           var data = new FormData();
           data.append('recommender_id',recommender);
           data.append('approver_id',approver);
+          data.append('package_id',package_id);
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()
@@ -1329,6 +1236,7 @@ function assign()
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
               check_complete();
+              showprogress();
 
           }
  }
@@ -1384,7 +1292,7 @@ function assign()
          }
         $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
-        $( "#leave" ).load(window.location.href + " #leave" );
+        $( "#leavetable" ).load(window.location.href + " #leave" );
         $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         $('#leave_id').val('');
@@ -1416,8 +1324,8 @@ function assign()
         $('#showmessage').html(msg); 
         // location.reload();
          dismissModal();
-        $( "#leave" ).load(window.location.href + " #leave" );
-        $( "#package-form" ).load(window.location.href + " #package-form" );
+        $( "#leavetable" ).load(window.location.href + " #leave" );
+        $( "#formdiv" ).load(window.location.href + " #package-form" );
 
 
         }
@@ -1431,6 +1339,15 @@ function dismissModal()
       $('#leaveModal').css('display','none');
         $('#leaveModal').attr('aria-hidden', 'true');
         $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+} 
+
+function dismissDenyModal()
+{
+      $('.modal').css('display','none');
+        $('#exampleModalCenter').attr('aria-hidden', 'true');
+        $('body').removeClass('modal-open');
+        $('.modal').removeClass('show');
         $('.modal-backdrop').remove();
 } 
 
@@ -1454,9 +1371,9 @@ function dismissModal()
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
           dismissModal();
-          $( "#package" ).load(window.location.href + " #package" );
+          $( "#packagetable" ).load(window.location.href + " #package" );
 
-
+          $( "#formdiv" ).load(window.location.href + " #package-form" );
 
         }
 
@@ -1509,7 +1426,6 @@ function dismissModal()
     {
         if(xmlHttp.readyState==4)
         {
-          console.log(xmlHttp.responseText);
         
          $('#messagediv1').removeClass('alert-danger');
          $('#messagediv1').removeClass('alert-warning');
@@ -1540,7 +1456,7 @@ function dismissModal()
         $('#showmessage1').html(msg); 
       var form= document.getElementById('package-form');
       clearForm(form);
-        $( "#package" ).load(window.location.href + " #package" );
+        $( "#packagetable" ).load(window.location.href + " #package" );
 
 
 
@@ -1654,4 +1570,47 @@ function editPackage(id){
       break;
   }
     }
+}
+
+
+// recommend leaves to approver
+function recommendLeave(l_id)
+{
+  
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','recommendLeave',true);
+  var data = new FormData();
+  data.append('l_id',l_id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+    location.reload();
+  }
+}
+}
+
+//deny leave by recommender
+function denyLeave(id)
+{
+  var reason = document.getElementById('denial_reason').value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','denyLeave',true);
+  var data = new FormData();
+  data.append('denial_reason',reason);
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Leave request denied.";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable1" );
+  }
+}
 }

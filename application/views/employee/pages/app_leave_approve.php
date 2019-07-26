@@ -36,7 +36,7 @@
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
                     <td class="status"><span class="pending">Pending</span> </td>
                     <td>
-                      <button class="btn-archive tooltip1" title="Grant" id="<?php echo $value['emp_id']; ?>" style="color: #17f089;"><i class="fa fa-check" aria-hidden="true"></i>
+                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>" style="color: #17f089;"><i class="fa fa-check" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>

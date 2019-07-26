@@ -19,27 +19,40 @@ $route['admin/addEmergency'] = 'Admin_controller/addEmergency';
 $route['admin/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/addPan'] = 'Admin_controller/addPan';
 $route['admin/addWork'] = 'Admin_controller/addWork';
-
-
-
-
-
 $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
-
-$route['employee/addContact'] = 'Admin_controller/addContact';
-$route['employee/addNationality'] = 'Admin_controller/addNationality';
-$route['employee/addEducation'] = 'Admin_controller/addEducation';
-$route['employee/addEmergency'] = 'Admin_controller/addEmergency';
-$route['employee/addHealth'] = 'Admin_controller/addHealth';
-$route['employee/addPan'] = 'Admin_controller/addPan';
-$route['employee/addWork'] = 'Admin_controller/addWork';
-$route['employee/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
-$route['admin/addDocuments'] = 'Admin_controller/addDocuments';
-$route['employee/addDocuments'] = 'Admin_controller/addDocuments';
-$route['admin/addAddress'] = 'Admin_controller/addAddress';
-$route['employee/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
-$route['employee/progressBar'] = 'Admin_controller/progressBar';
+$route['admin/addAddress'] = 'Admin_controller/addAddress';
+$route['admin/addDocuments'] = 'Admin_controller/addDocuments';
+
+
+
+
+
+
+
+
+$route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
+$route['employee/recommendLeave'] = 'Employee_controller/recommendLeave';
+$route['employee/denyLeave'] = 'Employee_controller/denyLeave';
+
+$route['employee/profile_update/addContact'] = 'Employee_controller/addContact';
+$route['employee/profile_update/addNationality'] = 'Employee_controller/addNationality';
+$route['employee/profile_update/addEducation'] = 'Employee_controller/addEducation';
+$route['employee/profile_update/addEmergency'] = 'Employee_controller/addEmergency';
+$route['employee/profile_update/addHealth'] = 'Employee_controller/addHealth';
+$route['employee/profile_update/addPan'] = 'Employee_controller/addPan';
+$route['employee/profile_update/addWork'] = 'Employee_controller/addWork';
+$route['employee/profile_update/addPersonalInformation'] = 'Employee_controller/addPersonalInformation';
+$route['employee/profile_update/addDocuments'] = 'Employee_controller/addDocuments';
+$route['employee/profile_update/addAddress'] = 'Employee_controller/addAddress';
+$route['employee/profile_update/progressBar'] = 'Employee_controller/progressBar';
+
+$route['employee/profile_update/updateWork'] = 'Employee_controller/updateWork';
+$route['employee/profile_update/deleteWorkExperience'] = 'Employee_controller/deleteWorkExperience';
+$route['employee/profile_update/deleteFile'] = 'Employee_controller/deleteFile';
+
+
+$route['employee/profile_update/(:any)'] = 'Employee_controller/profileupdate/$1';
 
 
 
