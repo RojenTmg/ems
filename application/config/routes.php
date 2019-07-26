@@ -29,6 +29,7 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
+$route['employee/denyApprove'] = 'Employee_controller/denyApprove';
 $route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
@@ -83,8 +84,6 @@ $route['admin/employee_manage/progressBar'] = 'Admin_controller/progressBar';
 
 
 
-
-
 // $route['admin/employee_list/(:any)'] = 'Admin_controller/employeeList';
 $route['admin/employee_manage/(:any)'] = 'Admin_controller/employeeManage/$1';
 $route['admin/employee_detail/(:any)'] = 'Admin_controller/employeeDetail/$1';
@@ -110,7 +109,6 @@ $route['employee/leave_form'] = 'Employee_controller/leaveForm';
 $route['employee/profile'] = 'Employee_controller/profile';
 
 $route['employee/app_leave_approve'] = 'Employee_controller/appLeaveApprove';
-
 
 $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
 $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';

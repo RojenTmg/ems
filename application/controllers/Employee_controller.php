@@ -45,7 +45,8 @@
 		{
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
-
+			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+			
 			$this->view('dashboard', $data);
 		}
 
@@ -255,13 +256,21 @@
 			$this->db->update('employee_leaves',$data);
 		}
 
-		public function appLeaveApprove()
-		{	
-			$title['title'] = 'Approve Leaves';
-			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
-
-			$this->view('app_leave_approve', $title, $data);
+		public function denyApprove()
+		{
+			extract($_POST);
+			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
 		}
+
+		// public function appLeaveApprove()
+		// {	
+		// 	$title['title'] = 'Approve Leaves';
+		// 	$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+
+		// 	$this->view('app_leave_approve', $title, $data);
+		// }
 
 
 

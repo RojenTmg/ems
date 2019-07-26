@@ -152,7 +152,7 @@
             </a>
           </li>
           
-          <?php 
+          <!-- <?php 
            if ($_SESSION['is_approver'] == 1) {
             ?>
             <li>
@@ -173,7 +173,7 @@
           </li>
           <?php
             } 
-          ?>
+          ?> -->
 
         </ul>
       </div>

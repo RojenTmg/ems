@@ -379,6 +379,27 @@ function leaveApproveF(id)
               }
       }
 
+function denyApprove()
+{
+        var xmlHttp = new XMLHttpRequest();
+
+        var id = $('.md-form input').val();
+        var denial_reason = $('.md-form textarea').val();
+
+        xmlHttp.open('POST','denyApprove',true);
+        var data = new FormData();
+        data.append('id', id);
+        data.append('denial_reason', denial_reason);
+        xmlHttp.send(data);
+        // alert('asdf');
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState==4)
+            {
+            }
+        }
+}
+
 
 ////////////////////  Update Employee through different Tabs /////////////////////
   // delete/archive employee
