@@ -10,7 +10,7 @@
                 <i class="fa fa-users" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
-                <div class="hl-title">Total Employee</div>
+                <div class="hl-title">Total Employees</div>
                 <div class="hl-cont"><?php echo $count; ?></div>
               </div>
             </div>
@@ -55,7 +55,7 @@
       <div class="box">
       <div class="box-head">
         <div class="sp-btn">
-          <p>Employee's currently on leave</p>
+          <p>Employees currently on leave</p>
           <a href="<?= base_url('admin'); ?>">View All</a>
         </div>
       </div>

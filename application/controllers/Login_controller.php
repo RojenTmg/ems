@@ -31,7 +31,7 @@
                 $result=$this->Validate_login_form->validate_id_password();
 
                 //to redierect to the right user
-                if(isset($_SESSION['loggedin']) &&  $_SESSION['loggedin']==true){
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
                     
                     if( $_SESSION['type']=='employee')
                         redirect('employee');
