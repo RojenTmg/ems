@@ -29,6 +29,8 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
+$route['denyApprove'] = 'Employee_controller/denyApprove';
+$route['leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 $route['employee/denyApprove'] = 'Employee_controller/denyApprove';
 $route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 

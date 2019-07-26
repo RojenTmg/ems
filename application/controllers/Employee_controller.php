@@ -45,7 +45,7 @@
 		{
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
-			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+			$data['employee_app_leaves'] = $this->Employee_model->findApproveLeaves();
 			
 			$this->view('dashboard', $data);
 		}

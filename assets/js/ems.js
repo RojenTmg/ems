@@ -362,8 +362,7 @@ function showHideAllergy(allergy)
 }
 
 
-
-function leaveApproveF(id)
+ function leaveApproveF(id)
       {
               var xmlHttp = new XMLHttpRequest();
               xmlHttp.open('POST','leaveApproveRequest',true);

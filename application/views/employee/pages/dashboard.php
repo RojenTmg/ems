@@ -100,7 +100,7 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_leaves as $value) { ?>
+                foreach ($employee_app_leaves as $value) { ?>
                   <tr id="<?php echo $value['id']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
@@ -247,7 +247,9 @@
     $('.md-form textarea').val('');
     modal.style.display = 'none';
 
+
     var id = $('.md-form input').val();
+    // $('#datatable2').find('#'+id+'').find('.btn-archive').setAttribute("disabled", false)
     $('#datatable2').find('#'+id+'').find('.status span').remove(); 
     $('#datatable2').find('#'+id+'').find('.status').append('<span class="denied">Denied</span>'); 
 

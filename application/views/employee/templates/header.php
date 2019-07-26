@@ -42,7 +42,7 @@
 <script type="text/javascript" src="<?= base_url('assets/js/popper.min.js') ?>"></script>
 
 
- <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
+ <!-- <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script> -->
 
 
 
@@ -183,3 +183,5 @@
     <div class="sidebar-footer">
     </div>
   </nav>
+
+
