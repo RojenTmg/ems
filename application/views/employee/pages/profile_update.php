@@ -537,7 +537,7 @@
               <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
               <div class="form-group">
                <label class="col-md-2 ">To</label>
-              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['from_date'] ?>"></div>
+              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
               <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
 
                  </div>
