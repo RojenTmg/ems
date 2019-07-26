@@ -860,7 +860,7 @@ function submitWork(){
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
 
-      if(DateCheck() || checkCurrentDate('from_date') || checkCurrentDate('to_date') )
+      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
       {
 
       xmlHttp.onreadystatechange = function()
@@ -960,7 +960,9 @@ function updateWork(){
       data.append('contact_person_phone',contact_person_phone[i].value);
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
-      xmlHttp.onreadystatechange = function()
+      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      {
+        xmlHttp.onreadystatechange = function()
       {
           if(xmlHttp.readyState==4)
           {
@@ -968,6 +970,7 @@ function updateWork(){
            if(status=='true')
            {
              msg="Updated";
+              $('#messagediv').addClass('alert-success');
                $('#messagediv').css('background','#ffadad !important');
                $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
@@ -990,6 +993,16 @@ function updateWork(){
       }
       
     }
+    else
+    {
+      msg= "From date and To date Error!";
+       $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+             $('#messagediv').css('color','red');
+             $('#messagediv').css('display','block');
+              $('#showmessage').html(msg); 
+    }
+  }
 }
 
 // check email id 
