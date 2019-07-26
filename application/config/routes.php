@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 
 $route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
@@ -30,6 +29,7 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
+$route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
 $route['employee/recommendLeave'] = 'Employee_controller/recommendLeave';
@@ -54,11 +54,6 @@ $route['employee/profile_update/deleteFile'] = 'Employee_controller/deleteFile';
 
 $route['employee/profile_update/(:any)'] = 'Employee_controller/profileupdate/$1';
 
-
-
-
-
-$route['employee/app_leave_approve/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 
 // for edit

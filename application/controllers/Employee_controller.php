@@ -236,7 +236,7 @@
 		echo json_encode($status);
 	} 
 
-	public function profile()
+		public function profile()
 		{	
 			$data['post'] = $this->Database_model->getEmployeeDetails($_SESSION['user_id']);
 			$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $_SESSION['user_id']);
@@ -250,10 +250,9 @@
 		public function leaveApprove()
 		{
 			extract($_POST);
-			var_dump($_POST); die();
-			$data= array('is_approved'=>'1');
-			// echo "string"; die();
-			$this->Admin_model->update('employee_leaves',$data,'id',$leave_id);
+			$data=array('is_approved'=>'granted');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
 		}
 
 		public function appLeaveApprove()

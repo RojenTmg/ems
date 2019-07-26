@@ -31,12 +31,12 @@
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
-                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400); ?></td>
+                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['dpb_first_name'] .' '. $value['dpb_middle_name'] .' '. $value['dpb_last_name']; ?></td>
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
-                    <td class="status"><span class="pending">Pending</span> </td>
+                    <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'granted') { echo '<span class="granted">Granted</span>';  }?> </td>
                     <td>
-                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>" style="color: #17f089;"><i class="fa fa-check" aria-hidden="true"></i>
+                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>" style="color: #17f089;" <?php if ($value['is_approved'] == 'granted') { echo ' disabled="disabled"';  }?>><i class="fa fa-check" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
@@ -138,6 +138,8 @@
     $(this).closest('tr').find('.status span').remove(); 
     $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
     $(this).closest('.tooltiptext').remove(); 
+  
+    // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
 
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Grant Successful !</p>Leave is granted successfully.</div></div>');
       $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
@@ -149,3 +151,8 @@
   });
 
     </script>
+
+
+
+
+

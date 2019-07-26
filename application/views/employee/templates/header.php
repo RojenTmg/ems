@@ -55,7 +55,6 @@
 
 
 </head>
-
 <body>
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="<?= site_url('employee/dashboard'); ?>">Logo</a>
@@ -152,6 +151,7 @@
               <span>Request Leave</span>
             </a>
           </li>
+          
           <?php 
            if ($_SESSION['is_approver'] == 1) {
             ?>
@@ -174,6 +174,7 @@
           <?php
             } 
           ?>
+
         </ul>
       </div>
       <!-- sidebar-menu  -->
