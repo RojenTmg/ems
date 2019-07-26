@@ -29,7 +29,7 @@
 					    LEFT JOIN employees e ON e.emp_id = el.emp_id
 					    LEFT JOIN employee_approvers ea ON ea.emp_id = el.emp_id
 					    LEFT JOIN employees eaid ON ea.approver_id = eaid.emp_id
-					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by WHERE el.is_recommended = 'recommended' ORDER BY el.id DESC ";
+					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by ORDER BY el.id DESC";
 
 			if ($id === FALSE) {	
 				// $project = $project . ' WHERE e.is_active = ' . 1;
@@ -38,8 +38,7 @@
 				return $query->result_array();
 			}
 
-			// I think there is error after this line //
-			$project = $project . ' WHERE el.is_recommended = "recommended" AND el.id = ' . $id;
+			$project = $project . ' WHERE el.id = ' . $id;
 			$query = $this->db->query($project);
 			
 			return $query->row_array();

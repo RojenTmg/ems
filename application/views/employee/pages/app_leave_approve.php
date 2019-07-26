@@ -58,8 +58,8 @@
 
 
   <div id="simpleModal" class="modal">
-    <div class="modal-content" >
-        <div class="modal-header">
+    <div class="modal-content" id="modelcontent">
+        <div class="modal-header" id="modalheader">
           <h4 class="modal-title">Are you sure?</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeModal()">&times;</button>
         </div>
