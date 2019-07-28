@@ -1396,7 +1396,7 @@ body {
   width: 50%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   margin: 5% auto 0;
-  /*min-height: 50%;*/
+  /* min-height: 50%; */
   background-color: #f7f7f7;
   position: relative;
 }
