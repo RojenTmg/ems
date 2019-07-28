@@ -895,7 +895,7 @@ body {
   padding: 5px;
 }
 .table tbody tr:nth-child(odd) {
-  background-color: #f5f6fa;
+  background-color: #f3f4f8;
 }
 .table .can {
   background-color: #ffffff00;
@@ -910,7 +910,8 @@ body {
   /*min-width: 200px;*/
 }
 .hover tbody tr:hover {
-  background-color: #e8e8ed;
+  background-color: #edeef2 !important;
+  /*background-color: #f3f4f8;*/
 }
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
 
@@ -997,22 +998,27 @@ body {
 }*/
 
 .granted, .pending, .denied {
-  padding: 1px 8px;
+  padding: 1px 5px;
   display: block;
   width: 120px;
   text-align: center;
-  color: #fff;
+  font-weight: bold;
   margin: auto;
 }
 .granted {
-  background-color: #28a745dd;
+  /*background-color: #28a745dd;*/
+  background-color: #d9fbee;
+  color: #2b6855;
 } 
 .pending {
-  color: #000;
-  background-color: #ffc107dd;
+  color: #43474a;
+  /*background-color: #ffc107dd;*/
+  background-color: #ffefb4;
 } 
 .denied {
-  background-color: #dc3545dd;
+  /*background-color: #dc3545dd;*/
+  background-color: #ffebec;
+  color: #a72f26;
 }
 
 
