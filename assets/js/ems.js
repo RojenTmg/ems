@@ -1622,7 +1622,7 @@ function leaveApproveF(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
+    $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
   }
 }
 }
@@ -1647,7 +1647,53 @@ function denyLeaveFromApprover(id)
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
-      $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
+      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+  }
+}
+}
+
+// archive approval requests
+function archiveApprovalRecord(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','archiveApprovalRecord',true);
+  var data = new FormData();
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Data Archived";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+  }
+}
+}
+
+// archive approval requests
+function archiveRecommendRecord(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','archiveRecommendRecord',true);
+  var data = new FormData();
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Data Archived";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }

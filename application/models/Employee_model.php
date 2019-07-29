@@ -56,7 +56,7 @@
 					    LEFT JOIN employee_approvers ea ON ea.emp_id = el.emp_id
 					    LEFT JOIN employees eaid ON ea.approver_id = eaid.emp_id
 					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by 
-						WHERE el.is_recommended = 'recommended' OR el.is_approved = 'denied'
+						WHERE el.is_archived= '0' AND  el.is_recommended = 'recommended' OR el.is_approved = 'denied'
 						ORDER BY el.id DESC";
 
 			if ($id === FALSE) {	
@@ -78,8 +78,7 @@
 			
 			$this->db->join('employees', 'employee_leaves.emp_id = employees.emp_id');
 			$this->db->join('leaves', 'employee_leaves.leave_id = leaves.leave_id');
-			
-			// $this->db->where('employee_leaves.is_recommended', '0');
+			$this->db->where('employee_leaves.is_archived', '0');
 			$query = $this->db->get('employee_leaves');
 			return $query->result_array();
 		}
