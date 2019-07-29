@@ -4,10 +4,12 @@
     </div>
     <div class="con-sum">
         
+      
        <?php 
        foreach ($leavelist as $index=>$leave) { ?>
+        
+          <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
 
-          <div class="sum-item">
           <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
             <div class="item-1 sp-btn">
               <div>
@@ -15,7 +17,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title"><?php echo $leave['leave_name'];?></div>
-                <div class="hl-cont"><?php echo $leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
+                <div class="hl-cont"><?php echo $leave['duration']-$leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -24,6 +26,7 @@
             </div>
           </a>
           </div>
+        
         <?php } ?>
 
          

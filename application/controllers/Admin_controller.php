@@ -80,12 +80,37 @@ class Admin_controller extends CI_Controller {
 					'recommender_id'=>$recommender_id,
 					'emp_id'=>$id,
 					'created_by'=>$_SESSION['user_id']	
-				];	
+				];
 				$this->Admin_model->assign($data,$id);
 
 				// adding package to employee table
 				$data2=['package_id'=>$package_id];
 				$this->Admin_model->update_employee($data2,$id);
+
+
+
+				//adding leave id, emp id and remaining days on employee_leave_balance table
+				 $this->db->where('package_id',$package_id);
+				 $pkgList= $this->db->get('leave_packages');
+				 $list=$pkgList->result_array();
+
+				$this->db->where('emp_id',$id);
+				$check=$this->db->get('employee_leave_balance');
+				if (count($check)== 0) 
+				{
+				 foreach ($list as $li) {
+				 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
+				 	$this->Admin_model->insert_leave_balance($data3,$id);
+				 }
+				}
+				else{
+					$this->Admin_model->delete_leave_balance($id);
+					foreach ($list as $li) {
+					 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
+					 	$this->Admin_model->insert_leave_balance($data3,$id);
+				 	}
+
+				}
 
 				//is approver or recommender to employee table
 				$data3=['is_approver'=>'1'];

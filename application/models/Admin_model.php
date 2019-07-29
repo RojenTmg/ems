@@ -14,7 +14,14 @@
 			}
 
 		}
+		public function insert_leave_balance($data){			
+			$this->db->insert('employee_leave_balance',$data);
+		}
 
+		public function delete_leave_balance($id){
+			$this->db->where('emp_id',$id);
+			$this->db->delete('employee_leave_balance');
+		}
 	
 
 		public function assignList(){
