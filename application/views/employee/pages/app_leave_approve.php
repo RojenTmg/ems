@@ -43,7 +43,7 @@
                           <span class="tip-arch tip-res" onclick="leaveApproveF(<?php echo $value['id']; ?>)" >Grant</span>
                         </div>
                       </button>
-                      <button class="btn-edit" title="Deny"><i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i></button>
+                      <button  class="" data-toggle="modal" data-target="">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
                     </td>
                   </tr>
                 <?php } ?>
@@ -56,25 +56,30 @@
     </div>
   </div>
 
-
-  <div id="simpleModal" class="modal">
-    <div class="modal-content" id="modelcontent">
-        <div class="modal-header" id="modalheader">
-          <h4 class="modal-title">Are you sure?</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="md-form sp-btn">
-            <label>Reason:</label>
-            <textarea style="padding: 10px; width: 100%;" rows="1" placeholder="Any reason?"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer" style="border:none;">
-          <button type="button" class="btn btn-info" data-dismiss="modal" onclick="closeModal()">Cancel</button>
-          <input type="button" class="btn btn-danger" value="Deny Confirm" onclick="">
-          </div>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Enter reason for denial</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+     
+          <div class="form-group">
+          <input class="form-control" type="text" name="" id="denial_reason">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="denyLeave(<?php echo $posts['id']; ?>)">Submit</button>
+      </div>
+    </div>
   </div>
+</div>
 
 
 

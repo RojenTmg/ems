@@ -143,10 +143,21 @@
 		
 		}
 		// deny leave by recommender
-		public function denyLeave()
+		public function denyLeaveFromRecommender()
 		{
+			
 			extract($_POST);
-			$data=array('is_recommended'=>'denied', 'denial_reason'=>$denial_reason);
+			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason);
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// deny leave by recommender
+		public function denyLeaveFromApprover()
+		{
+			
+			extract($_POST);
+			$data=array( 'is_approved'=>'denied','denial_reason'=>$denial_reason);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
@@ -253,8 +264,8 @@
 		public function leaveApprove()
 		{
 			extract($_POST);
-			$data=array('is_approved'=>'granted');
-			$this->db->where('id',$id);
+			$data=array('is_approved'=>'approved');
+			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
 		}
 

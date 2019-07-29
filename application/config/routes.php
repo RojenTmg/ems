@@ -29,12 +29,12 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
-$route['employee/denyApprove'] = 'Employee_controller/denyApprove';
-$route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
+$route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
+$route['leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
-$route['employee/recommendLeave'] = 'Employee_controller/recommendLeave';
-$route['employee/denyLeave'] = 'Employee_controller/denyLeave';
+$route['recommendLeave'] = 'Employee_controller/recommendLeave';
+$route['denyLeaveFromRecommender'] = 'Employee_controller/denyLeaveFromRecommender';
 
 $route['employee/profile_update/addContact'] = 'Employee_controller/addContact';
 $route['employee/profile_update/addNationality'] = 'Employee_controller/addNationality';

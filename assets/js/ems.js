@@ -362,44 +362,6 @@ function showHideAllergy(allergy)
 }
 
 
- function leaveApproveF(id)
-      {
-              var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open('POST','leaveApproveRequest',true);
-              var data = new FormData();
-              data.append('id', id);
-              xmlHttp.send(data);
-              // alert('asdf');
-              xmlHttp.onreadystatechange = function()
-              {
-                  if(xmlHttp.readyState==4)
-                  {
-                  }
-              }
-      }
-
-function denyApprove()
-{
-        var xmlHttp = new XMLHttpRequest();
-
-        var id = $('.md-form input').val();
-        var denial_reason = $('.md-form textarea').val();
-
-        xmlHttp.open('POST','denyApprove',true);
-        var data = new FormData();
-        data.append('id', id);
-        data.append('denial_reason', denial_reason);
-        xmlHttp.send(data);
-        // alert('asdf');
-        xmlHttp.onreadystatechange = function()
-        {
-            if(xmlHttp.readyState==4)
-            {
-            }
-        }
-}
-
-
 ////////////////////  Update Employee through different Tabs /////////////////////
   // delete/archive employee
    function archiveEmployee(id)
@@ -1618,17 +1580,17 @@ function recommendLeave(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    location.reload();
+    $( "#lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }
 
 //deny leave by recommender
-function denyLeave(id)
+function denyLeaveFromRecommender(id)
 {
-  var reason = document.getElementById('denial_reason').value;
+  var reason = document.getElementById('denial_reason'+id).value;
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open('POST','denyLeave',true);
+  xmlHttp.open('POST','denyLeaveFromRecommender',true);
   var data = new FormData();
   data.append('denial_reason',reason);
   data.append('id',id);
@@ -1643,7 +1605,49 @@ function denyLeave(id)
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
-      $( "#lists" ).load(window.location.href + " #datatable1" );
+      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+  }
+}
+}
+
+// approve leave by approver
+
+function leaveApproveF(l_id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','leaveApproveRequest',true);
+  var data = new FormData();
+  data.append('l_id',l_id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+    $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
+  }
+}
+}
+
+//deny leave by approver
+function denyLeaveFromApprover(id)
+{
+  var reason = document.getElementById('denial_reason'+id).value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','denyLeaveFromApprover',true);
+  var data = new FormData();
+  data.append('denial_reason',reason);
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Leave request denied.";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
   }
 }
 }

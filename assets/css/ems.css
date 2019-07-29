@@ -921,9 +921,7 @@ body {
 .btn-edit, .btn-archive {
   border: none;
   background-color: #ffffff00;
-  margin: 0 5px 0 0;
   cursor: pointer;
-  padding: 2px 9px;
 }
 .btn-edit:hover, .btn-archive:hover {
   background-color: #fff;
@@ -945,7 +943,6 @@ body {
 }
 
 .tooltiptext {
-  /*visibility: hidden;*/
   display: none;
   width: 120px;
   background-color: black;
@@ -954,7 +951,6 @@ body {
   border-radius: 6px;
   padding: 5px 0;
   overflow: visible;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
   width: 180px;
@@ -1377,59 +1373,7 @@ body {
   color: #fff;
 }
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
-.modal {
-  position: fixed;
-  display: none;
-  left: 0;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 100%;
-  overflow: auto;
-  z-index: 20;
-  top: 0;
-}
-.modal-content {
-  animation-name: mdopen;
-  border-radius: 5px;
-  animation-duration: 0.3s;
-  padding: 20px;
-  width: 50%;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
-  margin: 5% auto 0;
-  /* min-height: 50%; */
-  background-color: #f7f7f7;
-  position: relative;
-}
-.md-form {
-  margin-bottom: 20px;
-}
-.md-form label {
-  width: 8%;
-  margin-right: 10px;
-}
-.md-form textarea {
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  width: 90%;
-}
-.md-form textarea {
-  outline: none;
-}
-.modal-content {
-  background-color: #fff;
-}
-.register i {
-  margin: 20px 0 10px !important;
-}
-.register a {
-  padding: 5px 20px;
-  display: inline-block;
-  margin-top: 40px;
-  background-color: #87c540;
-  border-radius: 10px;
-  color: #fff;
-}
+
 
 /*-----------------------------horiziontal-line-theme-------------------------------------------------*/
 .hr {
