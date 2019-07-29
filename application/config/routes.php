@@ -29,8 +29,13 @@ $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 
 
 
+
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['leaveApproveRequest'] = 'Employee_controller/leaveApprove';
+
+$route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1';
+$route['employee/denyApprove'] = 'Employee_controller/denyApprove';
+$route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
 $route['recommendLeave'] = 'Employee_controller/recommendLeave';
