@@ -28,6 +28,7 @@
 			$data['user']= $this->Admin_model->user_detail('users',$_SESSION['user_id']);
 			$data['post'] = $this->Admin_model->getEmployeeDetails($_SESSION['user_id']);
 
+
 			//showing percentage in the progress bar
 		    // progressBar();
 
@@ -47,9 +48,25 @@
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList();
-				$data['duty_by']=$this->Admin_model->employeeList();
-			
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
 			$this->view('dashboard', $data);
+		}
+
+		public function leaveBalance(){
+			return $this->Employee_model->leaveDetail($_SESSION['user_id']);	
+		}
+
+		public function leave_details($lid=NULL){
+
+
+			$data['leavelist']=$this->leaveBalance();
+			$data['leaveDetail']=$data['leavelist'][$lid];
+			$data['leaveDetail']['taken']=$data['leaveDetail']['duration']-$data['leaveDetail']['remain_days'];
+			$this->load->view('employee/templates/header');
+			$this->load->view('employee/pages/leave_details',$data);
+			$this->load->view('employee/templates/footer');
 		}
 
 

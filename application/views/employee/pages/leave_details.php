@@ -1,33 +1,38 @@
  <!-- form -->
+ <?php extract($leaveDetail);?>
   <div class="contents">
     <div class="con-head">
       <h4>Leave Details</h4>
     </div>
     <div class="box">
       <div class="box-head">
-        <p>Leave Details</p>
+        <p>Leave Details for <?php echo $leave_name;?></p>
       </div>
       <div class="box-body">
         <div class="leave-dt">
+          <div class="dt-part">
+            <div class="pt-1">Package Name</div>
+            <div class="pt-2">:</div>
+            <div class="pt-3"><?php echo $package_name; ?></div>
+          </div>
          <div class="dt-part">
             <div class="pt-1">Total No. of Days</div>
             <div class="pt-2">:</div>
-            <div class="pt-3">6</div>
+            <div class="pt-3"><?php echo $duration; ?></div>
           </div>
           <div class="dt-part">
             <div class="pt-1">No of Leaves taken</div>
             <div class="pt-2">:</div>
-            <div class="pt-3">2</div>
+            <div class="pt-3"><?php echo $taken;?></div>
           </div>
           <div class="dt-part">
             <div class="pt-1">No of Leaves Remaining</div>
             <div class="pt-2">:</div>
-            <div class="pt-3">4</div>
+            <div class="pt-3"><?php echo $remain_days;?></div>
           </div> 
         </div>
       </div>
     </div>
-
     <div class="con-head">
       <h4>Messages</h4>
     </div>

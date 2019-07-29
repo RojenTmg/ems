@@ -3,15 +3,19 @@
       <h4>Dashboard</h4>
     </div>
     <div class="con-sum">
+        
+       <?php 
+       foreach ($leavelist as $index=>$leave) { ?>
+
           <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
+          <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fa fa-creative-commons" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
-                <div class="hl-title">Casual Leave</div>
-                <div class="hl-cont">5<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
+                <div class="hl-title"><?php echo $leave['leave_name'];?></div>
+                <div class="hl-cont"><?php echo $leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -20,57 +24,11 @@
             </div>
           </a>
           </div>
-          <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Sick Leave</div>
-                <div class="hl-cont">3<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
-          <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Annual Leave</div>
-                <div class="hl-cont">10<span><em> out of &nbsp;</em></span>18<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since from the start</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
-          <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-subscript" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Substitute Leave</div>
-                <div class="hl-cont">3<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
+        <?php } ?>
+
+         
+ 
+
     </div>
 
     <?php if ($_SESSION['is_approver'] == 1) { ?>
