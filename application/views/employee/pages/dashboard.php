@@ -35,7 +35,7 @@
     </div>
 
   <!-- RECOMMENDATION LISTS  -->
-  <div class="contents">
+
   <div class="con-head">
   <h4>Recommendation Lists</h4>
   </div>

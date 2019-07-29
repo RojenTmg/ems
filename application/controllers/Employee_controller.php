@@ -60,11 +60,11 @@
 
 		public function leave_details($lid=NULL){
 
-
+			$title['title']= 'Leave Details';
 			$data['leavelist']=$this->leaveBalance();
 			$data['leaveDetail']=$data['leavelist'][$lid];
 			$data['leaveDetail']['taken']=$data['leaveDetail']['duration']-$data['leaveDetail']['remain_days'];
-			$this->load->view('employee/templates/header');
+			$this->load->view('employee/templates/header',$title);
 			$this->load->view('employee/pages/leave_details',$data);
 			$this->load->view('employee/templates/footer');
 		}
