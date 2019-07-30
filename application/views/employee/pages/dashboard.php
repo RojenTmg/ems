@@ -1,17 +1,27 @@
-  <div class="contents">
+<div class="contents">
     <div class="con-head">
       <h4>Dashboard</h4>
     </div>
-    <div class="con-sum" id="leave-div">
-          <div class="sum-item" id="leave-39">
-          <a href="<?= base_url('employee'); ?>/leave_details">
+    <div class="con-sum">
+        
+      
+       <?php 
+       if(count($leavelist)==0)
+       {?>
+         <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
+       <?php } else {
+       foreach ($leavelist as $index=>$leave) { ?>
+
+          <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
+
+          <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fa fa-creative-commons" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
-                <div class="hl-title">Casual Leave</div>
-                <div class="hl-cont"><span id="leave-taken">5</span><span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
+                <div class="hl-title"><?php echo $leave['leave_name'];?></div>
+                <div class="hl-cont"><?php echo $leave['duration']-$leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -20,59 +30,146 @@
             </div>
           </a>
           </div>
-          <div class="sum-item"  id="leave-40">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Sick Leave</div>
-                <div class="hl-cont"><span id="leave-taken">3</span><span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
-          <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Annual Leave</div>
-                <div class="hl-cont">10<span><em> out of &nbsp;</em></span>18<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since from the start</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
-          <div class="sum-item">
-          <a href="<?= base_url('employee'); ?>/leave_details">
-            <div class="item-1 sp-btn">
-              <div>
-                <i class="fa fa-subscript" aria-hidden="true"></i>
-              </div>
-              <div class="hgh-lgt">
-                <div class="hl-title">Substitute Leave</div>
-                <div class="hl-cont">3<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
-              </div>
-            </div>
-             <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
-            </div>
-          </a>
-          </div>
+        
+        <?php } } ?>
+
+         
+ 
+
     </div>
 
+  <!-- RECOMMENDATION LISTS  -->
+
+  <div class="con-head">
+  <h4>Recommendation Lists</h4>
+  </div>
+
+  <div>
+  <div class="con-sub-head">
+  <!-- <h5>Recent Messages</h5> -->  
+  </div>
+  <div class="box">
+  <div class="box-head">
+ 
+  </div>
+
+    <!-- area to show success and erorr messages -->
+    <div class="ml-3  alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"></p>
+      <button type="button" class="close" >&times;</button>
+    </div>
+    <!-- area finishes here -->
+
+    <div class="lists">
+  <div class="box-body" style="overflow-x:auto;">
+
+  <table class="table table-bordered hover employee_table" id="datatable-recommender" >
+  <thead >
+  <tr>
+  <th id="dt-head" width="20%"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%"><div class="sp-btn"><span>Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th  id="dt-head" width="15%"><div class="sp-btn"><span>Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" >Status</th>
+  <th id="dt-head" width="15%" class="text-center;"  >Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <?php
+  foreach ($recommendations as $posts) { ?>
+  <tr>
+  <td><?php echo $posts['first_name'].' '.$posts['middle_name']. ' '.$posts['last_name']  ; ?></td>
+  <td><?php echo $posts['leave_name']; ?></td>
+  <td><?php echo $posts['from_date']; ?></td>
+  <td><?php echo $posts['to_date']; ?></td>
+  <td><?php echo $posts['duration_type']; ?></td>
+
+  <td><?php foreach ($duty_by as $key) {
+  if($key['emp_id']==$posts['duty_performed_by'])
+  {
+  echo $key['first_name'].' '.$key['middle_name']. ' '. $key['last_name']; 
+  } }?></td>
+
+  <td><?php if($posts['is_recommended']=='pending'){?> <span class="pending">Pending</span> <?php } if($posts['is_recommended']=='recommended') {?><span class="granted">Recommended </span><?php } if($posts['is_recommended']=='denied') { ?><span class="denied">Denied </span> </td>
+  <?php } ?>
+
+  <td> 
+  <?php if($posts['is_recommended']=='pending') {?>
+  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
+      <div class="tooltiptext">
+        <p>Are you sure?</p>
+        <span class="tip-can">Cancel</span>
+        <span class="tip-arch tip-res" onclick="recommendLeave(<?php echo $posts['id']; ?>)" >Approve</span>
+        </div>
+  </button> 
+
+   
+    <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
+  <?php } else { ?>
+
+    <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+  <?php } ?>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Enter reason for denial</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     
+          <div class="form-group">
+          <input class="form-control" type="text" name="" id="denial_reason<?php  echo $posts['id']; ?>">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="denyLeaveFromRecommender(<?php echo $posts['id']; ?>)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal ends -->
+
+  <!-- modal for archive Recommend requests -->
+  <div class="modal fade" id="deleteRecommendrequests<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveRecommendRecord(<?php echo $posts['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- modal for archive Recommend requests ends here -->
+
+  </td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- RECOMMENDATION LISTS END HERE -->
+
+
+<!-- leave approval table starts -->
     <?php if ($_SESSION['is_approver'] == 1) { ?>
     <div>
       <div class="con-head">
@@ -80,11 +177,12 @@
     </div>
     <div class="box">
       <div class="box-head">
-        <p>Approve Leaves</p>
         <div class="arch-msg-div"></div>
       </div>
+     
         <div class="box-body" style="overflow-x:auto;">
-        <table class="table table-bordered hover employee_table" id="datatable2" >
+        <div id="lists-approvelist">
+        <table class="table table-bordered hover employee_table" id="datatable-approval" >
           <thead class="thead-dark">
             <tr>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Employee Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
@@ -100,45 +198,98 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_app_leaves as $value) { ?>
+                foreach ($employee_leaves as $value) { ?>
                   <tr id="<?php echo $value['id']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
-                    <td id="leave-<?php echo $value['lID']; ?>" class="leave-days"><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
+                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['dpb_first_name'] .' '. $value['dpb_middle_name'] .' '. $value['dpb_last_name']; ?></td>
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
-                    <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'granted') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
+                    <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
                     <td>
-                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>" style="color: #17f089;" <?php if ($value['is_approved'] == 'granted') { echo ' disabled="disabled"';  }?>><i class="fa fa-check" aria-hidden="true"></i>
+                    <!-- check if approved or not and show buttons accordingly -->
+                    <?php if($value['is_approved']=='pending') {?>
+                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
                           <span class="tip-arch tip-res" onclick="leaveApproveF(<?php echo $value['id']; ?>)" >Approve</span>
                         </div>
                       </button>
-                      <button class="btn-edit" title="Deny"><i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i></button>
+
+                      <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
+                      <?php } else { ?>
+
+                        <button  class="btn-edit" data-toggle="modal" data-target="#deleteApprovalrequests<?php  echo $value['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+                      <?php } ?>
+
+          <!-- Modal for denial reason-->
+          <div class="modal fade" id="exampleModalCenter<?php  echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Enter reason for denial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+              
+                    <div class="form-group">
+                    <input class="form-control" type="text" name="" id="denial_reason<?php  echo $value['id']; ?>">
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="denyLeaveFromApprover(<?php echo $value['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal for denial reason ends here -->
+
+          <!-- modal for archive Approval requests -->
+          <div class="modal fade" id="deleteApprovalrequests<?php  echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal for archive Approval requests ends here -->
+  </td>
                     </td>
                   </tr>
                 <?php } ?>
           </tbody>
         </table>
       </div>
+      </div>
     </div>
     </div>
     <?php } ?>
+<!-- leave approval table ends here -->
 
-
+<!-- leave requested by self starts here -->
     <div>
       <div class="con-sub-head">
           <h5>Leave Requests</h5>
       </div>
       <div class="box">
       <div class="box-head">
-        <div class="sp-btn">
-          <p>Recent Leave Requests</p>
-        </div>
+       
       </div>
       <div class="box-body" style="overflow-x:auto;">
         <table class="table table-bordered hover employee_table" id="datatable1" >
@@ -155,13 +306,13 @@
           <tbody>
             <?php
                 foreach ($employee_leaves as $value) { ?>
-                  <tr  id="<?php echo $value['id']; ?>">
+                  <tr>
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
-                    <td class="status"><?php ?> <span class="pending">Pending</span> </td>
+                    <td><?php ?> <span class="pending">Pending</span> </td>
                   </tr>
                 <?php } ?>
           </tbody>
@@ -171,34 +322,20 @@
     </div>
     </div>
   </div>  
-
-  <div id="simpleModal" class="modalC">
-    <div class="modalC-content" >
-        <div class="modal-header">
-          <h4 class="modal-title">Are you sure?</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="md-form sp-btn">
-            <input type="hidden" name="id" id="leave_id" value="">
-            <label>Reason:</label>
-            <textarea style="padding: 10px; width: 100%;" rows="1" placeholder="Any reason?"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer" style="border:none;">
-          <button type="button" class="btn btn-info" data-dismiss="modal" onclick="closeModal()">Cancel</button>
-          <input type="button" class="btn btn-danger" value="Deny Confirm" onclick="denyApprove()" id="deny-approve">
-          </div>
-      </div>
-  </div>
+<!-- leave requested by self ends here -->
+ 
 
 
   <script type="text/javascript">
+        $(document).ready(function(){
+       $('#datatable-recommender').DataTable({
+        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+            "aaSorting": [],  });
+    });
     $(document).ready(function(){
        $('#datatable1').DataTable({
           /* Disable initial sort */
-            "aaSorting": [],
-
+            "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
          /* disable sorting on specific columns */
          // 'columnDefs': [ {
             // 'targets': [1], /* column index */
@@ -206,12 +343,10 @@
          // }]
        });
     });
-
      $(document).ready(function(){
-         $('#datatable2').DataTable({
+         $('#datatable-approval').DataTable({
             /* Disable initial sort */
-              "aaSorting": [],
-
+              "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
            /* disable sorting on specific columns */
            // 'columnDefs': [ {
               // 'targets': [1], /* column index */
@@ -219,100 +354,63 @@
            // }]
          });
       });
-
   $('.tip-can').click(function(ev) {
     $(this).parent().css({"display": "none"});
     ev.stopPropagation();
   });
-
   $('.table tr .btn-archive').click(function(ev) {
     $(this).children()[1].style.display = 'block';
     ev.stopPropagation();
   });
-
   $('.table tbody tr').click(function() {
     // var id = $(this).attr('id');
     // window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
   });
-
-  $('.table tr .btn-edit').click(function(ev){
-    $('.modalC').css("display", "block");
-    var id = $(this).closest('tr').attr('id');
-    $('#leave_id').val(id);
-    ev.stopPropagation();
-  });
-
-  // change status after grant or deny
-  function statusChange(table, id, status) {
-    $(''+ table +'').find('#'+id+'').find('.status span').remove(); 
-    $(''+ table +'').find('#'+id+'').find('.status').append(''+ status +''); 
-  }
-
-  function changeLeaveBalance(id, days) {
-    $('#leave-div').find('#'+id+'').find('#leave-taken').text((parseInt($('#leave-div').find('#'+id+'').find('#leave-taken').text()) || 0) + (parseInt(days) || 0)); 
-  }
-
-
-
-
-  // deny Leave
-  $('#deny-approve').click(function(){
-      var modal = document.getElementById('simpleModal');
-      $('.md-form textarea').val('');
-      modal.style.display = 'none';
-
-      var id = $('.md-form input').val();
-      // $('#datatable2').find('#'+id+'').find('.btn-archive').setAttribute("disabled", false)
-      statusChange('#datatable2', id, '<span class="denied">Denied</span>');
-      statusChange('#datatable1', id, '<span class="denied">Denied</span>');
-
-      $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
-      $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-   });
-
-   $('.table tr .btn-archive .tip-arch').click(function(ev){
+  // $('.table tr #deny-approve').click(function(ev){
+  //   $('.modal').css("display", "block");
+  //   var id = $(this).closest('tr').attr('id');
+  //   $('#leave_id').val(id);
+  //   ev.stopPropagation();
+  // });
+  // $('#deny-approve').click(function(){
+  //   var modal = document.getElementById('simpleModal');
+  //   $('.md-form textarea').val('');
+  //   modal.style.display = 'none';
+  //   var id = $('.md-form input').val();
+  //   $('#datatable-approval').find('#'+id+'').find('.status span').remove(); 
+  //   $('#datatable-approval').find('#'+id+'').find('.status').append('<span class="denied">Denied</span>'); 
+  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
+  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+  //  });
+   $('.table tr .btn-archive .tip-arch').click(function(){
+     // location.reload();
+    // $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
     var id = $(this).closest('tr').attr('id');
     // $(this).closest('tr').remove(); 
-
-    // change status on table
-    $(this).closest('tr').find('.status span').remove(); 
-    $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
-    // $(this).closest('.tooltiptext').remove(); 
-    $(this).parent().css("display", "none"); 
-    statusChange('#datatable1', id, '<span class="granted">Granted</span>');
-
-    // change leave-balance on dashboard
-    changeLeaveBalance($(this).closest('tr').find('.leave-days').attr('id'), $(this).closest('tr').find('.leave-days').text());
-
+  //   $(this).closest('tr').find('.status span').remove(); 
+  //   $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
+  //   $(this).closest('.tooltiptext').remove(); 
+  
     // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Grant Successful !</p>Leave is granted successfully.</div></div>');
       $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-    ev.stopPropagation();
-   });
-
+     });
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
-
   function closeModal() {
     var modal = document.getElementById('simpleModal');
     $('.md-form textarea').val('');
     modal.style.display = 'none';
   }
-
   // window.addEventListener('click', outsideClick);
   
   // function outsideClick(e) {
   //   var modal = document.getElementById('simpleModal');
   //   if (e.target == modal) {
   //     modal.style.display = 'none';
-  //     dd.style.display = 'none';
   //   }
   // }
-
+ 
   </script>
-    
-
-
-

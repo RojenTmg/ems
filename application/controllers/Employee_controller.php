@@ -28,6 +28,7 @@
 			$data['user']= $this->Admin_model->user_detail('users',$_SESSION['user_id']);
 			$data['post'] = $this->Admin_model->getEmployeeDetails($_SESSION['user_id']);
 
+
 			//showing percentage in the progress bar
 		    // progressBar();
 
@@ -45,9 +46,27 @@
 		{
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
-			$data['employee_app_leaves'] = $this->Employee_model->findApproveLeaves();
-			
+			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+			$data['recommendations']=$this->Employee_model->recommendationList();
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
 			$this->view('dashboard', $data);
+		}
+
+		public function leaveBalance(){
+			return $this->Employee_model->leaveDetail($_SESSION['user_id']);	
+		}
+
+		public function leave_details($lid=NULL){
+
+			$title['title']= 'Leave Details';
+			$data['leavelist']=$this->leaveBalance();
+			$data['leaveDetail']=$data['leavelist'][$lid];
+			$data['leaveDetail']['taken']=$data['leaveDetail']['duration']-$data['leaveDetail']['remain_days'];
+			$this->load->view('employee/templates/header',$title);
+			$this->load->view('employee/pages/leave_details',$data);
+			$this->load->view('employee/templates/footer');
 		}
 
 
@@ -141,10 +160,21 @@
 		
 		}
 		// deny leave by recommender
-		public function denyLeave()
+		public function denyLeaveFromRecommender()
 		{
+			
 			extract($_POST);
-			$data=array('is_recommended'=>'denied', 'denial_reason'=>$denial_reason);
+			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason);
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// deny leave by recommender
+		public function denyLeaveFromApprover()
+		{
+			
+			extract($_POST);
+			$data=array( 'is_approved'=>'denied','denial_reason'=>$denial_reason);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
@@ -251,8 +281,8 @@
 		public function leaveApprove()
 		{
 			extract($_POST);
-			$data=array('is_approved'=>'granted');
-			$this->db->where('id',$id);
+			$data=array('is_approved'=>'approved');
+			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
 		}
 
@@ -260,6 +290,24 @@
 		{
 			extract($_POST);
 			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// archive approval lists
+		public function archiveApprovalRecord()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'1');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// archive recommender lists
+		public function archiveRecommendRecord()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'1');
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}

@@ -80,12 +80,37 @@ class Admin_controller extends CI_Controller {
 					'recommender_id'=>$recommender_id,
 					'emp_id'=>$id,
 					'created_by'=>$_SESSION['user_id']	
-				];	
+				];
 				$this->Admin_model->assign($data,$id);
 
 				// adding package to employee table
 				$data2=['package_id'=>$package_id];
 				$this->Admin_model->update_employee($data2,$id);
+
+
+
+				//adding leave id, emp id and remaining days on employee_leave_balance table
+				 $this->db->where('package_id',$package_id);
+				 $pkgList= $this->db->get('leave_packages');
+				 $list=$pkgList->result_array();
+
+				$this->db->where('emp_id',$id);
+				$check=$this->db->get('employee_leave_balance');
+				if (count($check)== 0) 
+				{
+				 foreach ($list as $li) {
+				 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
+				 	$this->Admin_model->insert_leave_balance($data3,$id);
+				 }
+				}
+				else{
+					$this->Admin_model->delete_leave_balance($id);
+					foreach ($list as $li) {
+					 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
+					 	$this->Admin_model->insert_leave_balance($data3,$id);
+				 	}
+
+				}
 
 				//is approver or recommender to employee table
 				$data3=['is_approver'=>'1'];
@@ -120,6 +145,14 @@ class Admin_controller extends CI_Controller {
 
 	public function employeeManage($id = NULL) 
 	{
+		$id=(int)$id;
+
+		$this->db->where('emp_id',$id);
+		$emp=$this->db->get('employees');
+		$emplist=$emp->row_array();
+
+		if($emplist==NULL) redirect('error_404'); 
+
 		$title['title'] = 'Manage Employee';
 		if (isset($_SESSION['current_employee_id'])) {
                unset($_SESSION['current_employee_id']); 
@@ -219,7 +252,10 @@ class Admin_controller extends CI_Controller {
 	{			
 		$result=array();
 		extract($_POST);
-
+		if($join_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -255,6 +291,11 @@ class Admin_controller extends CI_Controller {
 		$result=array();
 		extract($_POST);
 
+		if($join_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
+
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -285,6 +326,10 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
+		if($dob>Data('Y-m-d'))
+		{
+			return 0;
+		}
 		$data=array(
 			'gender'=>$gender,
 			'dob'=>$dob,
@@ -625,11 +670,14 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function addWork()
 	{
-					$_SESSION['path']="work";
+		$_SESSION['path']="work";
 
 		$status='';
 		extract($_POST);
-
+		if($from_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
 		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
 					if(isset($_SESSION['current_employee_id'])){
@@ -664,10 +712,14 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function updateWork()
 	{
-			$_SESSION['path']="work";
+		$_SESSION['path']="work";
 		$status='';
 		extract($_POST);
-
+		if($from_date>Date('Y-m-d'))
+		{
+			echo($from_date);
+			return 0;
+		}
 		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
 					if(isset($_SESSION['current_employee_id'])){
@@ -804,9 +856,14 @@ class Admin_controller extends CI_Controller {
 			$total=0;
 			$filled=0;
 			$percentage=0;
-			foreach ($employee_tbl as $row) {
-				$total++;
-				if($row!=NULL) $filled++;
+			if(!empty($employee_tbl)){
+				foreach ($employee_tbl as $row) {
+					$total++;
+					if($row!=NULL) $filled++;
+				}
+			}
+			else{
+				$total+=14;
 			}
 			if(!empty($employee_contacts_tbl)){
 				foreach ($employee_contacts_tbl as $row) {
@@ -899,10 +956,22 @@ class Admin_controller extends CI_Controller {
 					'created_by'=>$_SESSION['user_id'],
 					'leave_id'=>$leave_id
 				];
+
 				$leave=$this->db->where('leave_name',$leave_name);
 				$list=$this->db->get('leaves');
 				$getList= $list->row_array();
-				if(count($getList)==0)
+
+				$currentleave=$this->db->where('leave_id',$leave_id);
+				$currentlist=$this->db->get('leaves');
+				$getcurrentlist=$currentlist->row_array();
+
+				if($getList!=NULL)
+				$result=array_diff($getList,$getcurrentlist);
+
+				else $result=[];
+
+
+				if(count($result)==0)
 				{
 					$this->db->where('leave_id',$leave_id);
 					$this->db->update('leaves',$data);
@@ -915,9 +984,19 @@ class Admin_controller extends CI_Controller {
 
 		public function deleteLeave(){
 			extract($_POST);
-			$data=[ 'leave_id'=>$leave_id ];
-			// $this->db-where('leave_id',$id);
-			$this->db->delete('leaves',$data);
+			$this->db->where('leave_id',$leave_id);
+			$check=$this->db->get('leave_packages');
+			$list=$check->result_array();
+
+			if(count($list)==0){
+				$this->db->where('leave_id',$leave_id);
+				$this->db->delete('leaves');
+				echo "deleted";
+			}
+			else{
+				echo "assigned";
+			}
+
 			
 		}
 
@@ -958,11 +1037,28 @@ class Admin_controller extends CI_Controller {
 					'created_by'=>$_SESSION['user_id'],
 					'package_id'=>$package_id
 				];
-				
+
+				$package=$this->db->where('package_name',$package_name);
+				$list=$this->db->get('packages');
+				$getList= $list->row_array();
+
+				$currentPkg=$this->db->where('package_id',$package_id);
+				$currentlist=$this->db->get('packages');
+				$getcurrentlist=$currentlist->row_array();
+
+				if($getList!=NULL)
+				$result=array_diff($getList,$getcurrentlist);
+
+				else $result=[];
+
+				if(count($result)==0)
+				{
 					$this->db->where('package_id',$package_id);
 					$this->db->update('packages',$data);
 					$this->addLeaveToPackage($arrayLeave,$arrayDuration,$package_id,'update');
 					echo "updated";
+				}
+				else echo "already";
 				
 				
 			}
@@ -992,9 +1088,18 @@ class Admin_controller extends CI_Controller {
 		// delete package
 		public function deletePackage(){
 			extract($_POST);
-			$data=[ 'package_id'=>$package_id ];
-			// $this->db-where('package_id',$id);
-			$this->db->delete('packages',$data);
+			$this->db->where('package_id',$package_id);
+			$check=$this->db->get('employees');
+			$list=$check->result_array();
+
+			if(count($list)==0){
+				$this->db->where('package_id',$package_id);
+				$this->db->delete('packages');
+				echo "deleted";
+			}
+			else{
+				echo "assigned";
+			}
 		}
 
 
