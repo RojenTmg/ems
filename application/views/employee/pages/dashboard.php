@@ -398,7 +398,7 @@
   //  });
 
    $('.table tr .btn-archive .tip-arch').click(function(){
-     location.reload();
+     // location.reload();
     // $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
     var id = $(this).closest('tr').attr('id');
     // $(this).closest('tr').remove(); 

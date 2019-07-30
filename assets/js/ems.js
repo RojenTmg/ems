@@ -1692,7 +1692,7 @@ function archiveRecommendRecord(id)
          $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
-     dismissDenyModal();
+         dismissDenyModal();
       $( "#lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
