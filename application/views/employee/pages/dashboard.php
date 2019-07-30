@@ -6,8 +6,12 @@
         
       
        <?php 
+       if(count($leavelist)==0)
+       {?>
+         <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
+       <?php } else {
        foreach ($leavelist as $index=>$leave) { ?>
-        
+
           <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
 
           <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
@@ -27,7 +31,7 @@
           </a>
           </div>
         
-        <?php } ?>
+        <?php } } ?>
 
          
  
@@ -46,9 +50,7 @@
   </div>
   <div class="box">
   <div class="box-head">
-  <div class="sp-btn">
-  <p>Recommend Leaves</p>
-  </div>
+ 
   </div>
 
     <!-- area to show success and erorr messages -->
@@ -58,9 +60,9 @@
     </div>
     <!-- area finishes here -->
 
-
+    <div class="lists">
   <div class="box-body" style="overflow-x:auto;">
-  <div class="lists">
+
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
   <thead >
   <tr>
@@ -107,7 +109,7 @@
     <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
   <?php } else { ?>
 
-    <button  class="btn-edit" data-toggle="modal" data-target="">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+    <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
   <?php } ?>
 
 <!-- Modal -->
@@ -134,6 +136,27 @@
     </div>
   </div>
 </div>
+<!-- modal ends -->
+
+  <!-- modal for archive Recommend requests -->
+  <div class="modal fade" id="deleteRecommendrequests<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveRecommendRecord(<?php echo $posts['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- modal for archive Recommend requests ends here -->
+
   </td>
 </tr>
 <?php } ?>
@@ -154,11 +177,11 @@
     </div>
     <div class="box">
       <div class="box-head">
-        <p>Approve Leaves</p>
         <div class="arch-msg-div"></div>
       </div>
-      <div id="lists-approvelist">
+     
         <div class="box-body" style="overflow-x:auto;">
+        <div id="lists-approvelist">
         <table class="table table-bordered hover employee_table" id="datatable-approval" >
           <thead class="thead-dark">
             <tr>
@@ -199,7 +222,7 @@
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
 
-                        <button  class="btn-edit" data-toggle="modal" data-target="">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+                        <button  class="btn-edit" data-toggle="modal" data-target="#deleteApprovalrequests<?php  echo $value['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
                       <?php } ?>
 
           <!-- Modal for denial reason-->
@@ -226,6 +249,26 @@
               </div>
             </div>
           </div>
+          <!-- modal for denial reason ends here -->
+
+          <!-- modal for archive Approval requests -->
+          <div class="modal fade" id="deleteApprovalrequests<?php  echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal for archive Approval requests ends here -->
   </td>
                     </td>
                   </tr>
@@ -246,9 +289,7 @@
       </div>
       <div class="box">
       <div class="box-head">
-        <div class="sp-btn">
-          <p>Recent Leave Requests</p>
-        </div>
+       
       </div>
       <div class="box-body" style="overflow-x:auto;">
         <table class="table table-bordered hover employee_table" id="datatable1" >
@@ -289,13 +330,15 @@
 
         $(document).ready(function(){
        $('#datatable-recommender').DataTable({
+        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
             "aaSorting": [],  });
     });
 
     $(document).ready(function(){
        $('#datatable1').DataTable({
           /* Disable initial sort */
-            "aaSorting": [],
+            "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+
 
          /* disable sorting on specific columns */
          // 'columnDefs': [ {
@@ -308,7 +351,8 @@
      $(document).ready(function(){
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
-              "aaSorting": [],
+              "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
+
 
            /* disable sorting on specific columns */
            // 'columnDefs': [ {
@@ -354,7 +398,7 @@
   //  });
 
    $('.table tr .btn-archive .tip-arch').click(function(){
-     location.reload();
+     // location.reload();
     // $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
     var id = $(this).closest('tr').attr('id');
     // $(this).closest('tr').remove(); 

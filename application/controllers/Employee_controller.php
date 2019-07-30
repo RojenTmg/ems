@@ -294,6 +294,24 @@
 			$this->db->update('employee_leaves',$data);
 		}
 
+		// archive approval lists
+		public function archiveApprovalRecord()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'1');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// archive recommender lists
+		public function archiveRecommendRecord()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'1');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
 		// public function appLeaveApprove()
 		// {	
 		// 	$title['title'] = 'Approve Leaves';

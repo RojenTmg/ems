@@ -235,6 +235,7 @@ $(document).ready(function(){
           }
           else
           {
+
           xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
@@ -823,7 +824,7 @@ function submitWork(){
   
   for( i = 0; i < responsibility.length; i++ )
      {
-     if(responsibility[i].value==''||organization[i].value==''){
+     if(organization[i].value==''){
         var msg="Enter complete information";
 
              $('#messagediv').removeClass('alert-success');
@@ -847,7 +848,7 @@ function submitWork(){
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
 
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() && checkCurrentDate('from_date'))
       {
 
       xmlHttp.onreadystatechange = function()
@@ -943,7 +944,7 @@ function updateWork(){
       data.append('contact_person_phone',contact_person_phone[i].value);
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() && checkCurrentDate('from_date')  )
       {
         xmlHttp.onreadystatechange = function()
       {
@@ -1599,7 +1600,7 @@ function leaveApproveF(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
+    $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
   }
 }
 }
@@ -1623,7 +1624,53 @@ function denyLeaveFromApprover(id)
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
-      $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
+      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+  }
+}
+}
+
+// archive approval requests
+function archiveApprovalRecord(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','archiveApprovalRecord',true);
+  var data = new FormData();
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Data Archived";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+     dismissDenyModal();
+      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+  }
+}
+}
+
+// archive approval requests
+function archiveRecommendRecord(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','archiveRecommendRecord',true);
+  var data = new FormData();
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+      msg="Data Archived";
+        // $('#messagediv').removeClass('alert-success');
+         $('#messagediv1').addClass('alert-danger');
+         $('#messagediv1').css('color','red');
+         $('#messagediv1').css('display','block');
+        $('#showmessage1').html(msg); 
+         dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }
