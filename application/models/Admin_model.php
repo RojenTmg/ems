@@ -110,7 +110,7 @@
 			$user_num=$this->db->insert_id();
 			$userRoleData=array(
 				'user_id'=>$user_num,
-				'role_id'=>'4'
+				'role_id'=>'2'
 			);
 			 $this->db->insert('user_roles',$userRoleData);
 			 return $user_id;

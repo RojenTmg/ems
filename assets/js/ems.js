@@ -175,7 +175,6 @@ $(document).ready(function(){
        msg="Invalid Date of Join";
         $('#messagediv').removeClass('alert-success');
         $('#messagediv').addClass('alert-danger');
-        $('#messagediv').css('color','red');
         $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
     }
@@ -187,6 +186,7 @@ $(document).ready(function(){
           {
 
             var status = xmlHttp.responseText;
+            console.log(status);
             var id=JSON.parse(status);
            if(isNaN(id))
             showresponse('general-form',status,'Added Successfully');
@@ -230,7 +230,6 @@ $(document).ready(function(){
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
@@ -285,7 +284,6 @@ function submitDocument(){
         var msg="Select a file first.";
        $('#messagediv').removeClass('alert-success');
        $('#messagediv').addClass('alert-danger');
-       $('#messagediv').css('color','red');
        $('#messagediv').css('display','block');
        $('#showmessage').html(msg); 
       return false;
@@ -297,7 +295,6 @@ function submitDocument(){
              var msg="Select a doc or pdf file only";
            $('#messagediv').removeClass('alert-success');
            $('#messagediv').addClass('alert-danger');
-       $('#messagediv').css('color','red');
        $('#messagediv').css('display','block');
        $('#showmessage').html(msg); 
       return false;
@@ -329,7 +326,6 @@ function submitDocument(){
 
                $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
         }
@@ -438,7 +434,6 @@ function showresponse(formname,status,msg)
             
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
-            $('#messagediv').css('color','green');
             $('#showmessage').html(msg); 
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
@@ -627,7 +622,6 @@ xmlHttp.onreadystatechange = function()
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
                return 0;  
@@ -686,7 +680,6 @@ xmlHttp.onreadystatechange = function()
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
 
@@ -698,7 +691,6 @@ xmlHttp.onreadystatechange = function()
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
 
@@ -710,7 +702,6 @@ xmlHttp.onreadystatechange = function()
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
       }
@@ -720,7 +711,6 @@ xmlHttp.onreadystatechange = function()
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
       }
@@ -768,6 +758,7 @@ function showprogress(){
               if(xmlHttp.readyState==4)
               {
                 var status=xmlHttp.responseText;
+                console.log(status);
                 var  json = JSON.parse(status);
                 for(var k in json){
 
@@ -837,7 +828,6 @@ function submitWork(){
 
              $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
                $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
       return false;
@@ -876,7 +866,6 @@ function submitWork(){
             
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
-            $('#messagediv').css('color','green');
             $('#showmessage').html(msg); 
 
               
@@ -887,7 +876,6 @@ function submitWork(){
 
             $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('color','red');
              $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
 
@@ -904,7 +892,6 @@ function submitWork(){
       msg= "From date and To date Error!";
        $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('color','red');
              $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
     }
@@ -933,7 +920,6 @@ function updateWork(){
 
           $('#messagediv').removeClass('alert-success');
           $('#messagediv').addClass('alert-danger');
-          $('#messagediv').css('color','red');
           $('#messagediv').css('display','block');
           $('#showmessage').html(msg); 
       return false;
@@ -969,7 +955,6 @@ function updateWork(){
              msg="Updated";
               $('#messagediv').addClass('alert-success');
                $('#messagediv').css('background','#ffadad !important');
-               $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
                 $('#showmessage').html(msg); 
            }
@@ -979,7 +964,6 @@ function updateWork(){
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
@@ -995,7 +979,6 @@ function updateWork(){
       msg= "From date and To date Error!";
        $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('color','red');
              $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
     }
@@ -1131,7 +1114,6 @@ function inCompleteIcon(tabId){
 
                // $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
               location.reload();
@@ -1161,7 +1143,6 @@ function inCompleteIcon(tabId){
 
                // $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
               location.reload();
@@ -1206,7 +1187,6 @@ function assign()
                     msg="Assign an Employee";
 
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
               return 0;
@@ -1227,7 +1207,6 @@ function assign()
 
                $('#messagediv').removeClass('alert-danger');
                $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('color','green');
                $('#messagediv').css('display','block');
               $('#showmessage').html(msg); }
               check_complete();
@@ -1246,7 +1225,6 @@ function assign()
   {
      msg="Enter leave name";
      $('#messagediv').addClass('alert-danger');
-     $('#messagediv').css('color','red');
      $('#messagediv').css('display','block');
     $('#showmessage').html(msg); 
     return 0;
@@ -1264,21 +1242,20 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
+
           var msg='';
          $('#messagediv').removeClass('alert-danger');
           $('#messagediv').removeClass('alert-warning');
 
-          var reply= xmlHttp.responseText
+          var reply= xmlHttp.responseText;
           if(reply=="inserted"){
            msg="Leave Added Successfully";
            $('#messagediv').addClass('alert-success');
-             $('#messagediv').css('color','green');
            
           }
           if(reply=="updated"){
              msg="Leave Updated Successfully";
              $('#messagediv').addClass('alert-success');
-             $('#messagediv').css('color','green');
          }
          if(reply=="already"){
              msg="Leave Already Exists";
@@ -1289,6 +1266,8 @@ function assign()
         $('#showmessage').html(msg); 
         $( "#leavetable" ).load(window.location.href + " #leave" );
         $( "#formdiv" ).load(window.location.href + " #package-form" );
+        $( "#packagetable" ).load(window.location.href + " #package" );
+
 
         $('#leave_id').val('');
         $('#leave_name').val('');
@@ -1311,13 +1290,14 @@ function assign()
     {
         if(xmlHttp.readyState==4)
         {
-         msg="Deleted Successfully.";
-        // $('#messagediv').removeClass('alert-success');
+          reply=xmlHttp.responseText;
+
+         if(reply=="assigned") msg="Leave has been assigned to package. Unable to Delete";
+         else msg="Deleted Successfully.";
+
          $('#messagediv').addClass('alert-danger');
-         $('#messagediv').css('color','red');
          $('#messagediv').css('display','block');
         $('#showmessage').html(msg); 
-        // location.reload();
          dismissModal();
         $( "#leavetable" ).load(window.location.href + " #leave" );
         $( "#formdiv" ).load(window.location.href + " #package-form" );
@@ -1359,10 +1339,11 @@ function dismissDenyModal()
     {
         if(xmlHttp.readyState==4)
         {
-         msg="Deleted Successfully.";
+        var reply=xmlHttp.responseText;
+         if(reply=="assigned") msg="Package has been assigned to employee. Unable to Delete";
+         else msg="Deleted Successfully.";
         // $('#messagediv').removeClass('alert-success');
          $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
           dismissModal();
@@ -1400,7 +1381,6 @@ function dismissDenyModal()
    {
      msg="Enter package name and select leave type";
      $('#messagediv1').addClass('alert-danger');
-     $('#messagediv1').css('color','red');
      $('#messagediv1').css('display','block');
      $('#showmessage1').html(msg); 
 
@@ -1429,12 +1409,10 @@ function dismissDenyModal()
           if(reply=="inserted"){
            msg="Package Added Successfully";
            $('#messagediv1').addClass('alert-success');
-             $('#messagediv1').css('color','green');
           }
           if(reply=="updated"){
              msg="Package Updated Successfully";
              $('#messagediv1').addClass('alert-success');
-             $('#messagediv1').css('color','green');
          }
          if(reply=="already"){
              msg="Package Already Exists";
@@ -1601,7 +1579,6 @@ function denyLeaveFromRecommender(id)
       msg="Leave request denied.";
         // $('#messagediv').removeClass('alert-success');
          $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
@@ -1643,7 +1620,6 @@ function denyLeaveFromApprover(id)
       msg="Leave request denied.";
         // $('#messagediv').removeClass('alert-success');
          $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
