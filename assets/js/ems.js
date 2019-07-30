@@ -236,6 +236,7 @@ $(document).ready(function(){
           }
           else
           {
+
           xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
@@ -832,7 +833,7 @@ function submitWork(){
   
   for( i = 0; i < responsibility.length; i++ )
      {
-     if(responsibility[i].value==''||organization[i].value==''){
+     if(organization[i].value==''){
         var msg="Enter complete information";
 
              $('#messagediv').removeClass('alert-success');
@@ -857,7 +858,7 @@ function submitWork(){
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
 
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() && checkCurrentDate('from_date'))
       {
 
       xmlHttp.onreadystatechange = function()
@@ -957,7 +958,7 @@ function updateWork(){
       data.append('contact_person_phone',contact_person_phone[i].value);
       data.append('contact_address',contact_address[i].value);
       xmlHttp.send(data);
-      if(DateCheck() && checkCurrentDate('from_date') && checkCurrentDate('to_date') )
+      if(DateCheck() && checkCurrentDate('from_date')  )
       {
         xmlHttp.onreadystatechange = function()
       {

@@ -244,7 +244,10 @@ class Admin_controller extends CI_Controller {
 	{			
 		$result=array();
 		extract($_POST);
-
+		if($join_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -280,6 +283,11 @@ class Admin_controller extends CI_Controller {
 		$result=array();
 		extract($_POST);
 
+		if($join_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
+
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -310,6 +318,10 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
+		if($dob>Data('Y-m-d'))
+		{
+			return 0;
+		}
 		$data=array(
 			'gender'=>$gender,
 			'dob'=>$dob,
@@ -650,11 +662,14 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function addWork()
 	{
-					$_SESSION['path']="work";
+		$_SESSION['path']="work";
 
 		$status='';
 		extract($_POST);
-
+		if($from_date>Date('d-m-Y'))
+		{
+			return 0;
+		}
 		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
 					if(isset($_SESSION['current_employee_id'])){
@@ -689,10 +704,14 @@ class Admin_controller extends CI_Controller {
 // for work experience
 	public function updateWork()
 	{
-			$_SESSION['path']="work";
+		$_SESSION['path']="work";
 		$status='';
 		extract($_POST);
-
+		if($from_date>Date('Y-m-d'))
+		{
+			echo($from_date);
+			return 0;
+		}
 		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
 
 					if(isset($_SESSION['current_employee_id'])){
