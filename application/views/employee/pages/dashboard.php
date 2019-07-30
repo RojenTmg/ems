@@ -2,8 +2,8 @@
     <div class="con-head">
       <h4>Dashboard</h4>
     </div>
-    <div class="con-sum">
-          <div class="sum-item">
+    <div class="con-sum" id="leave-div">
+          <div class="sum-item" id="leave-39">
           <a href="<?= base_url('employee'); ?>/leave_details">
             <div class="item-1 sp-btn">
               <div>
@@ -11,7 +11,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Casual Leave</div>
-                <div class="hl-cont">5<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
+                <div class="hl-cont"><span id="leave-taken">5</span><span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -20,7 +20,7 @@
             </div>
           </a>
           </div>
-          <div class="sum-item">
+          <div class="sum-item"  id="leave-40">
           <a href="<?= base_url('employee'); ?>/leave_details">
             <div class="item-1 sp-btn">
               <div>
@@ -28,7 +28,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Sick Leave</div>
-                <div class="hl-cont">3<span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
+                <div class="hl-cont"><span id="leave-taken">3</span><span><em> out of &nbsp;</em></span>6<span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -106,7 +106,7 @@
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
-                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
+                    <td id="leave-<?php echo $value['lID']; ?>" class="leave-days"><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['dpb_first_name'] .' '. $value['dpb_middle_name'] .' '. $value['dpb_last_name']; ?></td>
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'granted') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
@@ -155,13 +155,13 @@
           <tbody>
             <?php
                 foreach ($employee_leaves as $value) { ?>
-                  <tr>
+                  <tr  id="<?php echo $value['id']; ?>">
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
-                    <td><?php ?> <span class="pending">Pending</span> </td>
+                    <td class="status"><?php ?> <span class="pending">Pending</span> </td>
                   </tr>
                 <?php } ?>
           </tbody>
@@ -172,8 +172,8 @@
     </div>
   </div>  
 
-  <div id="simpleModal" class="modal">
-    <div class="modal-content" >
+  <div id="simpleModal" class="modalC">
+    <div class="modalC-content" >
         <div class="modal-header">
           <h4 class="modal-title">Are you sure?</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeModal()">&times;</button>
@@ -236,40 +236,59 @@
   });
 
   $('.table tr .btn-edit').click(function(ev){
-    $('.modal').css("display", "block");
+    $('.modalC').css("display", "block");
     var id = $(this).closest('tr').attr('id');
     $('#leave_id').val(id);
     ev.stopPropagation();
   });
 
+  // change status after grant or deny
+  function statusChange(table, id, status) {
+    $(''+ table +'').find('#'+id+'').find('.status span').remove(); 
+    $(''+ table +'').find('#'+id+'').find('.status').append(''+ status +''); 
+  }
+
+  function changeLeaveBalance(id, days) {
+    $('#leave-div').find('#'+id+'').find('#leave-taken').text((parseInt($('#leave-div').find('#'+id+'').find('#leave-taken').text()) || 0) + (parseInt(days) || 0)); 
+  }
+
+
+
+
+  // deny Leave
   $('#deny-approve').click(function(){
-    var modal = document.getElementById('simpleModal');
-    $('.md-form textarea').val('');
-    modal.style.display = 'none';
+      var modal = document.getElementById('simpleModal');
+      $('.md-form textarea').val('');
+      modal.style.display = 'none';
 
+      var id = $('.md-form input').val();
+      // $('#datatable2').find('#'+id+'').find('.btn-archive').setAttribute("disabled", false)
+      statusChange('#datatable2', id, '<span class="denied">Denied</span>');
+      statusChange('#datatable1', id, '<span class="denied">Denied</span>');
 
-    var id = $('.md-form input').val();
-    // $('#datatable2').find('#'+id+'').find('.btn-archive').setAttribute("disabled", false)
-    $('#datatable2').find('#'+id+'').find('.status span').remove(); 
-    $('#datatable2').find('#'+id+'').find('.status').append('<span class="denied">Denied</span>'); 
-
-    $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
-    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+      $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
+      $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
    });
 
-   $('.table tr .btn-archive .tip-arch').click(function(){
+   $('.table tr .btn-archive .tip-arch').click(function(ev){
     var id = $(this).closest('tr').attr('id');
     // $(this).closest('tr').remove(); 
 
+    // change status on table
     $(this).closest('tr').find('.status span').remove(); 
     $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
-    $(this).closest('.tooltiptext').remove(); 
-  
-    // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
+    // $(this).closest('.tooltiptext').remove(); 
+    $(this).parent().css("display", "none"); 
+    statusChange('#datatable1', id, '<span class="granted">Granted</span>');
 
+    // change leave-balance on dashboard
+    changeLeaveBalance($(this).closest('tr').find('.leave-days').attr('id'), $(this).closest('tr').find('.leave-days').text());
+
+    // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Grant Successful !</p>Leave is granted successfully.</div></div>');
       $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-     });
+    ev.stopPropagation();
+   });
 
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
@@ -288,12 +307,9 @@
   //   var modal = document.getElementById('simpleModal');
   //   if (e.target == modal) {
   //     modal.style.display = 'none';
+  //     dd.style.display = 'none';
   //   }
   // }
-
-
-
- 
 
   </script>
     

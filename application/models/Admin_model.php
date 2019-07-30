@@ -12,10 +12,7 @@
 			$this->db->where('emp_id',$id);	
 			return $this->db->update('employee_approvers',$data);
 			}
-
 		}
-
-	
 
 		public function assignList(){
 			$result=$this->db->get('employee_approvers');

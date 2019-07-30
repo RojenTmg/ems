@@ -693,6 +693,9 @@ body {
   font-size: 0.6em;
   /*color: #98a4c7;*/
 }
+.hl-cont #leave-taken {
+  font-size: 1em; 
+}
 .sum-item .item-2 {
   font-size: 0.9em;
   color: #556f83;
@@ -1383,7 +1386,7 @@ body {
   color: #fff;
 }
 /*-----------------------------prfile-picture-theme-------------------------------------------------*/
-.modal {
+.modalC {
   position: fixed;
   display: none;
   left: 0;
@@ -1394,7 +1397,7 @@ body {
   z-index: 20;
   top: 0;
 }
-.modal-content {
+.modalC-content {
   animation-name: mdopen;
   border-radius: 5px;
   animation-duration: 0.3s;
@@ -1417,12 +1420,13 @@ body {
   border-top: none;
   border-right: none;
   border-left: none;
+  border-bottom: 1px solid #808080;
   width: 90%;
 }
 .md-form textarea {
   outline: none;
 }
-.modal-content {
+.modalC-content {
   background-color: #fff;
 }
 .register i {
