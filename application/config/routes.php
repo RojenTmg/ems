@@ -22,6 +22,7 @@ $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformatio
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['admin/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
+$route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 

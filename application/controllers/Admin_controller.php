@@ -145,13 +145,15 @@ class Admin_controller extends CI_Controller {
 
 	public function employeeManage($id = NULL) 
 	{
-		$id=(int)$id;
+		if($id!=''){
+			$id=(int)$id;
 
-		$this->db->where('emp_id',$id);
-		$emp=$this->db->get('employees');
-		$emplist=$emp->row_array();
+			$this->db->where('emp_id',$id);
+			$emp=$this->db->get('employees');
+			$emplist=$emp->row_array();
 
-		if($emplist==NULL) redirect('error_404'); 
+			if($emplist==NULL) redirect('error_404'); 
+		}
 
 		$title['title'] = 'Manage Employee';
 		if (isset($_SESSION['current_employee_id'])) {
@@ -1101,6 +1103,42 @@ class Admin_controller extends CI_Controller {
 				echo "assigned";
 			}
 		}
+
+		//check employee attendance today
+
+		public function checkStatus(){
+			$id=$_POST['id'];
+
+		$this->db->where('emp_id',$id);
+		$this->db->where('is_approved','approved');
+
+		$query=$this->db->get('employee_leaves');
+		$empLeave=$query->row_array();
+
+		if($empLeave==NULL){
+			$status='present';
+			return $status;
+		}
+		else{
+
+		$leaveBegin=$empLeave['from_date'];
+		$leaveEnd=$empLeave['to_date'];
+
+		$currentDate = Date('Y-m-d'); // Today
+
+
+		if($currentDate >= $leaveBegin &&
+			$currentDate<= $leaveEnd){
+		
+			$status='absent';
+		}
+		else{
+			$status='present';  
+		}
+		}
+			return $status;
+
+	}
 
 
 
