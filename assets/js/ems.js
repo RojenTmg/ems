@@ -1559,7 +1559,7 @@ function recommendLeave(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+    $( ".lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }
@@ -1583,7 +1583,7 @@ function denyLeaveFromRecommender(id)
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
      dismissDenyModal();
-      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+      $( ".lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }
@@ -1608,7 +1608,7 @@ function leaveApproveF(l_id)
 //deny leave by approver
 function denyLeaveFromApprover(id)
 {
-  var reason = document.getElementById('denial_reason'+id).value;
+  var reason = document.getElementById('denial_reason_approver'+id).value;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','denyLeaveFromApprover',true);
   var data = new FormData();
@@ -1670,7 +1670,7 @@ function archiveRecommendRecord(id)
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
          dismissDenyModal();
-      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+      $(".lists").load(window.location.href + " #datatable-recommender" );
   }
 }
 }
