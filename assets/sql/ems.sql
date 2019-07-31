@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2019 at 10:34 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: Jul 31, 2019 at 02:17 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,14 +41,6 @@ CREATE TABLE `addresses` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `addresses`
---
-
-INSERT INTO `addresses` (`address_id`, `street`, `municipality`, `district`, `state`, `country`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(6, '', '', '', '', 'Nepal', '', '2019-07-25 13:24:38', '', '2019-07-25 13:24:38'),
-(7, '13', '123', '123', 'Province 1', 'NP', '', '2019-07-25 13:24:38', '', '2019-07-25 13:24:38');
-
 -- --------------------------------------------------------
 
 --
@@ -68,13 +60,6 @@ CREATE TABLE `contacts` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `contacts`
---
-
-INSERT INTO `contacts` (`contact_id`, `home_phone`, `mobile_phone`, `other_phone1`, `other_phone2`, `other_phone3`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`) VALUES
-(6, '', '123', '', '', '', '', '2019-07-25 13:24:41', '', '2019-07-25 13:24:41', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +81,7 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `department_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'IT', '', '2019-07-25 09:03:31', '', '2019-07-25 09:03:31');
+(1, 'IT', '', '2019-07-25 03:18:31', '', '2019-07-25 03:18:31');
 
 -- --------------------------------------------------------
 
@@ -153,10 +138,9 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`, `package_id`, `is_approver`, `is_recommender`, `is_on_leave`) VALUES
-(255, '0', 'Mr', 'Tsering', '', 'Lama', '2019-07-25', 1, 1, '', '2019-07-25 09:03:39', NULL, '2019-07-25 09:03:39', 'candy.khando@gmail.com', 'Nepalese', 'Not required', '', '0000-00-00', '123', 'test', '123', '213', '123', '123', 'Master', '213', '123', '213', '1989-11-30', 'Male', 'B -ve', '23', '123', 'No', '', '123', NULL, NULL, '1', '1', '0'),
-(256, '0', 'Mr', 'Ramesh', '', 'Kunwar', '2019-07-25', 1, 1, '', '2019-07-25 14:19:20', NULL, '2019-07-25 14:19:20', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '1', '0'),
-(257, '0', 'Mr', 'Nima', '', 'Lama', '2019-07-26', 1, 1, '', '2019-07-26 04:31:09', NULL, '2019-07-26 04:31:09', 'dragonfiregal.2@gma.con', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1989-11-30', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '1', '0', '0'),
-(258, '0', 'Mr', 'James', '', 'Pradhan', '2019-07-26', 1, 1, '', '2019-07-26 14:58:07', NULL, '2019-07-26 14:58:07', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0');
+(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 1, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '1', '1', '0'),
+(277, '0', 'Mr', 'Bryan', '', 'Adams', '2019-07-30', 1, 1, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34', 'bryan123@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1970-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '1', '1', '0'),
+(278, '0', 'Mr', 'Hari', '', 'Nepal', '2019-07-30', 1, 1, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', '', NULL, NULL, '', NULL, NULL, NULL, 44, '1', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -173,13 +157,6 @@ CREATE TABLE `employee_addresses` (
   `modified_by` varchar(50) NOT NULL,
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_addresses`
---
-
-INSERT INTO `employee_addresses` (`emp_id`, `primary_addressId`, `secondary_addressId`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(255, 6, 7, '', '2019-07-25 13:24:38', '', '2019-07-25 13:24:38');
 
 -- --------------------------------------------------------
 
@@ -202,9 +179,8 @@ CREATE TABLE `employee_approvers` (
 --
 
 INSERT INTO `employee_approvers` (`approver_id`, `emp_id`, `recommender_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(255, 257, 255, '123', '2019-07-26 04:51:25', NULL, '2019-07-26 04:51:25'),
-(257, 258, 255, '123', '2019-07-26 14:58:16', NULL, '2019-07-26 14:58:16'),
-(257, 255, 256, '123', '2019-07-29 07:06:28', NULL, '2019-07-29 07:06:28');
+(277, 278, 277, '276', '2019-07-30 04:21:38', NULL, '2019-07-30 04:21:38'),
+(278, 277, 276, '276', '2019-07-30 07:01:16', NULL, '2019-07-30 07:01:16');
 
 -- --------------------------------------------------------
 
@@ -220,13 +196,6 @@ CREATE TABLE `employee_contacts` (
   `modified_by` varchar(50) NOT NULL,
   `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_contacts`
---
-
-INSERT INTO `employee_contacts` (`emp_id`, `contact_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(255, 6, '', '2019-07-25 19:09:42', '', '2019-07-25 19:09:42');
 
 -- --------------------------------------------------------
 
@@ -244,14 +213,6 @@ CREATE TABLE `employee_documents` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_documents`
---
-
-INSERT INTO `employee_documents` (`doc_id`, `emp_id`, `doc_title`, `doc_file`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 255, 'EMS.pdf', 'EMS.pdf', '', '2019-07-25 13:26:27', NULL, '2019-07-25 13:26:27'),
-(2, 256, 'EMS.pdf', 'EMS.pdf', '', '2019-07-25 14:26:32', NULL, '2019-07-25 14:26:32');
 
 -- --------------------------------------------------------
 
@@ -281,16 +242,17 @@ CREATE TABLE `employee_leaves` (
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_archived` enum('0','1') NOT NULL DEFAULT '0'
+  `is_archived` enum('0','1') NOT NULL,
+  `is_archived_by_approver` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_leaves`
 --
 
-INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`) VALUES
-(119, 255, 39, NULL, NULL, NULL, 'pending', 'half', 'denied', '0000-00-00', '2019-07-25', NULL, 0, ' 213', 'dfasdfas', '0000-00-00', '0000-00-00', '', '2019-07-25 12:36:03', NULL, '2019-07-25 12:36:03', '1'),
-(121, 257, 39, NULL, NULL, NULL, 'approved', 'half', 'recommended', '0000-00-00', '2019-07-26', NULL, 255, ' ', '123', '0000-00-00', '0000-00-00', '', '2019-07-26 04:52:30', NULL, '2019-07-26 04:52:30', '1');
+INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`, `is_archived_by_approver`) VALUES
+(138, 277, 40, NULL, NULL, NULL, 'pending', 'multiple', 'recommended', '0000-00-00', '2019-07-30', '2019-08-01', 276, ' ', 'a', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:51', NULL, '2019-07-30 14:36:51', '0', '1'),
+(139, 277, 40, NULL, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-07-30', NULL, 276, ' ', 'r', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:57', NULL, '2019-07-30 14:36:57', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -313,7 +275,8 @@ CREATE TABLE `employee_leave_balance` (
 --
 
 INSERT INTO `employee_leave_balance` (`emp_id`, `leave_id`, `remain_days`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(255, 39, 1, '', '2019-07-29 07:35:02', NULL, NULL);
+(277, 39, 6, '', '2019-07-30 07:01:16', NULL, NULL),
+(277, 40, 6, '', '2019-07-30 07:01:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -342,7 +305,8 @@ CREATE TABLE `employee_work_experience` (
 --
 
 INSERT INTO `employee_work_experience` (`id`, `emp_id`, `responsibility`, `organization`, `contact_person_name`, `contact_person_phone`, `contact_address`, `from_date`, `to_date`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(2, 257, '123', '132', '123', '123', '123', '2019-07-01', '2019-07-15', '', '2019-07-26 04:32:48', NULL, '2019-07-26 10:17:48');
+(44, 276, 'CEO ', 'Kantipur TV', 'Shyam', '9801234143', 'Kathmandu', '2019-07-31', '2019-07-30', '', '2019-07-29 06:04:18', NULL, '2019-07-29 11:49:18'),
+(45, 276, 'CEO ', 'Kantipur TV', 'Shyam', '9801234143', 'Kathmandu', '2019-07-31', '2019-08-15', '', '2019-07-29 06:04:32', NULL, '2019-07-29 11:49:32');
 
 -- --------------------------------------------------------
 
@@ -364,8 +328,9 @@ CREATE TABLE `leaves` (
 --
 
 INSERT INTO `leaves` (`leave_id`, `leave_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(39, 'Casual Leave', '123', '2019-07-25 12:35:36', NULL, '2019-07-25 12:35:36'),
-(41, 'Sick Leave', '123', '2019-07-29 07:41:26', NULL, '2019-07-29 07:41:26');
+(39, 'Casual Leave', '123', '2019-07-25 06:50:36', NULL, '2019-07-25 06:50:36'),
+(40, 'Sick Leave', '123', '2019-07-25 08:33:46', NULL, '2019-07-25 08:33:46'),
+(41, 'kjgh', '276', '2019-07-30 05:34:58', NULL, '2019-07-30 05:34:58');
 
 -- --------------------------------------------------------
 
@@ -388,8 +353,11 @@ CREATE TABLE `leave_packages` (
 --
 
 INSERT INTO `leave_packages` (`leave_id`, `package_id`, `duration`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(39, 45, 6, '123', '2019-07-29 07:41:35', NULL, '2019-07-29 07:41:35'),
-(41, 45, 12, '123', '2019-07-29 07:41:35', NULL, '2019-07-29 07:41:35');
+(39, 44, 6, '276', '2019-07-30 05:20:04', NULL, '2019-07-30 05:20:04'),
+(39, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21'),
+(40, 44, 6, '276', '2019-07-30 05:20:04', NULL, '2019-07-30 05:20:04'),
+(40, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21'),
+(41, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21');
 
 -- --------------------------------------------------------
 
@@ -426,7 +394,8 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`package_id`, `package_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(45, 'Normal', '123', '2019-07-29 07:41:17', NULL, '2019-07-29 07:41:17');
+(44, 'Normal', '276', '2019-07-25 06:50:43', NULL, '2019-07-25 06:50:43'),
+(45, 'kjghkh', '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21');
 
 -- --------------------------------------------------------
 
@@ -462,8 +431,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(3, 'admin', '', '2019-07-25 09:00:19', NULL, '2019-07-25 09:00:19'),
-(4, 'employee', '', '2019-07-25 09:00:19', NULL, '2019-07-25 09:00:19');
+(3, 'admin', '', '2019-07-25 03:15:19', NULL, '2019-07-25 03:15:19'),
+(4, 'employee', '', '2019-07-25 03:15:19', NULL, '2019-07-25 03:15:19');
 
 -- --------------------------------------------------------
 
@@ -503,11 +472,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(250, 123, 'admin', 0, '', '2019-07-25 09:00:02', '', '2019-07-25 09:00:02'),
-(251, 255, 'tsla123', 1, '', '2019-07-25 09:03:39', '', '2019-07-25 09:03:39'),
-(252, 256, 'raku123', 0, '', '2019-07-25 14:19:20', '', '2019-07-25 14:19:20'),
-(253, 257, 'nila123', 0, '', '2019-07-26 04:31:10', '', '2019-07-26 04:31:10'),
-(254, 258, 'japr123', 0, '', '2019-07-26 14:58:07', '', '2019-07-26 14:58:07');
+(257, 276, 'grri123', 0, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
+(258, 277, 'brad123', 1, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
+(259, 278, 'hane123', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08');
 
 -- --------------------------------------------------------
 
@@ -529,11 +496,9 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(3, 250, '', '2019-07-25 09:00:35', NULL, '2019-07-25 09:00:35'),
-(4, 251, '', '2019-07-25 09:03:39', NULL, '2019-07-25 09:03:39'),
-(4, 252, '', '2019-07-25 14:19:21', NULL, '2019-07-25 14:19:21'),
-(4, 253, '', '2019-07-26 04:31:10', NULL, '2019-07-26 04:31:10'),
-(4, 254, '', '2019-07-26 14:58:07', NULL, '2019-07-26 14:58:07');
+(3, 257, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13'),
+(4, 258, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34'),
+(4, 259, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08');
 
 --
 -- Indexes for dumped tables
@@ -689,13 +654,13 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -707,25 +672,25 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=279;
 
 --
 -- AUTO_INCREMENT for table `employee_documents`
 --
 ALTER TABLE `employee_documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee_leaves`
 --
 ALTER TABLE `employee_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT for table `employee_work_experience`
 --
 ALTER TABLE `employee_work_experience`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -761,7 +726,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
 
 --
 -- Constraints for dumped tables
