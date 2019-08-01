@@ -105,7 +105,7 @@
 			$data['leaves'] = $this->Database_model->findAll('leaves');
 
 
-			if ($this->input->post('submit') !== NULL) {
+			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 				$leaveData = array(
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id

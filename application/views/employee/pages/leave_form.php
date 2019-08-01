@@ -71,7 +71,8 @@
             <textarea rows="5" name="reason" id="reason"> </textarea>
           </div>
             <div class="sub-can">
-              <button class="sub" type="submit" name="submit">Submit</button>
+              <input type="submit" name="submit" class="sub" value="Submit">
+              
             </div>
         </form>
       </div>
