@@ -517,6 +517,7 @@
       <!-- PAN ends -->
 
       <!-- work experience -->
+
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
           <div class="message-div">
@@ -526,7 +527,9 @@
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
+
           <p class="title" id="add_doc_title"></p>
+
              <div id="work-experience" class="bg-light"></div>
               <!-- the form appends here -->
               <?php 
@@ -570,6 +573,7 @@
           </div>
         </form>
       </div>
+    
       <!-- work experience ends-->
 
       <!-- documents tab -->
