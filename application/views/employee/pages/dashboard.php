@@ -1,4 +1,4 @@
-  <div class="contents">
+<div class="contents">
     <div class="con-head">
       <h4>Dashboard</h4>
     </div>
@@ -177,6 +177,7 @@
     </div>
     <div class="box">
       <div class="box-head">
+        <p>Leaves left to be Approved</p>
         <div class="arch-msg-div"></div>
       </div>
      
@@ -198,7 +199,7 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_leaves as $value) { ?>
+                foreach ($employee_leaves_approve as $value) { ?>
                   <tr id="<?php echo $value['id']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
@@ -219,14 +220,14 @@
                         </div>
                       </button>
 
-                      <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
+                      <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
 
                         <button  class="btn-edit" data-toggle="modal" data-target="#deleteApprovalrequests<?php  echo $value['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
                       <?php } ?>
 
           <!-- Modal for denial reason-->
-          <div class="modal fade" id="exampleModalCenter<?php  echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal fade" id="exampleModalCenterApprover<?php  echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -238,7 +239,7 @@
                 <div class="modal-body">
               
                     <div class="form-group">
-                    <input class="form-control" type="text" name="" id="denial_reason<?php  echo $value['id']; ?>">
+                    <input class="form-control" type="text" name="" id="denial_reason_approver<?php  echo $value['id']; ?>">
                     </div>
                   
                 </div>
@@ -289,7 +290,7 @@
       </div>
       <div class="box">
       <div class="box-head">
-       
+        <p>Recently Requested Leaves</p>
       </div>
       <div class="box-body" style="overflow-x:auto;">
         <table class="table table-bordered hover employee_table" id="datatable1" >
@@ -327,19 +328,15 @@
 
 
   <script type="text/javascript">
-
         $(document).ready(function(){
        $('#datatable-recommender').DataTable({
         "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
             "aaSorting": [],  });
     });
-
     $(document).ready(function(){
        $('#datatable1').DataTable({
           /* Disable initial sort */
             "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
-
-
          /* disable sorting on specific columns */
          // 'columnDefs': [ {
             // 'targets': [1], /* column index */
@@ -347,13 +344,10 @@
          // }]
        });
     });
-
      $(document).ready(function(){
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
               "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
-
-
            /* disable sorting on specific columns */
            // 'columnDefs': [ {
               // 'targets': [1], /* column index */
@@ -361,69 +355,23 @@
            // }]
          });
       });
-
   $('.tip-can').click(function(ev) {
     $(this).parent().css({"display": "none"});
     ev.stopPropagation();
   });
-
   $('.table tr .btn-archive').click(function(ev) {
     $(this).children()[1].style.display = 'block';
     ev.stopPropagation();
   });
-
-  $('.table tbody tr').click(function() {
-    // var id = $(this).attr('id');
-    // window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-  });
-
-  // $('.table tr #deny-approve').click(function(ev){
-  //   $('.modal').css("display", "block");
-  //   var id = $(this).closest('tr').attr('id');
-  //   $('#leave_id').val(id);
-  //   ev.stopPropagation();
-  // });
-
-  // $('#deny-approve').click(function(){
-  //   var modal = document.getElementById('simpleModal');
-  //   $('.md-form textarea').val('');
-  //   modal.style.display = 'none';
-
-  //   var id = $('.md-form input').val();
-  //   $('#datatable-approval').find('#'+id+'').find('.status span').remove(); 
-  //   $('#datatable-approval').find('#'+id+'').find('.status').append('<span class="denied">Denied</span>'); 
-
-  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  //  });
-
-   $('.table tr .btn-archive .tip-arch').click(function(){
-     // location.reload();
-    // $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
-    var id = $(this).closest('tr').attr('id');
-    // $(this).closest('tr').remove(); 
-
-  //   $(this).closest('tr').find('.status span').remove(); 
-  //   $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
-  //   $(this).closest('.tooltiptext').remove(); 
-  
-    // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
-
-    $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Grant Successful !</p>Leave is granted successfully.</div></div>');
-      $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-     });
-
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
   });
-
-  function closeModal() {
-    var modal = document.getElementById('simpleModal');
-    $('.md-form textarea').val('');
-    modal.style.display = 'none';
-  }
-
+  // function closeModal() {
+  //   var modal = document.getElementById('simpleModal');
+  //   $('.md-form textarea').val('');
+  //   modal.style.display = 'none';
+  // }
   // window.addEventListener('click', outsideClick);
   
   // function outsideClick(e) {
@@ -432,13 +380,5 @@
   //     modal.style.display = 'none';
   //   }
   // }
-
-
-
  
-
   </script>
-    
-
-
-

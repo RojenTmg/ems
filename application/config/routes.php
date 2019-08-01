@@ -22,6 +22,7 @@ $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformatio
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['admin/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
+$route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 
@@ -37,6 +38,7 @@ $route['archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
 
 $route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1';
 $route['employee/denyApprove'] = 'Employee_controller/denyApprove';
+// $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';

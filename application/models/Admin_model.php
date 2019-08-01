@@ -12,7 +12,6 @@
 			$this->db->where('emp_id',$id);	
 			return $this->db->update('employee_approvers',$data);
 			}
-
 		}
 		public function insert_leave_balance($data){			
 			$this->db->insert('employee_leave_balance',$data);
@@ -23,7 +22,6 @@
 			$this->db->delete('employee_leave_balance');
 		}
 	
-
 		public function assignList(){
 			$result=$this->db->get('employee_approvers');
 			return $result->result_array();
@@ -110,7 +108,7 @@
 			$user_num=$this->db->insert_id();
 			$userRoleData=array(
 				'user_id'=>$user_num,
-				'role_id'=>'4'
+				'role_id'=>'2'
 			);
 			 $this->db->insert('user_roles',$userRoleData);
 			 return $user_id;

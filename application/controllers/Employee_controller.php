@@ -46,7 +46,7 @@
 		{
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
-			$data['employee_leaves'] = $this->Employee_model->findApproveLeaves();
+			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList();
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
@@ -169,12 +169,11 @@
 			$this->db->update('employee_leaves',$data);
 		}
 
-		// deny leave by recommender
+		// deny leave by Approver
 		public function denyLeaveFromApprover()
 		{
-			
 			extract($_POST);
-			$data=array( 'is_approved'=>'denied','denial_reason'=>$denial_reason);
+			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
@@ -298,7 +297,7 @@
 		public function archiveApprovalRecord()
 		{
 			extract($_POST);
-			$data=array('is_archived'=>'1');
+			$data=array('is_archived_by_approver'=>'1');
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
