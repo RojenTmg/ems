@@ -328,7 +328,7 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
-		if($dob>Data('Y-m-d'))
+		if($dob>Date('Y-m-d'))
 		{
 			return 0;
 		}

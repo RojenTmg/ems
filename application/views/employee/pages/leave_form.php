@@ -72,7 +72,6 @@
           </div>
             <div class="sub-can">
               <input type="submit" name="submit" class="sub" value="Submit">
-              
             </div>
         </form>
       </div>
