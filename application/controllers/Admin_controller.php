@@ -254,7 +254,7 @@ class Admin_controller extends CI_Controller {
 	{			
 		$result=array();
 		extract($_POST);
-		if($join_date>Date('d-m-Y'))
+		if($join_date>Date('Y-m-d'))
 		{
 			return 0;
 		}
