@@ -328,7 +328,7 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
-		if($dob>Data('Y-m-d'))
+		if($dob>Date('Y-m-d'))
 		{
 			return 0;
 		}
@@ -479,7 +479,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
-
+		if($visa_expiry_date<Date('Y-m-d'))
+			{return 0;}
 		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
 
 		$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));

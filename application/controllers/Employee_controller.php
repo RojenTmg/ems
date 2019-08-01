@@ -104,7 +104,7 @@
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
 			$data['leaves'] = $this->Database_model->findAll('leaves');
 
-			if ($this->input->post('submit') !== NULL) {
+			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 		
 				$data['clb'] = $this->Employee_model->checkLeaveBalance($_SESSION['user_id'], (int)$leave['leave_id']);

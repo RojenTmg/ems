@@ -319,6 +319,7 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
+               $('#messagediv').addClass('alert-success');
               $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
            }
@@ -560,6 +561,18 @@ function showresponse(formname,status,msg)
           data.append('passport_no',document.getElementById('passport_no').value);
           data.append('passport_issue_place',document.getElementById('passport_issue_place').value);
           xmlHttp.send(data);
+     if(checkCurrentDate('visa_expiry_date'))
+      {
+         msg="Invalid Visa Expiry date";
+
+              $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('color','red');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+      }
+      else{
+
 xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
@@ -569,6 +582,8 @@ xmlHttp.onreadystatechange = function()
               }
           }
   }
+  
+      }
 
   // Emergency contact
   function addEmergency()
@@ -812,94 +827,6 @@ function removeWorkExperience(exp)
 }
 
 // submit employee work experience to the table
-function submitWork(){
-
-  var responsibility = document.getElementsByName('responsibility');
-  var organization = document.getElementsByName('organization');
-   var contact_person_name = document.getElementsByName('contact_person_name');
-   var contact_person_phone = document.getElementsByName('contact_person_phone');
-   var contact_address = document.getElementsByName('contact_address');
-  var from_date = document.getElementsByName('from_date');
-  var to_date= document.getElementsByName('to_date');
-  var count=0;
-  
-  for( i = 0; i < responsibility.length; i++ )
-     {
-     if(organization[i].value==''){
-        var msg="Enter complete information";
-
-             $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-      return false;
-     }
-  }
-    for( i = 0; i < responsibility.length; i++ )
-     {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open('POST','addWork',true);
-      var data = new FormData();
-      data.append('responsibility',responsibility[i].value);
-      data.append('organization',organization[i].value);
-      data.append('from_date',from_date[i].value);
-      data.append('to_date',to_date[i].value);
-      data.append('contact_person_name',contact_person_name[i].value);
-      data.append('contact_person_phone',contact_person_phone[i].value);
-      data.append('contact_address',contact_address[i].value);
-      xmlHttp.send(data);
-
-      if(DateCheck() && checkCurrentDate('from_date'))
-      {
-
-      xmlHttp.onreadystatechange = function()
-      {
-          if(xmlHttp.readyState==4)
-          {
-           var status = xmlHttp.responseText;
-           if(status=='true')
-           {
-             msg="Updated";
-             if($('#messagediv').hasClass('alert-danger')){
-
-            $('#messagediv').removeClass('alert-danger');
-            $('#messagediv').addClass('alert-success');
-            }
-            
-           $('#messagediv').css('display','block');
-            $('#messagediv').css('background','#ffadad !important');
-            $('#showmessage').html(msg); 
-
-              
-           }
-          else{
-            count++;
-             msg="Enter information";
-
-            $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-
-
-          }
-          location.reload();
-          }
-      }
-      
-    }
-
-    else
-    {
-      msg= "From date and To date Error!";
-       $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-    }
-
-      }
-}
 
 // update employee work experience to the table
 function updateWork(){
@@ -969,8 +896,8 @@ function updateWork(){
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
           }
-          // location.reload();
-
+          
+          location.reload();
           }
 
       }
@@ -1675,8 +1602,9 @@ function archiveRecommendRecord(id)
          $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
-         dismissDenyModal();
-      $(".lists").load(window.location.href + " #datatable-recommender" );
+
+     dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
   }
 }
 }

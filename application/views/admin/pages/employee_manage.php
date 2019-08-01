@@ -517,6 +517,7 @@
       <!-- PAN ends -->
 
       <!-- work experience -->
+
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
           <div class="message-div">
@@ -526,7 +527,9 @@
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
+
           <p class="title" id="add_doc_title"></p>
+
              <div id="work-experience" class="bg-light"></div>
               <!-- the form appends here -->
               <?php 
@@ -570,6 +573,7 @@
           </div>
         </form>
       </div>
+    
       <!-- work experience ends-->
 
       <!-- documents tab -->
@@ -602,7 +606,7 @@
           <td>
              <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
-               <div class="tooltiptext float-right" id="deleteFileMessage">
+               <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
                 <p>Are you sure?</p>
                 <span class="tip-can">Cancel</span>
                 <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
@@ -708,10 +712,10 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
      $_SESSION['path']='';
       ?>
 
-              document.getElementById('nav-work').className='tab-pane fade active show';
-              document.getElementById('nav-work-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+      document.getElementById('nav-work').className='tab-pane fade active show';
+      document.getElementById('nav-work-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
 <?php } ?>
 
 

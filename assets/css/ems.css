@@ -25,6 +25,7 @@
 }
 
 @media (min-width: 576px) {
+
   .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
     text-align: center;
     display: table-cell;
@@ -45,6 +46,7 @@
   .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa > .badge {
     top: -7px;
   }
+
 }
 
 @media (min-width: 768px) {
@@ -68,6 +70,7 @@
   .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
     top: -7px;
   }
+
 }
 
 @media (min-width: 992px) {
@@ -1405,3 +1408,44 @@ body {
   justify-content: space-around; 
 }
 
+/*---------------For delete tooltip in manage employee ------------------------*/
+.deleteFiles
+{
+  left: 67%;
+}
+/*responsive*/
+@media (max-width: 576px) {
+.deleteFiles
+{
+  left: 30%;
+}
+ 
+}
+@media (min-width: 576px) {
+.deleteFiles
+{
+  left: 50%;
+}
+ 
+}
+
+@media (min-width: 768px) {
+ .deleteFiles
+{
+  left:60%;
+}
+}
+
+@media (min-width: 992px) {
+  .deleteFiles
+{
+  left: 65%;
+}
+}
+
+@media (min-width: 1200px) {
+ .deleteFiles
+{
+  left: 70%;
+}
+}
