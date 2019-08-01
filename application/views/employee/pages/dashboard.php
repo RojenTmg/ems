@@ -363,8 +363,7 @@
     $(this).children()[1].style.display = 'block';
     ev.stopPropagation();
   });
-<<<<<<< HEAD
-=======
+
 
   $('.table tbody tr').click(function() {
     // var id = $(this).attr('id');
@@ -407,7 +406,7 @@
       $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
      });
 
->>>>>>> parent of e523b15... working ems
+
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
