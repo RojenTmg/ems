@@ -7,8 +7,10 @@
       <div class="box-head">
         <p>Leave Application Form</p>
         <div class="arch-msg-div">
-          <?php if (isset($valid) && $valid == TRUE) { ?>
+          <?php if (isset($valid) && $valid==TRUE) { ?>
             <div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Request Successful !</p>Your request has been successflly sent.</div></div>
+          <?php } else if (isset($not_valid)) { ?>
+            <div class="arch-msg failed"><span><i class="fa fa-times" aria-hidden="true"></i></span><div class="msg-text"><p>Request Failed !</p><?php echo $not_valid; ?></div></div>
           <?php } ?>
         </div>
       </div>

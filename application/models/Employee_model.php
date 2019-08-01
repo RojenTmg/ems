@@ -47,6 +47,18 @@
 
 		}
 
+		public function checkLeaveBalance($id, $leave_id){
+			$leaves= "SELECT l.leave_name AS l_leave_name, elb.remain_days AS elb_remain_days
+					FROM employees e
+					JOIN packages p ON e.package_id=p.package_id
+					JOIN leave_packages lp ON p.package_id=lp.package_id
+					JOIN leaves l ON lp.leave_id=l.leave_id
+					JOIN employee_leave_balance elb ON l.leave_id=elb.leave_id AND e.emp_id=elb.emp_id
+					WHERE e.emp_id=$id AND elb.leave_id = $leave_id";
+			$query = $this->db->query($leaves);
+			return $query->row_array();
+		}
+
 		public function findApproveLeaves($id = FALSE)
 		{
 			$project = "SELECT *, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
@@ -71,6 +83,8 @@
 			
 			return $query->row_array();
 		}
+
+
 
 		// fetch leaves information
 		public function recommendationList()

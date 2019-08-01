@@ -37,8 +37,11 @@ $route['archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
 $route['archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
 
 $route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1';
+
 $route['employee/denyApprove'] = 'Employee_controller/denyApprove';
-// $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
+
+$route['employee/archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
+$route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';

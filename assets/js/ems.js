@@ -52,7 +52,8 @@ $(window).on("scroll", function() {
 ////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
 
   $('#leave_name').change(function() {
-      if ($('#leave_name').val() == 1) {
+      if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
+        $('#half-day').prop('checked', true);
         $('#multiple-days').attr('disabled', true);
       }
       else {
@@ -1600,7 +1601,8 @@ function leaveApproveF(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+    // $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+    location.reload();
   }
 }
 }
@@ -1618,13 +1620,15 @@ function denyLeaveFromApprover(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-      msg="Leave request denied.";
-        // $('#messagediv').removeClass('alert-success');
-         $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); 
-     dismissDenyModal();
-      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+      // msg="Leave request denied.";
+      //   // $('#messagediv').removeClass('alert-success');
+      //    $('#messagediv1').addClass('alert-danger');
+      //    $('#messagediv1').css('display','block');
+      //   $('#showmessage1').html(msg); 
+     // dismissDenyModal();
+     //  $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+    location.reload();
+
   }
 }
 }
@@ -1640,14 +1644,16 @@ function archiveApprovalRecord(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-      msg="Data Archived";
-        // $('#messagediv').removeClass('alert-success');
-         $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('color','red');
-         $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); 
-     dismissDenyModal();
-      $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+     //  msg="Data Archived";
+     //    // $('#messagediv').removeClass('alert-success');
+     //     $('#messagediv1').addClass('alert-danger');
+     //     $('#messagediv1').css('color','red');
+     //     $('#messagediv1').css('display','block');
+     //    $('#showmessage1').html(msg); 
+     // dismissDenyModal();
+     //  $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
+    location.reload();
+
   }
 }
 }

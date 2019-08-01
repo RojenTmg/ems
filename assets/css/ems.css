@@ -1199,7 +1199,12 @@ body {
   padding: 10px 10px !important;
   animation: pop-up 7s linear forwards;
 }
-
+.failed {
+  background-color: #f8d7da !important;
+  border: 1px solid #f6ccd1;
+  color: #721c24;
+  animation: pop-up 10s linear forwards;
+}
 @keyframes pop-up {
   0% { opacity: 0; display: block; }
   5% { opacity: 1; }
