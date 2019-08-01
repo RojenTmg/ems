@@ -1596,8 +1596,13 @@ function archiveRecommendRecord(id)
          $('#messagediv1').css('color','red');
          $('#messagediv1').css('display','block');
         $('#showmessage1').html(msg); 
+<<<<<<< HEAD
          dismissDenyModal();
       $(".lists").load(window.location.href + " #datatable-recommender" );
+=======
+     dismissDenyModal();
+      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+>>>>>>> parent of e523b15... working ems
   }
 }
 }
