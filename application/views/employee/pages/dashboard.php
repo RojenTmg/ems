@@ -364,49 +364,6 @@
     ev.stopPropagation();
   });
 
-
-  $('.table tbody tr').click(function() {
-    // var id = $(this).attr('id');
-    // window.location =  '<?= site_url('admin/employee_detail/'); ?>' + id;
-  });
-
-  // $('.table tr #deny-approve').click(function(ev){
-  //   $('.modal').css("display", "block");
-  //   var id = $(this).closest('tr').attr('id');
-  //   $('#leave_id').val(id);
-  //   ev.stopPropagation();
-  // });
-
-  // $('#deny-approve').click(function(){
-  //   var modal = document.getElementById('simpleModal');
-  //   $('.md-form textarea').val('');
-  //   modal.style.display = 'none';
-
-  //   var id = $('.md-form input').val();
-  //   $('#datatable-approval').find('#'+id+'').find('.status span').remove(); 
-  //   $('#datatable-approval').find('#'+id+'').find('.status').append('<span class="denied">Denied</span>'); 
-
-  //   $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Denial Successful !</p>Leave is denied successfully.</div></div>');
-  //   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  //  });
-
-   $('.table tr .btn-archive .tip-arch').click(function(){
-     location.reload();
-    // $( "#lists-approvelist" ).load(window.location.href + " #datatable-aproval" );
-    var id = $(this).closest('tr').attr('id');
-    // $(this).closest('tr').remove(); 
-
-  //   $(this).closest('tr').find('.status span').remove(); 
-  //   $(this).closest('tr').find('.status').append('<span class="granted">Granted</span>'); 
-  //   $(this).closest('.tooltiptext').remove(); 
-  
-    // $(this).closest('tr').find('.btn-archive')attr('disabled', true);
-
-    $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Grant Successful !</p>Leave is granted successfully.</div></div>');
-      $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-     });
-
-
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
