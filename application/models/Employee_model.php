@@ -49,14 +49,15 @@
 
 		public function findApproveLeaves($id = FALSE)
 		{
+			$approver = $_SESSION['user_id'];
 			$project = "SELECT *, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name
 					    FROM employee_leaves el
 					    LEFT JOIN leaves l ON l.leave_id = el.leave_id
 					    LEFT JOIN employees e ON e.emp_id = el.emp_id
 					    LEFT JOIN employee_approvers ea ON ea.emp_id = el.emp_id
 					    LEFT JOIN employees eaid ON ea.approver_id = eaid.emp_id
-					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by 
-						WHERE el.is_archived= '0' AND  el.is_recommended = 'recommended' OR el.is_approved = 'denied'
+					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by
+						WHERE el.is_archived= '0' AND  ea.approver_id=$approver AND el.is_recommended = 'recommended' OR el.is_approved = 'denied'  
 						ORDER BY el.id DESC";
 
 			if ($id === FALSE) {	
@@ -75,10 +76,12 @@
 		// fetch leaves information
 		public function recommendationList()
 		{
-			
+			$recommender = $_SESSION['user_id'];
 			$this->db->join('employees', 'employee_leaves.emp_id = employees.emp_id');
 			$this->db->join('leaves', 'employee_leaves.leave_id = leaves.leave_id');
+			$this->db->join('employee_approvers', 'employee_leaves.emp_id =employee_approvers.emp_id');
 			$this->db->where('employee_leaves.is_archived', '0');
+			$this->db->where('employee_approvers.recommender_id', $recommender);
 			$query = $this->db->get('employee_leaves');
 			return $query->result_array();
 		}
