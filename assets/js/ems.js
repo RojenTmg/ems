@@ -318,6 +318,7 @@ function submitDocument(){
            if(status=='true')
            {
              msg="Files Uploaded";
+               $('#messagediv').addClass('alert-success');
               $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
            }
@@ -873,12 +874,12 @@ function submitWork(){
            if(status=='true')
            {
              msg="Updated";
-             if($('#messagediv').hasClass('alert-danger')){
+            //  if($('#messagediv').hasClass('alert-danger')){
 
-            $('#messagediv').removeClass('alert-danger');
-            $('#messagediv').addClass('alert-success');
-            }
-            
+            // $('#messagediv').removeClass('alert-danger');
+            // $('#messagediv').addClass('alert-success');
+            // }
+             $('#messagediv').addClass('alert-success');
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
