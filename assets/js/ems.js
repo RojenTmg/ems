@@ -896,7 +896,7 @@ function updateWork(){
                $('#showmessage').html(msg); 
           }
           
-
+          location.reload();
           }
 
       }

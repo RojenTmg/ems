@@ -712,10 +712,10 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
      $_SESSION['path']='';
       ?>
 
-              document.getElementById('nav-work').className='tab-pane fade active show';
-              document.getElementById('nav-work-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+      document.getElementById('nav-work').className='tab-pane fade active show';
+      document.getElementById('nav-work-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
 <?php } ?>
 
 
