@@ -47,6 +47,7 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
+			// var_dump($data['employee_leaves_approve']); die();
 			$data['recommendations']=$this->Employee_model->recommendationList();
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
@@ -104,6 +105,7 @@
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
 			$data['leaves'] = $this->Database_model->findAll('leaves');
 
+
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 		
@@ -111,6 +113,7 @@
 
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -118,6 +121,7 @@
 				}
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -125,12 +129,17 @@
 				}
 				else {
 					if ($data['clb']['elb_remain_days'] < (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1)) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' days left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
 				}
 
+				// from_date and to_date validation
+				
+
+				
 				$leaveData = array(
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id
 					'leave_id'=> (int)$leave['leave_id'],
