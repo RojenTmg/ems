@@ -145,6 +145,7 @@ class Admin_controller extends CI_Controller {
 
 	public function employeeManage($id = NULL) 
 	{
+		$title['title'] = 'Manage Employee';
 		if($id!=''){
 			$id=(int)$id;
 
@@ -152,10 +153,16 @@ class Admin_controller extends CI_Controller {
 			$emp=$this->db->get('employees');
 			$emplist=$emp->row_array();
 
-			if($emplist==NULL) redirect('error_404'); 
+
+
+			if($emplist==NULL) {
+				$data['post']['errorpage']="true";
+		
+				return 	$this->view('employee_manage', $title, $data);
+			}
 		}
 
-		$title['title'] = 'Manage Employee';
+		
 		if (isset($_SESSION['current_employee_id'])) {
                unset($_SESSION['current_employee_id']); 
             }
@@ -254,7 +261,7 @@ class Admin_controller extends CI_Controller {
 	{			
 		$result=array();
 		extract($_POST);
-		if($join_date>Date('d-m-Y'))
+		if($join_date>Date('Y-m-d'))
 		{
 			return 0;
 		}
