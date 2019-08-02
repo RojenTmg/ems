@@ -51,50 +51,52 @@ $(window).on("scroll", function() {
 
 ////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
 
-  $('#leave_name').change(function() {
-      if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
-        $('#half-day').prop('checked', true);
-        $('#multiple-days').attr('disabled', true);
-      }
-      else {
-        $('#multiple-days').attr('disabled', false);        
-      }
-  });
+  // $('#leave_name').change(function() {
+  //     if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
+  //       $('#multiple-days').attr('disabled', true);
+  //       $('#half-day').prop('checked', true);
+  //       $('#to_date').attr('disabled', true);
+  //       $('#duration').val('0.5');
+  //       $('#to_date').val($('#from_date').val());
+  //     }
+  //     else {
+  //       $('#multiple-days').attr('disabled', false);        
+  //     }
+  // });
 
+  // $('#half-day').click(function() {
+  //   $('#to_date').attr('disabled', true);
+  //   $('#duration').val('0.5');
+  //   $('#to_date').val($('#from_date').val());
+  //   document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  // });
 
-  $('#half-day').click(function() {
-    $('#to_date').attr('disabled', true);
-    $('#duration').val('0.5');
-    $('#to_date').val($('#from_date').val());
-    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
-  });
+  // $('#full-day').click(function() {
+  //   $('#to_date').attr('disabled', true);
+  //   $('#duration').val('1');
+  //   $('#to_date').val($('#from_date').val());
+  //   document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
+  // });
 
-  $('#full-day').click(function() {
-    $('#to_date').attr('disabled', true);
-    $('#duration').val('1');
-    $('#to_date').val($('#from_date').val());
-    document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
-  });
+  // $('#multiple-days').click(function() {
+  //   $('#duration').val('1');
+  //   $('#to_date').attr('disabled', false);
+  //   document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+  // });
 
-  $('#multiple-days').click(function() {
-    $('#duration').val('1');
-    $('#to_date').attr('disabled', false);
-    document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
-  });
+  // $('#from_date').change(function() {
+  //   document.getElementById("to_date").setAttribute("min", $(this).val());
+  //   if (document.getElementById('multiple-days').checked) {
+  //     $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+  //   } else {
+  //     $('#to_date').val($(this).val());
+  //   }
+  // });
 
-  $('#from_date').change(function() {
-    document.getElementById("to_date").setAttribute("min", $(this).val());
-    if (document.getElementById('multiple-days').checked) {
-      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
-    } else {
-      $('#to_date').val($(this).val());
-    }
-  });
-
-  $('#to_date').change(function() {
-      document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
-      $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
-  });
+  // $('#to_date').change(function() {
+  //     document.getElementById("from_date").setAttribute("max", $('#to_date').val());      // from_date validation
+  //     $('#duration').val(((Date.parse($('#to_date').val()) - Date.parse($('#from_date').val())) / 86400000)+1);
+  // });
 
 
 
