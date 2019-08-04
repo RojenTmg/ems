@@ -341,10 +341,6 @@
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
 
-			print_r($data['leave_by_emp']);
-			print_r($data['leave_blnc_by_emp']);
-			die(); die();
-
 			if ($data['leave_by_emp']['duration_type'] == 'half') {
 				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
 				$data=array('remain_days'=>$leaveBalance);
