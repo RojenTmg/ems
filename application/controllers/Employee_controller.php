@@ -371,6 +371,7 @@
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data2);
 		}
+	}
 
 		public function denyApprove()
 		{
