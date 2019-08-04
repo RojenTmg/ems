@@ -338,35 +338,28 @@
 		{
 			extract($_POST);
 
-			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
-			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
-
-			print_r($data['leave_by_emp']);
-			print_r($data['leave_blnc_by_emp']);
-			die(); die();
-
-			if ($data['leave_by_emp']['duration_type'] == 'half') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);		
+			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
+			
+			if ($d_type == 'half') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - 0.5;
 			}
-			else if ($data['leave_by_emp']['duration_type'] == 'full') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 1;
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);
+			else if ($d_type == 'full') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - 1;
 			}
-			else if ($data['leave_by_emp']['duration_type'] == 'multiple') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1);
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);		
+			else if ($d_type == 'multiple') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - $no_of_days;
 			}
 
-			$data=array('is_approved'=>'approved');
+			// update leave balance on table 'employee_leave_balance'
+			$data1=array('remain_days'=>$leaveBalance);
+			$array = array('emp_id' => $e_id, 'leave_id' => $leave_id);
+			$this->db->where($array); 
+			$this->db->update('employee_leave_balance',$data1);		
+
+			// update status on column 'is_archived' on table 'employee_leave_balance'
+			$data2=array('is_approved'=>'approved');
 			$this->db->where('id',$id);
-			$this->db->update('employee_leaves',$data);
+			$this->db->update('employee_leaves',$data2);
 		}
 
 		public function denyApprove()
