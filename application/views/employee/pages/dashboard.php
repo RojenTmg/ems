@@ -221,7 +221,8 @@
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
-                          <span class="tip-arch tip-res" onclick="leaveApprove(<?php echo $value['id']; ?>)" >Approve</span>
+
+                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
 
@@ -269,7 +270,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>, <?php echo $value['emp_id']; ?>, <?php echo $value['leave_id']; ?>)">Submit</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>)">Submit</button>
                 </div>
               </div>
             </div>

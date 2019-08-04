@@ -1586,15 +1586,21 @@ function denyLeaveFromRecommender(id)
 }
 
 // approve leave by approver
+<<<<<<< HEAD
 
 function leaveApprove(id, emp_id, leave_id)
+=======
+function leaveApproveF(d_type, id, e_id, leave_id, no_of_days = '0')
+>>>>>>> f1d9db3ad3b0e959ae526493b6719de6930b98dc
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
   var data = new FormData();
+  data.append('d_type', d_type);
   data.append('id',id);
-  data.append('emp_id',id);
-  data.append('leave_id',id);
+  data.append('e_id',e_id);
+  data.append('leave_id',leave_id);
+  data.append('no_of_days',no_of_days);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
