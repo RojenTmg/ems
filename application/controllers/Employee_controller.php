@@ -180,6 +180,10 @@
 				$this->Database_model->insert('employee_leaves', $leaveData);
 
 				$data['valid'] = TRUE;
+
+				$message="Your leave from ".$leave['from_date']. " has been send for approval";
+				$email=$this->Admin_model->getEmail();
+				$this->Admin_model->sendEmail('Leave Applied',$message,$email);
 				$this->view('leave_form', $title, $data);
 			} 
 			else {
