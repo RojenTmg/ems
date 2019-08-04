@@ -204,7 +204,6 @@ class Admin_controller extends CI_Controller {
 		$data['selectedPackages']=$this->Admin_model->getPackageDetails($pkgId);
 		}
 
-
 		$this->view('leave_manage', $title, $data);
 	}
 
@@ -481,10 +480,10 @@ class Admin_controller extends CI_Controller {
 		extract($_POST);
 		if($visa_expiry_date<Date('Y-m-d'))
 			{return 0;}
-		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
+		// $this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
 
-		$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
-
+		// $this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
+	
 
 		$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 

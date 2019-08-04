@@ -69,8 +69,9 @@
 		{
 			$this->db->where('leave_id',$id);
 			$query = $this->db->get('leaves');
-			return $query->row_array();
+			return $query->result_array();
 		}
+
 		// update
 		public function getPackageName($id)
 		{
@@ -106,9 +107,13 @@
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();
+
+			$this->db->where('role_name','employee');
+			$roleid= $this->db->get('roles');
+			$rid= $roleid->row_array();
 			$userRoleData=array(
 				'user_id'=>$user_num,
-				'role_id'=>'4'
+				'role_id'=>$rid['role_id']
 			);
 			 $this->db->insert('user_roles',$userRoleData);
 			 return $user_id;

@@ -554,6 +554,7 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addNationality',true);
           var data = new FormData();
+          var radioValue = $("input[name='nationality']:checked").val();
           data.append('nationality',getSelectedValue('nationality'));
           data.append('visa_permission',getSelectedValue('visa_permission'));
           data.append('visa_type',document.getElementById('visa_type').value);
@@ -561,19 +562,29 @@ function showresponse(formname,status,msg)
           data.append('passport_no',document.getElementById('passport_no').value);
           data.append('passport_issue_place',document.getElementById('passport_issue_place').value);
           xmlHttp.send(data);
-     if(checkCurrentDate('visa_expiry_date'))
-      {
-         msg="Invalid Visa Expiry date";
+        if(!radioValue)
+        {
+           msg="Select nationality";
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
-      }
-      else{
+        }
 
-xmlHttp.onreadystatechange = function()
+     // if(checkCurrentDate('visa_expiry_date'))
+     //  {
+     //     msg="Invalid Visa Expiry date";
+
+     //          $('#messagediv').removeClass('alert-success');
+     //           $('#messagediv').addClass('alert-danger');
+     //           $('#messagediv').css('color','red');
+     //          $('#messagediv').css('display','block');
+     //           $('#showmessage').html(msg); 
+     //  }
+     //  else{
+
+      xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
@@ -581,7 +592,7 @@ xmlHttp.onreadystatechange = function()
                showresponse('nationality-form',status,'Updated Successfully');
               }
           }
-  }
+  // }
   
       }
 
