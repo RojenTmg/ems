@@ -203,14 +203,7 @@ $(document).ready(function(){
             showresponse('general-form',status,'Added Successfully');
           else  {
             location.href='employee_manage/'+id;
-              // //show nav
-              // toggleNav("show");
           }
-           
-
-             // if(id!="false")
-             // location.href='employee_manage/'+id;      
-
           }
       }
     }
@@ -252,6 +245,16 @@ $(document).ready(function(){
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                 var id=JSON.parse(status);
+
+                if(id=="error"){
+                msg="Invalid Title Selected";
+                $('#messagediv').removeClass('alert-success');
+                $('#messagediv').addClass('alert-danger');
+                $('#messagediv').css('display','block');
+                $('#showmessage').html(msg); 
+               return ;
+            }
                showresponse('general-form',status,'Updated Successfully');
 
                displayName(first_name,middle_name,last_name);
@@ -633,22 +636,32 @@ function showresponse(formname,status,msg)
   function addEducation()
   {
 
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addEducation',true);
-          var data = new FormData();
-          data.append('highest_degree',document.getElementById('highest_degree').value);
-          data.append('degree_title',document.getElementById('degree_title').value);
-          data.append('university',document.getElementById('university').value);
-          data.append('institute',document.getElementById('institute').value);
-          xmlHttp.send(data);
-xmlHttp.onreadystatechange = function()
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addEducation',true);
+    var data = new FormData();
+    data.append('highest_degree',document.getElementById('highest_degree').value);
+    data.append('degree_title',document.getElementById('degree_title').value);
+    data.append('university',document.getElementById('university').value);
+    data.append('institute',document.getElementById('institute').value);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          var status = xmlHttp.responseText;
+          var id=JSON.parse(status);
+          if(id=="error")
           {
-              if(xmlHttp.readyState==4)
-              {
-                var status = xmlHttp.responseText;
-               showresponse('education-form',status,'Updated Successfully');
-              }
-          }
+            msg=" Enter valid Highest Degree";
+            $('#messagediv').removeClass('alert-success');
+            $('#messagediv').addClass('alert-danger');
+            $('#messagediv').css('display','block');
+            $('#showmessage').html(msg); 
+            return ;
+           }
+         showresponse('education-form',status,'Updated Successfully');
+        }
+    }
   }
 
   // add health information
@@ -674,11 +687,21 @@ xmlHttp.onreadystatechange = function()
           data.append('allergies',getSelectedValue('allergies'));
           data.append('allergy_description',document.getElementById('allergy_description').value);
           xmlHttp.send(data);
-xmlHttp.onreadystatechange = function()
+          xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                 var id=JSON.parse(status);
+            if(id=="error"){
+              msg="Invalid Blood group Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
+
                showresponse('health-form',status,'Updated Successfully');
               }
           }
@@ -767,7 +790,15 @@ xmlHttp.onreadystatechange = function()
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                
+                var id=JSON.parse(status);
+                if(id=="error"){
+                msg="Invalid Gender Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
                showresponse('personal-form',status,'Updated Successfully');
               }
           } 
