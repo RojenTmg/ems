@@ -64,6 +64,12 @@
 			$query = $this->db->get('leaves');
 			return $query->result_array();
 		}
+
+		//leave assigned in package
+		public function assignedLeave(){
+			$query = $this->db->get('leave_packages');
+			return $query->result_array();
+		}
 		// update
 		public function getLeaveDetails($id)
 		{
@@ -71,6 +77,7 @@
 			$query = $this->db->get('leaves');
 			return $query->row_array();
 		}
+
 		// update
 		public function getPackageName($id)
 		{
@@ -78,6 +85,12 @@
 			$query = $this->db->get('packages');
 			return $query->row_array();
 		}
+		//package assigned to person
+		public function assignedPackage(){
+			$query = $this->db->get('employees');
+			return $query->result_array();
+		}
+
 		public function getPackageDetails($id)
 		{
 			$this->db->where('package_id',$id);
@@ -106,9 +119,13 @@
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();
+
+			$this->db->where('role_name','employee');
+			$roleid= $this->db->get('roles');
+			$rid= $roleid->row_array();
 			$userRoleData=array(
 				'user_id'=>$user_num,
-				'role_id'=>'4'
+				'role_id'=>$rid['role_id']
 			);
 			 $this->db->insert('user_roles',$userRoleData);
 			 return $user_id;

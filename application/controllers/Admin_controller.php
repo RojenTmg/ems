@@ -47,6 +47,14 @@ class Admin_controller extends CI_Controller {
 		else
 			redirect('login');
 	}
+
+	// email sending function
+	public function email()
+	{
+		$title['title'] = 'Email';
+		$data[]='';
+		$this->load->view('email/index');
+	}
 	
 	public function employeeArchive() 
 	{
@@ -197,6 +205,10 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Leaves';
 		$data['posts'] = $this->Admin_model->leaveManage();
 
+		$data['assignedLeave']=$this->Admin_model->assignedLeave();
+
+		$data['assignedPackage']=$this->Admin_model->assignedPackage();
+
 		$data['packages']=$this->Admin_model->packageManage();
 
 		if(isset($_POST['id'])){
@@ -210,7 +222,6 @@ class Admin_controller extends CI_Controller {
 		$data['detailPackage']=$this->Admin_model->getPackageName($pkgId);
 		$data['selectedPackages']=$this->Admin_model->getPackageDetails($pkgId);
 		}
-
 
 		$this->view('leave_manage', $title, $data);
 	}
@@ -265,6 +276,14 @@ class Admin_controller extends CI_Controller {
 		{
 			return 0;
 		}
+
+		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
+			$msg="error";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -299,6 +318,14 @@ class Admin_controller extends CI_Controller {
 	{
 		$result=array();
 		extract($_POST);
+
+		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
+			$msg="error";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+		
 
 		if($join_date>Date('d-m-Y'))
 		{
@@ -335,10 +362,21 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
+
+		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
+			$msg="error";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+
 		if($dob>Date('Y-m-d'))
 		{
 			return 0;
 		}
+
+
 		$data=array(
 			'gender'=>$gender,
 			'dob'=>$dob,
@@ -488,10 +526,10 @@ class Admin_controller extends CI_Controller {
 		extract($_POST);
 		if($visa_expiry_date<Date('Y-m-d'))
 			{return 0;}
-		$this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
+		// $this->form_validation->set_rules('nationality','nationality','required',array('required' => 'You must provide a %s.'));
 
-		$this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
-
+		// $this->form_validation->set_rules('visa_permission',' Visa Permission','required',array('required' => 'You must select a %s.'));
+	
 
 		$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 
@@ -584,6 +622,13 @@ class Admin_controller extends CI_Controller {
 		$status=array();
 		extract($_POST);
 
+		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
+		$msg="error";
+		array_push($status, $msg);
+		echo json_encode($status);
+		return ;
+		}
+
 		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
 
 		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
@@ -619,6 +664,13 @@ class Admin_controller extends CI_Controller {
 		$status=array();
 		extract($_POST);
 
+		if($blood_group!='A +ve' && $blood_group!='A -ve' && $blood_group!='B +ve' && $blood_group!='B -ve' && $blood_group!='AB +ve'  && $blood_group!='AB -ve' && $blood_group!='O +ve'  && $blood_group!='O -ve' && $blood_group!=''){
+			$msg="error";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		
 		$this->form_validation->set_rules('blood_group','Blood Group','required',array('required' => 'You must provide %s'));
 
 		if($this->form_validation->run()===FALSE)
@@ -951,7 +1003,7 @@ class Admin_controller extends CI_Controller {
 			{
 				$leave=$this->db->where('leave_name',$leave_name);
 				$list=$this->db->get('leaves');
-				$getList= $list->row_array();
+				$getList= $list->result_array();
 				if(count($getList)==0)
 				{
 					$this->db->insert('leaves',$data);
@@ -1148,8 +1200,29 @@ class Admin_controller extends CI_Controller {
 
 	}
 
+public function sendEmail(){
+	$mail = new PHPMailer(); // create a new object
+	$mail->IsSMTP(); // enable SMTP
+	$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+	$mail->SMTPAuth = true; // authentication enabled
+	$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+	$mail->Host = "smtp.gmail.com";
+	$mail->Port = 465; // or 587
+	$mail->IsHTML(true);
+	$mail->Username = "email@gmail.com";
+	$mail->Password = "password";
+	$mail->SetFrom("example@gmail.com");
+	$mail->Subject = "Test";
+	$mail->Body = "hello";
+	$mail->AddAddress("email@gmail.com");
 
+	if(!$mail->Send()) {
+		echo "Mailer Error: " . $mail->ErrorInfo;
+	} else {
+		echo "Message has been sent";
+	}
 
+}
 
 
 	}

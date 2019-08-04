@@ -189,20 +189,21 @@ $(document).ready(function(){
           {
 
             var status = xmlHttp.responseText;
-            console.log(status);
             var id=JSON.parse(status);
+
+            if(id=="error"){
+              msg="Invalid Title Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
            if(isNaN(id))
             showresponse('general-form',status,'Added Successfully');
           else  {
             location.href='employee_manage/'+id;
-              // //show nav
-              // toggleNav("show");
           }
-           
-
-             // if(id!="false")
-             // location.href='employee_manage/'+id;      
-
           }
       }
     }
@@ -244,6 +245,16 @@ $(document).ready(function(){
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                 var id=JSON.parse(status);
+
+                if(id=="error"){
+                msg="Invalid Title Selected";
+                $('#messagediv').removeClass('alert-success');
+                $('#messagediv').addClass('alert-danger');
+                $('#messagediv').css('display','block');
+                $('#showmessage').html(msg); 
+               return ;
+            }
                showresponse('general-form',status,'Updated Successfully');
 
                displayName(first_name,middle_name,last_name);
@@ -556,6 +567,7 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addNationality',true);
           var data = new FormData();
+          var radioValue = $("input[name='nationality']:checked").val();
           data.append('nationality',getSelectedValue('nationality'));
           data.append('visa_permission',getSelectedValue('visa_permission'));
           data.append('visa_type',document.getElementById('visa_type').value);
@@ -563,19 +575,29 @@ function showresponse(formname,status,msg)
           data.append('passport_no',document.getElementById('passport_no').value);
           data.append('passport_issue_place',document.getElementById('passport_issue_place').value);
           xmlHttp.send(data);
-     if(checkCurrentDate('visa_expiry_date'))
-      {
-         msg="Invalid Visa Expiry date";
+        if(!radioValue)
+        {
+           msg="Select nationality";
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
-      }
-      else{
+        }
 
-xmlHttp.onreadystatechange = function()
+     // if(checkCurrentDate('visa_expiry_date'))
+     //  {
+     //     msg="Invalid Visa Expiry date";
+
+     //          $('#messagediv').removeClass('alert-success');
+     //           $('#messagediv').addClass('alert-danger');
+     //           $('#messagediv').css('color','red');
+     //          $('#messagediv').css('display','block');
+     //           $('#showmessage').html(msg); 
+     //  }
+     //  else{
+
+      xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
@@ -583,7 +605,7 @@ xmlHttp.onreadystatechange = function()
                showresponse('nationality-form',status,'Updated Successfully');
               }
           }
-  }
+  // }
   
       }
 
@@ -614,22 +636,32 @@ xmlHttp.onreadystatechange = function()
   function addEducation()
   {
 
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addEducation',true);
-          var data = new FormData();
-          data.append('highest_degree',document.getElementById('highest_degree').value);
-          data.append('degree_title',document.getElementById('degree_title').value);
-          data.append('university',document.getElementById('university').value);
-          data.append('institute',document.getElementById('institute').value);
-          xmlHttp.send(data);
-xmlHttp.onreadystatechange = function()
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addEducation',true);
+    var data = new FormData();
+    data.append('highest_degree',document.getElementById('highest_degree').value);
+    data.append('degree_title',document.getElementById('degree_title').value);
+    data.append('university',document.getElementById('university').value);
+    data.append('institute',document.getElementById('institute').value);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState==4)
+        {
+          var status = xmlHttp.responseText;
+          var id=JSON.parse(status);
+          if(id=="error")
           {
-              if(xmlHttp.readyState==4)
-              {
-                var status = xmlHttp.responseText;
-               showresponse('education-form',status,'Updated Successfully');
-              }
-          }
+            msg=" Enter valid Highest Degree";
+            $('#messagediv').removeClass('alert-success');
+            $('#messagediv').addClass('alert-danger');
+            $('#messagediv').css('display','block');
+            $('#showmessage').html(msg); 
+            return ;
+           }
+         showresponse('education-form',status,'Updated Successfully');
+        }
+    }
   }
 
   // add health information
@@ -655,11 +687,21 @@ xmlHttp.onreadystatechange = function()
           data.append('allergies',getSelectedValue('allergies'));
           data.append('allergy_description',document.getElementById('allergy_description').value);
           xmlHttp.send(data);
-xmlHttp.onreadystatechange = function()
+          xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                 var id=JSON.parse(status);
+            if(id=="error"){
+              msg="Invalid Blood group Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
+
                showresponse('health-form',status,'Updated Successfully');
               }
           }
@@ -748,6 +790,15 @@ xmlHttp.onreadystatechange = function()
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                var id=JSON.parse(status);
+                if(id=="error"){
+                msg="Invalid Gender Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
                showresponse('personal-form',status,'Updated Successfully');
               }
           } 
@@ -968,6 +1019,11 @@ function check_complete(){
   //assign
   var recommender= document.getElementById('recommender').value;
   var approver = document.getElementById('approver').value;
+  //work experience
+  var exp = document.getElementById('list-experience');
+  //documents
+  var documents =document.getElementById('document-list');
+
 
 
 
@@ -982,7 +1038,16 @@ function check_complete(){
     if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
     if(recommender!=''&&approver!='') completeIcon('nav-assign-tab'); else inCompleteIcon('nav-assign-tab');
-
+    //changes icon if at least one document is added
+    if(typeof(documents) != 'undefined' && documents != null) 
+      completeIcon('nav-document-tab');
+    else inCompleteIcon('nav-document-tab');
+    // changes icon if at least one work experience is added
+    if(typeof(exp) != 'undefined' && exp != null) 
+      completeIcon('nav-work-tab');
+    else inCompleteIcon('nav-work-tab');
+    
+    
 
 }
 
@@ -1179,6 +1244,7 @@ function assign()
           $('#messagediv').removeClass('alert-warning');
 
           var reply= xmlHttp.responseText;
+          console.log(reply);
           if(reply=="inserted"){
            msg="Leave Added Successfully";
            $('#messagediv').addClass('alert-success');
@@ -1374,6 +1440,7 @@ function dismissDenyModal()
 
 
 function editLeave(id){
+  console.log(id);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','leaveManage',true);
     var data = new FormData();
@@ -1614,3 +1681,17 @@ function archiveRecommendRecord(id)
 }
 }
 
+// reload entire page
+function cancel(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','leaveManage',true);
+    var data = new FormData();
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       document.open();
+       document.write(xmlHttp.responseText);
+       document.close();
+      }
+    }
+} 
