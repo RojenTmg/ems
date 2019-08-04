@@ -48,7 +48,8 @@
   <div class="con-sub-head">
   <!-- <h5>Recent Messages</h5> -->  
   </div>
-  <div class="box">
+   <div class="lists">
+  <div class="box"  id="liststab">
   <div class="box-head">
  
   </div>
@@ -60,7 +61,7 @@
     </div>
     <!-- area finishes here -->
 
-    <div class="lists">
+   
   <div class="box-body" style="overflow-x:auto;">
 
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
@@ -97,6 +98,7 @@
 
   <td> 
   <?php if($posts['is_recommended']=='pending') {?>
+    
   <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
       <div class="tooltiptext">
         <p>Are you sure?</p>
@@ -112,7 +114,8 @@
     <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
   <?php } ?>
 
-<!-- Modal -->
+
+<!-- delete Modal -->
 <div class="modal fade" id="exampleModalCenter<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -188,13 +191,13 @@
             <tr>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Employee Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" width="10%"><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" width="7%"><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Recommended by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%; text-align: center;">Status</th>
+              <th id="dt-head" style="width: 10%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%; text-align: center;">Action</th>
             </tr>
           </thead>
@@ -214,14 +217,19 @@
                     <td>
                     <!-- check if approved or not and show buttons accordingly -->
                     <?php if($value['is_approved']=='pending') {?>
+                      
+                      <!-- if the requested days exceeds the remaining days, do not show grant button -->
+                      <?php if () { ?>
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
-                          <span class="tip-arch tip-res" onclick="leaveApproveF(<?php echo $value['id']; ?>)" >Approve</span>
+
+                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
-
+                      <?php } ?>
+                      
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
 
@@ -266,7 +274,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>, <?php echo $value['emp_id']; ?>, <?php echo $value['leave_id']; ?>)">Submit</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>)">Submit</button>
                 </div>
               </div>
             </div>
@@ -304,7 +312,7 @@
               <th id="dt-head" width="5%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 5%; text-align: center;">Status</th>
+              <th id="dt-head" style="width: 5%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
             </tr>
           </thead>
           <tbody>
@@ -351,12 +359,13 @@
      $(document).ready(function(){
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
-              "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
+              "aaSorting": [],        
+              "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
            /* disable sorting on specific columns */
-           // 'columnDefs': [ {
-              // 'targets': [1], /* column index */
-              // 'orderable': false, /* true or false */
-           // }]
+           'columnDefs': [ {
+              'targets': [9], /* column index starting from 0*/
+              'orderable': false, /* true or false */
+           }]
          });
       });
   $('.tip-can').click(function(ev) {

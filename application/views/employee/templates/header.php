@@ -69,7 +69,7 @@
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Request Leave
         </a>
-      </li>
+      </li> 
     </ul>
     <ul class="navbar-nav">
     </ul>

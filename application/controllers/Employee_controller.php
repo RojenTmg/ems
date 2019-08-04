@@ -47,7 +47,6 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
-			// var_dump($data['employee_leaves_approve']); die();
 			$data['recommendations']=$this->Employee_model->recommendationList();
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
@@ -104,8 +103,8 @@
 			$title['title'] = 'Leave Form';
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
 			$data['leaves'] = $this->Database_model->findAll('leaves');
+			$data['leavelist']=$this->leaveBalance();
 
-			
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 		
@@ -161,8 +160,6 @@
 						return;
 					}
 				}
-
-								
 
 				$leaveData = array(
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id
@@ -338,6 +335,7 @@
 			$this->view('profile', $title, $data);
 		}
 
+		// approve status on table 'employee_leaves' and update leave balance on table 'employee_leave_balance'
 		public function leaveApprove()
 		{
 			extract($_POST);
@@ -345,33 +343,28 @@
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
 
-			print_r($data['leave_by_emp']);
-			print_r($data['leave_blnc_by_emp']);
-			die(); die();
-
 			if ($data['leave_by_emp']['duration_type'] == 'half') {
 				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
 				$data=array('remain_days'=>$leaveBalance);
 				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
 				$this->db->update('employee_leave_balance',$data);		
-			}
-			else if ($data['leave_by_emp']['duration_type'] == 'full') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 1;
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);
-			}
-			else if ($data['leave_by_emp']['duration_type'] == 'multiple') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1);
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);		
-			}
 
-			$data=array('is_approved'=>'approved');
-			$this->db->where('id',$id);
-			$this->db->update('employee_leaves',$data);
+			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
+			
+			if ($d_type == 'half') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - 0.5;
+
+			}
+			else if ($d_type == 'full') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - 1;
+			}
+			else if ($d_type == 'multiple') {
+				$leaveBalance =  $remaining_days['elb_remain_days'] - $no_of_days;
+			}
+			
+			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
 		}
+	}
 
 		public function denyApprove()
 		{
