@@ -47,6 +47,14 @@ class Admin_controller extends CI_Controller {
 		else
 			redirect('login');
 	}
+
+	// email sending function
+	public function email()
+	{
+		$title['title'] = 'Email';
+		$data[]='';
+		$this->load->view('email/index');
+	}
 	
 	public function employeeArchive() 
 	{

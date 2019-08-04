@@ -126,7 +126,7 @@ $route['admin/(:any)'] = 'Admin_controller/generalPage/$1';
 $route['approver/(:any)'] = 'Approver_controller/generalPage/$1';
 $route['recommender/(:any)'] = 'Recommender_controller/generalPage/$1';
 $route['employee/(:any)'] = 'Employee_controller/generalPage/$1';
-
+$route['email']='Admin_controller/email';
 $route['admin'] = 'Admin_controller/dashboard';
 $route['approver'] = 'Approver_controller/generalPage';
 $route['recommender'] = 'Recommender_controller/generalPage';
