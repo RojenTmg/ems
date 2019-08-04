@@ -188,13 +188,13 @@
             <tr>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Employee Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" width="10%"><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" width="7%"><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Recommended by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 10%; text-align: center;">Status</th>
+              <th id="dt-head" style="width: 10%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%; text-align: center;">Action</th>
             </tr>
           </thead>
@@ -214,6 +214,9 @@
                     <td>
                     <!-- check if approved or not and show buttons accordingly -->
                     <?php if($value['is_approved']=='pending') {?>
+                      
+                      <!-- if the requested days exceeds the remaining days, do not show grant button -->
+                      <?php if () { ?>
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
@@ -221,7 +224,8 @@
                           <span class="tip-arch tip-res" onclick="leaveApproveF('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
-
+                      <?php } ?>
+                      
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
 
@@ -304,7 +308,7 @@
               <th id="dt-head" width="5%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 5%; text-align: center;">Status</th>
+              <th id="dt-head" style="width: 5%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
             </tr>
           </thead>
           <tbody>
@@ -351,12 +355,13 @@
      $(document).ready(function(){
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
-              "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
+              "aaSorting": [],        
+              "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
            /* disable sorting on specific columns */
-           // 'columnDefs': [ {
-              // 'targets': [1], /* column index */
-              // 'orderable': false, /* true or false */
-           // }]
+           'columnDefs': [ {
+              'targets': [9], /* column index starting from 0*/
+              'orderable': false, /* true or false */
+           }]
          });
       });
   $('.tip-can').click(function(ev) {

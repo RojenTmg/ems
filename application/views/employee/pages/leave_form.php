@@ -1,5 +1,10 @@
  <!-- form -->
   <div class="contents">
+    <?php if(count($leavelist)==0) { ?>
+      <div class="con-sum">
+         <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
+      </div>
+    <?php } else { ?>
     <div class="con-head">
       <h4>Application Form</h4>
     </div>
@@ -87,4 +92,5 @@
         </form>
       </div>
     </div>
+  <?php } ?>
   </div>
