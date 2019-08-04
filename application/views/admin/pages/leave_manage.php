@@ -103,7 +103,7 @@
                         <p>Leave is assigned to package so can't be deleted</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Go Back</button>
                         </div>
                       </div>
                     </div>
@@ -135,7 +135,9 @@
                 <input type="text" name="leave_name" id="leave_name" value="<?php if(isset($detailLeave['leave_name'])) echo $detailLeave['leave_name']; ?>">
                 </div>
                 <div class="sub-can">
-                  <input type="button" name="" class="sub" onclick="saveLeave()" value="Save">
+                  <input type="button" name="" class="btn btn-success" onclick="saveLeave()" value="Save">
+                  <input type="button" name="" class="btn btn-danger" onclick="cancel()" value="Cancel">
+
                   </div>
                 </form>
               </div>
@@ -183,7 +185,14 @@
                      $counts = array_count_values( array_column($packages, 'package_id')); 
 
                      ?>
-                    <?php foreach ($packages as $pack=>$package) { 
+                    <?php foreach ($packages as $pack=>$package) {
+                      $pkgAssign=false;
+                      foreach ($assignedPackage as $apkg) {
+                        if($apkg['package_id']==$package['package_id']){
+                          $pkgAssign=true;
+                          break;
+                        }
+                       } 
                       ?>
                     
                     <tr id="
@@ -241,9 +250,18 @@
 
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
+                        <?php if($pkgAssign==false){?>
                         <a href="#packageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">
                           <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
+                      <?php } if($pkgAssign==true){ ?> 
+                        <!-- restrict delete btn start -->
+                          <a href="#respackageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">
+                          <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>
+                        <!-- restrict delete btn end -->
+                      <?php } ?>
+
                         <!-- Modal HTML -->
                         <div id="packageModal<?php echo $package['package_id']; ?>" class="modal fade">
                           <div class="modal-dialog modal-confirm">
@@ -260,6 +278,29 @@
                               </div>
                             </div>
                           </div>
+
+                            <!-- restrict Modal HTML -->
+                        <div id="respackageModal<?php echo $package['package_id']; ?>" class="modal fade">
+                          <div class="modal-dialog modal-confirm">
+                            <div class="modal-content" >
+                              <div class="modal-header">
+                                <h4 class="modal-title text-danger">Unable to Delete</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              </div>
+                              <div class="modal-body">
+                              <p class="text-danger">This package is assigned to employee.</p>
+                              </div>
+                        
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Go back</button>
+                                
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- restrict message end -->
+
                         </td>
                       </tr>
                       <?php } ?>
@@ -336,7 +377,8 @@
           <?php } ?>
           </div>
           <div class="sub-can">
-                <input type="button" name="" class="sub" onclick="savePackage()" value="Save">
+                <input type="button" name="" class="btn btn-success" onclick="savePackage()" value="Save">
+                <input type="button" name="" class="btn btn-danger" onclick="cancel()" value="Cancel">
                 
             </div>
          

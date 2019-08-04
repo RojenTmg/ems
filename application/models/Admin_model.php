@@ -75,7 +75,7 @@
 		{
 			$this->db->where('leave_id',$id);
 			$query = $this->db->get('leaves');
-			return $query->result_array();
+			return $query->row_array();
 		}
 
 		// update
@@ -85,6 +85,12 @@
 			$query = $this->db->get('packages');
 			return $query->row_array();
 		}
+		//package assigned to person
+		public function assignedPackage(){
+			$query = $this->db->get('employees');
+			return $query->result_array();
+		}
+
 		public function getPackageDetails($id)
 		{
 			$this->db->where('package_id',$id);

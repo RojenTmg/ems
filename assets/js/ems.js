@@ -1213,6 +1213,7 @@ function assign()
           $('#messagediv').removeClass('alert-warning');
 
           var reply= xmlHttp.responseText;
+          console.log(reply);
           if(reply=="inserted"){
            msg="Leave Added Successfully";
            $('#messagediv').addClass('alert-success');
@@ -1408,6 +1409,7 @@ function dismissDenyModal()
 
 
 function editLeave(id){
+  console.log(id);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','leaveManage',true);
     var data = new FormData();
@@ -1647,3 +1649,17 @@ function archiveRecommendRecord(id)
 }
 }
 
+// reload entire page
+function cancel(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','leaveManage',true);
+    var data = new FormData();
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       document.open();
+       document.write(xmlHttp.responseText);
+       document.close();
+      }
+    }
+} 
