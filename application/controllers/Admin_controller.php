@@ -273,7 +273,6 @@ class Admin_controller extends CI_Controller {
 			echo json_encode($result);
 			return ;
 		}
-		else {};
 
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
@@ -316,7 +315,7 @@ class Admin_controller extends CI_Controller {
 			echo json_encode($result);
 			return ;
 		}
-		else {};
+		
 
 		if($join_date>Date('d-m-Y'))
 		{
@@ -353,6 +352,15 @@ class Admin_controller extends CI_Controller {
 	{
 		$status=array();
 		extract($_POST);
+
+		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
+			$msg="error";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+
 		if($dob>Date('Y-m-d'))
 		{
 			return 0;
@@ -604,6 +612,13 @@ class Admin_controller extends CI_Controller {
 		$status=array();
 		extract($_POST);
 
+		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
+		$msg="error";
+		array_push($status, $msg);
+		echo json_encode($status);
+		return ;
+		}
+
 		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
 
 		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
@@ -639,6 +654,13 @@ class Admin_controller extends CI_Controller {
 		$status=array();
 		extract($_POST);
 
+		if($blood_group!='A +ve' && $blood_group!='A -ve' && $blood_group!='B +ve' && $blood_group!='B -ve' && $blood_group!='AB +ve'  && $blood_group!='AB -ve' && $blood_group!='O +ve'  && $blood_group!='O -ve' && $blood_group!=''){
+			$msg="error";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		
 		$this->form_validation->set_rules('blood_group','Blood Group','required',array('required' => 'You must provide %s'));
 
 		if($this->form_validation->run()===FALSE)
@@ -971,7 +993,7 @@ class Admin_controller extends CI_Controller {
 			{
 				$leave=$this->db->where('leave_name',$leave_name);
 				$list=$this->db->get('leaves');
-				$getList= $list->row_array();
+				$getList= $list->result_array();
 				if(count($getList)==0)
 				{
 					$this->db->insert('leaves',$data);

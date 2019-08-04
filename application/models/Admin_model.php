@@ -75,7 +75,7 @@
 		{
 			$this->db->where('leave_id',$id);
 			$query = $this->db->get('leaves');
-			return $query->result_array();
+			return $query->row_array();
 		}
 
 		// update
