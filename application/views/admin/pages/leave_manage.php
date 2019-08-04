@@ -56,6 +56,7 @@
                     <button  class="btn-edit" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
+
                <!-- delete leave button start -->
                <?php if($assigned==false){ ?>
                 <a href="#leaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
@@ -71,16 +72,16 @@
                <!-- restrict delete leave button end -->
               <?php } ?>
 
+
                 <div id="leaveModal<?php echo $post['leave_id']; ?>" class="modal fade">
                   <div class="modal-dialog modal-confirm">
                     <div class="modal-content" >
                       <div class="modal-header">
-                        <h4 class="modal-title">Delete Leave?</h4>
+
+                        <h4 class="modal-title">Confirm Delete?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <div class="modal-body">
-                        <p>Are you sure to delete this leave ?</p>
-                      </div>
+
                       <div class="modal-footer">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         <input type="button" class="btn btn-danger" value="Delete" onclick="deleteLeave(<?php echo $post['leave_id']; ?>)">
@@ -248,12 +249,10 @@
                           <div class="modal-dialog modal-confirm">
                             <div class="modal-content" >
                               <div class="modal-header">
-                                <h4 class="modal-title">Are you sure?</h4>
+                                <h4 class="modal-title">Confirm Delete?</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                               </div>
-                              <div class="modal-body">
-                                <p>Do you really want to delete these records? This process cannot be undone.</p>
-                              </div>
+                        
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                                 <input type="button" class="btn btn-danger" value="Delete" onclick="deletePackage(<?php echo $package['package_id']; ?>)">

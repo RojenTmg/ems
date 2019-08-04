@@ -329,7 +329,7 @@
             <label>Nationality<span class="text-danger"><i>*</i></span></label>
             <div>
               <div>
-                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" <?php if(isset($post['nationality'])) { if ($post['nationality'] == 'Nepalese') { echo "checked"; }} else { echo "checked";} ?>>
+                <input type="radio" name="nationality" value="Nepalese" onchange="showHideVisa(this)" <?php if(isset($post['nationality'])) { if ($post['nationality'] == 'Nepalese') { echo "checked"; }} ?> checked="true" >
                 <label>Nepalese</label>
               </div>
               <div>
@@ -482,12 +482,12 @@
               <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
             </div>
             <div class="form-div">
-              <label  class="radio-inline">Any Allergies</label>
+              <label  class="radio-inline">Any Allergies?</label>
                 <div>
-                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?>>
+                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'No') { echo "checked"; }} else { echo "checked"; } ?>>
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }} else  { echo "checked"; }  ?> >
                   <label  class="radio-inline">No</label>
                 </div>
              

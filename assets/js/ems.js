@@ -53,14 +53,16 @@ $(window).on("scroll", function() {
 
   $('#leave_name').change(function() {
       if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
-        $('#half-day').prop('checked', true);
         $('#multiple-days').attr('disabled', true);
+        $('#half-day').prop('checked', true);
+        $('#to_date').attr('disabled', true);
+        $('#duration').val('0.5');
+        $('#to_date').val($('#from_date').val());
       }
       else {
         $('#multiple-days').attr('disabled', false);        
       }
   });
-
 
   $('#half-day').click(function() {
     $('#to_date').attr('disabled', true);
@@ -562,6 +564,7 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addNationality',true);
           var data = new FormData();
+          var radioValue = $("input[name='nationality']:checked").val();
           data.append('nationality',getSelectedValue('nationality'));
           data.append('visa_permission',getSelectedValue('visa_permission'));
           data.append('visa_type',document.getElementById('visa_type').value);
@@ -569,19 +572,29 @@ function showresponse(formname,status,msg)
           data.append('passport_no',document.getElementById('passport_no').value);
           data.append('passport_issue_place',document.getElementById('passport_issue_place').value);
           xmlHttp.send(data);
-     if(checkCurrentDate('visa_expiry_date'))
-      {
-         msg="Invalid Visa Expiry date";
+        if(!radioValue)
+        {
+           msg="Select nationality";
 
               $('#messagediv').removeClass('alert-success');
                $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('color','red');
               $('#messagediv').css('display','block');
                $('#showmessage').html(msg); 
-      }
-      else{
+        }
 
-xmlHttp.onreadystatechange = function()
+     // if(checkCurrentDate('visa_expiry_date'))
+     //  {
+     //     msg="Invalid Visa Expiry date";
+
+     //          $('#messagediv').removeClass('alert-success');
+     //           $('#messagediv').addClass('alert-danger');
+     //           $('#messagediv').css('color','red');
+     //          $('#messagediv').css('display','block');
+     //           $('#showmessage').html(msg); 
+     //  }
+     //  else{
+
+      xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
@@ -589,7 +602,7 @@ xmlHttp.onreadystatechange = function()
                showresponse('nationality-form',status,'Updated Successfully');
               }
           }
-  }
+  // }
   
       }
 
@@ -1541,12 +1554,14 @@ function denyLeaveFromRecommender(id)
 
 // approve leave by approver
 
-function leaveApproveF(l_id)
+function leaveApproveF(id, emp_id, leave_id)
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApproveRequest',true);
   var data = new FormData();
-  data.append('l_id',l_id);
+  data.append('id',id);
+  data.append('emp_id',id);
+  data.append('leave_id',id);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)

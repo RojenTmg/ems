@@ -47,6 +47,7 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
+			// var_dump($data['employee_leaves_approve']); die();
 			$data['recommendations']=$this->Employee_model->recommendationList();
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
@@ -104,13 +105,41 @@
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
 			$data['leaves'] = $this->Database_model->findAll('leaves');
 
+			
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 		
 				$data['clb'] = $this->Employee_model->checkLeaveBalance($_SESSION['user_id'], (int)$leave['leave_id']);
 
+				// from_date and to_date validation
+				if (!empty($leave['to_date'])) {	
+					// if from-date is greater than to date
+					if ($leave['to_date'] < $leave['from_date']) {	
+						$data['leave_form'] = $leave; 
+						$data['not_valid'] = 'From-date cannot be greater than to-date';
+						$this->view('leave_form', $title, $data);
+						return;
+					}
+					// if user tries to submit more than 0.5 day for half day
+					if ($leave['duration_type'] == 'half' && (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400)) > 0.5) { 
+						$data['leave_form'] = $leave; 
+						$data['not_valid'] = 'Half day has exceeded 1/2 days.';
+						$this->view('leave_form', $title, $data);
+						return;
+					}
+					// if user tries to submit more than 1 day for full day
+					if ($leave['duration_type'] == 'full' && (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1) > 1) {
+						$data['leave_form'] = $leave; 
+						$data['not_valid'] = 'A full day cannot be greater than 1 day.';
+						$this->view('leave_form', $title, $data);
+						return;
+					}
+				}
+
+				// checking leave balance (if the remaining days exceeds more than the requested days)
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -118,6 +147,7 @@
 				}
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -125,11 +155,14 @@
 				}
 				else {
 					if ($data['clb']['elb_remain_days'] < (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1)) {
+						$data['leave_form'] = $leave; 
 						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' days left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
 				}
+
+								
 
 				$leaveData = array(
 					'emp_id'=> $_SESSION['user_id'],	// inserts current user id
@@ -304,8 +337,35 @@
 		public function leaveApprove()
 		{
 			extract($_POST);
+
+			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
+			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
+
+			print_r($data['leave_by_emp']);
+			print_r($data['leave_blnc_by_emp']);
+			die(); die();
+
+			if ($data['leave_by_emp']['duration_type'] == 'half') {
+				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
+				$data=array('remain_days'=>$leaveBalance);
+				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
+				$this->db->update('employee_leave_balance',$data);		
+			}
+			else if ($data['leave_by_emp']['duration_type'] == 'full') {
+				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 1;
+				$data=array('remain_days'=>$leaveBalance);
+				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
+				$this->db->update('employee_leave_balance',$data);
+			}
+			else if ($data['leave_by_emp']['duration_type'] == 'multiple') {
+				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1);
+				$data=array('remain_days'=>$leaveBalance);
+				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
+				$this->db->update('employee_leave_balance',$data);		
+			}
+
 			$data=array('is_approved'=>'approved');
-			$this->db->where('id',$l_id);
+			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
 
