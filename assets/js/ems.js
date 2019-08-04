@@ -187,8 +187,16 @@ $(document).ready(function(){
           {
 
             var status = xmlHttp.responseText;
-            console.log(status);
             var id=JSON.parse(status);
+
+            if(id=="error"){
+              msg="Invalid Title Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+            }
            if(isNaN(id))
             showresponse('general-form',status,'Added Successfully');
           else  {
@@ -746,6 +754,7 @@ xmlHttp.onreadystatechange = function()
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                
                showresponse('personal-form',status,'Updated Successfully');
               }
           } 
@@ -966,6 +975,11 @@ function check_complete(){
   //assign
   var recommender= document.getElementById('recommender').value;
   var approver = document.getElementById('approver').value;
+  //work experience
+  var exp = document.getElementById('list-experience');
+  //documents
+  var documents =document.getElementById('document-list');
+
 
 
 
@@ -980,7 +994,16 @@ function check_complete(){
     if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
     if(pan!='') completeIcon('nav-pan-tab'); else inCompleteIcon('nav-pan-tab');
     if(recommender!=''&&approver!='') completeIcon('nav-assign-tab'); else inCompleteIcon('nav-assign-tab');
-
+    //changes icon if at least one document is added
+    if(typeof(documents) != 'undefined' && documents != null) 
+      completeIcon('nav-document-tab');
+    else inCompleteIcon('nav-document-tab');
+    // changes icon if at least one work experience is added
+    if(typeof(exp) != 'undefined' && exp != null) 
+      completeIcon('nav-work-tab');
+    else inCompleteIcon('nav-work-tab');
+    
+    
 
 }
 

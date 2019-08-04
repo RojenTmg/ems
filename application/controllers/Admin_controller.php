@@ -197,6 +197,8 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Leaves';
 		$data['posts'] = $this->Admin_model->leaveManage();
 
+		$data['assignedLeave']=$this->Admin_model->assignedLeave();
+
 		$data['packages']=$this->Admin_model->packageManage();
 
 		if(isset($_POST['id'])){
@@ -265,6 +267,15 @@ class Admin_controller extends CI_Controller {
 		{
 			return 0;
 		}
+
+		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
+			$msg="error";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+		else {};
+
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -299,6 +310,14 @@ class Admin_controller extends CI_Controller {
 	{
 		$result=array();
 		extract($_POST);
+
+		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
+			$msg="error";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+		else {};
 
 		if($join_date>Date('d-m-Y'))
 		{
@@ -339,6 +358,8 @@ class Admin_controller extends CI_Controller {
 		{
 			return 0;
 		}
+
+
 		$data=array(
 			'gender'=>$gender,
 			'dob'=>$dob,

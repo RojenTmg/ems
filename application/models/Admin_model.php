@@ -64,6 +64,12 @@
 			$query = $this->db->get('leaves');
 			return $query->result_array();
 		}
+
+		//leave assigned in package
+		public function assignedLeave(){
+			$query = $this->db->get('leave_packages');
+			return $query->result_array();
+		}
 		// update
 		public function getLeaveDetails($id)
 		{

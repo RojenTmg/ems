@@ -34,33 +34,52 @@
           <!-- table body -->
           <tbody>
             <?php $sn =1; ?>
-            <?php foreach ($posts as $value=>$post) { ?>
+            <?php foreach ($posts as $value=>$post) { 
+              $assigned=false;
+              foreach($assignedLeave as $aLeave){
+                if($aLeave['leave_id']==$post['leave_id']){
+                  $assigned=true; 
+                  break;
+                }
+                
+              } ?>
             <tr id="
               <?php echo $post['leave_id']; ?>">
               <td class="text-center">
                 <?php echo $sn; $sn++ ?>
               </td>
               <td class="">
-                <?php echo $post['leave_name']; ?>
+                <?php echo $post['leave_name'];?>
               </td>
               <td class="text-center">
              
                     <button  class="btn-edit" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
-               
+               <!-- delete leave button start -->
+               <?php if($assigned==false){ ?>
                 <a href="#leaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
                   <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                 </a>
+               <!-- delete leave button end -->
+              <?php } ?>
+              <!-- restrict delete leave button start -->
+               <?php if($assigned==true){ ?>
+                <a href="#resleaveModal<?php echo $post['leave_id']; ?>" class="trigger-btn" data-toggle="modal">
+                  <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                </a>
+               <!-- restrict delete leave button end -->
+              <?php } ?>
+
                 <div id="leaveModal<?php echo $post['leave_id']; ?>" class="modal fade">
                   <div class="modal-dialog modal-confirm">
                     <div class="modal-content" >
                       <div class="modal-header">
-                        <h4 class="modal-title">Are you sure?</h4>
+                        <h4 class="modal-title">Delete Leave?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
                       <div class="modal-body">
-                        <p>Do you really want to delete these records? This process cannot be undone.</p>
+                        <p>Are you sure to delete this leave ?</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
@@ -69,6 +88,28 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- restrict deleting leave assigned to package  -->
+
+                   <div id="resleaveModal<?php echo $post['leave_id']; ?>" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content" >
+                      <div class="modal-header">
+                        <h4 class="modal-title text-danger">Unable to delete</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <div class="modal-body text-danger">
+                        <p>Leave is assigned to package so can't be deleted</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- restrict message box eends here -->
+
                 </td>
               </tr>
               <?php } ?>

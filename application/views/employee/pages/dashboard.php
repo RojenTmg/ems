@@ -21,7 +21,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title"><?php echo $leave['leave_name'];?></div>
-                <div class="hl-cont"><?php echo $leave['duration']-$leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
+                <div class="hl-cont"><?php echo $leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
