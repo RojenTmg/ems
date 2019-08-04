@@ -1520,12 +1520,14 @@ function denyLeaveFromRecommender(id)
 
 // approve leave by approver
 
-function leaveApproveF(l_id)
+function leaveApproveF(id, emp_id, leave_id)
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApproveRequest',true);
   var data = new FormData();
-  data.append('l_id',l_id);
+  data.append('id',id);
+  data.append('emp_id',id);
+  data.append('leave_id',id);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)

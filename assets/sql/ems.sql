@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2019 at 02:17 PM
+-- Generation Time: Aug 04, 2019 at 07:11 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -251,8 +251,9 @@ CREATE TABLE `employee_leaves` (
 --
 
 INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`, `is_archived_by_approver`) VALUES
-(138, 277, 40, NULL, NULL, NULL, 'pending', 'multiple', 'recommended', '0000-00-00', '2019-07-30', '2019-08-01', 276, ' ', 'a', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:51', NULL, '2019-07-30 14:36:51', '0', '1'),
-(139, 277, 40, NULL, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-07-30', NULL, 276, ' ', 'r', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:57', NULL, '2019-07-30 14:36:57', '0', '0');
+(202, 277, 1, NULL, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-02', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-02 08:12:33', NULL, '2019-08-02 08:12:33', '0', '0'),
+(203, 277, 40, NULL, NULL, NULL, 'denied', 'full', 'recommended', '0000-00-00', '2019-08-02', NULL, 276, '', '', '0000-00-00', '0000-00-00', '', '2019-08-02 08:12:41', NULL, '2019-08-02 08:12:41', '0', '0'),
+(204, 277, 40, NULL, NULL, NULL, 'pending', 'multiple', 'recommended', '0000-00-00', '2019-08-02', '2019-08-07', 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-02 08:12:53', NULL, '2019-08-02 08:12:53', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,7 @@ INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `ap
 CREATE TABLE `employee_leave_balance` (
   `emp_id` int(11) NOT NULL,
   `leave_id` int(11) NOT NULL,
-  `remain_days` int(11) NOT NULL,
+  `remain_days` decimal(11,2) NOT NULL,
   `created_by` varchar(50) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
@@ -275,8 +276,8 @@ CREATE TABLE `employee_leave_balance` (
 --
 
 INSERT INTO `employee_leave_balance` (`emp_id`, `leave_id`, `remain_days`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(277, 39, 6, '', '2019-07-30 07:01:16', NULL, NULL),
-(277, 40, 6, '', '2019-07-30 07:01:16', NULL, NULL);
+(277, 1, '0.70', '', '2019-08-01 08:49:32', NULL, NULL),
+(277, 40, '6.00', '', '2019-07-30 07:01:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -328,9 +329,8 @@ CREATE TABLE `leaves` (
 --
 
 INSERT INTO `leaves` (`leave_id`, `leave_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(39, 'Casual Leave', '123', '2019-07-25 06:50:36', NULL, '2019-07-25 06:50:36'),
-(40, 'Sick Leave', '123', '2019-07-25 08:33:46', NULL, '2019-07-25 08:33:46'),
-(41, 'kjgh', '276', '2019-07-30 05:34:58', NULL, '2019-07-30 05:34:58');
+(1, 'Casual Leave', '123', '2019-07-25 06:50:36', NULL, '2019-07-25 06:50:36'),
+(40, 'Sick Leave', '123', '2019-07-25 08:33:46', NULL, '2019-07-25 08:33:46');
 
 -- --------------------------------------------------------
 
@@ -353,11 +353,10 @@ CREATE TABLE `leave_packages` (
 --
 
 INSERT INTO `leave_packages` (`leave_id`, `package_id`, `duration`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(39, 44, 6, '276', '2019-07-30 05:20:04', NULL, '2019-07-30 05:20:04'),
-(39, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21'),
+(1, 44, 6, '276', '2019-07-30 05:20:04', NULL, '2019-07-30 05:20:04'),
+(1, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21'),
 (40, 44, 6, '276', '2019-07-30 05:20:04', NULL, '2019-07-30 05:20:04'),
-(40, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21'),
-(41, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21');
+(40, 45, 6, '276', '2019-07-30 05:35:21', NULL, '2019-07-30 05:35:21');
 
 -- --------------------------------------------------------
 
@@ -473,8 +472,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (257, 276, 'grri123', 0, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
-(258, 277, 'brad123', 1, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
-(259, 278, 'hane123', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08');
+(258, 277, 'brad123', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
+(259, 278, 'hane123', 1, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08');
 
 -- --------------------------------------------------------
 
@@ -684,7 +683,7 @@ ALTER TABLE `employee_documents`
 -- AUTO_INCREMENT for table `employee_leaves`
 --
 ALTER TABLE `employee_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `employee_work_experience`
@@ -696,7 +695,7 @@ ALTER TABLE `employee_work_experience`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `modules`
