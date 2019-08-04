@@ -26,6 +26,22 @@
       <h4>Manage Staff</h4>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
+
+          <?php if(isset($post['errorpage'])&&$post['errorpage']=="true"){ ?>
+          <div class="h1 text-center" id="showerror">
+              No Staff Found
+          </div>
+        <?php } ?>
+
+    <div id="page-content" 
+    <?php 
+    if(isset($post['errorpage'])&&$post['errorpage']=="true"){ ?>
+      style="display:none"
+      <?php } else { ?>
+        style="display:block"
+      <?php } ?>
+      >
+
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
@@ -679,6 +695,7 @@
 
  <!-- employee assign tab ends here -->
 
+</div>
 
 
 

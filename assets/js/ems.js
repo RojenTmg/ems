@@ -53,14 +53,16 @@ $(window).on("scroll", function() {
 
   $('#leave_name').change(function() {
       if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
-        $('#half-day').prop('checked', true);
         $('#multiple-days').attr('disabled', true);
+        $('#half-day').prop('checked', true);
+        $('#to_date').attr('disabled', true);
+        $('#duration').val('0.5');
+        $('#to_date').val($('#from_date').val());
       }
       else {
         $('#multiple-days').attr('disabled', false);        
       }
   });
-
 
   $('#half-day').click(function() {
     $('#to_date').attr('disabled', true);
@@ -1529,12 +1531,14 @@ function denyLeaveFromRecommender(id)
 
 // approve leave by approver
 
-function leaveApproveF(l_id)
+function leaveApproveF(id, emp_id, leave_id)
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApproveRequest',true);
   var data = new FormData();
-  data.append('l_id',l_id);
+  data.append('id',id);
+  data.append('emp_id',id);
+  data.append('leave_id',id);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
