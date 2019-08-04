@@ -31,8 +31,9 @@ $route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 
+$route['recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
-$route['leaveApproveRequest'] = 'Employee_controller/leaveApprove';
+$route['leaveApprove'] = 'Employee_controller/leaveApprove';
 $route['archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
 $route['archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
 
@@ -45,7 +46,6 @@ $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApp
 $route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
-$route['employee/recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromRecommender'] = 'Employee_controller/denyLeaveFromRecommender';
 
 $route['employee/profile_update/addContact'] = 'Employee_controller/addContact';

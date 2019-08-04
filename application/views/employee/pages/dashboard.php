@@ -48,7 +48,8 @@
   <div class="con-sub-head">
   <!-- <h5>Recent Messages</h5> -->  
   </div>
-  <div class="box">
+   <div class="lists">
+  <div class="box"  id="liststab">
   <div class="box-head">
  
   </div>
@@ -60,7 +61,7 @@
     </div>
     <!-- area finishes here -->
 
-    <div class="lists">
+   
   <div class="box-body" style="overflow-x:auto;">
 
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
@@ -97,6 +98,7 @@
 
   <td> 
   <?php if($posts['is_recommended']=='pending') {?>
+    
   <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
       <div class="tooltiptext">
         <p>Are you sure?</p>
@@ -112,7 +114,8 @@
     <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
   <?php } ?>
 
-<!-- Modal -->
+
+<!-- delete Modal -->
 <div class="modal fade" id="exampleModalCenter<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -221,7 +224,8 @@
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
-                          <span class="tip-arch tip-res" onclick="leaveApproveF('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
+
+                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
                       <?php } ?>

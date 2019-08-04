@@ -1556,7 +1556,7 @@ function recommendLeave(l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( ".lists" ).load(window.location.href + " #datatable-recommender" );
+    $( ".lists" ).load(window.location.href + " #liststab" );
   }
 }
 }
@@ -1586,10 +1586,12 @@ function denyLeaveFromRecommender(id)
 }
 
 // approve leave by approver
-function leaveApproveF(d_type, id, e_id, leave_id, no_of_days = '0')
+
+function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
+
 {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open('POST','leaveApproveRequest',true);
+  xmlHttp.open('POST','leaveApprove',true);
   var data = new FormData();
   data.append('d_type', d_type);
   data.append('id',id);
