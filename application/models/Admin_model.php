@@ -334,7 +334,7 @@ $config = Array(
 'smtp_user' => 'emsnotificationsystem@gmail.com',
 'smtp_pass' => 'AccessDenied',
 'smtp_crypto' => 'tls',
-'smtp_timeout' => '20',
+'smtp_timeout' => '60',
 'mailtype'  => 'html', 
 'charset'   => 'iso-8859-1'
 );
@@ -351,8 +351,6 @@ if ( ! $this->email->send()) {
 return false;
 }
 return true;
-
-
 }
 
 public function getEmail($id=''){

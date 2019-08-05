@@ -81,6 +81,7 @@
       <div class="drop-down">
         <ul>
           <li><a href="<?= site_url('employee/profile'); ?>"><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
+           <li><a href="<?= base_url('employee'); ?>/profile_update/<?php echo $_SESSION['user_id'];?>"><i class="fa fa-edit" aria-hidden="true"></i> &nbsp;&nbsp; Edit Profile</a></li>
           <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
         </ul>
       </div>
