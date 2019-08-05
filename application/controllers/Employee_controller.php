@@ -339,19 +339,18 @@
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
 
-			if ($data['leave_by_emp']['duration_type'] == 'half') {
-				$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
-				$data=array('remain_days'=>$leaveBalance);
-				$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-				$this->db->update('employee_leave_balance',$data);		
+			// if ($data['leave_by_emp']['duration_type'] == 'half') {
+			// 	$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
+			// 	$data=array('remain_days'=>$leaveBalance);
+			// 	$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
+			// 	$this->db->update('employee_leave_balance',$data);		
 
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
 			if ($d_type == 'half') {
 				$leaveBalance =  $remaining_days['elb_remain_days'] - 0.5;
-
 			}
-			else if ($d_type == 'full') {
+			else if ($d_type == 'full') { 
 				$leaveBalance =  $remaining_days['elb_remain_days'] - 1;
 			}
 			else if ($d_type == 'multiple') {
@@ -359,7 +358,7 @@
 			}
 			
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
-		}
+		// }
 	}
 
 		public function denyApprove()

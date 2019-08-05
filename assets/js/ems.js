@@ -1598,6 +1598,7 @@ function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
   data.append('e_id',e_id);
   data.append('leave_id',leave_id);
   data.append('no_of_days',no_of_days);
+  // alert(d_type + ' ' + id + ' ' + e_id + ' ' + leave_id + ' ' + no_of_days);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)

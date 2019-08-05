@@ -1,13 +1,14 @@
  <!-- form -->
   <div class="contents">
-    <?php if(count($leavelist)==0) { ?>
+    
+    <div class="con-head">
+      <h4>Application Form</h4>
+    </div>
+      <?php if(count($leavelist)==0) { ?>
       <div class="con-sum">
          <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
       </div>
     <?php } else { ?>
-    <div class="con-head">
-      <h4>Application Form</h4>
-    </div>
     <div class="box">
       <div class="box-head">
         <p>Leave Application Form</p>

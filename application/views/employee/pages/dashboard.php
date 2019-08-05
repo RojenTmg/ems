@@ -219,7 +219,6 @@
                     <?php if($value['is_approved']=='pending') {?>
                       
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
-                      <?php if () { ?>
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
@@ -228,7 +227,6 @@
                           <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
-                      <?php } ?>
                       
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
@@ -360,7 +358,7 @@
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
               "aaSorting": [],        
-              "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
+              "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
            /* disable sorting on specific columns */
            'columnDefs': [ {
               'targets': [9], /* column index starting from 0*/
