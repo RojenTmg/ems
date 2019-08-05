@@ -355,12 +355,42 @@ return true;
 
 }
 
-public function getEmail(){
-	$this->db->where('emp_id',$_SESSION['user_id']);
+public function getEmail($id=''){
+	if($id=='') $id=$_SESSION['user_id'];
+
+	$this->db->where('emp_id',$id);
 	$query= $this->db->get('employees');
 	$detail=$query->row_array();
 	return $detail['email'];
 }
+
+public function getName($id){
+	$this->db->where('emp_id',$id);
+	$query= $this->db->get('employees');
+	$detail=$query->row_array();
+	$name=$detail['first_name'].' '.$detail['middle_name'].' '.$detail['last_name'];
+	return $name;
+}
+
+public function getNameByLid($id){
+	$this->db->where('leave_id',$id);
+	$query= $this->db->get('leaves');
+	$detail=$query->row_array();
+	return $detail['leave_name'];
+}
+
+public function getNameById($id){
+	$this->db->where('id',$id);
+	$query= $this->db->get('employee_leaves');
+	$detail=$query->row_array();
+
+	$this->db->where('leave_id',$detail['leave_id']);
+	$query= $this->db->get('leaves');
+	$detail=$query->row_array();
+	return $detail['leave_name'];
+}
+
+
 
 }
 
