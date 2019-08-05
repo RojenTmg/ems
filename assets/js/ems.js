@@ -1603,7 +1603,7 @@ function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
   if(xmlHttp.readyState==4)
   {
     // $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
-    location.reload();
+    // location.reload();
   }
 }
 }
