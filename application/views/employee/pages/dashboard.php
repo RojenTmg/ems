@@ -101,11 +101,12 @@
   <td> 
   <?php if($posts['is_recommended']=='pending') {?>
     
-  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
+  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
+    <i class="fa fa-check text-success" aria-hidden="true"></i>
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
-        <span class="tip-arch tip-res" onclick="recommendLeave(<?php echo $posts['id']; ?>)" >Approve</span>
+        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Approve</span>
         </div>
   </button> 
 
@@ -235,7 +236,7 @@
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
 
-                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
+                          <span class="tip-arch tip-res" onclick="leaveApprove(this,'<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
 
