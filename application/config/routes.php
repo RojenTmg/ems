@@ -28,15 +28,15 @@ $route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 
-
-
-
+// unarchive leaves
+$route['employee/unArchiveRecommendedLeave']= 'Employee_controller/unArchiveRecommendedLeave';
+$route['employee/unArchiveApprovedLeave']= 'Employee_controller/unArchiveApprovedLeave';
 
 $route['recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['leaveApprove'] = 'Employee_controller/leaveApprove';
-$route['archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
-$route['archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
+$route['employee/archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
+$route['employee/archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
 
 $route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1';
 
@@ -121,6 +121,8 @@ $route['admin/savePackage'] = 'Admin_controller/savePackage';
 $route['employee/dashboard'] = 'Employee_controller/dashboard';
 $route['employee/leave_form'] = 'Employee_controller/leaveForm';
 $route['employee/profile'] = 'Employee_controller/profile';
+$route['employee/leave_approve_archive'] = 'Employee_controller/leaveApproveArchive';
+$route['employee/leave_recommended_archive'] = 'Employee_controller/leaveRecommendedArchive';
 
 $route['employee/app_leave_approve'] = 'Employee_controller/appLeaveApprove';
 

@@ -21,12 +21,12 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title"><?php echo $leave['leave_name'];?></div>
-                <div class="hl-cont"><?php echo $leave['remain_days'];?><span><em> out of &nbsp;</em></span><?php echo $leave['duration'];?><span><em> days </em></span></div>
+                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $leave['remain_days'];?>)); </script><span><em> left out of &nbsp;</em></span><?php echo $leave['duration'];?></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
-                <div><span>Since this year</span></div>
-                <div><span>5.35%</span></div>
+                <div><span>No of Leaves taken</span></div>
+                <div><span><script type="text/javascript"> document.write(trim_day(<?php echo $leave['duration'] - $leave['remain_days'];?>)); </script></span></div>
             </div>
           </a>
           </div>
@@ -37,16 +37,18 @@
  
 
     </div>
-
+<!-- check if the user is recommender or not -->
+<?php  if ($_SESSION['is_recommender'] == 1) { ?>
   <!-- RECOMMENDATION LISTS  -->
-
   <div class="con-head">
   <h4>Recommendation Lists</h4>
   </div>
-
   <div>
-  <div class="con-sub-head">
-  <!-- <h5>Recent Messages</h5> -->  
+ <div class="sp-btn  ml-2">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
   </div>
    <div class="lists">
   <div class="box"  id="liststab">
@@ -169,6 +171,7 @@
 </div>
 </div>
 </div>
+<?php } ?>
 <!-- RECOMMENDATION LISTS END HERE -->
 
 
@@ -178,6 +181,12 @@
       <div class="con-head">
       <h4>Approve List</h4>
     </div>
+      <div class="sp-btn  ml-2  ">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_approve_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
+  </div>
     <div class="box">
       <div class="box-head">
         <p>Leaves left to be Approved</p>
@@ -192,8 +201,8 @@
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Employee Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" width="7%"><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 13%;"><div class="sp-btn"><span>Recommended by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
@@ -208,8 +217,8 @@
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
-                    <td><?php echo $value['to_date']; ?></td>
                     <td><?php echo $value['duration_type']; ?></td>
+                    <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['dpb_first_name'] .' '. $value['dpb_middle_name'] .' '. $value['dpb_last_name']; ?></td>
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
@@ -219,6 +228,8 @@
                     <?php if($value['is_approved']=='pending') {?>
                       
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
+
+
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
@@ -307,8 +318,8 @@
             <tr>
               <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" width="5%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 5%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
@@ -320,8 +331,8 @@
                   <tr>
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
-                    <td><?php echo $value['to_date']; ?></td>
                     <td><?php echo $value['duration_type']; ?></td>
+                    <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
                     <td><?php if ($value['is_approved'] == 'denied' || $value['is_recommended'] == 'denied') { echo '<span class="denied">Denied</span>';  } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Approved</span>'; } else if ($value['is_recommended'] == 'recommended') { echo '<span class="pending">Recommended</span>';  } else { echo '<span class="pending">Pending</span>';} ?></td>
@@ -339,7 +350,8 @@
 
 
   <script type="text/javascript">
-        $(document).ready(function(){
+
+    $(document).ready(function(){
        $('#datatable-recommender').DataTable({
         "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
             "aaSorting": [],  });

@@ -92,16 +92,45 @@
 			return $query->row_array();
 		}
 
+		// get list of archived leaves
+		public function findArchivedApproveLeaves($id = FALSE)
+		{
+
+			$approver=$_SESSION['user_id'];
+			$project = "SELECT *, el.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
+
+					    FROM employee_leaves el
+					    LEFT JOIN leaves l ON l.leave_id = el.leave_id 
+					    LEFT JOIN employees e ON e.emp_id = el.emp_id 
+					    LEFT JOIN employee_approvers ea ON ea.emp_id = el.emp_id 
+					    LEFT JOIN employees eaid ON ea.approver_id = eaid.emp_id 
+					    LEFT JOIN employees dpb ON dpb.emp_id = el.duty_performed_by 
+						WHERE el.is_archived_by_approver = '1' AND  ea.approver_id=$approver AND el.is_recommended = 'recommended' OR el.is_approved = 'denied' AND el.is_archived_by_approver = '1' AND  ea.approver_id=$approver
+						ORDER BY el.id DESC";
+
+			if ($id === FALSE) {	
+				// $project = $project . ' WHERE el.is_recommended = recommended';ss
+				// $this->db->order_by('emp_id', 'DESC');
+				$query = $this->db->query($project);
+				return $query->result_array();
+			}
+
+			$project = $project . ' WHERE el.id = ' . $id ;
+			$query = $this->db->query($project);
+			
+			return $query->row_array();
+		}
+
 
 
 		// fetch leaves information
-		public function recommendationList()
+		public function recommendationList($is_archived)
 		{
 			$recommender = $_SESSION['user_id'];
 			$this->db->join('employees', 'employee_leaves.emp_id = employees.emp_id');
 			$this->db->join('leaves', 'employee_leaves.leave_id = leaves.leave_id');
 			$this->db->join('employee_approvers', 'employee_leaves.emp_id =employee_approvers.emp_id');
-			$this->db->where('employee_leaves.is_archived', '0');
+			$this->db->where('employee_leaves.is_archived', $is_archived);
 			$this->db->where('employee_approvers.recommender_id', $recommender);
 			$query = $this->db->get('employee_leaves');
 			return $query->result_array();

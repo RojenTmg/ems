@@ -24,12 +24,12 @@
           <div class="dt-part">
             <div class="pt-1">No of Leaves taken</div>
             <div class="pt-2">:</div>
-            <div class="pt-3"><?php echo $taken;?></div>
+            <div class="pt-3"><script type="text/javascript"> document.write(trim_day(<?php echo $taken;?>)); </script></div>
           </div>
           <div class="dt-part">
             <div class="pt-1">No of Leaves Remaining</div>
             <div class="pt-2">:</div>
-            <div class="pt-3"><?php echo $remain_days;?></div>
+            <div class="pt-3"><script type="text/javascript"> document.write(trim_day(<?php echo $remain_days;?>)); </script></div>
           </div> 
         </div>
       </div>

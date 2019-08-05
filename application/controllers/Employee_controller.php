@@ -47,11 +47,33 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id']);
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
-			$data['recommendations']=$this->Employee_model->recommendationList();
+			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
 
 			$this->view('dashboard', $data);
+		}
+
+		// archive approved list
+		public function leaveApproveArchive()
+		{
+			$data['title']= 'Archived Lists';
+			$data['employee_leaves_approve'] = $this->Employee_model->findArchivedApproveLeaves();
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
+			$this->view('leave_approve_archive', $data);
+		}
+		// archived recommended leaves list page
+		public function leaveRecommendedArchive()
+		{
+			$data['title']= 'Archived Lists';
+			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
+			$data['recommendations']=$this->Employee_model->recommendationList('1');
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
+			$this->view('leave_recommended_archive', $data);
 		}
 
 		public function leaveBalance(){
@@ -141,7 +163,7 @@
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -149,7 +171,7 @@
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -157,7 +179,7 @@
 				else {
 					if ($data['clb']['elb_remain_days'] < (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1)) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' days left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -385,7 +407,7 @@
 			extract($_POST);
 
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
-			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
+			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $e_id, 'leave_id =' => $leave_id))->row_array();
 
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
@@ -425,6 +447,24 @@
 		{
 			extract($_POST);
 			$data=array('is_archived'=>'1');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// unarchive recommended leaves
+		public function unArchiveRecommendedLeave()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'0');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// unarchive approved leaves
+		public function unArchiveApprovedLeave()
+		{
+			extract($_POST);
+			$data=array('is_archived_by_approver'=>'0');
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}
