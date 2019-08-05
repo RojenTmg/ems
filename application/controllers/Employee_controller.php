@@ -252,7 +252,7 @@
 			$leavename=$this->Admin_model->getNameById($l_id);
 			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been recommended by ".$recommender_name." and waiting to be approved";
 			$email=$this->Admin_model->getEmail($list['emp_id']);
-			$this->Admin_model->sendEmail('Leave Applied',$message,$email);
+			$this->Admin_model->sendEmail('Leave Recommended',$message,$email);
 			// end of send mail
 		
 		}
@@ -274,6 +274,8 @@
 			$leavename=$this->Admin_model->getNameById($id);
 
 			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$recommender_name.".";
+			$message .='<br><br>';
+			$message .="Reason for Leave Denied is:<br>".$denial_reason;
 			$email=$this->Admin_model->getEmail($list['emp_id']);
 			$this->Admin_model->sendEmail('Leave Denied by Recommender',$message,$email);
 			// end of send mail
