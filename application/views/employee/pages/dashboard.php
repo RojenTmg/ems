@@ -37,16 +37,18 @@
  
 
     </div>
-
+<!-- check if the user is recommender or not -->
+<?php  if ($_SESSION['is_recommender'] == 1) { ?>
   <!-- RECOMMENDATION LISTS  -->
-
   <div class="con-head">
   <h4>Recommendation Lists</h4>
   </div>
-
   <div>
-  <div class="con-sub-head">
-  <!-- <h5>Recent Messages</h5> -->  
+ <div class="sp-btn  ml-2">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
   </div>
    <div class="lists">
   <div class="box"  id="liststab">
@@ -169,6 +171,7 @@
 </div>
 </div>
 </div>
+<?php } ?>
 <!-- RECOMMENDATION LISTS END HERE -->
 
 
@@ -178,6 +181,12 @@
       <div class="con-head">
       <h5>Approve Leave</h5>
     </div>
+      <div class="sp-btn  ml-2  ">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_approve_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
+  </div>
     <div class="box">
       <div class="box-head">
         <p>Leaves left to be Approved</p>
@@ -219,7 +228,7 @@
                     <?php if($value['is_approved']=='pending') {?>
                       
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
-                      <?php if () { ?>
+                      <?php if (true) { ?>
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
