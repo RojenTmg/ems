@@ -8,7 +8,7 @@
 
 
 			<div class="head-name">
-				<div class="item-1 text-left" ><?php echo $post['first_name'] . ' ' .  $post['middle_name'] . ' ' .  $post['last_name'];  ?></div>
+				<div class="item-1 text-left" ><?php echo $post['title'] . '. ' . $post['first_name'] . ' ' .  $post['middle_name'] . ' ' .  $post['last_name'];  ?></div>
 				<div class="item-2 text-left"><?php echo $post['department_name']; ?></div>
 		</div>
 
@@ -25,9 +25,8 @@
 		<h5 class="card-header text-center alert alert-dark">Basic Info</h5>
 		<div class="card-body">
 			<div class="body-row ">
-
 				<div class="item-1 text-left">Id</div>
-				<div class="item-2 text-left"><?php echo $post['emp_id']; ?></div>
+				<div class="item-2 text-left"><?php echo $post['employee_id']; ?></div>
 			</div>
 
 			<div class="body-row ">

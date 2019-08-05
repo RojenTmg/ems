@@ -176,7 +176,7 @@
     <?php if ($_SESSION['is_approver'] == 1) { ?>
     <div>
       <div class="con-head">
-      <h5>Approve Leave</h5>
+      <h4>Approve List</h4>
     </div>
     <div class="box">
       <div class="box-head">
@@ -227,7 +227,7 @@
                           <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
-                      
+
                       
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
@@ -295,7 +295,7 @@
 <!-- leave requested by self starts here -->
     <div>
       <div class="con-sub-head">
-          <h5>Leave Requests</h5>
+          <h4>Leave Requests</h4>
       </div>
       <div class="box">
       <div class="box-head">
@@ -347,7 +347,7 @@
     $(document).ready(function(){
        $('#datatable1').DataTable({
           /* Disable initial sort */
-            "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+            "aaSorting": [],        "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
          /* disable sorting on specific columns */
          // 'columnDefs': [ {
             // 'targets': [1], /* column index */
@@ -359,7 +359,7 @@
          $('#datatable-approval').DataTable({
             /* Disable initial sort */
               "aaSorting": [],        
-              "lengthMenu": [ [3,5, 10, 25 ,-1], [3,5, 10, 25, "All"]],
+              "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
            /* disable sorting on specific columns */
            'columnDefs': [ {
               'targets': [9], /* column index starting from 0*/
