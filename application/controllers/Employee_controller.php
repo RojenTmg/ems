@@ -45,7 +45,7 @@
 		public function dashboard()
 		{
 			$data['title']= 'Dashboard';
-			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
+			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id']);
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList();
 			$data['duty_by']=$this->Admin_model->employeeList();
@@ -64,9 +64,11 @@
 			$data['leavelist']=$this->leaveBalance();
 			$data['leaveDetail']=$data['leavelist'][$lid];
 			$data['leaveDetail']['taken']=$data['leaveDetail']['duration']-$data['leaveDetail']['remain_days'];
-			$this->load->view('employee/templates/header',$title);
-			$this->load->view('employee/pages/leave_details',$data);
-			$this->load->view('employee/templates/footer');
+
+			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id'], $lid);
+
+			$this->view('leave_details', $title, $data);
+
 		}
 
 
@@ -102,7 +104,7 @@
 		{
 			$title['title'] = 'Leave Form';
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
-			$data['leaves'] = $this->Database_model->findAll('leaves');
+			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id']);
 			$data['leavelist']=$this->leaveBalance();
 
 			if ($this->input->post('submit') != NULL) {
@@ -122,7 +124,7 @@
 					// if user tries to submit more than 0.5 day for half day
 					if ($leave['duration_type'] == 'half' && (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400)) > 0.5) { 
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'Half day has exceeded 1/2 days.';
+						$data['not_valid'] = 'Half day has exceeded 1/2 day.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -190,22 +192,22 @@
 
 		}
 
-		// recommenders page
-		public function recommendationList()
-		{
+		// // recommenders page
+		// public function recommendationList()
+		// {
 
-			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-			{
-				$title['title'] = 'Recommendation List';
+		// 	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+		// 	{
+		// 		$title['title'] = 'Recommendation List';
 
-				$recommender_data['recommendations']=$this->Employee_model->recommendationList();
-				$recommender_data['duty_by']=$this->Admin_model->employeeList();
-				$this->view('recommendation_list', $title, $recommender_data);
+		// 		$recommender_data['recommendations']=$this->Employee_model->recommendationList();
+		// 		$recommender_data['duty_by']=$this->Admin_model->employeeList();
+		// 		$this->view('recommendation_list', $title, $recommender_data);
 				
 
-			}
-			else { redirect('login');}
-		}
+		// 	}
+		// 	else { redirect('login');}
+		// }
 
 		// leave recommend to approver
 		public function recommendLeave()
@@ -343,12 +345,6 @@
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
 
-			// if ($data['leave_by_emp']['duration_type'] == 'half') {
-			// $leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
-			// $data=array('remain_days'=>$leaveBalance);
-			// $this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-			// $this->db->update('employee_leave_balance',$data);		
-
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
 			if ($d_type == 'half') {
@@ -362,7 +358,6 @@
 			}
 			
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
-		// }
 	}
 
 		public function denyApprove()

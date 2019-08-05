@@ -176,7 +176,7 @@
     <?php if ($_SESSION['is_approver'] == 1) { ?>
     <div>
       <div class="con-head">
-      <h5>Approve Leave</h5>
+      <h4>Approve List</h4>
     </div>
     <div class="box">
       <div class="box-head">
@@ -294,7 +294,7 @@
 <!-- leave requested by self starts here -->
     <div>
       <div class="con-sub-head">
-          <h5>Leave Requests</h5>
+          <h4>Leave Requests</h4>
       </div>
       <div class="box">
       <div class="box-head">
@@ -346,7 +346,7 @@
     $(document).ready(function(){
        $('#datatable1').DataTable({
           /* Disable initial sort */
-            "aaSorting": [],        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+            "aaSorting": [],        "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
          /* disable sorting on specific columns */
          // 'columnDefs': [ {
             // 'targets': [1], /* column index */
