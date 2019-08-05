@@ -272,7 +272,7 @@
 
 			$project = "SELECT *, e.email as email,
 				               a.street as p_street, a.municipality as p_municipality, a.district as p_district, a.state as p_state, a.country as p_country, 
-				               asec.street as t_street, asec.municipality as t_municipality, asec.district as t_district, asec.state as t_state, asec.country as t_country 
+				               asec.street as t_street, asec.municipality as t_municipality, asec.district as t_district, asec.state as t_state, asec.country as t_country
 					    FROM employees e
 					    JOIN departments d ON d.id = e.department_id
 					    LEFT JOIN employee_addresses ea ON ea.emp_id = e.emp_id
@@ -293,7 +293,16 @@
 			$query = $this->db->query($project);
 			
 			return $query->row_array();
-		}
+		}	
+
+		//employee's recommender and approver
+		public function getRecommenderApprover($id)
+		 {
+		 	
+			$this->db->join('employees', 'employee_approvers.emp_id = employees.emp_id');
+			$query = $this->db->get('employee_approvers');
+			return $query->row_array();
+		 } 
 
 		public function findAllByCertainMonth($table, $field, $DMY, $date)
 		{

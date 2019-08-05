@@ -328,6 +328,33 @@
 		</div>
 	</div>
 		<!-- pan ends here -->
+
+			<!-- Leave Arpprover -->
+		<div class="column ">
+				<div class="card">
+			<h5 class="card-header text-center alert alert-dark"> Arpprover / Recommender</h5>
+			<div class="card-body">
+			<div class="body-row ">
+				<div class="item-1 text-left" > Recommender</div>
+				<div class="item-2 text-left">
+					<?php foreach ($recommender_name as $key => $value) {
+						if($value['emp_id']==$recommender_id['recommender_id'])
+							echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name'];
+					} ?>
+					
+			</div>
+				</div>
+			<div class="body-row ">
+				<div class="item-1 text-left" > Arpprover</div>
+				<div class="item-2 text-left"><?php foreach ($recommender_name as $key => $value) {
+						if($value['emp_id']==$recommender_id['approver_id'])
+							echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name'];
+					} ?></div>
+			</div>
+		</div>
+		</div>
+	</div>
+		<!-- Leave Arpprover ends here -->
 		
 </div>
 	</div>
