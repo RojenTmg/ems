@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
+$route['sendEmail'] = 'Admin_controller/sendEmail';
 $route['admin/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 
