@@ -344,10 +344,10 @@
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
 
 			// if ($data['leave_by_emp']['duration_type'] == 'half') {
-			// 	$leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
-			// 	$data=array('remain_days'=>$leaveBalance);
-			// 	$this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
-			// 	$this->db->update('employee_leave_balance',$data);		
+			// $leaveBalance =  $data['leave_blnc_by_emp']['remain_days'] - 0.5;
+			// $data=array('remain_days'=>$leaveBalance);
+			// $this->db->where(array('emp_id =' => $emp_id, 'leave_id =' => $leave_id));
+			// $this->db->update('employee_leave_balance',$data);		
 
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
