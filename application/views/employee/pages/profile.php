@@ -10,6 +10,9 @@
 			<div class="head-name">
 				<div class="item-1 text-left" ><?php echo $post['title'] . '. ' . $post['first_name'] . ' ' .  $post['middle_name'] . ' ' .  $post['last_name'];  ?></div>
 				<div class="item-2 text-left"><?php echo $post['department_name']; ?></div>
+
+				<!-- edit profile -->
+				 <a href="<?= base_url('employee'); ?>/profile_update/<?php echo $_SESSION['user_id'];?>">Edit Profile</a>
 		</div>
 
 		</div>
