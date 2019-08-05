@@ -358,6 +358,7 @@
 			}
 			
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
+
 	}
 
 		public function denyApprove()

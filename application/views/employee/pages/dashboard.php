@@ -227,6 +227,7 @@
                           <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
+
                       
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterApprover<?php  echo $value['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
