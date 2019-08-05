@@ -317,7 +317,52 @@
 			$this->db->delete('employee_work_experience');
 		}
 
-	}
+public function sendEmail($title,$message,$email){
+
+
+// title, message,email
+
+$data['title']=$title;
+$data['message']=$message;
+
+$content = $this->load->view('email/index', $data, TRUE);
+
+$config = Array(
+'protocol' => 'smtp',
+'smtp_host' => 'smtp.gmail.com',
+'smtp_port' => 587, //465,
+'smtp_user' => 'emsnotificationsystem@gmail.com',
+'smtp_pass' => 'AccessDenied',
+'smtp_crypto' => 'tls',
+'smtp_timeout' => '20',
+'mailtype'  => 'html', 
+'charset'   => 'iso-8859-1'
+);
+$config['newline'] = "\r\n";
+$config['crlf'] = "\r\n";
+$this->load->library('email', $config);
+$this->email->from('emsnotificationsystem@gmail.com', 'EMS');
+$this->email->to($email);
+$this->email->subject($title);
+$this->email->message($content);
+
+//$this->email->send();
+if ( ! $this->email->send()) {
+return false;
+}
+return true;
+
+
+}
+
+public function getEmail(){
+	$this->db->where('emp_id',$_SESSION['user_id']);
+	$query= $this->db->get('employees');
+	$detail=$query->row_array();
+	return $detail['email'];
+}
+
+}
 
 
 

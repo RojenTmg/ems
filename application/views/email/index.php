@@ -1,5 +1,9 @@
-<!DOCTYPE html >
-<html>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -217,26 +221,12 @@
 
 <body bgcolor="#f7f7f7">
 	<div class="col-md-8">		
-<table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" style="box-shadow:1px 2px 5px 2px #cacaca; margin-top: 5%; width: 65%; height: 50%;" >
+<table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" style="box-shadow:1px 2px 5px 2px #cacaca; width: 65%; height: 50%;" >
   <tr>
     <td align="left" valign="top" width="100%" style="background: #fff; padding: 2%;">
       <center>
     
-        <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff"  style="background-color:transparent">
-          <tr>
-            <td width="100%" height="80" valign="top" style="text-align: center; vertical-align:middle;">
-          
-              <center>
-                <table cellpadding="0" cellspacing="0" width="600" class="w320">
-                  <tr>
-                  	<h2>EMS</h2>
-                  </tr>
-                </table>
-              </center>
-            
-            </td>
-          </tr>
-        </table>
+       
       </center>
     </td>
   </tr>
@@ -246,12 +236,12 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320 "> 
           <tr>
             <td class="header-lg">
-              Leave Application Approved
+             <?php echo $title; ?>
                           </td>
           </tr>
           <tr>
             <td class="free-text">
-              The (<?php echo " leavename "; ?>) you have requested from <?php echo " from_date - to_date "; ?> has been approved by <?php echo "approver_name. "; ?>
+              <?php echo $message; ?>
               <br> <br><br><br>
               Click link below to go to your dashboard.
             </td>
@@ -265,7 +255,7 @@
                   <w:anchorlock/>
                   <center style="color:#ffffff;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;">My Account</center>
                 </v:roundrect>
-              <![endif]--><a class="button-mobile" href="http://"
+              <![endif]--><a class="button-mobile" href="<?php echo base_url();?>"
               style="background-color:#ff6f6f;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">Go to Dashboard</a></div>
             </td>
           </tr>
@@ -285,8 +275,8 @@
           <tr>
             <td style="padding: 25px 0 25px">
               <strong>Copyright <?php echo Date('Y'); ?></strong><br />
-           		   tsering khando<br />
-              Wonderland <br /><br />
+           		  EMS System<br />
+               <br /><br />
             </td>
           </tr>
         </table>
@@ -297,3 +287,4 @@
 </div>	
 </body>
 </html>
+

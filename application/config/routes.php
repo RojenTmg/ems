@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
+$route['sendEmail'] = 'Admin_controller/sendEmail';
 $route['admin/archiveEmployee'] = 'Admin_controller/archiveEmployee';
 $route['admin/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 
@@ -44,7 +45,7 @@ $route['employee/denyApprove'] = 'Employee_controller/denyApprove';
 $route['employee/leaveApprove'] = 'Employee_controller/leaveApprove';
 $route['employee/archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
 $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
-$route['employee/leaveApproveRequest'] = 'Employee_controller/leaveApprove';
+$route['employee/leaveApprove'] = 'Employee_controller/leaveApprove';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
 $route['denyLeaveFromRecommender'] = 'Employee_controller/denyLeaveFromRecommender';
