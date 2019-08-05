@@ -28,10 +28,6 @@ $route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 
-
-
-
-
 $route['recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['leaveApprove'] = 'Employee_controller/leaveApprove';

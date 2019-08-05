@@ -141,7 +141,7 @@
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -149,7 +149,7 @@
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' day left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -157,7 +157,7 @@
 				else {
 					if ($data['clb']['elb_remain_days'] < (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1)) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'You have only '.$data['clb']['elb_remain_days'].' days left for '. $data['clb']['l_leave_name'].'.';
+						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
