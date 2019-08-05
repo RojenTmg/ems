@@ -47,7 +47,27 @@ $(window).on("scroll", function() {
 
 
 
+////////////////////  Trim days /////////////////////
 
+function trim_day(dec_day) {
+  
+  var day;
+  if (dec_day <= 1) 
+    day = ' day ';
+  else 
+    day = ' days ';
+
+  if (dec_day % 1 == 0) 
+    return Math.round(dec_day) + day;
+  else {
+    if (dec_day < 1) {
+      return ' 1/2 ' + day;
+    }
+    else {
+      return Math.floor(dec_day) + ' and 1/2 ' + day;
+    }
+  }
+}
 
 ////////////////////  Validating 'from-to' date in Employee Leave Request Form /////////////////////
 
@@ -1593,6 +1613,7 @@ function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
   data.append('e_id',e_id);
   data.append('leave_id',leave_id);
   data.append('no_of_days',no_of_days);
+  // alert(d_type + ' ' + id + ' ' + e_id + ' ' + leave_id + ' ' + no_of_days);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)

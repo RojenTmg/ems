@@ -54,7 +54,7 @@
 		// querying all data related to employee
 		public function getEmployeeDetails($id = FALSE) {
 
-			$project = "SELECT *, e.email AS email,
+			$project = "SELECT *, e.emp_id AS employee_id, e.email AS email,
 				               a.street AS p_street, a.municipality AS p_municipality, a.district AS p_district, a.state AS p_state, a.country AS p_country, 
 				               asec.street AS t_street, asec.municipality AS t_municipality, asec.district AS t_district, asec.state AS t_state, asec.country AS t_country 
 					    FROM employees e

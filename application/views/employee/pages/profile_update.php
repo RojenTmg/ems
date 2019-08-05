@@ -75,11 +75,11 @@
         <!--assign tab  -->
         <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
-        <!-- work tab -->
-        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience </a> 
+            <!-- work tab -->
+        <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
 
         <!--document tab  -->
-        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents </a>
+        <a class="nav-item nav-link" id="nav-document-tab" data-toggle="tab" href="#nav-document" role="tab" aria-controls="nav-document" aria-selected="false">Documents &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         
 
@@ -498,8 +498,8 @@
         </form>
       </div>
       <!-- PAN ends -->
+   <!-- work experience -->
 
-      <!-- work experience -->
       <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
         <form class="form" id="work-form">
           <div class="message-div">
@@ -509,7 +509,9 @@
           <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
            <div class="form-div">
           </div>
+
           <p class="title" id="add_doc_title"></p>
+
              <div id="work-experience" class="bg-light"></div>
               <!-- the form appends here -->
               <?php 
@@ -548,14 +550,15 @@
      
         <div class="form-div ">
           <div class="sub-can">
-            <input type="button" onclick="updateWork()"  value="Save"  class="sub">
+            <input type="button" onclick="updateWork()" value="Update" class="sub">
            </div> 
           </div>
         </form>
       </div>
+    
       <!-- work experience ends-->
 
-      <!-- documents tab -->
+ <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
         <form class="form" id="document-form" enctype="multipart/form-data">
           <div class="message-div">
@@ -569,7 +572,7 @@
          
           <?php 
           if(!empty($documents)){?>
-              <table class="table" style="overflow: scroll">
+              <table class="table" id="document-list" style="overflow: scroll">
             <thead>
               <th>Title</th>
               <th>File</th>
@@ -601,7 +604,6 @@
 
 </div>
     <!-- documents ends here -->
-
 
 
 

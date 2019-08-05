@@ -1,13 +1,15 @@
  <!-- form -->
   <div class="contents">
-    <?php if(count($leavelist)==0) { ?>
+    
+    <div class="con-head sp-btn">
+      <h4>Application Form</h4>
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
+    </div>
+      <?php if(count($leavelist)==0) { ?>
       <div class="con-sum">
          <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
       </div>
     <?php } else { ?>
-    <div class="con-head">
-      <h4>Application Form</h4>
-    </div>
     <div class="box">
       <div class="box-head">
         <p>Leave Application Form</p>
@@ -36,7 +38,7 @@
             </select>
           </div>
           <div class="form-ckbx">
-            <label>Half / Full day leave</label>
+            <label>Duration Type</label>
             <div>
               <div>
                 <input type="radio" name="duration_type" id="half-day" value="half" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'half') { echo "checked"; }} else { echo "checked";} ?>>

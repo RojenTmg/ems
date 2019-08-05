@@ -28,12 +28,10 @@ $route['checkStatus'] = 'Admin_controller/checkStatus';
 
 
 
-
-
-
 // unarchive leaves
 $route['employee/unArchiveRecommendedLeave']= 'Employee_controller/unArchiveRecommendedLeave';
 $route['employee/unArchiveApprovedLeave']= 'Employee_controller/unArchiveApprovedLeave';
+
 $route['recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['leaveApprove'] = 'Employee_controller/leaveApprove';
@@ -44,6 +42,7 @@ $route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1'
 
 $route['employee/denyApprove'] = 'Employee_controller/denyApprove';
 
+$route['employee/leaveApprove'] = 'Employee_controller/leaveApprove';
 $route['employee/archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
 $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['employee/leaveApprove'] = 'Employee_controller/leaveApprove';
