@@ -139,7 +139,7 @@ class Admin_controller extends CI_Controller {
 		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		$data['recommender_id']=$this->Admin_model->getRecommenderApprover($id);
 		$data['recommender_name']=$this->Admin_model->employeeList();
-
+		$data['package_name']=$this->Admin_model->packageManage();
 		if (empty($data['post'])) {
 			$data['posts']['user_not_found'] = true;
 			$this->view('employee_list', $title, $data);
