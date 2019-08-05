@@ -299,6 +299,9 @@
 			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
 			$leavename=$this->Admin_model->getNameById($id);
 			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$approver_name.".";
+			$message .='<br><br>';
+			$message .="Reason for Leave Denied is:<br>".$denial_reason;
+
 			$email=$this->Admin_model->getEmail($list['emp_id']);
 			$this->Admin_model->sendEmail('Leave Denied by Approver',$message,$email);
 			// end of send mail
@@ -425,6 +428,20 @@
 			
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
 
+			// send email to leave requester
+			$this->db->where('leave_id',$leave_id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameByLid($leave_id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been approved by ".$approver_name.".";
+			
+
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Approved',$message,$email);
+			// end of send mail
+
 	}
 
 		public function denyApprove()
@@ -433,6 +450,9 @@
 			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+
+
 		}
 
 		// archive approval lists

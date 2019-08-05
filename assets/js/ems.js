@@ -1565,14 +1565,22 @@ function editPackage(id){
 
 
 // recommend leaves to approver
-function recommendLeave(l_id)
+function recommendLeave(btn,l_id)
 {
-  
+  var parent = btn.parentElement;
+  var gparent = parent.parentElement;
+  gparent.innerHTML='';
+
+
+  gparent.className="spinner-border spinner-border-sm";
+  parent.onclick="#";
+
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','recommendLeave',true);
   var data = new FormData();
   data.append('l_id',l_id);
   xmlHttp.send(data);
+
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
@@ -1601,9 +1609,15 @@ function denyLeaveFromRecommender(id)
 
 // approve leave by approver
 
-function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
+function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 
 {
+  var parent = btn.parentElement;
+  var gparent = parent.parentElement;
+  gparent.innerHTML='';
+  gparent.className="spinner-border spinner-border-sm";
+  parent.onclick="#";
+
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
