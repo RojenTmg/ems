@@ -202,7 +202,8 @@
 
 				$data['valid'] = TRUE;
 
-				$message="Your leave from ".$leave['from_date']. " has been send for approval";
+				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
+				$message="Your ".$leavename." from ".$leave['from_date']. " has been send for processing.";
 				$email=$this->Admin_model->getEmail();
 				$this->Admin_model->sendEmail('Leave Applied',$message,$email);
 				$this->view('leave_form', $title, $data);
@@ -236,9 +237,23 @@
 		{
 			
 			extract($_POST);
-			$data=array('is_recommended'=>'recommended');
+			
+
+			$data=array('is_recommended'=>'recommended','recommender_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
+
+			$this->db->where('id',$l_id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			// send email to leave requester
+			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($l_id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been recommended by ".$recommender_name." and waiting to be approved";
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Applied',$message,$email);
+			// end of send mail
 		
 		}
 		// deny leave by recommender
@@ -246,18 +261,45 @@
 		{
 			
 			extract($_POST);
-			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason);
+			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason,'recommender_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+			// send email to leave requester
+			$this->db->where('id',$id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($id);
+
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$recommender_name.".";
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Denied by Recommender',$message,$email);
+			// end of send mail
+
 		}
 
 		// deny leave by Approver
 		public function denyLeaveFromApprover()
 		{
 			extract($_POST);
-			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
+			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason,'approver_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+
+			// send email to leave requester
+			$this->db->where('id',$id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$approver_name.".";
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Denied by Approver',$message,$email);
+			// end of send mail
 		}
 
 
