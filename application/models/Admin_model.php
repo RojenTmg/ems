@@ -388,6 +388,25 @@ public function getNameById($id){
 	return $detail['leave_name'];
 }
 
+public function getRecommenderId($id){
+	$this->db->where('emp_id',$id);
+	$query=$this->db->get('employee_approvers');
+	$detail=$query->row_array();
+	return $detail['recommender_id'];
+}
+
+public function getApproverId($id){
+	$this->db->where('emp_id',$id);
+	$query=$this->db->get('employee_approvers');
+	$detail=$query->row_array();
+	return $detail['approver_id'];
+}
+public function getEmpIdbyLID(){
+	$this->db->where('leave_id',$id);
+	$query= $this->db->get('employee_leaves');
+	$detail=$query->row_array();
+	return $detail['emp_id'];
+}
 
 
 }

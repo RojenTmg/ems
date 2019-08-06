@@ -155,7 +155,9 @@ class Admin_controller extends CI_Controller {
 	{
 		$title['title'] = 'Manage Employee';
 		if($id!=''){
-			$id=(int)$id;
+			$words = preg_replace('/[0-9]+/', '', $id);
+			$id = preg_replace('/[^0-9]/', '', $id);
+			
 
 			$this->db->where('emp_id',$id);
 			$emp=$this->db->get('employees');
@@ -163,12 +165,21 @@ class Admin_controller extends CI_Controller {
 
 
 
-			if($emplist==NULL) {
-				$data['post']['errorpage']="true";
-		
-				return 	$this->view('employee_manage', $title, $data);
+			if($emplist==NULL || !empty($words)) {
+				$_SESSION['empFindError']=true;
+				redirect('admin/employee_list');
 			}
-		}
+			
+
+			else{
+				$data['post'] = $this->Database_model->getEmployeeDetails($id);
+				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
+				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
+		
+				return $this->view('employee_manage', $title, $data);
+			} 
+		}	
+		
 
 		
 		if (isset($_SESSION['current_employee_id'])) {
@@ -185,16 +196,12 @@ class Admin_controller extends CI_Controller {
 			else{
 				$data['assigned']='';
 			}
-			if ($id != NULL) {
-				$data['post'] = $this->Database_model->getEmployeeDetails($id);
-				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
-				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
-		
-				$this->view('employee_manage', $title, $data);
-			} else
-				$this->view('employee_manage', $title);
+
 		} else
 			redirect('login');
+
+		$this->view('employee_manage', $title);
+
 	}
 
 	// leave page
@@ -270,12 +277,11 @@ class Admin_controller extends CI_Controller {
 // this fucntion adds general data of add staff form
 	public function addGeneral()
 	{			
+		$_POST = $this->security->xss_clean($_POST);
+
 		$result=array();
 		extract($_POST);
-		if($join_date>Date('Y-m-d'))
-		{
-			return 0;
-		}
+
 
 		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
 			$msg="error";
@@ -316,20 +322,17 @@ class Admin_controller extends CI_Controller {
 //this  edits general information
 	public function updateGeneral()
 	{
+		$_POST = $this->security->xss_clean($_POST);
+
 		$result=array();
 		extract($_POST);
+
 
 		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
 			$msg="error";
 			array_push($result, $msg);
 			echo json_encode($result);
 			return ;
-		}
-		
-
-		if($join_date>Date('d-m-Y'))
-		{
-			return 0;
 		}
 
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
@@ -351,8 +354,12 @@ class Admin_controller extends CI_Controller {
 				'department_id'=>'1'
 			);
 
-		if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
+			if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
+			{
+				
 				array_push($result, 'true');
+			}
+
 		}
 		echo json_encode($result);
 	}
@@ -360,6 +367,7 @@ class Admin_controller extends CI_Controller {
 // add personal details
 	public function addPersonalInformation()
 	{
+		$_POST = $this->security->xss_clean($_POST);
 		$status=array();
 		extract($_POST);
 
@@ -400,6 +408,7 @@ class Admin_controller extends CI_Controller {
 //Address form
 	public function addAddress()
 	{
+		$_POST = $this->security->xss_clean($_POST);
 		$status=array();
 		extract($_POST);
 
@@ -489,6 +498,7 @@ class Admin_controller extends CI_Controller {
 	public function addContact()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 		$this->form_validation->set_rules('mobile_phone','Mobile phone','required|trim',array('required' => 'You must provide a %s.'));
 
@@ -523,6 +533,7 @@ class Admin_controller extends CI_Controller {
 	public function addNationality()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 		if($visa_expiry_date<Date('Y-m-d'))
 			{return 0;}
@@ -581,6 +592,7 @@ class Admin_controller extends CI_Controller {
 	public function addEmergency()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		$this->form_validation->set_rules('e_name','Contact Person Name','required|trim',array('required' => 'You must provide detail of %s.'));
@@ -620,6 +632,7 @@ class Admin_controller extends CI_Controller {
 	public function addEducation()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
@@ -662,6 +675,7 @@ class Admin_controller extends CI_Controller {
 	public function addHealth()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		if($blood_group!='A +ve' && $blood_group!='A -ve' && $blood_group!='B +ve' && $blood_group!='B -ve' && $blood_group!='AB +ve'  && $blood_group!='AB -ve' && $blood_group!='O +ve'  && $blood_group!='O -ve' && $blood_group!=''){
@@ -701,6 +715,7 @@ class Admin_controller extends CI_Controller {
 	public function addPan()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
@@ -733,6 +748,7 @@ class Admin_controller extends CI_Controller {
 	public function addWork()
 	{
 		$_SESSION['path']="work";
+		$_POST = $this->security->xss_clean($_POST);
 
 		$status='';
 		extract($_POST);
@@ -776,6 +792,8 @@ class Admin_controller extends CI_Controller {
 	{
 		$_SESSION['path']="work";
 		$status='';
+		$_POST = $this->security->xss_clean($_POST);
+
 		extract($_POST);
 		if($from_date>Date('Y-m-d'))
 		{
@@ -819,6 +837,8 @@ class Admin_controller extends CI_Controller {
 	function addDocuments(){
 		$_SESSION['path']="document"; 
 		$status='';
+		$_POST = $this->security->xss_clean($_POST);
+
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
@@ -866,6 +886,8 @@ class Admin_controller extends CI_Controller {
 	 function deleteFile()
 	 {
 	 	$_SESSION['path']="document";
+		$_POST = $this->security->xss_clean($_POST);
+
 		extract($_POST);
 		$this->db->where('doc_id',$doc_id);
 			$getFile = $this->db->get('employee_documents');
@@ -881,6 +903,8 @@ class Admin_controller extends CI_Controller {
 	function deleteWorkExperience()
 	{
 		$_SESSION['path']="work";
+		$_POST = $this->security->xss_clean($_POST);
+
 		extract($_POST);
 		// $this->db->where('id',$id);
 		// 	$getrow = $this->db->get('employee_work_experience');
@@ -993,6 +1017,8 @@ class Admin_controller extends CI_Controller {
 
 		public function saveLeave()
 		{
+		$_POST = $this->security->xss_clean($_POST);
+
 			extract($_POST);
 			$data=[
 				'leave_name'=>$leave_name,
@@ -1045,6 +1071,8 @@ class Admin_controller extends CI_Controller {
 		}
 
 		public function deleteLeave(){
+		$_POST = $this->security->xss_clean($_POST);
+
 			extract($_POST);
 			$this->db->where('leave_id',$leave_id);
 			$check=$this->db->get('leave_packages');
@@ -1064,6 +1092,8 @@ class Admin_controller extends CI_Controller {
 
 // save package
 		public function savePackage(){
+		$_POST = $this->security->xss_clean($_POST);
+
 			extract($_POST);
 
 			$arrayLeave=json_decode($leaveArr, true);
@@ -1149,6 +1179,7 @@ class Admin_controller extends CI_Controller {
 
 		// delete package
 		public function deletePackage(){
+
 			extract($_POST);
 			$this->db->where('package_id',$package_id);
 			$check=$this->db->get('employees');
@@ -1167,6 +1198,7 @@ class Admin_controller extends CI_Controller {
 		//check employee attendance today
 
 		public function checkStatus(){
+
 			$id=$_POST['id'];
 
 		$this->db->where('emp_id',$id);

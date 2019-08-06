@@ -202,10 +202,22 @@
 
 				$data['valid'] = TRUE;
 
+				// sending email to employee who requested leave
 				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
 				$message="Your ".$leavename." from ".$leave['from_date']. " has been send for processing.";
 				$email=$this->Admin_model->getEmail();
 				$this->Admin_model->sendEmail('Leave Applied',$message,$email);
+
+				//sending mail to recommender
+				$requester_name=$this->Admin_model->getName($_SESSION['user_id']);
+				$message=$leavename." has been applied by ".$requester_name." from ".$leave['from_date'];
+				$recId=$this->Admin_model->getRecommenderId($_SESSION['user_id']);
+				$email=$this->Admin_model->getEmail($recId)
+				;
+				$title="Leave Requested by ".$requester_name;
+				$this->Admin_model->sendEmail($title,$message,$email);
+
+
 				$this->view('leave_form', $title, $data);
 			} 
 			else {
@@ -250,10 +262,21 @@
 			// send email to leave requester
 			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
 			$leavename=$this->Admin_model->getNameById($l_id);
-			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been recommended by ".$recommender_name." and waiting to be approved";
+
+			$message="Your ".$leavename." from ".$list['from_date']." has been recommended by ".$recommender_name." and waiting to be approved";
+
 			$email=$this->Admin_model->getEmail($list['emp_id']);
 			$this->Admin_model->sendEmail('Leave Recommended',$message,$email);
 			// end of send mail
+
+			//send email to approver to approve the leave request
+				$message=$recommender_name." has recommended a ".$leavename." and is waiting for your approval. ";
+				$reqId=$this->Admin_model->getEmpIdbyLID($l_id);
+				$recId=$this->Admin_model->getRecommenderId($reqId);
+				$email=$this->Admin_model->getEmail($recId)
+				;
+				$title="New Leave Request";
+				$this->Admin_model->sendEmail($title,$message,$email);
 		
 		}
 		// deny leave by recommender
@@ -273,7 +296,7 @@
 			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
 			$leavename=$this->Admin_model->getNameById($id);
 
-			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$recommender_name.".";
+			$message="Your ".$leavename." from ".$list['from_date']. " has been denied by ".$recommender_name.".";
 			$message .='<br><br>';
 			$message .="Reason for Leave Denied is:<br>".$denial_reason;
 			$email=$this->Admin_model->getEmail($list['emp_id']);
@@ -298,7 +321,7 @@
 
 			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
 			$leavename=$this->Admin_model->getNameById($id);
-			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$approver_name.".";
+			$message="Your ".$leavename." from ".$list['from_date']. " has been denied by ".$approver_name.".";
 			$message .='<br><br>';
 			$message .="Reason for Leave Denied is:<br>".$denial_reason;
 

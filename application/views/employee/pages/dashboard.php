@@ -373,6 +373,7 @@
             /* Disable initial sort */
               "aaSorting": [],        
               "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
+              "order": [ 2, "desc" ],
            /* disable sorting on specific columns */
            'columnDefs': [ {
               'targets': [9], /* column index starting from 0*/
