@@ -182,7 +182,7 @@
       <div class="con-head">
       <h4>Approve List</h4>
     </div>
-      <div class="sp-btn  ml-2  ">
+    <div class="sp-btn  ml-2">
     <div class="emp-link">
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
       <a href="<?= site_url('employee/leave_approve_archive'); ?>" id="small-link">Archived Leaves</a>

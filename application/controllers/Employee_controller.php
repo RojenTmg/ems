@@ -3,7 +3,7 @@
 
 		public function __construct()
         {
-                parent::__construct();
+               parent::__construct();
                if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true|| $_SESSION['type']!='employee') {
 					redirect('login');
 				}
@@ -23,11 +23,10 @@
 			if (!file_exists(APPPATH . 'views/employee/pages/' . $page . '.php')) {
 				show_404();
 			}
-
+ 
 			$data['title'] = ucfirst($page);
 			$data['user']= $this->Admin_model->user_detail('users',$_SESSION['user_id']);
 			$data['post'] = $this->Admin_model->getEmployeeDetails($_SESSION['user_id']);
-
 
 			//showing percentage in the progress bar
 		    // progressBar();
@@ -93,7 +92,6 @@
 
 		}
 
-
 		public function profileupdate($id = NULL) 
 		{
 		$title['title'] = 'Update Profile';
@@ -128,7 +126,12 @@
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
 			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id']);
 			$data['leavelist']=$this->leaveBalance();
-
+			
+			$i = TRUE; 
+			foreach ($data['leaves'] as $value) {
+            	if ($i == TRUE) 
+              		$data['remainingDuration'] = '<script type="text/javascript"> document.write(trim_day('. $value['remain_days'] .')); </script>'; $i = FALSE;
+            }
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 		

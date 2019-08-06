@@ -34,9 +34,9 @@
 					JOIN leaves l ON lp.leave_id=l.leave_id
 					JOIN employee_leave_balance elb ON l.leave_id=elb.leave_id AND e.emp_id=elb.emp_id
 					WHERE e.emp_id=$id";
+
 			$query = $this->db->query($leaves);
 				return $query->result_array();
-
 
 
 			// $this->db->select('e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days');
