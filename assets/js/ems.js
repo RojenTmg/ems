@@ -194,16 +194,7 @@ $(document).ready(function(){
     data.append('password',password);
     xmlHttp.send(data);
 
-    if(checkCurrentDate('join_date')==false)
-    {
-       msg="Invalid Date of Join";
-        $('#messagediv').removeClass('alert-success');
-        $('#messagediv').addClass('alert-danger');
-        $('#messagediv').css('display','block');
-        $('#showmessage').html(msg); 
-    }
-    else
-    {
+
       xmlHttp.onreadystatechange = function()
       {
           if(xmlHttp.readyState==4)
@@ -228,7 +219,7 @@ $(document).ready(function(){
           }
       }
     }
-  }
+  
 
 
 
@@ -249,24 +240,16 @@ $(document).ready(function(){
           data.append('join_date',join_date);
           xmlHttp.send(data);
 
-          if(checkCurrentDate('join_date')==false)
-          {
-             msg="Invalid Date of Join";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-          }
-          else
-          {
+          
 
           xmlHttp.onreadystatechange = function()
           {
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                console.log(status);  
                  var id=JSON.parse(status);
+                 console.log(id);
 
                 if(id=="error"){
                 msg="Invalid Title Selected";
@@ -282,7 +265,7 @@ $(document).ready(function(){
               }
           }
         }
-  }
+  
 
 
   // display current entering employee's name

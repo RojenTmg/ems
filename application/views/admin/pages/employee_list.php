@@ -3,6 +3,12 @@
       <h5>Staff</h5>
       <a href="<?= site_url('admin/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
   </div>
+    <?php if(isset($post['errorpage'])&&$post['errorpage']=="true"){ ?>
+          <div class="h1 text-center" id="showerror">
+              No Staff Found
+          </div>
+        <?php } ?>
+        
   <div class="sp-btn align-bottom">
     <div class="emp-link">
       <a href="<?= site_url('admin/employee_list'); ?>" id="small-link">Staff List</a>
@@ -91,26 +97,18 @@
 </div>
 </div>
 
-<!-- <?php 
-  if (isset($posts['user_not_found']) && $posts['user_not_found']==TRUE) {
-    ?>
-    <div id="simpleModal" class="modal">
-      <div class="modal-content">
-        <div class="container register register-left">
-                <i class="fa fa-user-o" aria-hidden="true"></i>
-                <h3>Staff Not Found!!!</h3>
-                <a href="<?= site_url('admin/employee_list');?>">Go back to Employee List</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <?php
-  }
-?>
- -->
+<?php if(isset($_SESSION['empFindError'])&&$_SESSION['empFindError']==true){
+ unset($_SESSION['empFindError']); ?>
+  <script>
+   $('.arch-msg-div').append('<div class="arch-msg text-danger" style="background-color:lightyellow !important"><span><i class="fa fa-info" aria-hidden="true"></i></span><div class="msg-text" ><p>Error</p>Staff Not Found</div></div>');
+   $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+ </script>
 
+<?php } ?>
+  
 
 <script type="text/javascript">
+
 
   $('.tip-can').click(function(ev) {
     $(this).parent().css({"display": "none"});
@@ -133,6 +131,9 @@
     ev.stopPropagation();
   });
 
+
+
+
   $('.table tr .btn-archive .tip-arch').click(function(){
     var id = $(this).closest('tr').attr('id');
     $(this).closest('tr').remove(); 
@@ -144,6 +145,8 @@
     // table = $("#datatable").dataTable(); 
      // $("#datatable").fnDestroy();
     
+
+
 
 
     $('.arch-msg-div').append('<div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Delete Successful !</p>Employee with Id no. ' + id + '  deleted successfully.</div></div>');
