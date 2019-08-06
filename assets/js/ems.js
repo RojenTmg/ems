@@ -1565,18 +1565,26 @@ function editPackage(id){
 
 
 // recommend leaves to approver
-function recommendLeave(l_id)
+function recommendLeave(btn,l_id)
 {
-  
+  var parent = btn.parentElement;
+  var gparent = parent.parentElement;
+  gparent.innerHTML='';
+
+
+  gparent.className="spinner-border spinner-border-sm";
+  parent.onclick="#";
+
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','recommendLeave',true);
   var data = new FormData();
   data.append('l_id',l_id);
   xmlHttp.send(data);
+
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    $( ".lists" ).load(window.location.href + " #liststab" );
+   location.reload();
   }
 }
 }
@@ -1594,22 +1602,23 @@ function denyLeaveFromRecommender(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-      msg="Leave request denied.";
-        // $('#messagediv').removeClass('alert-success');
-         $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); 
-     dismissDenyModal();
-      $( ".lists" ).load(window.location.href + " #datatable-recommender" );
+    location.reload();
   }
 }
 }
 
 // approve leave by approver
 
-function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
+function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 
 {
+  var parent = btn.parentElement;
+  var gparent = parent.parentElement;
+  gparent.innerHTML='';
+  gparent.className="spinner-border spinner-border-sm";
+  parent.onclick="#";
+
+
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
   var data = new FormData();
@@ -1623,8 +1632,7 @@ function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-    // $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
-    // location.reload();
+   location.reload();
   }
 }
 }
@@ -1642,15 +1650,7 @@ function denyLeaveFromApprover(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-      // msg="Leave request denied.";
-      //   // $('#messagediv').removeClass('alert-success');
-      //    $('#messagediv1').addClass('alert-danger');
-      //    $('#messagediv1').css('display','block');
-      //   $('#showmessage1').html(msg); 
-     // dismissDenyModal();
-     //  $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
     location.reload();
-
   }
 }
 }
@@ -1666,16 +1666,7 @@ function archiveApprovalRecord(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-     //  msg="Data Archived";
-     //    // $('#messagediv').removeClass('alert-success');
-     //     $('#messagediv1').addClass('alert-danger');
-     //     $('#messagediv1').css('color','red');
-     //     $('#messagediv1').css('display','block');
-     //    $('#showmessage1').html(msg); 
-     // dismissDenyModal();
-     //  $( "#lists-approvelist" ).load(window.location.href + " #datatable-approval" );
     location.reload();
-
   }
 }
 }
@@ -1691,17 +1682,37 @@ function archiveRecommendRecord(id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
-      msg="Data Archived";
-        // $('#messagediv').removeClass('alert-success');
-         $('#messagediv1').addClass('alert-danger');
-         $('#messagediv1').css('color','red');
-         $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); 
-
-     dismissDenyModal();
-      $( "#lists" ).load(window.location.href + " #datatable-recommender" );
+    location.reload();
   }
 }
+}
+
+// unarchive archived recommended leaves
+function unArchiveRecommendedLeave(id) {
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','unArchiveRecommendedLeave',true);
+    var data = new FormData();
+    data.append('id',id);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       location.reload();
+      }
+    }
+}
+
+// unarchive archived approved leaves
+function unArchiveApprovedLeave(id) {
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','unArchiveApprovedLeave',true);
+    var data = new FormData();
+    data.append('id',id);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       location.reload();
+      }
+    }
 }
 
 // reload entire page

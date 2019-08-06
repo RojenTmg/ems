@@ -47,11 +47,33 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id']);
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
-			$data['recommendations']=$this->Employee_model->recommendationList();
+			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['leavelist']=$this->leaveBalance();
 
 			$this->view('dashboard', $data);
+		}
+
+		// archive approved list
+		public function leaveApproveArchive()
+		{
+			$data['title']= 'Archived Lists';
+			$data['employee_leaves_approve'] = $this->Employee_model->findArchivedApproveLeaves();
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
+			$this->view('leave_approve_archive', $data);
+		}
+		// archived recommended leaves list page
+		public function leaveRecommendedArchive()
+		{
+			$data['title']= 'Archived Lists';
+			$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
+			$data['recommendations']=$this->Employee_model->recommendationList('1');
+			$data['duty_by']=$this->Admin_model->employeeList();
+			$data['leavelist']=$this->leaveBalance();
+
+			$this->view('leave_recommended_archive', $data);
 		}
 
 		public function leaveBalance(){
@@ -180,7 +202,8 @@
 
 				$data['valid'] = TRUE;
 
-				$message="Your leave from ".$leave['from_date']. " has been send for approval";
+				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
+				$message="Your ".$leavename." from ".$leave['from_date']. " has been send for processing.";
 				$email=$this->Admin_model->getEmail();
 				$this->Admin_model->sendEmail('Leave Applied',$message,$email);
 				$this->view('leave_form', $title, $data);
@@ -214,9 +237,23 @@
 		{
 			
 			extract($_POST);
-			$data=array('is_recommended'=>'recommended');
+			
+
+			$data=array('is_recommended'=>'recommended','recommender_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
+
+			$this->db->where('id',$l_id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			// send email to leave requester
+			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($l_id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been recommended by ".$recommender_name." and waiting to be approved";
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Recommended',$message,$email);
+			// end of send mail
 		
 		}
 		// deny leave by recommender
@@ -224,18 +261,50 @@
 		{
 			
 			extract($_POST);
-			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason);
+			$data=array('is_recommended'=>'denied','denial_reason'=>$denial_reason,'recommender_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+			// send email to leave requester
+			$this->db->where('id',$id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$recommender_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($id);
+
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$recommender_name.".";
+			$message .='<br><br>';
+			$message .="Reason for Leave Denied is:<br>".$denial_reason;
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Denied by Recommender',$message,$email);
+			// end of send mail
+
 		}
 
 		// deny leave by Approver
 		public function denyLeaveFromApprover()
 		{
 			extract($_POST);
-			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
+			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason,'approver_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+
+			// send email to leave requester
+			$this->db->where('id',$id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameById($id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been denied by ".$approver_name.".";
+			$message .='<br><br>';
+			$message .="Reason for Leave Denied is:<br>".$denial_reason;
+
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Denied by Approver',$message,$email);
+			// end of send mail
 		}
 
 
@@ -343,7 +412,7 @@
 			extract($_POST);
 
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
-			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $emp_id, 'leave_id =' => $leave_id))->row_array();
+			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $e_id, 'leave_id =' => $leave_id))->row_array();
 
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
@@ -359,6 +428,20 @@
 			
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
 
+			// send email to leave requester
+			$this->db->where('leave_id',$leave_id);
+			$getDetail=$this->db->get('employee_leaves');
+			$list=$getDetail->row_array();
+
+			$approver_name=$this->Admin_model->getName($_SESSION['user_id']);
+			$leavename=$this->Admin_model->getNameByLid($leave_id);
+			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been approved by ".$approver_name.".";
+			
+
+			$email=$this->Admin_model->getEmail($list['emp_id']);
+			$this->Admin_model->sendEmail('Leave Approved',$message,$email);
+			// end of send mail
+
 	}
 
 		public function denyApprove()
@@ -367,6 +450,9 @@
 			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
+
+
+
 		}
 
 		// archive approval lists
@@ -383,6 +469,24 @@
 		{
 			extract($_POST);
 			$data=array('is_archived'=>'1');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// unarchive recommended leaves
+		public function unArchiveRecommendedLeave()
+		{
+			extract($_POST);
+			$data=array('is_archived'=>'0');
+			$this->db->where('id',$id);
+			$this->db->update('employee_leaves',$data);
+		}
+
+		// unarchive approved leaves
+		public function unArchiveApprovedLeave()
+		{
+			extract($_POST);
+			$data=array('is_archived_by_approver'=>'0');
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
 		}

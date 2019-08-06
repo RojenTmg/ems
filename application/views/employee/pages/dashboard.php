@@ -37,16 +37,18 @@
  
 
     </div>
-
+<!-- check if the user is recommender or not -->
+<?php  if ($_SESSION['is_recommender'] == 1) { ?>
   <!-- RECOMMENDATION LISTS  -->
-
   <div class="con-head">
   <h4>Recommendation Lists</h4>
   </div>
-
   <div>
-  <div class="con-sub-head">
-  <!-- <h5>Recent Messages</h5> -->  
+ <div class="sp-btn  ml-2">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
   </div>
    <div class="lists">
   <div class="box"  id="liststab">
@@ -99,11 +101,12 @@
   <td> 
   <?php if($posts['is_recommended']=='pending') {?>
     
-  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
+  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
+    <i class="fa fa-check text-success" aria-hidden="true"></i>
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
-        <span class="tip-arch tip-res" onclick="recommendLeave(<?php echo $posts['id']; ?>)" >Approve</span>
+        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Approve</span>
         </div>
   </button> 
 
@@ -169,6 +172,7 @@
 </div>
 </div>
 </div>
+<?php } ?>
 <!-- RECOMMENDATION LISTS END HERE -->
 
 
@@ -178,6 +182,12 @@
       <div class="con-head">
       <h4>Approve List</h4>
     </div>
+      <div class="sp-btn  ml-2  ">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_approve_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
+  </div>
     <div class="box">
       <div class="box-head">
         <p>Leaves left to be Approved</p>
@@ -219,12 +229,14 @@
                     <?php if($value['is_approved']=='pending') {?>
                       
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
+
+
                       <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
 
-                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
+                          <span class="tip-arch tip-res" onclick="leaveApprove(this,'<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
 
