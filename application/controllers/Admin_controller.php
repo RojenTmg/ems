@@ -37,6 +37,8 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Dashboard';
 		$data['count'] = count($this->Database_model->findAll('employees'));
 		$data['assigned']=count($this->Admin_model->assignList());
+		//get leave requested by all employees
+		$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 
 		$data['remaining']=$data['count']-$data['assigned'];
 
@@ -1201,9 +1203,8 @@ class Admin_controller extends CI_Controller {
 
 		//check employee attendance today
 
-		public function checkStatus(){
+		public function checkStatus($id){
 
-			$id=$_POST['id'];
 
 		$this->db->where('emp_id',$id);
 		$this->db->where('is_approved','approved');
@@ -1235,6 +1236,8 @@ class Admin_controller extends CI_Controller {
 			return $status;
 
 	}
+
+
 
 		
 
