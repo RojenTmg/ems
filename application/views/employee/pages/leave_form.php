@@ -24,18 +24,34 @@
       <div class="box-body">
         <form class="form" action="<?= site_url('employee/leave_form'); ?>" method="POST">
           <!-- type of leave -->
-          <div class="form-div">
-            <label>Type of Leave</label>
-            <select name="leave_id" id="leave_name">
-              <?php foreach ($leaves as $value) {
-                  if (isset($leave_form['leave_id']) && ($leave_form['leave_id'] == $value['leave_id'])) { 
-                    echo '<option value="' . $value['leave_id'] . '" selected="selected">' . $value['leave_name'] . '</option>';
-                  } else {
-                    echo '<option value="' . $value['leave_id'] . '">' . $value['leave_name'] . '</option>';              
+          <div class="sp-btn leave-duration">
+            <div class="form-div">
+              <label>Type of Leave</label>
+              <select name="leave_id" id="leave_name">
+                <?php foreach ($leaves as $value) {
+                    if (isset($leave_form['leave_id']) && ($leave_form['leave_id'] == $value['leave_id'])) { 
+                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '" selected="selected">' . $value['leave_name'] . '</option>';
+                    } else {
+                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '">' . $value['leave_name'] . '</option>';              
+                    }
+                }   
+                ?>
+              </select>
+            </div>
+            <div class="form-div">
+              <label>No. of Remaining Days</label>
+              <?php 
+                if (isset($leave_form['leave_id'])) {
+                  foreach ($leaves as $value) {
+                      if ($leave_form['leave_id'] == $value['leave_id']) {
+                        echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$value['remain_days'].')); </script></div>';
+                      }
                   }
-              }   
+                } else {
+                    echo '<div class="remDuration" id="remDuration">'. $remainingDuration .'</div>';
+                }
               ?>
-            </select>
+            </div>
           </div>
           <div class="form-ckbx">
             <label>Duration Type</label>
@@ -64,8 +80,8 @@
               <input type="date" name="to_date" id="to_date" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'multiple') { } else { echo 'disabled="disabled"'; }} else { echo 'disabled="disabled"';} ?> min="<?php echo date('Y-m-d'); ?>" value="<?php if(isset($leave_form['to_date'])) echo $leave_form['to_date']; else echo date('Y-m-d'); ?>">
             </div>
             <div class="form-div">
-              <label>No. of Days</label>
-              <input type="text" name="" disabled="disabled" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } else { echo '0.5'; } ?>" id="duration">
+              <label>No. of Requested Days</label>
+              <input type="text" name="" disabled="disabled" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } else { echo '1/2'; } ?>" id="duration">
             </div>
           </div>
           <div class="form-div">

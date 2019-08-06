@@ -634,11 +634,20 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.form-div .remDuration {
+  background: #ebebe4;
+  padding: 8px 15px;
+  color: #545454;
+  border: 0.5px solid #ced4da;
+}
 .leave-date .form-div {
   width: 42%;
 }
-.leave-date .form-div:last-child {
+.leave-date .form-div:last-child, .leave-duration .form-div:last-child {
   width: 14%;
+}
+.leave-duration .form-div {
+  width: 85%;
 }
 .emp-link {
   /*margin-bottom: -20px;*/

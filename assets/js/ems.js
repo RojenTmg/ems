@@ -61,7 +61,7 @@ function trim_day(dec_day) {
     return Math.round(dec_day) + day;
   else {
     if (dec_day < 1) {
-      return ' 1/2 ' + day;
+      return '1/2 ' + day;
     }
     else {
       return Math.floor(dec_day) + ' and 1/2 ' + day;
@@ -76,17 +76,18 @@ function trim_day(dec_day) {
         $('#multiple-days').attr('disabled', true);
         $('#half-day').prop('checked', true);
         $('#to_date').attr('disabled', true);
-        $('#duration').val('0.5');
+        $('#duration').val('1/2');
         $('#to_date').val($('#from_date').val());
       }
       else {
         $('#multiple-days').attr('disabled', false);        
       }
+      $('#remDuration').text(trim_day($('#leave_name').find("option:selected").attr('id')));
   });
 
   $('#half-day').click(function() {
     $('#to_date').attr('disabled', true);
-    $('#duration').val('0.5');
+    $('#duration').val('1/2');
     $('#to_date').val($('#from_date').val());
     document.getElementById("from_date").setAttribute("max", false);      // remove max-date when selected
   });
