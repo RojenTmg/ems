@@ -25,7 +25,7 @@
               </div>
             </div>
              <div class="item-2 sp-btn">
-                <div><span>No of Leaves taken</span></div>
+                <div><span>Number of Leaves taken</span></div>
                 <div><span><script type="text/javascript"> document.write(trim_day(<?php echo $leave['duration'] - $leave['remain_days'];?>)); </script></span></div>
             </div>
           </a>
