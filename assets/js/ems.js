@@ -450,11 +450,14 @@ function showresponse(formname,status,msg)
 
             $('#messagediv').removeClass('alert-danger');
             $('#messagediv').addClass('alert-success');
+
             }
             
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
+               //updating progress bar
+  showprogress();
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
@@ -479,8 +482,7 @@ function showresponse(formname,status,msg)
        }      
       }
   }
-    //updating progress bar
-  showprogress();
+ 
 
   // change tab icon
   check_complete();
