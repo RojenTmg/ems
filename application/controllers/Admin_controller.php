@@ -43,6 +43,25 @@ class Admin_controller extends CI_Controller {
 		$data['remaining']=$data['count']-$data['assigned'];
 
 		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
+
+		
+		$validEmployee=$this->Admin_model->validEmployee();
+		$invalid=$this->Admin_model->invalidEmployee();
+
+
+		foreach ($validEmployee as $index => $value) {
+			foreach ($invalid as $row) {
+				if($value['emp_id']==$row['emp_id']){
+					unset($validEmployee[$index]);
+					break;
+				}
+			}
+		}
+
+		$data['empList']=$validEmployee;
+
+
+
 		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			$this->view('dashboard', $title, $data);
@@ -1238,9 +1257,57 @@ class Admin_controller extends CI_Controller {
 	}
 
 
+public function assignTemp(){
+	extract($_POST);
 
-		
+	$data=['recommender_id'=>$tempRecommender];
+	$this->db->where('id',$id);
+	$this->db->update('employee_leaves',$data);
+}
+
+public function approveTemp(){
+	extract($_POST);
+	$data=[
+		'approver_id'=>$_SESSION['user_id'],
+		'is_approved'=>"approved",
+	];
+	$this->db->where('id',$id);
+	$this->db->update('employee_leaves',$data);
+}
+
+public function approveTempAll(){
+	extract($_POST);
+	$data=[
+		'approver_id'=>$_SESSION['user_id'],
+		'recommender_id'=>$_SESSION['user_id'],
+		'is_recommended'=>"recommended",
+		'is_approved'=>"approved",
+	];
+	$this->db->where('id',$id);
+	$this->db->update('employee_leaves',$data);
+}
+
+public function rejectTemp(){
+	extract($_POST);
+
+	$this->db->where('id',$id);
+	$data=[
+		'approver_id'=>$_SESSION['user_id'],
+		'is_approved'=>'denied',
+		'denial_reason'=>$reason
+	];
+	$this->db->update('employee_leaves',$data);
+}
 
 
-	}
-	?>
+
+
+
+
+
+
+
+
+
+}	
+?>

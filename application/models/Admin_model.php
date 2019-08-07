@@ -50,6 +50,25 @@
 			// echo '<pre>' . var_dump($query->result_array()) . '</pre>'; die();
 			return $query->result_array();
 		}
+		public function validEmployee() {
+			$this->db->select('employees.emp_id,employees.first_name,employees.middle_name,employees.last_name');
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			$this->db->where('is_active', '1');
+			// $this->db->limit($limit, $offset); 
+			$query = $this->db->get('employees');
+			// echo count($query->result_array()); die();
+			// echo '<pre>' . var_dump($query->result_array()) . '</pre>'; die();
+			return $query->result_array();
+		}
+		public function invalidEmployee() {
+			$this->db->select('employees.emp_id,employees.first_name,employees.middle_name,employees.last_name');
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			$this->db->join('employee_leaves','employees.emp_id=employee_leaves.emp_id');
+			$this->db->where('is_active', '1');
+			$query = $this->db->get('employees');
+	
+			return $query->result_array();
+		}
 
 		public function archivedEmployeeList() {
 			$this->db->where('is_active', '0');
@@ -415,6 +434,10 @@ public function getEmpIdbyLID(){
 	$query= $this->db->get('employee_leaves');
 	$detail=$query->row_array();
 	return $detail['emp_id'];
+}
+
+public function leaveDetail(){
+
 }
 
 

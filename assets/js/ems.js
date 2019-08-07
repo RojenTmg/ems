@@ -1583,8 +1583,8 @@ function denyLeaveFromRecommender(id)
   data.append('denial_reason',reason);
   data.append('id',id);
   xmlHttp.send(data);
-  xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
+  xmlHttp.onreadystatechange=function(){
   {
     location.reload();
   }
@@ -1713,3 +1713,70 @@ function cancel(){
       }
     }
 } 
+
+//assign temporary recommender
+
+function assignRecTemp(id){
+  var recId=document.getElementById('tempRecommender').value;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','assignTemp',true);
+    var data = new FormData();
+    data.append('id',id)
+    data.append('tempRecommender',recId)
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+
+    window.location.hash = '#datatable1';
+    window.location.reload(true); 
+      }
+    }
+}
+
+ function approveByAdmin(id){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','approveTemp',true);
+    var data = new FormData();
+    data.append('id',id)
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+        console.log(xmlHttp.responseText);
+    window.location.hash = '#datatable1';
+    window.location.reload(true); 
+      }
+    }
+}
+
+ function approveAllByAdmin(id){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','approveTempAll',true);
+    var data = new FormData();
+    data.append('id',id)
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+        console.log(xmlHttp.responseText);
+    window.location.hash = '#datatable1';
+    window.location.reload(true); 
+      }
+    }
+}
+
+
+ function rejectByAdmin(id){
+  var reason= document.getElementById('rejectText').value;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','approveTemp',true);
+    var data = new FormData();
+    data.append('id',id)
+    data.append('reason',reason)
+
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+    window.location.hash = '#datatable1';
+    window.location.reload(true); 
+      }
+    }
+}

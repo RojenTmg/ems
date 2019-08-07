@@ -157,14 +157,14 @@
         <table class="table table-bordered hover employee_table" id="datatable1" >
           <thead class="thead-dark">
             <tr>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 7%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" width="5%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 7%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 1%;"><div class="sp-btn"><span>Duration</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
 
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Recommender</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Approver</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 9%;"><div class="sp-btn"><span>Approver</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
 
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 5%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
@@ -172,37 +172,106 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_leaves as $value) { ?>
+                foreach ($employee_leaves as $value) { 
+                $CI =& get_instance(); $checkRecommender=$CI->checkstatus($value['recommender_id']);
+                 $CI =& get_instance(); $checkApprover=$CI->checkstatus($value['approver_id']);
+
+                  if($checkRecommender=="absent"&&$checkApprover=="absent") 
+                    $bothabsent="true";
+                  else $bothabsent="false";
+                  ?>
                   <tr>
                     <td><?php echo $value['leave_name']; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['duration_type']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
-                    <td><?php echo $this->Admin_model->getName($value['recommender_id']);?>
 
-                      <?php  $CI =& get_instance(); $check=$CI->checkstatus($value['recommender_id']);
-                        if($check=="present"){?>
-                        <i class="fa fa-check-circle " style="color: green" aria-hidden="true"></i>
+                    <td>
+                      <?php  
+                $rec= $value['is_recommended'];
+                $app= $value['is_approved'];
+                if($rec=="pending" ){
+                        if($checkRecommender=="present"){?>
+                        <i class="fa fa-circle " style="color: green" aria-hidden="true"></i>
                        <?php } else{ ?>
-                        <i class="fa fa-info-circle " style="color: red" aria-hidden="true"></i>
-                       <?php }
+                        <i class="fa fa-circle " style="color: red" aria-hidden="true"></i>
+                       <?php } }?>
+                       &nbsp;
 
-                      ?>
+                     <?php echo $this->Admin_model->getName($value['recommender_id']);?>
+<?php if($checkRecommender!="present" &&$value['is_recommended']=="pending" ){ ?>
+<?php if($bothabsent=="false"){ ?>
+<center>                                          
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+ Assign Another
+</button>
+</center>
+
+                                         <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">List of Present Employees</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select a temporary recommender for the staff from the dropdown below.
+        <br><br>
+                      <select class="custom-select" style="width: 100%;"  id="tempRecommender" >
+                          <option value="">Select option</option>
+                          <?php foreach ($empList as $row) {
+                          if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                          ?>
+
+                          <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                          <?php } ?>
+                        </select> 
+        <br>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="assignRecTemp(<?php echo $value['id'];?>)" class="btn btn-primary">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } }?> 
                     </td>
-                    <td><?php echo $this->Admin_model->getName($value['approver_id']);?>
-                      <?php  $CI =& get_instance(); $check=$CI->checkstatus($value['recommender_id']);
-                        if($check=="present"){?>
-                        &nbsp;&nbsp;<i class="fa fa-check-circle " style="color: green" aria-hidden="true"></i>
+                    <td>
+                      <?php 
+                      
+                        $rec= $value['is_recommended'];
+                        $app= $value['is_approved'];
+                  if($app=="pending"){
+                        if($checkApprover=="present"){?>
+                        <i class="fa fa-circle " style="color: green" aria-hidden="true"></i>
                        <?php } else{ ?>
-                      &nbsp;&nbsp;  <i class="fa fa-info-circle " style="color: red" aria-hidden="true"></i>
-                       <?php }
-                       ?>
+                      <i class="fa fa-circle " style="color: red" aria-hidden="true"></i>
+                       <?php } }?>
+                       &nbsp;
+                    <?php echo $this->Admin_model->getName($value['approver_id']);?>
+                          <br>
+                          <?php if($checkApprover!="present" &&$value['is_recommended']=="recommended") { ?>
+
+          <button type="button" onclick="approveByAdmin(<?php echo $value['id'];?>)" class="btn btn-success btn-sm" style="width: 100%;" >Approve</button>
+<?php } ?>
+                      
+
                     </td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
-                    <td><?php if ($value['is_approved'] == 'denied' || $value['is_recommended'] == 'denied') { echo '<span class="denied">Denied</span>';  } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Approved</span>'; } else if ($value['is_recommended'] == 'recommended') { echo '<span class="pending">Recommended</span>';  } else { echo '<span class="pending">Pending</span>';} ?></td>
+                    <td><?php if ($value['is_approved'] == 'denied' || $value['is_recommended'] == 'denied') { echo '<span class="denied">Denied</span>';  } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Approved</span>'; } else if ($value['is_recommended'] == 'recommended') { echo '<span class="pending">Recommended</span>';  } else { echo '<span class="pending">Pending</span>';} ?>
+                      <?php if($bothabsent=="true" && $value['is_recommended']!="recommended"){ ?>
+                         <button type="button" onclick="approveAllByAdmin(<?php echo $value['id'];?>)" class="btn btn-success btn-sm" style="width: 100%;" >Approve</button>
+                       <?php }?>
+                    </td>
                   </tr>
-                <?php } ?>
+                <?php }
+                 ?>
           </tbody>
         </table>
 

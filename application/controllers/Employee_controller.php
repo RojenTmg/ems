@@ -48,6 +48,7 @@
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
+			
 			$data['leavelist']=$this->leaveBalance();
 
 			$this->view('dashboard', $data);
