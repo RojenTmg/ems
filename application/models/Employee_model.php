@@ -145,7 +145,7 @@
 			$this->db->update('employee_leave_balance',$data1);		
 
 			// update status on column 'is_archived' on table 'employee_leave_balance'
-			$data2=array('is_approved'=>'approved');
+			$data2=array('is_approved'=>'approved','approver_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data2);
 		}

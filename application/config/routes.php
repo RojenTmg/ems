@@ -24,6 +24,14 @@ $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['admin/addAddress'] = 'Admin_controller/addAddress';
 $route['admin/addDocuments'] = 'Admin_controller/addDocuments';
 $route['checkStatus'] = 'Admin_controller/checkStatus';
+$route['assignTemp'] = 'Admin_controller/assignTemp';
+$route['approveTemp'] = 'Admin_controller/approveTemp';
+$route['rejectTemp'] = 'Admin_controller/rejectTemp';
+$route['approveTempAll'] = 'Admin_controller/approveTempAll';
+$route['admin/assignTemp'] = 'Admin_controller/assignTemp';
+$route['admin/approveTemp'] = 'Admin_controller/approveTemp';
+$route['admin/rejectTemp'] = 'Admin_controller/rejectTemp';
+$route['admin/approveTempAll'] = 'Admin_controller/approveTempAll';
 
 
 
@@ -33,6 +41,7 @@ $route['employee/unArchiveRecommendedLeave']= 'Employee_controller/unArchiveReco
 $route['employee/unArchiveApprovedLeave']= 'Employee_controller/unArchiveApprovedLeave';
 
 $route['recommendLeave'] = 'Employee_controller/recommendLeave';
+$route['employee/recommendLeave'] = 'Employee_controller/recommendLeave';
 $route['denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApprover';
 $route['leaveApprove'] = 'Employee_controller/leaveApprove';
 $route['archiveApprovalRecord'] = 'Employee_controller/archiveApprovalRecord';
