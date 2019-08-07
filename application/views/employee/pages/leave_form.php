@@ -102,7 +102,7 @@
           </div>
           <div class="form-div">
             <label>Reason for Leave <span class="opt"></span></label>
-            <textarea rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
+            <textarea required="" rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
           </div>
             <div class="sub-can">
               <input type="submit" name="submit" class="sub" value="Submit" id="btn-leave-form">
@@ -112,3 +112,19 @@
     </div>
   <?php } ?>
   </div>
+
+
+
+  <script>
+    
+    $('#btn-leave-form').click(function(){
+      $('#btn-leave-form').attr("disable",true);
+      $('#btn-leave-form').removeClass("sub");
+      $('#btn-leave-form').addClass("can"); 
+
+// show modal
+      
+
+    });
+
+  </script>

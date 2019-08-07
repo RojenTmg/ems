@@ -392,7 +392,6 @@
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  });
   // function closeModal() {
   //   var modal = document.getElementById('simpleModal');
   //   $('.md-form textarea').val('');
@@ -406,5 +405,3 @@
   //     modal.style.display = 'none';
   //   }
   // }
- 
-  </script>
