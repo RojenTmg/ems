@@ -450,11 +450,14 @@ function showresponse(formname,status,msg)
 
             $('#messagediv').removeClass('alert-danger');
             $('#messagediv').addClass('alert-success');
+
             }
             
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
+               //updating progress bar
+  showprogress();
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
@@ -479,8 +482,7 @@ function showresponse(formname,status,msg)
        }      
       }
   }
-    //updating progress bar
-  showprogress();
+ 
 
   // change tab icon
   check_complete();
@@ -1553,12 +1555,11 @@ function recommendLeave(btn,l_id)
 {
   var parent = btn.parentElement;
   var gparent = parent.parentElement;
-  gparent.innerHTML='';
-
-
-  gparent.className="spinner-border spinner-border-sm";
+  parent.innerHTML='';
+  parent.className="spinner-border spinner-border-sm  text-warning";
   parent.onclick="#";
-
+  var el ='checkicon'+l_id;
+  $('#'+ el).remove();
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','recommendLeave',true);
   var data = new FormData();
@@ -1573,9 +1574,16 @@ function recommendLeave(btn,l_id)
 }
 }
 
+
+
 //deny leave by recommender
-function denyLeaveFromRecommender(id)
+function denyLeaveFromRecommender(btn,id)
 {
+  btn.onclick="#";
+  btn.innerHTML='';
+  var el ='btn'+id;
+  $('#'+ el).append('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only">Loading...</span> </div>');
+
   var reason = document.getElementById('denial_reason'+id).value;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','denyLeaveFromRecommender',true);
@@ -1598,10 +1606,11 @@ function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 {
   var parent = btn.parentElement;
   var gparent = parent.parentElement;
-  gparent.innerHTML='';
-  gparent.className="spinner-border spinner-border-sm";
+  parent.innerHTML='';
+  parent.className="spinner-border spinner-border-sm  text-warning";
   parent.onclick="#";
-
+  var el ='checkicon'+id;
+  $('#'+ el).remove();
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
@@ -1622,8 +1631,13 @@ function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 }
 
 //deny leave by approver
-function denyLeaveFromApprover(id)
+function denyLeaveFromApprover(btn,id)
 {
+  btn.onclick="#";
+  btn.innerHTML='';
+  var el ='btn'+id;
+  $('#'+ el).append('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only">Loading...</span> </div>');
+
   var reason = document.getElementById('denial_reason_approver'+id).value;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','denyLeaveFromApprover',true);

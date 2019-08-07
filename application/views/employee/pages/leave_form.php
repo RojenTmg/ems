@@ -12,7 +12,7 @@
     <?php } else { ?>
     <div class="box">
       <div class="box-head">
-        <p>Leave Application Form</p>
+        <p class="form-title">Leave Application Form</p>
         <div class="arch-msg-div">
           <?php if (isset($valid) && $valid==TRUE) { ?>
             <div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Request Successful !</p>Your request has been successflly sent.</div></div>
@@ -102,13 +102,30 @@
           </div>
           <div class="form-div">
             <label>Reason for Leave <span class="opt"></span></label>
-            <textarea rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
+            <textarea required="" rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
           </div>
             <div class="sub-can">
-              <input type="submit" name="submit" class="sub" value="Submit">
+              <input type="submit" name="submit" class="sub" value="Submit" id="btn-leave-form">
             </div>
         </form>
       </div>
     </div>
   <?php } ?>
   </div>
+
+
+
+  <script>
+    
+    $('#btn-leave-form').click(function(){
+      $('#btn-leave-form').attr("disable",true);
+      $('#btn-leave-form').removeClass("sub");
+      $('#btn-leave-form').addClass("can"); 
+
+      $('.form-title').append('<span class="ml-5 opt"><i>Processing...</i></span><div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span> </div>');
+// show modal
+      
+
+    });
+
+  </script>
