@@ -167,6 +167,7 @@
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
 						$data['leave_form'] = $leave; 
+						if ((int)$leave['leave_id'] == 1) $data['leave_form']['leave_name'] = 'casual'; 
 						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -175,6 +176,7 @@
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
 						$data['leave_form'] = $leave; 
+						if ((int)$leave['leave_id'] == 1) $data['leave_form']['leave_name'] = 'casual'; 
 						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
