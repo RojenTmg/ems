@@ -56,7 +56,7 @@ $('#form-leave-request').submit(function() {
   $(this).find('#submit').append('<div class="sub sub-loading">Processing&nbsp;&nbsp;<i class="fa fa-spinner fa-spin"></i></div>');
 });
 
-
+ 
 
 
 ////////////////////  Trim days /////////////////////
