@@ -16,13 +16,13 @@
         <div class="arch-msg-div">
           <?php if (isset($valid) && $valid==TRUE) { ?>
             <div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Request Successful !</p>Your request has been successflly sent.</div></div>
-          <?php } else if (isset($not_valid)) { ?>
-            <div class="arch-msg failed"><span><i class="fa fa-times" aria-hidden="true"></i></span><div class="msg-text"><p>Request Failed !</p><?php echo $not_valid; ?></div></div>
+          <?php } else if (isset($not_valid) || isset($not_valid_inject)) { ?>
+            <div class="arch-msg failed"><span><i class="fa fa-times" aria-hidden="true"></i></span><div class="msg-text"><p>Request Failed !</p><?php if (isset($not_valid)) echo $not_valid; else  echo $not_valid_inject; ?></div></div>
           <?php } ?>
         </div>
       </div>
       <div class="box-body">
-        <form class="form" action="<?= site_url('employee/leave_form'); ?>" method="POST">
+        <form class="form" action="<?= site_url('employee/leave_form'); ?>" method="POST" id="form-leave-request">
           <!-- type of leave -->
           <div class="sp-btn leave-duration">
             <div class="form-div">
@@ -48,7 +48,7 @@
                       }
                   }
                 } else {
-                    echo '<div class="remDuration" id="remDuration">'. $remainingDuration .'</div>';
+                    echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$remainingDuration.')); </script></div>';
                 }
               ?>
             </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="form-div">
               <label>No. of Requested Days</label>
-              <input type="text" name="" disabled="disabled" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } else { echo '1/2'; } ?>" id="duration">
+              <input type="text" name="" disabled="disabled" class="<?php if (isset($not_valid) || isset($not_valid_inject)) echo "remDurationError"; ?>" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } else { echo '1/2'; } ?>" id="duration">
             </div>
           </div>
           <div class="form-div">
@@ -104,8 +104,8 @@
             <label>Reason for Leave <span class="opt"></span></label>
             <textarea rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
           </div>
-            <div class="sub-can">
-              <input type="submit" name="submit" class="sub" value="Submit">
+            <div class="sub-can" id="submit">
+              <input type="submit" name="submit" class="sub" value="Submit" id="loading-btn">
             </div>
         </form>
       </div>

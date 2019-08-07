@@ -130,7 +130,7 @@
 			$i = TRUE; 
 			foreach ($data['leaves'] as $value) {
             	if ($i == TRUE) 
-              		$data['remainingDuration'] = '<script type="text/javascript"> document.write(trim_day('. $value['remain_days'] .')); </script>'; $i = FALSE;
+              		$data['remainingDuration'] = $value['remain_days']; $i = FALSE;
             }
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
@@ -142,21 +142,21 @@
 					// if from-date is greater than to date
 					if ($leave['to_date'] < $leave['from_date']) {	
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'From-date cannot be greater than to-date';
+						$data['not_valid_inject'] = 'From-date cannot be greater than to-date';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
 					// if user tries to submit more than 0.5 day for half day
 					if ($leave['duration_type'] == 'half' && (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400)) > 0.5) { 
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'Half day has exceeded 1/2 day.';
+						$data['not_valid_inject'] = 'Half day has exceeded 1/2 day.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
 					// if user tries to submit more than 1 day for full day
 					if ($leave['duration_type'] == 'full' && (round((strtotime($leave['to_date']) - strtotime($leave['from_date'])) / 86400) + 1) > 1) {
 						$data['leave_form'] = $leave; 
-						$data['not_valid'] = 'A full day cannot be greater than 1 day.';
+						$data['not_valid_inject'] = 'A full day cannot be greater than 1 day.';
 						$this->view('leave_form', $title, $data);
 						return;
 					}
@@ -219,7 +219,6 @@
 				;
 				$title="Leave Requested by ".$requester_name;
 				$this->Admin_model->sendEmail($title,$message,$email);
-
 
 				$this->view('leave_form', $title, $data);
 			} 

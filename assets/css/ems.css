@@ -640,6 +640,11 @@ body {
   color: #545454;
   border: 0.5px solid #ced4da;
 }
+.remDurationError {
+  background: #ffa5a8;
+  color: #722c24;
+  border: 0.5px solid #d6acb1 !important;
+}
 .leave-date .form-div {
   width: 42%;
 }
@@ -821,10 +826,23 @@ body {
   margin-right: 10px;
   padding: 5px 25px;
   transition: background 0.2s, color 0.2s;
+  display: inline-block;
 }
 .sub {
   background-color: #4c546d;
   color: #fff;
+}
+/*.load-out {
+   animation: load-out 0.5s linear forwards;
+}
+@keyframes load-out {
+  0% {}
+  100% { color: #4c546d; display: none; }
+}*/
+
+.sub-loading {
+  padding-right: 20px;  
+  pointer-events: none;
 }
 .can {
   border: 1px solid #4c546d;
