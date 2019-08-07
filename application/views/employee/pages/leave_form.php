@@ -12,7 +12,7 @@
     <?php } else { ?>
     <div class="box">
       <div class="box-head">
-        <p>Leave Application Form</p>
+        <p class="form-title">Leave Application Form</p>
         <div class="arch-msg-div">
           <?php if (isset($valid) && $valid==TRUE) { ?>
             <div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Request Successful !</p>Your request has been successflly sent.</div></div>
@@ -122,6 +122,7 @@
       $('#btn-leave-form').removeClass("sub");
       $('#btn-leave-form').addClass("can"); 
 
+      $('.form-title').append('<span class="ml-5 opt"><i>Processing...</i></span><div class="spinner-border spinner-border-sm" role="status">  <span class="sr-only">Loading...</span> </div>');
 // show modal
       
 
