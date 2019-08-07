@@ -4,7 +4,6 @@
     </div>
     <div class="con-sum">
         
-      
        <?php 
        if(count($leavelist)==0)
        {?>
@@ -102,7 +101,7 @@
   <?php if($posts['is_recommended']=='pending') {?>
     
   <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
-    <i class="fa fa-check text-success" aria-hidden="true"></i>
+    <i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $posts['id']; ?>"></i>
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
@@ -111,7 +110,7 @@
   </button> 
 
    
-    <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
+    <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenter<?php  echo $posts['id']; ?>">  <i class="fa fa-ban " aria-hidden="true" style="color: #dc3545;"></i> </button>
   <?php } else { ?>
 
     <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
@@ -137,7 +136,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="denyLeaveFromRecommender(<?php echo $posts['id']; ?>)">Submit</button>
+        <button type="button" class="btn btn-primary" id="btn<?php echo $posts['id']; ?>" onclick="denyLeaveFromRecommender(this,<?php echo $posts['id']; ?>)">Submit</button>
       </div>
     </div>
   </div>
@@ -231,7 +230,7 @@
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
 
 
-                      <button class="btn-archive tooltip1" title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success" aria-hidden="true"></i>
+                      <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['id']; ?>"></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
@@ -266,7 +265,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="denyLeaveFromApprover(<?php echo $value['id']; ?>)">Submit</button>
+                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['id']; ?>" onclick="denyLeaveFromApprover(this,<?php echo $value['id']; ?>)">Submit</button>
                 </div>
               </div>
             </div>

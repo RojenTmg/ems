@@ -105,7 +105,7 @@
             <textarea rows="5" name="reason" id="reason"><?php if (isset($leave_form['reason'])) { echo $leave_form['reason'];  } ?></textarea>
           </div>
             <div class="sub-can">
-              <input type="submit" name="submit" class="sub" value="Submit">
+              <input type="submit" name="submit" class="sub" value="Submit" id="btn-leave-form">
             </div>
         </form>
       </div>
