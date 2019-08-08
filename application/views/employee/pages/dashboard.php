@@ -300,7 +300,7 @@
   
     <?php } ?>
 <!-- leave approval table ends here -->
-</div>
+<!-- </div> --><!--  extra div -->
 <!-- leave requested by self starts here -->
     <div>
       <div class="con-sub-head">
