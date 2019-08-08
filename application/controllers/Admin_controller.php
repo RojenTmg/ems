@@ -315,6 +315,13 @@ class Admin_controller extends CI_Controller {
 			return ;
 		}
 
+		if($department_id!='1'&&$department_id!='2'&&$department_id!='3'&&$department_id!='4' &&$department_id!='5' &&$department_id!='6'){
+			$msg="error";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
@@ -331,7 +338,7 @@ class Admin_controller extends CI_Controller {
 				'last_name'=>$last_name,
 				'join_date'=>$join_date,
 				'is_active'=>'1',
-				'department_id'=>'1'
+				'department_id'=>$department
 			);
 
 			if($id=$this->Admin_model->add_employee($data,$password))
@@ -376,7 +383,7 @@ class Admin_controller extends CI_Controller {
 				'last_name'=>$last_name,
 				'join_date'=>$join_date,
 				'is_active'=>'1',
-				'department_id'=>'1'
+				'department_id'=>$department
 			);
 
 			if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))

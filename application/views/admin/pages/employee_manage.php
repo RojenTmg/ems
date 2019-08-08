@@ -119,6 +119,19 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
+       <!-- department -->
+       <div class="form-div">
+            <label>Department</label>
+            <select name="department" id="department">
+               <option value="1" <?php if(isset($post['department'])) { if ($post['department'] == 'Admin') { echo "selected"; }} ?>>Admin</option>
+              <option value="2" <?php if(isset($post['department'])) { if ($post['department'] == '+2') { echo "selected"; }} ?>>+2</option>
+              <option value="3" <?php if(isset($post['department'])) { if ($post['department'] == 'A-Level') { echo "selected"; }} ?>>A-Level</option>
+              <option value="4" <?php if(isset($post['department'])) { if ($post['department'] == 'Computing') { echo "selected"; }} ?>>Computing</option>
+               <option value="5" <?php if(isset($post['department'])) { if ($post['department'] == 'Environment Science') { echo "selected"; }} ?>>Environment Science</option>
+              <option value="6" <?php if(isset($post['department'])) { if ($post['department'] == 'Management') { echo "selected"; }} ?>>Management</option>
+            </select>
+          </div>
+        <!-- dept ends here -->
           <div class="form-div">
             <label>Title</label>
             <select name="title" id="title">

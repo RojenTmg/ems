@@ -214,6 +214,7 @@ $(document).ready(function(){
     var last_name=document.getElementById('last_name').value;
     var middle_name= document.getElementById('middle_name').value;
     var join_date=document.getElementById('join_date').value;
+    var department= document.getElementById('department').value;
     var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
     data.append('title',document.getElementById('title').value);
     data.append('first_name',first_name);
@@ -221,6 +222,7 @@ $(document).ready(function(){
     data.append('last_name',last_name);
     data.append('join_date',join_date);
     data.append('password',password);
+    data.append('department',department);
     xmlHttp.send(data);
 
 
@@ -262,11 +264,15 @@ $(document).ready(function(){
           var last_name=document.getElementById('last_name').value;
           var middle_name= document.getElementById('middle_name').value;
           var join_date=document.getElementById('join_date').value;
+          var department= document.getElementById('department').value;
+          
+ 
           data.append('title',document.getElementById('title').value);
           data.append('first_name',first_name);
           data.append('middle_name',middle_name);
           data.append('last_name',last_name);
           data.append('join_date',join_date);
+          data.append('department',department);
           xmlHttp.send(data);
 
           
