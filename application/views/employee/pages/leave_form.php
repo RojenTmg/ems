@@ -82,7 +82,7 @@
             </div>
             <div class="form-div">
               <label>No. of Requested Days</label>
-              <input type="text" name="" disabled="disabled" class="<?php if (isset($not_valid) || isset($not_valid_inject)) echo "remDurationError"; ?>" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } else { echo '1/2'; } ?>" id="duration">
+              <input type="text" name="" disabled="disabled" class="<?php if (isset($not_valid) || isset($not_valid_inject)) echo "bar-completed progress-bar-striped progress-bar-animated remDurationError"; ?>" value="<?php if(isset($leave_form['from_date']) && isset($leave_form['to_date'])) { echo (round((strtotime($leave_form['to_date']) - strtotime($leave_form['from_date'])) / 86400) + 1); } elseif (isset($leave_form['duration_type']) && $leave_form['duration_type'] == 'full') { echo '1'; } else { echo '1/2'; } ?>" id="duration">
             </div>
           </div>
           <div class="form-div">

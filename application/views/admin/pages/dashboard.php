@@ -50,7 +50,7 @@
           </a>
           </div> -->
     </div>
-        <div>
+        <!-- <div>
       <div class="con-sub-head">
           <h5>Leave Details</h5>
       </div>
@@ -142,7 +142,7 @@
         </table>
       </div>
     </div>
-    </div>
+    </div> -->
 
 
 <!-- leave requested by self starts here -->
