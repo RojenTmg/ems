@@ -641,9 +641,11 @@ body {
   border: 0.5px solid #ced4da;
 }
 .remDurationError {
-  background: #ffa5a8;
-  color: #722c24;
-  border: 0.5px solid #d6acb1 !important;
+    border-radius: 0 !important; 
+    color: #000 !important;
+    border: 0.5px solid #d6acb1 !important;
+    background-color: #ffb5b8 !important; 
+    /*background-color: #f8d7da !important; */
 }
 .leave-date .form-div {
   width: 42%;

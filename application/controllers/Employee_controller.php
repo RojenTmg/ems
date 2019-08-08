@@ -210,7 +210,7 @@
 
 				// sending email to employee who requested leave
 				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
-				$message="Your ".$leavename." from ".$leave['from_date']. " has been send for processing.";
+				$message="Your ".$leavename." from ".$leave['from_date']. " has been sent for processing.";
 				$email=$this->Admin_model->getEmail();
 				$this->Admin_model->sendEmail('Leave Applied',$message,$email);
 

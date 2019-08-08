@@ -86,10 +86,10 @@ function trim_day(dec_day) {
   function validateNoOfDays(remainingDuration, noOfDuration) {
     if (noOfDuration == '1/2') noOfDuration = 0.50; 
     if (parseInt(remainingDuration) < parseInt(noOfDuration)) {
-      $("#duration").addClass("remDurationError");
+      $("#duration").addClass("bar-completed progress-bar-striped progress-bar-animated remDurationError");
     }
     else {
-      $("#duration").removeClass("remDurationError"); 
+      $("#duration").removeClass("bar-completed progress-bar-striped progress-bar-animated remDurationError"); 
     }
   }
 
