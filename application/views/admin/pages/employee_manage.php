@@ -124,14 +124,9 @@
             <label>Department</label>
             <select name="department" id="department">
               <?php foreach ($departments as $key => $value) { ?>
-               
+                <option value="<?php echo $value['id']; ?>" <?php if(isset($post['department_id'])) { if ($post['department_id'] == $value['id']) { echo "selected"; }} ?>><?php echo $value['department_name']; ?></option>
             <?php  } ?>
-               <option value="1" <?php if(isset($post['department'])) { if ($post['department'] == 'Admin') { echo "selected"; }} ?>>Admin</option>
-              <option value="2" <?php if(isset($post['department'])) { if ($post['department'] == '+2') { echo "selected"; }} ?>>+2</option>
-              <option value="3" <?php if(isset($post['department'])) { if ($post['department'] == 'A-Level') { echo "selected"; }} ?>>A-Level</option>
-              <option value="4" <?php if(isset($post['department'])) { if ($post['department'] == 'Computing') { echo "selected"; }} ?>>Computing</option>
-               <option value="5" <?php if(isset($post['department'])) { if ($post['department'] == 'Environment Science') { echo "selected"; }} ?>>Environment Science</option>
-              <option value="6" <?php if(isset($post['department'])) { if ($post['department'] == 'Management') { echo "selected"; }} ?>>Management</option>
+            
             </select>
           </div>
         <!-- dept ends here -->

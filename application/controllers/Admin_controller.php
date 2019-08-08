@@ -197,6 +197,7 @@ class Admin_controller extends CI_Controller {
 			
 
 			else{
+				$data['departments']=$this->Database_model->findAll('departments');
 				$data['post'] = $this->Database_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
@@ -225,7 +226,7 @@ class Admin_controller extends CI_Controller {
 		} else
 			redirect('login');
 
-		$this->view('employee_manage', $title, $data);
+		$this->view('employee_manage', $title);
 
 	}
 
