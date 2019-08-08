@@ -290,19 +290,17 @@
             </div>
           </div>
           <!-- modal for archive Approval requests ends here -->
-  </td>
-                    </td>
-                  </tr>
+  </td>      </tr>
                 <?php } ?>
           </tbody>
         </table>
       </div>
       </div>
     </div>
-    </div>
+  
     <?php } ?>
 <!-- leave approval table ends here -->
-
+</div>
 <!-- leave requested by self starts here -->
     <div>
       <div class="con-sub-head">
@@ -344,20 +342,19 @@
       </div>
     </div>
     </div>
-  </div>  
+
 <!-- leave requested by self ends here -->
- 
 
-
-  <script type="text/javascript">
+<script>
 
     $(document).ready(function(){
-       $('#datatable-recommender').DataTable({
+       $('#datatable-recommender').dataTable({
         "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
             "aaSorting": [],  });
     });
+
     $(document).ready(function(){
-       $('#datatable1').DataTable({
+       $('#datatable1').dataTable({
           /* Disable initial sort */
             "aaSorting": [],        "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
          /* disable sorting on specific columns */
@@ -367,8 +364,9 @@
          // }]
        });
     });
+
      $(document).ready(function(){
-         $('#datatable-approval').DataTable({
+         $('#datatable-approval').dataTable({
             /* Disable initial sort */
               "aaSorting": [],        
               "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
@@ -380,10 +378,12 @@
            }]
          });
       });
-  $('.tip-can').click(function(ev) {
+
+      $('.tip-can').click(function(ev) {
     $(this).parent().css({"display": "none"});
     ev.stopPropagation();
   });
+
   $('.table tr .btn-archive').click(function(ev) {
     $(this).children()[1].style.display = 'block';
     ev.stopPropagation();
@@ -391,17 +391,21 @@
 
   $('.arch-msg-div').click(function(){
     $('.arch-msg-div .arch-msg').addClass('msg-remove');
-    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
-  // function closeModal() {
-  //   var modal = document.getElementById('simpleModal');
-  //   $('.md-form textarea').val('');
-  //   modal.style.display = 'none';
-  // }
-  // window.addEventListener('click', outsideClick);
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); }); });
+  function closeModal() {
+    var modal = document.getElementById('simpleModal');
+    $('.md-form textarea').val('');
+    modal.style.display = 'none';
+  }
+  window.addEventListener('click', outsideClick);
   
-  // function outsideClick(e) {
-  //   var modal = document.getElementById('simpleModal');
-  //   if (e.target == modal) {
-  //     modal.style.display = 'none';
-  //   }
-  // }
+  function outsideClick(e) {
+    var modal = document.getElementById('simpleModal');
+    if (e.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+  
+    </script>
+
+ 
