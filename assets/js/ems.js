@@ -216,6 +216,7 @@ $(document).ready(function(){
     var join_date=document.getElementById('join_date').value;
     var department= document.getElementById('department').value;
     var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
+    
     data.append('title',document.getElementById('title').value);
     data.append('first_name',first_name);
     data.append('middle_name',middle_name);

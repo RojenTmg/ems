@@ -123,6 +123,9 @@
        <div class="form-div">
             <label>Department</label>
             <select name="department" id="department">
+              <?php foreach ($departments as $key => $value) { ?>
+               
+            <?php  } ?>
                <option value="1" <?php if(isset($post['department'])) { if ($post['department'] == 'Admin') { echo "selected"; }} ?>>Admin</option>
               <option value="2" <?php if(isset($post['department'])) { if ($post['department'] == '+2') { echo "selected"; }} ?>>+2</option>
               <option value="3" <?php if(isset($post['department'])) { if ($post['department'] == 'A-Level') { echo "selected"; }} ?>>A-Level</option>
@@ -658,6 +661,7 @@
             <label>Package <span class="text-danger"><i>*</i></span></label>
                 <select  id="package_id" >
                   <option value="">Select package</option>
+
                   <?php foreach ($packagelist as $pack) {  ?>
                    <option <?php if($post['package_id']==$pack['package_id']) echo "selected"; ?> value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
                  <?php } ?>

@@ -48,7 +48,7 @@ class Admin_controller extends CI_Controller {
 		$validEmployee=$this->Admin_model->validEmployee();
 		$invalid=$this->Admin_model->invalidEmployee();
 
-	
+
 		foreach ($validEmployee as $index => $value) {
 			foreach ($invalid as $row) {
 				if($value['emp_id']==$row['emp_id']){
@@ -215,7 +215,7 @@ class Admin_controller extends CI_Controller {
 		{	
 			$data['empList']=$this->Admin_model->employeeList();
 			if($this->uri->segment(3)){
-				 $id=$this->uri->segment(3);   
+				 $id=$this->uri->segment(3); 
 				$data['assigned']=$this->Admin_model->getAssign($id);
 				$data['packagelist']=$this->Admin_model->packageManage();			}
 			else{
@@ -225,7 +225,7 @@ class Admin_controller extends CI_Controller {
 		} else
 			redirect('login');
 
-		$this->view('employee_manage', $title);
+		$this->view('employee_manage', $title, $data);
 
 	}
 
@@ -309,13 +309,6 @@ class Admin_controller extends CI_Controller {
 
 
 		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
-			$msg="error";
-			array_push($result, $msg);
-			echo json_encode($result);
-			return ;
-		}
-
-		if($department_id!='1'&&$department_id!='2'&&$department_id!='3'&&$department_id!='4' &&$department_id!='5' &&$department_id!='6'){
 			$msg="error";
 			array_push($result, $msg);
 			echo json_encode($result);
