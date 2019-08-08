@@ -62,16 +62,16 @@
         </div>
       </div>
       <div class="box-body" style="overflow-x:auto;">
-        <table class="table">
+        <table class="table" id="datatable-employeesonleave">
           <thead>
             <tr>
-              <th>Type of Leave</th>
-              <th>From</th>
-              <th>To</th>
-              <th>No. of Days</th>
-              <th>Duty Performed by</th>
-              <th>Recommended By</th>
-              <th>Approved By</th>
+              <th>Type of Leave<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>From<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>To<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>No. of Days<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>Duty Performed by<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>Recommended By<i class="fa fa-sort" aria-hidden="true"></i></th>
+              <th>Approved By<i class="fa fa-sort" aria-hidden="true"></i></th>
             </tr>
           </thead>
           <tbody>
@@ -155,7 +155,7 @@
         <p>Recently Requested Leaves by Employees</p>
       </div>
       <div class="box-body"  style="overflow-x:auto; padding-top: 0px;">
-        <table class="table table-bordered hover employee_table" id="datatable1" >
+        <table class="table table-bordered hover employee_table" id="datatable-leaverequests" >
           <thead class="thead-dark">
             <tr>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
@@ -281,9 +281,17 @@
     </div>
   </div>  
 <!-- leave requested by self ends here -->
-
-
-
-
-      </div>  
+</div>  
     
+
+
+    <!-- js for datatable  -->
+<script>
+  $(document).ready(function(){
+    $('#datatable-leaverequests').dataTable();
+  });
+
+   $(document).ready(function(){
+    $('#datatable-employeesonleave').dataTable();
+  });
+</script>
