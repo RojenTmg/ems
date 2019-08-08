@@ -3,7 +3,7 @@
 	
 		public function findAllLeaves($emp_id = FALSE, $leave_id = FALSE)
 		{
-			$project = "SELECT *
+			$project = "SELECT *, el.emp_id as em
 					    FROM employee_leaves el
 					    LEFT JOIN leaves l ON l.leave_id = el.leave_id
 					    LEFT JOIN employees e ON e.emp_id = el.duty_performed_by";
@@ -26,6 +26,7 @@
 			}
 		}
 
+	
 		public function leaveDetail($id){
 			$leaves= "SELECT e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days
 					FROM employees e

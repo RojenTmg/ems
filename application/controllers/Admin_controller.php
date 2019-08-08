@@ -48,7 +48,7 @@ class Admin_controller extends CI_Controller {
 		$validEmployee=$this->Admin_model->validEmployee();
 		$invalid=$this->Admin_model->invalidEmployee();
 
-
+	
 		foreach ($validEmployee as $index => $value) {
 			foreach ($invalid as $row) {
 				if($value['emp_id']==$row['emp_id']){

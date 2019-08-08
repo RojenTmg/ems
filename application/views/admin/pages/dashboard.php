@@ -158,9 +158,11 @@
         <table class="table table-bordered hover employee_table" id="datatable-leaverequests" >
           <thead class="thead-dark">
             <tr>
+               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th> 
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-              <th id="dt-head" style="width: 7%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" width="5%" ><div class="sp-btn"><span>Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              <th id="dt-head" style="width: 7%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+              
               <th id="dt-head" style="width: 7%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 1%;"><div class="sp-btn"><span>Duration</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
 
@@ -182,9 +184,11 @@
                   else $bothabsent="false";
                   ?>
                   <tr>
+                    <td><?php echo $this->Admin_model->getName($value['em']); ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
-                    <td><?php echo $value['from_date']; ?></td>
+
                     <td><?php echo $value['duration_type']; ?></td>
+                    <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
 
