@@ -30,7 +30,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Assign Employee</div>
-                <div class="hl-cont"><span><em> (no. of emp. left to be assigned) &nbsp;</em></span><?php echo $remaining; ?></div>
+                <div class="hl-cont"><span><em> no. of emp. left to be assigned &nbsp;</em></span><?php echo $remaining; ?></div>
               </div>
             </div>
              <div class="item-2 sp-btn">
