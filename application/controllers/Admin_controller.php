@@ -211,10 +211,8 @@ public function employeeManage($id = NULL)
 				return $this->view('employee_manage', $title, $data);
 			} 
 		}
-		
+
 		else return $this->view('employee_manage', $title, $data);
-
-
 	}
 
 	// leave page
