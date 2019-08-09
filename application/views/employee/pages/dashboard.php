@@ -105,7 +105,7 @@
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
-        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Approve</span>
+        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Recommend</span>
         </div>
   </button> 
 
@@ -230,7 +230,7 @@
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
 
 
-                      <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['id']; ?>"></i>
+                      <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['id']; ?>" ></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>

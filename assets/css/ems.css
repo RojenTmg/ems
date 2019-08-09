@@ -963,6 +963,8 @@ body {
   background-color: #fff;
   outline: 1px solid #dee2e6;
 }
+
+
 .btn-edit {
   color: #00f000;
 }
@@ -1477,4 +1479,11 @@ body {
 {
   left: 70%;
 }
+}
+
+.btn-archive{
+  outline: 0;
+}
+.btn-archive:focus{
+  outline: 0;
 }
