@@ -179,6 +179,10 @@ class Admin_controller extends CI_Controller {
 	public function employeeManage($id = NULL) 
 	{
 		$title['title'] = 'Manage Employee';
+		$data['empList']=$this->Admin_model->employeeList();
+		$data['packagelist']=$this->Admin_model->packageManage();	
+		$data['departments']=$this->Database_model->findAll('departments');
+
 		if($id!=''){
 			$words = preg_replace('/[0-9]+/', '', $id);
 			$id = preg_replace('/[^0-9]/', '', $id);
@@ -197,36 +201,21 @@ class Admin_controller extends CI_Controller {
 			
 
 			else{
-				$data['departments']=$this->Database_model->findAll('departments');
+				$id=$this->uri->segment(3); 
+				$data['assigned']=$this->Admin_model->getAssign($id);
+			
 				$data['post'] = $this->Database_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		
 				return $this->view('employee_manage', $title, $data);
 			} 
-		}	
+		}
 		
+		else return $this->view('employee_manage', $title, $data);
 
 		
-		if (isset($_SESSION['current_employee_id'])) {
-               unset($_SESSION['current_employee_id']); 
-            }
-
-		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-		{	
-			$data['empList']=$this->Admin_model->employeeList();
-			if($this->uri->segment(3)){
-				 $id=$this->uri->segment(3); 
-				$data['assigned']=$this->Admin_model->getAssign($id);
-				$data['packagelist']=$this->Admin_model->packageManage();			}
-			else{
-				$data['assigned']='';
-			}
-
-		} else
-			redirect('login');
-
-		$this->view('employee_manage', $title);
+	
 
 	}
 

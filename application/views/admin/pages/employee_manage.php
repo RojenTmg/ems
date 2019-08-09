@@ -705,9 +705,6 @@
 
 
 
-
-
-
 <script type="text/javascript">
     <?php if(isset($_SESSION['current_employee_id'])){ ?>
       
