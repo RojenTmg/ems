@@ -196,7 +196,10 @@ $(document).ready(function(){
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
 
-
+$('.arch-msg-div').click(function(){
+    $('.arch-msg-div .arch-msg').addClass('msg-remove');
+    $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
+});
 
 
 
