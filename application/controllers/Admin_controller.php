@@ -176,7 +176,7 @@ class Admin_controller extends CI_Controller {
 		$this->view('employee_list', $title, $data);
 	}
 
-	public function employeeManage($id = NULL) 
+public function employeeManage($id = NULL) 
 	{
 		$title['title'] = 'Manage Employee';
 		$data['empList']=$this->Admin_model->employeeList();
@@ -211,12 +211,8 @@ class Admin_controller extends CI_Controller {
 				return $this->view('employee_manage', $title, $data);
 			} 
 		}
-		
+
 		else return $this->view('employee_manage', $title, $data);
-
-		
-	
-
 	}
 
 	// leave page

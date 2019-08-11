@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2019 at 10:36 AM
+-- Generation Time: Aug 09, 2019 at 07:40 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -97,7 +97,11 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `department_name`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 'IT', '', '2019-07-25 03:18:31', '', '2019-07-25 03:18:31');
+(2, '+2', '', '2019-08-08 06:03:37', '', '2019-08-08 06:03:37'),
+(3, 'A-Level', '', '2019-08-08 06:03:49', '', '2019-08-08 06:03:49'),
+(4, 'Computing', '', '2019-08-08 06:04:01', '', '2019-08-08 06:04:01'),
+(5, 'Environment Science', '', '2019-08-08 06:04:01', '', '2019-08-08 06:04:01'),
+(6, 'Management', '', '2019-08-08 06:04:10', '', '2019-08-08 06:04:10');
 
 -- --------------------------------------------------------
 
@@ -154,10 +158,13 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`, `package_id`, `is_approver`, `is_recommender`, `is_on_leave`) VALUES
-(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 1, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', NULL, 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', NULL, NULL, NULL, NULL, '', '', '', '123', '0000-00-00', '', 'A -ve', '', '', 'Yes', '123', NULL, NULL, NULL, '1', '1', '0'),
-(277, '0', 'Mr', 'Bryan', '', 'Adams', '2019-07-30', 1, 1, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34', 'bryan123@gmail.com', 'Non-Nepalese', 'Yes', 'Working', '2019-08-31', '123', 'KTM', 'Granny', 'Granny', '', '989839892', 'Master', 'non', 'ono', 'NAMI', '1975-01-01', 'Male', 'AB +ve', '', '', 'No', '', '123123213', NULL, 44, '1', '1', '0'),
-(278, '0', 'Mr', 'Hari', '', 'Nepal', '2019-07-30', 1, 1, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', 'A -ve', '', '', 'Yes', 'awd', NULL, NULL, 44, '1', '0', '0'),
-(288, '0', 'Mr', 'Sarr', '', 'Nepal', '2019-08-04', 1, 1, '', '2019-08-04 08:14:27', NULL, '2019-08-04 08:14:27', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0');
+(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 3, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', NULL, 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', NULL, NULL, NULL, NULL, '', '', '', '123', '0000-00-00', '', 'A -ve', '', '', 'Yes', '123', NULL, NULL, NULL, '1', '1', '0'),
+(277, '0', 'Mr', 'Bryan', '', 'Adams', '2019-08-02', 1, 4, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34', 'bryan123@gmail.com', 'Non-Nepalese', 'Yes', 'Working', '2019-08-31', '123', 'KTM', 'Granny', 'Granny', '', '989839892', 'Master', 'non', 'ono', 'NAMI', '1975-01-01', 'Male', 'AB +ve', '', '', 'No', '', '123123213', NULL, 44, '1', '1', '0'),
+(278, '0', 'Mr', 'Hari', '', 'Nepal', '2019-07-30', 1, 6, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', '', 'A -ve', '', '', 'Yes', 'awd', NULL, NULL, 44, '1', '0', '0'),
+(288, '0', 'Mr', 'Sarr', '', 'Nepal', '2019-08-04', 1, 2, '', '2019-08-04 08:14:27', NULL, '2019-08-04 08:14:27', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0'),
+(289, '0', 'Ms', 'Tsering', 'Khando', 'Lama', '2019-08-05', 1, 4, '', '2019-08-05 04:32:14', NULL, '2019-08-05 04:32:14', 'candy.khando@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1960-11-30', 'Female', '', NULL, NULL, '', NULL, NULL, NULL, 44, '1', '0', '0'),
+(296, '0', 'Mr', 'Santosh', '', 'Sapkota', '2019-08-08', 1, 4, '', '2019-08-08 06:07:17', NULL, '2019-08-08 06:07:17', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
+(298, '0', 'Mr', 'Rajan', 'Prasad', 'Bhattarai', '2019-08-09', 1, 3, '', '2019-08-09 04:39:22', NULL, '2019-08-09 04:39:22', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -189,6 +196,7 @@ INSERT INTO `employee_addresses` (`emp_id`, `primary_addressId`, `secondary_addr
 --
 
 CREATE TABLE `employee_approvers` (
+  `id` int(11) NOT NULL,
   `approver_id` int(11) DEFAULT NULL,
   `emp_id` int(11) DEFAULT NULL,
   `recommender_id` int(11) DEFAULT NULL,
@@ -197,16 +205,6 @@ CREATE TABLE `employee_approvers` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee_approvers`
---
-
-INSERT INTO `employee_approvers` (`approver_id`, `emp_id`, `recommender_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(277, 278, 277, '276', '2019-07-30 04:21:38', NULL, '2019-07-30 04:21:38'),
-(278, 277, 276, '276', '2019-07-30 07:01:16', NULL, '2019-07-30 07:01:16'),
-(277, 284, 277, '276', '2019-08-02 06:55:48', NULL, '2019-08-02 06:55:48'),
-(278, 288, 277, '276', '2019-08-04 08:14:37', NULL, '2019-08-04 08:14:37');
 
 -- --------------------------------------------------------
 
@@ -252,7 +250,7 @@ CREATE TABLE `employee_documents` (
 --
 
 INSERT INTO `employee_documents` (`doc_id`, `emp_id`, `doc_title`, `doc_file`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(4, 277, 'csy1018-topic1(2).pdf', 'csy1018-topic1(2).pdf', '', '2019-08-01 05:56:58', NULL, '2019-08-01 05:56:58');
+(5, 278, 'EMS_2.pdf', 'EMS_2.pdf', '', '2019-08-05 05:44:57', NULL, '2019-08-05 05:44:57');
 
 -- --------------------------------------------------------
 
@@ -286,19 +284,6 @@ CREATE TABLE `employee_leaves` (
   `is_archived_by_approver` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `employee_leaves`
---
-
-INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`, `is_archived_by_approver`) VALUES
-(138, 277, 40, NULL, NULL, NULL, 'pending', 'multiple', 'pending', '0000-00-00', '2019-07-30', '2019-08-01', 276, ' ', 'a', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:51', NULL, '2019-07-30 14:36:51', '0', '1'),
-(139, 277, 40, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-07-30', NULL, 276, ' ', 'r', '0000-00-00', '0000-00-00', '', '2019-07-30 14:36:57', NULL, '2019-07-30 14:36:57', '0', '0'),
-(144, 277, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-01', NULL, 276, ' 123213', NULL, '0000-00-00', '0000-00-00', '', '2019-08-01 05:19:53', NULL, '2019-08-01 05:19:53', '0', '0'),
-(145, 277, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-02', NULL, 276, ' a', NULL, '0000-00-00', '0000-00-00', '', '2019-08-02 06:53:52', NULL, '2019-08-02 06:53:52', '0', '0'),
-(146, 284, 39, NULL, NULL, NULL, 'approved', 'half', 'pending', '0000-00-00', '2019-08-02', NULL, 276, ' ', NULL, '0000-00-00', '0000-00-00', '', '2019-08-02 06:56:26', NULL, '2019-08-02 06:56:26', '0', '1'),
-(147, 288, 39, NULL, NULL, NULL, 'pending', 'half', 'denied', '0000-00-00', '2019-08-04', NULL, 276, '123', 'no', '0000-00-00', '0000-00-00', '', '2019-08-04 08:15:00', NULL, '2019-08-04 08:15:00', '0', '0'),
-(148, 288, 40, NULL, NULL, NULL, 'approved', 'half', 'recommended', '0000-00-00', '2019-08-04', NULL, 276, 'wedding day', NULL, '0000-00-00', '0000-00-00', '', '2019-08-04 08:23:16', NULL, '2019-08-04 08:23:16', '0', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -325,7 +310,11 @@ INSERT INTO `employee_leave_balance` (`emp_id`, `leave_id`, `remain_days`, `crea
 (284, 39, 6, '', '2019-08-02 06:55:58', NULL, NULL),
 (284, 40, 6, '', '2019-08-02 06:55:58', NULL, NULL),
 (288, 39, 6, '', '2019-08-04 08:14:37', NULL, NULL),
-(288, 40, 6, '', '2019-08-04 08:14:38', NULL, NULL);
+(288, 40, 6, '', '2019-08-04 08:14:38', NULL, NULL),
+(289, 39, 6, '', '2019-08-05 04:34:19', NULL, NULL),
+(289, 40, 6, '', '2019-08-09 05:40:07', NULL, NULL),
+(298, 39, 6, '', '2019-08-09 04:39:32', NULL, NULL),
+(298, 40, 6, '', '2019-08-09 04:39:32', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -517,10 +506,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(257, 276, 'grri123', 0, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
+(257, 276, 'grri123', 1, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
 (258, 277, 'brad123', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
-(259, 278, 'hane123', 1, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
-(269, 288, 'sane123', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27');
+(259, 278, 'hane123', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
+(269, 288, 'sane123', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27'),
+(270, 289, 'tsla123', 0, '', '2019-08-05 04:32:15', '', '2019-08-05 04:32:15'),
+(277, 296, 'sasa123', 0, '', '2019-08-08 06:07:17', '', '2019-08-08 06:07:17'),
+(279, 298, 'rabh123', 0, '', '2019-08-09 04:39:22', '', '2019-08-09 04:39:22');
 
 -- --------------------------------------------------------
 
@@ -545,7 +537,10 @@ INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `m
 (1, 257, '', '2019-08-02 04:56:00', NULL, '2019-08-02 04:56:00'),
 (2, 258, '', '2019-08-02 07:25:55', NULL, '2019-08-02 07:25:55'),
 (2, 259, '', '2019-08-02 07:25:55', NULL, '2019-08-02 07:25:55'),
-(2, 269, '', '2019-08-04 08:14:27', NULL, '2019-08-04 08:14:27');
+(2, 269, '', '2019-08-04 08:14:27', NULL, '2019-08-04 08:14:27'),
+(2, 270, '', '2019-08-05 04:32:15', NULL, '2019-08-05 04:32:15'),
+(2, 277, '', '2019-08-08 06:07:17', NULL, '2019-08-08 06:07:17'),
+(2, 279, '', '2019-08-09 04:39:22', NULL, '2019-08-09 04:39:22');
 
 --
 -- Indexes for dumped tables
@@ -589,6 +584,7 @@ ALTER TABLE `employee_addresses`
 -- Indexes for table `employee_approvers`
 --
 ALTER TABLE `employee_approvers`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `approver_id` (`approver_id`),
   ADD KEY `emp_id` (`emp_id`),
   ADD KEY `recommendar_id` (`recommender_id`);
@@ -713,25 +709,31 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=289;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
+
+--
+-- AUTO_INCREMENT for table `employee_approvers`
+--
+ALTER TABLE `employee_approvers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee_documents`
 --
 ALTER TABLE `employee_documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee_leaves`
 --
 ALTER TABLE `employee_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT for table `employee_work_experience`
@@ -743,7 +745,7 @@ ALTER TABLE `employee_work_experience`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -773,7 +775,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
 
 --
 -- Constraints for dumped tables
