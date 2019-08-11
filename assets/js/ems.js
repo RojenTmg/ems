@@ -890,124 +890,38 @@ function showprogress(){
 }
 
 
-// employee work experience
-var count=0;
-function addExperience() 
-{
-  count++;
-  var experienceForm="form"+count;
-  var tag='#'+experienceForm;
+function addExperience(){
+  var exp= document.getElementById('experience');
+  var msg= document.getElementById('form-message');
+   var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','addWork',true);
+          var data = new FormData();
+          data.append('experience',exp.value);
+           xmlHttp.send(data);
 
-$('#add_doc_title').html('Adding Work Experience');
-$('#work-experience').append('<div id="'+experienceForm+'">  </div>');
+            xmlHttp.onreadystatechange = function()
+            {
+                if(xmlHttp.readyState==4)
+                  var status=xmlHttp.responseText;
 
-$(tag).append('<div class="row" id="cross"><i class="col-md-12 text-right fa fa-times fa-2x" onclick="removeWorkExperience(this)" class="form-group col-md-2 "></i></div>');
-$(tag).append('<div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization"></div>');
-$(tag).append('<div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"></div>');
-$(tag).append('<div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name"></div>');
-$(tag).append('<div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No."></div>');
-$(tag).append('<div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address"></div>');
-$(tag).append('<div class="form-div"><label class="col-md-2 ">From</label><input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value=""> </div>');
-$(tag).append('<div class="form-div"> <label class="col-md-2 ">To</label><input class="col-md-3   form-control" type="date" name="to_date" id="to_date"></div>');
-$(tag).append('<div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>');
- }
-
-// to remove form from the work experience form
-function removeWorkExperience(exp)
-{
-  
-    var node= exp.parentNode.parentNode;
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);   }
+                if(status=="error"){
+                  msg.className="text-danger";
+                  msg.innerHTML="Please fill the text area";
+                }
+                else{
+                  exp.value=exp.value.trim();
+                  msg.className="text-success";
+                  msg.innerHTML="Experience Added Successfully";
+                }
+              
+}
 }
 
-// submit employee work experience to the table
-
-// update employee work experience to the table
-function updateWork(){
-
-  var exp_id = document.getElementsByName('exp_id');
-  var responsibility = document.getElementsByName('responsibility');
-  var organization = document.getElementsByName('organization');
-   var contact_person_name = document.getElementsByName('contact_person_name');
-   var contact_person_phone = document.getElementsByName('contact_person_phone');
-   var contact_address = document.getElementsByName('contact_address');
-  var from_date = document.getElementsByName('from_date');
-  var to_date= document.getElementsByName('to_date');
-
-  var count=0;
+function editExperience(){
   
-  for( i = 0; i < responsibility.length; i++ )
-     {
-     if(responsibility[i].value==''||organization[i].value==''){
-        var msg="Enter complete information";
-
-          $('#messagediv').removeClass('alert-success');
-          $('#messagediv').addClass('alert-danger');
-          $('#messagediv').css('display','block');
-          $('#showmessage').html(msg); 
-      return false;
-     }
-  }
-    for( i = 0; i < responsibility.length; i++ )
-     {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open('POST','updateWork',true);
-      var data = new FormData();
-      if(exp_id[i])
-      data.append('exp_id',exp_id[i].value);
-      else
-       data.append('exp_id','');
-
-      data.append('responsibility',responsibility[i].value);
-      data.append('organization',organization[i].value);
-      data.append('from_date',from_date[i].value);
-      data.append('to_date',to_date[i].value);
-      data.append('contact_person_name',contact_person_name[i].value);
-      data.append('contact_person_phone',contact_person_phone[i].value);
-      data.append('contact_address',contact_address[i].value);
-      xmlHttp.send(data);
-      if(DateCheck() && checkCurrentDate('from_date')  )
-      {
-        xmlHttp.onreadystatechange = function()
-      {
-          if(xmlHttp.readyState==4)
-          {
-           var status = xmlHttp.responseText;
-           if(status=='true')
-           {
-             msg="Updated";
-              $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('background','#ffadad !important');
-               $('#messagediv').css('display','block');
-                $('#showmessage').html(msg); 
-           }
-          else{
-            count++;
-             msg="Enter information";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-          }
-          
-          location.reload();
-          }
-
-      }
-      
-    }
-    else
-    {
-      msg= "From date and To date Error!";
-       $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-             $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-    }
-  }
 }
+
+
 
 // check email id 
 function vaildateEmail(email)

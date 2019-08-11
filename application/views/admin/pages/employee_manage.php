@@ -540,57 +540,153 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
+          
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+ Add New Experience
+</button> <br> <br>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Add New Experience</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <textarea id="experience" style="width: 100%; resize:none" rows="12"></textarea>
+      </div>
+      <div class="modal-footer">
+                <p style="float: left;" id="form-message" class="modal-title"></p>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="button"class="btn btn-primary" value="Save" onclick="addExperience()">
            <div class="form-div">
           </div>
-
-          <p class="title" id="add_doc_title"></p>
-
-             <div id="work-experience" class="bg-light"></div>
-              <!-- the form appends here -->
-              <?php 
-                if (!empty($work_experience)) {
-                  foreach ($work_experience as $value) {
-              ?>
-               <div id="list-experience" class="bg-light">
-                <div id="deleteExp">
-                <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
-
-                       <div class="tooltiptext float-right" id="deleteFileMessage">
-                        <p>Are you sure?</p>
-                        <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
-                      </div>
-                </div>
-               <div class="form-div">
-                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
-              <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
-              <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
-              <div class="form-div"><label class="col-md-2 ">From</label>
-              <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
-              <div class="form-group">
-               <label class="col-md-2 ">To</label>
-              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
-              <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
-
-                 </div>
-              <?php
-                  }
-                }
-              ?>
-     
-        <div class="form-div ">
-          <div class="sub-can">
-            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="updateWork()" value="Save" ';?> class="sub">
-           </div> 
-          </div>
-        </form>
       </div>
-    
-      <!-- work experience ends-->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="card-columns">
+<?php 
+
+
+//Function definition
+
+function timeAgo($time_ago)
+{
+    $time_ago = strtotime($time_ago);
+    $cur_time   = time();
+    $time_elapsed   = $cur_time - $time_ago;
+    $seconds    = $time_elapsed ;
+    $minutes    = round($time_elapsed / 60 );
+    $hours      = round($time_elapsed / 3600);
+    $days       = round($time_elapsed / 86400 );
+    $weeks      = round($time_elapsed / 604800);
+    $months     = round($time_elapsed / 2600640 );
+    $years      = round($time_elapsed / 31207680 );
+    // Seconds
+    if($seconds <= 60){
+        return "just now";
+    }
+    //Minutes
+    else if($minutes <=60){
+        if($minutes==1){
+            return "one minute ago";
+        }
+        else{
+            return "$minutes minutes ago";
+        }
+    }
+    //Hours
+    else if($hours <=24){
+        if($hours==1){
+            return "an hour ago";
+        }else{
+            return "$hours hrs ago";
+        }
+    }
+    //Days
+    else if($days <= 7){
+        if($days==1){
+            return "yesterday";
+        }else{
+            return "$days days ago";
+        }
+    }
+    //Weeks
+    else if($weeks <= 4.3){
+        if($weeks==1){
+            return "a week ago";
+        }else{
+            return "$weeks weeks ago";
+        }
+    }
+    //Months
+    else if($months <=12){
+        if($months==1){
+            return "a month ago";
+        }else{
+            return "$months months ago";
+        }
+    }
+    //Years
+    else{
+        if($years==1){
+            return "one year ago";
+        }else{
+            return "$years years ago";
+        }
+    }
+}
+
+if(isset($work_experience)&&count($work_experience)>0){ 
+foreach ($work_experience as $work) {
+ $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
+
+ ?>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><?php echo $work['experience']; ?>
+        </p>
+      </div>
+      <div class="card-footer" style="display: flex; justify-content: space-between;">
+      <p class="text-muted">Modified <?php echo $time_elapsed; ?> </p>
+      <input type="button"class="btn btn-light text-info  " value="Edit" onclick="editExperience()">
+  </div>
+    </div>
+<?php }} ?>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- end of work experience -->
+
+
+
+
+
 
       <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">

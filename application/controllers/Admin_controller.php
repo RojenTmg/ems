@@ -7,6 +7,8 @@ class Admin_controller extends CI_Controller {
            if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true || $_SESSION['type']!='admin') {
 				redirect('login');
 			}
+			  date_default_timezone_set('Asia/Kathmandu');
+
         }
 		
 	public function view($page, $title = 'EMS', $data = FALSE) {
@@ -755,93 +757,25 @@ public function employeeManage($id = NULL)
 
 	}
 
-// for work experience
-	public function addWork()
-	{
-		$_SESSION['path']="work";
-		$_POST = $this->security->xss_clean($_POST);
+function addWork(){
+	extract($_POST);
+$experience = trim($experience);
 
-		$status='';
-		extract($_POST);
-		if($from_date>Date('d-m-Y'))
-		{
-			return 0;
-		}
-		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
-
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
-
-		$data=array(
-			'responsibility'=>$responsibility,
-			'organization'=>$organization,
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'contact_address'=> $contact_address,
-			'contact_person_name'=> $contact_person_name,
-			'contact_person_phone'=> $contact_person_phone,
-			'emp_id'=>$id
-		);
-
-
-		$this->Admin_model->insert('employee_work_experience',$data);
-
-		// $this->Admin_model->add_work_experience($data);
-
-		$status='true';
-
-		echo $status;
-
+	if(strlen($experience)==0) {
+		echo "error";
+		return ;
+	}	
+	else{
+		$data=[
+			'experience'=>$experience,
+			'emp_id'=>$_SESSION['current_employee_id']
+		];
+		if($this->Admin_model->insert('employee_work_experience',$data))
+		echo "success";
+		else echo "error";
+		return ;
 	}
-
-// for work experience
-	public function updateWork()
-	{
-		$_SESSION['path']="work";
-		$status='';
-		$_POST = $this->security->xss_clean($_POST);
-
-		extract($_POST);
-		if($from_date>Date('Y-m-d'))
-		{
-			echo($from_date);
-			return 0;
-		}
-		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
-
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
-
-		$data=array(
-			'responsibility'=>$responsibility,
-			'organization'=>$organization,
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'contact_address'=> $contact_address,
-			'contact_person_name'=> $contact_person_name,
-			'contact_person_phone'=> $contact_person_phone,
-			'emp_id'=>$id
-		);
-		if($exp_id=='')
-		$this->Admin_model->insert('employee_work_experience',$data);
-		else
-		$this->Admin_model->update_work_experience($data,$exp_id);
-
-		// $this->Admin_model->add_work_experience($data);
-
-		$status='true';
-
-		echo $status;
-
-	}
+}
 
 
 //function for adding documents
