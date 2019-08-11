@@ -46,7 +46,7 @@
               <!-- show percentage completed here -->
             </p>
           <div class="pro-bar">
-            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar"></div>
+            <div class="bar-completed progress-bar" id="bar"></div>
           </div>  
         </div>
      </div>
@@ -67,10 +67,6 @@
 
         <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
-         <!-- personal details tab -->
-        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-
-
         <!-- added address tab -->
         <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
@@ -119,8 +115,10 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-       <!-- department -->
-       <div class="form-div">
+       
+        <div class="row col-md-12">
+          <!-- department -->
+       <div class="form-div mr-4">
             <label>Department</label>
             <select name="department" id="department">
               <?php foreach ($departments as $key => $value) { ?>
@@ -130,7 +128,20 @@
             </select>
           </div>
         <!-- dept ends here -->
-          <div class="form-div">
+
+           <!-- date of join added -->
+          <div class="form-div col-md-2 mr-5 " style="padding: 0">
+          <label>Join Date</label>
+          <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?>>
+
+          </div>  
+      </div>
+      <!-- row ends -->
+
+<!-- row starts-->
+<div class="row col-md-12">
+        <!-- title starts -->
+          <div class="form-div mr-4">
             <label>Title</label>
             <select name="title" id="title">
               <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
@@ -139,40 +150,28 @@
               <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
             </select>
           </div>
+            <!-- title ends -->
+         
 
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
             <input type="text" id="middle_name" placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2" style="padding: 0">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <!-- date of join added -->
- <div class="form-div">
-  <label>Join Date</label>
-            <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
+</div>
+     <!-- row  ends -->
 
- </div>           
-                 <div class="sub-can">
-             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
-          </div>
-        </form>
-      </div>
-      <!-- general ends -->
-
-      <!-- personal details starts here -->
-      <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-        <form class="form" id="personal-form">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <div class="form-div">
+           <!-- row 3 -->
+           <div class="row col-md-12">
+         <!--  mixed personal info in the general tab-->
+          <div class="form-div ">
             <label>Gender</label>
             <select id="gender">
               <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
@@ -180,12 +179,12 @@
               <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
-
-          <div class="form-div">
+<!-- dob -->
+   <div class="form-div col-md-8">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
-            <div class="row">
-            <select name="day" id="birth_day" class="col-md-1 mr-5 ml-3 ">
+            <div class="row" style="padding: 0">
+            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -197,7 +196,7 @@
         ?>
       </select>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
+             <select id="birth_month"   name="month"  class="col-md-3 mr-3"> 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -212,7 +211,7 @@
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-1">
+             <select id="birth_year" name="year " class="col-md-2" >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -226,20 +225,21 @@
       </select>
       </div>
           </div>
+          </div>
+          <!-- row 2 ending -->
+
+       
 
           <div class="form-div">
             <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
-
-          <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
-          
+                 <div class="sub-can">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
-      <!-- personal details ends here -->
-
+      <!-- general ends -->
 
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
@@ -295,12 +295,12 @@
        </div></div>
             <div class="form-div">
             <label>Home Phone </label>
-            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
+            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
              <div class="form-div">
             <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
-            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="">
+            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
 
           <div class="form-group">
@@ -749,6 +749,7 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
 <script type="text/javascript">
   check_complete();
 
+
  $('.fa-trash').on('click',function(ev) {
     $(this).siblings().css({"display": "block"});
   });
@@ -765,8 +766,8 @@ $(document).ready(function(){
         $("#messagediv").css('display','none');
     });
 });  
-
-
+ 
+ 
 
 </script>
 
