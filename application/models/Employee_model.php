@@ -25,9 +25,8 @@
 				return $query->result_array();
 			}
 		}
-
 	
-		public function leaveDetail($id){
+		public function leaveDetail($id, $r_days = FALSE){
 			$leaves= "SELECT e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days
 					FROM employees e
 					JOIN packages p ON e.package_id=p.package_id
@@ -36,9 +35,14 @@
 					JOIN employee_leave_balance elb ON l.leave_id=elb.leave_id AND e.emp_id=elb.emp_id
 					WHERE e.emp_id=$id";
 
+			if ($r_days !== FALSE) {
+				$leaves = $leaves . " AND elb.remain_days > $r_days";
+				$query = $this->db->query($leaves);
+				return $query->result_array();
+			}
+
 			$query = $this->db->query($leaves);
 				return $query->result_array();
-
 
 			// $this->db->select('e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days');
 			// $this->db->from('employees e');
@@ -67,7 +71,6 @@
 
 		public function findApproveLeaves($id = FALSE)
 		{
-
 			$approver=$_SESSION['user_id'];
 			$project = "SELECT *, el.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
 
@@ -96,7 +99,6 @@
 		// get list of archived leaves
 		public function findArchivedApproveLeaves($id = FALSE)
 		{
-
 			$approver=$_SESSION['user_id'];
 			$project = "SELECT *, el.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
 

@@ -7,6 +7,8 @@
                if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true|| $_SESSION['type']!='employee') {
 					redirect('login');
 				}
+			date_default_timezone_set('Asia/Kathmandu');
+
         }
         public function view($page, $title = 'EMS', $data = FALSE)
          {
@@ -125,13 +127,15 @@
 		{
 			$title['title'] = 'Leave Form';
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
-			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id']);
+			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id'], 0);
 			$data['leavelist']=$this->leaveBalance();
 			
 			$i = TRUE; 
 			foreach ($data['leaves'] as $value) {
-            	if ($i == TRUE) 
-              		$data['remainingDuration'] = $value['remain_days']; $i = FALSE;
+            	if ($i == TRUE) {
+              		$data['remainingDuration'] = $value['remain_days']; 
+              		$data['initialLeave'] = $value['leave_name']; $i = FALSE;
+            	}
             }
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
