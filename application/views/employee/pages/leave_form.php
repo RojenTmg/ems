@@ -65,7 +65,8 @@
                 <label>Full Day</label> 
               </div>
               <div>
-                <input type="radio" name="duration_type" id="multiple-days" value="multiple" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'multiple') { echo "checked"; }} else { echo 'disabled="disabled"';} if (isset($leave_form['leave_name'])) { echo 'disabled="disabled"'; }?>>
+                <input type="radio" name="duration_type" id="multiple-days" value="multiple" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'multiple') { echo "checked"; }} else { if ($initialLeave == 'Casual Leave') {
+                 echo 'disabled="disabled"'; }} if (isset($leave_form['leave_name'])) { echo 'disabled="disabled"'; }?>>
 
                 <label>Multiple Days</label>
               </div>
