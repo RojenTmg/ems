@@ -11,8 +11,11 @@
 
 
 
+
     <!-- offline bootstrap -->
    <?= link_tag('assets/css/bootstrap.min.css') ?>
+
+   
 
   <!-- offline jquery -->
    <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.js') ?>"></script>
@@ -25,6 +28,7 @@
 
 
     <?= link_tag('assets/css/ems.css?version=51') ?>
+    <?= link_tag('assets/css/alertify.min.css') ?>
 
     <!-- Script Files -->
 
@@ -40,7 +44,8 @@
 <script type="text/javascript" src="<?= base_url('assets/js/popper.min.js') ?>"></script>
 
 
-<script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
+ <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
+
 
 
 <!-- for datatable -->

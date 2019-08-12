@@ -40,6 +40,10 @@ $route['admin/approveTempAll'] = 'Admin_controller/approveTempAll';
 
 
 
+$route['employee/profile_update/deleteWorkExp'] = 'Employee_controller/deleteWorkExp';
+$route['employee/profile_update/editWork'] = 'Employee_controller/editWork';
+$route['employee/profile_update/addWork'] = 'Employee_controller/addWork';
+
 
 // unarchive leaves
 $route['employee/unArchiveRecommendedLeave']= 'Employee_controller/unArchiveRecommendedLeave';
@@ -72,7 +76,6 @@ $route['employee/profile_update/addEducation'] = 'Employee_controller/addEducati
 $route['employee/profile_update/addEmergency'] = 'Employee_controller/addEmergency';
 $route['employee/profile_update/addHealth'] = 'Employee_controller/addHealth';
 $route['employee/profile_update/addPan'] = 'Employee_controller/addPan';
-$route['employee/profile_update/addWork'] = 'Employee_controller/addWork';
 $route['employee/profile_update/addDocuments'] = 'Employee_controller/addDocuments';
 $route['employee/profile_update/addAddress'] = 'Employee_controller/addAddress';
 $route['employee/profile_update/progressBar'] = 'Employee_controller/progressBar';

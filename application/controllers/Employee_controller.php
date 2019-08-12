@@ -835,82 +835,32 @@
 		}
 		echo json_encode($status);
 	}
-	public function addPan()
-	{
-		$status=array();
-		extract($_POST);
+	
 
-		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
-
-		if($this->form_validation->run()===FALSE)
-		{
-			$status=$this->form_validation->error_array();
-		}else
-		{
-			$data=array(
-				'pan'=>$pan
-			);	
-					
-					
-						$id=$_SESSION['user_id'];
-					
-
-			$this->Admin_model->update_employee($data,$id);
-			$status=array('true');
-
-		}
-
-		echo json_encode($status);
-
-	}
-
-
-
-// for work experience
-	public function updateWork()
-	{
-		$_SESSION['path']="work";
-		$status='';
-		extract($_POST);
-
-		$this->form_validation->set_rules('organization','Organization','required|trim',array('required' => 'Please provide the name of the orgarnization.'));
-
-					
-						$id=$_SESSION['user_id'];
-					
-
-		$data=array(
-			'responsibility'=>$responsibility,
-			'organization'=>$organization,
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'contact_address'=> $contact_address,
-			'contact_person_name'=> $contact_person_name,
-			'contact_person_phone'=> $contact_person_phone,
-			'emp_id'=>$id
-		);
-		if($exp_id=='')
-		$this->Admin_model->insert('employee_work_experience',$data);
-		else
-		$this->Admin_model->update_work_experience($data,$exp_id);
-
-		// $this->Admin_model->add_work_experience($data);
-
-		$status='true';
-
-		echo $status;
-
-	}
 
 
 //function for adding documents
 	function addDocuments(){
-		$_SESSION['path']="document"; 
+	$_SESSION['path']="document"; 
 		$status='';
+		$_POST = $this->security->xss_clean($_POST);
+
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
 		$realName= $_FILES['document']['name'];
+
+		// list of allowed file types
+		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf');
+
+		$ext = pathinfo($realName, PATHINFO_EXTENSION);
+		if(!in_array($ext,$allowed) ) {
+		echo 'filerror';
+		return ;
+		}
+
+
+
 		$target_path = 'assets/files/'.$realName;
 		move_uploaded_file($tmpName,$target_path);
 
@@ -960,18 +910,57 @@
 	}
 
 
-	// delete work Experience from the database
-	function deleteWorkExperience()
-	{
-		$_SESSION['path']="work";
-		extract($_POST);
-		// $this->db->where('id',$id);
-		// 	$getrow = $this->db->get('employee_work_experience');
-		// 	$row= $getrow->row_array();
+	
+// for work experience
+function addWork(){
+	extract($_POST);
+$experience = trim($experience);
 
-		$this->Admin_model->deleteWorkExperience($id);
+	if(strlen($experience)==0) {
+		echo "error";
+		return ;
+	}	
+	else{
+		$data=[
+			'experience'=>$experience,
+			'emp_id'=>$_SESSION['user_id']
+		];
+		if($this->Admin_model->insert('employee_work_experience',$data))
+		echo "success";
+		else echo "error";
+		return ;
 	}
+}
 
+function editWork(){
+	extract($_POST);
+$experience = trim($experience);
+
+	if(strlen($experience)==0) {
+		echo "error";
+		return ;
+	}	
+	else{
+		$timestamp = date('Y-m-d G:i:s');
+		$data=[
+			'experience'=>$experience,
+			'emp_id'=>$_SESSION['user_id'],
+			'id'=>$id,
+			'modified_date'=>$timestamp
+		];
+		$this->db->where('id',$id);
+		if($this->db->update('employee_work_experience',$data))
+		echo "success";
+		else echo "error";
+		return ;
+	}
+}
+
+function deleteWorkExp(){
+	extract($_POST);
+	$status=$this->Admin_model->deleteWorkExperience($id);
+	echo $status;
+}
 // calculate percentage of form
 		function progressBar(){
 
