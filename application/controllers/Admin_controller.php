@@ -424,8 +424,8 @@ public function employeeManage($id = NULL)
 
 		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
 			$msg="errorgender";
-			array_push($status, $msg);
-			echo json_encode($status);
+			array_push($result, $msg);
+			echo json_encode($result);
 			return ;
 		}
 
@@ -478,11 +478,14 @@ public function employeeManage($id = NULL)
 		echo json_encode($result);
 	}
 
+
+
+
 //Address form
 	public function addAddress()
 	{
 		$_POST = $this->security->xss_clean($_POST);
-		$status=array();
+		$result=array();
 		extract($_POST);
 
 //validate

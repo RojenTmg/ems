@@ -345,9 +345,7 @@ $('.arch-msg-div').click(function(){
     }
   
 
-
-
-
+// update general information
  function updateGeneral()
   {
     var xmlHttp = new XMLHttpRequest();
@@ -479,6 +477,107 @@ $('.arch-msg-div').click(function(){
     }
  
   
+  // update general by employee on their profile
+ function updateGeneralbyEmployee()
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','updateGeneralbyEmployee',true);
+    var data = new FormData();
+    var email=document.getElementById('email').value;
+    var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
+    var gender =document.getElementById('gender').value;
+
+    if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
+
+    if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
+    {
+      msg="Select appropriate date.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+    else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
+    {
+      msg="Select appropriate date.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+    else if(new Date(dob)> new Date())
+    {
+      msg="Invalid Date of Birth";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+     else  if(getAge(dob)<18)
+     {
+      msg="Age cannot be less than 18.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg);
+      return ; 
+    } 
+ 
+    data.append('gender',gender);
+    data.append('dob',dob);
+    data.append('email',email);
+    xmlHttp.send(data);
+
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
+          {
+
+            var status = xmlHttp.responseText;
+            var id=JSON.parse(status);
+          
+             if(id=="errorgender")
+             {
+                msg="Invalid Gender Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+              if(id=="emailInvalid"){
+                msg="Invalid Email Id";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+
+               if(id=="errorDate"){
+                msg="Invalid Date";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+        if(isNaN(id))   {showresponse('general-form',status,'Added Successfully');}
+          else  { location.href='profile_update/'+id;  }
+          }
+        }
+      
+    }
 
 
   // display current entering employee's name
@@ -1102,7 +1201,6 @@ function showprogress(){
               if(xmlHttp.readyState==4)
               {
                 var status=xmlHttp.responseText;
-                console.log(status);
                 var  json = JSON.parse(status);
                 for(var k in json){
 

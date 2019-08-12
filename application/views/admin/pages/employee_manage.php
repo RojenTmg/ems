@@ -184,7 +184,9 @@
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
             <div class="row" style="padding: 0">
-            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" >
+            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 1%;" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -196,7 +198,9 @@
         ?>
       </select>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-3 mr-3"> 
+             <select id="birth_month"   name="month"  class="col-md-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 12%;" > 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -211,7 +215,9 @@
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-2" >
+             <select id="birth_year" name="year " class="col-md-2" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -532,17 +538,14 @@
       </div>
       <!-- PAN ends -->
 
-      <!-- work experience -->
+ <!-- work experience -->
 
-      <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
-        <form class="form" id="work-form">
-          <div class="message-div">
+<div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+  <form class="form" id="work-form">
+      <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          
-
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
  Add New Experience
@@ -572,19 +575,9 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 <div class="card-columns">
 <?php 
-
-
 //Function definition
-
 function timeAgo($time_ago)
 {
     $time_ago = strtotime($time_ago);
@@ -668,78 +661,58 @@ foreach ($work_experience as $work) {
   </div>
     </div>
 <?php }} ?>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
+</form>
 </div>
 <!-- end of work experience -->
 
+  <!-- documents tab -->
+  <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+    <form class="form" id="document-form" enctype="multipart/form-data">
+      <div class="message-div">
+  <div id="message" class="message" style="display: none;">
+    <!-- add edit message displayed here -->
+   </div></div>
+      <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+      <div class="form-group"></div>
+      <div id="document"> </div>
+      <div id="list_doc">
+     
+      <?php 
+      if(!empty($documents)){?>
+          <table class="table" id="document-list" style="overflow: scroll">
+        <thead>
+          <th>Title</th>
+          <th>File</th>
+          <th>Action</th>
+        </thead>
+        <?php 
+      foreach ($documents as $value) {
+    ?>
+    <tr>
+      <td><?php echo $value['doc_title']; ?></td>
+      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+      <!-- delete button -->
+      <td>
+         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
-
-
-
-
-      <!-- documents tab -->
-      <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
-        <form class="form" id="document-form" enctype="multipart/form-data">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
-          <div class="form-group"></div>
-          <div id="document"> </div>
-          <div id="list_doc">
-         
-          <?php 
-          if(!empty($documents)){?>
-              <table class="table" id="document-list" style="overflow: scroll">
-            <thead>
-              <th>Title</th>
-              <th>File</th>
-              <th>Action</th>
-            </thead>
-            <?php 
-          foreach ($documents as $value) {
-        ?>
-        <tr>
-          <td><?php echo $value['doc_title']; ?></td>
-          <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
-          <!-- delete button -->
-          <td>
-             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-
-               <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
-                <p>Are you sure?</p>
-                <span class="tip-can">Cancel</span>
-                <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
-              </div>
-            </td>
-           </tr>
-        <?php   } } ?>
-      </table>
-      <hr>
-  </div>
+           <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
+            <p>Are you sure?</p>
+            <span class="tip-can">Cancel</span>
+            <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+          </div>
+        </td>
+       </tr>
+    <?php   } } ?>
+  </table>
+  <hr>
+</div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
 
 </div>
     <!-- documents ends here -->
-
-
-
-
-
-
 
  <!-- employee assign tab starts here -->
   <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
@@ -788,17 +761,8 @@ foreach ($work_experience as $work) {
           </div>
         </form>
       </div>
-
-
  <!-- employee assign tab ends here -->
-
 </div>
-
-
-
-
-
-
 
 
 <script type="text/javascript">
@@ -813,10 +777,10 @@ foreach ($work_experience as $work) {
      $_SESSION['path']='';
       ?>
 
-              document.getElementById('nav-document').className='tab-pane fade active show';
-              document.getElementById('nav-document-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+      document.getElementById('nav-document').className='tab-pane fade active show';
+      document.getElementById('nav-document-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
 <?php
  } 
 if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){

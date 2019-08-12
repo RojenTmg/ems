@@ -102,7 +102,7 @@
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 		{	
 			$data['empList']=$this->Admin_model->employeeList();
-
+			$data['departments']=$this->Database_model->findAll('departments');
 			if($this->uri->segment(3)){
 				 $id=$this->uri->segment(3);   
 				$data['assigned']=$this->Admin_model->getAssign($id);
@@ -541,6 +541,36 @@
 		extract($_POST);
 		$this->form_validation->set_rules('mobile_phone','Mobile phone','required|trim',array('required' => 'You must provide a %s.'));
 
+		if($home_phone!='')
+		{
+			if(!$this->contactNumber($home_phone))
+			{
+				$msg="errorContact";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if($other_phone1!='' || $other_phone2!='' || $other_phone3!='')
+		{
+			if(!$this->contactNumber($other_phone1) || !$this->contactNumber($other_phone2) || !$this->contactNumber($other_phone3))
+			{
+				$msg="errorContact";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if(!$this->contactNumber($mobile_phone))
+		{
+			$msg="errorContact";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
@@ -578,6 +608,17 @@
 		$this->form_validation->set_rules('passport_no','Passport Number','required|trim',array('required' => 'You must provide a %s.'));
 
 		$this->form_validation->set_rules('passport_issue_place','Place of Issue','required|trim',array('required' => 'You must provide a %s.'));
+
+		if($visa_type!='')
+		{
+			if(!$this->textOnly($visa_type))
+			{
+				$msg="errorVisatype";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -629,6 +670,32 @@
 		$this->form_validation->set_rules('e_phone','Contact No.','required|trim',array('required' => 'You must provide contact details of person.'));
 
 
+		if(!$this->textOnly($e_name)|| !$this->textOnly($e_relation))
+		{
+			$msg="errorEmergency";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if(!$this->contactNumber($e_phone))
+		{
+			$msg="errorEmergency";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if($e_address!='')
+		{
+			if(!$this->alphanumeric($e_address))
+			{
+				$msg="errorEmergency";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -661,6 +728,21 @@
 		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
 
 		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
+		
+		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
+		$msg="error";
+		array_push($status, $msg);
+		echo json_encode($status);
+		return ;
+		}
+
+		if(!$this->textOnly($degree_title)|| !$this->textOnly($university)|| !$this->textOnly($institute))
+		{
+			$msg="errorEducation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -691,6 +773,45 @@
 		extract($_POST);
 
 		$this->form_validation->set_rules('blood_group','Blood Group','required',array('required' => 'You must provide %s'));
+
+		if($blood_group!='A +ve' && $blood_group!='A -ve' && $blood_group!='B +ve' && $blood_group!='B -ve' && $blood_group!='AB +ve'  && $blood_group!='AB -ve' && $blood_group!='O +ve'  && $blood_group!='O -ve' && $blood_group!=''){
+			$msg="error";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		if($medical_complications!='')
+		{
+			if(!$this->alphanumeric($medical_complications))
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+		
+		if($regular_medication!='')
+		{
+			if(!$this->alphanumeric($regular_medication) )
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if($allergy_description!='')
+		{
+			if(!$this->alphanumeric($allergy_description))
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -748,7 +869,7 @@
 // for work experience
 	public function updateWork()
 	{
-			$_SESSION['path']="work";
+		$_SESSION['path']="work";
 		$status='';
 		extract($_POST);
 
@@ -928,4 +1049,115 @@
 			echo json_encode($progress_data);
 		}
 
+//employe profile update:  edits general information
+	public function updateGeneralbyEmployee()
+	{
+		$_POST = $this->security->xss_clean($_POST);
+
+		$result=array();
+		extract($_POST);
+
+		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
+			$msg="errorgender";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
+
+		if($dob>Date('Y-m-d'))
+		{
+			return 0;
+		}
+
+		if( !$this->validateEmail($email))
+			{
+				$msg="emailInvalid";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
+		$this->form_validation->set_rules('email','Email address','required|trim');
+
+		if($this->form_validation->run()===FALSE)
+		{
+			$result=$this->form_validation->error_array();
+		}
+		else
+		{
+			$data=array(
+				
+				'gender'=>$gender,
+				'dob'=>$dob,
+				'email'=>$email
+			);
+			$id=$_SESSION['user_id'];
+			$this->db->where('emp_id',$id);
+			if($this->db->update('employees',$data))
+			{
+				
+				array_push($result, 'true');
+			}
+
+		}
+
+		echo json_encode($result);
+	}
+
+
+// checking input types
+public function textOnly($text)
+{
+	if (preg_match('/^[a-zA-Z .]+$/',$text ))
+		return true;
+	else
+		return false;
+}
+
+// checking input types number
+public function numberonly($text)
+{
+	if (preg_match('/^[[0-9\s .]+$/',$text ))
+		return true;
+	else
+		return false;
+}
+
+// checking phone number
+public function contactNumber($value)
+{
+	if(preg_match('/^[0-9\-\(\)\/\+\s]*$/', $value))
+		return true;
+	else
+		return false;
+}
+
+// alphanumeric but must contain alphabets
+public function alphanumeric($value)
+{
+	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .]+$/',$value))
+		return true;
+	else
+		return false;
+}
+
+// EMAIL VALIDATION
+public function validateEmail($email)
+{
+	if(preg_match('/^(?=.*[a-zA-Z])\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',$email))
+		return true;
+	else
+		return false;
+}
+
+
+// check date 
+public function validateDate($date)
+{
+	if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) 
+    	return true;
+ 	else  
+   		return false; 
+}
 }
