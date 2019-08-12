@@ -775,7 +775,7 @@ function showresponse(formname,status,msg)
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
                //updating progress bar
-  showprogress();
+           showprogress();
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
