@@ -874,7 +874,7 @@ openDialog();
 
 $('#permanentaddress_country').change(function() {
   if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
-    openDialog();
+    openDialog(); 
   } else {
     $('.autocomplete').find('.dialog').remove();
   }
