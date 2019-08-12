@@ -712,10 +712,10 @@ foreach (array_reverse($work_experience) as $work) {
 <?php }} ?>
 </div>
 </div>
-
-
+</div>
 </form>
 </div>
+
 <!-- end of work experience -->
 
   <!-- documents tab -->
