@@ -260,7 +260,7 @@
           </li>
           <li>
             <a href="<?= site_url('admin/employee_list'); ?>">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i class="fas fa-edit" aria-hidden="true"></i>
               <span>Assign Employee</span>
             </a>
           </li>

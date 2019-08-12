@@ -1511,6 +1511,7 @@ body {
 {
   left:60%;
 }
+
 }
 
 @media (min-width: 992px) {
@@ -1519,6 +1520,15 @@ body {
   left: 65%;
 }
 }
+
+@media (max-width: 992px) {
+  .deleteFiles
+{
+  left: 65%;
+}
+
+}
+
 
 @media (min-width: 1200px) {
  .deleteFiles

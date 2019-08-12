@@ -341,7 +341,12 @@ $('.arch-msg-div').click(function(){
               }
 
            if(isNaN(id))
+           {
+            showSuccessmessage('generalButton');
             showresponse('general-form',status,'Added Successfully');
+           }
+            
+
           else  {
             location.href='employee_manage/'+id;
           }
@@ -475,7 +480,9 @@ $('.arch-msg-div').click(function(){
                return ;
               }
 
-           if(isNaN(id))   {showresponse('general-form',status,'Added Successfully');}
+           if(isNaN(id))   {
+             showSuccessmessage('generalButton');
+            showresponse('general-form',status,'Added Successfully');}
           else  { location.href='employee_manage/'+id;  }
           }
         }
@@ -578,7 +585,9 @@ $('.arch-msg-div').click(function(){
                $('#showmessage').html(msg); 
                return ;
               }
-        if(isNaN(id))   {showresponse('general-form',status,'Added Successfully');}
+        if(isNaN(id))   {
+
+          showresponse('general-form',status,'Added Successfully');}
           else  { location.href='profile_update/'+id;  }
           }
         }
@@ -856,6 +865,7 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                 showSuccessmessage('addressbutton');
                showresponse('address-form',status,'Updated Successfully');
               }
           }
@@ -890,8 +900,9 @@ function showresponse(formname,status,msg)
                   $('#showmessage').html(msg); 
                   return ;
                 }
-                if(isNaN(id))
-               showresponse('contact-form',status,'Updated Successfully');
+                if(isNaN(id)){
+                 showSuccessmessage('contactbutton');
+                  showresponse('contact-form',status,'Updated Successfully');}
               }
           }
   }
@@ -949,7 +960,8 @@ function showresponse(formname,status,msg)
                 }
 
                 if(isNaN(id))
-                showresponse('nationality-form',status,'Updated Successfully');
+                { showSuccessmessage('nationalitybutton');
+                  showresponse('nationality-form',status,'Updated Successfully');}
               }
           }
   // }
@@ -985,8 +997,9 @@ function showresponse(formname,status,msg)
                   return ;
                 }
 
-                if(isNaN(id))
-               showresponse('emergency-form',status,'Updated Successfully');
+                if(isNaN(id)){
+                   showSuccessmessage('emergencybutton');
+                   showresponse('emergency-form',status,'Updated Successfully');}
               }
           }
   }
@@ -1027,6 +1040,7 @@ function showresponse(formname,status,msg)
             $('#showmessage').html(msg); 
             return ;
            }
+           showSuccessmessage('educationbutton');
          showresponse('education-form',status,'Updated Successfully');
         }
     }
@@ -1080,7 +1094,7 @@ function showresponse(formname,status,msg)
                   $('#showmessage').html(msg); 
                   return ;
                  }
-
+                 showSuccessmessage('healthbutton');
                showresponse('health-form',status,'Updated Successfully');
               }
           }
@@ -1100,6 +1114,7 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                showSuccessmessage('panbutton');
                showresponse('pan-form',status,'Updated Successfully');
               }
           }
@@ -1247,8 +1262,8 @@ function addExperience(){
                    $("#expModel").css('display','none');
                    $("#expModel").css('aria-hidden','true');
                    $("#expModel").css('aria-modal','false');
-                           $('.modal-backdrop').remove();
-          $('body').removeClass('modal-open');
+                   $('.modal-backdrop').remove();
+                   $('body').removeClass('modal-open');
 
                  $.notify("Experience Added Successfully", "success");
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
@@ -1557,12 +1572,8 @@ function assign()
 
 
   if(recommender==''||approver==''){
-                    msg="Assign an Employee";
-
-               $('#messagediv').addClass('alert-danger');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
-              return 0;
+    showErrormessage("Select recommender and approver!", 'assignbutton');
+     return 0;
             }
   var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','assignEmployee',true);
@@ -1576,12 +1587,9 @@ function assign()
           {
               if(xmlHttp.readyState==4)
               {
-                msg="Assigned Successfully.";
-
-               $('#messagediv').removeClass('alert-danger');
-               $('#messagediv').addClass('alert-success');
-               $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); }
+               
+              showSuccessmessage('assignbutton');
+               }
               check_complete();
               showprogress();
 
@@ -2164,4 +2172,17 @@ function assignRecTemp(id){
     window.location.reload(true); 
       }
     }
+
+
 }
+
+
+  //function to display message onthe right of the button
+
+  function showSuccessmessage(id) {
+     $('#'+id).notify("Added Successfully","success",{position:"top right "});
+  }
+
+  function showErrormessage(msg,id) {
+     $('#'+id).notify(msg,{position:"right"});
+  }

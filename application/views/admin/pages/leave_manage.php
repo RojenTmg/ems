@@ -53,8 +53,8 @@
               </td>
               <td class="text-center">
              
-                    <button  class="btn-edit" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <button  class="btn" onclick="editLeave(<?php echo $post['leave_id'];?>)" >
+                <i class="fas fa-edit" aria-hidden="true"></i>
                 </button>
 
                <!-- delete leave button start -->
@@ -246,9 +246,9 @@
 
                       <!-- action -->
                       <td class="text-center">
-                       <button onclick="editPackage(<?php echo $package['package_id'];?>)" class="btn-edit" title="Edit">
+                       <button onclick="editPackage(<?php echo $package['package_id'];?>)" class="btn" title="Edit">
 
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <i class="fas fa-edit" aria-hidden="true"></i>
                         </button>
                         <?php if($pkgAssign==false){?>
                         <a href="#packageModal<?php echo $package['package_id']; ?>" class="trigger-btn" data-toggle="modal">

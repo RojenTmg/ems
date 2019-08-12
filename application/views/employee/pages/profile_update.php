@@ -152,7 +152,8 @@
            <!-- row 3 -->
            <div class="row col-md-12">
          <!--  mixed personal info in the general tab-->
-          <div class="form-div ">
+          <div class="form-group col-md-3" style="padding-left : 0">
+            <div class="form-div">
             <label>Gender</label>
             <select id="gender">
               <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
@@ -160,14 +161,15 @@
               <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
+        </div>
 <!-- dob -->
-   <div class="form-div col-md-8">
+   <div class="form-group col-md-9 ">
+    <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
             <div class="row" style="padding: 0">
-            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" onfocus='this.size=10;'
-onblur='this.size=1;' 
-onchange='this.size=1; this.blur();' style="position: absolute; left: 1%;" >
+              <div class="form-div mr-3" style="width: 10%">
+            <select name="day" id="birth_day" class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'   >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -178,10 +180,11 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 1%;" >
           }
         ?>
       </select>
+      </div>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-3 mr-3" onfocus='this.size=10;'
-onblur='this.size=1;' 
-onchange='this.size=1; this.blur();' style="position: absolute; left: 12%;" > 
+      <div class="form-div mr-3" style="width: 20%">
+             <select id="birth_month"   name="month"  class="form-group" onfocus='this.size=10; this.style.width="20%";this.style.position="absolute"; this.style.left="12%";
+            ' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();' > 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -195,10 +198,11 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 12%;" >
                 <option value="11" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '11') { echo 'selected'; }} ?>>November</option>       
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
+        </div>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-2" onfocus='this.size=10;'
-onblur='this.size=1;' 
-onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
+
+            <div class="form-div" style="width: 10%">
+             <select id="birth_year" name="year " class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%"; this.style.left="34%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'  >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -211,24 +215,24 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
         ?>
       </select>
       </div>
-          </div>
-          </div>
-          <!-- row 2 ending -->
-
-       
-
-          <div class="form-div">
-            <label>Email<span class="text-danger"><i>*</i></span></label>
-            <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
-          </div>
-        
-          <div class="sub-can">
-            <input type="button" onclick="updateGeneralbyEmployee()" name="" value="Save" class="sub">
-          
-          </div>
-
-        </form>
       </div>
+    </div>
+  </div>
+  </div>
+  <!-- row 2 ending -->
+
+    <div class="form-div">
+      <label>Email<span class="text-danger"><i>*</i></span></label>
+      <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
+    </div>
+  
+    <div class="sub-can">
+      <input type="button" onclick="updateGeneralbyEmployee()" name="" value="Save" class="sub">
+    
+    </div>
+
+  </form>
+</div>
       <!-- general ends -->
 
 
@@ -284,16 +288,17 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-            <div class="form-div">
+  <div class="form-group row">
+            <div class="form-div col-md-4">
             <label>Home Phone </label>
-            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
+            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
-             <div class="form-div">
+             <div class="form-div col-md-4">
             <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
-            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="">
+            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
-
+</div>
           <div class="form-group">
             <p>Other Phone</p>
             <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1" class="form-group col-md-3">
@@ -302,7 +307,7 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
           </div>
 
           <div class="sub-can">
-            <input type="button" onclick="addContact()" name="" value="Save" class="sub">
+            <input type="button" onclick="addContact()" name="" value="Save" class="sub"  id="contactbutton">
             
           </div>
         </form>
@@ -352,15 +357,17 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
 
         </div>
           <!-- changes in passport details -->
-          <div class="form-div">
+                   <div class="form-group row">
+          <div class="form-div col-md-4">
             <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
-              <div class="form-div">
+              <div class="form-div col-md-4">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
+</div>
 
 
           <div class="sub-can">
@@ -372,31 +379,34 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
       <!-- nationality ends -->
 
       <!-- Emergency contact form -->
-      <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
+     <div class="tab-pane fade show" id="nav-eContact" role="tabpanel" aria-labelledby="nav-eContact-tab">
         <form class="form" id="emergency-form">
           <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          <div class="form-div">
+       <div class="form-group row">
+          <div class="form-div col-md-3">
             <label>Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
           </div>
-          <div class="form-div">
+          <div class="form-div col-md-3">
             <label>Relation<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="e_relation" value="<?php if(isset($post['e_relation'])) echo $post['e_relation'];?>" placeholder="">
           </div>
 
+          <div class="form-div col-md-3">
+            <label>Phone No.<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
+          </div>
+</div>
           <div class="form-div">
             <label>Address</label>
             <textarea id="e_address"><?php if(isset($post['e_address'])) echo $post['e_address'];?></textarea>
           </div>
-          <div class="form-div">
-            <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
-          </div>
+        
           <div class="sub-can">
-            <input type="button" onclick="addEmergency()" name="" value="Save" class="sub">
+            <input type="button" onclick="addEmergency()" name="" value="Save" class="sub" id="emergencybutton">
             
           </div>
         </form>
@@ -410,7 +420,8 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div> </div>
-          <div class="form-div">
+                  <div class="form-group row">
+          <div class="form-div col-md-4">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">  
               <option value="None" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'None') { echo "selected"; }} ?>>None</option>        
@@ -419,20 +430,23 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
               <option value="Bachelor" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Bachelor') { echo "selected"; }} ?>>Bachelor</option>
               <option value="High School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'High School') { echo "selected"; }} ?>>High School</option>
               <option value="Middle School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Middle School') { echo "selected"; }} ?>>Middle School</option>
-             </select>
-         </div>
-          <div class="form-div">
+                 </select> </div> 
+          
+          <div class="form-div col-md-4">
             <label>Degree Title</label>
             <input type="text" id="degree_title" value="<?php if(isset($post['degree_title'])) echo $post['degree_title'];?>" placeholder="">
           </div>
-          <div class="form-div">
+        </div>
+         <div class="form-group row">
+          <div class="form-div col-md-4">
             <label>University</label>
             <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
-          <div class="form-div">
+          <div class="form-div col-md-4">
             <label>Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
           </div>
+        </div>
           <div class="sub-can">
             <input type="button" onclick="addEducation()" name="" value="Save" class="sub">
             
@@ -448,9 +462,8 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          <div class="form-div">
-
-            <div class="form-div">
+           <div class="form-group row">
+            <div class="form-div col-md-3">
               <label>Blood Group <span class="text-danger"><i>*</i></span></label>
               <select id="blood_group">
                 <option value="">Select Blood Group</option>
@@ -464,13 +477,16 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
                 <option value="O -ve" <?php if(isset($post['blood_group'])) { if ($post['blood_group'] == 'O -ve') { echo "selected"; }} ?>>O -ve</option>
               </select>
             </div>
-            <div class="form-div">
+            </div>
+            <div class="form-group row ">
+            <div class="form-div col-md-4" >
               <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
             </div>
-            <div class="form-div">
+            <div class="form-div col-md-4">
               <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
+            </div>
             </div>
             <div class="form-div">
               <label  class="radio-inline">Any Allergies</label>
@@ -494,7 +510,7 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
               <input type="button" onclick="addHealth()" name="" value="Save" class="sub">
               
             </div>
-          </div>
+          
         </form>
       </div>
 

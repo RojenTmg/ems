@@ -59,7 +59,7 @@
                 <td><?php echo $post['nationality']; ?></td>
                 <td><?php echo $post['highest_degree']; ?></td>
                 <td>
-                  <button class="btn-edit" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button class="btn" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></button>
                   <button class="btn-archive tooltip1" title="Delete" id="<?php echo $post['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i>
                     <div class="tooltiptext">
                       <p>Are you sure?</p>
