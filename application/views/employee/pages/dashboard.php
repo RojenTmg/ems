@@ -219,7 +219,7 @@
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php echo $value['duration_type']; ?></td>
-                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
+                    <td><?php if ($value['to_date'] != NULL) { echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; } elseif ($value['duration_type'] == 'half') { echo '1/2'; } elseif ($value['duration_type'] == 'full') { echo '1'; } ?></td>
                     <td><?php echo $value['dpb_first_name'] .' '. $value['dpb_middle_name'] .' '. $value['dpb_last_name']; ?></td>
                     <td><?php echo $value['eaid_first_name'] .' '. $value['eaid_middle_name'] .' '. $value['eaid_last_name']; ?></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
@@ -331,7 +331,7 @@
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php echo $value['duration_type']; ?></td>
-                    <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
+                    <td><?php if ($value['to_date'] != NULL) { echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; } elseif ($value['duration_type'] == 'half') { echo '1/2'; } elseif ($value['duration_type'] == 'full') { echo '1'; } ?></td>
                     <td><?php echo $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name']; ?></td>
                     <td><?php if ($value['is_approved'] == 'denied' || $value['is_recommended'] == 'denied') { echo '<span class="denied">Denied</span>';  } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Approved</span>'; } else if ($value['is_recommended'] == 'recommended') { echo '<span class="pending">Recommended</span>';  } else { echo '<span class="pending">Pending</span>';} ?></td>
                   </tr>
