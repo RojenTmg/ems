@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+$route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
+$route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
 
 
 $route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
