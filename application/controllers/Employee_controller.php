@@ -835,34 +835,7 @@
 		}
 		echo json_encode($status);
 	}
-	public function addPan()
-	{
-		$status=array();
-		extract($_POST);
-
-		$this->form_validation->set_rules('pan','PAN','required',array('required' => 'You must provide a PAN Number'));
-
-		if($this->form_validation->run()===FALSE)
-		{
-			$status=$this->form_validation->error_array();
-		}else
-		{
-			$data=array(
-				'pan'=>$pan
-			);	
-					
-					
-						$id=$_SESSION['user_id'];
-					
-
-			$this->Admin_model->update_employee($data,$id);
-			$status=array('true');
-
-		}
-
-		echo json_encode($status);
-
-	}
+	
 
 
 

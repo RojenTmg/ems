@@ -712,7 +712,7 @@ foreach (array_reverse($work_experience) as $work) {
 <?php }} ?>
 </div>
 </div>
-
+</div>
 
 </form>
 </div>
@@ -725,7 +725,7 @@ foreach (array_reverse($work_experience) as $work) {
   <div id="message" class="message" style="display: none;">
     <!-- add edit message displayed here -->
    </div></div>
-      <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+      <input type="button"class="btn btn-primary" id="docaddbtn" value="Add Document" onclick="addDocument()">
       <div class="form-group"></div>
       <div id="document"> </div>
       <div id="list_doc">
@@ -743,9 +743,12 @@ foreach (array_reverse($work_experience) as $work) {
     ?>
     <tr>
       <td><?php echo $value['doc_title']; ?></td>
-      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
       <td>
+
+        
+
          <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
            <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
@@ -761,6 +764,7 @@ foreach (array_reverse($work_experience) as $work) {
 </div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
+  <script>  
 
 </div>
     <!-- documents ends here -->
@@ -951,8 +955,7 @@ $(document).ready(function(){
         $("#messagediv").css('display','none');
     });
 });  
- 
- 
+
 
 </script>
 

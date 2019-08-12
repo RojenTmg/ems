@@ -1009,6 +1009,19 @@ function deleteWorkExp(){
 
 		$tmpName = $_FILES['document']['tmp_name'];
 		$realName= $_FILES['document']['name'];
+
+		// list of allowed file types
+		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf');
+
+		$ext = pathinfo($realName, PATHINFO_EXTENSION);
+		if(!in_array($ext,$allowed) ) {
+		echo 'filerror';
+		return ;
+		}
+
+
+
+		
 		$target_path = 'assets/files/'.$realName;
 		move_uploaded_file($tmpName,$target_path);
 

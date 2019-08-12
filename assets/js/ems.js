@@ -614,22 +614,20 @@ function submitDocument(){
   var doc_title = document.getElementsByName('doc_title');
   var doc_file = document.getElementsByName('userfile');
   var count=0;
+
   
   for( i = 0; i < doc_title.length; i++ )
      {
      if(doc_file[i].files.length==0){
-        var msg="Select a file first.";
-       $('#messagediv').removeClass('alert-success');
-       $('#messagediv').addClass('alert-danger');
-       $('#messagediv').css('display','block');
-       $('#showmessage').html(msg); 
+      $("#docaddbtn").notify("Select a file first",{position:"right top"});
+       
       return false;
      }
-     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF" ) {
+     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF"||doc_file[i].files[0]['type']=="image/png"||doc_file[i].files[0]['type']=="image/jpeg"||doc_file[i].files[0]['type']=="image/jpg" ) {
 
      }
      else{
-             var msg="Select a doc or pdf file only";
+             var msg="Select a doc, pdf, png or jpeg file only";
            $('#messagediv').removeClass('alert-success');
            $('#messagediv').addClass('alert-danger');
        $('#messagediv').css('display','block');
@@ -657,6 +655,9 @@ function submitDocument(){
                $('#messagediv').addClass('alert-success');
               $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
+           }
+           else if(status=="fileerror"){
+            $.notify("Error File Type", "error");
            }
           else{
             count++;

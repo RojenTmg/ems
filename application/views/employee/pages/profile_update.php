@@ -513,12 +513,9 @@ onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
 
           <div class="form-div">
             <label>PAN Number<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
+            <input type="text" disabled="true" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
           </div>
-          <div class="sub-can">
-            <input type="button" onclick="addPan()" name="" value="Save" class="sub">
-            
-          </div>
+         
         </form>
       </div>
       <!-- PAN ends -->
