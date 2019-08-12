@@ -46,7 +46,7 @@
               <!-- show percentage completed here -->
             </p>
           <div class="pro-bar">
-            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar"></div>
+            <div class="bar-completed progress-bar" id="bar"></div>
           </div>  
         </div>
      </div>
@@ -67,10 +67,6 @@
 
         <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
-         <!-- personal details tab -->
-        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-
-
         <!-- added address tab -->
         <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
@@ -119,8 +115,10 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-       <!-- department -->
-       <div class="form-div">
+       
+        <div class="row col-md-12">
+          <!-- department -->
+       <div class="form-div mr-4">
             <label>Department</label>
             <select name="department" id="department">
               <?php foreach ($departments as $key => $value) { ?>
@@ -130,7 +128,20 @@
             </select>
           </div>
         <!-- dept ends here -->
-          <div class="form-div">
+
+           <!-- date of join added -->
+          <div class="form-div col-md-2 mr-5 " style="padding: 0">
+          <label>Join Date</label>
+          <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?>>
+
+          </div>  
+      </div>
+      <!-- row ends -->
+
+<!-- row starts-->
+<div class="row col-md-12">
+        <!-- title starts -->
+          <div class="form-div mr-4">
             <label>Title</label>
             <select name="title" id="title">
               <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
@@ -139,40 +150,28 @@
               <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
             </select>
           </div>
+            <!-- title ends -->
+         
 
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
             <input type="text" id="middle_name" placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2" style="padding: 0">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <!-- date of join added -->
- <div class="form-div">
-  <label>Join Date</label>
-            <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
+</div>
+     <!-- row  ends -->
 
- </div>           
-                 <div class="sub-can">
-             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
-          </div>
-        </form>
-      </div>
-      <!-- general ends -->
-
-      <!-- personal details starts here -->
-      <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-        <form class="form" id="personal-form">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <div class="form-div">
+           <!-- row 3 -->
+           <div class="row col-md-12">
+         <!--  mixed personal info in the general tab-->
+          <div class="form-div ">
             <label>Gender</label>
             <select id="gender">
               <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
@@ -180,12 +179,12 @@
               <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
-
-          <div class="form-div">
+<!-- dob -->
+   <div class="form-div col-md-8">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
-            <div class="row">
-            <select name="day" id="birth_day" class="col-md-1 mr-5 ml-3 ">
+            <div class="row" style="padding: 0">
+            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -197,7 +196,7 @@
         ?>
       </select>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
+             <select id="birth_month"   name="month"  class="col-md-3 mr-3"> 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -212,7 +211,7 @@
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-1">
+             <select id="birth_year" name="year " class="col-md-2" >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -226,20 +225,21 @@
       </select>
       </div>
           </div>
+          </div>
+          <!-- row 2 ending -->
+
+       
 
           <div class="form-div">
             <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
-
-          <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
-          
+                 <div class="sub-can">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
-      <!-- personal details ends here -->
-
+      <!-- general ends -->
 
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
@@ -302,12 +302,12 @@
        </div></div>
             <div class="form-div">
             <label>Home Phone </label>
-            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
+            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
              <div class="form-div">
             <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
-            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="">
+            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
 
           <div class="form-group">
@@ -547,57 +547,153 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
+          
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+ Add New Experience
+</button> <br> <br>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Add New Experience</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <textarea id="experience" style="width: 100%; resize:none" rows="12"></textarea>
+      </div>
+      <div class="modal-footer">
+                <p style="float: left;" id="form-message" class="modal-title"></p>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="button"class="btn btn-primary" value="Save" onclick="addExperience()">
            <div class="form-div">
           </div>
-
-          <p class="title" id="add_doc_title"></p>
-
-             <div id="work-experience" class="bg-light"></div>
-              <!-- the form appends here -->
-              <?php 
-                if (!empty($work_experience)) {
-                  foreach ($work_experience as $value) {
-              ?>
-               <div id="list-experience" class="bg-light">
-                <div id="deleteExp">
-                <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
-
-                       <div class="tooltiptext float-right" id="deleteFileMessage">
-                        <p>Are you sure?</p>
-                        <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
-                      </div>
-                </div>
-               <div class="form-div">
-                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
-              <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
-              <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
-              <div class="form-div"><label class="col-md-2 ">From</label>
-              <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
-              <div class="form-group">
-               <label class="col-md-2 ">To</label>
-              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
-              <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
-
-                 </div>
-              <?php
-                  }
-                }
-              ?>
-     
-        <div class="form-div ">
-          <div class="sub-can">
-            <input type="button" <?php if($updating==true) echo 'onclick="updateWork()" value="Update"'; else echo 'onclick="updateWork()" value="Save" ';?> class="sub">
-           </div> 
-          </div>
-        </form>
       </div>
-    
-      <!-- work experience ends-->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="card-columns">
+<?php 
+
+
+//Function definition
+
+function timeAgo($time_ago)
+{
+    $time_ago = strtotime($time_ago);
+    $cur_time   = time();
+    $time_elapsed   = $cur_time - $time_ago;
+    $seconds    = $time_elapsed ;
+    $minutes    = round($time_elapsed / 60 );
+    $hours      = round($time_elapsed / 3600);
+    $days       = round($time_elapsed / 86400 );
+    $weeks      = round($time_elapsed / 604800);
+    $months     = round($time_elapsed / 2600640 );
+    $years      = round($time_elapsed / 31207680 );
+    // Seconds
+    if($seconds <= 60){
+        return "just now";
+    }
+    //Minutes
+    else if($minutes <=60){
+        if($minutes==1){
+            return "one minute ago";
+        }
+        else{
+            return "$minutes minutes ago";
+        }
+    }
+    //Hours
+    else if($hours <=24){
+        if($hours==1){
+            return "an hour ago";
+        }else{
+            return "$hours hrs ago";
+        }
+    }
+    //Days
+    else if($days <= 7){
+        if($days==1){
+            return "yesterday";
+        }else{
+            return "$days days ago";
+        }
+    }
+    //Weeks
+    else if($weeks <= 4.3){
+        if($weeks==1){
+            return "a week ago";
+        }else{
+            return "$weeks weeks ago";
+        }
+    }
+    //Months
+    else if($months <=12){
+        if($months==1){
+            return "a month ago";
+        }else{
+            return "$months months ago";
+        }
+    }
+    //Years
+    else{
+        if($years==1){
+            return "one year ago";
+        }else{
+            return "$years years ago";
+        }
+    }
+}
+
+if(isset($work_experience)&&count($work_experience)>0){ 
+foreach ($work_experience as $work) {
+ $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
+
+ ?>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><?php echo $work['experience']; ?>
+        </p>
+      </div>
+      <div class="card-footer" style="display: flex; justify-content: space-between;">
+      <p class="text-muted">Modified <?php echo $time_elapsed; ?> </p>
+      <input type="button"class="btn btn-light text-info  " value="Edit" onclick="editExperience()">
+  </div>
+    </div>
+<?php }} ?>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- end of work experience -->
+
+
+
+
+
 
       <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
@@ -830,6 +926,7 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
 <script type="text/javascript">
   check_complete();
 
+
  $('.fa-trash').on('click',function(ev) {
     $(this).siblings().css({"display": "block"});
   });
@@ -846,8 +943,8 @@ $(document).ready(function(){
         $("#messagediv").css('display','none');
     });
 });  
-
-
+ 
+ 
 
 </script>
 

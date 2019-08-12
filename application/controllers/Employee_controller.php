@@ -7,6 +7,8 @@
                if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true|| $_SESSION['type']!='employee') {
 					redirect('login');
 				}
+			date_default_timezone_set('Asia/Kathmandu');
+
         }
         public function view($page, $title = 'EMS', $data = FALSE)
          {
