@@ -46,7 +46,7 @@
               <!-- show percentage completed here -->
             </p>
           <div class="pro-bar">
-            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar"></div>
+            <div class="bar-completed progress-bar" id="bar"></div>
           </div>  
         </div>
      </div>
@@ -67,10 +67,6 @@
 
         <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
-         <!-- personal details tab -->
-        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-
-
         <!-- added address tab -->
         <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
 
@@ -119,8 +115,10 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-       <!-- department -->
-       <div class="form-div">
+       
+        <div class="row col-md-12">
+          <!-- department -->
+       <div class="form-div mr-4">
             <label>Department</label>
             <select name="department" id="department">
               <?php foreach ($departments as $key => $value) { ?>
@@ -130,7 +128,20 @@
             </select>
           </div>
         <!-- dept ends here -->
-          <div class="form-div">
+
+           <!-- date of join added -->
+          <div class="form-div col-md-2 mr-5 " style="padding: 0">
+          <label>Join Date</label>
+          <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?>>
+
+          </div>  
+      </div>
+      <!-- row ends -->
+
+<!-- row starts-->
+<div class="row col-md-12">
+        <!-- title starts -->
+          <div class="form-div mr-4">
             <label>Title</label>
             <select name="title" id="title">
               <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
@@ -139,40 +150,28 @@
               <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
             </select>
           </div>
+            <!-- title ends -->
+         
 
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
             <input type="text" id="middle_name" placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2" style="padding: 0">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="last_name" placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <!-- date of join added -->
- <div class="form-div">
-  <label>Join Date</label>
-            <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
+</div>
+     <!-- row  ends -->
 
- </div>           
-                 <div class="sub-can">
-             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
-          </div>
-        </form>
-      </div>
-      <!-- general ends -->
-
-      <!-- personal details starts here -->
-      <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-        <form class="form" id="personal-form">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <div class="form-div">
+           <!-- row 3 -->
+           <div class="row col-md-12">
+         <!--  mixed personal info in the general tab-->
+          <div class="form-div ">
             <label>Gender</label>
             <select id="gender">
               <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
@@ -180,12 +179,14 @@
               <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
-
-          <div class="form-div">
+<!-- dob -->
+   <div class="form-div col-md-8">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
-            <div class="row">
-            <select name="day" id="birth_day" class="col-md-1 mr-5 ml-3 ">
+            <div class="row" style="padding: 0">
+            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 1%;" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -197,7 +198,9 @@
         ?>
       </select>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
+             <select id="birth_month"   name="month"  class="col-md-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 12%;" > 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -212,7 +215,9 @@
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-1">
+             <select id="birth_year" name="year " class="col-md-2" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -226,20 +231,21 @@
       </select>
       </div>
           </div>
+          </div>
+          <!-- row 2 ending -->
+
+       
 
           <div class="form-div">
             <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
-
-          <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
-          
+                 <div class="sub-can">
+             <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general">
           </div>
         </form>
       </div>
-      <!-- personal details ends here -->
-
+      <!-- general ends -->
 
       <!-- address changes-->
       <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
@@ -253,6 +259,13 @@
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
               <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
+
+                <div class="autocomplete">
+                  <input type="text" placeholder="District">
+                  <span class="close">Cancel</span>
+                  <div class="dialog"></div>
+                </div>
+
               <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
@@ -295,12 +308,12 @@
        </div></div>
             <div class="form-div">
             <label>Home Phone </label>
-            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="">
+            <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
              <div class="form-div">
             <label>Mobile Phone<span class="opt text-danger"><i>*</i></span></label>
-            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="">
+            <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
 
           <div class="form-group">
@@ -532,11 +545,11 @@
       </div>
       <!-- PAN ends -->
 
-      <!-- work experience -->
+ <!-- work experience -->
 
-      <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
-        <form class="form" id="work-form">
-          <div class="message-div">
+<div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+  <form class="form" id="work-form">
+      <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
@@ -544,6 +557,7 @@
 
  <div id="experiencelist">
   <div id="listexp">
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#expModel">
  Add New Experience
@@ -575,21 +589,10 @@
     </div>
   </div>
 </div>
-<!-- end of modal -->
-
-
-
-
-
-
-
 
 <div class="card-columns">
 <?php 
-
-
 //Function definition
-
 function timeAgo($time_ago)
 {
     $time_ago = strtotime($time_ago);
@@ -711,76 +714,56 @@ foreach (array_reverse($work_experience) as $work) {
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
+</form>
 </div>
 <!-- end of work experience -->
 
+  <!-- documents tab -->
+  <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+    <form class="form" id="document-form" enctype="multipart/form-data">
+      <div class="message-div">
+  <div id="message" class="message" style="display: none;">
+    <!-- add edit message displayed here -->
+   </div></div>
+      <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
+      <div class="form-group"></div>
+      <div id="document"> </div>
+      <div id="list_doc">
+     
+      <?php 
+      if(!empty($documents)){?>
+          <table class="table" id="document-list" style="overflow: scroll">
+        <thead>
+          <th>Title</th>
+          <th>File</th>
+          <th>Action</th>
+        </thead>
+        <?php 
+      foreach ($documents as $value) {
+    ?>
+    <tr>
+      <td><?php echo $value['doc_title']; ?></td>
+      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
+      <!-- delete button -->
+      <td>
+         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
 
-
-
-
-
-      <!-- documents tab -->
-      <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
-        <form class="form" id="document-form" enctype="multipart/form-data">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <input type="button"class="btn btn-primary" value="Add Document" onclick="addDocument()">
-          <div class="form-group"></div>
-          <div id="document"> </div>
-          <div id="list_doc">
-         
-          <?php 
-          if(!empty($documents)){?>
-              <table class="table" id="document-list" style="overflow: scroll">
-            <thead>
-              <th>Title</th>
-              <th>File</th>
-              <th>Action</th>
-            </thead>
-            <?php 
-          foreach ($documents as $value) {
-        ?>
-        <tr>
-          <td><?php echo $value['doc_title']; ?></td>
-          <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
-          <!-- delete button -->
-          <td>
-             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-
-               <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
-                <p>Are you sure?</p>
-                <span class="tip-can">Cancel</span>
-                <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
-              </div>
-            </td>
-           </tr>
-        <?php   } } ?>
-      </table>
-      <hr>
-  </div>
+           <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
+            <p>Are you sure?</p>
+            <span class="tip-can">Cancel</span>
+            <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+          </div>
+        </td>
+       </tr>
+    <?php   } } ?>
+  </table>
+  <hr>
+</div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
 
 </div>
     <!-- documents ends here -->
-
-
-
-
-
-
 
  <!-- employee assign tab starts here -->
   <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
@@ -829,20 +812,85 @@ foreach (array_reverse($work_experience) as $work) {
           </div>
         </form>
       </div>
-
-
  <!-- employee assign tab ends here -->
-
 </div>
 
 
-
-
-
-
-
-
 <script type="text/javascript">
+
+////////////////////  Auto-suggestion on Address tab (employee-manage) /////////////////////
+
+function initDialog() {
+  clearDialog();
+  for (var i = 0; i < states.length; i++) {
+    $('.dialog').append('<div>' + states[i] + '</div>');
+  }
+}
+
+function clearDialog() {
+  $('.dialog').empty();
+}
+
+var alreadyFilled = false;
+var states = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+
+function openDialog() {
+  $('.autocomplete').append('<div class="dialog"></div>');
+  $('.autocomplete input').click(function() {
+    if (!alreadyFilled) {
+      $('.dialog').addClass('open');
+    }
+  });
+
+  $('body').on('click', '.dialog > div', function() {
+    $('.autocomplete input').val($(this).text()).focus();
+    $('.autocomplete .close').addClass('visible');
+    alreadyFilled = true;
+  });
+
+  $('.autocomplete .close').click(function() {
+    alreadyFilled = false;
+    $('.dialog').addClass('open');
+    $('.autocomplete input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialog();
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].toLowerCase().startsWith(str)) {
+        $('.dialog').append('<div>' + states[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocomplete input').on('input', function() {
+    $('.dialog').addClass('open');
+    alreadyFilled = false;
+    match($(this).val());
+  });
+
+  $('body').click(function(e) {
+    if (!$(e.target).is("input, .close")) {
+      $('.dialog').removeClass('open');
+    }
+  });
+  initDialog();
+}
+openDialog();
+
+$('#permanentaddress_country').change(function() {
+  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
+    openDialog();
+  } else {
+    $('.autocomplete').find('.dialog').remove();
+  }
+});
+
+
+
+
     <?php if(isset($_SESSION['current_employee_id'])){ ?>
       
      toggleNav('show');
@@ -854,10 +902,10 @@ foreach (array_reverse($work_experience) as $work) {
      $_SESSION['path']='';
       ?>
 
-              document.getElementById('nav-document').className='tab-pane fade active show';
-              document.getElementById('nav-document-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
+      document.getElementById('nav-document').className='tab-pane fade active show';
+      document.getElementById('nav-document-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
 <?php
  } 
 if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
@@ -886,6 +934,7 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
 <script type="text/javascript">
   check_complete();
 
+
  $('.fa-trash').on('click',function(ev) {
     $(this).siblings().css({"display": "block"});
   });
@@ -902,8 +951,8 @@ $(document).ready(function(){
         $("#messagediv").css('display','none');
     });
 });  
-
-
+ 
+ 
 
 </script>
 

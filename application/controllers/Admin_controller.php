@@ -303,6 +303,53 @@ public function employeeManage($id = NULL)
 			echo json_encode($result);
 			return ;
 		}
+		if(!$this->validateDate($join_date))
+		{
+			$msg="errorDate";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
+		if($middle_name != '')
+		{
+			if( !$this->textOnly($middle_name))
+			{
+				$msg="textonly";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+		}
+		if(!$this->textOnly($first_name) || !$this->textOnly($last_name))
+		{
+			$msg="textonly";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
+		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
+			$msg="errorgender";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if( !$this->validateEmail($email))
+			{
+				$msg="emailInvalid";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
+
+		if($dob>Date('Y-m-d'))
+		{
+			return 0;
+		}
+
 
 		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
@@ -320,7 +367,10 @@ public function employeeManage($id = NULL)
 				'last_name'=>$last_name,
 				'join_date'=>$join_date,
 				'is_active'=>'1',
-				'department_id'=>$department
+				'department_id'=>$department,
+				'gender'=>$gender,
+				'dob'=>$dob,
+				'email'=>$email
 			);
 
 			if($id=$this->Admin_model->add_employee($data,$password))
@@ -341,7 +391,13 @@ public function employeeManage($id = NULL)
 		$result=array();
 		extract($_POST);
 
-
+		if(!$this->validateDate($join_date))
+		{
+			$msg="errorDate";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
 		if($title!='Mr'&&$title!='Mrs'&&$title!='Ms'&&$title!='Dr'){
 			$msg="error";
 			array_push($result, $msg);
@@ -349,14 +405,56 @@ public function employeeManage($id = NULL)
 			return ;
 		}
 
-		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
+		if($middle_name != '')
+		{
+			if( !$this->textOnly($middle_name))
+			{
+				$msg="textonly";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+		}
+		if(!$this->textOnly($first_name) || !$this->textOnly($last_name))
+		{
+			$msg="textonly";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
+		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
+			$msg="errorgender";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+
+
+		if($dob>Date('Y-m-d'))
+		{
+			return 0;
+		}
+
+		if( !$this->validateEmail($email))
+			{
+				$msg="emailInvalid";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
+
+		$this->form_validation->set_rules('title','Title','required|trim',array('required' => 'You must provide a %s.'));
 		$this->form_validation->set_rules('first_name','First Name','required|trim');
 		$this->form_validation->set_rules('last_name','Last Name','required|trim');
+		$this->form_validation->set_rules('email','Email address','required|trim');
 
 		if($this->form_validation->run()===FALSE)
 		{
 			$result=$this->form_validation->error_array();
-		}else
+		}
+		else
 		{
 			$data=array(
 				'title'=>$title,
@@ -365,7 +463,10 @@ public function employeeManage($id = NULL)
 				'last_name'=>$last_name,
 				'join_date'=>$join_date,
 				'is_active'=>'1',
-				'department_id'=>$department
+				'department_id'=>$department,
+				'gender'=>$gender,
+				'dob'=>$dob,
+				'email'=>$email
 			);
 
 			if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
@@ -378,58 +479,21 @@ public function employeeManage($id = NULL)
 		echo json_encode($result);
 	}
 
-// add personal details
-	public function addPersonalInformation()
-	{
-		$_POST = $this->security->xss_clean($_POST);
-		$status=array();
-		extract($_POST);
-
-		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
-			$msg="error";
-			array_push($status, $msg);
-			echo json_encode($status);
-			return ;
-		}
 
 
-		if($dob>Date('Y-m-d'))
-		{
-			return 0;
-		}
-
-
-		$data=array(
-			'gender'=>$gender,
-			'dob'=>$dob,
-			'email'=>$email
-		);
-
-		if(isset($_SESSION['current_employee_id'])){
-			$id=$_SESSION['current_employee_id'];
-		}
-		else{
-			$id=$_SESSION['user_id'];
-		}
-
-		$this->Admin_model->update_employee($data,$id);
-		$status=array('true');
-
-
-		echo json_encode($status);
-	}
 
 //Address form
 	public function addAddress()
 	{
 		$_POST = $this->security->xss_clean($_POST);
-		$status=array();
+		$result=array();
 		extract($_POST);
 
 //validate
 		$this->form_validation->set_rules('currentaddress_street','Current street','required|trim',array('required' => 'You must provide a %s.'));
 
 		$this->form_validation->set_rules('currentaddress_municipality','Current municipality','required|trim',array('required' => 'You must provide a %s.'));
+			$this->form_validation->set_rules('permanentaddress_district','Current district','required|trim',array('required' => 'You must provide a %s.'));
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -519,7 +583,39 @@ public function employeeManage($id = NULL)
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
-		}else
+		}
+
+		if($home_phone!='')
+		{
+			if(!$this->contactNumber($home_phone))
+			{
+				$msg="errorContact";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if($other_phone1!='' || $other_phone2!='' || $other_phone3!='')
+		{
+			if(!$this->contactNumber($other_phone1) || !$this->contactNumber($other_phone2) || !$this->contactNumber($other_phone3))
+			{
+				$msg="errorContact";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if(!$this->contactNumber($mobile_phone))
+		{
+			$msg="errorContact";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else
 		{
 			$data=array(
 				'home_phone'=>$home_phone,
@@ -563,8 +659,20 @@ public function employeeManage($id = NULL)
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
-		}else
+		}
+
+		if($visa_type!='')
 		{
+			if(!$this->textOnly($visa_type))
+			{
+				$msg="errorVisatype";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		
 			if($nationality=='Nepalese')
 			{
 				$data=array(
@@ -574,7 +682,7 @@ public function employeeManage($id = NULL)
 				'visa_expiry_date'=>'',
 				'passport_no'=>$passport_no,
 				'passport_issue_place'=>$passport_issue_place
-			);
+					);
 			}
 			else{
 				$data=array(
@@ -588,17 +696,17 @@ public function employeeManage($id = NULL)
 			}
 			
 
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
+			if(isset($_SESSION['current_employee_id'])){
+				$id=$_SESSION['current_employee_id'];
+			}
+			else{
+				$id=$_SESSION['user_id'];
+			}
 
 			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
-		}
+		
 		echo json_encode($status);
 	}
 
@@ -615,7 +723,32 @@ public function employeeManage($id = NULL)
 
 		$this->form_validation->set_rules('e_phone','Contact No.','required|trim',array('required' => 'You must provide contact details of person.'));
 
+		if(!$this->textOnly($e_name)|| !$this->textOnly($e_relation))
+		{
+			$msg="errorEmergency";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 
+		if(!$this->contactNumber($e_phone))
+		{
+			$msg="errorEmergency";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if($e_address!='')
+		{
+			if(!$this->alphanumeric($e_address))
+			{
+				$msg="errorEmergency";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
 
 		if($this->form_validation->run()===FALSE)
 		{
@@ -654,6 +787,14 @@ public function employeeManage($id = NULL)
 		array_push($status, $msg);
 		echo json_encode($status);
 		return ;
+		}
+
+		if(!$this->textOnly($degree_title)|| !$this->textOnly($university)|| !$this->textOnly($institute))
+		{
+			$msg="errorEducation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
 		}
 
 		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
@@ -698,6 +839,38 @@ public function employeeManage($id = NULL)
 			echo json_encode($status);
 			return ;
 		}
+		if($medical_complications!='')
+		{
+			if(!$this->alphanumeric($medical_complications))
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+		
+		if($regular_medication!='')
+		{
+			if(!$this->alphanumeric($regular_medication) )
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
+
+		if($allergy_description!='')
+		{
+			if(!$this->alphanumeric($allergy_description))
+			{
+				$msg="errorMedical";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+		}
 		
 		$this->form_validation->set_rules('blood_group','Blood Group','required',array('required' => 'You must provide %s'));
 
@@ -706,19 +879,33 @@ public function employeeManage($id = NULL)
 			$status=$this->form_validation->error_array();
 		}else
 		{
-			$data=array(
+			if($allergies=='No')
+			{
+			 $data=array(
+				'blood_group'=>$blood_group,
+				'medical_complications'=>$medical_complications,
+				'regular_medication'=>$regular_medication,
+				'allergies'=>$allergies,
+				'allergy_description'=>''
+			);
+			}
+			else
+			{
+				$data=array(
 				'blood_group'=>$blood_group,
 				'medical_complications'=>$medical_complications,
 				'regular_medication'=>$regular_medication,
 				'allergies'=>$allergies,
 				'allergy_description'=>$allergy_description
 			);
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
+			}
+			
+			if(isset($_SESSION['current_employee_id'])){
+				$id=$_SESSION['current_employee_id'];
+			}
+			else{
+				$id=$_SESSION['user_id'];
+			}
 
 			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
@@ -758,6 +945,9 @@ public function employeeManage($id = NULL)
 
 	}
 
+
+
+// for work experience
 function addWork(){
 	extract($_POST);
 $experience = trim($experience);
@@ -1240,12 +1430,60 @@ public function rejectTemp(){
 
 
 
+// checking input types
+public function textOnly($text)
+{
+	if (preg_match('/^[a-zA-Z .]+$/',$text ))
+		return true;
+	else
+		return false;
+}
+
+// checking input types number
+public function numberonly($text)
+{
+	if (preg_match('/^[[0-9\s .]+$/',$text ))
+		return true;
+	else
+		return false;
+}
+
+// checking phone number
+public function contactNumber($value)
+{
+	if(preg_match('/^[0-9\-\(\)\/\+\s]*$/', $value))
+		return true;
+	else
+		return false;
+}
+
+// alphanumeric but must contain alphabets
+public function alphanumeric($value)
+{
+	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .]+$/',$value))
+		return true;
+	else
+		return false;
+}
+
+// EMAIL VALIDATION
+public function validateEmail($email)
+{
+	if(preg_match('/^(?=.*[a-zA-Z])\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',$email))
+		return true;
+	else
+		return false;
+}
 
 
-
-
-
-
+// check date 
+public function validateDate($date)
+{
+	if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) 
+    	return true;
+ 	else  
+   		return false; 
+}
 
 
 }	

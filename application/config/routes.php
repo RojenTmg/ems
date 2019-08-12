@@ -13,7 +13,10 @@ $route['admin/unArchiveEmployee'] = 'Admin_controller/unArchiveEmployee';
 
 $route['admin/addGeneral'] = 'Admin_controller/addGeneral';
 $route['admin/updateGeneral'] = 'Admin_controller/updateGeneral';
-$route['employee/updateGeneral'] = 'Admin_controller/updateGeneral';
+
+$route['employee/profile_update/updateGeneralbyEmployee'] = 'Employee_controller/updateGeneralbyEmployee';
+$route['employee/updateGeneralbyEmployee'] = 'Employee_controller/updateGeneralbyEmployee';
+
 $route['admin/addContact'] = 'Admin_controller/addContact';
 $route['admin/addNationality'] = 'Admin_controller/addNationality';
 $route['admin/addEducation'] = 'Admin_controller/addEducation';
@@ -70,7 +73,6 @@ $route['employee/profile_update/addEmergency'] = 'Employee_controller/addEmergen
 $route['employee/profile_update/addHealth'] = 'Employee_controller/addHealth';
 $route['employee/profile_update/addPan'] = 'Employee_controller/addPan';
 $route['employee/profile_update/addWork'] = 'Employee_controller/addWork';
-$route['employee/profile_update/addPersonalInformation'] = 'Employee_controller/addPersonalInformation';
 $route['employee/profile_update/addDocuments'] = 'Employee_controller/addDocuments';
 $route['employee/profile_update/addAddress'] = 'Employee_controller/addAddress';
 $route['employee/profile_update/progressBar'] = 'Employee_controller/progressBar';

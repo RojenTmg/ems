@@ -47,9 +47,7 @@
 
         <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
  
-         <!-- personal details tab -->
-        <a class="nav-item nav-link"  id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
-
+       
 
         <!-- added address tab -->
         <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
@@ -99,47 +97,62 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-          <div class="form-div">
+            <div class="row col-md-12">
+          <!-- department -->
+       <div class="form-div mr-4">
+            <label>Department</label>
+            <select name="department" id="department" disabled="">
+              <?php foreach ($departments as $key => $value) { ?>
+                <option value="<?php echo $value['id']; ?>" <?php if(isset($post['department_id'])) { if ($post['department_id'] == $value['id']) { echo "selected"; }} ?>><?php echo $value['department_name']; ?></option>
+            <?php  } ?>
+            
+            </select>
+          </div>
+        <!-- dept ends here -->
+
+           <!-- date of join added -->
+          <div class="form-div col-md-2 mr-5 " style="padding: 0">
+          <label>Join Date</label>
+          <input type="date" name="join_date" id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d'); ?> disabled="">
+
+          </div>  
+      </div>
+      <!-- row ends -->
+
+<!-- row starts-->
+<div class="row col-md-12">
+        <!-- title starts -->
+          <div class="form-div mr-4">
             <label>Title</label>
-            <select disabled name="title" id="title">
+            <select name="title" id="title" disabled="">
               <option value="Mr" <?php if(isset($post['title'])) { if ($post['title'] == 'Mr') { echo "selected"; }} ?>>Mr</option>
               <option value="Ms" <?php if(isset($post['title'])) { if ($post['title'] == 'Ms') { echo "selected"; }} ?>>Ms</option>
               <option value="Mrs" <?php if(isset($post['title'])) { if ($post['title'] == 'Mrs') { echo "selected"; }} ?>>Mrs</option>
               <option value="Dr" <?php if(isset($post['title'])) { if ($post['title'] == 'Dr') { echo "selected"; }} ?>>Dr</option>
             </select>
           </div>
+            <!-- title ends -->
+         
 
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>First Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text"  disabled id="first_name" placeholder=""  value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="first_name" placeholder="" disabled="" value="<?php if(isset($post['first_name'])) echo $post['first_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2 mr-4" style="padding: 0">
             <label>Middle Name  <span class="opt"><i>(Optional)</i></span></label>
-            <input type="text" id="middle_name" disabled placeholder=""  value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="middle_name" placeholder="" disabled="" value="<?php if(isset($post['middle_name'])) echo $post['middle_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <div class="form-div">
+          <div class="form-div  col-md-2" style="padding: 0">
             <label>Last Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="last_name" disabled placeholder=""  value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
+            <input type="text" id="last_name" placeholder="" disabled="" value="<?php if(isset($post['last_name'])) echo $post['last_name']; ?>" value="<?php echo isset($_POST["name"]) ? $_POST["name"] : ''; ?>">
           </div>
-          <!-- date of join added -->
- <div class="form-div">
-  <label>Join Date</label>
-            <input type="date" name="join_date" disabled id="join_date" max="<?php echo date('Y-m-d'); ?>" <?php if (isset($post['join_date']))echo 'value="'. $post['join_date'].'"';   else echo 'value='. date('Y-m-d') ?> class="col-md-3">
+</div>
+     <!-- row  ends -->
 
- </div>           
-                 
-        </form>
-      </div>
-      <!-- general ends -->
-
-      <!-- personal details starts here -->
-      <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-        <form class="form" id="personal-form">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <div class="form-div">
+           <!-- row 3 -->
+           <div class="row col-md-12">
+         <!--  mixed personal info in the general tab-->
+          <div class="form-div ">
             <label>Gender</label>
             <select id="gender">
               <option value="Male" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Male') { echo "selected"; }} ?>>Male</option>
@@ -147,12 +160,14 @@
               <option value="Others" <?php if(isset($post['gender'])) { if ($post['gender'] == 'Others') { echo "selected"; }} ?>>Others</option>
             </select>
           </div> 
-
-          <div class="form-div">
+<!-- dob -->
+   <div class="form-div col-md-8">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
-            <div class="row">
-            <select name="day" id="birth_day" class="col-md-1 mr-5 ml-3 ">
+            <div class="row" style="padding: 0">
+            <select name="day" id="birth_day" class="col-md-1 ml-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 1%;" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -164,7 +179,9 @@
         ?>
       </select>
       <!-- month -->
-             <select id="birth_month"   name="month"  class="col-md-2 mr-5" /> 
+             <select id="birth_month"   name="month"  class="col-md-3 mr-3" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 12%;" > 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -179,7 +196,9 @@
                 <option value="12" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '12') { echo 'selected'; }} ?>>December</option>         
               </select>
             <!-- year -->
-             <select id="birth_year" name="year " class="col-md-1">
+             <select id="birth_year" name="year " class="col-md-2" onfocus='this.size=10;'
+onblur='this.size=1;' 
+onchange='this.size=1; this.blur();' style="position: absolute; left: 39%;" >
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -193,19 +212,24 @@
       </select>
       </div>
           </div>
+          </div>
+          <!-- row 2 ending -->
+
+       
 
           <div class="form-div">
             <label>Email<span class="text-danger"><i>*</i></span></label>
             <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
-
+        
           <div class="sub-can">
-            <input type="button" onclick="addPersonalInformation()" name="" value="Save" class="sub">
+            <input type="button" onclick="updateGeneralbyEmployee()" name="" value="Save" class="sub">
           
           </div>
+
         </form>
       </div>
-      <!-- personal details ends here -->
+      <!-- general ends -->
 
 
       <!-- address changes-->
@@ -385,7 +409,7 @@
           <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
-       </div></div>
+       </div> </div>
           <div class="form-div">
             <label>Highest Education Degree<span class="text-danger"><i>*</i></span></label>
             <select id="highest_degree">  
@@ -395,8 +419,8 @@
               <option value="Bachelor" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Bachelor') { echo "selected"; }} ?>>Bachelor</option>
               <option value="High School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'High School') { echo "selected"; }} ?>>High School</option>
               <option value="Middle School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Middle School') { echo "selected"; }} ?>>Middle School</option>
-            </div>      </select>
-          </div>
+             </select>
+         </div>
           <div class="form-div">
             <label>Degree Title</label>
             <input type="text" id="degree_title" value="<?php if(isset($post['degree_title'])) echo $post['degree_title'];?>" placeholder="">
@@ -498,65 +522,9 @@
         </form>
       </div>
       <!-- PAN ends -->
-   <!-- work experience -->
 
-      <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
-        <form class="form" id="work-form">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <input type="button"class="btn btn-primary" value="Add Experience" onclick="addExperience()">
-           <div class="form-div">
-          </div>
 
-          <p class="title" id="add_doc_title"></p>
-
-             <div id="work-experience" class="bg-light"></div>
-              <!-- the form appends here -->
-              <?php 
-                if (!empty($work_experience)) {
-                  foreach ($work_experience as $value) {
-              ?>
-               <div id="list-experience" class="bg-light">
-                <div id="deleteExp">
-                <i class="fa fa-trash text-danger text-right col-md-12" aria-hidden="true"></i>
-
-                       <div class="tooltiptext float-right" id="deleteFileMessage">
-                        <p>Are you sure?</p>
-                        <span class="tip-can">Cancel</span>
-                        <span class="tip-arch" id="<?php echo $value['id']; ?>" onclick="deleteWorkExperience(<?php echo $value['id'];?>)">Delete</span>
-                      </div>
-                </div>
-               <div class="form-div">
-                <input type="text" style="display: none" name="exp_id" id="id" value="<?php echo $value['id'];?>"></div>
-              <div class="form-div"><input type="text" id="organization" name="organization" placeholder="Organization" value="<?php echo $value['organization']; ?>"></div>
-              <div class="form-div"><input type="text"  name="responsibility" id="responsibility" placeholder="Responsibility"  value="<?php echo $value['responsibility']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_name" name="contact_person_name" placeholder="Contact Person Name" value="<?php echo $value['contact_person_name']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_person_phone" name="contact_person_phone" placeholder="Contact No." value="<?php echo $value['contact_person_phone']; ?>"></div>
-              <div class="form-div"><input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value="<?php echo $value['contact_address']; ?>"></div>
-              <div class="form-div"><label class="col-md-2 ">From</label>
-              <input class="col-md-3  form-control" type="date" name="from_date" id="from_date" value="<?php echo $value['from_date'] ?>"></div>
-              <div class="form-group">
-               <label class="col-md-2 ">To</label>
-              <input class="col-md-3   form-control" type="date" name="to_date" id="to_date" value="<?php echo $value['to_date'] ?>"></div>
-              <div class="mb-4" style="height:1%; background:#fff;"> <hr  style="background:#000;"> </div>
-
-                 </div>
-              <?php
-                  }
-                }
-              ?>
-     
-        <div class="form-div ">
-          <div class="sub-can">
-            <input type="button" onclick="updateWork()" value="Update" class="sub">
-           </div> 
-          </div>
-        </form>
-      </div>
-    
-      <!-- work experience ends-->
+  
 
  <!-- documents tab -->
       <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
