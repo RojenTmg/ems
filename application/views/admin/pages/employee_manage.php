@@ -764,7 +764,7 @@ foreach (array_reverse($work_experience) as $work) {
 </div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
-  <script>  
+  <!-- <script>   -->
 
 </div>
     <!-- documents ends here -->
