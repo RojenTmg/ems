@@ -28,7 +28,7 @@
 
     <?= link_tag('assets/css/ems.css?version=51') ?>
     <?= link_tag('assets/css/alertify.min.css') ?>
-    <?= link_tag('assets/css/alertify.rtl.min') ?>
+   
 
     <!-- Script Files -->
 
