@@ -713,9 +713,9 @@ foreach (array_reverse($work_experience) as $work) {
 </div>
 </div>
 </div>
-
 </form>
 </div>
+
 <!-- end of work experience -->
 
   <!-- documents tab -->
