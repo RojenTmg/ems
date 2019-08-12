@@ -342,7 +342,7 @@
 		public function deleteWorkExperience($id)
 		{
 			$this->db->where('id',$id);
-			$this->db->delete('employee_work_experience');
+			if($this->db->delete('employee_work_experience')) return "success"; else return "error";
 		}
 
 public function sendEmail($title,$message,$email){

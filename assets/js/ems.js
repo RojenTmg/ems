@@ -351,9 +351,7 @@ $('.arch-msg-div').click(function(){
     }
   
 
-
-
-
+// update general information
  function updateGeneral()
   {
     var xmlHttp = new XMLHttpRequest();
@@ -485,6 +483,107 @@ $('.arch-msg-div').click(function(){
     }
  
   
+  // update general by employee on their profile
+ function updateGeneralbyEmployee()
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','updateGeneralbyEmployee',true);
+    var data = new FormData();
+    var email=document.getElementById('email').value;
+    var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
+    var gender =document.getElementById('gender').value;
+
+    if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
+
+    if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
+    {
+      msg="Select appropriate date.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+    else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
+    {
+      msg="Select appropriate date.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+    else if(new Date(dob)> new Date())
+    {
+      msg="Invalid Date of Birth";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg); 
+      return ;
+    }
+
+     else  if(getAge(dob)<18)
+     {
+      msg="Age cannot be less than 18.";
+
+      $('#messagediv').removeClass('alert-success');
+      $('#messagediv').addClass('alert-danger');
+      $('#messagediv').css('display','block');
+      $('#showmessage').html(msg);
+      return ; 
+    } 
+ 
+    data.append('gender',gender);
+    data.append('dob',dob);
+    data.append('email',email);
+    xmlHttp.send(data);
+
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
+          {
+
+            var status = xmlHttp.responseText;
+            var id=JSON.parse(status);
+          
+             if(id=="errorgender")
+             {
+                msg="Invalid Gender Selected";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+              if(id=="emailInvalid"){
+                msg="Invalid Email Id";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+
+               if(id=="errorDate"){
+                msg="Invalid Date";
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+              $('#messagediv').css('display','block');
+               $('#showmessage').html(msg); 
+               return ;
+              }
+        if(isNaN(id))   {showresponse('general-form',status,'Added Successfully');}
+          else  { location.href='profile_update/'+id;  }
+          }
+        }
+      
+    }
 
 
   // display current entering employee's name
@@ -515,22 +614,20 @@ function submitDocument(){
   var doc_title = document.getElementsByName('doc_title');
   var doc_file = document.getElementsByName('userfile');
   var count=0;
+
   
   for( i = 0; i < doc_title.length; i++ )
      {
      if(doc_file[i].files.length==0){
-        var msg="Select a file first.";
-       $('#messagediv').removeClass('alert-success');
-       $('#messagediv').addClass('alert-danger');
-       $('#messagediv').css('display','block');
-       $('#showmessage').html(msg); 
+      $("#docaddbtn").notify("Select a file first",{position:"right top"});
+       
       return false;
      }
-     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF" ) {
+     if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF"||doc_file[i].files[0]['type']=="image/png"||doc_file[i].files[0]['type']=="image/jpeg"||doc_file[i].files[0]['type']=="image/jpg" ) {
 
      }
      else{
-             var msg="Select a doc or pdf file only";
+             var msg="Select a doc, pdf, png or jpeg file only";
            $('#messagediv').removeClass('alert-success');
            $('#messagediv').addClass('alert-danger');
        $('#messagediv').css('display','block');
@@ -558,6 +655,9 @@ function submitDocument(){
                $('#messagediv').addClass('alert-success');
               $('#messagediv').css('display','block');
               $('#showmessage').html(msg); 
+           }
+           else if(status=="fileerror"){
+            $.notify("Error File Type", "error");
            }
           else{
             count++;
@@ -676,7 +776,7 @@ function showresponse(formname,status,msg)
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
                //updating progress bar
-  showprogress();
+           showprogress();
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
@@ -1108,7 +1208,6 @@ function showprogress(){
               if(xmlHttp.readyState==4)
               {
                 var status=xmlHttp.responseText;
-                console.log(status);
                 var  json = JSON.parse(status);
                 for(var k in json){
 
@@ -1130,7 +1229,6 @@ function showprogress(){
 
 function addExperience(){
   var exp= document.getElementById('experience');
-  var msg= document.getElementById('form-message');
    var xmlHttp = new XMLHttpRequest();
          xmlHttp.open('POST','addWork',true);
           var data = new FormData();
@@ -1139,25 +1237,115 @@ function addExperience(){
 
             xmlHttp.onreadystatechange = function()
             {
-                if(xmlHttp.readyState==4)
+                if(xmlHttp.readyState==4){
                   var status=xmlHttp.responseText;
 
                 if(status=="error"){
-                  msg.className="text-danger";
-                  msg.innerHTML="Please fill the text area";
+                  $("#experience").notify("Please fill the text area",{position:"bottom left"});
                 }
-                else{
-                  exp.value=exp.value.trim();
-                  msg.className="text-success";
-                  msg.innerHTML="Experience Added Successfully";
+               if(status=="success"){
+                  exp.value='';
+                   $("#expModel").css('display','none');
+                   $("#expModel").css('aria-hidden','true');
+                   $("#expModel").css('aria-modal','false');
+                           $('.modal-backdrop').remove();
+          $('body').removeClass('modal-open');
+
+                 $.notify("Experience Added Successfully", "success");
+                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
                 }
-              
-}
+              }
+              }       
+      
 }
 
-function editExperience(){
-  
+function editExperience(id){
+  var textarea = 'experience'+id;
+  var idtextarea='#'+textarea;
+  var exp= document.getElementById(textarea);
+     var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','editWork',true);
+          var data = new FormData();
+          data.append('experience',exp.value);
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+                if(xmlHttp.readyState==4){
+                  var status=xmlHttp.responseText;
+
+
+                if(status=="error"){
+                  $(idtextarea).notify("Please fill the text area",{position:"bottom left"});
+                }
+               if(status=="success"){
+                  exp.value='';
+                   $("#expModel").css('display','none');
+                   $("#expModel").css('aria-hidden','true');
+                   $("#expModel").css('aria-modal','false');
+                     $('.modal-backdrop').remove();
+                   $('body').removeClass('modal-open');
+
+                 $.notify("Experience Added Successfully", "success");
+                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
+                }
+              }
+              }      
+      
 }
+
+function deleteExp(value) {
+ var id = parseInt(value, 10);
+       var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','deleteWorkExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                var status= xmlHttp.responseText;
+                if(status=="success"){
+                  $.notify("Experience Deleted", "success");
+                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
+                }
+                else{
+                   $.notify("Unable to Delete", "warn");
+                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
+                }
+              }
+            }
+
+}
+
+function confirmAction (value, ele, message, action ) {
+   alertify.confirm('Delete ?'  , message, function(){action(value)}
+                , function(){ });
+}
+
+function editExp(id,btn){
+   var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','getExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                  document.open();
+                  document.write(xmlHttp.responseText);
+                  document.close();
+              }
+            }
+
+}
+
 
 
 

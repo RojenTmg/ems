@@ -159,6 +159,7 @@ class Admin_controller extends CI_Controller {
 		$title['title'] = 'Employee Detail';
 		$data['post'] = $this->Database_model->getEmployeeDetails($id);
 		$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
+
 		$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
 		$data['recommender_id']=$this->Admin_model->getRecommenderApprover($id);
 		$data['recommender_name']=$this->Admin_model->employeeList();
@@ -424,8 +425,8 @@ public function employeeManage($id = NULL)
 
 		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
 			$msg="errorgender";
-			array_push($status, $msg);
-			echo json_encode($status);
+			array_push($result, $msg);
+			echo json_encode($result);
 			return ;
 		}
 
@@ -478,11 +479,14 @@ public function employeeManage($id = NULL)
 		echo json_encode($result);
 	}
 
+
+
+
 //Address form
 	public function addAddress()
 	{
 		$_POST = $this->security->xss_clean($_POST);
-		$status=array();
+		$result=array();
 		extract($_POST);
 
 //validate
@@ -964,6 +968,36 @@ $experience = trim($experience);
 	}
 }
 
+function editWork(){
+	extract($_POST);
+$experience = trim($experience);
+
+	if(strlen($experience)==0) {
+		echo "error";
+		return ;
+	}	
+	else{
+		$timestamp = date('Y-m-d G:i:s');
+		$data=[
+			'experience'=>$experience,
+			'emp_id'=>$_SESSION['current_employee_id'],
+			'id'=>$id,
+			'modified_date'=>$timestamp
+		];
+		$this->db->where('id',$id);
+		if($this->db->update('employee_work_experience',$data))
+		echo "success";
+		else echo "error";
+		return ;
+	}
+}
+
+function deleteWorkExp(){
+	extract($_POST);
+	$status=$this->Admin_model->deleteWorkExperience($id);
+	echo $status;
+}
+
 
 //function for adding documents
 	function addDocuments(){
@@ -975,6 +1009,19 @@ $experience = trim($experience);
 
 		$tmpName = $_FILES['document']['tmp_name'];
 		$realName= $_FILES['document']['name'];
+
+		// list of allowed file types
+		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf');
+
+		$ext = pathinfo($realName, PATHINFO_EXTENSION);
+		if(!in_array($ext,$allowed) ) {
+		echo 'filerror';
+		return ;
+		}
+
+
+
+		
 		$target_path = 'assets/files/'.$realName;
 		move_uploaded_file($tmpName,$target_path);
 
@@ -1031,19 +1078,7 @@ $experience = trim($experience);
 	}
 
 
-	// delete work Experience from the database
-	function deleteWorkExperience()
-	{
-		$_SESSION['path']="work";
-		$_POST = $this->security->xss_clean($_POST);
 
-		extract($_POST);
-		// $this->db->where('id',$id);
-		// 	$getrow = $this->db->get('employee_work_experience');
-		// 	$row= $getrow->row_array();
-
-		$this->Admin_model->deleteWorkExperience($id);
-	}
 
 // calculate percentage of form
 		function progressBar(){
