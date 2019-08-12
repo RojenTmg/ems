@@ -764,7 +764,7 @@ foreach (array_reverse($work_experience) as $work) {
 </div>
 <input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
-  <script>  
+  <!-- <script>   -->
 
 </div>
     <!-- documents ends here -->
@@ -886,7 +886,7 @@ openDialog();
 
 $('#permanentaddress_country').change(function() {
   if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
-    openDialog();
+    openDialog(); 
   } else {
     $('.autocomplete').find('.dialog').remove();
   }
