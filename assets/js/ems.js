@@ -895,7 +895,6 @@ function showprogress(){
 
 function addExperience(){
   var exp= document.getElementById('experience');
-  var msg= document.getElementById('form-message');
    var xmlHttp = new XMLHttpRequest();
          xmlHttp.open('POST','addWork',true);
           var data = new FormData();
@@ -904,25 +903,115 @@ function addExperience(){
 
             xmlHttp.onreadystatechange = function()
             {
-                if(xmlHttp.readyState==4)
+                if(xmlHttp.readyState==4){
                   var status=xmlHttp.responseText;
 
                 if(status=="error"){
-                  msg.className="text-danger";
-                  msg.innerHTML="Please fill the text area";
+                  $("#experience").notify("Please fill the text area",{position:"bottom left"});
                 }
-                else{
-                  exp.value=exp.value.trim();
-                  msg.className="text-success";
-                  msg.innerHTML="Experience Added Successfully";
+               if(status=="success"){
+                  exp.value='';
+                   $("#expModel").css('display','none');
+                   $("#expModel").css('aria-hidden','true');
+                   $("#expModel").css('aria-modal','false');
+                           $('.modal-backdrop').remove();
+          $('body').removeClass('modal-open');
+
+                 $.notify("Experience Added Successfully", "success");
+                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
                 }
-              
-}
+              }
+              }       
+      
 }
 
-function editExperience(){
-  
+function editExperience(id){
+  var textarea = 'experience'+id;
+  var idtextarea='#'+textarea;
+  var exp= document.getElementById(textarea);
+     var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','editWork',true);
+          var data = new FormData();
+          data.append('experience',exp.value);
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+                if(xmlHttp.readyState==4){
+                  var status=xmlHttp.responseText;
+
+
+                if(status=="error"){
+                  $(idtextarea).notify("Please fill the text area",{position:"bottom left"});
+                }
+               if(status=="success"){
+                  exp.value='';
+                   $("#expModel").css('display','none');
+                   $("#expModel").css('aria-hidden','true');
+                   $("#expModel").css('aria-modal','false');
+                     $('.modal-backdrop').remove();
+                   $('body').removeClass('modal-open');
+
+                 $.notify("Experience Added Successfully", "success");
+                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
+                }
+              }
+              }      
+      
 }
+
+function deleteExp(value) {
+ var id = parseInt(value, 10);
+       var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','deleteWorkExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                var status= xmlHttp.responseText;
+                if(status=="success"){
+                  $.notify("Experience Deleted", "success");
+                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
+                }
+                else{
+                   $.notify("Unable to Delete", "warn");
+                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
+
+                }
+              }
+            }
+
+}
+
+function confirmAction (value, ele, message, action ) {
+   alertify.confirm('Delete ?'  , message, function(){action(value)}
+                , function(){ });
+}
+
+function editExp(id,btn){
+   var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','getExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                  document.open();
+                  document.write(xmlHttp.responseText);
+                  document.close();
+              }
+            }
+
+}
+
 
 
 

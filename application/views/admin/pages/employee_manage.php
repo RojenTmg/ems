@@ -542,18 +542,21 @@
        </div></div>
           
 
-
+ <div id="experiencelist">
+  <div id="listexp">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#expModel">
  Add New Experience
-</button> <br> <br>
+</button>
+<br><br>
+
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="expModel" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">Add New Experience</h5>
+         <h5 class="modal-title" id="addExp">Add New Experience</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -562,9 +565,9 @@
           <textarea id="experience" style="width: 100%; resize:none" rows="12"></textarea>
       </div>
       <div class="modal-footer">
-                <p style="float: left;" id="form-message" class="modal-title"></p>
+                <p style="float: right;" id="form-message" class="modal-title"></p>
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Close</button>
         <input type="button"class="btn btn-primary" value="Save" onclick="addExperience()">
            <div class="form-div">
           </div>
@@ -572,6 +575,8 @@
     </div>
   </div>
 </div>
+<!-- end of modal -->
+
 
 
 
@@ -653,21 +658,57 @@ function timeAgo($time_ago)
 }
 
 if(isset($work_experience)&&count($work_experience)>0){ 
-foreach ($work_experience as $work) {
+foreach (array_reverse($work_experience) as $work) {
  $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
 
  ?>
-    <div class="card">
+    <div class="card" >
       <div class="card-body">
+        
         <p class="card-text"><?php echo $work['experience']; ?>
         </p>
+
       </div>
       <div class="card-footer" style="display: flex; justify-content: space-between;">
       <p class="text-muted">Modified <?php echo $time_elapsed; ?> </p>
-      <input type="button"class="btn btn-light text-info  " value="Edit" onclick="editExperience()">
+       <div>
+     <button type="button" class="btn text-info" data-toggle="modal"  data-target="#editmodal<?php echo $work['id'];?>" ><i class="fas fa-edit"></i></button>
+
+
+     <button class="btn text-danger" onclick="confirmAction(<?php echo $work['id'];?>,this, 'Are you sure you wish to remove this experience?',deleteExp); return false;"><i class="fas fa-trash"></i></button>
+    </div>
+
   </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="editmodal<?php echo $work['id'];?>" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="addExp">Edit Experience</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <textarea id="experience<?php echo $work['id'];?>" style="width: 100%; resize:none" rows="12"><?php echo $work['experience'];?></textarea>
+      </div>
+      <div class="modal-footer">
+                <p style="float: right;" id="form-message" class="modal-title"></p>
+
+        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Cancel</button>
+        <input type="button"class="btn btn-primary" value="Save" onclick="editExperience(<?php echo $work['id'];?>)">
+           <div class="form-div">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of modal -->
+
 <?php }} ?>
+</div>
+</div>
 
 
 
@@ -867,3 +908,5 @@ $(document).ready(function(){
 </script>
 
    <script src="<?= site_url('assets/js/fstdropdown.js')?> "></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/notify.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
