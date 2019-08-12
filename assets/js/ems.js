@@ -48,6 +48,12 @@ $(window).on("scroll", function() {
 
 
 
+
+
+
+
+
+
 ////////////////////  Disable submit button after a click and display Loading-Buttons /////////////////////
 
 $('#form-leave-request').submit(function() {

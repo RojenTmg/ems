@@ -199,7 +199,7 @@
 					'from_date'=> $leave['from_date'],
 					'duration_type' => $leave['duration_type'],
 					'duty_performed_by'=> (int)$leave['duty_performed_by'],
-					'reason'=> $leave['reason']
+					'reason'=> trim($leave['reason'])
 				);
 
 				if (!empty($leave['to_date'])) {

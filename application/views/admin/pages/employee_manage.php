@@ -253,6 +253,13 @@
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
               <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
+
+                <div class="autocomplete">
+                  <input type="text" placeholder="District">
+                  <span class="close">Cancel</span>
+                  <div class="dialog"></div>
+                </div>
+
               <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
             <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
@@ -706,6 +713,80 @@
 
 
 <script type="text/javascript">
+
+////////////////////  Auto-suggestion on Address tab (employee-manage) /////////////////////
+
+function initDialog() {
+  clearDialog();
+  for (var i = 0; i < states.length; i++) {
+    $('.dialog').append('<div>' + states[i] + '</div>');
+  }
+}
+
+function clearDialog() {
+  $('.dialog').empty();
+}
+
+var alreadyFilled = false;
+var states = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+
+function openDialog() {
+  $('.autocomplete').append('<div class="dialog"></div>');
+  $('.autocomplete input').click(function() {
+    if (!alreadyFilled) {
+      $('.dialog').addClass('open');
+    }
+  });
+
+  $('body').on('click', '.dialog > div', function() {
+    $('.autocomplete input').val($(this).text()).focus();
+    $('.autocomplete .close').addClass('visible');
+    alreadyFilled = true;
+  });
+
+  $('.autocomplete .close').click(function() {
+    alreadyFilled = false;
+    $('.dialog').addClass('open');
+    $('.autocomplete input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialog();
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].toLowerCase().startsWith(str)) {
+        $('.dialog').append('<div>' + states[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocomplete input').on('input', function() {
+    $('.dialog').addClass('open');
+    alreadyFilled = false;
+    match($(this).val());
+  });
+
+  $('body').click(function(e) {
+    if (!$(e.target).is("input, .close")) {
+      $('.dialog').removeClass('open');
+    }
+  });
+  initDialog();
+}
+openDialog();
+
+$('#permanentaddress_country').change(function() {
+  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
+    openDialog();
+  } else {
+    $('.autocomplete').find('.dialog').remove();
+  }
+});
+
+
+
+
     <?php if(isset($_SESSION['current_employee_id'])){ ?>
       
      toggleNav('show');
