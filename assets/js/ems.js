@@ -274,7 +274,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-         $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+         $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
          $('#generalButton').css('pointer-events','none');
 
           data.append('gender',document.getElementById('gender').value);
@@ -330,8 +330,11 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+            $('#spinicon').remove();
+               $('#generalButton').css('pointer-events','auto');
             showSuccessmessage('generalButton');
             showresponse('general-form',status,'Added Successfully');
+
            }
             
 
@@ -404,7 +407,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-        $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+        $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
         $('#generalButton').css('pointer-events','none');
           
           data.append('gender',document.getElementById('gender').value);
@@ -460,8 +463,11 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+             $('#spinicon').remove();
+               $('#generalButton').css('pointer-events','auto');
             showCustomSuccessmessage('generalButton',"Updated Successfully");
             showresponse('general-form',status,'Updated Successfully');
+             
            }
             
 
@@ -562,7 +568,7 @@ $('.arch-msg-div').click(function(){
            if(isNaN(id))
            {
             showSuccessmessage('generalButton');
-            showresponse('general-form',status,'Added Successfully');
+            showresponse('general-form',status,'Updated Successfully');
            }
             
 
@@ -2111,7 +2117,7 @@ function assignRecTemp(id){
      $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
   }
    function showCustomSuccessmessage(id,msg) {
-     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
+     $('#'+id).notify(msg,{className:'success',position:"right top"});
   }
 
   function showErrormessage(msg,id) {
