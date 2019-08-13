@@ -757,8 +757,6 @@ function showresponse(formname,status,msg)
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
-               //updating progress bar
-           
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
@@ -1182,7 +1180,9 @@ function addExperience(){
                    $('.modal-backdrop').remove();
                    $('body').removeClass('modal-open');
 
-                 $.notify("Experience Added Successfully", "success");
+                  $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
+
+                 
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
                 }
@@ -1220,7 +1220,7 @@ function editExperience(id){
                      $('.modal-backdrop').remove();
                    $('body').removeClass('modal-open');
 
-                 $.notify("Experience Added Successfully", "success");
+                  $("#experiencelist").notify("Experience Edited Successfully",{className:'success',position:"top"});
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
                 }
@@ -1244,7 +1244,7 @@ function deleteExp(value) {
               if(xmlHttp.readyState==4){
                 var status= xmlHttp.responseText;
                 if(status=="success"){
-                  $.notify("Experience Deleted", "success");
+                  $("#experiencelist").notify("Experience Deleted",{className:'success',position:"top"});
                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
                 }
                 else{
@@ -1513,7 +1513,6 @@ function assign()
               showSuccessmessage('assignbutton');
                }
               check_complete();
-              
 
           }
  }
