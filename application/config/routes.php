@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
 $route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
+$route['admin/employee_manage/checkExp'] = 'Admin_controller/checkExp';
 
 
 $route['admin/employee_archive'] = 'Admin_controller/employeeArchive';
@@ -43,6 +44,8 @@ $route['admin/approveTempAll'] = 'Admin_controller/approveTempAll';
 $route['employee/profile_update/deleteWorkExp'] = 'Employee_controller/deleteWorkExp';
 $route['employee/profile_update/editWork'] = 'Employee_controller/editWork';
 $route['employee/profile_update/addWork'] = 'Employee_controller/addWork';
+$route['employee/profile_update/checkExp'] = 'Employee_controller/checkExp';
+
 
 
 // unarchive leaves
