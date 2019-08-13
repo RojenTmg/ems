@@ -761,8 +761,7 @@ function showresponse(formname,status,msg)
            $('#messagediv').css('display','block');
             $('#messagediv').css('background','#ffadad !important');
             $('#showmessage').html(msg); 
-               //updating progress bar
-           showprogress();
+          
 
             // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
             check=true;
@@ -1161,36 +1160,7 @@ function showresponse(formname,status,msg)
     });
   });
 
-// for progresss bar
 
-function showprogress(){
-  var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','progressBar',true);
-          var data = new FormData();
-        xmlHttp.send(data);
-
-          xmlHttp.onreadystatechange = function()
-          {
-              if(xmlHttp.readyState==4)
-              {
-                var status=xmlHttp.responseText;
-                var  json = JSON.parse(status);
-                for(var k in json){
-
-                    if(k=="percentage"){
-                     document.getElementById('progress-bar-body').style.display="block";
-                    document.getElementById('completedPercent').innerHTML=json[k]+'% Completed';
-                    var percent=json[k]+'%';
-                    document.getElementById('bar').style.width=percent;
-
-                  }
-                    if(k=="color")
-                    document.getElementById('bar').style.backgroundColor=json[k];
-                    
-                }
-              }
-          }
-}
 
 
 function addExperience(){
@@ -1217,7 +1187,9 @@ function addExperience(){
                    $('.modal-backdrop').remove();
                    $('body').removeClass('modal-open');
 
-                 $.notify("Experience Added Successfully", "success");
+                  $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
+
+                 
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
                 }
@@ -1255,7 +1227,7 @@ function editExperience(id){
                      $('.modal-backdrop').remove();
                    $('body').removeClass('modal-open');
 
-                 $.notify("Experience Added Successfully", "success");
+                  $("#experiencelist").notify("Experience Edited Successfully",{className:'success',position:"top"});
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
                 }
@@ -1279,7 +1251,7 @@ function deleteExp(value) {
               if(xmlHttp.readyState==4){
                 var status= xmlHttp.responseText;
                 if(status=="success"){
-                  $.notify("Experience Deleted", "success");
+                  $("#experiencelist").notify("Experience Deleted",{className:'success',position:"top"});
                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
                 }
                 else{
@@ -1548,7 +1520,7 @@ function assign()
               showSuccessmessage('assignbutton');
                }
               check_complete();
-              showprogress();
+           
 
           }
  }

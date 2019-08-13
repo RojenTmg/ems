@@ -8,6 +8,7 @@
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     
     <title><?php echo $title; ?></title>
+    <?= link_tag('assets/css/alertify.min.css') ?>
 
 
 
@@ -28,7 +29,6 @@
 
 
     <?= link_tag('assets/css/ems.css?version=51') ?>
-    <?= link_tag('assets/css/alertify.min.css') ?>
 
     <!-- Script Files -->
 

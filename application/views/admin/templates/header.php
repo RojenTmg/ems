@@ -9,6 +9,7 @@
     
     <title><?php echo $title; ?></title>
 
+    <?= link_tag('assets/css/alertify.min.css') ?>
 
 
     <!-- offline bootstrap -->
@@ -23,7 +24,6 @@
 
 
     <?= link_tag('assets/css/ems.css?version=51') ?>
-    <?= link_tag('assets/css/alertify.min.css') ?>
    
 
     <!-- Script Files -->
