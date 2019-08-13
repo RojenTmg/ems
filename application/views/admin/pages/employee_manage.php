@@ -181,8 +181,8 @@
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
             <div class="row" style="padding: 0">
-              <div class="form-div mr-3" style="width: 10%">
-            <select name="day" id="birth_day" class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'   >
+              <div class="form-div  col-md-2" >
+            <select name="day" id="birth_day" class="fstdropdown-select" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -195,9 +195,8 @@
       </select>
       </div>
       <!-- month -->
-      <div class="form-div mr-3" style="width: 20%">
-             <select id="birth_month"   name="month"  class="form-group" onfocus='this.size=10; this.style.width="20%";this.style.position="absolute"; this.style.left="12%";
-            ' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();' > 
+      <div class="form-div col-md-3" >
+             <select id="birth_month"   name="month"  class="fstdropdown-select"> 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -214,8 +213,8 @@
         </div>
             <!-- year -->
 
-            <div class="form-div" style="width: 10%">
-             <select id="birth_year" name="year " class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%"; this.style.left="34%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'  >
+            <div class="form-div col-md-2" >
+             <select id="birth_year" name="year " class="fstdropdown-select">
         <?php 
           $year = date('Y');
           $min = $year - 60;
