@@ -2,7 +2,7 @@
 
 .autocomplete {
   position: relative;
-  width: 400px;
+  /*width: 400px;*/
 }
 .autocomplete .close {
   position: absolute;
@@ -828,6 +828,16 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 0 20px;
+}
+.group-district {
+  display: flex;
+}
+#permanentaddress_district {
+  margin-right: 5px;
+  width: 450px;
+}
+.group-district #permanentaddress_country {
+  flex: 1;
 }
 .form-div-horz {
   display: flex;

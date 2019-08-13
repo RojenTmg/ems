@@ -259,6 +259,7 @@
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
               <input type="text" id="permanesntaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
 
+              <div class="group-district">
                 <div class="autocomplete" class="col-md-3">
                   <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>">
                   <span class="close">Cancel</span>
@@ -271,6 +272,7 @@
                 require 'assets/addresses/country_list.php';
                 ?>
               </select>
+              </div>
           </div>
           <div class="form-group">
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
