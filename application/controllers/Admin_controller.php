@@ -992,6 +992,18 @@ $experience = trim($experience);
 	}
 }
 
+function checkExp(){
+	if(isset($_SESSION['current_employee_id']))
+		$id=$_SESSION['current_employee_id'];
+	else $id = $_SESSION['user_id'];
+
+	$this->db->where('emp_id',$id);
+	$getlist=$this->db->get('employee_work_experience');
+	$list=$getlist->result_array();
+
+	if(count($list)>0) echo "true"; else echo "false";
+}
+
 function deleteWorkExp(){
 	extract($_POST);
 	$status=$this->Admin_model->deleteWorkExperience($id);

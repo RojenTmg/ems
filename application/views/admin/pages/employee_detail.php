@@ -247,45 +247,25 @@
 <div class="column col-md-4">
 	<!-- works -->
 		<div class="column">
-			<div class="card">
+			<div class="card" style="height: 70vh; overflow-y: scroll;">
 				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
-				
+	
 				<?php 
 					foreach ($work_experience as $value) {
 				?>
-				<div class="card-body">
-					<div class="body-row ">
-						<div class="item-1 text-left" >Organization</div>
-						<div class="item-2 text-left"><?php echo $value['organization']; ?></div>
-					</div>
-					<div class="body-row ">
-						<div class="item-1 text-left" >Responsibility</div>
-						<div class="item-2 text-left"><?php echo $value['responsibility']; ?></div>
-					</div>
-
-					<div class="body-row ">
-						<div class="item-1 text-left" >Contact Person</div>
-						<div class="item-2 text-left"><?php echo $value['contact_person_name']; ?></div>
-					</div>
-
-					<div class="body-row ">
-						<div class="item-1 text-left" >Contact No.</div>
-						<div class="item-2 text-left"><?php echo $value['contact_person_phone']; ?></div>
-					</div>
-
-					<div class="body-row ">
-						<div class="item-1 text-left" >Contact Address</div>
-						<div class="item-2 text-left"><?php echo $value['contact_address']; ?></div>
-					</div>
-
-					<div class="body-row ">
-						<div class="item-1 text-left" >Time</div>
-						<div class="item-2 text-left"><?php echo $value['from_date'] . ' - ' . $value['to_date']; ?></div>
-					</div>
-				</div>
+				<!-- show experience in card form start -->
+	<div class="card-group" >
+		  <div class="card">
+		    <div class="card-body">
+		      <?php echo $value['experience']; ?>
+		    </div>
+		  </div>
+	</div>
+					<!-- show experience in card form end -->
 				<?php
 					}
 				?>
+	
 			</div>
 		</div>
 

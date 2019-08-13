@@ -671,14 +671,15 @@ function timeAgo($time_ago)
     }
 }
 
-if(isset($work_experience)&&count($work_experience)>0){ 
+if(isset($work_experience)&&count($work_experience)>0){ ?>
+<?php 
 foreach (array_reverse($work_experience) as $work) {
  $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
 
  ?>
     <div class="card" >
+
       <div class="card-body">
-        
         <p class="card-text"><?php echo $work['experience']; ?>
         </p>
 
@@ -693,7 +694,7 @@ foreach (array_reverse($work_experience) as $work) {
     </div>
 
   </div>
-    </div>
+   </div>
     <!-- Modal -->
 <div class="modal fade" id="editmodal<?php echo $work['id'];?>" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
   <div class="modal-dialog" role="document">
