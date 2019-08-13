@@ -451,11 +451,11 @@
             </div>
             </div>
             <div class="form-group row ">
-            <div class="form-div col-md-4" >
+            <div class="form-div col-md-3" >
               <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
             </div>
-            <div class="form-div col-md-4">
+            <div class="form-div col-md-3">
               <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
             </div>
