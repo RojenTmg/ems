@@ -247,7 +247,7 @@
 <div class="column col-md-4">
 	<!-- works -->
 		<div class="column">
-			<div class="card" style="height: 70vh; overflow-y: scroll;">
+			<div class="card" style="height: 30vh; overflow-y: scroll;">
 				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
 	
 				<?php 
