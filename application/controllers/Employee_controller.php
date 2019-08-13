@@ -30,8 +30,7 @@
 			$data['user']= $this->Admin_model->user_detail('users',$_SESSION['user_id']);
 			$data['post'] = $this->Admin_model->getEmployeeDetails($_SESSION['user_id']);
 
-			//showing percentage in the progress bar
-		    // progressBar();
+		
 
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			{
