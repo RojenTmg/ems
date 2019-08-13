@@ -497,7 +497,7 @@ public function employeeManage($id = NULL)
 		$this->form_validation->set_rules('currentaddress_street','Current street','required|trim',array('required' => 'You must provide a %s.'));
 
 		$this->form_validation->set_rules('currentaddress_municipality','Current municipality','required|trim',array('required' => 'You must provide a %s.'));
-			$this->form_validation->set_rules('permanentaddress_district','Current district','required|trim',array('required' => 'You must provide a %s.'));
+			$this->form_validation->set_rules('currentaddress_district','Current district','required|trim',array('required' => 'You must provide a %s.'));
 
 		if($this->form_validation->run()===FALSE)
 		{

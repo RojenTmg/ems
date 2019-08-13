@@ -330,6 +330,7 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+            if(JSON.parse(status)=='true')
             showSuccessmessage('generalButton');
             showresponse('general-form',status,'Added Successfully');
            }
@@ -561,6 +562,7 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+            if(JSON.parse(status)=='true')
             showSuccessmessage('generalButton');
             showresponse('general-form',status,'Added Successfully');
            }
@@ -844,6 +846,7 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                if(JSON.parse(status)=='true')
                  showSuccessmessage('addressbutton');
                showresponse('address-form',status,'Updated Successfully');
               }
@@ -877,7 +880,8 @@ function showresponse(formname,status,msg)
                   return ;
                 }
                 if(isNaN(id)){
-                 showSuccessmessage('contactbutton');
+                  if(JSON.parse(status)=='true')
+                   showSuccessmessage('contactbutton');
                   showresponse('contact-form',status,'Updated Successfully');}
               }
           }
@@ -930,7 +934,9 @@ function showresponse(formname,status,msg)
                 }
 
                 if(isNaN(id))
-                { showSuccessmessage('nationalitybutton');
+                { 
+                  if(JSON.parse(status)=='true')
+                   showSuccessmessage('nationalitybutton');
                   showresponse('nationality-form',status,'Updated Successfully');}
               }
           }
@@ -965,6 +971,7 @@ function showresponse(formname,status,msg)
                 }
 
                 if(isNaN(id)){
+                   if(JSON.parse(status)=='true')
                    showSuccessmessage('emergencybutton');
                    showresponse('emergency-form',status,'Updated Successfully');}
               }
@@ -1001,6 +1008,7 @@ function showresponse(formname,status,msg)
             showErrormessage(msg,'educationbutton');
             return ;
            }
+           if(JSON.parse(status)=='true')
            showSuccessmessage('educationbutton');
          showresponse('education-form',status,'Updated Successfully');
         }
@@ -1045,6 +1053,7 @@ function showresponse(formname,status,msg)
                    showErrormessage(msg,'healthbutton');
                     return ;
                  }
+                 if(JSON.parse(status)=='true')
                  showSuccessmessage('healthbutton');
                showresponse('health-form',status,'Updated Successfully');
               }
@@ -1516,7 +1525,7 @@ function assign()
           {
               if(xmlHttp.readyState==4)
               {
-               
+            
               showSuccessmessage('assignbutton');
                }
               check_complete();
@@ -2111,7 +2120,7 @@ function assignRecTemp(id){
      $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
   }
    function showCustomSuccessmessage(id,msg) {
-     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
+     $('#'+id).notify(msg,{className:'success',position:"right top"});
   }
 
   function showErrormessage(msg,id) {

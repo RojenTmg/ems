@@ -230,7 +230,7 @@
 
           <div class="form-div">
             <label>Email<span class="text-danger"><i>*</i></span></label>
-            <input type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
+            <input class="col-md-6" type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
                  <div class="sub-can" id="updateGeneralBtn">
              <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general" >
@@ -251,7 +251,7 @@
             <div class="form-group add-frm-grp">
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-              <input type="text" id="permanesntaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
 
               <div class="group-district">
                 <div class="autocomplete" class="col-md-3">
@@ -895,6 +895,7 @@ openDialog();
 $('#permanentaddress_country').change(function() {
   if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
     openDialog(); 
+
   } else {
     $('.autocomplete').find('.dialog').remove();
   }
@@ -930,14 +931,6 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
       document.getElementById('nav-general-tab').className='nav-item nav-link ';
 <?php } ?>
 
-
-      </script>
-
-
-
-
- 
-<script type="text/javascript">
   check_complete();
 
 
