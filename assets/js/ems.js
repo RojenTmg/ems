@@ -370,7 +370,7 @@ $('.arch-msg-div').click(function(){
        showErrormessage(msg,'generalButton');
        return ;
     }
-    
+
     if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
 
      if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
@@ -1064,8 +1064,10 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                showSuccessmessage('panbutton');
-               showresponse('pan-form',status,'Updated Successfully');
+                if(JSON.parse(status)=='true'){  showSuccessmessage('panbutton');}
+                else
+                  showErrormessage('Enter PAN', 'panbutton');
+                showresponse('pan-form',status,'Updated Successfully');
               }
           }
   }
