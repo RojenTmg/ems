@@ -375,6 +375,8 @@ public function employeeManage($id = NULL)
 
 			if($id=$this->Admin_model->add_employee($data,$password))
 			{
+				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
+				$this->Admin_model->sendEmail('Account Registered',$message,$email);
 				
 				array_push($result, $id);
 			}
@@ -471,6 +473,8 @@ public function employeeManage($id = NULL)
 
 			if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
 			{
+				$message= "Dear ".$first_name.","."<br>"."Your email has been updated. Please use the previous ID and Password to log in" ;
+				$this->Admin_model->sendEmail('Email Updated',$message,$email);
 				
 				array_push($result, 'true');
 			}

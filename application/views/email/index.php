@@ -231,17 +231,17 @@
     </td>
   </tr>
   <tr>
-    <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
+    <td  valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding ">
       <center>
         <table cellspacing="0" cellpadding="0" width="600" class="w320 "> 
           <tr>
             <td class="header-lg">
-             <?php echo $title; ?>
+              <?php echo $title; ?> 
                           </td>
           </tr>
           <tr>
-            <td class="free-text">
-              <?php echo $message; ?>
+            <td class="free-text" style="text-align: left;">
+               <?php echo $message; ?>
               <br> <br><br><br>
               Click link below to go to your dashboard.
             </td>

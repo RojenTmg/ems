@@ -62,7 +62,7 @@ $('#form-leave-request').submit(function() {
   $(this).find('#submit').append('<div class="sub sub-loading">Processing&nbsp;&nbsp;<i class="fa fa-spinner fa-spin"></i></div>');
 });
 
- 
+
 
 
 ////////////////////  Trim days /////////////////////
@@ -275,6 +275,9 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
+         $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+         $('#generalButton').css('pointer-events','none');
+
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',dob);
           data.append('email',email);
@@ -401,6 +404,9 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
+        $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+        $('#generalButton').css('pointer-events','none');
+          
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',dob);
           data.append('email',email);
@@ -419,6 +425,7 @@ $('.arch-msg-div').click(function(){
 
             var status = xmlHttp.responseText;
             var id=JSON.parse(status);
+
 
             if(id=="error"){
               msg="Invalid Title Selected";
@@ -453,8 +460,8 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
-            showSuccessmessage('generalButton');
-            showresponse('general-form',status,'Added Successfully');
+            showCustomSuccessmessage('generalButton',"Updated Successfully");
+            showresponse('general-form',status,'Updated Successfully');
            }
             
 
@@ -2109,6 +2116,9 @@ function assignRecTemp(id){
   //function to display message onthe right of the button
 
   function showSuccessmessage(id) {
+     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
+  }
+   function showCustomSuccessmessage(id,msg) {
      $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
   }
 
