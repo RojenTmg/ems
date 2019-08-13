@@ -14,12 +14,8 @@
     <!-- offline bootstrap -->
    <?= link_tag('assets/css/bootstrap.min.css') ?>
 
-   
-
   <!-- offline jquery -->
    <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.js') ?>"></script>
-
-
 
     <!-- Stylesheets -->
         <?= link_tag('assets/css/all.css') ?>

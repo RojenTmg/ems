@@ -370,7 +370,7 @@ $('.arch-msg-div').click(function(){
        showErrormessage(msg,'generalButton');
        return ;
     }
-    
+
     if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
 
      if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
@@ -1064,8 +1064,10 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
-                showSuccessmessage('panbutton');
-               showresponse('pan-form',status,'Updated Successfully');
+                if(JSON.parse(status)=='true'){  showSuccessmessage('panbutton');}
+                else
+                  showErrormessage('Enter PAN', 'panbutton');
+                showresponse('pan-form',status,'Updated Successfully');
               }
           }
   }
@@ -1220,8 +1222,9 @@ function addExperience(){
 
                 }
               }
-              }       
-      
+              }      
+
+      check_complete();
 }
 
 function editExperience(id){
@@ -1256,8 +1259,10 @@ function editExperience(id){
                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
                 }
+
               }
-              }      
+              }    
+              check_complete();  
       
 }
 
@@ -1283,6 +1288,7 @@ function deleteExp(value) {
 
                 }
               }
+              check_complete();
             }
 
 }
@@ -1292,23 +1298,6 @@ function confirmAction (value, ele, message, action ) {
                 , function(){ });
 }
 
-function editExp(id,btn){
-   var xmlHttp = new XMLHttpRequest();
-         xmlHttp.open('POST','getExp',true);
-          var data = new FormData();
-          data.append('id',id);
-           xmlHttp.send(data);
-
-            xmlHttp.onreadystatechange = function()
-            {
-              if(xmlHttp.readyState==4){
-                  document.open();
-                  document.write(xmlHttp.responseText);
-                  document.close();
-              }
-            }
-
-}
 
 
 
@@ -1326,11 +1315,10 @@ else
 
 
 
-
-
 // for the icon status on each tab
 
 function check_complete(){
+ 
   //general tab
   var first_name =document.getElementById('first_name').value;
   var last_name=document.getElementById('last_name').value;
@@ -1361,12 +1349,9 @@ function check_complete(){
   //assign
   var recommender= document.getElementById('recommender').value;
   var approver = document.getElementById('approver').value;
-  //work experience
-  var exp = document.getElementById('list-experience');
   //documents
   var documents =document.getElementById('document-list');
-
-
+ 
 
 
 
@@ -1385,13 +1370,35 @@ function check_complete(){
       completeIcon('nav-document-tab');
     else inCompleteIcon('nav-document-tab');
     // changes icon if at least one work experience is added
-    if(typeof(exp) != 'undefined' && exp != null) 
-      completeIcon('nav-work-tab');
-    else inCompleteIcon('nav-work-tab');
+ 
+   
+    checkExp();
+
+   
     
     
 
 }
+function  checkExp(){
+  var status="";
+  var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','checkExp',true);
+          var data = new FormData();
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+              status = xmlHttp.responseText;
+               if(status=="true")
+                 completeIcon('nav-work-tab');
+               else inCompleteIcon('nav-work-tab');
+              }
+            }
+            
+  }
+  
+
 
 function completeIcon(tabId){
   document.getElementById(tabId).childNodes[1].className="fa fa-check-circle prog-com";
