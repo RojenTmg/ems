@@ -274,7 +274,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-         $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+         $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
          $('#generalButton').css('pointer-events','none');
 
           data.append('gender',document.getElementById('gender').value);
@@ -330,9 +330,13 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+
             if(JSON.parse(status)=='true')
-            showSuccessmessage('generalButton');
+               { $('#spinicon').remove();
+                $('#generalButton').css('pointer-events','auto');
+                showSuccessmessage('generalButton');}
             showresponse('general-form',status,'Added Successfully');
+
            }
             
 
@@ -405,7 +409,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-        $('#updateGeneralBtn').append('<i class="fa fa-spinner fa-spin"> </i>');
+        $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
         $('#generalButton').css('pointer-events','none');
           
           data.append('gender',document.getElementById('gender').value);
@@ -461,8 +465,11 @@ $('.arch-msg-div').click(function(){
 
            if(isNaN(id))
            {
+             $('#spinicon').remove();
+               $('#generalButton').css('pointer-events','auto');
             showCustomSuccessmessage('generalButton',"Updated Successfully");
             showresponse('general-form',status,'Updated Successfully');
+             
            }
             
 
@@ -564,7 +571,7 @@ $('.arch-msg-div').click(function(){
            {
             if(JSON.parse(status)=='true')
             showSuccessmessage('generalButton');
-            showresponse('general-form',status,'Added Successfully');
+            showresponse('general-form',status,'Updated Successfully');
            }
             
 
