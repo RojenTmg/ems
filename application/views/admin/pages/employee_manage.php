@@ -940,13 +940,7 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
 
 
 
-<?php if($updating==true){ ?>
-  <script>
-    showprogress();
-</script>
-<?php 
-}
-?>
+
  
 <script type="text/javascript">
   check_complete();
