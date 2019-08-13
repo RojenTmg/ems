@@ -229,6 +229,20 @@ $('.arch-msg-div').click(function(){
     //personal data
     var email=document.getElementById('email').value;
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
+    if(first_name=='')
+    {
+       msg="Enter First Name.";
+       showErrormessage(msg,'generalButton');
+       return ;
+    }
+
+    if(last_name=='')
+    {
+       msg="Enter Last Name.";
+       showErrormessage(msg,'generalButton');
+       return ;
+    }
+
     if (!vaildateEmail(email)) {
          document.getElementById('email').style.borderColor="red";
       }
@@ -236,42 +250,29 @@ $('.arch-msg-div').click(function(){
     if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
     {
        msg="Select appropriate date.";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+       showErrormessage(msg,'generalButton');
+       return ; 
 
     }
 
     else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
     {
        msg="Select appropriate date.";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-
+      showErrormessage(msg,'generalButton');
+      return ; 
     }
 
     else if(new Date(dob)> new Date())
       {
          msg="Invalid Date of Birth";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+          showErrormessage(msg,'generalButton');
+            return ; 
       }
 
      else  if(getAge(dob)<18){
          msg="Age cannot be less than 18.";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+         showErrormessage(msg,'generalButton');
+         return ; 
       } 
       else{
           data.append('gender',document.getElementById('gender').value);
@@ -296,48 +297,33 @@ $('.arch-msg-div').click(function(){
 
             if(id=="error"){
               msg="Invalid Title Selected";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+              showErrormessage(msg,'generalButton');
+               return ; 
             }
 
             if(id=="textonly"){
               msg="Text only in name field";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+             showErrormessage(msg,'generalButton');
+                return ; 
             }
 
              if(id=="errorgender"){
-                msg="Invalid Gender Selected";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+              msg="Invalid Gender Selected";
+              showErrormessage(msg,'generalButton');
+                return ; 
               }
 
                if(id=="emailInvalid"){
                 msg="Invalid Email Id";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+               showErrormessage(msg,'generalButton');
+                return ; 
               }
 
               
                if(id=="errorDate"){
                 msg="Invalid Date";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+               showErrormessage(msg,'generalButton');
+                return ; 
               }
 
            if(isNaN(id))
@@ -370,50 +356,51 @@ $('.arch-msg-div').click(function(){
     //personal data
     var email=document.getElementById('email').value;
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
-   
+    
+    if(first_name=='')
+    {
+       msg="Enter First Name.";
+       showErrormessage(msg,'generalButton');
+       return ;
+    }
+
+    if(last_name=='')
+    {
+       msg="Enter Last Name.";
+       showErrormessage(msg,'generalButton');
+       return ;
+    }
+    
     if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
 
-    if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
+     if(document.getElementById('birth_month').value == 2 && document.getElementById('birth_day').value> 29 )
     {
-      msg="Select appropriate date.";
+       msg="Select appropriate date.";
+       showErrormessage(msg,'generalButton');
+       return ; 
 
-      $('#messagediv').removeClass('alert-success');
-      $('#messagediv').addClass('alert-danger');
-      $('#messagediv').css('display','block');
-      $('#showmessage').html(msg); 
     }
 
     else if((document.getElementById('birth_month').value == 4 || document.getElementById('birth_month').value == 6 || document.getElementById('birth_month').value == 9 || document.getElementById('birth_month').value == 11 ) && document.getElementById('birth_day').value> 30 )
     {
-      msg="Select appropriate date.";
-
-      $('#messagediv').removeClass('alert-success');
-      $('#messagediv').addClass('alert-danger');
-      $('#messagediv').css('display','block');
-      $('#showmessage').html(msg); 
+       msg="Select appropriate date.";
+      showErrormessage(msg,'generalButton');
+      return ; 
     }
 
     else if(new Date(dob)> new Date())
-    {
-      msg="Invalid Date of Birth";
-
-      $('#messagediv').removeClass('alert-success');
-      $('#messagediv').addClass('alert-danger');
-      $('#messagediv').css('display','block');
-      $('#showmessage').html(msg); 
-    }
-
-     else  if(getAge(dob)<18)
-     {
-      msg="Age cannot be less than 18.";
-
-      $('#messagediv').removeClass('alert-success');
-      $('#messagediv').addClass('alert-danger');
-      $('#messagediv').css('display','block');
-      $('#showmessage').html(msg); 
-    } 
-   else
       {
+         msg="Invalid Date of Birth";
+          showErrormessage(msg,'generalButton');
+            return ; 
+      }
+
+     else  if(getAge(dob)<18){
+         msg="Age cannot be less than 18.";
+         showErrormessage(msg,'generalButton');
+         return ; 
+      } 
+      else{
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',dob);
           data.append('email',email);
@@ -433,60 +420,50 @@ $('.arch-msg-div').click(function(){
             var status = xmlHttp.responseText;
             var id=JSON.parse(status);
 
-            if(id=="error")
-            {
+            if(id=="error"){
               msg="Invalid Title Selected";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+              showErrormessage(msg,'generalButton');
+               return ; 
             }
 
-            if(id=="textonly")
-            {
+            if(id=="textonly"){
               msg="Text only in name field";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+             showErrormessage(msg,'generalButton');
+                return ; 
             }
 
-             if(id=="errorgender")
-             {
-                msg="Invalid Gender Selected";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
-              }
-              if(id=="emailInvalid"){
-                msg="Invalid Email Id";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+             if(id=="errorgender"){
+              msg="Invalid Gender Selected";
+              showErrormessage(msg,'generalButton');
+                return ; 
               }
 
+               if(id=="emailInvalid"){
+                msg="Invalid Email Id";
+               showErrormessage(msg,'generalButton');
+                return ; 
+              }
+
+              
                if(id=="errorDate"){
                 msg="Invalid Date";
-               $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return ;
+               showErrormessage(msg,'generalButton');
+                return ; 
               }
 
-           if(isNaN(id))   {
-             showSuccessmessage('generalButton');
-            showresponse('general-form',status,'Added Successfully');}
-          else  { location.href='employee_manage/'+id;  }
+           if(isNaN(id))
+           {
+            showSuccessmessage('generalButton');
+            showresponse('general-form',status,'Added Successfully');
+           }
+            
+
+          else  {
+            location.href='employee_manage/'+id;
           }
-        }
+          }
       }
+}
     }
  
   
@@ -895,10 +872,7 @@ function showresponse(formname,status,msg)
                 if(id=="errorContact")
                 {
                   msg="Enter proper contact no. format";
-                  $('#messagediv').removeClass('alert-success');
-                  $('#messagediv').addClass('alert-danger');
-                  $('#messagediv').css('display','block');
-                  $('#showmessage').html(msg); 
+                  showErrormessage(msg,'contactbutton');
                   return ;
                 }
                 if(isNaN(id)){
@@ -925,11 +899,8 @@ function showresponse(formname,status,msg)
         if(!radioValue)
         {
            msg="Select nationality";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
+           showErrormessage(msg,'nationalitybutton');
+           return ;
         }
 
      // if(checkCurrentDate('visa_expiry_date'))
@@ -953,10 +924,7 @@ function showresponse(formname,status,msg)
                 if(id=="errorVisatype")
                 {
                   msg="Enter proper Visa type";
-                  $('#messagediv').removeClass('alert-success');
-                  $('#messagediv').addClass('alert-danger');
-                  $('#messagediv').css('display','block');
-                  $('#showmessage').html(msg); 
+                  showErrormessage(msg,'nationalitybutton');
                   return ;
                 }
 
@@ -991,10 +959,7 @@ function showresponse(formname,status,msg)
                 if(id=="errorEmergency")
                 {
                   msg="Enter proper information";
-                  $('#messagediv').removeClass('alert-success');
-                  $('#messagediv').addClass('alert-danger');
-                  $('#messagediv').css('display','block');
-                  $('#showmessage').html(msg); 
+                  showErrormessage(msg,'emergencybutton');
                   return ;
                 }
 
@@ -1026,19 +991,13 @@ function showresponse(formname,status,msg)
           if(id=="error")
           {
             msg=" Enter valid Highest Degree.";
-            $('#messagediv').removeClass('alert-success');
-            $('#messagediv').addClass('alert-danger');
-            $('#messagediv').css('display','block');
-            $('#showmessage').html(msg); 
+            showErrormessage(msg,'educationbutton');
             return ;
            }
            if(id=="errorEducation")
           {
             msg=" Enter valid information.";
-            $('#messagediv').removeClass('alert-success');
-            $('#messagediv').addClass('alert-danger');
-            $('#messagediv').css('display','block');
-            $('#showmessage').html(msg); 
+            showErrormessage(msg,'educationbutton');
             return ;
            }
            showSuccessmessage('educationbutton');
@@ -1053,12 +1012,8 @@ function showresponse(formname,status,msg)
       var blood_group=document.getElementById('blood_group').value;
       if(blood_group==''){
            msg="Select a blood group.";
-
-              $('#messagediv').removeClass('alert-success');
-               $('#messagediv').addClass('alert-danger');
-              $('#messagediv').css('display','block');
-               $('#showmessage').html(msg); 
-               return 0;  
+            showErrormessage(msg,'healthbutton');
+            return ;  
       }
 
           var xmlHttp = new XMLHttpRequest();
@@ -1079,21 +1034,15 @@ function showresponse(formname,status,msg)
                 if(id=="error")
                 {
                   msg="Invalid Blood group Selected";
-                  $('#messagediv').removeClass('alert-success');
-                  $('#messagediv').addClass('alert-danger');
-                  $('#messagediv').css('display','block');
-                  $('#showmessage').html(msg); 
-                  return ;
+                   showErrormessage(msg,'healthbutton');
+                   return ;
                  }
 
                  if(id=="errorMedical")
                 {
                   msg="Invalid information.";
-                  $('#messagediv').removeClass('alert-success');
-                  $('#messagediv').addClass('alert-danger');
-                  $('#messagediv').css('display','block');
-                  $('#showmessage').html(msg); 
-                  return ;
+                   showErrormessage(msg,'healthbutton');
+                    return ;
                  }
                  showSuccessmessage('healthbutton');
                showresponse('health-form',status,'Updated Successfully');
@@ -2181,7 +2130,7 @@ function assignRecTemp(id){
   //function to display message onthe right of the button
 
   function showSuccessmessage(id) {
-     $('#'+id).notify("Added Successfully","success",{position:"top right "});
+     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
   }
 
   function showErrormessage(msg,id) {
