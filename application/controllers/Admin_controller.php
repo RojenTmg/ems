@@ -185,6 +185,8 @@ public function employeeManage($id = NULL)
 		$data['empList']=$this->Admin_model->employeeList();
 		$data['packagelist']=$this->Admin_model->packageManage();	
 		$data['departments']=$this->Database_model->findAll('departments');
+		$data['managers']=$this->Database_model->findAll('managers');
+		$data['managerList']=$this->Admin_model->getManagerList();
 
 		if($id!=''){
 			$words = preg_replace('/[0-9]+/', '', $id);
@@ -373,13 +375,20 @@ public function employeeManage($id = NULL)
 				'email'=>$email
 			);
 
-			if($id=$this->Admin_model->add_employee($data,$password))
-			{
+			$id=$this->Admin_model->add_employee($data,$password);
+
+			$this->db->where('emp_id',$_SESSION['current_employee_id']);
+			$this->db->delete('managers');
+
+			if($is_manager=='true'){
+				$mdata=['emp_id'=>$id];
+			$this->db->insert('managers',$mdata);
+			}
 				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
-				$this->Admin_model->sendEmail('Account Registered',$message,$email);
+				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
 				
 				array_push($result, $id);
-			}
+			
 
 		}
 		echo json_encode($result);
@@ -470,6 +479,14 @@ public function employeeManage($id = NULL)
 				'dob'=>$dob,
 				'email'=>$email
 			);
+
+			$this->db->where('emp_id',$_SESSION['current_employee_id']);
+			$this->db->delete('managers');
+
+			if($is_manager=='true'){
+				$mdata=['emp_id'=>$_SESSION['current_employee_id']];
+			$this->db->insert('managers',$mdata);
+			}
 
 			if($this->Admin_model->update_employee($data,$_SESSION['current_employee_id']))
 			{
