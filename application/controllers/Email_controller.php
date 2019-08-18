@@ -1,25 +1,32 @@
 <?php
 class Email_controller extends CI_Controller {
 
+// php htdocs/ems/cron.php /Email_controller/checkdatabase
+	
 
 public function checkdatabase(){
-	$this->db->where('status','0');
+	$this->db->limit(10);
+	$this->db->where('status','pending');
 	$list=$this->db->get('email_notifications');
 	$lists = $list->result_array();
 
+
 	foreach ($lists as $elist) {
-		if($this->notifyByEmail($elist['title'],nl2br($elist['message']),$elist['email'])){
-			$this->db->where('id',$elist['id']);
-			$this->db->update('employee_notifications',"array['status'=>'1']");
-		}
+		$title=$elist['title'];
+		$message=$elist['message'];
+		$email=$elist['email'];;
+		$id=$elist['id'];
+	$status=$this->notifyByEmail($title,$message,$email,$id);
+		
 	}
 
 }	
 
-public function notifyByEmail($title,$message,$email){
+public function notifyByEmail($title,$message,$email,$id){
 // title, message,email
 //reset time limit to 30 seconds
-set_time_limit(30);
+// set_time_limit(30);
+
 
 $data['title']=$title;
 $data['message']=$message;
@@ -47,10 +54,12 @@ $this->email->message($content);
 
 //$this->email->send();
 if ( ! $this->email->send()) {
-return false;
+
 }
 else{
-return true;
+$edata = ['status'=>'sent'];
+$this->db->where('id',$id);
+$this->db->update('email_notifications',$edata);
 }
 
 }
