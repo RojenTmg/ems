@@ -231,19 +231,6 @@ $('.arch-msg-div').click(function(){
     //personal data
     var email=document.getElementById('email').value;
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
-    if(first_name=='')
-    {
-       msg="Enter First Name.";
-       showErrormessage(msg,'generalButton');
-       return ;
-    }
-
-    if(last_name=='')
-    {
-       msg="Enter Last Name.";
-       showErrormessage(msg,'generalButton');
-       return ;
-    }
 
     if (!vaildateEmail(email)) {  document.getElementById('email').style.borderColor="red";  }
     if (vaildateEmail(email))  { document.getElementById('email').style.borderColor="#ced4da";  }
@@ -263,12 +250,7 @@ $('.arch-msg-div').click(function(){
       return ; 
     }
 
-    else if(new Date(dob)> new Date())
-      {
-         msg="Invalid Date of Birth";
-          showErrormessage(msg,'generalButton');
-            return ; 
-      }
+  
 
      else  if(getAge(dob)<18){
          msg="Age cannot be less than 18.";
@@ -335,6 +317,12 @@ $('.arch-msg-div').click(function(){
                 return ; 
               }
 
+               if(id=="errordobDate"){
+                msg="Invalid Date of Birth";
+               showErrormessage(msg,'generalButton');
+                return ; 
+              }
+
            if(isNaN(id))
            {
 
@@ -372,21 +360,6 @@ $('.arch-msg-div').click(function(){
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
     
     var manager = document.getElementById('manager');
-
-
-    if(first_name=='')
-    {
-       msg="Enter First Name.";
-       showErrormessage(msg,'generalButton');
-       return ;
-    }
-
-    if(last_name=='')
-    {
-       msg="Enter Last Name.";
-       showErrormessage(msg,'generalButton');
-       return ;
-    }
 
     if (!vaildateEmail(email))  { document.getElementById('email').style.borderColor="red";  }
     if (vaildateEmail(email))  { document.getElementById('email').style.borderColor="#ced4da";  }
@@ -774,25 +747,6 @@ function showresponse(formname,status,msg)
        document.getElementById(elements[k].id).style.borderColor="#ced4da";
         for(var l in JSONObject)
         { 
-          if(l=="0")
-          {
-            // mesg div displays updated or added
-            if($('#messagediv').hasClass('alert-danger')){
-
-            $('#messagediv').removeClass('alert-danger');
-            $('#messagediv').addClass('alert-success');
-
-            }
-            
-           $('#messagediv').css('display','block');
-            $('#messagediv').css('background','#ffadad !important');
-            $('#showmessage').html(msg); 
-
-            // $('.message').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
-            check=true;
-            break;
-           
-          }
            if(elements[k].id==l && l!="true")
            {
             document.getElementById(l).style.borderColor="#dc3545";
@@ -801,23 +755,20 @@ function showresponse(formname,status,msg)
 // once the data is inserted, the red border disappears
         if(check)
         { 
-         for(var m in elements)
-         {
-          if(elements[m].type=="text"||elements[m].type=="number"||elements[m].type=="date"||elements[m].type=="email"||elements[m].nodeName=="select")
-          {
-           document.getElementById(elements[m].id).style.borderColor="#ced4da";
-         }}
+           for(var m in elements)
+           {
+              if(elements[m].type=="text"||elements[m].type=="number"||elements[m].type=="date"||elements[m].type=="email"||elements[m].nodeName=="select")
+              { document.getElementById(elements[m].id).style.borderColor="#ced4da"; }
+           }
            break;
-       }      
+         }      
       }
   }
- 
-
   // change tab icon
   check_complete();
-
-
 }
+
+
 
   function general()
   {
@@ -894,9 +845,22 @@ function showresponse(formname,status,msg)
               {
                 var status = xmlHttp.responseText;
                 var id=JSON.parse(status);
-                if(id=="errorContact")
+                if(id=="errorContactHome")
                 {
-                  msg="Enter proper contact no. format";
+                  msg="Enter proper contact no. format for Home Phone";
+                  showErrormessage(msg,'contactbutton');
+                  return ;
+                }
+                if(id=="errorContactOther")
+                {
+                  msg="Enter proper contact no. format for Other Phone";
+                  showErrormessage(msg,'contactbutton');
+                  return ;
+                }
+
+                if(id=="errorContactMobile")
+                {
+                  msg="Enter proper contact no. format for Mobile Phone";
                   showErrormessage(msg,'contactbutton');
                   return ;
                 }
@@ -951,13 +915,22 @@ function showresponse(formname,status,msg)
                 {
                   msg="Enter proper Visa type";
                   showErrormessage(msg,'nationalitybutton');
+                  showresponse('nationality-form',status,'Updated Successfully');
+                  return ;
+                }
+
+                if(id=="errorPassportIssue")
+                {
+                  msg="Enter proper Passport Issue Place";
+                  showErrormessage(msg,'nationalitybutton');
+                  showresponse('nationality-form',status,'Updated Successfully');
                   return ;
                 }
 
                 if(isNaN(id))
                 { 
                   if(JSON.parse(status)=='true')
-                   showSuccessmessage('nationalitybutton');
+                    showSuccessmessage('nationalitybutton');
                   showresponse('nationality-form',status,'Updated Successfully');}
               }
           }
@@ -984,16 +957,40 @@ function showresponse(formname,status,msg)
               {
                 var status = xmlHttp.responseText;
                 var id=JSON.parse(status);
-                if(id=="errorEmergency")
+                if(id=="errorEmergencyName")
                 {
-                  msg="Enter proper information";
+                  msg="Enter proper Name";
                   showErrormessage(msg,'emergencybutton');
                   return ;
                 }
 
+                if(id=="errorEmergencyContact")
+                {
+                  msg="Enter proper Contact no.";
+                  showErrormessage(msg,'emergencybutton');
+                  return ;
+                }
+
+                if(id=="errorEmergencyAddress")
+                {
+                  msg="Enter proper Address";
+                  showErrormessage(msg,'emergencybutton');
+                  return ;
+                }
+
+                if(id=="errorEmergencyRelation")
+                {
+                  msg="Enter proper Relation";
+                  showErrormessage(msg,'emergencybutton');
+                  return ;
+                }
+
+
+
+
                 if(isNaN(id)){
                    if(JSON.parse(status)=='true')
-                   showSuccessmessage('emergencybutton');
+                     showSuccessmessage('emergencybutton');
                    showresponse('emergency-form',status,'Updated Successfully');}
               }
           }
@@ -1068,9 +1065,23 @@ function showresponse(formname,status,msg)
                    return ;
                  }
 
-                 if(id=="errorMedical")
-                {
-                  msg="Invalid information.";
+                 if(id=="errorMedicalComplication")
+                  {
+                  msg="Invalid Medical complication information.";
+                   showErrormessage(msg,'healthbutton');
+                    return ;
+                 }
+
+                 if(id=="errorMedicalRegular")
+                  {
+                  msg="Invalid Regular medication information.";
+                   showErrormessage(msg,'healthbutton');
+                    return ;
+                 }
+
+                 if(id=="errorMedicalAllergy")
+                  {
+                  msg="Invalid Allergy description.";
                    showErrormessage(msg,'healthbutton');
                     return ;
                  }
@@ -1529,7 +1540,10 @@ function assign()
   var recommender=document.getElementById('recommender').value;
   var approver= document.getElementById('approver').value;
 
-
+  if(package_id==''){
+    showErrormessage("Select package first!", 'assignbutton');
+     return 0;
+            }
   if(recommender==''||approver==''){
     showErrormessage("Select recommender and approver!", 'assignbutton');
      return 0;
@@ -1727,49 +1741,48 @@ function dismissDenyModal()
     return 0;
   }
  
-   var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('POST','savePackage',true);
-    var data = new FormData();
-    data.append('package_name',package_name);
-    data.append('package_id',package_id);
-      data.append('leaveArr',JSON.stringify(leaveArr));
-      data.append('durationArr',JSON.stringify(durationArr));
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','savePackage',true);
+  var data = new FormData();
+  data.append('package_name',package_name);
+  data.append('package_id',package_id);
+  data.append('leaveArr',JSON.stringify(leaveArr));
+  data.append('durationArr',JSON.stringify(durationArr));
+  xmlHttp.send(data);
 
-    xmlHttp.send(data);
-
-    xmlHttp.onreadystatechange = function()
+  xmlHttp.onreadystatechange = function()
+{
+    if(xmlHttp.readyState==4)
     {
-        if(xmlHttp.readyState==4)
-        {
-        
-         $('#messagediv1').removeClass('alert-danger');
-         $('#messagediv1').removeClass('alert-warning');
+    
+     $('#messagediv1').removeClass('alert-danger');
+     $('#messagediv1').removeClass('alert-warning');
 
-          var reply= xmlHttp.responseText
-          if(reply=="inserted"){
-           msg="Package Added Successfully";
-           $('#messagediv1').addClass('alert-success');
-          }
-          if(reply=="updated"){
-             msg="Package Updated Successfully";
-             $('#messagediv1').addClass('alert-success');
-         }
-         if(reply=="already"){
-             msg="Package Already Exists";
-             $('#messagediv1').addClass('alert-warning');
-           
-         }
-          if(reply=="invalidDuration"){
-             msg="Invalid leave duration";
-             $('#messagediv1').addClass('alert-warning');
-           
-         }
+      var reply= xmlHttp.responseText
+      if(reply=="inserted"){
+       msg="Package Added Successfully";
+       $('#messagediv1').addClass('alert-success');
+      }
+      if(reply=="updated"){
+         msg="Package Updated Successfully";
+         $('#messagediv1').addClass('alert-success');
+     }
+     if(reply=="already"){
+         msg="Package Already Exists";
+         $('#messagediv1').addClass('alert-warning');
+       
+     }
+      if(reply=="invalidDuration"){
+         msg="Invalid leave duration";
+         $('#messagediv1').addClass('alert-warning');
+       
+     }
 
-        $('#messagediv1').css('display','block');
-        $('#showmessage1').html(msg); 
-      var form= document.getElementById('package-form');
-      clearForm(form);
-        $( "#packagetable" ).load(window.location.href + " #package" );
+    $('#messagediv1').css('display','block');
+    $('#showmessage1').html(msg); 
+  var form= document.getElementById('package-form');
+  clearForm(form);
+    $( "#packagetable" ).load(window.location.href + " #package" );
 
 
 
