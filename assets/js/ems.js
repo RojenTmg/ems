@@ -225,6 +225,8 @@ $('.arch-msg-div').click(function(){
     var join_date=document.getElementById('join_date').value;
     var department= document.getElementById('department').value;
     var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
+
+    var manager = document.getElementById('manager');
     
     //personal data
     var email=document.getElementById('email').value;
@@ -274,8 +276,12 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-         $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
-         $('#generalButton').css('pointer-events','none');
+       
+
+         if(manager.checked)
+          data.append('is_manager','true');
+        else
+          data.append('is_manager','false');
 
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',dob);
@@ -296,6 +302,7 @@ $('.arch-msg-div').click(function(){
 
             var status = xmlHttp.responseText;
             var id=JSON.parse(status);
+
 
             if(id=="error"){
               msg="Invalid Title Selected";
@@ -364,6 +371,9 @@ $('.arch-msg-div').click(function(){
     var email=document.getElementById('email').value;
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
     
+    var manager = document.getElementById('manager');
+
+
     if(first_name=='')
     {
        msg="Enter First Name.";
@@ -409,9 +419,13 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-        $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
-        $('#generalButton').css('pointer-events','none');
+      
           
+         if(manager.checked)
+          data.append('is_manager','true');
+        else
+          data.append('is_manager','false');
+
           data.append('gender',document.getElementById('gender').value);
           data.append('dob',dob);
           data.append('email',email);
@@ -2124,12 +2138,12 @@ function assignRecTemp(id){
   //function to display message onthe right of the button
 
   function showSuccessmessage(id) {
-     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
+     $('#'+id).notify("Added Successfully",{className:'success',position:"right top",autoHide:'false' ,autoHideDelay: 1500000});
   }
    function showCustomSuccessmessage(id,msg) {
-     $('#'+id).notify(msg,{className:'success',position:"right top"});
+     $('#'+id).notify(msg,{className:'success',position:"right top",autoHide:'false',autoHideDelay: 1500000});
   }
 
   function showErrormessage(msg,id) {
-     $('#'+id).notify(msg,{position:"right"});
+     $('#'+id).notify(msg,{position:"right",className:'error',autoHide:'false',autoHideDelay: 150000000});
   }

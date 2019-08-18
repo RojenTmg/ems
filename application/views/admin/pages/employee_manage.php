@@ -232,6 +232,27 @@
             <input style="width: 57.5%;" type="email" value="<?php if(isset($post['email'])) echo $post['email']; ?>" id="email" placeholder="">
           </div>
           <!-- email ends -->
+          
+          <!-- add as manager starts -->
+          <?php
+          $is_manager=false;
+          if(isset($post['email'])){
+            foreach ($managers as $mngr) {
+              if($_SESSION['current_employee_id']==$mngr['emp_id']){
+                $is_manager=true;
+                break;
+              }
+            }
+          }
+          ?>
+        
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" <?php if($is_manager) echo "checked "; ?>   id="manager"  onchange="changeText(this)">
+            <label class="custom-control-label" <?php if($is_manager) echo ' style="color:green; font-weight:bold"'; ?> for="manager">Assign Manager Role</label>
+        </div>
+        <br>  
+
+            <!-- add as manager ends -->
           <!-- button save -->
          <div class="sub-can" id="updateGeneralBtn">
              <input type="button" id="generalButton" <?php if($updating==false){ echo 'onclick="addGeneral()"'; echo 'value="Save"';} else {echo 'onclick="updateGeneral()"'; echo 'value="Update"'; }?> class="sub"  name="submit-general" >
@@ -804,7 +825,7 @@ foreach (array_reverse($work_experience) as $work) {
             <label>Recommender <span class="text-danger"><i>*</i></span></label>
                 <select class='fstdropdown-select' id="recommender" >
                   <option value="">Select option</option>
-                  <?php foreach ($empList as $row) {
+                  <?php foreach ($managerList as $row) {
                       if($_SESSION['current_employee_id']==$row['emp_id']) continue;
                     ?>
                    <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
@@ -967,6 +988,17 @@ $(document).ready(function(){
   
 });  
 
+function changeText(toggle){
+if(toggle.checked){
+  toggle.nextElementSibling.style.color="green";
+  toggle.nextElementSibling.style.fontWeight="bold";
+}
+else{
+  toggle.nextElementSibling.style.color="";
+    toggle.nextElementSibling.style.fontWeight="";
+
+  }  
+}
 
 </script>
 
