@@ -1393,7 +1393,7 @@ public function contactNumber($value)
 // alphanumeric but must contain alphabets
 public function alphanumeric($value)
 {
-	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .]+$/',$value))
+	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .\-\,]+$/',$value))
 		return true;
 	else
 		return false;

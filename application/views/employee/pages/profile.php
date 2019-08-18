@@ -335,7 +335,8 @@
 			<!-- package name -->
 			<div class="body-row ">
 				<div class="item-1 text-left" > Package Name</div>
-				<div class="item-2 text-left"><?php foreach ($package_name as $key => $value) {
+				<div class="item-2 text-left">
+					<?php foreach ($package_name as $key => $value) {
 						if($value['package_id']==$post['package_id'])
 							echo $value['package_name'];
 					} ?></div>
