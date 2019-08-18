@@ -276,8 +276,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-         $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
-         $('#generalButton').css('pointer-events','none');
+       
 
          if(manager.checked)
           data.append('is_manager','true');
@@ -420,8 +419,7 @@ $('.arch-msg-div').click(function(){
          return ; 
       } 
       else{
-        $('#updateGeneralBtn').append('<i id="spinicon" class="fa fa-spinner fa-spin"> </i>');
-        $('#generalButton').css('pointer-events','none');
+      
           
          if(manager.checked)
           data.append('is_manager','true');
@@ -2140,12 +2138,12 @@ function assignRecTemp(id){
   //function to display message onthe right of the button
 
   function showSuccessmessage(id) {
-     $('#'+id).notify("Added Successfully",{className:'success',position:"right top"});
+     $('#'+id).notify("Added Successfully",{className:'success',position:"right top",autoHide:'false' ,autoHideDelay: 1500000});
   }
    function showCustomSuccessmessage(id,msg) {
-     $('#'+id).notify(msg,{className:'success',position:"right top"});
+     $('#'+id).notify(msg,{className:'success',position:"right top",autoHide:'false',autoHideDelay: 1500000});
   }
 
   function showErrormessage(msg,id) {
-     $('#'+id).notify(msg,{position:"right"});
+     $('#'+id).notify(msg,{position:"right",className:'error',autoHide:'false',autoHideDelay: 150000000});
   }
