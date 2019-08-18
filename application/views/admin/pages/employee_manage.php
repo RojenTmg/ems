@@ -961,7 +961,7 @@ $(document).ready(function(){
 $(document).ready(function(){
    
       for (var i = 0; i <names.length; i++) {
-         $("#e_relation").append('<option>'+ names[i] + '</option>');}
+         $("#e_relation").append('<option >'+ names[i] + '</option>');}
      
        
   
