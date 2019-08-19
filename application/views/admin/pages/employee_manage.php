@@ -325,7 +325,7 @@
        </div></div>
        <div class="form-group row">
             <div class="form-div col-md-2">
-            <label>Home Phone </label>
+            <label>Home Phone<span class="opt"><i>(opt)</i></span> </label>
             <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
@@ -334,11 +334,22 @@
             <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
 </div>
-          <div class="form-group">
-            <p>Other Phone</p>
-            <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1" class="form-group col-md-2">
-            <input type="text" id="other_phone2" value="<?php if(isset($post['other_phone2'])) echo $post['other_phone2']; ?>" placeholder="Phone 2" class="form-group col-md-2">
-            <input type="text" id="other_phone3" value="<?php if(isset($post['other_phone3'])) echo $post['other_phone3']; ?>" placeholder="Phone 3" class="form-group col-md-2">
+          <div class="form-group row">
+            
+             <div class="form-div col-md-2">
+            <label>Other Phone 1<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1">
+          </div>
+
+            <div class="form-div col-md-2">
+            <label>Other Phone 2<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone2" value="<?php if(isset($post['other_phone2'])) echo $post['other_phone2']; ?>" placeholder="Phone 2">
+          </div>
+
+          <div class="form-div col-md-2">
+            <label>Other Phone 3<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone3" value="<?php if(isset($post['other_phone3'])) echo $post['other_phone3']; ?>" placeholder="Phone 3">
+          </div>
           </div>
 
           <div class="sub-can">
@@ -419,22 +430,43 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-       <div class="form-group row">
-          <div class="form-div col-md-3">
-            <label>Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
+       <div class="form-group row " style="height: 10vh;">
+          <div class="col-md-3">
+            <label>Name<span class="text-danger" ><i>*</i></span></label><br>
+            <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="" class="col">
           </div>
-          <div class="form-div col-md-3">
+          <div class=" col-md-3">
 
-            <label>Relation<span class="text-danger"><i>*</i></span></label>
-            <select id="e_relation">
+            <label>Relation<span class="text-danger"><i>*</i></span></label> <br>
+            <select id="e_relation" onchange="checkRelation(this,this.value);" class="col">
+              <?php 
+              $other_relation='';
+              $other=false;
+              $names=['Father','Mother','Friend','Son','Daughter','Spouse','Sibling','Grandparent','Grandchild','Uncle','Aunt','Cousin','Sibling\'s child','Other']; 
+             foreach ($names as  $value) { 
+              if($value!=$post['e_relation']){
+                $other=true;
+                $other_relation=$post['e_relation'];
+              }
+              ?>
+              <option  value="<?php echo $value;?>"  <?php if(isset($post['e_relation'])) { if ($post['e_relation'] == $value) { echo "selected"; } } 
+              ?>><?php echo $value; ?></option> 
+              <?php  } ?>
+             
+
+               <?php if($other==true){ ?> 
+
+                <option value="<?php echo $other_relation;?>" <?php echo " selected"; ?>><?php echo $other_relation;?></option>
+               <?php } ?>
+                               
+
               
             </select>
           </div>
 
-          <div class="form-div col-md-3">
-            <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
+          <div class=" col-md-3">
+            <label>Phone No.<span class="text-danger"><i>*</i></span></label> <br>
+            <input type="text" class="col" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
           </div>
 </div>
           <div class="form-div">
@@ -469,19 +501,19 @@
               <option value="Middle School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Middle School') { echo "selected"; }} ?>>Middle School</option>
                  </select></div> 
           <div class="form-div col-md-4">
-            <label>Degree Title</label>
+            <label>Degree Title<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="degree_title" value="<?php if(isset($post['degree_title'])) echo $post['degree_title'];?>" placeholder="">
           </div>
         </div>
              <div class="form-group row">
           <div class="form-div col-md-4">
-            <label>University</label>
+            <label>University/Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
-          <div class="form-div col-md-4">
+          <!-- <div class="form-div col-md-4">
             <label>Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
-          </div>
+          </div> -->
         </div>
            <div class="sub-can">
             <input type="button" onclick="addEducation()" name="" value="Save" class="sub" id="educationbutton">
@@ -497,7 +529,7 @@
           <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
-       </div></div>
+       </div> </div>
          
           <div class="form-group row">
             <div class="form-div col-md-3">
@@ -531,7 +563,7 @@
                   <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }} if($post['allergies']=='')  { echo "checked"; }  ?> >
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }}?> >
                   <label  class="radio-inline">No</label>
                 </div>
              
@@ -977,16 +1009,6 @@ $(document).ready(function(){
     });
 });  
 
- var names=['Father','Mother','Son','Daughter','Spouse','Sibling','Grandparent','Grandchild','Uncle','Aunt','Cousin','Sibling\'s child']; 
-             
-$(document).ready(function(){
-   
-      for (var i = 0; i <names.length; i++) {
-         $("#e_relation").append('<option >'+ names[i] + '</option>');}
-     
-       
-  
-});  
 
 function changeText(toggle){
 if(toggle.checked){
@@ -999,6 +1021,28 @@ else{
 
   }  
 }
+
+
+function checkRelation(ele,val)
+{
+  if(val=='Other')
+  {
+    var box = document.createElement('INPUT');
+    box.className='col';
+    box.id='otherRelation';
+    ele.parentElement.appendChild(box);
+  }
+
+  else
+    {
+      if(document.body.contains(document.getElementById('otherRelation')))
+      {
+        var elem=document.getElementById('otherRelation');
+       elem.parentNode.removeChild(elem);
+      }
+    }
+}
+
 
 </script>
 
