@@ -580,173 +580,60 @@
  <!-- work experience -->
 
 <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
-  <form class="form" id="work-form">
-      <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          
+  
+<div class="container-fluid">
+    <table id="myTable" class=" table order-list">
+    <thead>
+        <tr class="row">
+            <td class="col-sm-1">S.N</td>
+            <td class="col">Organization</td>
+            <td class="col">Responsibility</td>
+            <td class="col">Postition</td>
+            <td class="col">From</td>
+            <td class="col">To</td>
+            <td class="col">Contact Person Number</td>
+            <td class="col-sm-1">Action</td>
+        </tr>
+    </thead>
+      <tbody>
+        <?php  $counter=0;
+        foreach ($work_experience as $exp) {?>
+     <script>
+        var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
+        var cols = "";
+       
+         cols +='<td class="col-sm-1"  ><?php echo  ++$counter;?> </td>';
+        cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
+         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="clickme(this.id)"></td> ';
 
- <div id="experiencelist">
-  <div id="listexp">
+         cols+= '</tr>';
+     newRow.append(cols);
+     $("table.order-list").append(newRow);
+    </script>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#expModel">
- Add New Experience
-</button>
-<br><br>
+     <?php } ?>
 
+      </tbody>
 
-<!-- Modal -->
-<div class="modal fade" id="expModel" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h5 class="modal-title" id="addExp">Add New Experience</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <textarea id="experience" style="width: 100%; resize:none" rows="12"></textarea>
-      </div>
-      <div class="modal-footer">
-                <p style="float: right;" id="form-message" class="modal-title"></p>
+    <tfoot>
+        <tr>
+            <td colspan="7" style="text-align: left;" >
+               <center>  <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
+                 <input type="button" class="btn btn-lg btn-success shadow" id="submitExp" value="Save Experience" /> </center>
 
-        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Close</button>
-        <input type="button"class="btn btn-primary" value="Save" onclick="addExperience()">
-           <div class="form-div">
-          </div>
-      </div>
-    </div>
-  </div>
+                
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
+</table>
 </div>
-
-<div class="card-columns">
-<?php 
-//Function definition
-function timeAgo($time_ago)
-{
-    $time_ago = strtotime($time_ago);
-    $cur_time   = time();
-    $time_elapsed   = $cur_time - $time_ago;
-    $seconds    = $time_elapsed ;
-    $minutes    = round($time_elapsed / 60 );
-    $hours      = round($time_elapsed / 3600);
-    $days       = round($time_elapsed / 86400 );
-    $weeks      = round($time_elapsed / 604800);
-    $months     = round($time_elapsed / 2600640 );
-    $years      = round($time_elapsed / 31207680 );
-    // Seconds
-    if($seconds <= 60){
-        return "just now";
-    }
-    //Minutes
-    else if($minutes <=60){
-        if($minutes==1){
-            return "one minute ago";
-        }
-        else{
-            return "$minutes minutes ago";
-        }
-    }
-    //Hours
-    else if($hours <=24){
-        if($hours==1){
-            return "an hour ago";
-        }else{
-            return "$hours hrs ago";
-        }
-    }
-    //Days
-    else if($days <= 7){
-        if($days==1){
-            return "yesterday";
-        }else{
-            return "$days days ago";
-        }
-    }
-    //Weeks
-    else if($weeks <= 4.3){
-        if($weeks==1){
-            return "a week ago";
-        }else{
-            return "$weeks weeks ago";
-        }
-    }
-    //Months
-    else if($months <=12){
-        if($months==1){
-            return "a month ago";
-        }else{
-            return "$months months ago";
-        }
-    }
-    //Years
-    else{
-        if($years==1){
-            return "one year ago";
-        }else{
-            return "$years years ago";
-        }
-    }
-}
-
-if(isset($work_experience)&&count($work_experience)>0){ ?>
-<?php 
-foreach (array_reverse($work_experience) as $work) {
- $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
-
- ?>
-    <div class="card" >
-
-      <div class="card-body">
-        <p class="card-text"><?php echo $work['experience']; ?>
-        </p>
-
-      </div>
-      <div class="card-footer" style="display: flex; justify-content: space-between;">
-      <p class="text-muted">Modified <?php echo $time_elapsed; ?> </p>
-       <div>
-     <button type="button" class="btn text-info" data-toggle="modal"  data-target="#editmodal<?php echo $work['id'];?>" ><i class="fas fa-edit"></i></button>
-
-
-     <button class="btn text-danger" onclick="confirmAction(<?php echo $work['id'];?>,this, 'Are you sure you wish to remove this experience?',deleteExp); return false;"><i class="fas fa-trash"></i></button>
-    </div>
-
-  </div>
-   </div>
-    <!-- Modal -->
-<div class="modal fade" id="editmodal<?php echo $work['id'];?>" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h5 class="modal-title" id="addExp">Edit Experience</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <textarea id="experience<?php echo $work['id'];?>" style="width: 100%; resize:none" rows="12"><?php echo $work['experience'];?></textarea>
-      </div>
-      <div class="modal-footer">
-                <p style="float: right;" id="form-message" class="modal-title"></p>
-
-        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Cancel</button>
-        <input type="button"class="btn btn-primary" value="Save" onclick="editExperience(<?php echo $work['id'];?>)">
-           <div class="form-div">
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end of modal -->
-
-<?php }} ?>
-</div>
-</div>
-</div>
-</form>
 </div>
 
 <!-- end of work experience -->
@@ -1005,3 +892,90 @@ else{
    <script src="<?= site_url('assets/js/fstdropdown.js')?> "></script>
     <script type="text/javascript" src="<?= base_url('assets/js/notify.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
+
+
+<!-- script for workexperience table -->
+<script>
+$(document).ready(function () {
+    
+    var counter= <?php echo $counter; ?>+1;
+
+    $("#addrow").on("click", function () {
+        var newRow = $("<tr class='row'>");
+        var cols = "";
+        cols +='<td class="col-sm-1"   >'+  counter; '</td>';
+        cols +='<td class="col"><input type="text" id="organization" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="responsibility" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="position" name="position" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" id="from" name="from" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" id="to" name="to" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="cp_number" name="cp_number" class="form-control"  /></td>';
+         cols +='<td  class="col-sm-1"><i class="ibtnDel fas fa-trash text-danger" onclick="removeMe()"></td> ';
+
+           
+
+
+        
+        newRow.append(cols);
+        $("table.order-list").append(newRow);
+        counter++;
+    });
+
+
+
+
+
+});
+
+
+
+</script>
+
+<!-- script for exp table ends here -->
+
+
+<script>
+function removeMe(){
+alert('incomplete')
+}
+
+function clickme(id,vaule){
+                  var h5 = $("<p/>").append("Are you sure?");
+$.notify.addStyle('foo', {
+  html: 
+    "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
+          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
+
+//listen for click events from this style
+$(document).on('click', '.notifyjs-foo-base .no', function() {
+  //no function
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-foo-base .yes', function() {
+  // yes function
+  deleteExp();
+    $(this).closest("tr").remove();       
+        counter -= 1;
+  //hide notification
+  $(this).trigger('notify-hide');
+});
+                  $('#'+id).notify({
+                  title: h5,
+                  button: 'YES'
+                  }, { 
+                  style: 'foo',
+                  autoHide: false,
+                  clickToHide: false,
+                  position:'left middle ',
+                  });
+
+                }
+                </script>

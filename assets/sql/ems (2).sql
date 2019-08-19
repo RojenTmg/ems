@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2019 at 05:18 PM
+-- Generation Time: Aug 19, 2019 at 11:37 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -195,8 +195,8 @@ INSERT INTO `email_notifications` (`id`, `email`, `title`, `message`, `status`, 
 (9, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
 (10, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
 (11, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(12, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:04:41'),
-(13, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:04:46'),
+(12, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 11:04:41'),
+(13, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 11:04:46'),
 (14, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:04:47'),
 (15, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:06:04'),
 (16, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:06:54'),
@@ -206,7 +206,9 @@ INSERT INTO `email_notifications` (`id`, `email`, `title`, `message`, `status`, 
 (20, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:09:27'),
 (21, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:10:15'),
 (22, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:10:41'),
-(23, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:11:39');
+(23, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:11:39'),
+(24, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:32:45'),
+(25, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:33:16');
 
 -- --------------------------------------------------------
 
@@ -263,7 +265,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`, `package_id`, `is_approver`, `is_recommender`, `is_on_leave`) VALUES
-(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 3, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', 'candsda@l.com', 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', 'o', 'p', '', 'p[', '', '', '', '123', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', '123', 'jqdslkjaslk', NULL, 44, '1', '1', '0'),
+(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 3, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', 'candy.khando@gmail.com', 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', 'o', 'p', '', 'p[', '', '', '', '123', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', '123', 'jqdslkjaslk', NULL, 44, '1', '1', '0'),
 (277, '0', 'Mr', 'Bryan', '', 'Adams', '2019-08-02', 1, 4, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34', 'bryan123@gmail.com', 'Non-Nepalese', 'Yes', 'Working', '2019-08-31', '123', 'KTM', 'Granny', 'Granny', '', '989839892', 'Master', 'non', 'ono', 'NAMI', '1975-01-01', 'Male', 'AB +ve', '', '', 'No', '', 'wre', NULL, 44, '1', '1', '0'),
 (278, '0', 'Mr', 'Hari', '', 'Nepal', '2019-07-30', 1, 6, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08', 'candy.khando@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', 'awd', '123', NULL, 44, '1', '1', '0'),
 (288, '0', 'Mr', 'Sarr', '', 'Nepal', '2019-08-04', 1, 2, '', '2019-08-04 08:14:27', NULL, '2019-08-04 08:14:27', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '0000-00-00', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '1', '0', '0'),
@@ -481,7 +483,15 @@ INSERT INTO `employee_leave_balance` (`emp_id`, `leave_id`, `remain_days`, `crea
 CREATE TABLE `employee_work_experience` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `experience` text NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `organization` varchar(255) NOT NULL,
+  `responsibility` text NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` varchar(255) NOT NULL,
+  `contact_person_number` int(11) NOT NULL,
+  `modified_by` varchar(255) NOT NULL,
   `modified_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -489,49 +499,9 @@ CREATE TABLE `employee_work_experience` (
 -- Dumping data for table `employee_work_experience`
 --
 
-INSERT INTO `employee_work_experience` (`id`, `emp_id`, `experience`, `modified_date`) VALUES
-(44, 276, 'I have worked in nami college from yesterday to today. I am very experienced person.', '2019-08-11 14:29:00'),
-(59, 276, 'avcsdf', '2019-08-11 15:25:24'),
-(60, 276, 'qsfsdfsdf', '2019-08-11 15:27:30'),
-(277, 276, 'test', '2019-08-12 10:11:31'),
-(278, 276, 'esfd', '2019-08-12 10:13:25'),
-(279, 276, 'asdasd', '2019-08-12 10:13:50'),
-(280, 276, 'asdasd', '2019-08-12 10:13:51'),
-(281, 276, 'abc', '2019-08-12 10:17:20'),
-(282, 276, 'abcdef', '2019-08-12 10:17:33'),
-(283, 276, 'hello world', '2019-08-12 10:18:47'),
-(284, 276, 'Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.\n\nBootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.', '2019-08-12 10:19:13'),
-(285, 276, 'Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.\n\nBootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.', '2019-08-12 10:19:22'),
-(286, 276, 'Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.\n\nBootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.', '2019-08-12 10:19:29'),
-(287, 276, 'Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.\n\nBootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.', '2019-08-12 10:19:38'),
-(288, 276, 'test21', '2019-08-12 10:20:07'),
-(289, 276, 'aaaaa', '2019-08-12 10:20:17'),
-(290, 276, '$(\'#expModel\').css(\'display\',\'none\');\n                   $(\'#expModel\').attr(\'aria-hidden\', \'true\');\n                    $(\'body\').removeClass(\'modal-open\');\n                   $(\'.modal-backdrop\').remove();', '2019-08-12 10:20:25'),
-(291, 276, 'lsakjflksjdlfksf', '2019-08-12 10:20:47'),
-(292, 276, 'asdfasdf', '2019-08-12 10:21:08'),
-(293, 276, 'asd', '2019-08-12 10:21:16'),
-(294, 276, 'sf', '2019-08-12 10:32:58'),
-(295, 276, 'sdfsf', '2019-08-12 10:33:04'),
-(296, 276, 'new exp', '2019-08-12 10:36:01'),
-(297, 276, 'stest', '2019-08-12 10:36:22'),
-(298, 276, 'a', '2019-08-12 10:37:29'),
-(299, 276, 'aa', '2019-08-12 10:43:35'),
-(300, 276, 'test1', '2019-08-12 13:39:45'),
-(301, 276, 't', '2019-08-12 10:44:49'),
-(302, 276, 'a', '2019-08-12 10:45:25'),
-(303, 276, 's', '2019-08-12 10:45:40'),
-(304, 276, 'asdasdsa', '2019-08-12 10:45:49'),
-(305, 276, 'test', '2019-08-12 10:46:25'),
-(306, 276, 'a', '2019-08-12 10:47:29'),
-(307, 276, 's', '2019-08-12 10:47:47'),
-(308, 276, 'efsdfsdf', '2019-08-12 10:49:52'),
-(309, 276, 'dsfsdf', '2019-08-12 10:50:10'),
-(310, 276, 't', '2019-08-12 10:53:05'),
-(311, 276, 'a', '2019-08-12 10:54:40'),
-(312, 276, 'a', '2019-08-12 10:55:26'),
-(313, 276, 'a', '2019-08-12 10:55:41'),
-(331, 278, 'test', '2019-08-12 14:40:27'),
-(332, 278, 'as', '2019-08-12 14:40:56');
+INSERT INTO `employee_work_experience` (`id`, `emp_id`, `from_date`, `to_date`, `organization`, `responsibility`, `position`, `created_date`, `created_by`, `contact_person_number`, `modified_by`, `modified_date`) VALUES
+(1, 276, '2019-08-06', '2019-08-07', 'NAMI', 'cleaner', 'clean', '2019-08-19 07:44:47', '', 100, '', '2019-08-19 13:29:47'),
+(2, 276, '2019-08-12', '2019-08-14', 'asd', 'asd', 'asd', '2019-08-19 08:34:51', '', 0, '', '2019-08-19 14:19:51');
 
 -- --------------------------------------------------------
 
@@ -600,7 +570,7 @@ CREATE TABLE `managers` (
 INSERT INTO `managers` (`id`, `emp_id`, `created_date`) VALUES
 (4, 311, '2019-08-18 08:41:46'),
 (7, 312, '2019-08-18 08:55:40'),
-(27, 276, '2019-08-18 11:11:39');
+(29, 276, '2019-08-19 04:33:16');
 
 -- --------------------------------------------------------
 
@@ -965,7 +935,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -995,19 +965,19 @@ ALTER TABLE `employee_leaves`
 -- AUTO_INCREMENT for table `employee_work_experience`
 --
 ALTER TABLE `employee_work_experience`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `modules`

@@ -1559,3 +1559,37 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.notifyjs-foo-base {
+width: auto;
+  background: black;
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.notifyjs-foo-base .title {
+  width: 110px;
+  margin: 10px 0 0 10px;
+  
+  color:white;
+}
+
+.notifyjs-foo-base .buttons {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.notifyjs-foo-base button {
+  font-size: 12px;
+  width: 50%;
+  height: 30px;
+  margin: 0px 2px;
+  border:0;
+
+}
