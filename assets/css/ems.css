@@ -1,8 +1,8 @@
-/*---------------- Auto-suggestion on Address tab (employee-manage)s ----------------*/
+/*---------------- Auto-suggestion on District Address tab (employee-manage)s ----------------*/
 
 .autocomplete {
   position: relative;
-  /*width: 400px;*/
+  min-width: 449px;
 }
 .autocomplete .close {
   position: absolute;
@@ -40,6 +40,53 @@
   transition: all 0.2s;
 }
 .dialog div:hover {
+  background: #f2f2f2;
+}
+
+
+/*---------------- Auto-suggestion on State Address tab (employee-manage)s ----------------*/
+
+.autocompleteState {
+  position: relative;
+  min-width: 449px;
+  margin-right: 4px;
+}
+.autocompleteState .closeState {
+  position: absolute;
+  font-size: 13px;
+  z-index: 10;
+  top: 10px;
+  left: calc(100% - 50px);
+  color: #aaa;
+  cursor: pointer;
+  display: none;
+}
+.autocompleteState .closeState.visible {
+  display: block;
+}
+.dialogState {
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  display: none;
+  min-height: 0;
+  max-height: 330px;
+  overflow: scroll;
+  border-top: 1px solid #f4f4f4;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+.dialogState.openState {
+  display: block;
+  
+}
+.dialogState div {
+  padding: 10px 5px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dialogState div:hover {
   background: #f2f2f2;
 }
 
@@ -832,13 +879,6 @@ body {
 }
 .group-district {
   display: flex;
-}
-#permanentaddress_district {
-  margin-right: 5px;
-  width: 450px;
-}
-.group-district #permanentaddress_country {
-  flex: 1;
 }
 .form-div-horz {
   display: flex;
