@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// report generation
+$route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 $route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
 $route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';

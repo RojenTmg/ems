@@ -259,6 +259,7 @@
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
               <input type="text" id="permanesntaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
 
+              <!-- Auto-complete district when permanent_country is Nepal -->
               <div class="group-district">
                 <div class="autocomplete" class="col-md-3">
                   <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>">
@@ -381,10 +382,18 @@
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
-              <div class="form-div col-md-4">
+       <!--    <div class="form-div col-md-4">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
+ -->
+          <!-- Auto-complete district when permanent_country is Nepal -->
+            <div class="autocomplete" class="form-div col-md-4">
+              <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
+              <input type="text" placeholder="" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>">
+              <span class="close">Cancel</span>
+              <div class="dialog"></div>
+            </div>
 </div>
 
           <div class="sub-can">

@@ -1414,6 +1414,18 @@ public function validateDate($date)
    		return false; 
 }
 
+// report generation
+public function reportGeneration()
+{
+	$title['title'] = 'Report Generation';
+	$data['posts']=$this->Admin_model->archivedEmployeeList();
+		
+	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+	{
+		$this->view('report_generation', $title, $data);
+	}
+	else { redirect('login'); }
+}
 
-}	
+}
 ?>

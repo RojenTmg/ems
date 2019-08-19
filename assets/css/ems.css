@@ -31,6 +31,7 @@
 }
 .dialog.open {
   display: block;
+  
 }
 .dialog div {
   padding: 10px 5px;

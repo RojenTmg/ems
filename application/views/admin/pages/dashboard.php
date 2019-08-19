@@ -39,6 +39,26 @@
             </div>
           </a>
           </div>
+
+          <div class="sum-item">
+          <a href="<?= base_url('admin');?>/report_generation">
+            <div class="item-1 sp-btn">
+              <div>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </div>
+              <div class="hgh-lgt">
+                <div class="hl-title">Report Generation</div>
+                <div class="hl-cont"><span><em>generate report for staff</em></span></div>
+              </div>
+            </div>
+             <div class="item-2 sp-btn">
+                <div><span>Since this month</span></div>
+                <div><span>5.35%</span></div>
+            </div>
+          </a>
+          </div>
+
+
           <!-- <div class="sum-item">
           <a href="<?= base_url('admin'); ?>">
             
@@ -191,7 +211,6 @@
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
-
                     <td>
                       <?php  
                 $rec= $value['is_recommended'];
