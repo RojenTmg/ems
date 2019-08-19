@@ -1217,42 +1217,120 @@ function showresponse(formname,status,msg)
     });
   });
 
+function saveExp(){
+  var organization = document.getElementsByName('organization');
+  var responsibility = document.getElementsByName('responsibility');
+  var position = document.getElementsByName('position');
+  var from_date = document.getElementsByName('from_date');
+  var to_date = document.getElementsByName('to_date');
+  var contact_person_number = document.getElementsByName('contact_person_number');
 
-function addExperience(){
-  var exp= document.getElementById('experience');
-   var xmlHttp = new XMLHttpRequest();
-         xmlHttp.open('POST','addWork',true);
-          var data = new FormData();
-          data.append('experience',exp.value);
-           xmlHttp.send(data);
+  var lengths =[organization.length,responsibility.length,position.length,from_date.length,to_date.length,contact_person_number.length];
+  
+  // if any of text field element is missing then show error
 
-            xmlHttp.onreadystatechange = function()
-            {
-                if(xmlHttp.readyState==4){
-                  var status=xmlHttp.responseText;
+  for(var i=0; i<lengths.length; i++){
+    if(lengths[i]!=organization.length){
+      $('#submitExp').notify('Something is Missing. Refresh the page',{position:'right middle',className:'info'});
+      break;
+    }
+  }
 
-                if(status=="error"){
-                  $("#experience").notify("Please fill the text area",{position:"bottom left"});
-                }
-               if(status=="success"){
-                  exp.value='';
-                   $("#expModel").css('display','none');
-                   $("#expModel").css('aria-hidden','true');
-                   $("#expModel").css('aria-modal','false');
-                   $('.modal-backdrop').remove();
-                   $('body').removeClass('modal-open');
 
-                  $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
+  //store variable for checking erros
+var error=false;
+
+
+  for (var i = 0; i<organization.length; i++) {
+    if(!organization[i].value){
+      $(organization[i]).css('border', '1px solid red');
+      error=true;
+    }
+    else  $(organization[i]).css('border', '1px solid #ced4da');
+  }
+  for (var i = 0; i<responsibility.length; i++) {
+    if(!responsibility[i].value){
+      $(responsibility[i]).css('border', '1px solid red');
+      error=true;
+    }
+    else  $(responsibility[i]).css('border', '1px solid #ced4da');
+
+  }
+  for (var i = 0; i<position.length; i++) {
+    if(!position[i].value){
+      $(position[i]).css('border', '1px solid red');
+      error=true;
+    }
+    else  $(position[i]).css('border', '1px solid #ced4da');
+
+  }
+  for (var i = 0; i<from_date.length; i++) {
+    if(!from_date[i].value){
+      $(from_date[i]).css('border', '1px solid red');
+      error=true;
+    }
+    else  $(from_date[i]).css('border', '1px solid #ced4da');
+
+  }
+  for (var i = 0; i<to_date.length; i++) {
+    if(!to_date[i].value){
+      $(to_date[i]).css('border', '1px solid red');
+      error=true;
+    }
+  else  $(to_date[i]).css('border', '1px solid #ced4da');
+
+  }
+  for (var i = 0; i<contact_person_number.length; i++) {
+    if(!contact_person_number[i].value){
+      $(contact_person_number[i]).css('border', '1px solid red');
+      error=true;
+    }
+    else  $(contact_person_number[i]).css('border', '1px solid #ced4da');
+
+  }
+ 
+if(error){
+ $('#submitExp').notify('Please Fill Highlighted Fields',{position:'right middle'});
+ return ;
+}
+
+}
+
+// function addExperience(){
+//   var exp= document.getElementById('experience');
+//    var xmlHttp = new XMLHttpRequest();
+//          xmlHttp.open('POST','addWork',true);
+//           var data = new FormData();
+//           data.append('experience',exp.value);
+//            xmlHttp.send(data);
+
+//             xmlHttp.onreadystatechange = function()
+//             {
+//                 if(xmlHttp.readyState==4){
+//                   var status=xmlHttp.responseText;
+
+//                 if(status=="error"){
+//                   $("#experience").notify("Please fill the text area",{position:"bottom left"});
+//                 }
+//                if(status=="success"){
+//                   exp.value='';
+//                    $("#expModel").css('display','none');
+//                    $("#expModel").css('aria-hidden','true');
+//                    $("#expModel").css('aria-modal','false');
+//                    $('.modal-backdrop').remove();
+//                    $('body').removeClass('modal-open');
+
+//                   $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
 
                  
-                  $( "#experiencelist" ).load(window.location.href + " #listexp" );
+//                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
 
-                }
-              }
-              }      
+//                 }
+//               }
+//               }      
 
-      check_complete();
-}
+//       check_complete();
+// }
 
 function editExperience(id){
   var textarea = 'experience'+id;

@@ -632,10 +632,9 @@
 <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
   
 <div class="container-fluid">
-    <table id="myTable" class=" table order-list">
+    <table id="expTable" class=" table order-list">
     <thead>
         <tr class="row">
-            <td class="col-sm-1">S.N</td>
             <td class="col">Organization</td>
             <td class="col">Responsibility</td>
             <td class="col">Postition</td>
@@ -652,14 +651,18 @@
         var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
         var cols = "";
        
-         cols +='<td class="col-sm-1"  ><?php echo  ++$counter;?> </td>';
         cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
+
         cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
+
         cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
+
         cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
+
         cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
+
         cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
-         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="clickme(this.id)"></td> ';
+         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> ';
 
          cols+= '</tr>';
      newRow.append(cols);
@@ -674,7 +677,7 @@
         <tr>
             <td colspan="7" style="text-align: left;" >
                <center>  <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
-                 <input type="button" class="btn btn-lg btn-success shadow" id="submitExp" value="Save Experience" /> </center>
+                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> </center>
 
                 
             </td>
@@ -1039,14 +1042,13 @@ $(document).ready(function () {
     $("#addrow").on("click", function () {
         var newRow = $("<tr class='row'>");
         var cols = "";
-        cols +='<td class="col-sm-1"   >'+  counter; '</td>';
         cols +='<td class="col"><input type="text" id="organization" name="organization" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="responsibility" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="responsibility" name="responsibility" class="form-control"  /></td>';
         cols +='<td class="col"><input type="text" id="position" name="position" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" id="from" name="from" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" id="to" name="to" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="cp_number" name="cp_number" class="form-control"  /></td>';
-         cols +='<td  class="col-sm-1"><i class="ibtnDel fas fa-trash text-danger" onclick="removeMe()"></td> ';
+        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="from_date" name="from_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="to_date" name="to_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="contact_person_number" name="contact_person_number" class="form-control"  /></td>';
+        cols +='<td  class="col-sm-1"><i class="ibtnDel fas fa-trash text-danger newExp"></td> ';
 
            
 
@@ -1071,11 +1073,12 @@ $(document).ready(function () {
 
 
 <script>
-function removeMe(){
-alert('incomplete')
-}
+ $('#expTable').on('click', 'i.newExp', function(e){
+   $(this).closest('tr').remove()
+})
 
-function clickme(id,vaule){
+
+function confirmExpDel(id='',vaule=''){
                   var h5 = $("<p/>").append("Are you sure?");
 $.notify.addStyle('foo', {
   html: 
@@ -1097,7 +1100,11 @@ $(document).on('click', '.notifyjs-foo-base .no', function() {
 });
 $(document).on('click', '.notifyjs-foo-base .yes', function() {
   // yes function
-  deleteExp();
+
+//start of deleting experience
+  deleteExp(); 
+// end of deleting experience
+
     $(this).closest("tr").remove();       
         counter -= 1;
   //hide notification
