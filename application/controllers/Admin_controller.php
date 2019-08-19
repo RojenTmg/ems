@@ -788,6 +788,13 @@ public function employeeManage($id = NULL)
 			return ;
 		}
 
+		if($e_relation=='')
+		{
+			$msg="errorEmergencyRelation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 		if(!$this->textOnly($e_relation))
 		{
 			$msg="errorEmergencyRelation";
@@ -844,7 +851,15 @@ public function employeeManage($id = NULL)
 		$status=array();
 		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
+		$this->form_validation->set_rules('degree_title','Degree title','required',array('required' => 'You must provide your highest degree'));
 
+		$this->form_validation->set_rules('university','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
+
+		if($this->form_validation->run()===FALSE)
+		{
+			$status=$this->form_validation->error_array();
+		}
+		else{
 		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
 		$msg="error";
 		array_push($status, $msg);
@@ -852,7 +867,7 @@ public function employeeManage($id = NULL)
 		return ;
 		}
 
-		if(!$this->textOnly($degree_title)|| !$this->textOnly($university)|| !$this->textOnly($institute))
+		if(!$this->textOnly($degree_title)|| !$this->textOnly($university))
 		{
 			$msg="errorEducation";
 			array_push($status, $msg);
@@ -860,20 +875,12 @@ public function employeeManage($id = NULL)
 			return ;
 		}
 
-		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
-
-		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
-
-		if($this->form_validation->run()===FALSE)
-		{
-			$status=$this->form_validation->error_array();
-		}else
+		else
 		{
 			$data=array(
 				'highest_degree'=>$highest_degree,
 				'degree_title'=>$degree_title,
 				'university'=>$university,
-				'institute'=>$institute
 			);
 					if(isset($_SESSION['current_employee_id'])){
 						$id=$_SESSION['current_employee_id'];
@@ -886,6 +893,7 @@ public function employeeManage($id = NULL)
 			$status=array('true');
 
 		}
+	}
 		echo json_encode($status);
 	}
 
@@ -1096,8 +1104,11 @@ function deleteWorkExp(){
 		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf');
 
 		$ext = pathinfo($realName, PATHINFO_EXTENSION);
-		if(!in_array($ext,$allowed) ) {
-		echo 'filerror';
+
+		if(!in_array($ext,$allowed)) {
+		$msg="errorFileType";
+		$status='false';
+		echo $status;
 		return ;
 		}
 
@@ -1432,7 +1443,7 @@ public function rejectTemp(){
 // checking input types
 public function textOnly($text)
 {
-	if (preg_match('/^[a-zA-Z .]+$/',$text ))
+	if (preg_match('/^[a-zA-Z .\-\']+$/',$text ))
 		return true;
 	else
 		return false;
@@ -1441,7 +1452,7 @@ public function textOnly($text)
 // checking input types number
 public function numberonly($text)
 {
-	if (preg_match('/^[[0-9\s .]+$/',$text ))
+	if (preg_match('/^[[0-9\s .]+\s+$/',$text ))
 		return true;
 	else
 		return false;
@@ -1484,6 +1495,18 @@ public function validateDate($date)
    		return false; 
 }
 
+// report generation
+public function reportGeneration()
+{
+	$title['title'] = 'Report Generation';
+	$data['posts']=$this->Admin_model->archivedEmployeeList();
+		
+	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
+	{
+		$this->view('report_generation', $title, $data);
+	}
+	else { redirect('login'); }
+}
 
-}	
+}
 ?>

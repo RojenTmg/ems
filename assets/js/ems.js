@@ -99,7 +99,6 @@ function trim_day(dec_day) {
     }
   }
 
-
   $('#leave_name').change(function() {
       if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
         $('#multiple-days').attr('disabled', true);
@@ -199,6 +198,7 @@ function displayFunctionType() {
 
 ////////////////////  Notification Messages /////////////////////
 $(document).ready(function(){
+    $("form :input").attr("autocomplete", "off");
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
 
@@ -605,20 +605,12 @@ function submitDocument(){
      {
      if(doc_file[i].files.length==0){
       $("#docaddbtn").notify("Select a file first",{position:"right top"});
-       
       return false;
      }
      if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF"||doc_file[i].files[0]['type']=="image/png"||doc_file[i].files[0]['type']=="image/jpeg"||doc_file[i].files[0]['type']=="image/jpg" ) {
 
      }
-     else{
-             var msg="Select a doc, pdf, png or jpeg file only";
-           $('#messagediv').removeClass('alert-success');
-           $('#messagediv').addClass('alert-danger');
-       $('#messagediv').css('display','block');
-       $('#showmessage').html(msg); 
-      return false;
-     }
+    
   }
     for( i = 0; i < doc_title.length; i++ )
      {
@@ -634,12 +626,20 @@ function submitDocument(){
           if(xmlHttp.readyState==4)
           {
            var status = xmlHttp.responseText;
+           
+
+
+            if(status='false'){
+              msg="Invalid File Selected";
+              showErrormessage(msg,'docaddbtn');
+               return ; 
+            }
+
            if(status=='true')
            {
              msg="Files Uploaded";
-               $('#messagediv').addClass('alert-success');
-              $('#messagediv').css('display','block');
-              $('#showmessage').html(msg); 
+              showCustomSuccessmessage('docaddbtn',msg);
+               return ; 
            }
            else if(status=="fileerror"){
             $.notify("Error File Type", "error");
@@ -749,8 +749,9 @@ function showresponse(formname,status,msg)
         { 
            if(elements[k].id==l && l!="true")
            {
+            // red color for border error
             document.getElementById(l).style.borderColor="#dc3545";
-           }
+            showErrormessage2('Form required',l);           }
         }
 // once the data is inserted, the red border disappears
         if(check)
@@ -944,9 +945,23 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addEmergency',true);
           var data = new FormData();
-      
+          var e_relation=document.getElementById('e_relation').value;
+
+          // checking if the relation is other
+          if(e_relation=='Other')
+            { var othere= document.getElementById('otherRelation').value;
+              if(othere=='')
+              {
+                   msg="Enter Other Relation Name";
+                  showErrormessage(msg,'emergencybutton');
+                  return ;
+              }
+              data.append('e_relation',othere);
+            }
+          else{   data.append('e_relation',e_relation);  }
+
           data.append('e_name',document.getElementById('e_name').value);
-          data.append('e_relation',document.getElementById('e_relation').value);
+          
           data.append('e_address',document.getElementById('e_address').value);
           data.append('e_phone',document.getElementById('e_phone').value);
           xmlHttp.send(data);
@@ -991,7 +1006,7 @@ function showresponse(formname,status,msg)
                 if(isNaN(id)){
                    if(JSON.parse(status)=='true')
                      showSuccessmessage('emergencybutton');
-                   showresponse('emergency-form',status,'Updated Successfully');}
+                    showresponse('emergency-form',status,'Updated Successfully');}
               }
           }
   }
@@ -1006,7 +1021,6 @@ function showresponse(formname,status,msg)
     data.append('highest_degree',document.getElementById('highest_degree').value);
     data.append('degree_title',document.getElementById('degree_title').value);
     data.append('university',document.getElementById('university').value);
-    data.append('institute',document.getElementById('institute').value);
     xmlHttp.send(data);
     xmlHttp.onreadystatechange = function()
     {
@@ -1107,8 +1121,8 @@ function showresponse(formname,status,msg)
               {
                 var status = xmlHttp.responseText;
                 if(JSON.parse(status)=='true'){  showSuccessmessage('panbutton');}
-                else
-                  showErrormessage('Enter PAN', 'panbutton');
+                // else
+                //   showErrormessage('Enter PAN', 'panbutton');
                 showresponse('pan-form',status,'Updated Successfully');
               }
           }
@@ -2160,3 +2174,7 @@ function assignRecTemp(id){
   function showErrormessage(msg,id) {
      $('#'+id).notify(msg,{position:"right",className:'error',autoHide:'false',autoHideDelay: 150000000});
   }
+  function showErrormessage2(msg,id) {
+     $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 5000});
+  }
+

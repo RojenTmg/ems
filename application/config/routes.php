@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// report generation
+$route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
 

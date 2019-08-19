@@ -52,7 +52,7 @@
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
          <!-- general tab -->
 
-        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true" tabindex="0"></i></a>
  
         <!-- added address tab -->
         <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
@@ -76,7 +76,7 @@
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!--assign tab  -->
-        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Leave &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- work tab -->
         <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
@@ -272,23 +272,34 @@
        </div></div>
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
             <div class="form-group add-frm-grp">
-              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
-              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-              <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
-
-              <div class="group-district">
-                <div class="autocomplete" class="col-md-3">
-                  <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>">
-                  <span class="close">Cancel</span>
-                  <div class="dialog"></div>
-                </div>
-
-            <!-- country will be a dropdown -->
+               <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
                 <?php 
                 require 'assets/addresses/country_list.php';
                 ?>
               </select>
+              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+
+
+              <!-- <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3"> -->
+
+              
+
+              <div class="group-district">
+                <!-- Auto-complete state when permanent_country is Nepal -->
+                <div class="autocompleteState" class="col-md-3">
+                  <input type="text" placeholder="State" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" style="width: 100%;">
+                  <!-- <span class="closeState">Cancel</span> -->
+                  <div class="dialogState"></div>
+                </div>
+                
+                <!-- Auto-complete district when permanent_country is Nepal -->
+                <div class="autocomplete" class="col-md-3">
+                  <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>"  style="width: 100%;">
+                  <!-- <span class="close">Cancel</span> -->
+                  <div class="dialog"></div>
+                </div>
               </div>
           </div>
           <div class="form-group">
@@ -304,13 +315,12 @@
               <option value="Province 4" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 4') { echo "selected"; }} ?>>Province 4</option>
               <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
               <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
-              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7s') { echo "selected"; }} ?>>Province 7</option>
+              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7') { echo "selected"; }} ?>>Province 7</option>
 
             </select>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
-            
           </div>
         </form>
       </div>
@@ -325,7 +335,7 @@
        </div></div>
        <div class="form-group row">
             <div class="form-div col-md-2">
-            <label>Home Phone </label>
+            <label>Home Phone<span class="opt"><i>(opt)</i></span> </label>
             <input type="text" id="home_phone"  value="<?php if(isset($post['home_phone'])) echo $post['home_phone']; ?>" placeholder="+(977) -" >
           </div>
 
@@ -334,11 +344,22 @@
             <input type="text" id="mobile_phone"  value="<?php if(isset($post['mobile_phone'])) echo $post['mobile_phone']; ?>" placeholder="+(977) -">
           </div>
 </div>
-          <div class="form-group">
-            <p>Other Phone</p>
-            <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1" class="form-group col-md-2">
-            <input type="text" id="other_phone2" value="<?php if(isset($post['other_phone2'])) echo $post['other_phone2']; ?>" placeholder="Phone 2" class="form-group col-md-2">
-            <input type="text" id="other_phone3" value="<?php if(isset($post['other_phone3'])) echo $post['other_phone3']; ?>" placeholder="Phone 3" class="form-group col-md-2">
+          <div class="form-group row">
+            
+             <div class="form-div col-md-2">
+            <label>Other Phone 1<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone1" value="<?php if(isset($post['other_phone1'])) echo $post['other_phone1']; ?>" placeholder="Phone 1">
+          </div>
+
+            <div class="form-div col-md-2">
+            <label>Other Phone 2<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone2" value="<?php if(isset($post['other_phone2'])) echo $post['other_phone2']; ?>" placeholder="Phone 2">
+          </div>
+
+          <div class="form-div col-md-2">
+            <label>Other Phone 3<span class="opt"><i>(opt)</i></span></label>
+            <input type="text" id="other_phone3" value="<?php if(isset($post['other_phone3'])) echo $post['other_phone3']; ?>" placeholder="Phone 3">
+          </div>
           </div>
 
           <div class="sub-can">
@@ -398,10 +419,18 @@
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
-              <div class="form-div col-md-2">
+          <div class="form-div col-md-4">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
+
+          <!-- Auto-complete district when permanent_country is Nepal -->
+            <!-- <div class="autocomplete" class="form-div col-md-4">
+              <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
+              <input type="text" placeholder="" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>">
+              <span class="close">Cancel</span>
+              <div class="dialog"></div>
+            </div> -->
 </div>
 
           <div class="sub-can">
@@ -419,22 +448,43 @@
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
        </div></div>
-       <div class="form-group row">
-          <div class="form-div col-md-3">
-            <label>Name<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="">
+       <div class="form-group row " style="height: 10vh;">
+          <div class="col-md-3">
+            <label>Name<span class="text-danger" ><i>*</i></span></label><br>
+            <input type="text" id="e_name" value="<?php if(isset($post['e_name'])) echo $post['e_name'];?>" placeholder="" class="col">
           </div>
-          <div class="form-div col-md-3">
+          <div class=" col-md-3">
 
-            <label>Relation<span class="text-danger"><i>*</i></span></label>
-            <select id="e_relation">
+            <label>Relation<span class="text-danger"><i>*</i></span></label> <br>
+            <select id="e_relation" onchange="checkRelation(this,this.value);" class="col">
+              <?php 
+              $other_relation='';
+              $other=false;
+              $names=['Father','Mother','Friend','Son','Daughter','Spouse','Sibling','Grandparent','Grandchild','Uncle','Aunt','Cousin','Sibling\'s child','Other']; 
+             foreach ($names as  $value) { 
+              if($value!=$post['e_relation']){
+                $other=true;
+                $other_relation=$post['e_relation'];
+              }
+              ?>
+              <option  value="<?php echo $value;?>"  <?php if(isset($post['e_relation'])) { if ($post['e_relation'] == $value) { echo "selected"; } } 
+              ?>><?php echo $value; ?></option> 
+              <?php  } ?>
+             
+
+               <?php if($other==true){ ?> 
+
+                <option value="<?php echo $other_relation;?>" <?php echo " selected"; ?>><?php echo $other_relation;?></option>
+               <?php } ?>
+                               
+
               
             </select>
           </div>
 
-          <div class="form-div col-md-3">
-            <label>Phone No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
+          <div class=" col-md-3">
+            <label>Phone No.<span class="text-danger"><i>*</i></span></label> <br>
+            <input type="text" class="col" id="e_phone" value="<?php if(isset($post['e_phone'])) echo $post['e_phone'];?>" placeholder="">
           </div>
 </div>
           <div class="form-div">
@@ -469,19 +519,19 @@
               <option value="Middle School" <?php if(isset($post['highest_degree'])) { if ($post['highest_degree'] == 'Middle School') { echo "selected"; }} ?>>Middle School</option>
                  </select></div> 
           <div class="form-div col-md-4">
-            <label>Degree Title</label>
+            <label>Degree Title<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="degree_title" value="<?php if(isset($post['degree_title'])) echo $post['degree_title'];?>" placeholder="">
           </div>
         </div>
              <div class="form-group row">
           <div class="form-div col-md-4">
-            <label>University</label>
+            <label>University/Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="university" value="<?php if(isset($post['university'])) echo $post['university'];?>" placeholder="">
           </div>
-          <div class="form-div col-md-4">
+          <!-- <div class="form-div col-md-4">
             <label>Institute<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="institute" value="<?php if(isset($post['institute'])) echo $post['institute'];?>" placeholder="">
-          </div>
+          </div> -->
         </div>
            <div class="sub-can">
             <input type="button" onclick="addEducation()" name="" value="Save" class="sub" id="educationbutton">
@@ -497,7 +547,7 @@
           <div class="message-div">
       <div id="message" class="message" style="display: none;">
         <!-- add edit message displayed here -->
-       </div></div>
+       </div> </div>
          
           <div class="form-group row">
             <div class="form-div col-md-3">
@@ -531,7 +581,7 @@
                   <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }} if($post['allergies']=='')  { echo "checked"; }  ?> >
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }}?> >
                   <label  class="radio-inline">No</label>
                 </div>
              
@@ -743,12 +793,88 @@
 
 <script type="text/javascript">
 
-////////////////////  Auto-suggestion on Address tab (employee-manage) /////////////////////
+
+
+////////////////////  Auto-suggestion on State Address tab (employee-manage) /////////////////////
+
+function initDialogState() {
+  clearDialogState();
+  for (var i = 0; i < states.length; i++) {
+    $('.dialogState').append('<div>' + states[i] + '</div>');
+  }
+}
+
+function clearDialogState() {
+  $('.dialogState').empty();
+}
+
+var alreadyFilledState = false;
+var states = ['Province 1', 'Province 2','Province 3','Province 4','Province 5','Province 6','Province 7'];
+
+function openDialogState() {
+  $('.autocompleteState').append('<div class="dialogState"></div>');
+  $('.autocompleteState input').click(function() {
+    if (!alreadyFilledState) {
+      $('.dialogState').addClass('openState');
+    }
+  });
+
+  $('body').on('click', '.dialogState > div', function() {
+    $('.autocompleteState input').val($(this).text()).focus();
+    $('.autocompleteState .closeState').addClass('visible');
+    alreadyFilledState = true;
+  });
+
+  $('.autocompleteState .closeState').click(function() {
+    alreadyFilledState = false;
+    $('.dialogState').addClass('openState');
+    $('.autocompleteState input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function matchState(str) {
+    str = str.toLowerCase();
+    clearDialogState();
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].toLowerCase().startsWith(str)) {
+        $('.dialogState').append('<div>' + states[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteState input').on('input', function() {
+    $('.dialogState').addClass('openState');
+    alreadyFilledState = false;
+    matchState($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogState();
+}
+openDialogState();
+
+
+$('#permanentaddress_country').change(function() {
+  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
+    openDialog();
+    openDialogState(); 
+
+  } else {
+    $('.autocomplete').find('.dialog').remove();
+    $('.autocompleteState').find('.dialogState').remove();
+  }
+});
+
+////////////////////  Auto-suggestion on District Address tab (employee-manage) /////////////////////
 
 function initDialog() {
   clearDialog();
-  for (var i = 0; i < states.length; i++) {
-    $('.dialog').append('<div>' + states[i] + '</div>');
+  for (var i = 0; i < country.length; i++) {
+    $('.dialog').append('<div>' + country[i] + '</div>');
   }
 }
 
@@ -757,7 +883,7 @@ function clearDialog() {
 }
 
 var alreadyFilled = false;
-var states = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
 
 function openDialog() {
   $('.autocomplete').append('<div class="dialog"></div>');
@@ -783,9 +909,9 @@ function openDialog() {
   function match(str) {
     str = str.toLowerCase();
     clearDialog();
-    for (var i = 0; i < states.length; i++) {
-      if (states[i].toLowerCase().startsWith(str)) {
-        $('.dialog').append('<div>' + states[i] + '</div>');
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialog').append('<div>' + country[i] + '</div>');
       }
     }
   }
@@ -800,19 +926,17 @@ function openDialog() {
     if (!$(e.target).is("input, .close")) {
       $('.dialog').removeClass('open');
     }
+    if (!$(e.target).is("input, .closeState")) {
+      $('.dialogState').removeClass('openState');
+    }
   });
   initDialog();
 }
 openDialog();
 
-$('#permanentaddress_country').change(function() {
-  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
-    openDialog(); 
 
-  } else {
-    $('.autocomplete').find('.dialog').remove();
-  }
-});
+
+
 
 
 
@@ -864,16 +988,6 @@ $(document).ready(function(){
     });
 });  
 
- var names=['Father','Mother','Son','Daughter','Spouse','Sibling','Grandparent','Grandchild','Uncle','Aunt','Cousin','Sibling\'s child']; 
-             
-$(document).ready(function(){
-   
-      for (var i = 0; i <names.length; i++) {
-         $("#e_relation").append('<option >'+ names[i] + '</option>');}
-     
-       
-  
-});  
 
 function changeText(toggle){
 if(toggle.checked){
@@ -886,6 +1000,28 @@ else{
 
   }  
 }
+
+
+function checkRelation(ele,val)
+{
+  if(val=='Other')
+  {
+    var box = document.createElement('INPUT');
+    box.className='col';
+    box.id='otherRelation';
+    ele.parentElement.appendChild(box);
+  }
+
+  else
+    {
+      if(document.body.contains(document.getElementById('otherRelation')))
+      {
+        var elem=document.getElementById('otherRelation');
+       elem.parentNode.removeChild(elem);
+      }
+    }
+}
+
 
 </script>
 
