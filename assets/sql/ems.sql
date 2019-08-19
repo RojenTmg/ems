@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2019 at 05:18 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Aug 19, 2019 at 08:25 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,9 +36,9 @@ CREATE TABLE `addresses` (
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -66,9 +66,9 @@ CREATE TABLE `contacts` (
   `other_phone2` varchar(255) DEFAULT NULL,
   `other_phone3` varchar(255) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -151,9 +151,9 @@ CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `department_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `email_notifications` (
   `title` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -225,9 +225,9 @@ CREATE TABLE `employees` (
   `is_active` tinyint(1) NOT NULL,
   `department_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp(),
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) DEFAULT NULL,
   `nationality` varchar(255) NOT NULL,
   `visa_permission` varchar(255) NOT NULL,
@@ -246,10 +246,10 @@ CREATE TABLE `employees` (
   `dob` date NOT NULL,
   `gender` enum('Male','Female','Others') NOT NULL,
   `blood_group` enum('','A +ve','A -ve','B +ve','B -ve','AB +ve','AB -ve','O +ve','O -ve') NOT NULL,
-  `medical_complications` text DEFAULT NULL,
-  `regular_medication` text DEFAULT NULL,
+  `medical_complications` text,
+  `regular_medication` text,
   `allergies` varchar(255) NOT NULL,
-  `allergy_description` text DEFAULT NULL,
+  `allergy_description` text,
   `pan` varchar(255) DEFAULT NULL,
   `previous_employer` varchar(255) DEFAULT NULL,
   `package_id` int(11) DEFAULT NULL,
@@ -296,9 +296,9 @@ CREATE TABLE `employee_addresses` (
   `primary_addressId` int(11) DEFAULT NULL,
   `secondary_addressId` int(11) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -321,9 +321,9 @@ CREATE TABLE `employee_approvers` (
   `emp_id` int(11) DEFAULT NULL,
   `recommender_id` int(11) DEFAULT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -346,9 +346,9 @@ CREATE TABLE `employee_contacts` (
   `emp_id` int(11) NOT NULL,
   `contact_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` datetime NOT NULL DEFAULT current_timestamp()
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -371,9 +371,9 @@ CREATE TABLE `employee_documents` (
   `doc_title` varchar(255) DEFAULT NULL,
   `doc_file` text NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -413,13 +413,13 @@ CREATE TABLE `employee_leaves` (
   `to_date` date DEFAULT NULL,
   `duty_performed_by` int(11) NOT NULL,
   `reason` text NOT NULL,
-  `denial_reason` text DEFAULT NULL,
+  `denial_reason` text,
   `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp(),
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `is_archived` enum('0','1') NOT NULL,
   `is_archived_by_approver` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -443,9 +443,9 @@ INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `ap
 CREATE TABLE `employee_leave_balance` (
   `emp_id` int(11) NOT NULL,
   `leave_id` int(11) NOT NULL,
-  `remain_days` int(11) NOT NULL,
+  `remain_days` decimal(11,2) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -455,22 +455,22 @@ CREATE TABLE `employee_leave_balance` (
 --
 
 INSERT INTO `employee_leave_balance` (`emp_id`, `leave_id`, `remain_days`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(276, 39, 6, '', '2019-08-11 05:26:49', NULL, NULL),
-(276, 40, 6, '', '2019-08-11 05:26:49', NULL, NULL),
-(277, 39, 6, '', '2019-08-13 05:40:05', NULL, NULL),
-(277, 40, 6, '', '2019-08-13 05:40:05', NULL, NULL),
-(278, 39, 6, '', '2019-08-13 04:55:08', NULL, NULL),
-(278, 40, 6, '', '2019-08-13 04:55:08', NULL, NULL),
-(284, 39, 6, '', '2019-08-02 06:55:58', NULL, NULL),
-(284, 40, 6, '', '2019-08-02 06:55:58', NULL, NULL),
-(288, 39, 6, '', '2019-08-04 08:14:37', NULL, NULL),
-(288, 40, 6, '', '2019-08-04 08:14:38', NULL, NULL),
-(289, 39, 6, '', '2019-08-05 04:34:19', NULL, NULL),
-(289, 40, 6, '', '2019-08-09 05:40:07', NULL, NULL),
-(298, 39, 6, '', '2019-08-09 04:39:32', NULL, NULL),
-(298, 40, 6, '', '2019-08-09 04:39:32', NULL, NULL),
-(312, 39, 6, '', '2019-08-18 08:44:40', NULL, NULL),
-(312, 40, 6, '', '2019-08-18 08:44:40', NULL, NULL);
+(276, 39, '6.00', '', '2019-08-11 05:26:49', NULL, NULL),
+(276, 40, '6.00', '', '2019-08-11 05:26:49', NULL, NULL),
+(277, 39, '6.00', '', '2019-08-13 05:40:05', NULL, NULL),
+(277, 40, '6.00', '', '2019-08-13 05:40:05', NULL, NULL),
+(278, 39, '6.00', '', '2019-08-13 04:55:08', NULL, NULL),
+(278, 40, '6.00', '', '2019-08-13 04:55:08', NULL, NULL),
+(284, 39, '6.00', '', '2019-08-02 06:55:58', NULL, NULL),
+(284, 40, '6.00', '', '2019-08-02 06:55:58', NULL, NULL),
+(288, 39, '6.00', '', '2019-08-04 08:14:37', NULL, NULL),
+(288, 40, '6.00', '', '2019-08-04 08:14:38', NULL, NULL),
+(289, 39, '6.00', '', '2019-08-05 04:34:19', NULL, NULL),
+(289, 40, '6.00', '', '2019-08-09 05:40:07', NULL, NULL),
+(298, 39, '6.00', '', '2019-08-09 04:39:32', NULL, NULL),
+(298, 40, '6.00', '', '2019-08-09 04:39:32', NULL, NULL),
+(312, 39, '6.00', '', '2019-08-18 08:44:40', NULL, NULL),
+(312, 40, '6.00', '', '2019-08-18 08:44:40', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -482,7 +482,7 @@ CREATE TABLE `employee_work_experience` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `experience` text NOT NULL,
-  `modified_date` datetime NOT NULL DEFAULT current_timestamp()
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -543,9 +543,9 @@ CREATE TABLE `leaves` (
   `leave_id` int(11) NOT NULL,
   `leave_name` varchar(255) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -568,9 +568,9 @@ CREATE TABLE `leave_packages` (
   `package_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -590,7 +590,7 @@ INSERT INTO `leave_packages` (`leave_id`, `package_id`, `duration`, `created_by`
 CREATE TABLE `managers` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -612,9 +612,9 @@ CREATE TABLE `modules` (
   `module_id` int(11) NOT NULL,
   `module_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -627,9 +627,9 @@ CREATE TABLE `packages` (
   `package_id` int(11) NOT NULL,
   `package_name` varchar(255) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -648,9 +648,9 @@ INSERT INTO `packages` (`package_id`, `package_name`, `created_by`, `created_dat
 CREATE TABLE `permissions` (
   `permission_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -663,9 +663,9 @@ CREATE TABLE `roles` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -687,9 +687,9 @@ CREATE TABLE `role_permission_modules` (
   `permission_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -704,9 +704,9 @@ CREATE TABLE `users` (
   `user_pass` varchar(255) NOT NULL,
   `is_logged_in` tinyint(1) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -747,9 +747,9 @@ CREATE TABLE `user_roles` (
   `role_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT current_timestamp()
+  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

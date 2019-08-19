@@ -99,7 +99,6 @@ function trim_day(dec_day) {
     }
   }
 
-
   $('#leave_name').change(function() {
       if ($('#leave_name').find("option:selected").text().indexOf('Casual') !== -1) {     // if selected value is 'Casual'
         $('#multiple-days').attr('disabled', true);
@@ -199,6 +198,7 @@ function displayFunctionType() {
 
 ////////////////////  Notification Messages /////////////////////
 $(document).ready(function(){
+    $("form :input").attr("autocomplete", "off");
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
 

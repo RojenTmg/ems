@@ -76,7 +76,7 @@
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!--assign tab  -->
-        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Leave &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- work tab -->
         <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
@@ -272,23 +272,34 @@
        </div></div>
             <p class="title">Permanent Address  <span class="opt"><i>(As per citizenship)</i></span></p>
             <div class="form-group add-frm-grp">
-              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
-              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-              <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
-
-              <div class="group-district">
-                <div class="autocomplete" class="col-md-3">
-                  <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>">
-                  <span class="close">Cancel</span>
-                  <div class="dialog"></div>
-                </div>
-
-            <!-- country will be a dropdown -->
+               <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
                 <?php 
                 require 'assets/addresses/country_list.php';
                 ?>
               </select>
+              <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
+              <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
+
+
+              <!-- <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3"> -->
+
+              
+
+              <div class="group-district">
+                <!-- Auto-complete state when permanent_country is Nepal -->
+                <div class="autocompleteState" class="col-md-3">
+                  <input type="text" placeholder="State" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" style="width: 100%;">
+                  <!-- <span class="closeState">Cancel</span> -->
+                  <div class="dialogState"></div>
+                </div>
+                
+                <!-- Auto-complete district when permanent_country is Nepal -->
+                <div class="autocomplete" class="col-md-3">
+                  <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>"  style="width: 100%;">
+                  <!-- <span class="close">Cancel</span> -->
+                  <div class="dialog"></div>
+                </div>
               </div>
           </div>
           <div class="form-group">
@@ -304,13 +315,12 @@
               <option value="Province 4" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 4') { echo "selected"; }} ?>>Province 4</option>
               <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
               <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
-              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7s') { echo "selected"; }} ?>>Province 7</option>
+              <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7') { echo "selected"; }} ?>>Province 7</option>
 
             </select>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
-            
           </div>
         </form>
       </div>
@@ -409,10 +419,18 @@
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
-              <div class="form-div col-md-2">
+          <div class="form-div col-md-4">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
+
+          <!-- Auto-complete district when permanent_country is Nepal -->
+            <!-- <div class="autocomplete" class="form-div col-md-4">
+              <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
+              <input type="text" placeholder="" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>">
+              <span class="close">Cancel</span>
+              <div class="dialog"></div>
+            </div> -->
 </div>
 
           <div class="sub-can">
@@ -888,12 +906,88 @@ foreach (array_reverse($work_experience) as $work) {
 
 <script type="text/javascript">
 
-////////////////////  Auto-suggestion on Address tab (employee-manage) /////////////////////
+
+
+////////////////////  Auto-suggestion on State Address tab (employee-manage) /////////////////////
+
+function initDialogState() {
+  clearDialogState();
+  for (var i = 0; i < states.length; i++) {
+    $('.dialogState').append('<div>' + states[i] + '</div>');
+  }
+}
+
+function clearDialogState() {
+  $('.dialogState').empty();
+}
+
+var alreadyFilledState = false;
+var states = ['Province 1', 'Province 2','Province 3','Province 4','Province 5','Province 6','Province 7'];
+
+function openDialogState() {
+  $('.autocompleteState').append('<div class="dialogState"></div>');
+  $('.autocompleteState input').click(function() {
+    if (!alreadyFilledState) {
+      $('.dialogState').addClass('openState');
+    }
+  });
+
+  $('body').on('click', '.dialogState > div', function() {
+    $('.autocompleteState input').val($(this).text()).focus();
+    $('.autocompleteState .closeState').addClass('visible');
+    alreadyFilledState = true;
+  });
+
+  $('.autocompleteState .closeState').click(function() {
+    alreadyFilledState = false;
+    $('.dialogState').addClass('openState');
+    $('.autocompleteState input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function matchState(str) {
+    str = str.toLowerCase();
+    clearDialogState();
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].toLowerCase().startsWith(str)) {
+        $('.dialogState').append('<div>' + states[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteState input').on('input', function() {
+    $('.dialogState').addClass('openState');
+    alreadyFilledState = false;
+    matchState($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogState();
+}
+openDialogState();
+
+
+$('#permanentaddress_country').change(function() {
+  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
+    openDialog();
+    openDialogState(); 
+
+  } else {
+    $('.autocomplete').find('.dialog').remove();
+    $('.autocompleteState').find('.dialogState').remove();
+  }
+});
+
+////////////////////  Auto-suggestion on District Address tab (employee-manage) /////////////////////
 
 function initDialog() {
   clearDialog();
-  for (var i = 0; i < states.length; i++) {
-    $('.dialog').append('<div>' + states[i] + '</div>');
+  for (var i = 0; i < country.length; i++) {
+    $('.dialog').append('<div>' + country[i] + '</div>');
   }
 }
 
@@ -902,7 +996,7 @@ function clearDialog() {
 }
 
 var alreadyFilled = false;
-var states = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
 
 function openDialog() {
   $('.autocomplete').append('<div class="dialog"></div>');
@@ -928,9 +1022,9 @@ function openDialog() {
   function match(str) {
     str = str.toLowerCase();
     clearDialog();
-    for (var i = 0; i < states.length; i++) {
-      if (states[i].toLowerCase().startsWith(str)) {
-        $('.dialog').append('<div>' + states[i] + '</div>');
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialog').append('<div>' + country[i] + '</div>');
       }
     }
   }
@@ -945,19 +1039,17 @@ function openDialog() {
     if (!$(e.target).is("input, .close")) {
       $('.dialog').removeClass('open');
     }
+    if (!$(e.target).is("input, .closeState")) {
+      $('.dialogState').removeClass('openState');
+    }
   });
   initDialog();
 }
 openDialog();
 
-$('#permanentaddress_country').change(function() {
-  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
-    openDialog(); 
 
-  } else {
-    $('.autocomplete').find('.dialog').remove();
-  }
-});
+
+
 
 
 

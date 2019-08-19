@@ -152,7 +152,7 @@ function checkExp(){
             }
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
-		
+						
 				$data['clb'] = $this->Employee_model->checkLeaveBalance($_SESSION['user_id'], (int)$leave['leave_id']);
 
 				// from_date and to_date validation
