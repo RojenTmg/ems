@@ -399,6 +399,12 @@
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
+   <!--    <div class="form-div col-md-4">
+              <div class="form-div col-md-2">
+            <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
+            <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
+          </div>
+ -->
           <!-- Auto-complete district when permanent_country is Nepal -->
             <div class="autocomplete" class="form-div col-md-4">
               <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
@@ -521,38 +527,38 @@
             </div>
             <div class="form-group row ">
             <div class="form-div col-md-3" >
-              <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
-              <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
-            </div>
-            <div class="form-div col-md-3">
-              <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
-              <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
-            </div>
-            </div>
-            <div class="form-div">
-              <label  class="radio-inline">Any Allergies?</label>
-                <div>
-                  <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
-                  <label  class="radio-inline">Yes</label>
-                
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }} if($post['allergies']=='')  { echo "checked"; }  ?> >
-                  <label  class="radio-inline">No</label>
-                </div>
-             
-            </div>
-          
-            <!-- allerygy tab changes show hide -->
-            <div id="allergy" <?php if(isset($post['allergies'])&&$post['allergies']=='Yes') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?> >  
-              <div class="form-div">
-                <label>If any, please mention</label>
-                <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>" class="col-md-6">
-              </div>
-            </div>
-            <div class="sub-can">
-              <input type="button" onclick="addHealth()" name="" value="Save" class="sub" id="healthbutton">
-              
-            </div>
-         
+  <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
+  <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
+</div>
+<div class="form-div col-md-3">
+  <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
+  <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
+</div>
+</div>
+<div class="form-div">
+  <label  class="radio-inline">Any Allergies?</label>
+    <div>
+      <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
+      <label  class="radio-inline">Yes</label>
+    
+      <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }} if($post['allergies']=='')  { echo "checked"; }  ?> >
+      <label  class="radio-inline">No</label>
+    </div>
+ 
+</div>
+
+<!-- allerygy tab changes show hide -->
+<div id="allergy" <?php if(isset($post['allergies'])&&$post['allergies']=='Yes') echo 'style="display: block;"'; else echo 'style="display: none;"'; ?> >  
+  <div class="form-div">
+    <label>If any, please mention</label>
+    <input type="text" id="allergy_description" placeholder="" value="<?php if(isset($post['allergy_description'])) echo $post['allergy_description'];?>" class="col-md-6">
+  </div>
+</div>
+<div class="sub-can">
+  <input type="button" onclick="addHealth()" name="" value="Save" class="sub" id="healthbutton">
+  
+</div>
+
         </form>
       </div>
 
@@ -605,7 +611,7 @@
 <div class="modal fade" id="expModel" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+<div class="modal-header">
          <h5 class="modal-title" id="addExp">Add New Experience</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
