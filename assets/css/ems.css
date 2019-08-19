@@ -1554,3 +1554,9 @@ body {
 .btn-archive:focus{
   outline: 0;
 }
+
+
+/* mouser cursor*/
+.pointer {
+  cursor: pointer;
+}

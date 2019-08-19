@@ -152,4 +152,28 @@
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data2);
 		}
+
+
+		//employee's recommender and approver
+		public function getRecommenderApprover($id)
+		 {
+		 	
+			$this->db->join('employees', 'employee_approvers.emp_id = employees.emp_id');
+			$query = $this->db->get('employee_approvers');
+			return $query->row_array();
+		 } 
+
+		 // list of employeees
+		 public function employeeList() {
+			$this->db->join('departments', 'departments.id=employees.department_id');
+			$this->db->where('is_active', '1');
+			$query = $this->db->get('employees');
+			return $query->result_array();
+		}
+
+		// package lists
+		public function packageManage() {
+			$query = $this->db->get('packages'); 
+			return $query->result_array();
+ 			}
 	}

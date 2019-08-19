@@ -30,8 +30,7 @@
 			$data['user']= $this->Admin_model->user_detail('users',$_SESSION['user_id']);
 			$data['post'] = $this->Admin_model->getEmployeeDetails($_SESSION['user_id']);
 
-			//showing percentage in the progress bar
-		    // progressBar();
+		
 
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			{
@@ -114,7 +113,9 @@
 				$data['post'] = $this->Admin_model->getEmployeeDetails($id);
 				$data['work_experience'] = $this->Database_model->find('employee_work_experience', 'emp_id', $id);
 				$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $id);
-		
+				$data['recommender_id']=$this->Admin_model->getRecommenderApprover($id);
+				$data['recommender_name']=$this->Admin_model->employeeList();
+				$data['package_name']=$this->Admin_model->packageManage();
 				$this->view('profile_update', $title, $data);
 			} else
 				$this->view('profile_update', $title);
@@ -446,7 +447,9 @@ function checkExp(){
 			$data['documents'] = $this->Database_model->find('employee_documents', 'emp_id', $_SESSION['user_id']);
 		
 			$title['title'] = $data['post']['first_name'] .' '. $data['post']['middle_name'] .' '. $data['post']['last_name'];
-
+			$data['recommender_id']=$this->Admin_model->getRecommenderApprover($_SESSION['user_id']);
+			$data['recommender_name']=$this->Admin_model->employeeList();
+			$data['package_name']=$this->Admin_model->packageManage();
 			$this->view('profile', $title, $data);
 		}
 

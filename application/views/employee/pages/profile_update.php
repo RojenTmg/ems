@@ -15,31 +15,7 @@
       <h4>Update Profile</h4>
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
     </div>
-     <!-- progress-bar -->
-     <div class="box profile-progress">
-       <div class="box-head pro-head sp-btn " >
-
-
-        </div>
-        <div id="progress-bar-body" style="display: none" class="box-body">
-            <p id="completedPercent">
-              <!-- show percentage completed here -->
-            </p>
-          <div class="pro-bar">
-            <div class="bar-completed progress-bar-striped progress-bar-animated" id="bar"></div>
-          </div>  
-        </div>
-     </div>
-
-     <!-- area to show success and erorr messages -->
-
-     <div class=" alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
-      <p id="showmessage"> </p>
-    <button type="button" class="close" >&times;</button>
-        </div>
- <!-- area finishes here -->
-
-
+    
      <!-- nav-tab-form -->
      <nav>
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -84,10 +60,6 @@
         <!--TAB ENDS  -->
       </div>
     </nav>
-   <!--  <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-       </div>
-    </div> -->
 
     <!--General starts here -->
     <div class="tab-content" id="nav-tabContent">
@@ -163,13 +135,13 @@
           </div> 
         </div>
 <!-- dob -->
-   <div class="form-group col-md-9 ">
+    <div class="form-group col-md-9 ">
     <div class="form-div">
             <label>Date of Birth<span class="text-danger"><i>*</i></span></label>
              <!-- date -->
             <div class="row" style="padding: 0">
-              <div class="form-div mr-3" style="width: 10%">
-            <select name="day" id="birth_day" class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'   >
+              <div class="form-div  col-md-2" >
+            <select name="day" id="birth_day" class="fstdropdown-select" >
         <?php 
           $start_date = 1;
           $end_date   = 31;
@@ -182,9 +154,8 @@
       </select>
       </div>
       <!-- month -->
-      <div class="form-div mr-3" style="width: 20%">
-             <select id="birth_month"   name="month"  class="form-group" onfocus='this.size=10; this.style.width="20%";this.style.position="absolute"; this.style.left="12%";
-            ' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();' > 
+      <div class="form-div col-md-3" >
+             <select id="birth_month"   name="month"  class="fstdropdown-select"> 
                 <option value="1" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '01') { echo 'selected'; }} ?>>January</option>       
                 <option value="2" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '02') { echo 'selected'; }} ?>>February</option>       
                 <option value="3" <?php if(isset($post['dob'])) { if ( date("m", strtotime($post['dob'])) == '03') { echo 'selected'; }} ?>>March</option>       
@@ -201,8 +172,8 @@
         </div>
             <!-- year -->
 
-            <div class="form-div" style="width: 10%">
-             <select id="birth_year" name="year " class="form-group" onfocus='this.size=10;this.style.position="absolute"; this.style.width="10%"; this.style.left="34%";' onblur='this.size=1;  this.style.position="unset";  this.style.width="unset";' onchange='this.size=1; this.blur();'  >
+            <div class="form-div col-md-2" >
+             <select id="birth_year" name="year " class="fstdropdown-select">
         <?php 
           $year = date('Y');
           $min = $year - 60;
@@ -217,9 +188,9 @@
       </div>
       </div>
     </div>
-  </div>
-  </div>
-  <!-- row 2 ending -->
+          </div>
+          </div>
+          <!-- row 2 ending -->
 
     <div class="form-div">
       <label>Email<span class="text-danger"><i>*</i></span></label>
@@ -227,7 +198,7 @@
     </div>
   
     <div class="sub-can">
-      <input type="button" onclick="updateGeneralbyEmployee()" name="" value="Save" class="sub">
+      <input type="button" onclick="updateGeneralbyEmployee()" name="" value="Save" class="sub" id="generalButton">
     
     </div>
 
@@ -274,7 +245,8 @@
             </select>
           </div>
           <div class="sub-can">
-            <input type="button" onclick="addAddress()" name="" value="Save" class="sub">
+            <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
+            
             
           </div>
         </form>
@@ -371,7 +343,7 @@
 
 
           <div class="sub-can">
-            <input type="button" onclick="addNationality()" name="" value="Save" class="sub">
+            <input type="button" onclick="addNationality()" name="" value="Save" class="sub" id="nationalitybutton">
             
           </div>
         </form>
@@ -448,7 +420,7 @@
           </div>
         </div>
           <div class="sub-can">
-            <input type="button" onclick="addEducation()" name="" value="Save" class="sub">
+            <input type="button" onclick="addEducation()" name="" value="Save" class="sub" id="educationbutton">
             
           </div>
         </form>
@@ -479,11 +451,11 @@
             </div>
             </div>
             <div class="form-group row ">
-            <div class="form-div col-md-4" >
+            <div class="form-div col-md-3" >
               <label>Medical Complications  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="medical_complications"><?php if(isset($post['medical_complications'])) echo $post['medical_complications'];?></textarea>
             </div>
-            <div class="form-div col-md-4">
+            <div class="form-div col-md-3">
               <label>Regular Medication  <span class="opt"><i>(If any)</i></span></label>
               <textarea id="regular_medication"><?php if(isset($post['regular_medication'])) echo $post['regular_medication'];?></textarea>
             </div>
@@ -507,7 +479,7 @@
               </div>
             </div>
             <div class="sub-can">
-              <input type="button" onclick="addHealth()" name="" value="Save" class="sub">
+              <input type="button" onclick="addHealth()" name="" value="Save" class="sub" id="healthbutton">
               
             </div>
           
@@ -529,7 +501,7 @@
 
           <div class="form-div">
             <label>PAN Number<span class="text-danger"><i>*</i></span></label>
-            <input type="text" disabled="true" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" placeholder="">
+            <input type="text" disabled="true" id="pan" value="<?php if(isset($post['pan'])) echo $post['pan'];?>" >
           </div>
          
         </form>
@@ -769,42 +741,29 @@ foreach (array_reverse($work_experience) as $work) {
             <div class="form-div">
               <div class="form-div"></div>
             </div>
-           <div class="form-div form-div-horz">
+           <div class="form-div form-div-horz" >
             <label>Package <span class="text-danger"><i>*</i></span></label>
-                <select disabled  id="package" >
-                  <option value="">Select package</option>
-                  <?php foreach ($packagelist as $pack) {  ?>
-                   <option value="<?php echo $pack['package_id'];?>"><?php echo $pack['package_name'];?></option>
-                 <?php } ?>
-                </select> 
+               
+                  <?php foreach ($package_name as $key => $value) {
+            if($value['package_id']==$post['package_id']){ ?>
+              <input type="text" name="" disabled="" value="<?php   echo $value['package_name']; ?>">
+      <?php   } } ?>
           </div>
           <hr>
-          <div class="form-div form-div-horz">
+          <div class="form-div form-div-horz " disabled>
             <label>Recommender <span class="text-danger"><i>*</i></span></label>
-                <select class='fstdropdown-select' id="recommender" >
-                  <option value="">Select option</option>
-                  <?php foreach ($empList as $row) {
-                      if($_SESSION['current_employee_id']==$row['emp_id']) continue;
-                    ?>
-                   <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
-                 <?php } ?>
-                </select> 
+            <?php foreach ($recommender_name as $key => $value) {
+            if($value['emp_id']==$recommender_id['recommender_id']){?>
+              <input type="text" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
+        <?php  } } ?>
+                 
           </div>
           <div class="form-div form-div-horz">
             <label>Approver <span class="text-danger"><i>*</i></span></label>
-               <select class='fstdropdown-select' id="approver">
-                   <option  value="">Select option</option>
-                  <?php foreach ($empList as $row) {
-                   if($_SESSION['current_employee_id']==$row['emp_id']) continue;
-                   ?>
-                   <option <?php if($assigned!=''&&$assigned['approver_id']==$row['emp_id']) echo "selected";?> value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
-                 <?php } ?>
-                </select> 
-          </div>
-
-          <div class="sub-can">
-            <input type="button" onclick="assign()" name="" value="Save" class="sub">
-       
+            <?php foreach ($recommender_name as $key => $value) {
+            if($value['emp_id']==$recommender_id['approver_id']){?>
+              <input type="text" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
+        <?php  } } ?>
           </div>
         </form>
       </div>

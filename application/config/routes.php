@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // report generation
 $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
+
+
 $route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
 $route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
 $route['admin/employee_manage/checkExp'] = 'Admin_controller/checkExp';
@@ -42,6 +44,8 @@ $route['admin/rejectTemp'] = 'Admin_controller/rejectTemp';
 $route['admin/approveTempAll'] = 'Admin_controller/approveTempAll';
 
 
+$route['checkdatabase']='Email_controller/checkdatabase';
+$route['notifyByEmail']='Email_controller/notifyByEmail';
 
 $route['employee/profile_update/deleteWorkExp'] = 'Employee_controller/deleteWorkExp';
 $route['employee/profile_update/editWork'] = 'Employee_controller/editWork';

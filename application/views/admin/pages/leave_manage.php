@@ -139,6 +139,11 @@
                   <input type="button" name="" class="btn btn-danger" onclick="cancel()" value="Cancel">
 
                   </div>
+
+                   <div class="form-check ">
+                  <input type="checkbox" class="form-check-input" id="is_one_day">
+                  <label class="form-check-label" for="is_one_day">One day leave only</label>
+                </div>
                 </form>
               </div>
             </div>

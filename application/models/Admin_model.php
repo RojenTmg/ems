@@ -50,6 +50,15 @@
 			// echo '<pre>' . var_dump($query->result_array()) . '</pre>'; die();
 			return $query->result_array();
 		}
+
+		// list of managers
+		public function getManagerList(){
+			$this->db->join('managers','managers.emp_id=employees.emp_id');
+			$res=$this->db->get('employees');	
+			return $res->result_array();
+		}
+
+
 		public function validEmployee() {
 			$this->db->select('employees.emp_id,employees.first_name,employees.middle_name,employees.last_name');
 			$this->db->join('departments', 'departments.id=employees.department_id');
@@ -348,37 +357,13 @@
 public function sendEmail($title,$message,$email){
 
 
-// title, message,email
+$data=[
+		'email'=>$email,
+		'title'=>$title,
+		'message'=>nl2br($message)
+		];
+$this->db->insert('email_notifications',$data);
 
-$data['title']=$title;
-$data['message']=$message;
-
-$content = $this->load->view('email/index', $data, TRUE);
-
-$config = Array(
-'protocol' => 'smtp',
-'smtp_host' => 'smtp.gmail.com',
-'smtp_port' => 587, //465,
-'smtp_user' => 'emsnotificationsystem@gmail.com',
-'smtp_pass' => 'AccessDenied',
-'smtp_crypto' => 'tls',
-'smtp_timeout' => '60',
-'mailtype'  => 'html', 
-'charset'   => 'iso-8859-1'
-);
-$config['newline'] = "\r\n";
-$config['crlf'] = "\r\n";
-$this->load->library('email', $config);
-$this->email->from('emsnotificationsystem@gmail.com', 'EMS');
-$this->email->to($email);
-$this->email->subject($title);
-$this->email->message($content);
-
-//$this->email->send();
-if ( ! $this->email->send()) {
-return false;
-}
-return true;
 }
 
 public function getEmail($id=''){

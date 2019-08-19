@@ -16,7 +16,7 @@
           <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
             <div class="item-1 sp-btn">
               <div>
-                <i class="fa fa-creative-commons" aria-hidden="true"></i>
+                <i class="fas fa-user-clock" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title"><?php echo $leave['leave_name'];?></div>
