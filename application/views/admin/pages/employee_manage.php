@@ -76,7 +76,7 @@
         <a class="nav-item nav-link" id="nav-pan-tab" data-toggle="tab" href="#nav-pan" role="tab" aria-controls="nav-pan" aria-selected="false">PAN &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!--assign tab  -->
-        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Assign &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-assign" aria-selected="false">Leave &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- work tab -->
         <a class="nav-item nav-link" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">Work Experience &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a> 
@@ -408,19 +408,18 @@
             <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
           </div>
 
-       <!--    <div class="form-div col-md-4">
-              <div class="form-div col-md-2">
+          <div class="form-div col-md-4">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
- -->
+
           <!-- Auto-complete district when permanent_country is Nepal -->
-            <div class="autocomplete" class="form-div col-md-4">
+            <!-- <div class="autocomplete" class="form-div col-md-4">
               <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
               <input type="text" placeholder="" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>">
               <span class="close">Cancel</span>
               <div class="dialog"></div>
-            </div>
+            </div> -->
 </div>
 
           <div class="sub-can">
