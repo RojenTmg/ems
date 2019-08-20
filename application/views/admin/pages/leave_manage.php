@@ -141,7 +141,8 @@
                   </div>
 
                    <div class="form-check ">
-                  <input type="checkbox" class="form-check-input" id="is_one_day">
+                  <input type="checkbox" class="form-check-input" id="is_one_day" <?php if (isset($detailLeave['is_one_day'])) 
+                  {if($detailLeave['is_one_day']=='1') {  echo "checked";  } }?>>
                   <label class="form-check-label" for="is_one_day">One day leave only</label>
                 </div>
                 </form>

@@ -10,18 +10,11 @@
     <title><?php echo $title; ?></title>
     <?= link_tag('assets/css/alertify.min.css') ?>
 
-
-
-
     <!-- offline bootstrap -->
    <?= link_tag('assets/css/bootstrap.min.css') ?>
 
-   
-
   <!-- offline jquery -->
    <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.js') ?>"></script>
-
-
 
     <!-- Stylesheets -->
         <?= link_tag('assets/css/all.css') ?>
@@ -35,8 +28,6 @@
 <!-- offline file bootstrap js -->
 <script type="text/javascript" src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
 
-
-
 <!-- offline file bootstrap js -->
 <script type="text/javascript" src="<?= base_url('assets/js/jquery-3.3.1.slim.min.js') ?>"></script>
 
@@ -45,8 +36,6 @@
 
 
  <script type="text/javascript" src="<?= base_url('assets/js/ems.js') ?>"></script>
-
-
 
 <!-- for datatable -->
 <!-- offline datatables css -->
@@ -70,6 +59,14 @@
         <a class="nav-link" href="<?= site_url('employee/leave_form'); ?>">
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Request Leave
+        </a>
+      </li> 
+
+      <!-- substitute leave add -->
+       <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('employee/substitute_leave_form'); ?>">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          Add Substitute Leave
         </a>
       </li> 
     </ul>

@@ -1111,23 +1111,28 @@ function showresponse(formname,status,msg)
   // add PAN
   function addPan()
   {
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addPan',true);
-          var data = new FormData();
-          data.append('pan',document.getElementById('pan').value);
-          xmlHttp.send(data);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addPan',true);
+    var data = new FormData();
+    data.append('pan',document.getElementById('pan').value);
+    xmlHttp.send(data);
 
-         xmlHttp.onreadystatechange = function()
+   xmlHttp.onreadystatechange = function()
+   {
+        if(xmlHttp.readyState==4)
+        {
+          var status = xmlHttp.responseText;
+            var id=JSON.parse(status);
+          if(id=="errorPan")
           {
-              if(xmlHttp.readyState==4)
-              {
-                var status = xmlHttp.responseText;
-                if(JSON.parse(status)=='true'){  showSuccessmessage('panbutton');}
-                // else
-                //   showErrormessage('Enter PAN', 'panbutton');
-                showresponse('pan-form',status,'Updated Successfully');
-              }
+            msg="Invalid Pan Number";
+            showErrormessage('Enter proper format','panbutton');
+           return ;
           }
+          if(JSON.parse(status)=='true'){  showSuccessmessage('panbutton');}
+          showresponse('pan-form',status,'Updated Successfully');
+        }
+    }
   }
 
   //to add personal details
@@ -1668,12 +1673,14 @@ function assign()
   {
   var leave_name=document.getElementById('leave_name').value;
   var leave_id=document.getElementById('leave_id').value;
+  var is_one_day= document.getElementById('is_one_day').checked;
   if(leave_name=='')
   {
-     msg="Enter leave name";
+     msg="Enter leave name  ";
      $('#messagediv').addClass('alert-danger');
      $('#messagediv').css('display','block');
     $('#showmessage').html(msg); 
+
     return 0;
   }
   else
@@ -1683,6 +1690,7 @@ function assign()
     var data = new FormData();
     data.append('leave_name',leave_name);
     data.append('leave_id',leave_id);
+    data.append('is_one_day',is_one_day);
     xmlHttp.send(data);
 
     xmlHttp.onreadystatechange = function()
@@ -1715,8 +1723,6 @@ function assign()
         $( "#leavetable" ).load(window.location.href + " #leave" );
         $( "#formdiv" ).load(window.location.href + " #package-form" );
         $( "#packagetable" ).load(window.location.href + " #package" );
-
-
         $('#leave_id').val('');
         $('#leave_name').val('');
 

@@ -34,7 +34,7 @@
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
-     <!-- show name above the progress bar and DONE button added -->
+     <!--  DONE button added -->
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
 
@@ -156,7 +156,7 @@
      <!-- row  ends -->
 
            <!-- row 3 -->
-           <div class="row col-md-12">
+      <div class="row col-md-12">
          <!--  mixed personal info in the general tab-->
           <div class="form-group" style="padding-left : 0; margin-bottom: 0; width: 10%;">
             <div class="form-div">
@@ -224,7 +224,7 @@
     </div>
           </div>
           </div>
-          <!-- row 2 ending -->
+          <!-- row 3 ending -->
 
           <!-- email starts -->
           <div class="form-div">

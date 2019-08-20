@@ -1004,19 +1004,30 @@ public function employeeManage($id = NULL)
 			$status=$this->form_validation->error_array();
 		}else
 		{
-			$data=array(
-				'pan'=>$pan
-			);	
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
+			if($this->numberonly($pan)==true)
+			{
 
-			$this->Admin_model->update_employee($data,$id);
-			$status=array('true');
+				$data=array(
+					'pan'=>$pan
+				);	
+						if(isset($_SESSION['current_employee_id'])){
+							$id=$_SESSION['current_employee_id'];
+						}
+						else{
+							$id=$_SESSION['user_id'];
+						}
 
+				$this->Admin_model->update_employee($data,$id);
+				$status=array('true');
+
+			}
+			else
+			{
+				$msg="errorPan";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
 		}
 
 		echo json_encode($status);
@@ -1183,9 +1194,16 @@ function deleteWorkExp(){
 		{
 		$_POST = $this->security->xss_clean($_POST);
 
+			$is_one_day_val='0';
 			extract($_POST);
+			if($is_one_day=='true')
+			{
+				$is_one_day_val='1';
+			}
+			
 			$data=[
 				'leave_name'=>$leave_name,
+				'is_one_day'=>$is_one_day_val,
 				'created_by'=>$_SESSION['user_id']
 			];
 
@@ -1201,10 +1219,16 @@ function deleteWorkExp(){
 				}
 
 				else echo "already";
-				}			
+			}			
 			else{
+				$is_one_day_val='0';
+				if($is_one_day=='true')
+				{
+					$is_one_day_val='1';
+				}
 				$data=[
 					'leave_name'=>$leave_name,
+					'is_one_day'=>$is_one_day_val,
 					'created_by'=>$_SESSION['user_id'],
 					'leave_id'=>$leave_id
 				];
@@ -1452,7 +1476,7 @@ public function textOnly($text)
 // checking input types number
 public function numberonly($text)
 {
-	if (preg_match('/^[[0-9\s .]+\s+$/',$text ))
+	if (preg_match('/^[0-9]+$/',$text ))
 		return true;
 	else
 		return false;
