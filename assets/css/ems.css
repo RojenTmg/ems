@@ -43,6 +43,51 @@
   background: #f2f2f2;
 }
 
+/*---------------- Auto-suggestion on Temporary-District Address tab (employee-manage)s ----------------*/
+
+.autocompleteDistrict {
+  position: relative;
+  width: 449px;
+}
+.autocompleteDistrict .closeDistrict {
+  position: absolute;
+  font-size: 13px;
+  z-index: 10;
+  top: 10px;
+  left: calc(100% - 50px);
+  color: #aaa;
+  cursor: pointer;
+  display: none;
+}
+.autocompleteDistrict .closeDistrict.visible {
+  display: block;
+}
+.dialogDistrict {
+  width: 100%;
+  position: absolute;
+  z-index: 99;
+  display: none;
+  min-height: 0;
+  max-height: 330px;
+  overflow: scroll;
+  border-top: 1px solid #f4f4f4;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+.dialogDistrict.openDistrict {
+  display: block;
+  
+}
+.dialogDistrict div {
+  padding: 10px 5px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dialogDistrict div:hover {
+  background: #f2f2f2;
+}
+
 
 /*---------------- Auto-suggestion on State Address tab (employee-manage)s ----------------*/
 

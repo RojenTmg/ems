@@ -306,9 +306,7 @@
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
             <input type="text" id="currentaddress_street" value="<?php if(isset($post['t_street'])) echo $post['t_street']; ?>" placeholder="Street" class="form-group col-md-3">
             <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['t_municipality'])) echo $post['t_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3">
-
-              <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
+             <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
               <option value="Province 1" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 1') { echo "selected"; }} ?>>Province 1</option>
               <option value="Province 2" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 2') { echo "selected"; }} ?>>Province 2</option>
               <option value="Province 3" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 3') { echo "selected"; }} ?>>Province 3</option>
@@ -316,8 +314,14 @@
               <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
               <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
               <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7') { echo "selected"; }} ?>>Province 7</option>
-
             </select>
+
+             <!-- Auto-complete district -->
+             <div class="autocompleteDistrict" class="col-md-3">
+               <input type="text" placeholder="District" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" style="width: 100%;">
+               <!-- <span class="closeDistrict">Cancel</span> -->
+               <div class="dialogDistrict"></div>
+             </div>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
@@ -796,6 +800,76 @@
 
 <script type="text/javascript">
 
+////////////////////  Auto-suggestion on Temporary-District Address tab (employee-manage) /////////////////////
+
+var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+
+
+function initDialogDistrict() {
+  clearDialogDistrict();
+  for (var i = 0; i < country.length; i++) {
+    $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+  }
+}
+
+function clearDialogDistrict() {
+  $('.dialogDistrict').empty();
+}
+
+var alreadyFilledDistrict = false;
+
+function openDialogDistrict() {
+  $('.autocompleteDistrict').append('<div class="dialogDistrict"></div>');
+  $('.autocompleteDistrict input').click(function() {
+    if (!alreadyFilledDistrict) {
+      $('.dialogDistrict').addClass('openDistrict');
+    }
+  });
+
+  $('body').on('click', '.dialogDistrict > div', function() {
+    $('.autocompleteDistrict input').val($(this).text()).focus();
+    $('.autocompleteDistrict .closeDistrict').addClass('visible');
+    alreadyFilledDistrict = true;
+  });
+
+  $('.autocompleteDistrict .closeDistrict').click(function() {
+    alreadyFilledDistrict = false;
+    $('.dialogDistrict').addClass('openDistrict');
+    $('.autocompleteDistrict input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialogDistrict();
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteDistrict input').on('input', function() {
+    $('.dialogDistrict').addClass('openDistrict');
+    alreadyFilledDistrict = false;
+    match($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .close")) {
+  //     $('.dialog').removeClass('open');
+  //   }
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogDistrict();
+}
+openDialogDistrict();
+
+
+
+
 
 
 ////////////////////  Auto-suggestion on State Address tab (employee-manage) /////////////////////
@@ -886,7 +960,6 @@ function clearDialog() {
 }
 
 var alreadyFilled = false;
-var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
 
 function openDialog() {
   $('.autocomplete').append('<div class="dialog"></div>');
@@ -931,6 +1004,9 @@ function openDialog() {
     }
     if (!$(e.target).is("input, .closeState")) {
       $('.dialogState').removeClass('openState');
+    }
+     if (!$(e.target).is("input, .closeDistrict")) {
+      $('.dialogDistrict').removeClass('openDistrict');
     }
   });
   initDialog();
