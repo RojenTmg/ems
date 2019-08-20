@@ -31,11 +31,138 @@
           </div>
         
         <?php } } ?>
-
-         
- 
-
     </div>
+
+    <!-- SUBSTITUTE LEAVE REQUESTS -->
+    <!-- check if the user is recommender or not -->
+<?php  if ($_SESSION['is_recommender'] == 1) { ?>
+  <!-- SUBSTITUTE LISTS  -->
+  <div class="con-head">
+  <h4>Susbtitute Leave Requests Lists</h4>
+  </div>
+  <div>
+ <div class="sp-btn  ml-2">
+    <div class="emp-link">
+      <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
+      <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
+  </div>
+   <div class="lists">
+  <div class="box"  id="liststab">
+  <div class="box-head">
+ 
+  </div>
+
+    <!-- area to show success and erorr messages -->
+    <div class="ml-3  alert alert-success alert-dismissible fade show" style="display: none;" id="messagediv">
+      <p id="showmessage"></p>
+      <button type="button" class="close" >&times;</button>
+    </div>
+    <!-- area finishes here -->
+
+   
+  <div class="box-body" style="overflow-x:auto;">
+
+  <table class="table table-bordered hover employee_table" id="datatable-recommender" >
+  <thead >
+  <tr>
+  <th id="dt-head" width="20%"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th  id="dt-head" width="15%"><div class="sp-btn"><span>Performed for</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" >Status</th>
+  <th id="dt-head" width="15%" class="text-center;"  >Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <?php
+  foreach ($recommendations as $posts) { ?>
+  <tr>
+  <td><?php echo $posts['first_name'].' '.$posts['middle_name']. ' '.$posts['last_name']  ; ?></td>
+  <td><?php echo $posts['from_date']; ?></td>
+  <td><?php echo $posts['to_date']; ?></td>
+
+  <td><?php foreach ($duty_by as $key) {
+  if($key['emp_id']==$posts['duty_performed_by'])
+  {
+  echo $key['first_name'].' '.$key['middle_name']. ' '. $key['last_name']; 
+  } }?></td>
+
+  <td><?php if($posts['is_recommended']=='pending'){?> <span class="pending">Pending</span> <?php } if($posts['is_recommended']=='recommended') {?><span class="granted">Recommended </span><?php } if($posts['is_recommended']=='denied') { ?><span class="denied">Denied </span> </td>
+  <?php } ?>
+
+  <td> 
+  <?php if($posts['is_recommended']=='pending') {?>
+    
+  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
+    <i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $posts['id']; ?>"></i>
+      <div class="tooltiptext">
+        <p>Are you sure?</p>
+        <span class="tip-can">Cancel</span>
+        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Recommend</span>
+        </div>
+  </button> 
+
+   
+    <button type="button" class="btn-edit" data-toggle="modal" data-target="#denySubstituteLeave<?php  echo $posts['id']; ?>">  <i class="fa fa-ban " aria-hidden="true" style="color: #dc3545;"></i> </button>
+  <?php } else { ?>
+
+    <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+  <?php } ?>
+
+
+<!-- delete Modal -->
+<div class="modal fade" id="denySubstituteLeave<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deny?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btn<?php echo $posts['id']; ?>" onclick="denyLeaveFromRecommender(this,<?php echo $posts['id']; ?>)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal ends -->
+
+  <!-- modal for archive Recommend requests -->
+  <div class="modal fade" id="deleteRecommendrequests<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveRecommendRecord(<?php echo $posts['id']; ?>)">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- modal for archive Recommend requests ends here -->
+  </td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<?php } ?>
+<!-- SUBSTITUTE LISTS END HERE -->
+
+
+
 <!-- check if the user is recommender or not -->
 <?php  if ($_SESSION['is_recommender'] == 1) { ?>
   <!-- RECOMMENDATION LISTS  -->

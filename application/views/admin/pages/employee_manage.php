@@ -34,7 +34,7 @@
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
-     <!-- show name above the progress bar and DONE button added -->
+     <!--  DONE button added -->
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
 
@@ -156,7 +156,7 @@
      <!-- row  ends -->
 
            <!-- row 3 -->
-           <div class="row col-md-12">
+      <div class="row col-md-12">
          <!--  mixed personal info in the general tab-->
           <div class="form-group" style="padding-left : 0; margin-bottom: 0; width: 10%;">
             <div class="form-div">
@@ -224,7 +224,7 @@
     </div>
           </div>
           </div>
-          <!-- row 2 ending -->
+          <!-- row 3 ending -->
 
           <!-- email starts -->
           <div class="form-div">
@@ -275,8 +275,11 @@
                <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
                 <?php 
-                require 'assets/addresses/country_list.php';
-                ?>
+                 $country_array = array("Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Barbuda", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Trty.", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Caicos Islands", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Futuna Islands", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard", "Herzegovina", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Jan Mayen Islands", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea", "Korea (Democratic)", "Kuwait", "Kyrgyzstan", "Lao", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "McDonald Islands", "Mexico", "Micronesia", "Miquelon", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "Nevis", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestinian Territory, Occupied", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Principe", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthelemy", "Saint Helena", "Saint Kitts", "Saint Lucia", "Saint Martin (French part)", "Saint Pierre", "Saint Vincent", "Samoa", "San Marino", "Sao Tome", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Sandwich Islands", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "The Grenadines", "Timor-Leste", "Tobago", "Togo", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Turks Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "US Minor Outlying Islands", "Uzbekistan", "Vanuatu", "Vatican City State", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (US)", "Wallis", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
+                 foreach ($country_array as $country_name) {?>
+                    <option value="<?php echo $country_name; ?>" <?php if (isset($post['p_country'])){ if($post['p_country']==$country_name) echo "selected";} else {
+                      if($country_name=='Nepal') echo "selected"; } ?>><?php echo $country_name; ?></option>
+               <?php  }  ?>
               </select>
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
@@ -306,9 +309,7 @@
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
             <input type="text" id="currentaddress_street" value="<?php if(isset($post['t_street'])) echo $post['t_street']; ?>" placeholder="Street" class="form-group col-md-3">
             <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['t_municipality'])) echo $post['t_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3">
-
-              <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
+             <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
               <option value="Province 1" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 1') { echo "selected"; }} ?>>Province 1</option>
               <option value="Province 2" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 2') { echo "selected"; }} ?>>Province 2</option>
               <option value="Province 3" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 3') { echo "selected"; }} ?>>Province 3</option>
@@ -316,8 +317,14 @@
               <option value="Province 5" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 5') { echo "selected"; }} ?>>Province 5</option>
               <option value="Province 6" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 6') { echo "selected"; }} ?>>Province 6</option>
               <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7') { echo "selected"; }} ?>>Province 7</option>
-
             </select>
+
+             <!-- Auto-complete district -->
+             <div class="autocompleteDistrict" class="col-md-3">
+               <input type="text" placeholder="District" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" style="width: 100%;">
+               <!-- <span class="closeDistrict">Cancel</span> -->
+               <div class="dialogDistrict"></div>
+             </div>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
@@ -802,6 +809,76 @@
 
 <script type="text/javascript">
 
+////////////////////  Auto-suggestion on Temporary-District Address tab (employee-manage) /////////////////////
+
+var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+
+
+function initDialogDistrict() {
+  clearDialogDistrict();
+  for (var i = 0; i < country.length; i++) {
+    $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+  }
+}
+
+function clearDialogDistrict() {
+  $('.dialogDistrict').empty();
+}
+
+var alreadyFilledDistrict = false;
+
+function openDialogDistrict() {
+  $('.autocompleteDistrict').append('<div class="dialogDistrict"></div>');
+  $('.autocompleteDistrict input').click(function() {
+    if (!alreadyFilledDistrict) {
+      $('.dialogDistrict').addClass('openDistrict');
+    }
+  });
+
+  $('body').on('click', '.dialogDistrict > div', function() {
+    $('.autocompleteDistrict input').val($(this).text()).focus();
+    $('.autocompleteDistrict .closeDistrict').addClass('visible');
+    alreadyFilledDistrict = true;
+  });
+
+  $('.autocompleteDistrict .closeDistrict').click(function() {
+    alreadyFilledDistrict = false;
+    $('.dialogDistrict').addClass('openDistrict');
+    $('.autocompleteDistrict input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialogDistrict();
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteDistrict input').on('input', function() {
+    $('.dialogDistrict').addClass('openDistrict');
+    alreadyFilledDistrict = false;
+    match($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .close")) {
+  //     $('.dialog').removeClass('open');
+  //   }
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogDistrict();
+}
+openDialogDistrict();
+
+
+
+
 
 
 ////////////////////  Auto-suggestion on State Address tab (employee-manage) /////////////////////
@@ -892,7 +969,6 @@ function clearDialog() {
 }
 
 var alreadyFilled = false;
-var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
 
 function openDialog() {
   $('.autocomplete').append('<div class="dialog"></div>');
@@ -937,6 +1013,9 @@ function openDialog() {
     }
     if (!$(e.target).is("input, .closeState")) {
       $('.dialogState').removeClass('openState');
+    }
+     if (!$(e.target).is("input, .closeDistrict")) {
+      $('.dialogDistrict').removeClass('openDistrict');
     }
   });
   initDialog();
