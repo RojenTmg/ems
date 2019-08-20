@@ -749,10 +749,11 @@ function showresponse(formname,status,msg)
         for(var l in JSONObject)
         { 
            if(elements[k].id==l && l!="true")
-           {
+          {
             // red color for border error
             document.getElementById(l).style.borderColor="#dc3545";
-            showErrormessage2('Form required',l);           }
+            showErrormessage2('Please fill in the field',l); 
+          }
         }
 // once the data is inserted, the red border disappears
         if(check)
@@ -2254,6 +2255,6 @@ function assignRecTemp(id){
      $('#'+id).notify(msg,{position:"right",className:'error',autoHide:'false',autoHideDelay: 150000000});
   }
   function showErrormessage2(msg,id) {
-     $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 5000});
+     $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 15000});
   }
 
