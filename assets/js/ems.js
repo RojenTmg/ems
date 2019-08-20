@@ -198,6 +198,7 @@ function displayFunctionType() {
 
 ////////////////////  Notification Messages /////////////////////
 $(document).ready(function(){
+    // clears web browser cache and prevents from auto filling the input field
     $("form :input").attr("autocomplete", "off");
     $('.arch-msg').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $('.arch-msg-div .arch-msg').remove(); });
 });
