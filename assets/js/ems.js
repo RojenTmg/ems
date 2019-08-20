@@ -1294,44 +1294,88 @@ if(error){
  return ;
 }
 
+var controllerError= "false";
+var counter = 0;
+
+
+  for(var i=0; i<organization .length; i++){
+    if(controllerError=="true") break;
+    if(from_date[i].disabled||to_date[i].disabled||organization[i].disabled||responsibility[i].disabled||position[i].disabled||contact_person_number[i].disabled){
+      continue;
+    }
+    else{
+      ++counter;
+    }
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','addWork',true);
+          var data = new FormData();
+          data.append('rowId',i);
+          data.append('from_date',from_date[i].value);
+          data.append('to_date',to_date[i].value);
+          data.append('organization',organization[i].value.trim());
+          data.append('responsibility',responsibility[i].value.trim());
+          data.append('position',position[i].value.trim());
+          data.append('contact_person_number',contact_person_number[i].value.trim());
+          xmlHttp.send(data);
+
+     xmlHttp.onreadystatechange = function()
+              {
+                  if(xmlHttp.readyState==4){
+                      var error=xmlHttp.responseText;
+                      if(error=="true"){
+                        controllerError="true";
+                      }
+
+                    }
+
+              }
+  } 
+
+if(controllerError=="false")  {
+  if(counter==1)
+  $('#submitExp').notify('Experience added successfully',{position:'right middle',className:'success'});
+  else
+  $('#submitExp').notify(counter+' experiences added successfully.',{position:'right middle',className:'success'});
+}
+else{
+    $('#submitExp').notify('Unable to add. Please try again.',{position:'right middle'});
+
+}
+    $( "#main-work" ).load(window.location.href + " #expTables" );
+
+
+
 }
 
-// function addExperience(){
-//   var exp= document.getElementById('experience');
-//    var xmlHttp = new XMLHttpRequest();
-//          xmlHttp.open('POST','addWork',true);
-//           var data = new FormData();
-//           data.append('experience',exp.value);
-//            xmlHttp.send(data);
 
-//             xmlHttp.onreadystatechange = function()
-//             {
-//                 if(xmlHttp.readyState==4){
-//                   var status=xmlHttp.responseText;
 
-//                 if(status=="error"){
-//                   $("#experience").notify("Please fill the text area",{position:"bottom left"});
-//                 }
-//                if(status=="success"){
-//                   exp.value='';
-//                    $("#expModel").css('display','none');
-//                    $("#expModel").css('aria-hidden','true');
-//                    $("#expModel").css('aria-modal','false');
-//                    $('.modal-backdrop').remove();
-//                    $('body').removeClass('modal-open');
 
-//                   $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
+function deleteExp(value) {
+ var id = parseInt(value, 10);
+       var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','deleteWorkExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
 
-                 
-//                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                var status= xmlHttp.responseText;
+                if(status=="success"){
+                $('#submitExp').notify('Experience Deleted successfully.',{position:'right middle',className:'success'});
+                   $( "#main-work" ).load(window.location.href + " #expTables" );
+                }
+                else{
+                $('#submitExp').notify('Unable to delete.',{position:'right middle',className:'error'});
+                 $( "#main-work" ).load(window.location.href + " #expTables" );
 
-//                 }
-//               }
-//               }      
+                }
+              }
+              check_complete();
+            }
 
-//       check_complete();
-// }
-
+}
 function editExperience(id){
   var textarea = 'experience'+id;
   var idtextarea='#'+textarea;
@@ -1369,33 +1413,6 @@ function editExperience(id){
               }    
               check_complete();  
       
-}
-
-function deleteExp(value) {
- var id = parseInt(value, 10);
-       var xmlHttp = new XMLHttpRequest();
-         xmlHttp.open('POST','deleteWorkExp',true);
-          var data = new FormData();
-          data.append('id',id);
-           xmlHttp.send(data);
-
-            xmlHttp.onreadystatechange = function()
-            {
-              if(xmlHttp.readyState==4){
-                var status= xmlHttp.responseText;
-                if(status=="success"){
-                  $("#experiencelist").notify("Experience Deleted",{className:'success',position:"top"});
-                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
-                }
-                else{
-                   $.notify("Unable to Delete", "warn");
-                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
-
-                }
-              }
-              check_complete();
-            }
-
 }
 
 function confirmAction (value, ele, message, action ) {
@@ -2256,3 +2273,56 @@ function assignRecTemp(id){
      $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 5000});
   }
 
+
+
+ $('#expTables').on('click', 'i.newExp', function(e){
+   $(this).closest('tr').remove()
+})
+
+
+function confirmExpDel(id='',value=''){
+                  var h5 = $("<p/>").append("Are you sure?");
+$.notify.addStyle('foo', {
+  html: 
+    "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
+          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
+
+//listen for click events from this style
+$(document).on('click', '.notifyjs-foo-base .no', function() {
+  //no function
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-foo-base .yes', function() {
+  // yes function
+
+//start of deleting experience
+console.log('start del for '+value);
+  deleteExp(value); 
+  console.log('end del');
+// end of deleting experience
+
+    $(this).closest("tr").remove();       
+        counter -= 1;
+  //hide notification
+  $(this).trigger('notify-hide');
+});
+                  $('#'+id).notify({
+                  title: h5,
+                  button: 'YES'
+                  }, { 
+                  style: 'foo',
+                  autoHide: false,
+                  clickToHide: false,
+                  position:'left middle ',
+                  });
+
+                }
+            
