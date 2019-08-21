@@ -50,7 +50,6 @@
  <script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js') ?>"></script>
 
 <link rel="stylesheet" href="<?= base_url('assets/css/fstdropdown.css') ?> ">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 
 <!-- jsgrid start -->
