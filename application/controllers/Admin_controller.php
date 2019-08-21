@@ -1036,6 +1036,7 @@ public function employeeManage($id = NULL)
 
 
 function getWork(){
+	$this->db->where('emp_id',$_SESSION['current_employee_id']);
 	$res=$this->db->get('employee_work_experience');
 	$result= $res->result_array();
 	foreach($result as $row)
