@@ -1039,7 +1039,7 @@ function getWork(){
 	$this->db->where('emp_id',$_SESSION['current_employee_id']);
 	$res=$this->db->get('employee_work_experience');
 	$result= $res->result_array();
-	foreach($result as $row)
+	foreach(array_reverse($result) as $row)
 		 {
 		  $output[] = array(
 		   'id'    => $row['id'],   
@@ -1060,6 +1060,7 @@ function getWork(){
 // for work experience
 function addWork(){
 	extract($_POST);
+
 		$data=[
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
@@ -1070,6 +1071,7 @@ function addWork(){
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
 		$this->Admin_model->insert('employee_work_experience',$data);
+		return;
 	
 }
 
@@ -1079,30 +1081,26 @@ function delWork(){
 	$this->db->delete('employee_work_experience');
 }
 
-
+// for work experience
 function editWork(){
-	extract($_POST);
-$experience = trim($experience);
+	extract($_PUT);
 
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
-		$timestamp = date('Y-m-d G:i:s');
 		$data=[
-			'experience'=>$experience,
-			'emp_id'=>$_SESSION['current_employee_id'],
-			'id'=>$id,
-			'modified_date'=>$timestamp
+			'from_date'=>$from_date,
+			'to_date'=>$to_date,
+			'organization'=>$organization,
+			'responsibility'=>$responsibility,
+			'position'=>$position,
+			'contact_person_number'=>$contact_person_number,
+			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		$this->db->where('id',$id);
-		if($this->db->update('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
-		return ;
-	}
+		
+		$this->db->where('id',$_PUT['id']);
+		$this->Admin_model->update('employee_work_experience',$data);
+		return;
+	
 }
+
 
 function checkExp(){
 	if(isset($_SESSION['current_employee_id']))

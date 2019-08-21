@@ -1067,41 +1067,47 @@ function checkRelation(ele,val)
 
 <!-- script for workexperience table -->
 <script>
+  
 
-$(function() {
+
+
+var MyDateField = function(config) {
+    jsGrid.Field.call(this, config);
+};
  
-    var MyDateField = function(config) {
-        jsGrid.Field.call(this, config);
-    };
+MyDateField.prototype = new jsGrid.Field({
  
-    MyDateField.prototype = new jsGrid.Field({
-        sorter: function(date1, date2) {
-            return new Date(date1) - new Date(date2);
-        },
+    align: "center",              // redefine general property 'align'
  
-        itemTemplate: function(value) {
-            return new Date(value).toDateString();
-        },
  
-        insertTemplate: function(value) {
-            return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-        },
+    sorter: function(date1, date2) {
+        return new Date(date1) - new Date(date2);
+    },
  
-        editTemplate: function(value) {
-            return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-        },
+    itemTemplate: function(value) {
+        return new Date(value).toDateString();
+    },
  
-        insertValue: function() {
-            return this._insertPicker.datepicker("getDate").toISOString();
-        },
+    insertTemplate: function(value) {
+        return this._insertPicker = $("<input type='date' value='<?php echo Date('Y-m-d');?>'   >");
+    },
  
-        editValue: function() {
-            return this._editPicker.datepicker("getDate").toISOString();
-        }
-    });
+    editTemplate: function(value) {
+        return this._editPicker = $("<input type='date' value="+value+" >");
+    },
  
-    jsGrid.fields.myDateField = MyDateField;
+    insertValue: function() {
+     return this._insertPicker[0].value;
+    },
  
+    editValue: function() {
+    return this._editPicker[0].value;
+    }
+});
+ 
+jsGrid.fields.date = MyDateField;
+
+
     $('#grid_table').jsGrid({
 
      width: "100%",
@@ -1146,6 +1152,7 @@ $(function() {
       },
       updateItem: function(item){
        return $.ajax({
+        type:"PUT",
        url: "<?php echo base_url('admin/editWork');?>",
         data: item
        });
@@ -1180,17 +1187,15 @@ $(function() {
       },
       {
        name: "from_date", 
-    type: "text", 
-    validate:"required"   
+    type: "date", 
       },
       {
        name: "to_date", 
-    type: "text", 
-    validate:"required"   
+    type: "date", 
       },
       {
        name: "contact_person_number", 
-    type: "text", 
+    type: "number", 
     validate:"required"   
       },
       
@@ -1202,7 +1207,7 @@ $(function() {
 
     });
 
-});
+
 </script>
 
 <!-- script for exp table ends here -->

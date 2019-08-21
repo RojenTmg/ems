@@ -31,6 +31,7 @@ $route['admin/addPan'] = 'Admin_controller/addPan';
 $route['admin/addWork'] = 'Admin_controller/addWork';
 $route['admin/getWork'] = 'Admin_controller/getWork';
 $route['admin/delWork'] = 'Admin_controller/delWork';
+$route['admin/editWork'] = 'Admin_controller/editWork';
 
 
 $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
