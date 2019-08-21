@@ -176,4 +176,24 @@
 			$query = $this->db->get('packages'); 
 			return $query->result_array();
  			}
+
+ 		// check leave on Friday by an Employee
+ 		public function findLeaveOnFri($emp_id, $date) 
+		{
+			if ($this->db->query("SELECT * from employee_leaves WHERE (emp_id = $emp_id AND from_date = '".$date."' AND is_approved = 'approved' AND duration_type != 'half') OR (emp_id = $emp_id AND to_date = '".$date."' AND is_approved = 'approved' AND duration_type != 'half')")->num_rows() >= 1) { 
+				return TRUE;
+			} else {
+				return FALSE;
+			}
+		}
+
+		// public function find($table, $field, $id) 
+		// {
+		// 	if ($this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->num_rows() > 1) {
+		// 		return $this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->result_array();
+		// 	}
+		// 	else {
+		// 		return $this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->row_array();				
+		// 	}
+		// }
 	}

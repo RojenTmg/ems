@@ -2069,7 +2069,6 @@ function denyLeaveFromRecommender(btn,id)
 // approve leave by approver
 
 function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
-
 {
   // var parent = btn.parentElement;
   // var gparent = parent.parentElement;

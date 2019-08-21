@@ -225,6 +225,26 @@ function checkExp(){
 
 				$data['valid'] = TRUE; 
 
+				// Testing day
+				// echo $leave['from_date'] . ' + ' . date("D", strtotime(date("Y-m-d", strtotime($leave['from_date'] . ' -2 days')))); die();
+				// // if ($leave['from_date'] - 3 ) {
+				// // }				
+
+				// var_dump($this->db->query('SELECT * from employee_leaves WHERE (emp_id = 278 AND from_date = "2019-08-23" AND duration_type != "half") OR (emp_id = 278 AND to_date = "2019-08-23"  AND duration_type != "half")')->num_rows()); die();
+
+				// $data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', 291);
+				
+				// foreach ($data['leave_by_emp'] as $lbe) {
+				// 	$from_date = $lbe['from_date'];
+				// 	$emp_id = $lbe['emp_id'];
+				// }
+				// echo $from_date. ' ' . $emp_id; die();
+
+				// echo  date("Y-m-d", strtotime("2019-08-25" . ' -2 days'));
+				// echo $this->Employee_model->findLeaveOnFri(278, date("Y-m-d", strtotime("2019-08-25" . ' -2 days'))); die();
+
+
+
 				// sending email to employee who requested leave
 				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
 				$message="Your ".$leavename." from ".$leave['from_date']. " has been sent for processing.";
@@ -272,7 +292,6 @@ function checkExp(){
 			
 			extract($_POST);
 			
-
 			$data=array('is_recommended'=>'recommended','recommender_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$l_id);
 			$this->db->update('employee_leaves',$data);
@@ -461,16 +480,7 @@ function checkExp(){
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $e_id, 'leave_id =' => $leave_id))->row_array();
 
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
-			
-			// if employee request leave for Friday and Sunday separately then, Saturday is also counted as a leave within a single week
-			if (date("D", strtotime($leave['from_date'])) == 'Sun') {
-				// echo date("D", strtotime($leave['from_date'])) . ' ' . date("D", strtotime(date("Y-m-d")));die();
-				// print_r($this->Employee_model->findAllLeaves($_SESSION['user_id'])); die();	
-
-			}
-
-
-
+		
 			if ($d_type == 'half') {
 				$leaveBalance =  $remaining_days['elb_remain_days'] - 0.5;
 			}
@@ -480,9 +490,23 @@ function checkExp(){
 			else if ($d_type == 'multiple') {
 				$leaveBalance =  $remaining_days['elb_remain_days'] - $no_of_days;
 			}
+			
+
+			foreach ($data['leave_by_emp'] as $lbe) {
+				$from_date = $lbe['from_date'];
+				$emp_id = $lbe['emp_id'];
+			}
+
+			// if employee request leave for Friday and Sunday separately then, Saturday is also counted as a leave within a single week
+			if (date("D", strtotime($from_date)) == 'Sun') {
+				if ($this->Employee_model->findLeaveOnFri(278, date("Y-m-d", strtotime("2019-08-25" . ' -2 days'))) == TRUE) { 
+				 	// $this->Employee_model->leaveApprove($id, $emp_id, $leave_id, 22);
+					$leaveBalance =  $leaveBalance - 1;
+				}
+			}
+
 				
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
-			// $this->Employee_model->leaveApprove(2, 278, 39, 5.5);
 
 			// send email to leave requester
 			$this->db->where('leave_id',$leave_id);
