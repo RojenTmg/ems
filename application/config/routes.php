@@ -29,6 +29,10 @@ $route['admin/addEmergency'] = 'Admin_controller/addEmergency';
 $route['admin/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/addPan'] = 'Admin_controller/addPan';
 $route['admin/addWork'] = 'Admin_controller/addWork';
+$route['admin/getWork'] = 'Admin_controller/getWork';
+$route['admin/delWork'] = 'Admin_controller/delWork';
+
+
 $route['admin/addPersonalInformation'] = 'Admin_controller/addPersonalInformation';
 $route['admin/progressBar'] = 'Admin_controller/progressBar';
 $route['admin/addAddress'] = 'Admin_controller/addAddress';

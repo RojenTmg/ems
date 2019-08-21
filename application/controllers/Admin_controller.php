@@ -1035,50 +1035,30 @@ public function employeeManage($id = NULL)
 	}
 
 
+function getWork(){
+	$res=$this->db->get('employee_work_experience');
+	$result= $res->result_array();
+	foreach($result as $row)
+		 {
+		  $output[] = array(
+		   'id'    => $row['id'],   
+		   'organization'  => $row['organization'],
+		   'responsibility'   => $row['responsibility'],
+		   'position'    => $row['position'],
+		   'from_date'   => $row['from_date'],
+		   'to_date'   => $row['to_date'],
+		   'contact_person_number'   => $row['contact_person_number']
+		  );
+		 }
+
+	 header("Content-Type: application/json");
+	 echo json_encode($output);		
+	 return ;
+}
 
 // for work experience
 function addWork(){
 	extract($_POST);
-
-	$formError=false;
-	$error=[];
-
-	if(!$this->validateDate($from_date)){
-		array_push($error,"from_date[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->validateDate($to_date)){
-		array_push($error,"to_date[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($organization)){
-		array_push($error,"organization[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($responsibility)){
-		array_push($error,"responsibility[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($position)){
-		array_push($error,"position[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->contactNumber($contact_person_number)){
-		array_push($error,"contact_person_number[$rowId]");
-		$formError=true;
-
-	}
-	if($formError){
-		echo json_encode($error);
-		return;
-	}
-
-	
 		$data=[
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
@@ -1088,12 +1068,16 @@ function addWork(){
 			'contact_person_number'=>$contact_person_number,
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		if($this->Admin_model->insert('employee_work_experience',$data))
-		echo "false";
-		else echo "true";
-		return ;
+		$this->Admin_model->insert('employee_work_experience',$data);
 	
 }
+
+function delWork(){
+	parse_str(file_get_contents("php://input"), $_DELETE);
+	$this->db->where('id',$_DELETE['id']);
+	$this->db->delete('employee_work_experience');
+}
+
 
 function editWork(){
 	extract($_POST);

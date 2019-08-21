@@ -641,62 +641,9 @@
 
 <div class="container-fluid" id="main-work">
 
-
-    <table id="expTables" class=" table order-list">
-      
-    <thead>
-        <tr class="row">
-            <td class="col">Organization</td>
-            <td class="col">Responsibility</td>
-            <td class="col">Postition</td>
-            <td class="col">From</td>
-            <td class="col">To</td>
-            <td class="col">Contact Person Number</td>
-            <td class="col-sm-1">Action</td>
-        </tr>
-    </thead>
-      <tbody>
-        <?php  $counter=0;
-        foreach ($work_experience as $exp) {?>
-     
-        <tr class='row' id='exp<?php echo $exp['id'];?>'>
-        
-        <td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>
-
-        <td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>
-
-        <td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>
-
-         <td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> 
-
-       </tr>
-
-    
-
-     <?php } ?>
-
-      </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="7" style="text-align: left;" >
-               <center>  <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
-                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> </center>
-
-                
-            </td>
-        </tr>
-        <tr>
-        </tr>
-    </tfoot>
-
-</table>
+<div class="table-responsive">  
+    <div id="grid_table"></div>
+   </div>  
 
 
 </div>
@@ -1120,36 +1067,108 @@ function checkRelation(ele,val)
 
 <!-- script for workexperience table -->
 <script>
-$(document).ready(function () {
+
+
+ 
+    $('#grid_table').jsGrid({
+
+     width: "100%",
+     height: "auto",
+     inserting:true,
+     editing: true,
+     sorting: true,
+     paging: true,
+     autoload: true,
+     pageSize: 10,
+     pageButtonCount: 3,
+  deleteConfirm: "Are you sure to remove work experience?",
+
+  // function(item){
+  //     alertify.confirm("Do you want to delete this work experience?",
+  //       function(){
+  //         alertify.success('Ok');
+  //       },
+  //       function(){
+  //         alertify.error('Cancel');
+  //       });
+  //    },
     
-    var counter= <?php echo $counter; ?>+1;
 
-    $("#addrow").on("click", function () {
-        var newRow = $("<tr class='row'>");
-        var cols = "";
-        cols +='<td class="col"><input type="text" id="organization" name="organization" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="responsibility" name="responsibility" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="position" name="position" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="from_date" name="from_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="to_date" name="to_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="contact_person_number" name="contact_person_number" class="form-control"  /></td>';
-        cols +='<td  class="col-sm-1"><i class="ibtnDel fas fa-trash text-danger newExp"></td> ';
-
-           
+     controller: {
 
 
-        
-        newRow.append(cols);
-        $("table.order-list").append(newRow);
-        counter++;
+     
+
+      loadData: function(filter){
+       return $.ajax({
+        url: "<?php echo base_url('admin/getWork');?>",
+        data: filter
+       });
+      },
+      insertItem: function(item){
+       return $.ajax({
+        type:"POST",
+        url: "<?php echo base_url('admin/addWork');?>",
+        data:item
+       });
+      },
+      updateItem: function(item){
+       return $.ajax({
+       url: "<?php echo base_url('admin/editWork');?>",
+        data: item
+       });
+      },
+      deleteItem: function(item){
+       return $.ajax({
+        type:"DELETE",
+        url: "<?php echo base_url('admin/delWork');?>",
+        data: item
+       });
+      },
+     },
+
+
+     fields: [
+      
+      
+      {
+       name: "organization", 
+    type: "text", 
+    validate: "required"
+      },
+      {
+       name: "responsibility", 
+    type: "text", 
+    validate: "required"
+      },
+      {
+       name: "position", 
+    type: "text", 
+    validate:"required"   
+      },
+      {
+       name: "from_date", 
+    type: "text", 
+    validate:"required"   
+      },
+      {
+       name: "to_date", 
+    type: "text", 
+    validate:"required"   
+      },
+      {
+       name: "contact_person_number", 
+    type: "text", 
+    validate:"required"   
+      },
+      
+      {
+       type: "control"
+      }
+     ]
+
+
     });
-
-
-
-
-
-});
-
 
 
 </script>

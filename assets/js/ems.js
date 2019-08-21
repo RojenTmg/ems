@@ -1348,7 +1348,7 @@ else{
     $('#submitExp').notify('Unable to add. Please try again.',{position:'right middle'});
 
 }
-    $( "#main-work" ).load(window.location.href + " #expTables" );
+    $( "#workScript" ).load(window.location.href + " #main-work" );
 
 
 
@@ -1381,6 +1381,8 @@ function deleteExp(value) {
               }
               check_complete();
             }
+   $( "#workScript" ).load(window.location.href + " #main-work" );
+
 
 }
 function editExperience(id){
@@ -2280,56 +2282,3 @@ function assignRecTemp(id){
      $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 15000});
   }
 
-
-
- $('#expTables').on('click', 'i.newExp', function(e){
-   $(this).closest('tr').remove()
-})
-
-
-function confirmExpDel(id='',value=''){
-                  var h5 = $("<p/>").append("Are you sure?");
-$.notify.addStyle('foo', {
-  html: 
-    "<div>" +
-      "<div class='clearfix'>" +
-        "<div class='title' data-notify-html='title'/>" +
-        "<div class='buttons'>" +
-          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
-          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
-        "</div>" +
-      "</div>" +
-    "</div>"
-});
-
-//listen for click events from this style
-$(document).on('click', '.notifyjs-foo-base .no', function() {
-  //no function
-  $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-foo-base .yes', function() {
-  // yes function
-
-//start of deleting experience
-console.log('start del for '+value);
-  deleteExp(value); 
-  console.log('end del');
-// end of deleting experience
-
-    $(this).closest("tr").remove();       
-        counter -= 1;
-  //hide notification
-  $(this).trigger('notify-hide');
-});
-                  $('#'+id).notify({
-                  title: h5,
-                  button: 'YES'
-                  }, { 
-                  style: 'foo',
-                  autoHide: false,
-                  clickToHide: false,
-                  position:'left middle ',
-                  });
-
-                }
-            
