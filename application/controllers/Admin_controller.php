@@ -1004,19 +1004,30 @@ public function employeeManage($id = NULL)
 			$status=$this->form_validation->error_array();
 		}else
 		{
-			$data=array(
-				'pan'=>$pan
-			);	
-					if(isset($_SESSION['current_employee_id'])){
-						$id=$_SESSION['current_employee_id'];
-					}
-					else{
-						$id=$_SESSION['user_id'];
-					}
+			if($this->numberonly($pan)==true)
+			{
 
-			$this->Admin_model->update_employee($data,$id);
-			$status=array('true');
+				$data=array(
+					'pan'=>$pan
+				);	
+						if(isset($_SESSION['current_employee_id'])){
+							$id=$_SESSION['current_employee_id'];
+						}
+						else{
+							$id=$_SESSION['user_id'];
+						}
 
+				$this->Admin_model->update_employee($data,$id);
+				$status=array('true');
+
+			}
+			else
+			{
+				$msg="errorPan";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
 		}
 
 		echo json_encode($status);
@@ -1028,22 +1039,60 @@ public function employeeManage($id = NULL)
 // for work experience
 function addWork(){
 	extract($_POST);
-$experience = trim($experience);
 
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
+	$formError=false;
+	$error=[];
+
+	if(!$this->validateDate($from_date)){
+		array_push($error,"from_date[$rowId]");
+		$formError=true;
+
+	}
+	if(!$this->validateDate($to_date)){
+		array_push($error,"to_date[$rowId]");
+		$formError=true;
+
+	}
+	if(!$this->textOnly($organization)){
+		array_push($error,"organization[$rowId]");
+		$formError=true;
+
+	}
+	if(!$this->textOnly($responsibility)){
+		array_push($error,"responsibility[$rowId]");
+		$formError=true;
+
+	}
+	if(!$this->textOnly($position)){
+		array_push($error,"position[$rowId]");
+		$formError=true;
+
+	}
+	if(!$this->contactNumber($contact_person_number)){
+		array_push($error,"contact_person_number[$rowId]");
+		$formError=true;
+
+	}
+	if($formError){
+		echo json_encode($error);
+		return;
+	}
+
+	
 		$data=[
-			'experience'=>$experience,
+			'from_date'=>$from_date,
+			'to_date'=>$to_date,
+			'organization'=>$organization,
+			'responsibility'=>$responsibility,
+			'position'=>$position,
+			'contact_person_number'=>$contact_person_number,
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
 		if($this->Admin_model->insert('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
+		echo "false";
+		else echo "true";
 		return ;
-	}
+	
 }
 
 function editWork(){
@@ -1183,9 +1232,16 @@ function deleteWorkExp(){
 		{
 		$_POST = $this->security->xss_clean($_POST);
 
+			$is_one_day_val='0';
 			extract($_POST);
+			if($is_one_day=='true')
+			{
+				$is_one_day_val='1';
+			}
+			
 			$data=[
 				'leave_name'=>$leave_name,
+				'is_one_day'=>$is_one_day_val,
 				'created_by'=>$_SESSION['user_id']
 			];
 
@@ -1201,10 +1257,16 @@ function deleteWorkExp(){
 				}
 
 				else echo "already";
-				}			
+			}			
 			else{
+				$is_one_day_val='0';
+				if($is_one_day=='true')
+				{
+					$is_one_day_val='1';
+				}
 				$data=[
 					'leave_name'=>$leave_name,
+					'is_one_day'=>$is_one_day_val,
 					'created_by'=>$_SESSION['user_id'],
 					'leave_id'=>$leave_id
 				];
@@ -1452,7 +1514,7 @@ public function textOnly($text)
 // checking input types number
 public function numberonly($text)
 {
-	if (preg_match('/^[[0-9\s .]+\s+$/',$text ))
+	if (preg_match('/^[0-9]+$/',$text ))
 		return true;
 	else
 		return false;

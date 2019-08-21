@@ -34,7 +34,7 @@
      <!-- progress-bar -->
      <div class="box profile-progress">
        <div class="box-head pro-head sp-btn " >
-     <!-- show name above the progress bar and DONE button added -->
+     <!--  DONE button added -->
           <p id="current_employee_name"><?php if(isset($post['title'])) echo $post['title'] . '. '; if(isset($post['first_name'])) echo $post['first_name'] . ' '; if(isset($post['middle_name'])) echo $post['middle_name'] . ' '; if(isset($post['last_name'])) echo $post['last_name']; ?></p> 
           <!-- button -->
 
@@ -156,7 +156,7 @@
      <!-- row  ends -->
 
            <!-- row 3 -->
-           <div class="row col-md-12">
+      <div class="row col-md-12">
          <!--  mixed personal info in the general tab-->
           <div class="form-group" style="padding-left : 0; margin-bottom: 0; width: 10%;">
             <div class="form-div">
@@ -224,7 +224,7 @@
     </div>
           </div>
           </div>
-          <!-- row 2 ending -->
+          <!-- row 3 ending -->
 
           <!-- email starts -->
           <div class="form-div">
@@ -638,8 +638,12 @@
 
 <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
   
-<div class="container-fluid">
-    <table id="expTable" class=" table order-list">
+
+<div class="container-fluid" id="main-work">
+
+
+    <table id="expTables" class=" table order-list">
+      
     <thead>
         <tr class="row">
             <td class="col">Organization</td>
@@ -654,27 +658,26 @@
       <tbody>
         <?php  $counter=0;
         foreach ($work_experience as $exp) {?>
-     <script>
-        var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
-        var cols = "";
-       
-        cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
+     
+        <tr class='row' id='exp<?php echo $exp['id'];?>'>
+        
+        <td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>
 
-        cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
+        <td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>
 
-        cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
+        <td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>
 
-        cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
+        <td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>
 
-        cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
+        <td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>
 
-        cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
-         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> ';
+        <td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>
 
-         cols+= '</tr>';
-     newRow.append(cols);
-     $("table.order-list").append(newRow);
-    </script>
+         <td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> 
+
+       </tr>
+
+    
 
      <?php } ?>
 
@@ -692,7 +695,10 @@
         <tr>
         </tr>
     </tfoot>
+
 </table>
+
+
 </div>
 </div>
 
@@ -1150,54 +1156,3 @@ $(document).ready(function () {
 
 <!-- script for exp table ends here -->
 
-
-<script>
- $('#expTable').on('click', 'i.newExp', function(e){
-   $(this).closest('tr').remove()
-})
-
-
-function confirmExpDel(id='',vaule=''){
-                  var h5 = $("<p/>").append("Are you sure?");
-$.notify.addStyle('foo', {
-  html: 
-    "<div>" +
-      "<div class='clearfix'>" +
-        "<div class='title' data-notify-html='title'/>" +
-        "<div class='buttons'>" +
-          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
-          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
-        "</div>" +
-      "</div>" +
-    "</div>"
-});
-
-//listen for click events from this style
-$(document).on('click', '.notifyjs-foo-base .no', function() {
-  //no function
-  $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-foo-base .yes', function() {
-  // yes function
-
-//start of deleting experience
-  deleteExp(); 
-// end of deleting experience
-
-    $(this).closest("tr").remove();       
-        counter -= 1;
-  //hide notification
-  $(this).trigger('notify-hide');
-});
-                  $('#'+id).notify({
-                  title: h5,
-                  button: 'YES'
-                  }, { 
-                  style: 'foo',
-                  autoHide: false,
-                  clickToHide: false,
-                  position:'left middle ',
-                  });
-
-                }
-                </script>
