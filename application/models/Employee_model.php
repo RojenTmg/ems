@@ -72,7 +72,7 @@
 		public function findApproveLeaves($id = FALSE)
 		{
 			$approver=$_SESSION['user_id'];
-			$project = "SELECT *, el.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
+			$project = "SELECT *, el.id AS elId, el.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name, dpb.first_name AS dpb_first_name, dpb.middle_name AS dpb_middle_name, dpb.last_name AS dpb_last_name, ea.approver_id AS aid, eaid.first_name AS eaid_first_name, eaid.middle_name AS eaid_middle_name, eaid.last_name AS eaid_last_name, l.leave_id AS lID
 
 					    FROM employee_leaves el
 					    LEFT JOIN leaves l ON l.leave_id = el.leave_id 

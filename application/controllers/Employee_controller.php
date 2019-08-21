@@ -223,7 +223,7 @@ function checkExp(){
 
 				$this->Database_model->insert('employee_leaves', $leaveData);
 
-				$data['valid'] = TRUE;
+				$data['valid'] = TRUE; 
 
 				// sending email to employee who requested leave
 				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);
@@ -334,7 +334,6 @@ function checkExp(){
 			$data=array('is_approved'=>'denied', 'denial_reason'=>$denial_reason,'approver_id'=>$_SESSION['user_id']);
 			$this->db->where('id',$id);
 			$this->db->update('employee_leaves',$data);
-
 
 			// send email to leave requester
 			$this->db->where('id',$id);
@@ -461,8 +460,6 @@ function checkExp(){
 			$data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', $id);
 			$data['leave_blnc_by_emp'] = $this->db->get_where('employee_leave_balance', array('emp_id =' => $e_id, 'leave_id =' => $leave_id))->row_array();
 
-			var_dump($data['leave_by_emp']); die();
-			
 			$remaining_days = $this->Employee_model->checkLeaveBalance($e_id, $leave_id);
 			
 			// if employee request leave for Friday and Sunday separately then, Saturday is also counted as a leave within a single week
@@ -470,9 +467,8 @@ function checkExp(){
 				// echo date("D", strtotime($leave['from_date'])) . ' ' . date("D", strtotime(date("Y-m-d")));die();
 				// print_r($this->Employee_model->findAllLeaves($_SESSION['user_id'])); die();	
 
-
-
 			}
+
 
 
 			if ($d_type == 'half') {
@@ -486,6 +482,7 @@ function checkExp(){
 			}
 				
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
+			// $this->Employee_model->leaveApprove(2, 278, 39, 5.5);
 
 			// send email to leave requester
 			$this->db->where('leave_id',$leave_id);
@@ -496,7 +493,6 @@ function checkExp(){
 			$leavename=$this->Admin_model->getNameByLid($leave_id);
 			$message="Your ".$leavename." from ".$list['from_date']. " to ".$list['to_date']. " has been approved by ".$approver_name.".";
 			
-
 			$email=$this->Admin_model->getEmail($list['emp_id']);
 			$this->Admin_model->sendEmail('Leave Approved',$message,$email);
 			// end of send mail

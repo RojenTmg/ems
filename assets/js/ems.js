@@ -2045,16 +2045,16 @@ function denyLeaveFromRecommender(btn,id)
 
 // approve leave by approver
 
-function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
+function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
 
 {
-  var parent = btn.parentElement;
-  var gparent = parent.parentElement;
-  parent.innerHTML='';
-  parent.className="spinner-border spinner-border-sm  text-warning";
-  parent.onclick="#";
-  var el ='checkicon'+id;
-  $('#'+ el).remove();
+  // var parent = btn.parentElement;
+  // var gparent = parent.parentElement;
+  // parent.innerHTML='';
+  // parent.className="spinner-border spinner-border-sm  text-warning";
+  // parent.onclick="#";
+  // var el ='checkicon'+id;
+  // $('#'+ el).remove();
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
@@ -2075,7 +2075,7 @@ function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 }
 
 //deny leave by approver
-function denyLeaveFromApprover(btn,id)
+function denyLeaveFromApprover(btn, id)
 {
   btn.onclick="#";
   btn.innerHTML='';
