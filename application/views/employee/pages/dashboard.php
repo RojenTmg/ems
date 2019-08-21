@@ -356,13 +356,12 @@
                       
                       <!-- if the requested days exceeds the remaining days, do not show grant button -->
 
-
                       <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['id']; ?>" ></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
 
-                          <span class="tip-arch tip-res" onclick="leaveApprove(this,'<?php echo $value['duration_type']; ?>', <?php echo $value['id']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['leave_id']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
+                          <span class="tip-arch tip-res" onclick="leaveApprove('<?php echo $value['duration_type']; ?>', <?php echo $value['elId']; ?>, <?php echo $value['e_id']; ?>, <?php echo $value['lID']; ?>,<?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?>)" >Approve</span>
                         </div>
                       </button>
 
@@ -386,13 +385,13 @@
                 <div class="modal-body">
               
                     <div class="form-group">
-                    <input class="form-control" type="text" name="" id="denial_reason_approver<?php  echo $value['id']; ?>">
+                    <input class="form-control" type="text" name="" id="denial_reason_approver<?php echo $value['elId']; ?>">
                     </div>
                   
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['id']; ?>" onclick="denyLeaveFromApprover(this,<?php echo $value['id']; ?>)">Submit</button>
+                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['id']; ?>" onclick="denyLeaveFromApprover(this, <?php echo $value['elId']; ?>)">Submit</button>
                 </div>
               </div>
             </div>
@@ -411,7 +410,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['id']; ?>)">Submit</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveApprovalRecord(<?php echo $value['elId']; ?>)">Submit</button>
                 </div>
               </div>
             </div>

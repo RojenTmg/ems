@@ -1301,44 +1301,90 @@ if(error){
  return ;
 }
 
+var controllerError= "false";
+var counter = 0;
+
+
+  for(var i=0; i<organization .length; i++){
+    if(controllerError=="true") break;
+    if(from_date[i].disabled||to_date[i].disabled||organization[i].disabled||responsibility[i].disabled||position[i].disabled||contact_person_number[i].disabled){
+      continue;
+    }
+    else{
+      ++counter;
+    }
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('POST','addWork',true);
+          var data = new FormData();
+          data.append('rowId',i);
+          data.append('from_date',from_date[i].value);
+          data.append('to_date',to_date[i].value);
+          data.append('organization',organization[i].value.trim());
+          data.append('responsibility',responsibility[i].value.trim());
+          data.append('position',position[i].value.trim());
+          data.append('contact_person_number',contact_person_number[i].value.trim());
+          xmlHttp.send(data);
+
+     xmlHttp.onreadystatechange = function()
+              {
+                  if(xmlHttp.readyState==4){
+                      var error=xmlHttp.responseText;
+                      if(error=="true"){
+                        controllerError="true";
+                      }
+
+                    }
+
+              }
+  } 
+
+if(controllerError=="false")  {
+  if(counter==1)
+  $('#submitExp').notify('Experience added successfully',{position:'right middle',className:'success'});
+  else
+  $('#submitExp').notify(counter+' experiences added successfully.',{position:'right middle',className:'success'});
+}
+else{
+    $('#submitExp').notify('Unable to add. Please try again.',{position:'right middle'});
+
+}
+    $( "#workScript" ).load(window.location.href + " #main-work" );
+
+
+
 }
 
-// function addExperience(){
-//   var exp= document.getElementById('experience');
-//    var xmlHttp = new XMLHttpRequest();
-//          xmlHttp.open('POST','addWork',true);
-//           var data = new FormData();
-//           data.append('experience',exp.value);
-//            xmlHttp.send(data);
 
-//             xmlHttp.onreadystatechange = function()
-//             {
-//                 if(xmlHttp.readyState==4){
-//                   var status=xmlHttp.responseText;
 
-//                 if(status=="error"){
-//                   $("#experience").notify("Please fill the text area",{position:"bottom left"});
-//                 }
-//                if(status=="success"){
-//                   exp.value='';
-//                    $("#expModel").css('display','none');
-//                    $("#expModel").css('aria-hidden','true');
-//                    $("#expModel").css('aria-modal','false');
-//                    $('.modal-backdrop').remove();
-//                    $('body').removeClass('modal-open');
 
-//                   $("#experiencelist").notify("Experience Added Successfully",{className:'success',position:"top"});
+function deleteExp(value) {
+ var id = parseInt(value, 10);
+       var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','deleteWorkExp',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
 
-                 
-//                   $( "#experiencelist" ).load(window.location.href + " #listexp" );
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                var status= xmlHttp.responseText;
+                if(status=="success"){
+                $('#submitExp').notify('Experience Deleted successfully.',{position:'right middle',className:'success'});
+                   $( "#main-work" ).load(window.location.href + " #expTables" );
+                }
+                else{
+                $('#submitExp').notify('Unable to delete.',{position:'right middle',className:'error'});
+                 $( "#main-work" ).load(window.location.href + " #expTables" );
 
-//                 }
-//               }
-//               }      
+                }
+              }
+              check_complete();
+            }
+   $( "#workScript" ).load(window.location.href + " #main-work" );
 
-//       check_complete();
-// }
 
+}
 function editExperience(id){
   var textarea = 'experience'+id;
   var idtextarea='#'+textarea;
@@ -1376,33 +1422,6 @@ function editExperience(id){
               }    
               check_complete();  
       
-}
-
-function deleteExp(value) {
- var id = parseInt(value, 10);
-       var xmlHttp = new XMLHttpRequest();
-         xmlHttp.open('POST','deleteWorkExp',true);
-          var data = new FormData();
-          data.append('id',id);
-           xmlHttp.send(data);
-
-            xmlHttp.onreadystatechange = function()
-            {
-              if(xmlHttp.readyState==4){
-                var status= xmlHttp.responseText;
-                if(status=="success"){
-                  $("#experiencelist").notify("Experience Deleted",{className:'success',position:"top"});
-                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
-                }
-                else{
-                   $.notify("Unable to Delete", "warn");
-                 $( "#experiencelist" ).load(window.location.href + " #listexp" );
-
-                }
-              }
-              check_complete();
-            }
-
 }
 
 function confirmAction (value, ele, message, action ) {
@@ -2051,16 +2070,15 @@ function denyLeaveFromRecommender(btn,id)
 
 // approve leave by approver
 
-function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
-
+function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
 {
-  var parent = btn.parentElement;
-  var gparent = parent.parentElement;
-  parent.innerHTML='';
-  parent.className="spinner-border spinner-border-sm  text-warning";
-  parent.onclick="#";
-  var el ='checkicon'+id;
-  $('#'+ el).remove();
+  // var parent = btn.parentElement;
+  // var gparent = parent.parentElement;
+  // parent.innerHTML='';
+  // parent.className="spinner-border spinner-border-sm  text-warning";
+  // parent.onclick="#";
+  // var el ='checkicon'+id;
+  // $('#'+ el).remove();
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveApprove',true);
@@ -2081,7 +2099,7 @@ function leaveApprove(btn,d_type, id, e_id, leave_id, no_of_days = '0')
 }
 
 //deny leave by approver
-function denyLeaveFromApprover(btn,id)
+function denyLeaveFromApprover(btn, id)
 {
   btn.onclick="#";
   btn.innerHTML='';

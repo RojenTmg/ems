@@ -50,7 +50,16 @@
  <script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js') ?>"></script>
 
 <link rel="stylesheet" href="<?= base_url('assets/css/fstdropdown.css') ?> ">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
+
+<!-- jsgrid start -->
+
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+<!-- jsgrid end -->
 
 </head>
 
