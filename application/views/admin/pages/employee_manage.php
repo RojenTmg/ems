@@ -679,10 +679,7 @@
       <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
       <td>
-
-        
-
-         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+         <i class="fa fa-trash text-danger" aria-hidden="true"> </i>
 
            <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
             <p>Are you sure?</p>
@@ -754,8 +751,24 @@
 </div>
 
 
-<script type="text/javascript">
+<script>
 
+ $('.fa-trash').on('click',function(ev) {
+    $(this).siblings().css({"display": "block"});
+  });
+
+
+   $('.tip-can').on('click',function(ev) {
+    $(this).parent().css({"display": "none"});
+  });
+
+// to close message
+
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#messagediv").css('display','none');
+    });
+});  
 ////////////////////  Auto-suggestion on Temporary-District Address tab (employee-manage) /////////////////////
 
 var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
@@ -1004,24 +1017,6 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
 <?php } ?>
 
   check_complete();
-
-
- $('.fa-trash').on('click',function(ev) {
-    $(this).siblings().css({"display": "block"});
-  });
-
-
-   $('.tip-can').on('click',function(ev) {
-    $(this).parent().css({"display": "none"});
-  });
-
-// to close message
-
-$(document).ready(function(){
-    $(".close").click(function(){
-        $("#messagediv").css('display','none');
-    });
-});  
 
 
 function changeText(toggle){
