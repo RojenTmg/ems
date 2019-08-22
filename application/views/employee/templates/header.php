@@ -64,7 +64,7 @@
 
       <!-- substitute leave add -->
        <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('employee/substitute_leave_form'); ?>">
+        <a class="nav-link" href="<?= site_url('employee/leave_substitute_form'); ?>">
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Add Substitute Leave
         </a>

@@ -269,6 +269,34 @@ function checkExp(){
 
 		}
 
+		public function leaveSubstituteForm()
+		{
+			$title['title'] = 'Substitute Leave Form';
+
+			if ($this->input->post('submit') != NULL) {
+
+				// $leaveData = array(
+				// 	'emp_id'=> $_SESSION['user_id'],	// inserts current user id
+				// 	'leave_id'=> (int)$leave['leave_id'],
+				// 	'from_date'=> $leave['from_date'],
+				// 	'duration_type' => $leave['duration_type'],
+				// 	'duty_performed_by'=> (int)$leave['duty_performed_by'],
+				// 	'reason'=> trim($leave['reason'])
+				// );
+
+				// $this->Database_model->insert('employee_leaves', $leaveData);
+
+				$data['not_valid'] = TRUE; 
+				// // send mail to recommender
+
+				$this->view('leave_substitute_form', $title, $data);
+			} 
+			else {
+				$this->view('leave_substitute_form', $title);
+			}
+		}
+
+
 		// // recommenders page
 		// public function recommendationList()
 		// {
@@ -492,12 +520,13 @@ function checkExp(){
 			}
 			
 
+
+			// if employee request leave for Friday and Sunday separately then, Saturday is also counted as a leave within a single week
 			foreach ($data['leave_by_emp'] as $lbe) {
 				$from_date = $lbe['from_date'];
 				$emp_id = $lbe['emp_id'];
 			}
 
-			// if employee request leave for Friday and Sunday separately then, Saturday is also counted as a leave within a single week
 			if (date("D", strtotime($from_date)) == 'Sun') {
 				if ($this->Employee_model->findLeaveOnFri(278, date("Y-m-d", strtotime("2019-08-25" . ' -2 days'))) == TRUE) { 
 				 	// $this->Employee_model->leaveApprove($id, $emp_id, $leave_id, 22);

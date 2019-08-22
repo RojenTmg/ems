@@ -291,7 +291,7 @@
 
               <div class="group-district">
                 <!-- Auto-complete state when permanent_country is Nepal -->
-                <div class="autocompleteState" class="col-md-3">
+                <div class="autocompleteState">
                   <input type="text" placeholder="State" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" style="width: 100%;">
                   <!-- <span class="closeState">Cancel</span> -->
                   <div class="dialogState"></div>
