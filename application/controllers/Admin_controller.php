@@ -1022,27 +1022,7 @@ public function employeeManage($id = NULL)
 	}
 
 
-function getWork(){
-	$this->db->where('emp_id',$_SESSION['current_employee_id']);
-	$res=$this->db->get('employee_work_experience');
-	$result= $res->result_array();
-	foreach(array_reverse($result) as $row)
-		 {
-		  $output[] = array(
-		   'id'    => $row['id'],   
-		   'organization'  => $row['organization'],
-		   'responsibility'   => $row['responsibility'],
-		   'position'    => $row['position'],
-		   'from_date'   => $row['from_date'],
-		   'to_date'   => $row['to_date'],
-		   'contact_person_number'   => $row['contact_person_number']
-		  );
-		 }
 
-	 header("Content-Type: application/json");
-	 echo json_encode($output);		
-	 return ;
-}
 
 // for work experience
 function addWork(){
@@ -1057,16 +1037,16 @@ function addWork(){
 			'contact_person_number'=>$contact_person_number,
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		$this->Admin_model->insert('employee_work_experience',$data);
+		if($this->Admin_model->insert('employee_work_experience',$data)){
+			$id=$this->db->insert_id();
+			echo $id;
+		}
 		return;
+
 	
 }
 
-function delWork(){
-	parse_str(file_get_contents("php://input"), $_DELETE);
-	$this->db->where('id',$_DELETE['id']);
-	$this->db->delete('employee_work_experience');
-}
+
 
 // for work experience
 function editWork(){

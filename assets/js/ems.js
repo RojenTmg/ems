@@ -1313,16 +1313,23 @@ var counter = 0;
     else{
       ++counter;
     }
+
+          from_date=from_date[i];
+          to_date=to_date[i];
+          organization=organization[i];
+          responsibility=responsibility[i];
+          position=position[i];
+          contact_person_number=contact_person_number[i];
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addWork',true);
           var data = new FormData();
           data.append('rowId',i);
-          data.append('from_date',from_date[i].value);
-          data.append('to_date',to_date[i].value);
-          data.append('organization',organization[i].value.trim());
-          data.append('responsibility',responsibility[i].value.trim());
-          data.append('position',position[i].value.trim());
-          data.append('contact_person_number',contact_person_number[i].value.trim());
+          data.append('from_date',from_date.value);
+          data.append('to_date',to_date.value);
+          data.append('organization',organization.value.trim());
+          data.append('responsibility',responsibility.value.trim());
+          data.append('position',position.value.trim());
+          data.append('contact_person_number',contact_person_number.value.trim());
           xmlHttp.send(data);
 
      xmlHttp.onreadystatechange = function()
@@ -1331,6 +1338,30 @@ var counter = 0;
                       var error=xmlHttp.responseText;
                       if(error=="true"){
                         controllerError="true";
+                      }
+                      else{
+                        from_date.disabled=true;
+                        to_date.disabled=true;
+                        organization.disabled=true;
+                        responsibility.disabled=true;
+                        position.disabled=true;
+                        contact_person_number.disabled=true;
+                        var editbtn = document.createElement('i');
+                        editbtn.className='fas fa-edit text-info pointer';
+                        var p= organization.parentElement.parentElement.childNodes[6];
+
+                         while (p.firstChild) {
+  p.removeChild(p.firstChild);
+}
+
+                       var deletebtn= document.createElement('i');
+                       deletebtn.id='d'+error;
+                       deletebtn.className='ibtnDel fas fa-trash text-danger';
+                       deletebtn.click='confirmExpDel(this.id,error)';
+                        
+                        editbtn.appendChild(deletebtn);
+                        organization.parentElement.parentElement.childNodes[6].prepend(editbtn);
+
                       }
 
                     }
@@ -1348,7 +1379,7 @@ else{
     $('#submitExp').notify('Unable to add. Please try again.',{position:'right middle'});
 
 }
-    $( "#workScript" ).load(window.location.href + " #main-work" );
+    
 
 
 
@@ -1500,7 +1531,7 @@ function check_complete(){
     if(typeof(documents) != 'undefined' && documents != null) 
       completeIcon('nav-document-tab');
     else inCompleteIcon('nav-document-tab');
-    // changes icon if at least one work experience is added
+    // changes icon if at least one erience is added
  
    
     checkExp();
@@ -1600,7 +1631,7 @@ function inCompleteIcon(tabId){
   }
 
 
-  // delete work experience data from edit form
+  // delete erience data from edit form
   function deleteWorkExperience(id)
   {
 

@@ -638,17 +638,59 @@
 
 <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
   
+<div class="container-fluid">
+    <table id="expTable" class=" table order-list">
+    <thead>
+        <tr class="row">
+            <td class="col">Organization</td>
+            <td class="col">Responsibility</td>
+            <td class="col">Postition</td>
+            <td class="col">From</td>
+            <td class="col">To</td>
+            <td class="col">Contact Person Number</td>
+            <td class="col-sm-1">Action</td>
+        </tr>
+    </thead>
+      <tbody>
+        <?php  $counter=0;
+        foreach ($work_experience as $exp) {?>
+     <script>
+        var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
+        var cols = "";
+       
+        cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
+         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> ';
+         cols+= '</tr>';
+     newRow.append(cols);
+     $("table.order-list").append(newRow);
+    </script>
 
-<div class="container-fluid" id="main-work">
+     <?php } ?>
 
-<div class="table-responsive">  
-    <div id="grid_table"></div>
-   </div>  
+      </tbody>
 
+    <tfoot>
+        <tr>
+            <td colspan="7" style="text-align: left;" >
+                 <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
+                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> 
 
+                
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
+</table>
 </div>
 </div>
 
+<!-- end of work experience -->
 <!-- end of work experience -->
 
   <!-- documents tab -->
@@ -1060,150 +1102,74 @@ function checkRelation(ele,val)
     <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
 
 
-<!-- script for workexperience table -->
+      <!--  script for workexperience table  -->
 <script>
-  
-
-
-
-var MyDateField = function(config) {
-    jsGrid.Field.call(this, config);
-};
- 
-MyDateField.prototype = new jsGrid.Field({
- 
-    align: "center",              // redefine general property 'align'
- 
- 
-    sorter: function(date1, date2) {
-        return new Date(date1) - new Date(date2);
-    },
- 
-    itemTemplate: function(value) {
-        return new Date(value).toDateString();
-    },
- 
-    insertTemplate: function(value) {
-        return this._insertPicker = $("<input type='date' value='<?php echo Date('Y-m-d');?>'   >");
-    },
- 
-    editTemplate: function(value) {
-        return this._editPicker = $("<input type='date' value="+value+" >");
-    },
- 
-    insertValue: function() {
-     return this._insertPicker[0].value;
-    },
- 
-    editValue: function() {
-    return this._editPicker[0].value;
-    }
-});
- 
-jsGrid.fields.date = MyDateField;
-
-
-    $('#grid_table').jsGrid({
-
-     width: "100%",
-     height: "auto",
-     inserting:true,
-     editing: true,
-     sorting: true,
-     paging: true,
-     autoload: true,
-     pageSize: 10,
-     pageButtonCount: 3,
-  deleteConfirm: "Are you sure to remove work experience?",
-
-  // function(item){
-  //     alertify.confirm("Do you want to delete this work experience?",
-  //       function(){
-  //         alertify.success('Ok');
-  //       },
-  //       function(){
-  //         alertify.error('Cancel');
-  //       });
-  //    },
+$(document).ready(function () {
     
-
-     controller: {
-
-
-     
-
-      loadData: function(filter){
-       return $.ajax({
-        url: "<?php echo base_url('admin/getWork');?>",
-        data: filter
-       });
-      },
-      insertItem: function(item){
-       return $.ajax({
-        type:"POST",
-        url: "<?php echo base_url('admin/addWork');?>",
-        data:item
-       });
-      },
-      updateItem: function(item){
-       return $.ajax({
-        type:"PUT",
-       url: "<?php echo base_url('admin/editWork');?>",
-        data: item
-       });
-      },
-      deleteItem: function(item){
-       return $.ajax({
-        type:"DELETE",
-        url: "<?php echo base_url('admin/delWork');?>",
-        data: item
-       });
-      },
-     },
-
-
-     fields: [
-      
-      
-      {
-       name: "organization", 
-    type: "text", 
-    validate: "required"
-      },
-      {
-       name: "responsibility", 
-    type: "text", 
-    validate: "required"
-      },
-      {
-       name: "position", 
-    type: "text", 
-    validate:"required"   
-      },
-      {
-       name: "from_date", 
-    type: "date", 
-      },
-      {
-       name: "to_date", 
-    type: "date", 
-      },
-      {
-       name: "contact_person_number", 
-    type: "number", 
-    validate:"required"   
-      },
-      
-      {
-       type: "control"
-      }
-     ]
-
-
+    var counter= <?php echo $counter; ?>+1;
+    $("#addrow").on("click", function () {
+        var newRow = $("<tr class='row'>");
+        var cols = "";
+        cols +='<td class="col"><input type="text" id="organization" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="responsibility" name="responsibility" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="position" name="position" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="from_date" name="from_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="to_date" name="to_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" id="contact_person_number" name="contact_person_number" class="form-control"  /></td>';
+        cols +='<td  class="col-sm-1"> &nbsp; &nbsp;<i class="ibtnDel fas fa-trash text-danger newExp"> </td> ';
+           
+        
+        newRow.append(cols);
+        $("table.order-list").append(newRow);
+        counter++;
     });
-
-
+});
 </script>
 
+
+<script>
+ $('#expTable').on('click', 'i.newExp', function(e){
+   $(this).closest('tr').remove()
+})
+function confirmExpDel(id='',value=''){
+                  var h5 = $("<p/>").append("Are you sure?");
+$.notify.addStyle('foo', {
+  html: 
+    "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
+          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
+//listen for click events from this style
+$(document).on('click', '.notifyjs-foo-base .no', function() {
+  //no function
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-foo-base .yes', function() {
+  // yes function
+//start of deleting experience
+  deleteExp(value); 
+// end of deleting experience
+    $(this).closest("tr").remove();       
+        
+  //hide notification
+  $(this).trigger('notify-hide');
+});
+                  $('#'+id).notify({
+                  title: h5,
+                  button: 'YES'
+                  }, { 
+                  style: 'foo',
+                  autoHide: false,
+                  clickToHide: false,
+                  position:'left middle ',
+                  });
+                }
+                </script>
 <!-- script for exp table ends here -->
 
