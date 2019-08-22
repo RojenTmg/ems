@@ -50,10 +50,6 @@ $(window).on("scroll", function() {
 
 
 
-
-
-
-
 ////////////////////  Disable submit button after a click and display Loading-Buttons /////////////////////
 
 $('#form-leave-request').submit(function() {
@@ -220,17 +216,17 @@ $('.arch-msg-div').click(function(){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','addGeneral',true);
     var data = new FormData();
-    var first_name =document.getElementById('first_name').value;
-    var last_name=document.getElementById('last_name').value;
-    var middle_name= document.getElementById('middle_name').value;
-    var join_date=document.getElementById('join_date').value;
-    var department= document.getElementById('department').value;
+    var first_name =document.getElementById('first_name').value.trim();
+    var last_name=document.getElementById('last_name').value.trim();
+    var middle_name= document.getElementById('middle_name').value.trim();
+    var join_date=document.getElementById('join_date').value.trim();
+    var department= document.getElementById('department').value.trim();
     var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
 
     var manager = document.getElementById('manager');
     
     //personal data
-    var email=document.getElementById('email').value;
+    var email=document.getElementById('email').value.trim();
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
 
     if (!vaildateEmail(email)) {  document.getElementById('email').style.borderColor="red";  }
@@ -251,16 +247,12 @@ $('.arch-msg-div').click(function(){
       return ; 
     }
 
-  
-
      else  if(getAge(dob)<18){
          msg="Age cannot be less than 18.";
          showErrormessage(msg,'generalButton');
          return ; 
       } 
       else{
-       
-
          if(manager.checked)
           data.append('is_manager','true');
         else
@@ -328,9 +320,11 @@ $('.arch-msg-div').click(function(){
            {
 
             if(JSON.parse(status)=='true')
-               { $('#spinicon').remove();
+               { 
+                $('#spinicon').remove();
                 $('#generalButton').css('pointer-events','auto');
-                showSuccessmessage('generalButton');}
+                showSuccessmessage('generalButton');
+              }
             showresponse('general-form',status,'Added Successfully');
 
            }
@@ -351,13 +345,13 @@ $('.arch-msg-div').click(function(){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','updateGeneral',true);
     var data = new FormData();
-    var first_name =document.getElementById('first_name').value;
-    var last_name=document.getElementById('last_name').value;
-    var middle_name= document.getElementById('middle_name').value;
-    var join_date=document.getElementById('join_date').value;
-    var department= document.getElementById('department').value;
+    var first_name =document.getElementById('first_name').value.trim();
+    var last_name=document.getElementById('last_name').value.trim();
+    var middle_name= document.getElementById('middle_name').value.trim();
+    var join_date=document.getElementById('join_date').value.trim();
+    var department= document.getElementById('department').value.trim();
     //personal data
-    var email=document.getElementById('email').value;
+    var email=document.getElementById('email').value.trim();
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
     
     var manager = document.getElementById('manager');
@@ -455,9 +449,10 @@ $('.arch-msg-div').click(function(){
            {
              $('#spinicon').remove();
                $('#generalButton').css('pointer-events','auto');
+               if(id=="true")
             showCustomSuccessmessage('generalButton',"Updated Successfully");
             showresponse('general-form',status,'Updated Successfully');
-             
+            
            }
             
 
@@ -638,7 +633,7 @@ function submitDocument(){
            {
              msg="Files Uploaded";
               showCustomSuccessmessage('docaddbtn',msg);
-               location.reload();
+              location.reload();
                return ; 
            }
            else if(status=="fileerror"){
@@ -657,7 +652,7 @@ function submitDocument(){
            
                  
           }
-          
+
       }
       
     }
@@ -802,16 +797,16 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addAddress',true);
           var data = new FormData();
-          data.append('permanentaddress_street',document.getElementById('permanentaddress_street').value);
-          data.append('permanentaddress_municipality',document.getElementById('permanentaddress_municipality').value);
-          data.append('permanentaddress_district',document.getElementById('permanentaddress_district').value);
-          data.append('permanentaddress_state',document.getElementById('permanentaddress_state').value);
-          data.append('permanentaddress_country',document.getElementById('permanentaddress_country').value);
+          data.append('permanentaddress_street',document.getElementById('permanentaddress_street').value.trim());
+          data.append('permanentaddress_municipality',document.getElementById('permanentaddress_municipality').value.trim());
+          data.append('permanentaddress_district',document.getElementById('permanentaddress_district').value.trim());
+          data.append('permanentaddress_state',document.getElementById('permanentaddress_state').value.trim());
+          data.append('permanentaddress_country',document.getElementById('permanentaddress_country').value.trim());
           
-          data.append('currentaddress_street',document.getElementById('currentaddress_street').value);
-          data.append('currentaddress_municipality',document.getElementById('currentaddress_municipality').value);
-          data.append('currentaddress_district',document.getElementById('currentaddress_district').value);
-          data.append('currentaddress_state',document.getElementById('currentaddress_state').value);
+          data.append('currentaddress_street',document.getElementById('currentaddress_street').value.trim());
+          data.append('currentaddress_municipality',document.getElementById('currentaddress_municipality').value.trim());
+          data.append('currentaddress_district',document.getElementById('currentaddress_district').value.trim());
+          data.append('currentaddress_state',document.getElementById('currentaddress_state').value.trim());
         
      
           xmlHttp.send(data);
@@ -821,10 +816,29 @@ function showresponse(formname,status,msg)
               if(xmlHttp.readyState==4)
               {
                 var status = xmlHttp.responseText;
+                if(JSON.parse(status)=='textonlyMunicipality')
+                {
+                   msg="Municipality cannot have numbers(1,2,..)";
+                   showErrormessage(msg,'addressbutton');
+                    return ; 
+                }
+
+                // for district
+                if(JSON.parse(status)=='textonlyDistrict')
+                {
+                   msg="District cannot start with numbers(1,2,..)";
+                   showErrormessage(msg,'addressbutton');
+                    return ; 
+                }
+
                 if(JSON.parse(status)=='true')
+                {
                  showSuccessmessage('addressbutton');
-               showresponse('address-form',status,'Updated Successfully');
+                }
+                showresponse('address-form',status,'Updated Successfully');
+                
               }
+
           }
         
   }
@@ -835,11 +849,11 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addContact',true);
           var data = new FormData();
-          data.append('home_phone',document.getElementById('home_phone').value);
-          data.append('mobile_phone',document.getElementById('mobile_phone').value);
-          data.append('other_phone1',document.getElementById('other_phone1').value);
-          data.append('other_phone2',document.getElementById('other_phone2').value);
-          data.append('other_phone3',document.getElementById('other_phone3').value);
+          data.append('home_phone',document.getElementById('home_phone').value.trim());
+          data.append('mobile_phone',document.getElementById('mobile_phone').value.trim());
+          data.append('other_phone1',document.getElementById('other_phone1').value.trim());
+          data.append('other_phone2',document.getElementById('other_phone2').value.trim());
+          data.append('other_phone3',document.getElementById('other_phone3').value.trim());
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()
@@ -884,10 +898,10 @@ function showresponse(formname,status,msg)
           var radioValue = $("input[name='nationality']:checked").val();
           data.append('nationality',getSelectedValue('nationality'));
           data.append('visa_permission',getSelectedValue('visa_permission'));
-          data.append('visa_type',document.getElementById('visa_type').value);
-          data.append('visa_expiry_date',document.getElementById('visa_expiry_date').value);
-          data.append('passport_no',document.getElementById('passport_no').value);
-          data.append('passport_issue_place',document.getElementById('passport_issue_place').value);
+          data.append('visa_type',document.getElementById('visa_type').value.trim());
+          data.append('visa_expiry_date',document.getElementById('visa_expiry_date').value.trim());
+          data.append('passport_no',document.getElementById('passport_no').value.trim());
+          data.append('passport_issue_place',document.getElementById('passport_issue_place').value.trim());
           xmlHttp.send(data);
         if(!radioValue)
         {
@@ -947,11 +961,11 @@ function showresponse(formname,status,msg)
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addEmergency',true);
           var data = new FormData();
-          var e_relation=document.getElementById('e_relation').value;
+          var e_relation=document.getElementById('e_relation').value.trim();
 
           // checking if the relation is other
           if(e_relation=='Other')
-            { var othere= document.getElementById('otherRelation').value;
+            { var othere= document.getElementById('otherRelation').value.trim();
               if(othere=='')
               {
                    msg="Enter Other Relation Name";
@@ -962,10 +976,10 @@ function showresponse(formname,status,msg)
             }
           else{   data.append('e_relation',e_relation);  }
 
-          data.append('e_name',document.getElementById('e_name').value);
+          data.append('e_name',document.getElementById('e_name').value.trim());
           
-          data.append('e_address',document.getElementById('e_address').value);
-          data.append('e_phone',document.getElementById('e_phone').value);
+          data.append('e_address',document.getElementById('e_address').value.trim());
+          data.append('e_phone',document.getElementById('e_phone').value.trim());
           xmlHttp.send(data);
 
           xmlHttp.onreadystatechange = function()
@@ -1020,9 +1034,9 @@ function showresponse(formname,status,msg)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','addEducation',true);
     var data = new FormData();
-    data.append('highest_degree',document.getElementById('highest_degree').value);
-    data.append('degree_title',document.getElementById('degree_title').value);
-    data.append('university',document.getElementById('university').value);
+    data.append('highest_degree',document.getElementById('highest_degree').value.trim());
+    data.append('degree_title',document.getElementById('degree_title').value.trim());
+    data.append('university',document.getElementById('university').value.trim());
     xmlHttp.send(data);
     xmlHttp.onreadystatechange = function()
     {
@@ -1052,7 +1066,7 @@ function showresponse(formname,status,msg)
   // add health information
   function addHealth()
   {
-      var blood_group=document.getElementById('blood_group').value;
+      var blood_group=document.getElementById('blood_group').value.trim();
       if(blood_group==''){
            msg="Select a blood group.";
             showErrormessage(msg,'healthbutton');
@@ -1063,10 +1077,10 @@ function showresponse(formname,status,msg)
           xmlHttp.open('POST','addHealth',true);
           var data = new FormData();
           data.append('blood_group',blood_group);
-          data.append('medical_complications',document.getElementById('medical_complications').value);
-          data.append('regular_medication',document.getElementById('regular_medication').value);
+          data.append('medical_complications',document.getElementById('medical_complications').value.trim());
+          data.append('regular_medication',document.getElementById('regular_medication').value.trim());
           data.append('allergies',getSelectedValue('allergies'));
-          data.append('allergy_description',document.getElementById('allergy_description').value);
+          data.append('allergy_description',document.getElementById('allergy_description').value.trim());
           xmlHttp.send(data);
           xmlHttp.onreadystatechange = function()
           {
@@ -1114,7 +1128,7 @@ function showresponse(formname,status,msg)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open('POST','addPan',true);
     var data = new FormData();
-    data.append('pan',document.getElementById('pan').value);
+    data.append('pan',document.getElementById('pan').value.trim());
     xmlHttp.send(data);
 
    xmlHttp.onreadystatechange = function()
@@ -1138,7 +1152,7 @@ function showresponse(formname,status,msg)
   //to add personal details
     function addPersonalInformation()
   {
-    var email=document.getElementById('email').value;
+    var email=document.getElementById('email').value.trim();
     var dob= document.getElementById('birth_year').value+'-'+document.getElementById('birth_month').value+'-'+document.getElementById('birth_day').value;
     if (!vaildateEmail(email)) {
          document.getElementById('email').style.borderColor="red";
@@ -1503,7 +1517,7 @@ function check_complete(){
   var e_relation=document.getElementById('e_relation').value;
   var e_phone=document.getElementById('e_phone').value;
   //Education
-  var institute=document.getElementById('institute').value;
+  var institute=document.getElementById('university').value;
   //Health
   var blood_group = document.getElementById('blood_group').value;
   //PAN
@@ -1519,9 +1533,9 @@ function check_complete(){
 
     if(first_name!=''&&last_name!=''&&email!=''&&dob!='') completeIcon('nav-general-tab'); else inCompleteIcon('nav-general-tab');
     // if(email!=''&&dob!='') completeIcon('nav-personal-tab'); else inCompleteIcon('nav-personal-tab');
-    if(current_street!=''&&current_municipality!=''&&current_district!=''&&current_state!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
+    if(current_street!='') completeIcon('nav-address-tab'); else inCompleteIcon('nav-address-tab');
     if(mobile_phone!='') completeIcon('nav-contact-tab'); else inCompleteIcon('nav-contact-tab');
-    if(passport_no!=''&&issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
+    if(passport_no!='' && issue_place!='') completeIcon('nav-nationality-tab'); else inCompleteIcon('nav-nationality-tab');
     if(e_name!=''&& e_relation!=''&& e_phone!='') completeIcon('nav-eContact-tab'); else inCompleteIcon('nav-eContact-tab');
     if(institute!='') completeIcon('nav-education-tab'); else inCompleteIcon('nav-education-tab');
     if(blood_group!='') completeIcon('nav-health-tab'); else inCompleteIcon('nav-health-tab');
@@ -1544,19 +1558,19 @@ function check_complete(){
 function  checkExp(){
   var status="";
   var xmlHttp = new XMLHttpRequest();
-         xmlHttp.open('POST','checkExp',true);
-          var data = new FormData();
-           xmlHttp.send(data);
+     xmlHttp.open('POST','checkExp',true);
+      var data = new FormData();
+       xmlHttp.send(data);
 
-            xmlHttp.onreadystatechange = function()
-            {
-              if(xmlHttp.readyState==4){
-              status = xmlHttp.responseText;
-               if(status=="true")
-                 completeIcon('nav-work-tab');
-               else inCompleteIcon('nav-work-tab');
-              }
-            }
+        xmlHttp.onreadystatechange = function()
+        {
+          if(xmlHttp.readyState==4){
+          status = xmlHttp.responseText;
+           if(status=="true")
+             completeIcon('nav-work-tab');
+           else inCompleteIcon('nav-work-tab');
+          }
+        }
             
   }
   
