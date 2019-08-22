@@ -1090,36 +1090,33 @@ function addWork(){
 			'contact_person_number'=>$contact_person_number,
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		if($this->Admin_model->insert('employee_work_experience',$data)){
+		if($id==''){
+			$this->Admin_model->insert('employee_work_experience',$data);
 			$id=$this->db->insert_id();
 			echo $id;
 		}
-	
-	
-
-	
+		else{
+			$this->db->where('id',$id);
+			$this->db->update('employee_work_experience',$data);
+			echo "update";
+		}
+		
+		
+		
 }
 
 
 
-// for work experience
-function editWork(){
-	extract($_PUT);
 
-		$data=[
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'organization'=>$organization,
-			'responsibility'=>$responsibility,
-			'position'=>$position,
-			'contact_person_number'=>$contact_person_number,
-			'emp_id'=>$_SESSION['current_employee_id']
-		];
-		
-		$this->db->where('id',$_PUT['id']);
-		$this->Admin_model->update('employee_work_experience',$data);
-		return;
-	
+
+function getWork(){
+	extract($_POST);
+	$this->db->where('id',$id);
+	$res=$this->db->get('employee_work_experience');
+	$result=$res->row_array();
+
+	echo json_encode($result);
+
 }
 
 

@@ -245,55 +245,44 @@
 </div>
 
 <div class="column col-md-4">
-	<!-- works -->
-		<div class="column">
-			<div class="card" style="height: 30vh; overflow-y: scroll;">
-				<h5 class="card-header text-center alert alert-dark">Work Experience</h5>
-	
-				<?php 
-					foreach ($work_experience as $value) {
-				?>
-				<!-- show experience in card form start -->
-	<div class="card-group" >
-		  <div class="card">
-		    <div class="card-body">
-		      <?php echo $value['experience']; ?>
-		    </div>
-		  </div>
+	<!-- health starts here -->
+<div class="column ">
+				<div class="card">
+	<h5 class="card-header text-center alert alert-dark">Work Experiences</h5>
+	<div class="card-body" style="height: 500px; overflow-y: scroll;">
+		<?php foreach ($work_experience as $exp) { ?>
+		
+			<div class="body-row ">
+				<div class="item-1 text-left" >Organization</div>
+				<div class="item-2 text-left"><?php echo $exp['organization']; ?></div>
+			</div>
+				<div class="body-row ">
+				<div class="item-1 text-left" >Responsibility</div>
+				<div class="item-2 text-left"><?php echo $exp['responsibility']; ?></div>
+			</div>
+				<div class="body-row ">
+				<div class="item-1 text-left" >Position</div>
+				<div class="item-2 text-left"><?php echo $exp['position']; ?></div>
+			</div>
+				<div class="body-row ">
+				<div class="item-1 text-left" >From</div>
+				<div class="item-2 text-left"><?php echo $exp['from_date']; ?></div>
+			</div>
+				<div class="body-row ">
+				<div class="item-1 text-left" >To</div>
+				<div class="item-2 text-left"><?php echo $exp['to_date']; ?></div>
+			</div>
+				<div class="body-row ">
+				<div class="item-1 text-left" >Contact Person Number</div>
+				<div class="item-2 text-left"><?php echo $exp['contact_person_number']; ?></div>
+			</div>
+			<hr/>
+		<?php } ?>
+		</div>
+		</div>
 	</div>
-					<!-- show experience in card form end -->
-				<?php
-					}
-				?>
-	
-			</div>
-		</div>
+		<!-- health ends here -->
 
-		<div class="column">
-			<div class="card">
-				<h5 class="card-header text-center alert alert-dark">Documents</h5>
-				<div class="card-body" style="padding: 0;">
-					<table class="table" style="overflow: scroll">
-						<thead>
-							<th>Title</th>
-							<th>File</th>
-						</thead>
-					<?php 
-					foreach ($documents as $value) {
-				?>
-				<tr>
-					<td><?php echo $value['doc_title']; ?></td>
-					<td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
-				</tr>
-			
-				<?php
-					}
-				?>
-			</table>
-					</div>
-			</div>
-		</div>
-		<!-- work ends here  -->
 
 		<!-- pan -->
 		<div class="column ">

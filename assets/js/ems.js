@@ -1,3 +1,8 @@
+//global declarations
+
+var addRowCount=0;
+
+
 $(document).ready((function ($) {
 
   $(".menu-icon").on("click", function() {
@@ -1238,172 +1243,140 @@ function showresponse(formname,status,msg)
     });
   });
 
-function saveExp(){
-  var organization = document.getElementsByName('organization');
-  var responsibility = document.getElementsByName('responsibility');
-  var position = document.getElementsByName('position');
-  var from_date = document.getElementsByName('from_date');
-  var to_date = document.getElementsByName('to_date');
-  var contact_person_number = document.getElementsByName('contact_person_number');
-
-  var lengths =[organization.length,responsibility.length,position.length,from_date.length,to_date.length,contact_person_number.length];
+function clearExpForm(){
+  document.getElementById('expTitle').innerHTML='Add New Experience';
+ document.getElementById('expTitle').classList.remove('text-info');
+ document.getElementById('id').value='';
+ document.getElementById('submitExp').value='Add Experience';
+  document.getElementById('expForm').reset();
   
-  // if any of text field element is missing then show error
+$('#organization').css('border', '1px solid #ced4da');
+$('#responsibility').css('border', '1px solid #ced4da');
+$('#position').css('border', '1px solid #ced4da');
+$('#from_date').css('border', '1px solid #ced4da');
+$('#to_date').css('border', '1px solid #ced4da');
+$('#contact_person_number').css('border', '1px solid #ced4da');
 
-  for(var i=0; i<lengths.length; i++){
-    if(lengths[i]!=organization.length){
-      $('#submitExp').notify('Something is Missing. Refresh the page',{position:'right middle',className:'info'});
-      break;
-    }
+
+}
+
+
+function saveExp(){
+  var expid = document.getElementById('id');
+  var organization = document.getElementById('organization');
+  var responsibility = document.getElementById('responsibility');
+  var position = document.getElementById('position');
+  var from_date = document.getElementById('from_date');
+  var to_date = document.getElementById('to_date');
+  var contact_person_number = document.getElementById('contact_person_number');
+
+
+
+
+var data = [organization,responsibility,position,from_date,to_date,contact_person_number];
+var error = false;  // to track error in fields
+for(k in data){
+  if(!data[k].value.trim()){
+    $(data[k]).css('border', '1px solid red');
+    error =true;
   }
-
-
-  //store variable for checking erros
-var error=false;
-
-
-  for (var i = 0; i<organization.length; i++) {
-    if(!organization[i].value){
-      $(organization[i]).css('border', '1px solid red');
-      error=true;
-    }
-    else  $(organization[i]).css('border', '1px solid #ced4da');
+  else{
+     $(data[k]).css('border', '1px solid #ced4da');
   }
-  for (var i = 0; i<responsibility.length; i++) {
-    if(!responsibility[i].value){
-      $(responsibility[i]).css('border', '1px solid red');
-      error=true;
-    }
-    else  $(responsibility[i]).css('border', '1px solid #ced4da');
+}
 
-  }
-  for (var i = 0; i<position.length; i++) {
-    if(!position[i].value){
-      $(position[i]).css('border', '1px solid red');
-      error=true;
-    }
-    else  $(position[i]).css('border', '1px solid #ced4da');
 
-  }
-  for (var i = 0; i<from_date.length; i++) {
-    if(!from_date[i].value){
-      $(from_date[i]).css('border', '1px solid red');
-      error=true;
-    }
-    else  $(from_date[i]).css('border', '1px solid #ced4da');
-
-  }
-  for (var i = 0; i<to_date.length; i++) {
-    if(!to_date[i].value){
-      $(to_date[i]).css('border', '1px solid red');
-      error=true;
-    }
-  else  $(to_date[i]).css('border', '1px solid #ced4da');
-
-  }
-  for (var i = 0; i<contact_person_number.length; i++) {
-    if(!contact_person_number[i].value){
-      $(contact_person_number[i]).css('border', '1px solid red');
-      error=true;
-    }
-    else  $(contact_person_number[i]).css('border', '1px solid #ced4da');
-
-  }
- 
 if(error){
- $('#submitExp').notify('Please Fill Highlighted Fields',{position:'right middle'});
+ $('#submitExp').notify('Please Fill Highlighted Fields',{position:'bottom'});
  return ;
 }
 
-var controllerError= "false";
-var counter = 0;
 
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addWork',true);
+    var data = new FormData();
+    data.append('id',expid.value);
+    data.append('from_date',from_date.value);
+    data.append('to_date',to_date.value);
+    data.append('organization',organization.value.trim());
+    data.append('responsibility',responsibility.value.trim());
+    data.append('position',position.value.trim());
+    data.append('contact_person_number',contact_person_number.value.trim());
 
-  for(var i=0; i<organization .length; i++){
-    if(controllerError=="true") break;
-    if(from_date[i].disabled||to_date[i].disabled||organization[i].disabled||responsibility[i].disabled||position[i].disabled||contact_person_number[i].disabled){
-      continue;
-    }
-    else{
-      ++counter;
-    }
-
-      addId= i;
-      var elsePart = false;
-
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('POST','addWork',true);
-          var data = new FormData();
-          data.append('rowId',i);
-          data.append('from_date',from_date[i].value);
-          data.append('to_date',to_date[i].value);
-          data.append('organization',organization[i].value.trim());
-          data.append('responsibility',responsibility[i].value.trim());
-          data.append('position',position[i].value.trim());
-          data.append('contact_person_number',contact_person_number[i].value.trim());
-
-          xmlHttp.send(data);
-
-
+    xmlHttp.send(data);
      xmlHttp.onreadystatechange = function()
               {
                   if(xmlHttp.readyState==4){
-                      var error=xmlHttp.responseText;
-                      if(error=="true"){
-                        controllerError="true";
+                      var status=xmlHttp.responseText;
+                      if(status=="update"){
+                         $('#submitExp').notify('Experience Updated Successfully',{position:'bottom',className:'success'});
                       }
+
+                     else if(!status.NaN){
+                         $('#submitExp').notify('Experience Added Successfully',{position:'bottom',className:'success'});
+                      }
+                     
                       else{
-                        elsePart=true;
-
+                         $('#submitExp').notify('Please Provide Proper Data',{position:'bottom'});
                       }
-
-                    }
+                        clearExpForm();
+                        $( "#mainWork" ).load(window.location.href + " #childWork" );
+                   }
 
               }
-             
-
-                        from_date[addId].disabled=true;
-                        to_date[addId].disabled=true;
-                        organization[addId].disabled=true;
-                        responsibility[addId].disabled=true;
-                        position[addId].disabled=true;
-                        contact_person_number[addId].disabled=true;
-                        var editbtn = document.createElement('i');
-                        editbtn.className='fas fa-edit text-info pointer';
-                        var p= organization[addId].parentElement.parentElement.childNodes[6];
-
-                         while (p.firstChild) {
-                          p.removeChild(p.firstChild);
-                          }
-
-                       var deletebtn= document.createElement('i');
-                       deletebtn.id='d'+error;
-                       deletebtn.className='ibtnDel fas fa-trash text-danger';
-                       deletebtn.click='confirmExpDel(this.id,error)';
-                        
-                        editbtn.appendChild(deletebtn);
-                        organization[addId].parentElement.parentElement.childNodes[6].prepend(editbtn);
-                
-
-
-  } 
-
-if(controllerError=="false")  {
-  if(counter==1)
-  $('#submitExp').notify('Experience added successfully',{position:'right middle',className:'success'});
-  else
-  $('#submitExp').notify(counter+' experiences added successfully.',{position:'right middle',className:'success'});
 }
-else{
-    $('#submitExp').notify('Unable to add. Please try again.',{position:'right middle'});
+                     
+
+
+
+
+
+
+function editExp(id){
+    document.getElementById('expTitle').innerHTML='Edit Experience';
+    document.getElementById('expTitle').className='text-info';
+
+   var submitBtn= document.getElementById('submitExp');
+   submitBtn.value="Update Experience";
+  submitBtn.setAttribute( "onClick", "saveExp()" );
+
+
+  var expid = document.getElementById('id');
+  var organization = document.getElementById('organization');
+  var responsibility = document.getElementById('responsibility');
+  var position = document.getElementById('position');
+  var from_date = document.getElementById('from_date');
+  var to_date = document.getElementById('to_date');
+  var contact_person_number = document.getElementById('contact_person_number');
+
+
+
+      var xmlHttp = new XMLHttpRequest();
+         xmlHttp.open('POST','getWork',true);
+          var data = new FormData();
+          data.append('id',id);
+           xmlHttp.send(data);
+
+            xmlHttp.onreadystatechange = function()
+            {
+              if(xmlHttp.readyState==4){
+                var exp= JSON.parse(xmlHttp.responseText);
+                for(k in exp){
+                  if(k=="id") expid.value=exp[k];
+                  if(k=="organization") {organization.value=exp[k]; organization.title=exp[k];}
+                  if(k=="responsibility") {responsibility.value=exp[k]; responsibility.title=exp[k];}
+                  if(k=="position") {position.value=exp[k]; position.title=exp[k];}
+                  if(k=="from_date") {from_date.value=exp[k]; from_date.title=exp[k];}
+                  if(k=="to_date") {to_date.value=exp[k]; to_date.title=exp[k];}
+                  if(k=="contact_person_number") {contact_person_number.value=exp[k]; contact_person_number.title=exp[k];}
+                  
+                }
+              }
+            }
+
+
 
 }
-    
-
-
-
-}
-
 
 
 
@@ -1420,18 +1393,21 @@ function deleteExp(value) {
               if(xmlHttp.readyState==4){
                 var status= xmlHttp.responseText;
                 if(status=="success"){
-                $('#submitExp').notify('Experience Deleted successfully.',{position:'right middle',className:'success'});
-                   $( "#main-work" ).load(window.location.href + " #expTables" );
+                $('#submitExp').notify('Experience Deleted successfully.',{position:'bottom',className:'success'});
                 }
                 else{
-                $('#submitExp').notify('Unable to delete.',{position:'right middle',className:'error'});
-                 $( "#main-work" ).load(window.location.href + " #expTables" );
-
+                $('#submitExp').notify('Unable to delete.',{position:'bottom',className:'error'});
                 }
+                  $('#del'+value).css('display','none');
+                  $('#del'+value).attr('aria-hidden', 'true');
+                  $('body').removeClass('modal-open');
+                  $('.modal-backdrop').remove();
+
+                   $( "#mainWork" ).load(window.location.href + " #childWork" );
               }
               check_complete();
             }
-   $( "#workScript" ).load(window.location.href + " #main-work" );
+  
 
 
 }
@@ -1834,7 +1810,7 @@ function assign()
 // for delete button to dismiss the modal
 function dismissModal()
 {
-      $('#leaveModal').css('display','none');
+         $('#leaveModal').css('display','none');
         $('#leaveModal').attr('aria-hidden', 'true');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();

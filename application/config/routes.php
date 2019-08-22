@@ -6,8 +6,22 @@ $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
 
+
+
+
+
+
+
+
+// work experience
+
 $route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
+$route['admin/employee_manage/getWork'] = 'Admin_controller/getWork';
 $route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
+
+
+
+
 $route['admin/employee_manage/checkExp'] = 'Admin_controller/checkExp';
 
 
@@ -29,7 +43,6 @@ $route['admin/addEmergency'] = 'Admin_controller/addEmergency';
 $route['admin/addHealth'] = 'Admin_controller/addHealth';
 $route['admin/addPan'] = 'Admin_controller/addPan';
 $route['admin/addWork'] = 'Admin_controller/addWork';
-$route['admin/getWork'] = 'Admin_controller/getWork';
 $route['admin/delWork'] = 'Admin_controller/delWork';
 $route['admin/editWork'] = 'Admin_controller/editWork';
 

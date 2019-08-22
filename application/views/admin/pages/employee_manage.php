@@ -636,61 +636,128 @@
 
  <!-- work experience -->
 
-<div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+<div class="tab-pane fade" id="nav-work" role="tabpanel"  style="background: white;" aria-labelledby="nav-work-tab">
   
-<div class="container-fluid">
-    <table id="expTable" class=" table order-list">
-    <thead>
-        <tr class="row">
-            <td class="col">Organization</td>
-            <td class="col">Responsibility</td>
-            <td class="col">Postition</td>
-            <td class="col">From</td>
-            <td class="col">To</td>
-            <td class="col">Contact Person Number</td>
-            <td class="col-sm-1">Action</td>
+
+
+
+
+
+
+<div class="p-3" >
+  
+
+
+
+
+
+
+
+<form class="row container-fluid mt-2 " id="expForm" >
+   <h6 id="expTitle"> Add New Experience</h6>
+
+<input type="hidden" value="" id="id">
+
+<div class="row" >
+  <div class="col form-label-group">
+    <input type="text" id="organization" class="form-control" placeholder="Organization"  >
+    <label for="organization">Organization</label>
+  </div>
+
+  <div class="col form-label-group">
+    <input type="text" id="responsibility" class="form-control" placeholder="Responsibility" >
+    <label for="responsibility">Responsibility</label>
+  </div>
+ <div class="col form-label-group">
+    <input type="text" id="position" class="form-control" placeholder="Position" >
+    <label for="position">Position</label>
+  </div>
+ <div class="col form-label-group">
+    <input type="date" max="<?php echo Date('Y-m-d');?>" value="<?php echo Date('Y-m-d');?>" id="from_date" class="form-control" placeholder="Start Date" >
+    <label for="from_date">Start Date</label>
+  </div>
+ <div class="col form-label-group">
+    <input type="date" max="<?php echo Date('Y-m-d');?>"  value="<?php echo Date('Y-m-d');?>" id="to_date" class="form-control" placeholder="End Date" >
+    <label for="to_date">End Date</label>
+  </div>
+ <div class="col form-label-group">
+    <input type="text" id="contact_person_number" class="form-control" placeholder="Contact Person Number" >
+    <label for="contact_person_number">Contact Person Number</label>
+  </div>
+
+</div>
+<div class="sub-can">
+  <input type="button" class="btn btn-success " id="submitExp" onclick="saveExp()" value="Add Experience">
+  <input type="button" class="btn btn-info " onclick="clearExpForm()" value="Cancel">
+</div>
+  
+</form>
+</div>
+
+
+
+
+<hr/>
+
+
+
+<div class="container-fluid" id="mainWork">
+  <div id="childWork">
+
+    <table id="expTable" class="table table-bordered hover employee_table" style="width:100%; ">
+    <thead class="thead-dark">
+        <tr>
+            <th id="dt-head"><div class="sp-btn"><span>Organization</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Responsibility</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Postition</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>From</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>To</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Contact Person Number</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Action</span></div></th>
         </tr>
     </thead>
       <tbody>
-        <?php  $counter=0;
-        foreach ($work_experience as $exp) {?>
-     <script>
-        var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
-        var cols = "";
-       
-        cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
-         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> ';
-         cols+= '</tr>';
-     newRow.append(cols);
-     $("table.order-list").append(newRow);
-    </script>
+        <?php 
+        foreach (array_reverse($work_experience) as $exp) {?>
+        <tr>
+          <td title="<?php echo $exp['organization'];?>"><?php echo $exp['organization'];?> </td> 
+          <td  title="<?php echo $exp['responsibility'];?>"><?php echo $exp['responsibility'];?> </td> 
+          <td  title="<?php echo $exp['position'];?>"><?php echo $exp['position'];?></td> 
+          <td  title="<?php echo $exp['from_date'];?>"><?php echo $exp['from_date'];?> </td> 
+          <td  title="<?php echo $exp['to_date'];?>"><?php echo $exp['to_date'];?> </td> 
+          <td  title="<?php echo $exp['contact_person_number'];?>"><?php echo $exp['contact_person_number'];?> </td> 
+          <td ><i class="fas fa-edit text-info pointer" onclick="editExp(<?php echo $exp['id'];?>)"></i>  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class=" fas fa-trash-alt text-danger" data-toggle="modal" data-target="#del<?php echo $exp['id'];?>"  ></i></td> 
+        </tr>
+
+    
+<!-- Modal -->
+<div class="modal fade" id="del<?php echo $exp['id'];?>" tabindex="-1" role="dialog" aria-labelledby="delExpBox" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delExpBox">Are you sure to delete this experience?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="deleteExp(<?php echo $exp['id'];?>)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of modal -->
 
      <?php } ?>
-
       </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="7" style="text-align: left;" >
-                 <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
-                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> 
-
-                
-            </td>
-        </tr>
-        <tr>
-        </tr>
-    </tfoot>
 </table>
 </div>
 </div>
+</div>
 
-<!-- end of work experience -->
+
 <!-- end of work experience -->
 
   <!-- documents tab -->
@@ -1102,74 +1169,16 @@ function checkRelation(ele,val)
     <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
 
 
-      <!--  script for workexperience table  -->
-<script>
-$(document).ready(function () {
-    
-    var counter= <?php echo $counter; ?>+1;
-    $("#addrow").on("click", function () {
-        var newRow = $("<tr class='row'>");
-        var cols = "";
-        cols +='<td class="col"><input type="text" id="organization" name="organization" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="responsibility" name="responsibility" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="position" name="position" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="from_date" name="from_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="to_date" name="to_date" class="form-control"  /></td>';
-        cols +='<td class="col"><input type="text" id="contact_person_number" name="contact_person_number" class="form-control"  /></td>';
-        cols +='<td  class="col-sm-1"> &nbsp; &nbsp;<i class="ibtnDel fas fa-trash text-danger newExp"> </td> ';
-           
-        
-        newRow.append(cols);
-        $("table.order-list").append(newRow);
-        counter++;
-    });
-});
+
+<script type="text/javascript">
+  
+     $(document).ready(function(){
+         $('#expTable').dataTable({
+          "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "searching":false,
+         });
+      });
+
 </script>
-
-
-<script>
- $('#expTable').on('click', 'i.newExp', function(e){
-   $(this).closest('tr').remove()
-})
-function confirmExpDel(id='',value=''){
-                  var h5 = $("<p/>").append("Are you sure?");
-$.notify.addStyle('foo', {
-  html: 
-    "<div>" +
-      "<div class='clearfix'>" +
-        "<div class='title' data-notify-html='title'/>" +
-        "<div class='buttons'>" +
-          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
-          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
-        "</div>" +
-      "</div>" +
-    "</div>"
-});
-//listen for click events from this style
-$(document).on('click', '.notifyjs-foo-base .no', function() {
-  //no function
-  $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-foo-base .yes', function() {
-  // yes function
-//start of deleting experience
-  deleteExp(value); 
-// end of deleting experience
-    $(this).closest("tr").remove();       
-        
-  //hide notification
-  $(this).trigger('notify-hide');
-});
-                  $('#'+id).notify({
-                  title: h5,
-                  button: 'YES'
-                  }, { 
-                  style: 'foo',
-                  autoHide: false,
-                  clickToHide: false,
-                  position:'left middle ',
-                  });
-                }
-                </script>
-<!-- script for exp table ends here -->
-
