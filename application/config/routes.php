@@ -150,6 +150,7 @@ $route['employee/leave_form'] = 'Employee_controller/leaveForm';
 $route['employee/profile'] = 'Employee_controller/profile';
 $route['employee/leave_approve_archive'] = 'Employee_controller/leaveApproveArchive';
 $route['employee/leave_recommended_archive'] = 'Employee_controller/leaveRecommendedArchive';
+$route['employee/leave_substitute_form'] = 'Employee_controller/leaveSubstituteForm';
 
 $route['employee/app_leave_approve'] = 'Employee_controller/appLeaveApprove';
 
