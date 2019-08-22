@@ -628,9 +628,7 @@ function submitDocument(){
           {
            var status = xmlHttp.responseText;
            
-
-
-            if(status='false'){
+            if(status=='false'){
               msg="Invalid File Selected";
               showErrormessage(msg,'docaddbtn');
                return ; 
