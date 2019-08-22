@@ -638,6 +638,7 @@ function submitDocument(){
            {
              msg="Files Uploaded";
               showCustomSuccessmessage('docaddbtn',msg);
+              location.reload();
                return ; 
            }
            else if(status=="fileerror"){
@@ -656,7 +657,7 @@ function submitDocument(){
            
                  
           }
-           location.reload();
+           
       }
       
     }
