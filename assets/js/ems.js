@@ -630,7 +630,7 @@ function submitDocument(){
            
 
 
-            if(status='false'){
+            if(status=='false'){
               msg="Invalid File Selected";
               showErrormessage(msg,'docaddbtn');
                return ; 
@@ -655,9 +655,10 @@ function submitDocument(){
               $('#showmessage').html(msg); 
         }
 
-            location.reload();
+           
                  
           }
+           location.reload();
       }
       
     }
