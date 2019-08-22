@@ -659,30 +659,30 @@
 <input type="hidden" value="" id="id">
 
 <div class="row" >
-  <div class="col form-label-group">
+  <div class="col-sm-2 form-label-group" style="padding:0px 2px">
     <input type="text" id="organization" class="form-control" placeholder="Organization"  >
     <label for="organization">Organization</label>
   </div>
 
-  <div class="col form-label-group">
+  <div class="col-sm-2 form-label-group" style="padding:0px 2px">
     <input type="text" id="responsibility" class="form-control" placeholder="Responsibility" >
     <label for="responsibility">Responsibility</label>
   </div>
- <div class="col form-label-group">
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
     <input type="text" id="position" class="form-control" placeholder="Position" >
     <label for="position">Position</label>
   </div>
- <div class="col form-label-group">
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px; " >
     <input type="date" max="<?php echo Date('Y-m-d');?>" value="<?php echo Date('Y-m-d');?>" id="from_date" class="form-control" placeholder="Start Date" >
     <label for="from_date">Start Date</label>
   </div>
- <div class="col form-label-group">
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
     <input type="date" max="<?php echo Date('Y-m-d');?>"  value="<?php echo Date('Y-m-d');?>" id="to_date" class="form-control" placeholder="End Date" >
     <label for="to_date">End Date</label>
   </div>
- <div class="col form-label-group">
-    <input type="text" id="contact_person_number" class="form-control" placeholder="Contact Person Number" >
-    <label for="contact_person_number">Contact Person Number</label>
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="text" id="contact_person_number" class="form-control" placeholder="Contact Person No." >
+    <label for="contact_person_number">Contact Person No.</label>
   </div>
 
 </div>

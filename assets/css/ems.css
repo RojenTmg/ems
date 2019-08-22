@@ -1699,7 +1699,7 @@ input[type=number]::-webkit-outer-spin-button {
 .form-label-group > input,
 .form-label-group > label {
   height: 3.125rem;
-  padding: 1.1rem;
+  padding: 1rem;
   text-align: center;
 }
 
