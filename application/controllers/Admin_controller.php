@@ -1117,7 +1117,7 @@ function deleteWorkExp(){
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
-		$realName= $_FILES['document']['name'];
+		$realName= $_SESSION['current_employee_id'].'-'.$_FILES['document']['name'];
 
 		// list of allowed file types
 		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf','PNG','JPG');
