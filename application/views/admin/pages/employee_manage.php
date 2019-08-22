@@ -52,22 +52,22 @@
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
          <!-- general tab -->
 
-        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true" tabindex="0"></i></a>
+        <a class="nav-item nav-link active " id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General &nbsp;&nbsp;<i class="fa fa-check-circle prog-incom" aria-hidden="true" tabindex="0"></i></a>
  
         <!-- added address tab -->
-        <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link " id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address &nbsp;&nbsp;<i class="fa fa-check-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- contact tab -->
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- nationality tab -->
-        <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-nationality-tab" data-toggle="tab" href="#nav-nationality" role="tab" aria-controls="nav-nationality" aria-selected="false">Nationality &nbsp;&nbsp;<i class="fa fa-check-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- emergency tab -->
         <a class="nav-item nav-link" id="nav-eContact-tab" data-toggle="tab" href="#nav-eContact" role="tab" aria-controls="nav-eContact" aria-selected="false">Emergency Contact &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- education tab -->
-        <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education &nbsp;&nbsp;<i class="fa fa-check-circle prog-com" aria-hidden="true"></i></a>
+        <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education &nbsp;&nbsp;<i class="fa fa-check-circle prog-incom" aria-hidden="true"></i></a>
 
         <!-- health tab -->
         <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="false">Health &nbsp;&nbsp;<i class="fa fa-info-circle prog-incom" aria-hidden="true"></i></a>
@@ -421,12 +421,12 @@
         </div>
           <!-- changes in passport details -->
           <div class="form-group row">
-          <div class="form-div col-md-2 mr-4">
+          <div class="form-div col-md-2  mr-4">
             <label>Citizenship/Passport No.<span class="text-danger"><i>*</i></span></label>
-            <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="">
+            <input type="text" id="passport_no" value="<?php if(isset($post['passport_no'])) echo $post['passport_no'];?>" placeholder="" class="">
           </div>
 
-          <div class="form-div col-md-4">
+          <div class="form-div col-md-2">
             <label>Place of Issue<span class="text-danger"><i>*</i></span></label>
             <input type="text" id="passport_issue_place" value="<?php if(isset($post['passport_issue_place'])) echo $post['passport_issue_place'];?>" placeholder="">
           </div>
@@ -588,7 +588,7 @@
                   <input type="radio" value="Yes" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])) { if ($post['allergies'] == 'Yes') { echo "checked"; }} ?> >
                   <label  class="radio-inline">Yes</label>
                 
-                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; }}?> >
+                  <input type="radio"  value="No" onchange="showHideAllergy(this)" name="allergies" <?php if(isset($post['allergies'])){ if($post['allergies'] == 'No') { echo "checked"; } if($post['allergies'] == '') { echo "checked"; }}?> >
                   <label  class="radio-inline">No</label>
                 </div>
              
@@ -638,12 +638,8 @@
 
 <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
   
-
-<div class="container-fluid" id="main-work">
-
-
-    <table id="expTables" class=" table order-list">
-      
+<div class="container-fluid">
+    <table id="expTable" class=" table order-list">
     <thead>
         <tr class="row">
             <td class="col">Organization</td>
@@ -658,26 +654,21 @@
       <tbody>
         <?php  $counter=0;
         foreach ($work_experience as $exp) {?>
-     
-        <tr class='row' id='exp<?php echo $exp['id'];?>'>
-        
-        <td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>
-
-        <td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>
-
-        <td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>
-
-        <td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>
-
-         <td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> 
-
-       </tr>
-
-    
+     <script>
+        var newRow = $("<tr class='row' id='exp<?php echo $exp['id'];?>' >");
+        var cols = "";
+       
+        cols +='<td class="col"><input type="text" disabled id="organization" value="<?php echo $exp['organization'];?>" name="organization" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="responsibility" value="<?php echo $exp['responsibility'];?>"  name="responsibility" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="position" value="<?php echo $exp['position'];?>" name="position" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="from_date" value="<?php echo $exp['from_date'];?>" name="from_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="date" disabled id="to_date" value="<?php echo $exp['to_date'];?>" name="to_date" class="form-control"  /></td>';
+        cols +='<td class="col"><input type="text" disabled id="contact_person_number" value="<?php echo $exp['contact_person_number'];?>" name="contact_person_number" class="form-control"  /></td>';
+         cols +='<td  class="col-sm-1"><i class="s fas fa-edit text-info pointer">  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class="ibtnDel fas fa-trash text-danger"  onclick="confirmExpDel(this.id,<?php echo $exp['id'];?>)"></td> ';
+         cols+= '</tr>';
+     newRow.append(cols);
+     $("table.order-list").append(newRow);
+    </script>
 
      <?php } ?>
 
@@ -686,8 +677,8 @@
     <tfoot>
         <tr>
             <td colspan="7" style="text-align: left;" >
-               <center>  <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
-                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> </center>
+                 <input type="button" class="btn btn-lg btn-light  shadow" id="addrow" value="Add New Experience" /> 
+                 <input type="button" class="btn btn-lg btn-success shadow" onclick="saveExp()" id="submitExp" value="Save Experience" /> 
 
                 
             </td>
@@ -695,13 +686,11 @@
         <tr>
         </tr>
     </tfoot>
-
 </table>
-
-
 </div>
 </div>
 
+<!-- end of work experience -->
 <!-- end of work experience -->
 
   <!-- documents tab -->
@@ -732,10 +721,7 @@
       <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
       <td>
-
-        
-
-         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+         <i class="fa fa-trash text-danger" aria-hidden="true"> </i>
 
            <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
             <p>Are you sure?</p>
@@ -807,8 +793,24 @@
 </div>
 
 
-<script type="text/javascript">
+<script>
 
+ $('.fa-trash').on('click',function(ev) {
+    $(this).siblings().css({"display": "block"});
+  });
+
+
+   $('.tip-can').on('click',function(ev) {
+    $(this).parent().css({"display": "none"});
+  });
+
+// to close message
+
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("#messagediv").css('display','none');
+    });
+});  
 ////////////////////  Auto-suggestion on Temporary-District Address tab (employee-manage) /////////////////////
 
 var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
@@ -1059,24 +1061,6 @@ if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
   check_complete();
 
 
- $('.fa-trash').on('click',function(ev) {
-    $(this).siblings().css({"display": "block"});
-  });
-
-
-   $('.tip-can').on('click',function(ev) {
-    $(this).parent().css({"display": "none"});
-  });
-
-// to close message
-
-$(document).ready(function(){
-    $(".close").click(function(){
-        $("#messagediv").css('display','none');
-    });
-});  
-
-
 function changeText(toggle){
 if(toggle.checked){
   toggle.nextElementSibling.style.color="green";
@@ -1118,12 +1102,11 @@ function checkRelation(ele,val)
     <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
 
 
-<!-- script for workexperience table -->
+      <!--  script for workexperience table  -->
 <script>
 $(document).ready(function () {
     
     var counter= <?php echo $counter; ?>+1;
-
     $("#addrow").on("click", function () {
         var newRow = $("<tr class='row'>");
         var cols = "";
@@ -1133,26 +1116,60 @@ $(document).ready(function () {
         cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="from_date" name="from_date" class="form-control"  /></td>';
         cols +='<td class="col"><input type="date" value="<?php echo Date('Y-m-d');?>" max="<?php echo Date('Y-m-d');?>" id="to_date" name="to_date" class="form-control"  /></td>';
         cols +='<td class="col"><input type="text" id="contact_person_number" name="contact_person_number" class="form-control"  /></td>';
-        cols +='<td  class="col-sm-1"><i class="ibtnDel fas fa-trash text-danger newExp"></td> ';
-
+        cols +='<td  class="col-sm-1"> &nbsp; &nbsp;<i class="ibtnDel fas fa-trash text-danger newExp"> </td> ';
            
-
-
         
         newRow.append(cols);
         $("table.order-list").append(newRow);
         counter++;
     });
-
-
-
-
-
 });
-
-
-
 </script>
 
+
+<script>
+ $('#expTable').on('click', 'i.newExp', function(e){
+   $(this).closest('tr').remove()
+})
+function confirmExpDel(id='',value=''){
+                  var h5 = $("<p/>").append("Are you sure?");
+$.notify.addStyle('foo', {
+  html: 
+    "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no btn-danger' ><i class=\"fas fa-times\"> </i></button>" +
+          "<button class='yes btn-success'><i class=\"fas fa-check\"> </i></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
+//listen for click events from this style
+$(document).on('click', '.notifyjs-foo-base .no', function() {
+  //no function
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-foo-base .yes', function() {
+  // yes function
+//start of deleting experience
+  deleteExp(value); 
+// end of deleting experience
+    $(this).closest("tr").remove();       
+        
+  //hide notification
+  $(this).trigger('notify-hide');
+});
+                  $('#'+id).notify({
+                  title: h5,
+                  button: 'YES'
+                  }, { 
+                  style: 'foo',
+                  autoHide: false,
+                  clickToHide: false,
+                  position:'left middle ',
+                  });
+                }
+                </script>
 <!-- script for exp table ends here -->
 

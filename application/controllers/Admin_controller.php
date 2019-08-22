@@ -19,20 +19,7 @@ class Admin_controller extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	// public function showingEntries($total, $from, $to) {
-	// 	if (empty($from)) $from = '0';
-
-	// 	$data['total'] = $total;
-	// 	if ($from >= $total) {
-	// 		$data['from'] = 0;
-	// 		$data['to'] = 0;
-	// 	}
-	// 	else {
-	// 		$data['from'] = $from;
-	// 		$data['to'] = $data['from'] + $to;
-	// 	}
-	// 	return $data;
-	// }
+	
 
 	public function dashboard() 
 	{
@@ -305,18 +292,35 @@ public function employeeManage($id = NULL)
 			echo json_encode($result);
 			return ;
 		}
-		if(!$this->textOnly($first_name) || !$this->textOnly($last_name))
-		{
-			$msg="textonly";
-			array_push($result, $msg);
-			echo json_encode($result);
-			return ;
-		}
-
+		
 		if($gender!='Male' && $gender!='Female' && $gender!='Others'){
 			$msg="errorgender";
 			array_push($status, $msg);
 			echo json_encode($status);
+			return ;
+		}
+
+		
+
+		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
+		$this->form_validation->set_rules('first_name','First Name','required|trim');
+		$this->form_validation->set_rules('last_name','Last Name','required|trim');
+		$this->form_validation->set_rules('middle_name','Middle Name','trim');
+
+		if($this->form_validation->run()===FALSE)
+		{
+			$result=$this->form_validation->error_array();
+			$msg="false";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}else
+		{
+			if(!$this->textOnly($first_name) || !$this->textOnly($last_name))
+		{
+			$msg="textonly";
+			array_push($result, $msg);
+			echo json_encode($result);
 			return ;
 		}
 
@@ -354,19 +358,9 @@ public function employeeManage($id = NULL)
 			return 0;
 		}
 
-
-		$this->form_validation->set_rules('title','Title','required',array('required' => 'You must provide a %s.'));
-		$this->form_validation->set_rules('first_name','First Name','required|trim');
-		$this->form_validation->set_rules('last_name','Last Name','required|trim');
-
-		if($this->form_validation->run()===FALSE)
-		{
-			$result=$this->form_validation->error_array();
-		}else
-		{
 			$data=array(
 				'title'=>$title,
-				'first_name'=>$first_name,
+				'first_name'=>trim($first_name),
 				'middle_name'=>$middle_name,
 				'last_name'=>$last_name,
 				'join_date'=>$join_date,
@@ -418,6 +412,23 @@ public function employeeManage($id = NULL)
 			return ;
 		}
 
+
+		$this->form_validation->set_rules('title','Title','required|trim',array('required' => 'You must provide a %s.'));
+		$this->form_validation->set_rules('first_name','First Name','required|trim');
+		$this->form_validation->set_rules('last_name','Last Name','required|trim');
+		$this->form_validation->set_rules('email','Email address','required|trim');
+
+		if($this->form_validation->run()===FALSE)
+		{
+			$result=$this->form_validation->error_array();
+			$msg="false";
+			array_push($result, $msg);
+			echo json_encode($result);
+			return ;
+		}
+		else
+		{
+
 		if(!$this->textOnly($first_name) || !$this->textOnly($last_name))
 		{
 			$msg="textonly";
@@ -455,19 +466,6 @@ public function employeeManage($id = NULL)
 				echo json_encode($result);
 				return ;
 			}
-
-
-		$this->form_validation->set_rules('title','Title','required|trim',array('required' => 'You must provide a %s.'));
-		$this->form_validation->set_rules('first_name','First Name','required|trim');
-		$this->form_validation->set_rules('last_name','Last Name','required|trim');
-		$this->form_validation->set_rules('email','Email address','required|trim');
-
-		if($this->form_validation->run()===FALSE)
-		{
-			$result=$this->form_validation->error_array();
-		}
-		else
-		{
 			$data=array(
 				'title'=>$title,
 				'first_name'=>$first_name,
@@ -517,11 +515,53 @@ public function employeeManage($id = NULL)
 		$this->form_validation->set_rules('currentaddress_municipality','Current municipality','required|trim',array('required' => 'You must provide a %s.'));
 			$this->form_validation->set_rules('currentaddress_district','Current district','required|trim',array('required' => 'You must provide a %s.'));
 
+	
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
 		}else
 		{
+			// validation municipality
+			if($permanentaddress_municipality!='')
+			{
+				if(!$this->textOnly($permanentaddress_municipality))
+				{
+					$msg="textonlyMunicipality";
+					array_push($result, $msg);
+					echo json_encode($result);
+					return ;
+				}
+			}
+
+			//
+			if(!$this->textOnly($currentaddress_municipality))
+			{
+				$msg="textonlyMunicipality";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
+			if($permanentaddress_district!='')
+			{
+				if(!$this->alphanumeric($permanentaddress_district))
+				{
+					$msg="textonlyDistrict";
+					array_push($result, $msg);
+					echo json_encode($result);
+					return ;
+				}
+			}
+
+			//
+			if(!$this->alphanumeric($currentaddress_district))
+			{
+				$msg="textonlyDistrict";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
 
 			$primaryAdd=array(
 				'street'=>$permanentaddress_street,
@@ -1036,49 +1076,11 @@ public function employeeManage($id = NULL)
 
 
 
+
 // for work experience
 function addWork(){
 	extract($_POST);
 
-	$formError=false;
-	$error=[];
-
-	if(!$this->validateDate($from_date)){
-		array_push($error,"from_date[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->validateDate($to_date)){
-		array_push($error,"to_date[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($organization)){
-		array_push($error,"organization[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($responsibility)){
-		array_push($error,"responsibility[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->textOnly($position)){
-		array_push($error,"position[$rowId]");
-		$formError=true;
-
-	}
-	if(!$this->contactNumber($contact_person_number)){
-		array_push($error,"contact_person_number[$rowId]");
-		$formError=true;
-
-	}
-	if($formError){
-		echo json_encode($error);
-		return;
-	}
-
-	
 		$data=[
 			'from_date'=>$from_date,
 			'to_date'=>$to_date,
@@ -1088,36 +1090,37 @@ function addWork(){
 			'contact_person_number'=>$contact_person_number,
 			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		if($this->Admin_model->insert('employee_work_experience',$data))
-		echo "false";
-		else echo "true";
-		return ;
+		if($this->Admin_model->insert('employee_work_experience',$data)){
+			$id=$this->db->insert_id();
+			echo $id;
+		}
+		return;
+
 	
 }
 
-function editWork(){
-	extract($_POST);
-$experience = trim($experience);
 
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
-		$timestamp = date('Y-m-d G:i:s');
+
+// for work experience
+function editWork(){
+	extract($_PUT);
+
 		$data=[
-			'experience'=>$experience,
-			'emp_id'=>$_SESSION['current_employee_id'],
-			'id'=>$id,
-			'modified_date'=>$timestamp
+			'from_date'=>$from_date,
+			'to_date'=>$to_date,
+			'organization'=>$organization,
+			'responsibility'=>$responsibility,
+			'position'=>$position,
+			'contact_person_number'=>$contact_person_number,
+			'emp_id'=>$_SESSION['current_employee_id']
 		];
-		$this->db->where('id',$id);
-		if($this->db->update('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
-		return ;
-	}
+		
+		$this->db->where('id',$_PUT['id']);
+		$this->Admin_model->update('employee_work_experience',$data);
+		return;
+	
 }
+
 
 function checkExp(){
 	if(isset($_SESSION['current_employee_id']))
@@ -1147,10 +1150,10 @@ function deleteWorkExp(){
 		extract($_POST);
 
 		$tmpName = $_FILES['document']['tmp_name'];
-		$realName= $_FILES['document']['name'];
+		$realName= $_SESSION['current_employee_id'].'-'.$_FILES['document']['name'];
 
 		// list of allowed file types
-		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf');
+		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf','PNG','JPG');
 
 		$ext = pathinfo($realName, PATHINFO_EXTENSION);
 
