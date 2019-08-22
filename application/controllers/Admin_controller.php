@@ -1094,7 +1094,8 @@ function addWork(){
 			$id=$this->db->insert_id();
 			echo $id;
 		}
-		return;
+	
+	
 
 	
 }

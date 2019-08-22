@@ -1328,23 +1328,22 @@ var counter = 0;
       ++counter;
     }
 
-          from_date=from_date[i];
-          to_date=to_date[i];
-          organization=organization[i];
-          responsibility=responsibility[i];
-          position=position[i];
-          contact_person_number=contact_person_number[i];
+      addId= i;
+      var elsePart = false;
+
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open('POST','addWork',true);
           var data = new FormData();
           data.append('rowId',i);
-          data.append('from_date',from_date.value);
-          data.append('to_date',to_date.value);
-          data.append('organization',organization.value.trim());
-          data.append('responsibility',responsibility.value.trim());
-          data.append('position',position.value.trim());
-          data.append('contact_person_number',contact_person_number.value.trim());
+          data.append('from_date',from_date[i].value);
+          data.append('to_date',to_date[i].value);
+          data.append('organization',organization[i].value.trim());
+          data.append('responsibility',responsibility[i].value.trim());
+          data.append('position',position[i].value.trim());
+          data.append('contact_person_number',contact_person_number[i].value.trim());
+
           xmlHttp.send(data);
+
 
      xmlHttp.onreadystatechange = function()
               {
@@ -1354,19 +1353,28 @@ var counter = 0;
                         controllerError="true";
                       }
                       else{
-                        from_date.disabled=true;
-                        to_date.disabled=true;
-                        organization.disabled=true;
-                        responsibility.disabled=true;
-                        position.disabled=true;
-                        contact_person_number.disabled=true;
+                        elsePart=true;
+
+                      }
+
+                    }
+
+              }
+             
+
+                        from_date[addId].disabled=true;
+                        to_date[addId].disabled=true;
+                        organization[addId].disabled=true;
+                        responsibility[addId].disabled=true;
+                        position[addId].disabled=true;
+                        contact_person_number[addId].disabled=true;
                         var editbtn = document.createElement('i');
                         editbtn.className='fas fa-edit text-info pointer';
-                        var p= organization.parentElement.parentElement.childNodes[6];
+                        var p= organization[addId].parentElement.parentElement.childNodes[6];
 
                          while (p.firstChild) {
-  p.removeChild(p.firstChild);
-}
+                          p.removeChild(p.firstChild);
+                          }
 
                        var deletebtn= document.createElement('i');
                        deletebtn.id='d'+error;
@@ -1374,13 +1382,10 @@ var counter = 0;
                        deletebtn.click='confirmExpDel(this.id,error)';
                         
                         editbtn.appendChild(deletebtn);
-                        organization.parentElement.parentElement.childNodes[6].prepend(editbtn);
+                        organization[addId].parentElement.parentElement.childNodes[6].prepend(editbtn);
+                
 
-                      }
 
-                    }
-
-              }
   } 
 
 if(controllerError=="false")  {
