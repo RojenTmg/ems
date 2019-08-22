@@ -657,11 +657,7 @@ function submitDocument(){
            
                  
           }
-<<<<<<< HEAD
-           
-=======
-          
->>>>>>> d5fbb0511536ba01ca428d50796bc04e6a0bbe26
+
       }
       
     }
