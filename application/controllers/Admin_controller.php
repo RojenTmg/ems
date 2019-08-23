@@ -29,8 +29,9 @@ class Admin_controller extends CI_Controller {
 		//get leave requested by all employees
 		$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
 		$data['employee_leaves_all'] = $this->Admin_model->getAllLeaves();		
-
+		$data['managerList']=$this->Admin_model->getManagerList();
 		$data['remaining']=$data['count']-$data['assigned'];
+		
 
 		$data['emp_added_this_month'] = count($this->Admin_model->findAllByCertainMonth('employees', 'created_date', 'MONTH', date('m')));
 
