@@ -195,16 +195,19 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_leaves as $value) { 
+                foreach ($employee_leaves_all as $value) { 
+
                 $CI =& get_instance(); $checkRecommender=$CI->checkstatus($value['recommender_id']);
                  $CI =& get_instance(); $checkApprover=$CI->checkstatus($value['approver_id']);
+                 $recommender_id =$this->Admin_model->getRecommenderId($value['emp_id']);
+                 $approver_id =$this->Admin_model->getApproverId($value['emp_id']);
 
                   if($checkRecommender=="absent"&&$checkApprover=="absent") 
                     $bothabsent="true";
                   else $bothabsent="false";
                   ?>
                   <tr>
-                    <td><?php echo $this->Admin_model->getName($value['em']); ?></td>
+                    <td><?php echo $this->Admin_model->getName($value['emp_id']); ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
 
                     <td><?php echo ucfirst($value['duration_type']).'-day'; ?></td>
@@ -223,7 +226,7 @@
                        <?php } }?>
                        &nbsp;
 
-                     <?php echo $this->Admin_model->getName($value['recommender_id']);?>
+                     <?php echo $this->Admin_model->getName($recommender_id);?>
 <?php if($checkRecommender!="present" &&$value['is_recommended']=="pending" ){ ?>
 <?php if($bothabsent=="false"){ ?>
 <center>                                          
@@ -277,7 +280,7 @@
                       <i class="fa fa-circle " style="color: red" aria-hidden="true"></i>
                        <?php } }?>
                        &nbsp;
-                    <?php echo $this->Admin_model->getName($value['approver_id']);?>
+                    <?php echo $this->Admin_model->getName($approver_id);?>
                           <br>
                           <?php if($checkApprover!="present" &&$value['is_recommended']=="recommended") { ?>
 

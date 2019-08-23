@@ -28,6 +28,7 @@ class Admin_controller extends CI_Controller {
 		$data['assigned']=count($this->Admin_model->assignList());
 		//get leave requested by all employees
 		$data['employee_leaves'] = $this->Employee_model->findAllLeaves();
+		$data['employee_leaves_all'] = $this->Admin_model->getAllLeaves();		
 
 		$data['remaining']=$data['count']-$data['assigned'];
 
