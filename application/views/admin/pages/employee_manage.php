@@ -779,7 +779,7 @@
       foreach ($documents as $value) {
     ?>
     <tr>
-      <td><?php echo $value['doc_title']; ?></td>
+      <td><?php echo $value['doc_title']; ?> </td>
       <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
       <td>
@@ -790,6 +790,8 @@
             <span class="tip-can">Cancel</span>
             <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
           </div>
+            &nbsp; &nbsp; <button class="btn btn-primary"><i>Edit Title</i> </button>
+
         </td>
        </tr>
     <?php   } } ?>
@@ -1085,13 +1087,6 @@ function openDialog() {
   initDialog();
 }
 openDialog();
-
-
-
-
-
-
-
 
     <?php if(isset($_SESSION['current_employee_id'])){ ?>
       

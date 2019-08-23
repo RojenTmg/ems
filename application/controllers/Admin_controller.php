@@ -48,10 +48,6 @@ class Admin_controller extends CI_Controller {
 		}
 
 		$data['empList']=$validEmployee;
-
-
-
-		
 		if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
 			$this->view('dashboard', $title, $data);
 		else
