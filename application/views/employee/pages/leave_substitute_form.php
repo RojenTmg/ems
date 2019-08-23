@@ -22,7 +22,7 @@
           <input type="hidden" name="emp_id" value="">
           <div class="form-div">
             <label>Date</label>
-            <input type="Date" name="date" class="col-md-3" max="<?php echo Date('Y-m-d'); ?>">
+            <input type="Date" name="date" class="col-md-3" max="<?php echo Date('Y-m-d'); ?>" value="<?php echo Date('Y-m-d'); ?>">
           </div>
           <div class="form-div">
             <label>Reason to be a Substitute Staff</label>
@@ -30,7 +30,7 @@
           </div>
           <div class="form-div">
             <label>Description for Holiday</label>
-            <textarea name="description" class="col-md-3" rows="4"></textarea>
+            <textarea name="holiday_description" class="col-md-3" rows="4"></textarea>
           </div>
 
        <div class="sub-can" id="submit">
@@ -41,3 +41,4 @@
     </div>
 
   </div>
+

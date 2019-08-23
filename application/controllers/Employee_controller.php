@@ -274,19 +274,25 @@ function checkExp(){
 			$title['title'] = 'Substitute Leave Form';
 
 			if ($this->input->post('submit') != NULL) {
+				$leave = $this->input->post();
+				$employee = $this->Database_model->find('employee_approvers', 'emp_id', $_SESSION['user_id']);
 
-				// $leaveData = array(
-				// 	'emp_id'=> $_SESSION['user_id'],	// inserts current user id
-				// 	'leave_id'=> (int)$leave['leave_id'],
-				// 	'from_date'=> $leave['from_date'],
-				// 	'duration_type' => $leave['duration_type'],
-				// 	'duty_performed_by'=> (int)$leave['duty_performed_by'],
-				// 	'reason'=> trim($leave['reason'])
-				// );
+				foreach ($employee as $emp) {
+					$recommender_id = $emp['recommender_id'];
+				}
 
-				// $this->Database_model->insert('employee_leaves', $leaveData);
+				$substituteLeave = array(
+					'emp_id'=> (int)$_SESSION['user_id'],	// inserts current user id
+					'recommender_id' => (int)$recommender_id,
+					'date'=> $leave['date'],
+					'reason'=> $leave['reason'],
+					'holiday_description' => $leave['holiday_description']
+				);
 
-				$data['not_valid'] = TRUE; 
+				// var_dump($substituteLeave); die();
+				$this->Database_model->insert('substitute_leaves', $substituteLeave);
+
+				$data['valid'] = TRUE; 
 				// // send mail to recommender
 
 				$this->view('leave_substitute_form', $title, $data);
