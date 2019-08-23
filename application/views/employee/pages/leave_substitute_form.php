@@ -8,7 +8,7 @@
     <div class="box">
       <div class="box-head">
         <p class="form-title"> Add Substitute Leave </p>
-        
+         
         <div class="arch-msg-div">
       <?php if (isset($valid) && $valid==TRUE) { ?>
         <div class="arch-msg"><span><i class="fa fa-check" aria-hidden="true"></i></span><div class="msg-text"><p>Request Successful !</p>Your request has been successflly sent.</div></div>
@@ -17,6 +17,7 @@
       <?php } ?>
     </div>
       </div>
+     
       <div class="box-body">
         <form class="form" action="<?= site_url('employee/leave_substitute_form'); ?>" method="POST" id="substitute_leave_form">
           <input type="hidden" name="emp_id" value="">
