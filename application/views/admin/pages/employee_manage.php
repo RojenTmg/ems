@@ -646,19 +646,14 @@
 
 <div class="p-3" >
   
+<form class="container-fluid mt-2 form " id="expForm" >
+  <div class="div-form">
+ <h6 id="expTitle"> Add New Experience</h6>
 
-
-
-
-
-
-
-<form class="row container-fluid mt-2 " id="expForm" >
-   <h6 id="expTitle"> Add New Experience</h6>
-
+</div>
 <input type="hidden" value="" id="id">
 
-<div class="row" >
+<div class="row ml-1" >
   <div class="col-sm-2 form-label-group" style="padding:0px 2px">
     <input type="text" id="organization" class="form-control" placeholder="Organization"  >
     <label for="organization">Organization</label>

@@ -1327,11 +1327,6 @@ if(error){
 }
                      
 
-
-
-
-
-
 function editExp(id){
     document.getElementById('expTitle').innerHTML='Edit Experience';
     document.getElementById('expTitle').className='text-info';
