@@ -611,6 +611,7 @@ function submitDocument(){
      if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF"||doc_file[i].files[0]['type']=="image/png"||doc_file[i].files[0]['type']=="image/jpeg"||doc_file[i].files[0]['type']=="image/jpg" ) {
 
      }
+
     
   }
     for( i = 0; i < doc_title.length; i++ )
@@ -662,6 +663,71 @@ function submitDocument(){
       
     }
 }
+
+//editing file and name
+// add document to table
+function editDocument(value){
+
+  var doc_title = document.getElementById('edit_doc_title');
+  var doc_file = document.getElementsByName('edit_userfile');
+  var count=0;
+
+
+
+ 
+
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open('POST','editDocuments',true);
+      var data = new FormData();
+      data.append('doc_id',value);
+      data.append('fileCount',doc_file[0].files.length);
+      data.append('doc_title',doc_title.value);
+      data.append('doc_file',doc_file[0].value);
+      data.append('document',doc_file[0].files[0])
+      xmlHttp.send(data);
+      xmlHttp.onreadystatechange = function()
+      {
+          if(xmlHttp.readyState==4)
+          {
+           var status = xmlHttp.responseText;
+           console.log(status);
+
+
+            if(status=='false'){
+              msg="Invalid File Selected";
+              showErrormessage(msg,'editFileBtn');
+               return ; 
+            }
+
+           if(status=='true')
+           {
+             msg="Files Updated";
+              showCustomSuccessmessage('editFileBtn',msg);
+              location.reload();
+               return ; 
+           }
+           else if(status=="fileerror"){
+            $.notify("Error File Type", "error");
+           }
+          else{
+            
+             msg="Choose file";
+
+               $('#messagediv').removeClass('alert-success');
+               $('#messagediv').addClass('alert-danger');
+               $('#messagediv').css('display','block');
+                $('#showmessage').html(msg); 
+        }
+
+           
+                 
+          }
+
+      }
+      
+    }
+
+
 
 
 //show hide visa info

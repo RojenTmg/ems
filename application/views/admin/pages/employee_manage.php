@@ -767,6 +767,8 @@
       <div id="document"> </div>
       <div id="list_doc">
      
+     <input type="button" onclick="submitDocument()" value="Save" class="sub">
+
       <?php 
       if(!empty($documents)){?>
           <table class="table" id="document-list" style="overflow: scroll">
@@ -776,7 +778,7 @@
           <th>Action</th>
         </thead>
         <?php 
-      foreach ($documents as $value) {
+      foreach (array_reverse($documents) as $value) {
     ?>
     <tr>
       <td><?php echo $value['doc_title']; ?> </td>
@@ -790,15 +792,36 @@
             <span class="tip-can">Cancel</span>
             <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
           </div>
-            &nbsp; &nbsp; <button class="btn btn-primary"><i>Edit Title</i> </button>
+            &nbsp; &nbsp; <i class="fas fa-edit pointer text-info" data-toggle="modal" data-target="#fileDel<?php echo $value['doc_id'];?>" > </i> 
 
         </td>
        </tr>
+       <!-- Modal -->
+<div class="modal fade" id="fileDel<?php echo $value['doc_id'];?>" tabindex="-1" role="dialog" aria-labelledby="docFileEdit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="docFileEdit">Edit File</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <i class="text-info">Provide the data in that fields  which you want to modify</i> <br>
+       <input type="text" id="edit_doc_title" value="<?php echo $value['doc_title'];?>" placeholder="Enter the title">
+       <input type="file" id="edit_doc_file"  name="edit_userfile">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="editFileBtn" onclick="editDocument(<?php echo $value['doc_id'];?>)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
     <?php   } } ?>
   </table>
   <hr>
 </div>
-<input type="button" onclick="submitDocument()" value="Save" class="sub">
  </form>
   <!-- <script>   -->
 

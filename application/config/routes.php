@@ -20,6 +20,9 @@ $route['admin/employee_manage/getWork'] = 'Admin_controller/getWork';
 $route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
 
 
+//edit document
+$route['admin/employee_manage/editDocuments'] = 'Admin_controller/editDocuments';
+
 
 
 $route['admin/employee_manage/checkExp'] = 'Admin_controller/checkExp';

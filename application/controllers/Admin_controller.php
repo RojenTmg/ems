@@ -1202,6 +1202,88 @@ function deleteWorkExp(){
 			echo $status;
 
 		}
+
+
+//function for editing documents
+	function editDocuments(){
+
+		$_SESSION['path']="document"; 
+		$status='';
+		$_POST = $this->security->xss_clean($_POST);
+		extract($_POST);
+		if($fileCount==0){
+			if($doc_title==''){
+				$this->db->where('doc_id',$doc_id);
+				$doc=$this->db->get('employee_documents');
+				$docDetail=$doc->row_array();
+
+				$doc_title=$docDetail['doc_file'];
+			}
+			$doc_data=array(
+				'doc_title'=>$doc_title,
+				'emp_id'=>$_SESSION['current_employee_id']
+			);
+			$this->db->where('doc_id',$doc_id);
+			$this->db->update('employee_documents',$doc_data);
+			$status='true';
+			echo $status;
+			return ;
+		}
+		
+
+		
+		$tmpName = $_FILES['document']['tmp_name'];
+		$realName= $_SESSION['current_employee_id'].'-'.$_FILES['document']['name'];
+		// list of allowed file types
+		$allowed =  array('gif','png' ,'jpg','doc','docx','pdf','PNG','JPG');
+
+		$ext = pathinfo($realName, PATHINFO_EXTENSION);
+
+		if(!in_array($ext,$allowed)) {
+		$msg="errorFileType";
+		$status='false';
+		echo $status;
+		return ;
+		}
+
+
+
+		
+		$target_path = 'assets/files/'.$realName;
+		move_uploaded_file($tmpName,$target_path);
+
+					if(isset($_SESSION['current_employee_id'])){
+						$id=$_SESSION['current_employee_id'];
+					}
+					else{
+						$id=$_SESSION['user_id'];
+					}
+
+		if($doc_title=='')
+		{
+			$doc_data=array(
+				'doc_title'=>$realName,
+				'doc_file'=>$realName,
+				'emp_id'=>$id
+			);
+
+		}
+		else{
+			$doc_data=array(
+				'doc_title'=>$doc_title,
+				'doc_file'=>$realName,
+				'emp_id'=>$id
+			);}
+
+			$this->db->where('doc_id',$doc_id);
+			$this->db->update('employee_documents',$doc_data);
+			$status='true';
+
+
+			echo $status;
+
+		}
+
 	// <!-- delete files from the database -->
 	 function deleteFile()
 	 {
