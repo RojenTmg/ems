@@ -354,6 +354,8 @@ function checkExp(){
 				$this->Admin_model->sendEmail($title,$message,$email);
 		
 		}
+
+		
 		// deny leave by recommender
 		public function denyLeaveFromRecommender()
 		{

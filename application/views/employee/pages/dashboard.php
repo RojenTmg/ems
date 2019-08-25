@@ -75,83 +75,7 @@
   </tr>
   </thead>
   <tbody>
-  <?php
-  foreach ($recommendations as $posts) { ?>
-  <tr>
-  <td><?php echo $posts['first_name'].' '.$posts['middle_name']. ' '.$posts['last_name']  ; ?></td>
-  <td><?php echo $posts['from_date']; ?></td>
-  <td><?php echo $posts['to_date']; ?></td>
-
-  <td><?php foreach ($duty_by as $key) {
-  if($key['emp_id']==$posts['duty_performed_by'])
-  {
-  echo $key['first_name'].' '.$key['middle_name']. ' '. $key['last_name']; 
-  } }?></td>
-
-  <td><?php if($posts['is_recommended']=='pending'){?> <span class="pending">Pending</span> <?php } if($posts['is_recommended']=='recommended') {?><span class="granted">Recommended </span><?php } if($posts['is_recommended']=='denied') { ?><span class="denied">Denied </span> </td>
-  <?php } ?>
-
-  <td> 
-  <?php if($posts['is_recommended']=='pending') {?>
-    
-  <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
-    <i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $posts['id']; ?>"></i>
-      <div class="tooltiptext">
-        <p>Are you sure?</p>
-        <span class="tip-can">Cancel</span>
-        <span class="tip-arch tip-res" onclick="recommendLeave(this,<?php echo $posts['id']; ?>)" >Recommend</span>
-        </div>
-  </button> 
-
-   
-    <button type="button" class="btn-edit" data-toggle="modal" data-target="#denySubstituteLeave<?php  echo $posts['id']; ?>">  <i class="fa fa-ban " aria-hidden="true" style="color: #dc3545;"></i> </button>
-  <?php } else { ?>
-
-    <button  class="btn-edit" data-toggle="modal" data-target="#deleteRecommendrequests<?php  echo $posts['id']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
-  <?php } ?>
-
-
-<!-- delete Modal -->
-<div class="modal fade" id="denySubstituteLeave<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deny?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btn<?php echo $posts['id']; ?>" onclick="denyLeaveFromRecommender(this,<?php echo $posts['id']; ?>)">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- modal ends -->
-
-  <!-- modal for archive Recommend requests -->
-  <div class="modal fade" id="deleteRecommendrequests<?php  echo $posts['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="archiveRecommendRecord(<?php echo $posts['id']; ?>)">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-<!-- modal for archive Recommend requests ends here -->
-  </td>
-</tr>
-<?php } ?>
+ 
 </tbody>
 </table>
 </div>
@@ -226,7 +150,6 @@
 
   <td> 
   <?php if($posts['is_recommended']=='pending') {?>
-    
   <button class="btn-archive tooltip1" title="Approve" id="<?php echo $posts['emp_id']; ?>">
     <i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $posts['id']; ?>"></i>
       <div class="tooltiptext">

@@ -425,6 +425,15 @@ public function leaveDetail(){
 
 }
 
+public function getAllLeaves(){
+	$this->db->join('leaves','employee_leaves.leave_id=leaves.leave_id');
+	$this->db->join('employees','employees.emp_id=employee_leaves.emp_id');
+	$query=$this->db->get('employee_leaves');
+	return $query->result_array();
+}
+
+
+
 
 }
 

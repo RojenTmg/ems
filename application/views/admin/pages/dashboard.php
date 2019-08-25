@@ -195,7 +195,7 @@
           </thead>
           <tbody>
             <?php
-                foreach ($employee_leaves as $value) { 
+                foreach ($employee_leaves_all as $value) { 
                 $CI =& get_instance(); $checkRecommender=$CI->checkstatus($value['recommender_id']);
                  $CI =& get_instance(); $checkApprover=$CI->checkstatus($value['approver_id']);
 
@@ -204,10 +204,10 @@
                   else $bothabsent="false";
                   ?>
                   <tr>
-                    <td><?php echo $this->Admin_model->getName($value['em']); ?></td>
+                    <td><?php echo $this->Admin_model->getName($value['emp_id']); ?></td>
                     <td><?php echo $value['leave_name']; ?></td>
 
-                    <td><?php echo $value['duration_type']; ?></td>
+                    <td><?php echo ucfirst($value['duration_type']).'-day'; ?></td>
                     <td><?php echo $value['from_date']; ?></td>
                     <td><?php echo $value['to_date']; ?></td>
                     <td><?php if ($value['to_date'] != NULL) echo round((strtotime($value['to_date']) - strtotime($value['from_date'])) / 86400) + 1; ?></td>
