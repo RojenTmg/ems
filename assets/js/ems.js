@@ -595,7 +595,10 @@ function removeDocument(doc){
 }
 
 // add document to table
-function submitDocument(){
+function submitDocument(btn){
+
+
+
 
   var doc_title = document.getElementsByName('doc_title');
   var doc_file = document.getElementsByName('userfile');
@@ -616,6 +619,15 @@ function submitDocument(){
   }
     for( i = 0; i < doc_title.length; i++ )
      {
+      //changing button menu-icon
+      $("#btn-group").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+      btn.className="btn btn-light";
+      btn.value="Uploading ...";
+
+      btn.onclick='';
+      btn.disabled=true;
+
+     
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open('POST','addDocuments',true);
       var data = new FormData();

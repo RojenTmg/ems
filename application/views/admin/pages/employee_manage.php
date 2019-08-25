@@ -767,8 +767,9 @@
       <div id="document"> </div>
       <div id="list_doc">
      
-     <input type="button" onclick="submitDocument()" value="Save" class="sub">
-
+      <div id="btn-group">
+      <input type="button" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
+      </div>
       <?php 
       if(!empty($documents)){?>
           <table class="table" id="document-list" style="overflow: scroll">
@@ -778,7 +779,7 @@
           <th>Action</th>
         </thead>
         <?php 
-      foreach (array_reverse($documents) as $value) {
+      foreach ( array_reverse($documents) as $value) {
     ?>
     <tr>
       <td><?php echo $value['doc_title']; ?> </td>
