@@ -812,9 +812,9 @@
        <input type="text" id="edit_doc_title" value="<?php echo $value['doc_title'];?>" placeholder="Enter the title">
        <input type="file" id="edit_doc_file"  name="edit_userfile">
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="df<?php echo $value['doc_id'];?>">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success" id="editFileBtn" onclick="editDocument(<?php echo $value['doc_id'];?>)">Save</button>
+        <button type="button" class="btn btn-success" id="editFileBtn" onclick="editDocument(this,<?php echo $value['doc_id'];?>)">Save</button>
       </div>
     </div>
   </div>

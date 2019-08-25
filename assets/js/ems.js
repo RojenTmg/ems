@@ -678,15 +678,19 @@ function submitDocument(btn){
 
 //editing file and name
 // add document to table
-function editDocument(value){
+function editDocument(btn,value){
 
   var doc_title = document.getElementById('edit_doc_title');
   var doc_file = document.getElementsByName('edit_userfile');
   var count=0;
+    //changing button menu-icon
+       btn.remove();
+      $("#df"+value).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+      $("#df"+value).append('Uploading...');
+      
+      
 
-
-
- 
+      
 
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open('POST','editDocuments',true);
