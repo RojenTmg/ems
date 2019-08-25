@@ -57,8 +57,8 @@ $(window).on("scroll", function() {
 
 ////////////////////  Disable submit button after a click and display Loading-Buttons /////////////////////
 
-$('#form-leave-request').submit(function() {
-  $('#btn-leave-form').attr("disable",true);
+$('#load-btn').submit(function() {
+  // $('#btn-leave-form').attr("disable",true);
   $(this).find('#submit #loading-btn').css('display', 'none');
   $(this).find('#submit').append('<div class="sub sub-loading">Processing&nbsp;&nbsp;<i class="fa fa-spinner fa-spin"></i></div>');
 });

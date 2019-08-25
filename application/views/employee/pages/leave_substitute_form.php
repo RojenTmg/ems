@@ -19,7 +19,7 @@
       </div>
      
       <div class="box-body">
-        <form class="form" action="<?= site_url('employee/leave_substitute_form'); ?>" method="POST" id="substitute_leave_form">
+        <form class="form" action="<?= site_url('employee/leave_substitute_form'); ?>" method="POST" id="load-btn">
           <input type="hidden" name="emp_id" value="">
           <div class="form-div">
             <label>Date</label>
@@ -35,7 +35,7 @@
           </div>
 
        <div class="sub-can" id="submit">
-              <button type="submit" name="submit" class="sub" value="submit">Submit</button>
+              <button type="submit" name="submit" class="sub" value="submit" id="loading-btn">Submit</button>
         </div>
         </form>
       </div>

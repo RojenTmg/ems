@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="box-body">
-        <form class="form" action="<?= site_url('employee/leave_form'); ?>" method="POST" id="form-leave-request">
+        <form class="form" action="<?= site_url('employee/leave_form'); ?>" method="POST" id="load-btn">
           <!-- type of leave -->
           <div class="sp-btn leave-duration">
             <div class="form-div">
