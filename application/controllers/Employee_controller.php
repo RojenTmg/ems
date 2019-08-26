@@ -214,7 +214,9 @@ function checkExp(){
 					'from_date'=> $leave['from_date'],
 					'duration_type' => $leave['duration_type'],
 					'duty_performed_by'=> (int)$leave['duty_performed_by'],
-					'reason'=> trim($leave['reason'])
+					'reason'=> trim($leave['reason']),
+					'recommender_id'=>$this->Admin_model->getRecommenderId($_SESSION['user_id']),
+					'approver_id'=>$this->Admin_model->getApproverId($_SESSION['user_id'])
 				);
 
 				if (!empty($leave['to_date'])) {
