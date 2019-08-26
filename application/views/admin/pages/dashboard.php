@@ -246,7 +246,7 @@
         <br><br>
                       <select class="custom-select" style="width: 100%;"  id="tempRecommender" >
                           <option value="">Select option</option>
-                          <?php foreach ($empList as $row) {
+                          <?php foreach ($managerList as $row) {
                           if($_SESSION['current_employee_id']==$row['emp_id']) continue;
                           ?>
 

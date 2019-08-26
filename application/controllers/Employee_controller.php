@@ -47,6 +47,7 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id']);
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
+			$data['employee_leaves_substitute'] = $this->Employee_model->findSubstituteLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
 			
@@ -214,7 +215,9 @@ function checkExp(){
 					'from_date'=> $leave['from_date'],
 					'duration_type' => $leave['duration_type'],
 					'duty_performed_by'=> (int)$leave['duty_performed_by'],
-					'reason'=> trim($leave['reason'])
+					'reason'=> trim($leave['reason']),
+					'recommender_id'=>$this->Admin_model->getRecommenderId($_SESSION['user_id']),
+					'approver_id'=>$this->Admin_model->getApproverId($_SESSION['user_id'])
 				);
 
 				if (!empty($leave['to_date'])) {
@@ -285,8 +288,7 @@ function checkExp(){
 					'emp_id'=> (int)$_SESSION['user_id'],	// inserts current user id
 					'recommender_id' => (int)$recommender_id,
 					'date'=> $leave['date'],
-					'reason'=> $leave['reason'],
-					'holiday_description' => $leave['holiday_description']
+					'description' => $leave['description']
 				);
 
 				// var_dump($substituteLeave); die();
