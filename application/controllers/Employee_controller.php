@@ -285,8 +285,7 @@ function checkExp(){
 					'emp_id'=> (int)$_SESSION['user_id'],	// inserts current user id
 					'recommender_id' => (int)$recommender_id,
 					'date'=> $leave['date'],
-					'reason'=> $leave['reason'],
-					'holiday_description' => $leave['holiday_description']
+					'description' => $leave['description']
 				);
 
 				// var_dump($substituteLeave); die();
