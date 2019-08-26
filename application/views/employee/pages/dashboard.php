@@ -144,7 +144,7 @@
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" onclick="">Submit</button>
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
           <!-- modal for archive Approval requests ends here -->
