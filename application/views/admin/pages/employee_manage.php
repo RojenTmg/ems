@@ -783,7 +783,7 @@
     ?>
     <tr>
       <td><?php echo $value['doc_title']; ?> </td>
-      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" ><?php echo $value['doc_file']; ?></a></td>
+      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" target="_blank" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
       <td>
          <i class="fa fa-trash text-danger" aria-hidden="true"> </i>
@@ -808,9 +808,22 @@
         </button>
       </div>
       <div class="modal-body" >
-        <i class="text-info">Provide the data in that fields  which you want to modify</i> <br>
-       <input type="text" id="edit_doc_title" value="<?php echo $value['doc_title'];?>" placeholder="Enter the title">
-       <input type="file" id="edit_doc_file"  name="edit_userfile">
+        <i class="text-info">Provide the data in that fields  which you want to modify</i> <br><br>
+
+           <div class="form-group">
+            <label for="edit_doc_title">File Name <i class="text-danger">*</i></label>
+            <input type="text"  class="form-control"  id="edit_doc_title" value="<?php echo $value['doc_title'];?>" placeholder="Enter the title">
+           </div>
+
+        
+
+          <div class="form-group">
+            <label for="edit_doc_file">File</label>
+            <input type="file" class="form-control-file" id="edit_doc_file"  name="edit_userfile">
+          </div>
+
+       
+        <i>Previously Uploaded File: <b><?php echo $value['doc_file'];?></b></i> 
       </div>
       <div class="modal-footer" id="df<?php echo $value['doc_id'];?>">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
@@ -819,6 +832,9 @@
     </div>
   </div>
 </div>
+
+<!-- end of edit file modal -->
+
     <?php   } } ?>
   </table>
   <hr>

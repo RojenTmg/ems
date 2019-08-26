@@ -1,6 +1,4 @@
-//global declarations
 
-var addRowCount=0;
 
 
 $(document).ready((function ($) {
@@ -580,8 +578,8 @@ $('.arch-msg-div').click(function(){
 
 
 function addDocument(){
-$('#document').append('<input type="text" name="doc_title" class=" col-md-2" placeholder="Enter the title">');
-$('#document').append('<input type="file" id="doc_file" name="userfile"  class=" col-md-3">');
+$('#document').append('<i >Title <b class="text-danger">*</b> </i><input type="text" name="doc_title" class=" col-md-2" placeholder="Enter the title">');
+$('#document').append('<input type="file" id="doc_file" name="userfile"  class=" col-md-4">');
 $('#document').append('<i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>');
 $('#document').append('<hr>');
 }
@@ -597,35 +595,47 @@ function removeDocument(doc){
 // add document to table
 function submitDocument(btn){
 
-
-
-
   var doc_title = document.getElementsByName('doc_title');
   var doc_file = document.getElementsByName('userfile');
   var count=0;
 
-  
+
+
   for( i = 0; i < doc_title.length; i++ )
      {
+
+      if(doc_title[i].value==''){
+          msg="Provide title for all files";
+              showErrormessage(msg,'docaddbtn');
+               return ; 
+      }
+
      if(doc_file[i].files.length==0){
       $("#docaddbtn").notify("Select a file first",{position:"right top"});
       return false;
      }
+
      if( doc_file[i].files[0]['type']=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"||doc_file[i].files[0]['type']=="application/msword"||doc_file[i].files[0]['type']=="application/pdf"||doc_file[i].files[0]['type']=="application/PDF"||doc_file[i].files[0]['type']=="image/png"||doc_file[i].files[0]['type']=="image/jpeg"||doc_file[i].files[0]['type']=="image/jpg" ) {
 
+     }
+     else{
+       msg="Invalid File Selected";
+              showErrormessage(msg,'docaddbtn');
+               return ; 
      }
 
     
   }
-    for( i = 0; i < doc_title.length; i++ )
-     {
-      //changing button menu-icon
+   //changing button menu-icon
       $("#btn-group").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
       btn.className="btn btn-light";
       btn.value="Uploading ...";
 
       btn.onclick='';
       btn.disabled=true;
+    for( i = 0; i < doc_title.length; i++ )
+     {
+     
 
      
       var xmlHttp = new XMLHttpRequest();
@@ -683,10 +693,18 @@ function editDocument(btn,value){
   var doc_title = document.getElementById('edit_doc_title');
   var doc_file = document.getElementsByName('edit_userfile');
   var count=0;
-    //changing button menu-icon
-       btn.remove();
-      $("#df"+value).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-      $("#df"+value).append('Uploading...');
+
+
+
+
+if(doc_title.value==''){
+          msg="Please Enter the File Title";
+              showErrormessage(msg,'editFileBtn');
+               return ; 
+      }
+
+
+
       
       
 
@@ -717,12 +735,18 @@ function editDocument(btn,value){
 
            if(status=='true')
            {
+
+    //changing button menu-icon
+       btn.remove();
+      $("#df"+value).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+      $("#df"+value).append('Uploading...');
+      
              msg="Files Updated";
               showCustomSuccessmessage('editFileBtn',msg);
               location.reload();
                return ; 
            }
-           else if(status=="fileerror"){
+           else if(status=="errorFileType"){
             $.notify("Error File Type", "error");
            }
           else{
