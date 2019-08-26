@@ -785,7 +785,7 @@
       <td><?php echo $value['doc_title']; ?> </td>
       <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" target="_blank" ><?php echo $value['doc_file']; ?></a></td>
       <!-- delete button -->
-      <td>
+      <td class="d-flex">
          <i class="fa fa-trash text-danger" aria-hidden="true"> </i>
 
            <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
