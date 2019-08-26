@@ -47,6 +47,7 @@
 			$data['title']= 'Dashboard';
 			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id']);
 			$data['employee_leaves_approve'] = $this->Employee_model->findApproveLeaves();
+			$data['employee_leaves_substitute'] = $this->Employee_model->findSubstituteLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
 			

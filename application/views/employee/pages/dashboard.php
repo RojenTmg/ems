@@ -63,19 +63,95 @@
    
   <div class="box-body" style="overflow-x:auto;">
 
-  <table class="table table-bordered hover employee_table" id="datatable-recommender" >
+  <table class="table table-bordered hover employee_table" id="datatable-substitute" >
   <thead >
   <tr>
-  <th id="dt-head" width="20%"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-  <th id="dt-head" width="10%" ><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-  <th id="dt-head" width="10%" ><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-  <th  id="dt-head" width="15%"><div class="sp-btn"><span>Performed for</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="15%"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="10%" ><div class="sp-btn"><span>Date</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="40%" ><div class="sp-btn"><span>Description</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
   <th id="dt-head" width="10%" >Status</th>
-  <th id="dt-head" width="15%" class="text-center;"  >Action</th>
+  <th id="dt-head" width="10%" class="text-center;"  >Action</th>
   </tr>
   </thead>
   <tbody>
- 
+  
+    <?php
+                foreach ($employee_leaves_substitute as $value) { ?>
+                  <tr id="<?php echo $value['slId']; ?>">
+                    <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
+                    <td><?php echo $value['date']; ?></td>
+                    <td><?php echo $value['description']; ?></td>
+                    <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
+                    <td>
+                    <!-- check if approved or not and show buttons accordingly -->
+                    <?php if($value['is_approved']=='pending') { ?>
+                      
+                      <!-- if the requested days exceeds the remaining days, do not show grant button -->
+
+                      <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['slId']; ?>" ></i>
+                        <div class="tooltiptext">
+                          <p>Are you sure?</p>
+                          <span class="tip-can">Cancel</span>
+
+                          <span class="tip-arch tip-res" onclick="" >Approve</span>
+                        </div>
+                      </button>
+
+                      
+                      <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterSubstitute<?php  echo $value['slId']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
+                      <?php } else { ?>
+
+                        <button  class="btn-edit" data-toggle="modal" data-target="#deleteSubstituterequests<?php  echo $value['slId']; ?>">  <i class="fa fa-trash text-danger" aria-hidden="true"></i> </button>
+                      <?php } ?>
+
+          <!-- Modal for denial reason-->
+          <div class="modal fade" id="exampleModalCenterSubstitute<?php  echo $value['slId']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Enter reason for denial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+              
+                    <div class="form-group">
+                    <input class="form-control" type="text" name="" id="denial_reason_approver<?php echo $value['slId']; ?>">
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['slId']; ?>" onclick="">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal for denial reason ends here -->
+
+          <!-- modal for archive Approval requests -->
+          <div class="modal fade" id="deleteSubstituterequests<?php  echo $value['slId']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Archive ?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal for archive Approval requests ends here -->
+  </td>      </tr>
+                <?php } ?>
+
+
 </tbody>
 </table>
 </div>
@@ -398,6 +474,12 @@
 
     $(document).ready(function(){
        $('#datatable-recommender').dataTable({
+        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+            "aaSorting": [],  });
+    });
+
+    $(document).ready(function(){
+       $('#datatable-substitute').dataTable({
         "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
             "aaSorting": [],  });
     });

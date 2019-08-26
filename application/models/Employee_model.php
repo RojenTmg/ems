@@ -43,7 +43,7 @@
 
 			$query = $this->db->query($leaves);
 				return $query->result_array();
-
+ 
 			// $this->db->select('e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days');
 			// $this->db->from('employees e');
 			// $this->db->join('packages p', 'e.package_id = p.package_id');
@@ -187,13 +187,26 @@
 			}
 		}
 
-		// public function find($table, $field, $id) 
-		// {
-		// 	if ($this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->num_rows() > 1) {
-		// 		return $this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->result_array();
-		// 	}
-		// 	else {
-		// 		return $this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . '')->row_array();				
-		// 	}
-		// }
+		public function findSubstituteLeaves($id = FALSE)
+		{
+			$recommender=$_SESSION['user_id'];
+			$project = "SELECT *, sl.id AS slId, sl.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name
+
+					    FROM substitute_leaves sl
+					    LEFT JOIN employees e ON e.emp_id = sl.emp_id 
+					    LEFT JOIN employee_approvers ea ON ea.emp_id = sl.emp_id 
+					    LEFT JOIN employees esid ON ea.recommender_id = esid.emp_id 
+						WHERE sl.is_archived = '0' AND  ea.recommender_id=$recommender
+						ORDER BY sl.id DESC";
+
+			if ($id === FALSE) {	
+				$query = $this->db->query($project);
+				return $query->result_array();
+			}
+
+			$project = $project . ' WHERE sl.id = ' . $id ;
+			$query = $this->db->query($project);
+			
+			return $query->row_array();
+		}
 	}
