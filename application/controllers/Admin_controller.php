@@ -574,7 +574,7 @@ public function employeeManage($id = NULL)
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
 				'state'=>$currentaddress_state,
-				'country'=>'NP'
+				'country'=>'Nepal'
 			);
 
 			// check is used in whether the adress is already in database or not
@@ -1080,19 +1080,7 @@ function addWork(){
 	$status=array();
 	$_POST = $this->security->xss_clean($_POST);
 	extract($_POST);
-	// $this->form_validation->set_rules('organization','organization','required|trim',array('required' => 'You must provide a %s.'));
-	// $this->form_validation->set_rules('responsibility','responsibility','required|trim');
-	// $this->form_validation->set_rules('position','position','required|trim');
-	// $this->form_validation->set_rules('contact_person_number','contact_person_number','required|trim');
-	// if($this->form_validation->run()===FALSE)
-	// {
-	// 	$status=$this->form_validation->error_array();
-	// 	$msg="true";
-	// 	array_push($status, $msg);
-	// 	echo json_encode($status);
-	// 	return ;
-	// }else
-	// {
+	
 	$dateTimestamp1 = strtotime($from_date); 
 		$dateTimestamp2 = strtotime($to_date); 
 		if(!$this->alphanumeric($organization))

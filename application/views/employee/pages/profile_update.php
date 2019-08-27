@@ -786,7 +786,7 @@ foreach (array_reverse($work_experience) as $work) {
 
 
 
- <!-- employee assign tab starts here -->
+<!-- employee assign tab starts here -->
   <div class="tab-pane fade"  id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab">
   
         <form class="form" id="assign-form" >
@@ -822,7 +822,6 @@ foreach (array_reverse($work_experience) as $work) {
 
 
  <!-- employee assign tab ends here -->
-
 
 
 
