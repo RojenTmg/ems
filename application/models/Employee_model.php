@@ -124,7 +124,28 @@
 			return $query->row_array();
 		}
 
+		public function findSubstituteLeavesArchived($id = FALSE)
+		{
+			$recommender=$_SESSION['user_id'];
+			$project = "SELECT *, sl.id AS slId, sl.emp_id AS e_id, e.first_name AS e_first_name, e.middle_name AS e_middle_name, e.last_name AS e_last_name
 
+					    FROM substitute_leaves sl
+					    LEFT JOIN employees e ON e.emp_id = sl.emp_id 
+					    LEFT JOIN employee_approvers ea ON ea.emp_id = sl.emp_id 
+					    LEFT JOIN employees esid ON ea.recommender_id = esid.emp_id 
+						WHERE sl.is_archived = '1' AND  ea.recommender_id=$recommender
+						ORDER BY sl.id DESC";
+
+			if ($id === FALSE) {	
+				$query = $this->db->query($project);
+				return $query->result_array();
+			}
+
+			$project = $project . ' WHERE sl.id = ' . $id ;
+			$query = $this->db->query($project);
+			
+			return $query->row_array();
+		}
 
 		// fetch leaves information
 		public function recommendationList($is_archived)

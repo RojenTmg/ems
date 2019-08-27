@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2019 at 07:11 AM
+-- Generation Time: Aug 27, 2019 at 08:09 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -689,9 +689,9 @@ CREATE TABLE `substitute_leaves` (
 --
 
 INSERT INTO `substitute_leaves` (`id`, `emp_id`, `recommender_id`, `date`, `description`, `denial_reason`, `is_approved`, `is_archived`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(20, 278, 277, '2019-08-26', 'a1', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
-(21, 278, 277, '2019-08-26', 'a2', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
-(22, 278, 277, '2019-08-26', 'a3', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
+(20, 278, 277, '2019-08-26', 'a1', '', 'pending', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
+(21, 278, 277, '2019-08-26', 'a2', '', 'denied', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
+(22, 278, 277, '2019-08-26', 'a3', 'd1', 'denied', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
 
 -- --------------------------------------------------------
 

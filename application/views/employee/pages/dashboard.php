@@ -41,12 +41,12 @@
   <h4>Susbtitute Leave Requests Lists</h4>
   </div>
   <div>
- <div class="sp-btn  ml-2">
- <!--    <div class="emp-link">
+ <!-- <div class="sp-btn  ml-2">
+    <div class="emp-link">
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
-      <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
-    </div> -->
-  </div>
+      <a href="<?= site_url('employee/leave_substitute_archive'); ?>" id="small-link">Archived Leaves</a>
+    </div>
+  </div> -->
    <div class="lists">
   <div class="box"  id="liststab">
   <div class="box-head">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="">Submit</button>
+                  <button type="button" class="btn btn-primary" onclick="archiveSubstituteRecord(<?php echo $value['slId']; ?>)">Submit</button>
                 </div>
               </div> 
             </div>
