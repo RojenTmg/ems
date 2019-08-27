@@ -2242,7 +2242,7 @@ function denyLeaveFromRecommender(btn,id)
 }
 
 
-// approve Substitute leave by approver
+// approve Substitute leave by recommender
 function leaveSubstitute(id)
 {
   var xmlHttp = new XMLHttpRequest();
@@ -2257,6 +2257,29 @@ function leaveSubstitute(id)
      location.reload();
     }
   }
+}
+
+//deny substitute leave by recommender
+function denySubstituteLeave(btn, id)
+{
+  btn.onclick="#";
+  btn.innerHTML='';
+  var el ='btn'+id;
+  $('#'+ el).append('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only">Loading...</span> </div>');
+
+  var reason = document.getElementById('denial_reason_substitute'+id).value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','denySubstituteLeave',true);
+  var data = new FormData();
+  data.append('denial_reason',reason);
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+    location.reload();
+  }
+}
 }
 
 

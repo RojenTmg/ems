@@ -113,13 +113,13 @@
                 <div class="modal-body">
               
                     <div class="form-group">
-                    <input class="form-control" type="text" name="" id="denial_reason_approver<?php echo $value['slId']; ?>">
+                    <input class="form-control" type="text" name="" id="denial_reason_substitute<?php echo $value['slId']; ?>">
                     </div>
                   
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['slId']; ?>" onclick="">Submit</button>
+                  <button type="button" class="btn btn-primary" id="btn<?php echo $value['slId']; ?>" onclick="denySubstituteLeave(this, <?php echo $value['slId']; ?>)">Submit</button>
                 </div>
               </div>
             </div>

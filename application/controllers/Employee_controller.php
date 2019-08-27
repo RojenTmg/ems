@@ -629,6 +629,17 @@ function checkExp(){
 			// send email to employe
 		}
 
+		// deny Substitute leave by Recommender
+		public function denySubstituteLeave()
+		{
+			extract($_POST);
+			$this->Database_model->update('substitute_leaves', array('is_approved' => 'denied', 'denial_reason' => $denial_reason), 'id', $id);
+
+			// send email to employe
+
+		}
+
+
 
 
 

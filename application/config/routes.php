@@ -88,6 +88,7 @@ $route['employee/archiveRecommendRecord'] = 'Employee_controller/archiveRecommen
 $route['archiveRecommendRecord'] = 'Employee_controller/archiveRecommendRecord';
 
 $route['leaveSubstitute'] = 'Employee_controller/leaveSubstitute';
+$route['denySubstituteLeave'] = 'Employee_controller/denySubstituteLeave';
 
 $route['employee/leave_details/(:any)'] = 'Employee_controller/leave_details/$1';
 
@@ -99,6 +100,7 @@ $route['employee/denyLeaveFromApprover'] = 'Employee_controller/denyLeaveFromApp
 // $route['employee/leaveApprove'] = 'Employee_controller/leaveApprove';
 
 $route['employee/leaveSubstitute'] = 'Employee_controller/leaveSubstitute';
+$route['employee/denySubstituteLeave'] = 'Employee_controller/denySubstituteLeave';
 
 $route['employee/recommendation_list'] = 'Employee_controller/recommendationList';
 $route['employee/denyLeaveFromRecommender'] = 'Employee_controller/denyLeaveFromRecommender';
