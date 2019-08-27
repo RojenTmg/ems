@@ -1376,9 +1376,6 @@ function saveExp(){
   var to_date = document.getElementById('to_date');
   var contact_person_number = document.getElementById('contact_person_number');
 
-
-
-
 var data = [organization,responsibility,position,from_date,to_date,contact_person_number];
 var error = false;  // to track error in fields
 for(k in data){
@@ -1413,18 +1410,67 @@ if(error){
      xmlHttp.onreadystatechange = function()
               {
                   if(xmlHttp.readyState==4){
+                    var id='';
                       var status=xmlHttp.responseText;
-                      if(status=="update"){
-                         $('#submitExp').notify('Experience Updated Successfully',{position:'bottom',className:'success'});
+                       id= JSON.parse(status);
+                       // alert(id);
+                       if(id=="errorOrganization")
+                      {
+                         $('#submitExp').notify('Invalid organization name',{position:'bottom'});
+                         return;
+                      }
+                      else if(id=="errorResponsibility")
+                      {
+                         $('#submitExp').notify('Invalid responsibility name',{position:'bottom'});
+                         return;
                       }
 
-                     else if(!status.NaN){
+                      else if(id=="errorPosition")
+                      {
+                         $('#submitExp').notify('Invalid position name',{position:'bottom'});
+                         return;
+                      }
+                       else if(id=="errorContact")
+                      {
+                         $('#submitExp').notify('Invalid contact number',{position:'bottom'});
+                         return;
+                      }
+                      else if(id=="errorContact")
+                      {
+                         $('#submitExp').notify('Invalid contact number',{position:'bottom'});
+                         return;
+                      }
+
+                      else if(id=="fromdateGreater")
+                      {
+                         $('#submitExp').notify('From date is greater than To date',{position:'bottom'});
+                         return;
+                      }
+                      else if(id=="fromdateError")
+                      {
+                         $('#submitExp').notify('Invalid From date',{position:'bottom'});
+                         return;
+                      }
+
+                      else if(id=="todateError")
+                      {
+                         $('#submitExp').notify('Invalid To date',{position:'bottom'});
+                         return;
+                      }
+
+                      else if(id=="update"){
+                         $('#submitExp').notify('Experience Updated Successfully',{position:'bottom',className:'success'});
+                        }
+
+                       else if(!id.isNaN){
                          $('#submitExp').notify('Experience Added Successfully',{position:'bottom',className:'success'});
                       }
                      
+                      
                       else{
                          $('#submitExp').notify('Please Provide Proper Data',{position:'bottom'});
                       }
+                     
                         clearExpForm();
                         $( "#mainWork" ).load(window.location.href + " #childWork" );
                    }

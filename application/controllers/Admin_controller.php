@@ -1077,29 +1077,122 @@ public function employeeManage($id = NULL)
 
 // for work experience
 function addWork(){
+	$status=array();
+	$_POST = $this->security->xss_clean($_POST);
 	extract($_POST);
+	// $this->form_validation->set_rules('organization','organization','required|trim',array('required' => 'You must provide a %s.'));
+	// $this->form_validation->set_rules('responsibility','responsibility','required|trim');
+	// $this->form_validation->set_rules('position','position','required|trim');
+	// $this->form_validation->set_rules('contact_person_number','contact_person_number','required|trim');
+	// if($this->form_validation->run()===FALSE)
+	// {
+	// 	$status=$this->form_validation->error_array();
+	// 	$msg="true";
+	// 	array_push($status, $msg);
+	// 	echo json_encode($status);
+	// 	return ;
+	// }else
+	// {
+	$dateTimestamp1 = strtotime($from_date); 
+		$dateTimestamp2 = strtotime($to_date); 
+		if(!$this->alphanumeric($organization))
+		{
+			$msg="errorOrganization";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 
-		$data=[
-			'from_date'=>$from_date,
-			'to_date'=>$to_date,
-			'organization'=>$organization,
-			'responsibility'=>$responsibility,
-			'position'=>$position,
-			'contact_person_number'=>$contact_person_number,
-			'emp_id'=>$_SESSION['current_employee_id']
-		];
-		if($id==''){
-			$this->Admin_model->insert('employee_work_experience',$data);
-			$id=$this->db->insert_id();
-			echo $id;
+		else if(!$this->alphanumeric($responsibility))
+		{
+			$msg="errorResponsibility";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
 		}
-		else{
-			$this->db->where('id',$id);
-			$this->db->update('employee_work_experience',$data);
-			echo "update";
+
+		else if(!$this->alphanumeric($position))
+		{
+			$msg="errorPosition";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if(!$this->validateDate($from_date))
+		{
+			$msg="errorFromDate";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if(!$this->validateDate($to_date))
+		{
+			$msg="errorToDate";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
 		}
 		
+		else if($dateTimestamp1>$dateTimestamp2)
+		{
+			$msg="fromdateGreater";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if($from_date>Date('Y-m-d'))
+		{
+			$msg="fromdateError";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if($to_date>Date('Y-m-d'))
+		{
+			$msg="todateError";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		else if(!$this->contactNumber($contact_person_number))
+		{
+			$msg="errorContact";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 		
+		else
+		{
+			$data=[
+				'from_date'=>$from_date,
+				'to_date'=>$to_date,
+				'organization'=>$organization,
+				'responsibility'=>$responsibility,
+				'position'=>$position,
+				'contact_person_number'=>$contact_person_number,
+				'emp_id'=>$_SESSION['current_employee_id']
+			];
+			if($id==''){
+				$this->Admin_model->insert('employee_work_experience',$data);
+				$id=$this->db->insert_id();
+				array_push($status, $id);
+				echo json_encode($status);
+			}
+			else{
+				$this->db->where('id',$id);
+				$this->db->update('employee_work_experience',$data);
+				$msg="update";
+				array_push($status, $msg);
+				echo json_encode($status);
+			}
+			
+		}
+	// }	
 		
 }
 
