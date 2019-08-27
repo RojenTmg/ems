@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2019 at 07:50 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: Aug 27, 2019 at 07:11 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -666,6 +666,36 @@ CREATE TABLE `role_permission_modules` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `substitute_leaves`
+--
+
+CREATE TABLE `substitute_leaves` (
+  `id` int(11) NOT NULL,
+  `emp_id` int(11) DEFAULT NULL,
+  `recommender_id` int(11) DEFAULT NULL,
+  `date` date NOT NULL,
+  `description` text,
+  `denial_reason` text NOT NULL,
+  `is_approved` enum('pending','denied','approved') NOT NULL DEFAULT 'pending',
+  `is_archived` enum('0','1') NOT NULL DEFAULT '0',
+  `created_by` int(11) DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) DEFAULT NULL,
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `substitute_leaves`
+--
+
+INSERT INTO `substitute_leaves` (`id`, `emp_id`, `recommender_id`, `date`, `description`, `denial_reason`, `is_approved`, `is_archived`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(20, 278, 277, '2019-08-26', 'a1', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
+(21, 278, 277, '2019-08-26', 'a2', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
+(22, 278, 277, '2019-08-26', 'a3', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -686,10 +716,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (111, 111, '111', 0, '', '2019-08-11 05:46:24', '', '2019-08-11 05:46:24'),
-(257, 276, 'grri123', 1, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
-(258, 277, 'brad123', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
-(259, 278, 'hane123', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
-(269, 288, 'sane123', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27'),
+(257, 276, 'grri123', 0, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
+(258, 277, 'emp', 1, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
+(259, 278, 'emp', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
+(269, 288, 'emp', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27'),
 (270, 289, 'tsla123', 0, '', '2019-08-05 04:32:15', '', '2019-08-05 04:32:15'),
 (277, 296, 'sasa123', 0, '', '2019-08-08 06:07:17', '', '2019-08-08 06:07:17'),
 (279, 298, 'rabh123', 0, '', '2019-08-09 04:39:22', '', '2019-08-09 04:39:22'),
@@ -897,6 +927,15 @@ ALTER TABLE `role_permission_modules`
   ADD KEY `roleId` (`role_id`);
 
 --
+-- Indexes for table `substitute_leaves`
+--
+ALTER TABLE `substitute_leaves`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `recommender_id` (`recommender_id`),
+  ADD KEY `emp_id_2` (`emp_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1005,6 +1044,12 @@ ALTER TABLE `roles`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `substitute_leaves`
+--
+ALTER TABLE `substitute_leaves`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -1064,6 +1109,13 @@ ALTER TABLE `employee_work_experience`
 --
 ALTER TABLE `managers`
   ADD CONSTRAINT `managers_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `substitute_leaves`
+--
+ALTER TABLE `substitute_leaves`
+  ADD CONSTRAINT `fk_sl_employees_ei1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
+  ADD CONSTRAINT `fk_sl_employees_ei2` FOREIGN KEY (`recommender_id`) REFERENCES `employees` (`emp_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
