@@ -272,6 +272,32 @@ function checkExp(){
 
 		}
 
+
+		// archive Substitute Leave by Recommender
+		public function archiveSubstituteRecord()
+		{
+			extract($_POST);
+			$this->Database_model->update('substitute_leaves', array('is_archived' => '1'), 'id', $id);
+		}
+
+		// Un-archive Substitute Leave by Recommender
+		public function unArchiveSubstituteRecord()
+		{
+			extract($_POST);
+			$this->Database_model->update('substitute_leaves', array('is_archived' => '0'), 'id', $id);
+		}
+
+
+		// archived Substitute leaves 
+		public function leaveSubstituteArchive()
+		{	
+			$title['title'] = 'Archived Substitute Leaves';
+			$data['employee_leaves_substitute'] = $this->Employee_model->findSubstituteLeavesArchived();
+			$this->view('leave_substitute_archive', $title, $data);
+
+		}
+		
+
 		public function leaveSubstituteForm()
 		{
 			$title['title'] = 'Substitute Leave Form';
@@ -639,29 +665,7 @@ function checkExp(){
 
 		}
 
-		// archive Substitute Leave by Recommender
-		public function archiveSubstituteRecord()
-		{
-			extract($_POST);
-			$this->Database_model->update('substitute_leaves', array('is_archived' => '1'), 'id', $id);
-		}
-
-		// Un-archive Substitute Leave by Recommender
-		public function unArchiveSubstituteRecord()
-		{
-			extract($_POST);
-			$this->Database_model->update('substitute_leaves', array('is_archived' => '0'), 'id', $id);
-		}
-
-
-		// archived Substitute leaves 
-		public function leaveSubstituteArchive()
-		{	
-			$title['title'] = 'Archived Substitute Leaves';
-			$data['employee_leaves_substitute'] = $this->Employee_model->findSubstituteLeavesArchived();
-			$this->view('leave_substitute_archive', $title, $data);
-
-		}
+		
 
 
 
