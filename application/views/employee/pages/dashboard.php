@@ -42,15 +42,15 @@
   </div>
   <div>
  <div class="sp-btn  ml-2">
-    <div class="emp-link">
+ <!--    <div class="emp-link">
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
       <a href="<?= site_url('employee/leave_recommended_archive'); ?>" id="small-link">Archived Leaves</a>
-    </div>
+    </div> -->
   </div>
    <div class="lists">
   <div class="box"  id="liststab">
   <div class="box-head">
- 
+    <p>Substitute Leaves left to be Approved</p>
   </div>
 
     <!-- area to show success and erorr messages -->
