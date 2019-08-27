@@ -2283,6 +2283,41 @@ function denySubstituteLeave(btn, id)
 }
 
 
+
+
+// archive Substitute Leave by recommender
+
+function archiveSubstituteRecord(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','archiveSubstituteRecord',true);
+  var data = new FormData();
+  data.append('id',id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+  {
+    location.reload();
+  }
+}
+}
+
+// unarchive archived recommended leaves
+function unArchiveSubstituteRecord(id) {
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','unArchiveSubstituteRecord',true);
+    var data = new FormData();
+    data.append('id',id);
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+       location.reload();
+      }
+    }
+}
+
+
+
 // approve leave by approver
 
 function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')
