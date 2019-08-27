@@ -2241,6 +2241,25 @@ function denyLeaveFromRecommender(btn,id)
 }
 }
 
+
+// approve Substitute leave by approver
+function leaveSubstitute(id)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('POST','leaveSubstitute',true);
+  var data = new FormData();
+  data.append('id',id);
+  // alert(id);
+  xmlHttp.send(data);
+  xmlHttp.onreadystatechange=function(){
+  if(xmlHttp.readyState==4)
+    {
+     location.reload();
+    }
+  }
+}
+
+
 // approve leave by approver
 
 function leaveApprove(d_type, id, e_id, leave_id, no_of_days = '0')

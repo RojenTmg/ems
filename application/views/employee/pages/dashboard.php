@@ -86,17 +86,13 @@
                     <!-- check if approved or not and show buttons accordingly -->
                     <?php if($value['is_approved']=='pending') { ?>
                       
-                      <!-- if the requested days exceeds the remaining days, do not show grant button -->
-
                       <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['slId']; ?>" ></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
-
-                          <span class="tip-arch tip-res" onclick="" >Approve</span>
+                          <span class="tip-arch tip-res" onclick="leaveSubstitute(<?php echo $value['slId']; ?>)">Approve</span>
                         </div>
                       </button>
-
                       
                       <button type="button" class="btn-edit" data-toggle="modal" data-target="#exampleModalCenterSubstitute<?php  echo $value['slId']; ?>">  <i class="fa fa-ban" aria-hidden="true" style="color: #dc3545;"></i> </button>
                       <?php } else { ?>
@@ -353,8 +349,6 @@
                     <!-- check if approved or not and show buttons accordingly -->
                     <?php if($value['is_approved']=='pending') {?>
                       
-                      <!-- if the requested days exceeds the remaining days, do not show grant button -->
-
                       <button class="btn-archive tooltip1 " title="Approve" id="<?php echo $value['emp_id']; ?>"><i class="fa fa-check text-success " aria-hidden="true" id="checkicon<?php echo $value['id']; ?>" ></i>
                         <div class="tooltiptext">
                           <p>Are you sure?</p>

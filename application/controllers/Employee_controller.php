@@ -619,6 +619,18 @@ function checkExp(){
 
 
 
+		// approve status on table 'substitute_leaves' and update leave balance on table 'employee_leave_balance'
+		public function leaveSubstitute()
+		{
+			extract($_POST);
+
+			$this->Database_model->update('substitute_leaves', array('is_approved' => 'approved'), 'id', $id);
+
+			// send email to employe
+		}
+
+
+
 
 // contact form
 	public function addContact()
