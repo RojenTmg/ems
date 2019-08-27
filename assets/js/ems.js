@@ -2211,6 +2211,7 @@ function recommendLeave(btn,l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
+    // console.log(xmlHttp.responseText);
    location.reload();
   }
 }

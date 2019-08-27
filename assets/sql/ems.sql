@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2019 at 08:09 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Aug 27, 2019 at 05:39 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -208,7 +208,54 @@ INSERT INTO `email_notifications` (`id`, `email`, `title`, `message`, `status`, 
 (22, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:10:41'),
 (23, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:11:39'),
 (24, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:32:45'),
-(25, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:33:16');
+(25, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:33:16'),
+(26, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:04'),
+(27, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:05'),
+(28, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:11'),
+(29, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:11'),
+(30, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:21'),
+(31, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:21'),
+(32, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:05'),
+(33, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:05'),
+(34, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:08'),
+(35, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:08'),
+(36, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:10'),
+(37, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:10'),
+(38, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:12'),
+(39, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:12'),
+(40, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:17'),
+(41, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:17'),
+(42, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:18'),
+(43, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:18'),
+(44, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:20'),
+(45, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:20'),
+(46, 'bryan123@gmail.com', 'Leave Denied by Recommender', 'Your  from  has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>', 'pending', '2019-08-27 08:14:31'),
+(47, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:25:37'),
+(48, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:25:38'),
+(49, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:27:28'),
+(50, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:27:28'),
+(51, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:29'),
+(52, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:29'),
+(53, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:42'),
+(54, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:43'),
+(55, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:51'),
+(56, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:51'),
+(57, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:53'),
+(58, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:53'),
+(59, 'bryan123@gmail.com', 'Leave Denied by Recommender', 'Your  from  has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>', 'pending', '2019-08-27 15:29:04'),
+(60, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:29:40'),
+(61, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:29:40'),
+(62, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:31:01'),
+(63, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:31:01'),
+(64, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:31:08'),
+(65, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:31:08'),
+(66, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:32:22'),
+(67, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:32:22'),
+(68, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:32:25'),
+(69, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:32:25'),
+(70, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:38:19'),
+(71, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:38:19'),
+(72, 'candy.khando@gmail.com', 'Leave Denied by Recommender', 'Your Casual from 2019-08-13 has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>sadasdasd', 'pending', '2019-08-27 15:38:37');
 
 -- --------------------------------------------------------
 
@@ -318,7 +365,7 @@ INSERT INTO `employee_addresses` (`emp_id`, `primary_addressId`, `secondary_addr
 --
 
 CREATE TABLE `employee_approvers` (
-  `id` int(11) NOT NULL,
+  `ea_id` int(11) NOT NULL,
   `approver_id` int(11) DEFAULT NULL,
   `emp_id` int(11) DEFAULT NULL,
   `recommender_id` int(11) DEFAULT NULL,
@@ -332,7 +379,7 @@ CREATE TABLE `employee_approvers` (
 -- Dumping data for table `employee_approvers`
 --
 
-INSERT INTO `employee_approvers` (`id`, `approver_id`, `emp_id`, `recommender_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+INSERT INTO `employee_approvers` (`ea_id`, `approver_id`, `emp_id`, `recommender_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (1, 277, 276, 278, '276', '2019-08-11 05:26:49', NULL, '2019-08-11 05:26:49'),
 (2, 288, 278, 277, '276', '2019-08-13 04:55:08', NULL, '2019-08-13 04:55:08'),
 (3, 289, 277, 289, '276', '2019-08-13 05:40:05', NULL, '2019-08-13 05:40:05'),
@@ -431,8 +478,8 @@ CREATE TABLE `employee_leaves` (
 --
 
 INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`, `is_archived_by_approver`) VALUES
-(230, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:55:15', NULL, '2019-08-13 04:55:15', '0', '0'),
-(231, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:21', NULL, '2019-08-13 04:57:21', '0', '0'),
+(230, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:55:15', NULL, '2019-08-13 04:55:15', '0', '0'),
+(231, 278, 39, 277, NULL, NULL, 'pending', 'half', 'denied', '0000-00-00', '2019-08-13', NULL, 276, '', 'sadasdasd', '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:21', NULL, '2019-08-13 04:57:21', '0', '0'),
 (232, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, 'test213', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:41', NULL, '2019-08-13 04:57:41', '0', '0'),
 (233, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 07:32:55', NULL, '2019-08-13 07:32:55', '0', '0');
 
@@ -524,7 +571,7 @@ CREATE TABLE `leaves` (
 --
 
 INSERT INTO `leaves` (`leave_id`, `leave_name`, `is_one_day`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(39, 'Casual Leave', '0', '276', '2019-07-25 06:50:36', NULL, '2019-07-25 06:50:36'),
+(39, 'Casual', '1', '276', '2019-07-25 06:50:36', NULL, '2019-07-25 06:50:36'),
 (40, 'Sick Leave', '0', '123', '2019-07-25 08:33:46', NULL, '2019-07-25 08:33:46'),
 (43, 'Annual Leave', '0', '276', '2019-08-04 05:51:40', NULL, '2019-08-04 05:51:40');
 
@@ -689,9 +736,9 @@ CREATE TABLE `substitute_leaves` (
 --
 
 INSERT INTO `substitute_leaves` (`id`, `emp_id`, `recommender_id`, `date`, `description`, `denial_reason`, `is_approved`, `is_archived`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(20, 278, 277, '2019-08-26', 'a1', '', 'pending', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
-(21, 278, 277, '2019-08-26', 'a2', '', 'denied', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
-(22, 278, 277, '2019-08-26', 'a3', 'd1', 'denied', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
+(20, 278, 277, '2019-08-26', 'a1', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
+(21, 278, 277, '2019-08-26', 'a2', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
+(22, 278, 277, '2019-08-26', 'a3', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
 
 -- --------------------------------------------------------
 
@@ -828,7 +875,7 @@ ALTER TABLE `employee_addresses`
 -- Indexes for table `employee_approvers`
 --
 ALTER TABLE `employee_approvers`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`ea_id`),
   ADD KEY `approver_id` (`approver_id`),
   ADD KEY `emp_id` (`emp_id`),
   ADD KEY `recommendar_id` (`recommender_id`);
@@ -975,7 +1022,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -987,7 +1034,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employee_approvers`
 --
 ALTER TABLE `employee_approvers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ea_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employee_documents`
@@ -1011,7 +1058,7 @@ ALTER TABLE `employee_work_experience`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `managers`
