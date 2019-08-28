@@ -972,9 +972,9 @@ body {
   max-width: 600px;
   margin-top: 10px;
   border-radius: 6px;
-  padding: 5px 10px; 
+  padding: 5px 13px; 
   box-shadow: 0 0 8px 0.5px rgba(0, 0, 0, 0.2);
-  z-index: 99;
+  z-index: 999;
 }
 .tooltiptext-sbs::after {
   content: "";
@@ -987,7 +987,7 @@ body {
   border-color: transparent transparent white transparent;
 }
 #substitute-desc:hover + .tooltiptext-sbs {
-  display: block;
+  display: block; 
 }
 
 

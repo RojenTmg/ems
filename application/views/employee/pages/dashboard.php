@@ -61,7 +61,7 @@
     <!-- area finishes here -->
 
    
-  <div class="box-body" style="overflow-x:auto;">
+  <div class="box-body">
 
   <table class="table table-bordered hover employee_table" id="datatable-substitute" >
   <thead >
@@ -70,7 +70,7 @@
   <th id="dt-head" width="10%" ><div class="sp-btn"><span>Date</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
   <th id="dt-head" width="20%"><div class="sp-btn"><span>Description</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
   <th id="dt-head" width="10%" >Status</th>
-  <th id="dt-head" width="10%" class="text-center;"  >Action</th>
+  <th id="dt-head" width="12%" class="text-center;"  >Action</th>
   </tr>
   </thead>
   <tbody>
