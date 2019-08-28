@@ -80,7 +80,7 @@
                   <tr id="<?php echo $value['slId']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['date']; ?></td>
-                    <td><div id="substitute-desc"><?php echo $value['description']; ?></div><span class="tooltiptext-sbs"><?php echo $value['description']; ?></span></td>
+                    <td id="substitute-div"><div id="substitute-desc"><?php echo $value['description']; ?></div><span class="tooltiptext-sbs"><?php echo $value['description']; ?></span></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
                     <td>
                     <!-- check if approved or not and show buttons accordingly -->

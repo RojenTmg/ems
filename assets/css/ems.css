@@ -955,7 +955,10 @@ body {
 
 
 /*-----------------------------Substitute-description-table-theme-------------------------------------------------*/
-/*#substitute-desc {
+#substitute-div {
+  position: relative;
+}
+#substitute-desc {
   max-width: 600px; 
   overflow: hidden; 
   text-overflow: ellipsis; 
@@ -965,12 +968,13 @@ body {
   display: none;
   color: #000;
   background: #fff;
-  position: fixed;
+  position: absolute;
   max-width: 600px;
   margin-top: 10px;
   border-radius: 6px;
   padding: 5px 10px; 
   box-shadow: 0 0 8px 0.5px rgba(0, 0, 0, 0.2);
+  z-index: 99;
 }
 .tooltiptext-sbs::after {
   content: "";
@@ -985,7 +989,7 @@ body {
 #substitute-desc:hover + .tooltiptext-sbs {
   display: block;
 }
-*/
+
 
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
   
