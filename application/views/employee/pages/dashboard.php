@@ -68,7 +68,7 @@
   <tr>
   <th id="dt-head" width="15%"><div class="sp-btn"><span>Staff Name</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
   <th id="dt-head" width="10%" ><div class="sp-btn"><span>Date</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
-  <th id="dt-head" width="40%" ><div class="sp-btn"><span>Description</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+  <th id="dt-head" width="20%"><div class="sp-btn"><span>Description</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
   <th id="dt-head" width="10%" >Status</th>
   <th id="dt-head" width="10%" class="text-center;"  >Action</th>
   </tr>
@@ -80,7 +80,7 @@
                   <tr id="<?php echo $value['slId']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['date']; ?></td>
-                    <td><?php echo $value['description']; ?></td>
+                    <td><div id="substitute-desc"><?php echo $value['description']; ?></div><span class="tooltiptext-sbs"><?php echo $value['description']; ?></span></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
                     <td>
                     <!-- check if approved or not and show buttons accordingly -->

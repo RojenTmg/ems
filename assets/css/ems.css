@@ -951,7 +951,44 @@ body {
   background-color: #edeef2 !important;
   /*background-color: #f3f4f8;*/
 }
+
+
+
+/*-----------------------------Substitute-description-table-theme-------------------------------------------------*/
+#substitute-desc {
+  max-width: 600px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+.tooltiptext-sbs {
+  display: none;
+  color: #000;
+  background: #fff;
+  position: fixed;
+  max-width: 600px;
+  margin-top: 10px;
+  border-radius: 6px;
+  padding: 5px 10px; 
+  box-shadow: 0 0 8px 0.5px rgba(0, 0, 0, 0.2);
+}
+.tooltiptext-sbs::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+#substitute-desc:hover + .tooltiptext-sbs {
+  display: block;
+}
+
+
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
+  
 
 /*added css*/
 .tip-arch, .tip-can:hover{
