@@ -557,7 +557,6 @@
       </div>
       <!-- PAN ends -->
 
-
  <!-- work experience -->
 
 <div class="tab-pane fade" id="nav-work" role="tabpanel"  style="background: white;" aria-labelledby="nav-work-tab">
@@ -678,8 +677,7 @@
 
 
 <!-- end of work experience -->
-
-  <!-- documents tab -->
+ <!-- documents tab -->
   <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
     <form class="form" id="document-form" enctype="multipart/form-data">
       <div class="message-div">
@@ -692,7 +690,7 @@
       <div id="list_doc">
      
       <div id="btn-group">
-      <input type="button" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
+      <input type="button" style="display: none;" id="subDoc" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
       </div>
       <?php 
       if(!empty($documents)){?>
@@ -786,7 +784,7 @@
                
                   <?php foreach ($package_name as $key => $value) {
             if($value['package_id']==$post['package_id']){ ?>
-              <input type="text" name="" disabled="" value="<?php   echo $value['package_name']; ?>">
+              <input type="text" id="package_name" name="" disabled="" value="<?php   echo $value['package_name']; ?>">
       <?php   } } ?>
           </div>
           <hr>
@@ -794,7 +792,7 @@
             <label>Recommender <span class="text-danger"><i>*</i></span></label>
             <?php foreach ($recommender_name as $key => $value) {
             if($value['emp_id']==$recommender_id['recommender_id']){?>
-              <input type="text" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
+              <input type="text" id="recommender" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
         <?php  } } ?>
                  
           </div>
@@ -802,7 +800,7 @@
             <label>Approver <span class="text-danger"><i>*</i></span></label>
             <?php foreach ($recommender_name as $key => $value) {
             if($value['emp_id']==$recommender_id['approver_id']){?>
-              <input type="text" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
+              <input type="text" id="approver" disabled="" value="<?php  echo $value['first_name'].' '.$value['middle_name']. ' '. $value['last_name']; ?>">
         <?php  } } ?>
           </div>
         </form>

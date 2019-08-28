@@ -1128,13 +1128,10 @@ function getWork(){
 	$this->db->where('id',$id);
 	$res=$this->db->get('employee_work_experience');
 	$result=$res->row_array();
-
 	echo json_encode($result);
-
 }
 
 
-	
 // for work experience
 function addWork(){
 	$status=array();
@@ -1223,7 +1220,7 @@ function addWork(){
 				'responsibility'=>$responsibility,
 				'position'=>$position,
 				'contact_person_number'=>$contact_person_number,
-				'emp_id'=>$_SESSION['current_employee_id']
+				'emp_id'=>$_SESSION['user_id']
 			];
 			if($id==''){
 				$this->Admin_model->insert('employee_work_experience',$data);
@@ -1243,6 +1240,9 @@ function addWork(){
 	// }	
 		
 }
+
+
+
 
 
 
