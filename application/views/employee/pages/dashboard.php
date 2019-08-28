@@ -62,7 +62,6 @@
 
    
   <div class="box-body">
-
   <table class="table table-bordered hover employee_table" id="datatable-substitute" >
   <thead >
   <tr>
