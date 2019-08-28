@@ -1120,6 +1120,20 @@ function checkExp(){
 	}
 
 
+
+
+
+function getWork(){
+	extract($_POST);
+	$this->db->where('id',$id);
+	$res=$this->db->get('employee_work_experience');
+	$result=$res->row_array();
+
+	echo json_encode($result);
+
+}
+
+
 	
 // for work experience
 function addWork(){
@@ -1232,30 +1246,6 @@ function addWork(){
 
 
 
-
-function editWork(){
-	extract($_POST);
-$experience = trim($experience);
-
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
-		$timestamp = date('Y-m-d G:i:s');
-		$data=[
-			'experience'=>$experience,
-			'emp_id'=>$_SESSION['user_id'],
-			'id'=>$id,
-			'modified_date'=>$timestamp
-		];
-		$this->db->where('id',$id);
-		if($this->db->update('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
-		return ;
-	}
-}
 
 function deleteWorkExp(){
 	extract($_POST);
