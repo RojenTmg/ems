@@ -1490,6 +1490,8 @@ if(error){
                         $( "#mainWork" ).load(window.location.href + " #childWork" );
                    }
 
+                   check_complete();
+
               }
 }
                      
