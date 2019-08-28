@@ -29,8 +29,7 @@
             <label>Description</label>
             <textarea name="description" class="col-md-3" rows="4" required="required"></textarea>
           </div>
-
-       <div class="sub-can" id="submit">
+        <div class="sub-can" id="submit">
               <button type="submit" name="submit" class="sub" value="submit" id="loading-btn">Submit</button>
         </div>
         </form>
