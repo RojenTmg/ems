@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2019 at 07:49 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: Aug 28, 2019 at 10:50 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -770,9 +770,9 @@ CREATE TABLE `substitute_leaves` (
 --
 
 INSERT INTO `substitute_leaves` (`id`, `emp_id`, `recommender_id`, `date`, `description`, `denial_reason`, `is_approved`, `is_archived`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(20, 278, 277, '2019-08-26', 'a1', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
-(21, 278, 277, '2019-08-26', 'a2', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
-(22, 278, 277, '2019-08-26', 'a3', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
+(20, 278, 277, '2019-08-26', 'It was July 21, 1969, and Neil Armstrong awoke with a start. It was the day he would become the first human being to ever walk on the moon. The journey had begun several days earlier, when on July 16th, the Apollo 11 launched from Earth headed into outer space. On board with Neil Armstrong were Michael Collins and Buzz Aldrin. The crew landed on the moon in the Sea of Tranquility a day before the actual walk. Upon Neil’s first step onto the moon’s surface, he declared, “That’s one small step for man, one giant leap for mankind.” It sure was!\r\n', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
+(21, 278, 277, '2019-08-26', 'The purpose of Pattern Based Writing: Quick & Easy Essay is to quickly and easily teach students how to organize information and make points clear. Then in the Writing with Purpose section of the writing program, students learn to apply their new writing strategies to different types, kinds, genres, and modes of writing. The truth is that it’s quick and easy to get students to write many different types of paragraphs when they have the right foundation.', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
+(22, 278, 277, '2019-08-26', 'Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.\r\n\r\n', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
 
 -- --------------------------------------------------------
 
