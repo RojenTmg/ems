@@ -955,6 +955,7 @@ body {
 
 
 /*-----------------------------Substitute-description-table-theme-------------------------------------------------*/
+
 #substitute-div {
   position: relative;
 }
@@ -989,7 +990,6 @@ body {
 #substitute-desc:hover + .tooltiptext-sbs {
   display: block; 
 }
-
 
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
   
