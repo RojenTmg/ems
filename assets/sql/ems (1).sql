@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2019 at 05:39 PM
+-- Generation Time: Aug 28, 2019 at 07:49 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -255,7 +255,15 @@ INSERT INTO `email_notifications` (`id`, `email`, `title`, `message`, `status`, 
 (69, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:32:25'),
 (70, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:38:19'),
 (71, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:38:19'),
-(72, 'candy.khando@gmail.com', 'Leave Denied by Recommender', 'Your Casual from 2019-08-13 has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>sadasdasd', 'pending', '2019-08-27 15:38:37');
+(72, 'candy.khando@gmail.com', 'Leave Denied by Recommender', 'Your Casual from 2019-08-13 has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>sadasdasd', 'pending', '2019-08-27 15:38:37'),
+(73, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:41:40'),
+(74, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:41:40'),
+(75, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:41:49'),
+(76, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:41:49'),
+(77, 'anuj@gmail.com', 'Account Registered', 'Dear Anuj , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 313<br>Password: anla123<br>', 'pending', '2019-08-28 05:41:54'),
+(78, 'manojraj@gmail.com', 'Account Registered', 'Dear Manoj , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 314<br>Password: mati123<br>', 'pending', '2019-08-28 05:44:45'),
+(79, 'albin.81@gmail.com', 'Account Registered', 'Dear Damodar , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 315<br>Password: dala123<br>', 'pending', '2019-08-28 05:45:55'),
+(80, 'albin.81@gmail.com', 'Email Updated', 'Dear Damodar,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-28 05:47:31');
 
 -- --------------------------------------------------------
 
@@ -332,7 +340,10 @@ INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, 
 (309, '0', 'Mr', 'ads', '', 'asd', '2019-08-18', 1, 2, '', '2019-08-18 08:20:10', NULL, '2019-08-18 08:20:10', 'asd@klj.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1969-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
 (310, '0', 'Mr', 'asd', '', 'asd', '2019-08-18', 1, 2, '', '2019-08-18 08:20:45', NULL, '2019-08-18 08:20:45', 'ads@lc.om', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1975-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
 (311, '0', 'Mr', 'asd', '', 'asd', '2019-08-18', 1, 2, '', '2019-08-18 08:21:01', NULL, '2019-08-18 08:21:01', 'asd@lkjc.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1969-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '1', '0'),
-(312, '0', 'Mr', 'Test', '', 'test', '2019-08-18', 1, 2, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26', 'me.albin81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1959-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0');
+(312, '0', 'Mr', 'Test', '', 'test', '2019-08-18', 1, 2, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26', 'me.albin81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1959-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0'),
+(313, '0', 'Mr', 'Anuj', '', 'Lama', '2019-08-28', 1, 2, '', '2019-08-28 05:41:54', NULL, '2019-08-28 05:41:54', 'anuj@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1993-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
+(314, '0', 'Mr', 'Manoj', '', 'Tiwari', '2019-08-28', 1, 2, '', '2019-08-28 05:44:44', NULL, '2019-08-28 05:44:44', 'manojraj@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1987-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
+(315, '0', 'Mr', 'Damodar', '', 'Lama', '2019-08-28', 1, 2, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55', 'albin.81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1979-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -478,10 +489,10 @@ CREATE TABLE `employee_leaves` (
 --
 
 INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `approver_id`, `package_id`, `is_approved`, `duration_type`, `is_recommended`, `leave_applied_date`, `from_date`, `to_date`, `duty_performed_by`, `reason`, `denial_reason`, `approved_date`, `recommended_date`, `created_by`, `created_date`, `modified_by`, `modified_date`, `is_archived`, `is_archived_by_approver`) VALUES
-(230, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:55:15', NULL, '2019-08-13 04:55:15', '0', '0'),
+(230, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:55:15', NULL, '2019-08-13 04:55:15', '1', '0'),
 (231, 278, 39, 277, NULL, NULL, 'pending', 'half', 'denied', '0000-00-00', '2019-08-13', NULL, 276, '', 'sadasdasd', '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:21', NULL, '2019-08-13 04:57:21', '0', '0'),
-(232, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, 'test213', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:41', NULL, '2019-08-13 04:57:41', '0', '0'),
-(233, 278, 39, NULL, NULL, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 07:32:55', NULL, '2019-08-13 07:32:55', '0', '0');
+(232, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, 'test213', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:41', NULL, '2019-08-13 04:57:41', '1', '0'),
+(233, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 07:32:55', NULL, '2019-08-13 07:32:55', '1', '0');
 
 -- --------------------------------------------------------
 
@@ -713,6 +724,29 @@ CREATE TABLE `role_permission_modules` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `substitute_balance`
+--
+
+CREATE TABLE `substitute_balance` (
+  `emp_id` int(11) NOT NULL,
+  `remain_days` double(11,2) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(255) NOT NULL,
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `substitute_balance`
+--
+
+INSERT INTO `substitute_balance` (`emp_id`, `remain_days`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(314, 0.00, '', '2019-08-28 05:44:45', '', '2019-08-28 05:44:45'),
+(315, 0.00, '276', '2019-08-28 05:45:55', '276', '2019-08-28 05:45:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `substitute_leaves`
 --
 
@@ -763,8 +797,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (111, 111, '111', 0, '', '2019-08-11 05:46:24', '', '2019-08-11 05:46:24'),
-(257, 276, 'grri123', 0, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
-(258, 277, 'emp', 1, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
+(257, 276, 'grri123', 1, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
+(258, 277, 'emp', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
 (259, 278, 'emp', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
 (269, 288, 'emp', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27'),
 (270, 289, 'tsla123', 0, '', '2019-08-05 04:32:15', '', '2019-08-05 04:32:15'),
@@ -783,7 +817,10 @@ INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `create
 (290, 309, 'adas123', 0, '', '2019-08-18 08:20:10', '', '2019-08-18 08:20:10'),
 (291, 310, 'asas123', 0, '', '2019-08-18 08:20:45', '', '2019-08-18 08:20:45'),
 (292, 311, 'asas123', 0, '', '2019-08-18 08:21:01', '', '2019-08-18 08:21:01'),
-(293, 312, 'asa123', 0, '', '2019-08-18 08:21:26', '', '2019-08-18 08:21:26');
+(293, 312, 'asa123', 0, '', '2019-08-18 08:21:26', '', '2019-08-18 08:21:26'),
+(294, 313, 'anla123', 0, '', '2019-08-28 05:41:54', '', '2019-08-28 05:41:54'),
+(295, 314, 'mati123', 0, '', '2019-08-28 05:44:44', '', '2019-08-28 05:44:44'),
+(296, 315, 'dala123', 0, '', '2019-08-28 05:45:55', '', '2019-08-28 05:45:55');
 
 -- --------------------------------------------------------
 
@@ -825,7 +862,10 @@ INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `m
 (2, 290, '', '2019-08-18 08:20:10', NULL, '2019-08-18 08:20:10'),
 (2, 291, '', '2019-08-18 08:20:45', NULL, '2019-08-18 08:20:45'),
 (2, 292, '', '2019-08-18 08:21:01', NULL, '2019-08-18 08:21:01'),
-(2, 293, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26');
+(2, 293, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26'),
+(2, 294, '', '2019-08-28 05:41:54', NULL, '2019-08-28 05:41:54'),
+(2, 295, '', '2019-08-28 05:44:44', NULL, '2019-08-28 05:44:44'),
+(2, 296, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55');
 
 --
 -- Indexes for dumped tables
@@ -974,6 +1014,12 @@ ALTER TABLE `role_permission_modules`
   ADD KEY `roleId` (`role_id`);
 
 --
+-- Indexes for table `substitute_balance`
+--
+ALTER TABLE `substitute_balance`
+  ADD PRIMARY KEY (`emp_id`);
+
+--
 -- Indexes for table `substitute_leaves`
 --
 ALTER TABLE `substitute_leaves`
@@ -1022,13 +1068,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT for table `employee_approvers`
@@ -1091,6 +1137,12 @@ ALTER TABLE `roles`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `substitute_balance`
+--
+ALTER TABLE `substitute_balance`
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
+
+--
 -- AUTO_INCREMENT for table `substitute_leaves`
 --
 ALTER TABLE `substitute_leaves`
@@ -1100,7 +1152,7 @@ ALTER TABLE `substitute_leaves`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
 
 --
 -- Constraints for dumped tables
