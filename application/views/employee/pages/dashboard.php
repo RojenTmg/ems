@@ -138,6 +138,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                   <button type="button" class="btn btn-primary" onclick="archiveSubstituteRecord(<?php echo $value['slId']; ?>)">Submit</button>
                 </div>
               </div> 
