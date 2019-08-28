@@ -955,7 +955,7 @@ body {
 
 
 /*-----------------------------Substitute-description-table-theme-------------------------------------------------*/
-#substitute-desc {
+/*#substitute-desc {
   max-width: 600px; 
   overflow: hidden; 
   text-overflow: ellipsis; 
@@ -985,7 +985,7 @@ body {
 #substitute-desc:hover + .tooltiptext-sbs {
   display: block;
 }
-
+*/
 
 /*-----------------------------tool-tip-table-theme-------------------------------------------------*/
   
