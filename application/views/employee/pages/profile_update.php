@@ -560,223 +560,214 @@
       </div>
       <!-- PAN ends -->
 
+
  <!-- work experience -->
 
-<div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
-  <form class="form" id="work-form">
-      <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          
-
- <div id="experiencelist">
-  <div id="listexp">
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#expModel">
- Add New Experience
-</button>
-<br><br>
+<div class="tab-pane fade" id="nav-work" role="tabpanel"  style="background: white;" aria-labelledby="nav-work-tab">
+  
 
 
-<!-- Modal -->
-<div class="modal fade" id="expModel" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h5 class="modal-title" id="addExp">Add New Experience</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <textarea id="experience" style="width: 100%; resize:none" rows="12"></textarea>
-      </div>
-      <div class="modal-footer">
-                <p style="float: right;" id="form-message" class="modal-title"></p>
 
-        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Close</button>
-        <input type="button"class="btn btn-primary" value="Save" onclick="addExperience()">
-           <div class="form-div">
-          </div>
-      </div>
-    </div>
+
+
+
+<div class="p-3" >
+  
+<form class="container-fluid mt-2 form " id="expForm" >
+  <div class="div-form">
+ <h6 id="expTitle"> Add New Experience</h6>
+
+</div>
+<input type="hidden" value="" id="id">
+
+<div class="row ml-1" >
+  <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="text" id="organization" class="form-control" placeholder="Organization"  >
+    <label for="organization">Organization</label>
   </div>
+
+  <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="text" id="responsibility" class="form-control" placeholder="Responsibility" >
+    <label for="responsibility">Responsibility</label>
+  </div>
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="text" id="position" class="form-control" placeholder="Position" >
+    <label for="position">Position</label>
+  </div>
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px; " >
+    <input type="date" max="<?php echo Date('Y-m-d');?>" value="<?php echo Date('Y-m-d');?>" id="from_date" class="form-control" placeholder="Start Date" >
+    <label for="from_date">Start Date</label>
+  </div>
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="date" max="<?php echo Date('Y-m-d');?>"  value="<?php echo Date('Y-m-d');?>" id="to_date" class="form-control" placeholder="End Date" >
+    <label for="to_date">End Date</label>
+  </div>
+ <div class="col-sm-2 form-label-group" style="padding:0px 2px">
+    <input type="text" id="contact_person_number" class="form-control" placeholder="Contact Person No." >
+    <label for="contact_person_number">Contact Person No.</label>
+  </div>
+
+</div>
+<div class="sub-can">
+  <input type="button" class="btn btn-success " id="submitExp" onclick="saveExp()" value="Add Experience">
+  <input type="button" class="btn btn-info " onclick="clearExpForm()" value="Cancel">
+</div>
+  
+</form>
 </div>
 
-<div class="card-columns">
-<?php 
-//Function definition
-function timeAgo($time_ago)
-{
-    $time_ago = strtotime($time_ago);
-    $cur_time   = time();
-    $time_elapsed   = $cur_time - $time_ago;
-    $seconds    = $time_elapsed ;
-    $minutes    = round($time_elapsed / 60 );
-    $hours      = round($time_elapsed / 3600);
-    $days       = round($time_elapsed / 86400 );
-    $weeks      = round($time_elapsed / 604800);
-    $months     = round($time_elapsed / 2600640 );
-    $years      = round($time_elapsed / 31207680 );
-    // Seconds
-    if($seconds <= 60){
-        return "just now";
-    }
-    //Minutes
-    else if($minutes <=60){
-        if($minutes==1){
-            return "one minute ago";
-        }
-        else{
-            return "$minutes minutes ago";
-        }
-    }
-    //Hours
-    else if($hours <=24){
-        if($hours==1){
-            return "an hour ago";
-        }else{
-            return "$hours hrs ago";
-        }
-    }
-    //Days
-    else if($days <= 7){
-        if($days==1){
-            return "yesterday";
-        }else{
-            return "$days days ago";
-        }
-    }
-    //Weeks
-    else if($weeks <= 4.3){
-        if($weeks==1){
-            return "a week ago";
-        }else{
-            return "$weeks weeks ago";
-        }
-    }
-    //Months
-    else if($months <=12){
-        if($months==1){
-            return "a month ago";
-        }else{
-            return "$months months ago";
-        }
-    }
-    //Years
-    else{
-        if($years==1){
-            return "one year ago";
-        }else{
-            return "$years years ago";
-        }
-    }
-}
-
-if(isset($work_experience)&&count($work_experience)>0){ 
-foreach (array_reverse($work_experience) as $work) {
- $time_elapsed = timeAgo($work['modified_date']); //The argument $time_ago is in timestamp (Y-m-d H:i:s)format.
-
- ?>
-    <div class="card" >
-      <div class="card-body">
-        
-        <p class="card-text"><?php echo $work['experience']; ?>
-        </p>
-
-      </div>
-      <div class="card-footer" style="display: flex; justify-content: space-between;">
-      <p class="text-muted">Modified <?php echo $time_elapsed; ?> </p>
-       <div>
-     <button type="button" class="btn text-info" data-toggle="modal"  data-target="#editmodal<?php echo $work['id'];?>" ><i class="fas fa-edit"></i></button>
 
 
-     <button class="btn text-danger" onclick="confirmAction(<?php echo $work['id'];?>,this, 'Are you sure you wish to remove this experience?',deleteExp); return false;"><i class="fas fa-trash"></i></button>
-    </div>
 
-  </div>
-    </div>
-    <!-- Modal -->
-<div class="modal fade" id="editmodal<?php echo $work['id'];?>" tabindex="-1" role="dialog" aria-labelledby="addExp" aria-hidden="true">
+<hr/>
+
+
+
+<div class="container-fluid" id="mainWork">
+  <div id="childWork">
+
+    <table id="expTable" class="table table-bordered hover employee_table" style="width:100%; ">
+    <thead class="thead-dark">
+        <tr>
+            <th id="dt-head"><div class="sp-btn"><span>Organization</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Responsibility</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Postition</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>From</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>To</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Contact Person Number</span></i></div></th>
+            <th id="dt-head"><div class="sp-btn"><span>Action</span></div></th>
+        </tr>
+    </thead>
+      <tbody>
+        <?php 
+        foreach (array_reverse($work_experience) as $exp) {?>
+        <tr>
+          <td title="<?php echo $exp['organization'];?>"><?php echo $exp['organization'];?> </td> 
+          <td  title="<?php echo $exp['responsibility'];?>"><?php echo $exp['responsibility'];?> </td> 
+          <td  title="<?php echo $exp['position'];?>"><?php echo $exp['position'];?></td> 
+          <td  title="<?php echo $exp['from_date'];?>"><?php echo $exp['from_date'];?> </td> 
+          <td  title="<?php echo $exp['to_date'];?>"><?php echo $exp['to_date'];?> </td> 
+          <td  title="<?php echo $exp['contact_person_number'];?>"><?php echo $exp['contact_person_number'];?> </td> 
+          <td ><i class="fas fa-edit text-info pointer" onclick="editExp(<?php echo $exp['id'];?>)"></i>  &nbsp; &nbsp; <i id="d<?php echo $exp['id'];?>" class=" fas fa-trash-alt text-danger" data-toggle="modal" data-target="#del<?php echo $exp['id'];?>"  ></i></td> 
+        </tr>
+
+    
+<!-- Modal -->
+<div class="modal fade" id="del<?php echo $exp['id'];?>" tabindex="-1" role="dialog" aria-labelledby="delExpBox" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-         <h5 class="modal-title" id="addExp">Edit Experience</h5>
+        <h5 class="modal-title" id="delExpBox">Are you sure to delete this experience?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-          <textarea id="experience<?php echo $work['id'];?>" style="width: 100%; resize:none" rows="12"><?php echo $work['experience'];?></textarea>
-      </div>
+     
       <div class="modal-footer">
-                <p style="float: right;" id="form-message" class="modal-title"></p>
-
-        <button type="button" class="btn btn-secondary"  id="closeExp" data-dismiss="modal">Cancel</button>
-        <input type="button"class="btn btn-primary" value="Save" onclick="editExperience(<?php echo $work['id'];?>)">
-           <div class="form-div">
-          </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="deleteExp(<?php echo $exp['id'];?>)">Delete</button>
       </div>
     </div>
   </div>
 </div>
 <!-- end of modal -->
 
-<?php }} ?>
+     <?php } ?>
+      </tbody>
+</table>
 </div>
 </div>
 </div>
-</form>
-</div>
+
 
 <!-- end of work experience -->
-  
 
- <!-- documents tab -->
-      <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
-        <form class="form" id="document-form" enctype="multipart/form-data">
-          <div class="message-div">
-      <div id="message" class="message" style="display: none;">
-        <!-- add edit message displayed here -->
-       </div></div>
-          <input type="button"class="btn btn-primary" id="docaddbtn"  value="Add Document" onclick="addDocument()">
-          <div class="form-group"></div>
-          <div id="document"> </div>
-          <div id="list_doc">
-         
-          <?php 
-          if(!empty($documents)){?>
-              <table class="table" id="document-list" style="overflow: scroll">
-            <thead>
-              <th>Title</th>
-              <th>File</th>
-              <th>Action</th>
-            </thead>
-            <?php 
-          foreach ($documents as $value) {
-        ?>
-        <tr>
-          <td><?php echo $value['doc_title']; ?></td>
-          <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"><?php echo $value['doc_file']; ?></a></td>
-          <!-- delete button -->
-          <td>
-             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+  <!-- documents tab -->
+  <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+    <form class="form" id="document-form" enctype="multipart/form-data">
+      <div class="message-div">
+  <div id="message" class="message" style="display: none;">
+    <!-- add edit message displayed here -->
+   </div></div>
+      <input type="button"class="btn btn-primary" id="docaddbtn" value="Add Document" onclick="addDocument()">
+      <div class="form-group"></div>
+      <div id="document"> </div>
+      <div id="list_doc">
+     
+      <div id="btn-group">
+      <input type="button" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
+      </div>
+      <?php 
+      if(!empty($documents)){?>
+          <table class="table" id="document-list" style="overflow: scroll">
+        <thead>
+          <th>Title</th>
+          <th>File</th>
+          <th>Action</th>
+        </thead>
+        <?php 
+      foreach ( array_reverse($documents) as $value) {
+    ?>
+    <tr>
+      <td><?php echo $value['doc_title']; ?> </td>
+      <td><a href="<?= base_url('assets/files/'); ?><?php echo $value['doc_file']; ?>"  data-toggle="lightbox" target="_blank" ><?php echo $value['doc_file']; ?></a></td>
+      <!-- delete button -->
+      <td class="d-flex">
+         <i class="fa fa-trash text-danger" aria-hidden="true"> </i>
 
-               <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
-                <p>Are you sure?</p>
-                <span class="tip-can">Cancel</span>
-                <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
-              </div>
-            </td>
-           </tr>
-        <?php   } } ?>
-      </table>
-      <hr>
+           <div class="tooltiptext float-right deleteFiles" id="deleteFileMessage">
+            <p>Are you sure?</p>
+            <span class="tip-can">Cancel</span>
+            <span class="tip-arch" id="<?php echo $value['doc_id']; ?>" onclick="removeFile(<?php echo $value['doc_id'];?>)">Delete</span>
+          </div>
+            &nbsp; &nbsp; <i class="fas fa-edit pointer text-info" data-toggle="modal" data-target="#fileDel<?php echo $value['doc_id'];?>" > </i> 
+
+        </td>
+       </tr>
+       <!-- Modal -->
+<div class="modal fade" id="fileDel<?php echo $value['doc_id'];?>" tabindex="-1" role="dialog" aria-labelledby="docFileEdit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="docFileEdit">Edit File</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <i class="text-info">Provide the data in that fields  which you want to modify</i> <br><br>
+
+           <div class="form-group">
+            <label for="edit_doc_title">File Name <i class="text-danger">*</i></label>
+            <input type="text"  class="form-control"  id="edit_doc_title" value="<?php echo $value['doc_title'];?>" placeholder="Enter the title">
+           </div>
+
+        
+
+          <div class="form-group">
+            <label for="edit_doc_file">File</label>
+            <input type="file" class="form-control-file" id="edit_doc_file"  name="edit_userfile">
+          </div>
+
+       
+        <i>Previously Uploaded File: <b><?php echo $value['doc_file'];?></b></i> 
+      </div>
+      <div class="modal-footer" id="df<?php echo $value['doc_id'];?>">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="editFileBtn" onclick="editDocument(this,<?php echo $value['doc_id'];?>)">Save</button>
+      </div>
+    </div>
   </div>
-<input type="button" onclick="submitDocument()" value="Save" class="sub">
+</div>
+
+<!-- end of edit file modal -->
+
+    <?php   } } ?>
+  </table>
+  <hr>
+</div>
  </form>
+  <!-- <script>   -->
 
 </div>
     <!-- documents ends here -->
