@@ -469,6 +469,46 @@ function checkExp(){
 			$status=$this->form_validation->error_array();
 		}else
 		{
+			// validation municipality
+			if($permanentaddress_municipality!='')
+			{
+				if(!$this->textOnly($permanentaddress_municipality))
+				{
+					$msg="textonlyMunicipality";
+					array_push($result, $msg);
+					echo json_encode($result);
+					return ;
+				}
+			}
+
+			//
+			if(!$this->textOnly($currentaddress_municipality))
+			{
+				$msg="textonlyMunicipality";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
+
+			if($permanentaddress_district!='')
+			{
+				if(!$this->alphanumeric($permanentaddress_district))
+				{
+					$msg="textonlyDistrict";
+					array_push($result, $msg);
+					echo json_encode($result);
+					return ;
+				}
+			}
+
+			//
+			if(!$this->alphanumeric($currentaddress_district))
+			{
+				$msg="textonlyDistrict";
+				array_push($result, $msg);
+				echo json_encode($result);
+				return ;
+			}
 
 			$primaryAdd=array(
 				'street'=>$permanentaddress_street,
@@ -483,7 +523,7 @@ function checkExp(){
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
 				'state'=>$currentaddress_state,
-				'country'=>'NP'
+				'country'=>'Nepal'
 			);
 
 			// check is used in whether the adress is already in database or not
@@ -744,22 +784,31 @@ function checkExp(){
 
 		$this->form_validation->set_rules('passport_issue_place','Place of Issue','required|trim',array('required' => 'You must provide a %s.'));
 
-		if($visa_type!='')
-		{
-			if(!$this->textOnly($visa_type))
-			{
-				$msg="errorVisatype";
-				array_push($status, $msg);
-				echo json_encode($status);
-				return ;
-			}
-		}
-
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
 		}else
 		{
+			if($visa_type!='')
+			{
+				if(!$this->textOnly($visa_type))
+				{
+					$msg="errorVisatype";
+					array_push($status, $msg);
+					echo json_encode($status);
+					return ;
+				}
+			}
+
+			if(!$this->alphanumeric($passport_issue_place))
+			{
+				$msg="errorPassportIssue";
+				array_push($status, $msg);
+				echo json_encode($status);
+				return ;
+			}
+			
+
 			if($nationality=='Nepalese')
 			{
 				$data=array(
@@ -772,6 +821,14 @@ function checkExp(){
 			);
 			}
 			else{
+
+				if($visa_type=='')
+				{
+				$msg="errorVisatype";
+					array_push($status, $msg);
+					echo json_encode($status);
+					return ;
+				}
 				$data=array(
 				'nationality'=>$nationality,
 				'visa_permission'=>$visa_permission,
@@ -796,6 +853,7 @@ function checkExp(){
 	public function addEmergency()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		$this->form_validation->set_rules('e_name','Contact Person Name','required|trim',array('required' => 'You must provide detail of %s.'));
@@ -804,10 +862,33 @@ function checkExp(){
 
 		$this->form_validation->set_rules('e_phone','Contact No.','required|trim',array('required' => 'You must provide contact details of person.'));
 
-
-		if(!$this->textOnly($e_name)|| !$this->textOnly($e_relation))
+		if($this->form_validation->run()===FALSE)
 		{
-			$msg="errorEmergency";
+			$status=$this->form_validation->error_array();
+			echo json_encode($status);
+			return ;
+		}
+		else
+		{
+
+		if(!$this->textOnly($e_name))
+		{
+			$msg="errorEmergencyName";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if($e_relation=='')
+		{
+			$msg="errorEmergencyRelation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		if(!$this->textOnly($e_relation))
+		{
+			$msg="errorEmergencyRelation";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;
@@ -815,7 +896,7 @@ function checkExp(){
 
 		if(!$this->contactNumber($e_phone))
 		{
-			$msg="errorEmergency";
+			$msg="errorEmergencyContact";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;
@@ -825,45 +906,46 @@ function checkExp(){
 		{
 			if(!$this->alphanumeric($e_address))
 			{
-				$msg="errorEmergency";
+				$msg="errorEmergencyAddress";
 				array_push($status, $msg);
 				echo json_encode($status);
 				return ;
 			}
 		}
 
-		if($this->form_validation->run()===FALSE)
-		{
-			$status=$this->form_validation->error_array();
-		}else
-		{
+		
+	
 			$data=array(
 				'e_name'=>$e_name,
 				'e_relation'=>$e_relation,
 				'e_address'=>$e_address,
 				'e_phone'=>$e_phone
 			);
-
-						$id=$_SESSION['user_id'];
-
+		
+			$id=$_SESSION['user_id'];
 
 			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
-		}
+		
+	}
 		echo json_encode($status);
 	}
 
-// Education tab
-	public function addEducation()
+public function addEducation()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
+		$this->form_validation->set_rules('degree_title','Degree title','required',array('required' => 'You must provide your highest degree'));
 
-		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
+		$this->form_validation->set_rules('university','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
 
-		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
-		
+		if($this->form_validation->run()===FALSE)
+		{
+			$status=$this->form_validation->error_array();
+		}
+		else{
 		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
 		$msg="error";
 		array_push($status, $msg);
@@ -871,24 +953,27 @@ function checkExp(){
 		return ;
 		}
 
-		if(!$this->textOnly($degree_title)|| !$this->textOnly($university)|| !$this->textOnly($institute))
+		if(!$this->textOnly($degree_title))
 		{
-			$msg="errorEducation";
+			$msg="errorEducationdegree";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;
 		}
 
-		if($this->form_validation->run()===FALSE)
+		if(!$this->textOnly($university))
 		{
-			$status=$this->form_validation->error_array();
-		}else
+			$msg="errorEducationuniversity";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		else
 		{
 			$data=array(
 				'highest_degree'=>$highest_degree,
 				'degree_title'=>$degree_title,
 				'university'=>$university,
-				'institute'=>$institute
 			);
 					
 						$id=$_SESSION['user_id'];
@@ -898,6 +983,7 @@ function checkExp(){
 			$status=array('true');
 
 		}
+	}
 		echo json_encode($status);
 	}
 
@@ -909,6 +995,17 @@ function checkExp(){
 
 		$this->form_validation->set_rules('blood_group','Blood Group','required',array('required' => 'You must provide %s'));
 
+		if($allergies!='No')
+		{
+			$this->form_validation->set_rules('allergy_description','allergy_description','required',array('required' => 'You must provide %s'));
+			if($this->form_validation->run()===FALSE)
+			{
+			$status=$this->form_validation->error_array();
+			echo json_encode($status);
+			return ;
+			}
+		}
+		
 		if($blood_group!='A +ve' && $blood_group!='A -ve' && $blood_group!='B +ve' && $blood_group!='B -ve' && $blood_group!='AB +ve'  && $blood_group!='AB -ve' && $blood_group!='O +ve'  && $blood_group!='O -ve' && $blood_group!=''){
 			$msg="error";
 			array_push($status, $msg);
@@ -1045,51 +1142,132 @@ function checkExp(){
 	}
 
 
-	
+
+
+
+function getWork(){
+	extract($_POST);
+	$this->db->where('id',$id);
+	$res=$this->db->get('employee_work_experience');
+	$result=$res->row_array();
+	echo json_encode($result);
+}
+
+
 // for work experience
 function addWork(){
+	$status=array();
+	$_POST = $this->security->xss_clean($_POST);
 	extract($_POST);
-$experience = trim($experience);
+	
+	$dateTimestamp1 = strtotime($from_date); 
+		$dateTimestamp2 = strtotime($to_date); 
+		if(!$this->alphanumeric($organization))
+		{
+			$msg="errorOrganization";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
 
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
-		$data=[
-			'experience'=>$experience,
-			'emp_id'=>$_SESSION['user_id']
-		];
-		if($this->Admin_model->insert('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
-		return ;
-	}
+		else if(!$this->alphanumeric($responsibility))
+		{
+			$msg="errorResponsibility";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if(!$this->alphanumeric($position))
+		{
+			$msg="errorPosition";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if(!$this->validateDate($from_date))
+		{
+			$msg="errorFromDate";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if(!$this->validateDate($to_date))
+		{
+			$msg="errorToDate";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		
+		else if($dateTimestamp1>$dateTimestamp2)
+		{
+			$msg="fromdateGreater";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if($from_date>Date('Y-m-d'))
+		{
+			$msg="fromdateError";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		else if($to_date>Date('Y-m-d'))
+		{
+			$msg="todateError";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		else if(!$this->contactNumber($contact_person_number))
+		{
+			$msg="errorContact";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		
+		else
+		{
+			$data=[
+				'from_date'=>$from_date,
+				'to_date'=>$to_date,
+				'organization'=>$organization,
+				'responsibility'=>$responsibility,
+				'position'=>$position,
+				'contact_person_number'=>$contact_person_number,
+				'emp_id'=>$_SESSION['user_id']
+			];
+			if($id==''){
+				$this->Admin_model->insert('employee_work_experience',$data);
+				$id=$this->db->insert_id();
+				array_push($status, $id);
+				echo json_encode($status);
+			}
+			else{
+				$this->db->where('id',$id);
+				$this->db->update('employee_work_experience',$data);
+				$msg="update";
+				array_push($status, $msg);
+				echo json_encode($status);
+			}
+			
+		}
+	// }	
+		
 }
 
-function editWork(){
-	extract($_POST);
-$experience = trim($experience);
 
-	if(strlen($experience)==0) {
-		echo "error";
-		return ;
-	}	
-	else{
-		$timestamp = date('Y-m-d G:i:s');
-		$data=[
-			'experience'=>$experience,
-			'emp_id'=>$_SESSION['user_id'],
-			'id'=>$id,
-			'modified_date'=>$timestamp
-		];
-		$this->db->where('id',$id);
-		if($this->db->update('employee_work_experience',$data))
-		echo "success";
-		else echo "error";
-		return ;
-	}
-}
+
+
+
+
 
 function deleteWorkExp(){
 	extract($_POST);
@@ -1110,7 +1288,6 @@ function deleteWorkExp(){
 			echo json_encode($result);
 			return ;
 		}
-
 
 		if($dob>Date('Y-m-d'))
 		{
@@ -1156,7 +1333,7 @@ function deleteWorkExp(){
 // checking input types
 public function textOnly($text)
 {
-	if (preg_match('/^[a-zA-Z .]+$/',$text ))
+	if (preg_match('/^[a-zA-Z .\-\']+$/',$text ))
 		return true;
 	else
 		return false;
@@ -1165,7 +1342,7 @@ public function textOnly($text)
 // checking input types number
 public function numberonly($text)
 {
-	if (preg_match('/^[[0-9\s .]+$/',$text ))
+	if (preg_match('/^[0-9]+$/',$text ))
 		return true;
 	else
 		return false;
@@ -1183,7 +1360,7 @@ public function contactNumber($value)
 // alphanumeric but must contain alphabets
 public function alphanumeric($value)
 {
-	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .]+$/',$value))
+	if(preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9 .\-\,]+$/',$value))
 		return true;
 	else
 		return false;

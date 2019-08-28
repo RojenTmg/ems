@@ -768,7 +768,7 @@
       <div id="list_doc">
      
       <div id="btn-group">
-      <input type="button" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
+      <input type="button" style="display: none;" id="subDoc" onclick="submitDocument(this)" value="Save"  class="btn btn-success" />  <br><br>
       </div>
       <?php 
       if(!empty($documents)){?>

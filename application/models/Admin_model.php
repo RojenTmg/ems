@@ -414,7 +414,7 @@ public function getApproverId($id){
 	$detail=$query->row_array();
 	return $detail['approver_id'];
 }
-public function getEmpIdbyLID(){
+public function getEmpIdbyLID($id){
 	$this->db->where('leave_id',$id);
 	$query= $this->db->get('employee_leaves');
 	$detail=$query->row_array();

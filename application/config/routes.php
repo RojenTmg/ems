@@ -17,11 +17,25 @@ $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 $route['admin/employee_manage/deleteWorkExp'] = 'Admin_controller/deleteWorkExp';
 $route['admin/employee_manage/getWork'] = 'Admin_controller/getWork';
-$route['admin/employee_manage/editWork'] = 'Admin_controller/editWork';
+
 
 
 //edit document
 $route['admin/employee_manage/editDocuments'] = 'Admin_controller/editDocuments';
+
+
+
+// work experience
+
+$route['employee/profile_update/deleteWorkExp'] = 'Employee_controller/deleteWorkExp';
+$route['employee/profile_update/getWork'] = 'Employee_controller/getWork';
+$route['employee/profile_update/editWork'] = 'Employee_controller/editWork';
+
+
+//edit document
+$route['employee/profile_update/editDocuments'] = 'Employee_controller/editDocuments';
+
+
 
 
 

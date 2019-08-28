@@ -582,13 +582,22 @@ $('#document').append('<i >Title <b class="text-danger">*</b> </i><input type="t
 $('#document').append('<input type="file" id="doc_file" name="userfile"  class=" col-md-4">');
 $('#document').append('<i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>');
 $('#document').append('<hr>');
+$('#subDoc').css('display','block');
 }
 
 function removeDocument(doc){
+
+
   doc.nextSibling.remove();
   doc.previousSibling.remove();
   doc.previousSibling.remove();
+  doc.previousSibling.remove();
   doc.remove();
+    var area = document.getElementById('document');
+ if(area.innerHTML.trim()==''){
+  $('#subDoc').css('display','none');
+
+ }
 
 }
 
@@ -1161,9 +1170,15 @@ function showresponse(formname,status,msg)
             showErrormessage(msg,'educationbutton');
             return ;
            }
-           if(id=="errorEducation")
-          {
-            msg=" Enter valid information.";
+           if(id=="errorEducationdegree")
+            {
+            msg=" Enter valid degree title.";
+            showErrormessage(msg,'educationbutton');
+            return ;
+           }
+            if(id=="errorEducationuniversity")
+            {
+            msg=" Enter valid university name.";
             showErrormessage(msg,'educationbutton');
             return ;
            }
@@ -1474,6 +1489,8 @@ if(error){
                         clearExpForm();
                         $( "#mainWork" ).load(window.location.href + " #childWork" );
                    }
+
+                   check_complete();
 
               }
 }
@@ -2211,6 +2228,7 @@ function recommendLeave(btn,l_id)
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
   {
+    // console.log(xmlHttp.responseText);
    location.reload();
   }
 }

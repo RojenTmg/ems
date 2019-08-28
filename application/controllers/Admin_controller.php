@@ -377,6 +377,13 @@ public function employeeManage($id = NULL)
 			if($is_manager=='true'){
 				$mdata=['emp_id'=>$id];
 			$this->db->insert('managers',$mdata);
+			
+			}
+			else
+			{
+			// for substitute balance
+			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0','created_by'=>$_SESSION['user_id'],'modified_by'=>$_SESSION['user_id']];
+			$this->db->insert('substitute_balance',$subs_data);
 			}
 				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
 				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
@@ -574,7 +581,7 @@ public function employeeManage($id = NULL)
 				'municipality'=>$currentaddress_municipality,
 				'district'=>$currentaddress_district,
 				'state'=>$currentaddress_state,
-				'country'=>'NP'
+				'country'=>'Nepal'
 			);
 
 			// check is used in whether the adress is already in database or not
@@ -905,9 +912,17 @@ public function employeeManage($id = NULL)
 		return ;
 		}
 
-		if(!$this->textOnly($degree_title)|| !$this->textOnly($university))
+		if(!$this->textOnly($degree_title))
 		{
-			$msg="errorEducation";
+			$msg="errorEducationdegree";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if(!$this->textOnly($university))
+		{
+			$msg="errorEducationuniversity";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;
@@ -1080,19 +1095,7 @@ function addWork(){
 	$status=array();
 	$_POST = $this->security->xss_clean($_POST);
 	extract($_POST);
-	// $this->form_validation->set_rules('organization','organization','required|trim',array('required' => 'You must provide a %s.'));
-	// $this->form_validation->set_rules('responsibility','responsibility','required|trim');
-	// $this->form_validation->set_rules('position','position','required|trim');
-	// $this->form_validation->set_rules('contact_person_number','contact_person_number','required|trim');
-	// if($this->form_validation->run()===FALSE)
-	// {
-	// 	$status=$this->form_validation->error_array();
-	// 	$msg="true";
-	// 	array_push($status, $msg);
-	// 	echo json_encode($status);
-	// 	return ;
-	// }else
-	// {
+	
 	$dateTimestamp1 = strtotime($from_date); 
 		$dateTimestamp2 = strtotime($to_date); 
 		if(!$this->alphanumeric($organization))
