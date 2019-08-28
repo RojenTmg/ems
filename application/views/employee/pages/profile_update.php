@@ -1053,12 +1053,7 @@ function openDialog() {
 }
 openDialog();
 
-    <?php if(isset($_SESSION['current_employee_id'])){ ?>
-      
-     toggleNav('show');
-    <?php  } else { ?>
-      toggleNav('hide');
-    <?php } 
+    <?php 
 
     if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
      $_SESSION['path']='';
