@@ -582,13 +582,22 @@ $('#document').append('<i >Title <b class="text-danger">*</b> </i><input type="t
 $('#document').append('<input type="file" id="doc_file" name="userfile"  class=" col-md-4">');
 $('#document').append('<i class="fa fa-times fa-2x" onclick="removeDocument(this)" class="form-group col-md-2 "></i>');
 $('#document').append('<hr>');
+$('#subDoc').css('display','block');
 }
 
 function removeDocument(doc){
+
+
   doc.nextSibling.remove();
   doc.previousSibling.remove();
   doc.previousSibling.remove();
+  doc.previousSibling.remove();
   doc.remove();
+    var area = document.getElementById('document');
+ if(area.innerHTML.trim()==''){
+  $('#subDoc').css('display','none');
+
+ }
 
 }
 

@@ -1053,6 +1053,7 @@ function openDialog() {
 }
 openDialog();
 
+
     <?php 
 
     if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
