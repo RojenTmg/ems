@@ -1170,9 +1170,15 @@ function showresponse(formname,status,msg)
             showErrormessage(msg,'educationbutton');
             return ;
            }
-           if(id=="errorEducation")
-          {
-            msg=" Enter valid information.";
+           if(id=="errorEducationdegree")
+            {
+            msg=" Enter valid degree title.";
+            showErrormessage(msg,'educationbutton');
+            return ;
+           }
+            if(id=="errorEducationuniversity")
+            {
+            msg=" Enter valid university name.";
             showErrormessage(msg,'educationbutton');
             return ;
            }

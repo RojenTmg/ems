@@ -912,9 +912,17 @@ public function employeeManage($id = NULL)
 		return ;
 		}
 
-		if(!$this->textOnly($degree_title)|| !$this->textOnly($university))
+		if(!$this->textOnly($degree_title))
 		{
-			$msg="errorEducation";
+			$msg="errorEducationdegree";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if(!$this->textOnly($university))
+		{
+			$msg="errorEducationuniversity";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;

@@ -853,6 +853,7 @@ function checkExp(){
 	public function addEmergency()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
 
 		$this->form_validation->set_rules('e_name','Contact Person Name','required|trim',array('required' => 'You must provide detail of %s.'));
@@ -861,78 +862,90 @@ function checkExp(){
 
 		$this->form_validation->set_rules('e_phone','Contact No.','required|trim',array('required' => 'You must provide contact details of person.'));
 
-
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
-		}else
+			echo json_encode($status);
+			return ;
+		}
+		else
 		{
-			if(!$this->textOnly($e_name)|| !$this->textOnly($e_relation))
+
+		if(!$this->textOnly($e_name))
+		{
+			$msg="errorEmergencyName";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if($e_relation=='')
+		{
+			$msg="errorEmergencyRelation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		if(!$this->textOnly($e_relation))
+		{
+			$msg="errorEmergencyRelation";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if(!$this->contactNumber($e_phone))
+		{
+			$msg="errorEmergencyContact";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+
+		if($e_address!='')
+		{
+			if(!$this->alphanumeric($e_address))
 			{
-				$msg="errorEmergency";
+				$msg="errorEmergencyAddress";
 				array_push($status, $msg);
 				echo json_encode($status);
 				return ;
 			}
+		}
 
-			if(!$this->contactNumber($e_phone))
-			{
-				$msg="errorEmergency";
-				array_push($status, $msg);
-				echo json_encode($status);
-				return ;
-			}
-
-			if($e_address!='')
-			{
-				if(!$this->alphanumeric($e_address))
-				{
-					$msg="errorEmergency";
-					array_push($status, $msg);
-					echo json_encode($status);
-					return ;
-				}
-			}
-
+		
+	
 			$data=array(
 				'e_name'=>$e_name,
 				'e_relation'=>$e_relation,
 				'e_address'=>$e_address,
 				'e_phone'=>$e_phone
 			);
-
-						$id=$_SESSION['user_id'];
-
+		
+			$id=$_SESSION['user_id'];
 
 			$this->Admin_model->update_employee($data,$id);
 			$status=array('true');
 
-		}
+		
+	}
 		echo json_encode($status);
 	}
 
-// Education tab
-	public function addEducation()
+public function addEducation()
 	{
 		$status=array();
+		$_POST = $this->security->xss_clean($_POST);
 		extract($_POST);
+		$this->form_validation->set_rules('degree_title','Degree title','required',array('required' => 'You must provide your highest degree'));
 
-		$this->form_validation->set_rules('highest_degree','Highest Degree','required',array('required' => 'You must provide your highest degree'));
-
-		$this->form_validation->set_rules('institute','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
-		
-		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
-		$msg="error";
-		array_push($status, $msg);
-		echo json_encode($status);
-		return ;
-		}
+		$this->form_validation->set_rules('university','Institute','required|trim',array('required' => 'You must provide name of the Institute.'));
 
 		if($this->form_validation->run()===FALSE)
 		{
 			$status=$this->form_validation->error_array();
-		}else
-		{
+		}
+		else{
 		if($highest_degree!='PhD' && $highest_degree!='Master' && $highest_degree!='Bachelor' && $highest_degree!='High School' && $highest_degree!='Middle School'  && $highest_degree!='None' ){
 		$msg="error";
 		array_push($status, $msg);
@@ -940,19 +953,27 @@ function checkExp(){
 		return ;
 		}
 
-		if(!$this->textOnly($degree_title)|| !$this->textOnly($university))
+		if(!$this->textOnly($degree_title))
 		{
-			$msg="errorEducation";
+			$msg="errorEducationdegree";
 			array_push($status, $msg);
 			echo json_encode($status);
 			return ;
 		}
 
+		if(!$this->textOnly($university))
+		{
+			$msg="errorEducationuniversity";
+			array_push($status, $msg);
+			echo json_encode($status);
+			return ;
+		}
+		else
+		{
 			$data=array(
 				'highest_degree'=>$highest_degree,
 				'degree_title'=>$degree_title,
 				'university'=>$university,
-				'institute'=>$institute
 			);
 					
 						$id=$_SESSION['user_id'];
@@ -962,6 +983,7 @@ function checkExp(){
 			$status=array('true');
 
 		}
+	}
 		echo json_encode($status);
 	}
 
