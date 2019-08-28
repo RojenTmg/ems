@@ -377,8 +377,12 @@ public function employeeManage($id = NULL)
 			if($is_manager=='true'){
 				$mdata=['emp_id'=>$id];
 			$this->db->insert('managers',$mdata);
-				// for substitute balance
-			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0'];
+			
+			}
+			else
+			{
+			// for substitute balance
+			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0','created_by'=>$_SESSION['user_id'],'modified_by'=>$_SESSION['user_id']];
 			$this->db->insert('substitute_balance',$subs_data);
 			}
 				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
