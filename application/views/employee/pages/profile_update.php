@@ -821,44 +821,8 @@
 
 
 
-<script type="text/javascript">
-   toggleNav('show');
 
-   <?php
-
-    if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
-     $_SESSION['path']='';
-      ?>
-
-              document.getElementById('nav-document').className='tab-pane fade active show';
-              document.getElementById('nav-document-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
-<?php
- } 
-if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
-     $_SESSION['path']='';
-      ?>
-
-              document.getElementById('nav-work').className='tab-pane fade active show';
-              document.getElementById('nav-work-tab').className='nav-item nav-link active';
-                document.getElementById('nav-general').className='tab-pane fade  ';
-              document.getElementById('nav-general-tab').className='nav-item nav-link ';
-<?php } ?>
-
-
-      </script>
-
-
-
- 
-<script type="text/javascript">
-  check_complete();
-  showprogress();
-
-      document.getElementById('nav-assign-tab').style.display="none";
-
-
+<script>
 
  $('.fa-trash').on('click',function(ev) {
     $(this).siblings().css({"display": "block"});
@@ -876,11 +840,300 @@ $(document).ready(function(){
         $("#messagediv").css('display','none');
     });
 });  
+////////////////////  Auto-suggestion on Temporary-District Address tab (employee-manage) /////////////////////
 
+var country = ['Taplejung','Panchthar','Ilam','Jhapa','Morang','Sunsari','Dhankutta','Sankhuwasabha','Bhojpur','Terhathum','Okhaldunga','Khotang','Solukhumbu','Udaypur','Saptari','Siraha','Dhanusa','Mahottari','Sarlahi','Sindhuli','Ramechhap','Dolkha','Sindhupalchauk','Kavreplanchauk','Lalitpur','Bhaktapur','Kathmandu','Nuwakot','Rasuwa','Dhading','Makwanpur','Rauthat','Bara','Parsa','Chitwan','Gorkha','Lamjung','Tanahun','Syangja','Kaski','Manang','Mustang','Parwat','Myagdi','Baglung','Gulmi','Palpa','Nawalpur','Parasi','Rupandehi','Arghakhanchi','Taulihawa','Pyuthan','Rolpa','Rukum Purba','Rukum Paschim','Salyan','Ghorahi','Bardiya','Surkhet','Dailekh','Banke','Jajarkot','Dolpa','Humla','Kalikot','Mugu','Jumla','Bajura','Bajhang','Achham','Doti','Kailali','Kanchanpur','Dadeldhura','Baitadi','Darchula'];
+
+
+function initDialogDistrict() {
+  clearDialogDistrict();
+  for (var i = 0; i < country.length; i++) {
+    $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+  }
+}
+
+function clearDialogDistrict() {
+  $('.dialogDistrict').empty();
+}
+
+var alreadyFilledDistrict = false;
+
+function openDialogDistrict() {
+  $('.autocompleteDistrict').append('<div class="dialogDistrict"></div>');
+  $('.autocompleteDistrict input').click(function() {
+    if (!alreadyFilledDistrict) {
+      $('.dialogDistrict').addClass('openDistrict');
+    }
+  });
+
+  $('body').on('click', '.dialogDistrict > div', function() {
+    $('.autocompleteDistrict input').val($(this).text()).focus();
+    $('.autocompleteDistrict .closeDistrict').addClass('visible');
+    alreadyFilledDistrict = true;
+  });
+
+  $('.autocompleteDistrict .closeDistrict').click(function() {
+    alreadyFilledDistrict = false;
+    $('.dialogDistrict').addClass('openDistrict');
+    $('.autocompleteDistrict input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialogDistrict();
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialogDistrict').append('<div>' + country[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteDistrict input').on('input', function() {
+    $('.dialogDistrict').addClass('openDistrict');
+    alreadyFilledDistrict = false;
+    match($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .close")) {
+  //     $('.dialog').removeClass('open');
+  //   }
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogDistrict();
+}
+openDialogDistrict();
+
+
+
+
+
+
+////////////////////  Auto-suggestion on State Address tab (employee-manage) /////////////////////
+
+function initDialogState() {
+  clearDialogState();
+  for (var i = 0; i < states.length; i++) {
+    $('.dialogState').append('<div>' + states[i] + '</div>');
+  }
+}
+
+function clearDialogState() {
+  $('.dialogState').empty();
+}
+
+var alreadyFilledState = false;
+var states = ['Province 1', 'Province 2','Province 3','Province 4','Province 5','Province 6','Province 7'];
+
+function openDialogState() {
+  $('.autocompleteState').append('<div class="dialogState"></div>');
+  $('.autocompleteState input').click(function() {
+    if (!alreadyFilledState) {
+      $('.dialogState').addClass('openState');
+    }
+  });
+
+  $('body').on('click', '.dialogState > div', function() {
+    $('.autocompleteState input').val($(this).text()).focus();
+    $('.autocompleteState .closeState').addClass('visible');
+    alreadyFilledState = true;
+  });
+
+  $('.autocompleteState .closeState').click(function() {
+    alreadyFilledState = false;
+    $('.dialogState').addClass('openState');
+    $('.autocompleteState input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function matchState(str) {
+    str = str.toLowerCase();
+    clearDialogState();
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].toLowerCase().startsWith(str)) {
+        $('.dialogState').append('<div>' + states[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocompleteState input').on('input', function() {
+    $('.dialogState').addClass('openState');
+    alreadyFilledState = false;
+    matchState($(this).val());
+  });
+
+  // $('body').click(function(e) {
+  //   if (!$(e.target).is("input, .closeState")) {
+  //     $('.dialogState').removeClass('openState');
+  //   }
+  // });
+  initDialogState();
+}
+openDialogState();
+
+
+$('#permanentaddress_country').change(function() {
+  if ($('#permanentaddress_country').find("option:selected").text() == 'Nepal') {
+    openDialog();
+    openDialogState(); 
+
+  } else {
+    $('.autocomplete').find('.dialog').remove();
+    $('.autocompleteState').find('.dialogState').remove();
+  }
+});
+
+////////////////////  Auto-suggestion on District Address tab (employee-manage) /////////////////////
+
+function initDialog() {
+  clearDialog();
+  for (var i = 0; i < country.length; i++) {
+    $('.dialog').append('<div>' + country[i] + '</div>');
+  }
+}
+
+function clearDialog() {
+  $('.dialog').empty();
+}
+
+var alreadyFilled = false;
+
+function openDialog() {
+  $('.autocomplete').append('<div class="dialog"></div>');
+  $('.autocomplete input').click(function() {
+    if (!alreadyFilled) {
+      $('.dialog').addClass('open');
+    }
+  });
+
+  $('body').on('click', '.dialog > div', function() {
+    $('.autocomplete input').val($(this).text()).focus();
+    $('.autocomplete .close').addClass('visible');
+    alreadyFilled = true;
+  });
+
+  $('.autocomplete .close').click(function() {
+    alreadyFilled = false;
+    $('.dialog').addClass('open');
+    $('.autocomplete input').val('').focus();
+    $(this).removeClass('visible');
+  });
+
+  function match(str) {
+    str = str.toLowerCase();
+    clearDialog();
+    for (var i = 0; i < country.length; i++) {
+      if (country[i].toLowerCase().startsWith(str)) {
+        $('.dialog').append('<div>' + country[i] + '</div>');
+      }
+    }
+  }
+
+  $('.autocomplete input').on('input', function() {
+    $('.dialog').addClass('open');
+    alreadyFilled = false;
+    match($(this).val());
+  });
+
+  $('body').click(function(e) {
+    if (!$(e.target).is("input, .close")) {
+      $('.dialog').removeClass('open');
+    }
+    if (!$(e.target).is("input, .closeState")) {
+      $('.dialogState').removeClass('openState');
+    }
+     if (!$(e.target).is("input, .closeDistrict")) {
+      $('.dialogDistrict').removeClass('openDistrict');
+    }
+  });
+  initDialog();
+}
+openDialog();
+
+    <?php if(isset($_SESSION['current_employee_id'])){ ?>
+      
+     toggleNav('show');
+    <?php  } else { ?>
+      toggleNav('hide');
+    <?php } 
+
+    if(isset($_SESSION['path'])&&$_SESSION['path']=="document"){
+     $_SESSION['path']='';
+      ?>
+
+      document.getElementById('nav-document').className='tab-pane fade active show';
+      document.getElementById('nav-document-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php
+ } 
+if(isset($_SESSION['path'])&&$_SESSION['path']=="work"){
+     $_SESSION['path']='';
+      ?>
+
+      document.getElementById('nav-work').className='tab-pane fade active show';
+      document.getElementById('nav-work-tab').className='nav-item nav-link active';
+      document.getElementById('nav-general').className='tab-pane fade  ';
+      document.getElementById('nav-general-tab').className='nav-item nav-link ';
+<?php } ?>
+
+  check_complete();
+
+
+function changeText(toggle){
+if(toggle.checked){
+  toggle.nextElementSibling.style.color="green";
+  toggle.nextElementSibling.style.fontWeight="bold";
+}
+else{
+  toggle.nextElementSibling.style.color="";
+    toggle.nextElementSibling.style.fontWeight="";
+
+  }  
+}
+
+
+function checkRelation(ele,val)
+{
+  if(val=='Other')
+  {
+    var box = document.createElement('INPUT');
+    box.className='col';
+    box.id='otherRelation';
+    ele.parentElement.appendChild(box);
+  }
+
+  else
+    {
+      if(document.body.contains(document.getElementById('otherRelation')))
+      {
+        var elem=document.getElementById('otherRelation');
+       elem.parentNode.removeChild(elem);
+      }
+    }
+}
 
 
 </script>
 
    <script src="<?= site_url('assets/js/fstdropdown.js')?> "></script>
-       <script type="text/javascript" src="<?= base_url('assets/js/notify.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/notify.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/alertify.js') ?>"></script>
+
+
+
+<script type="text/javascript">
+  
+     $(document).ready(function(){
+         $('#expTable').dataTable({
+          "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "searching":false,
+         });
+      });
+
+</script>
