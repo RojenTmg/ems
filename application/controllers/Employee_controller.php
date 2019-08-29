@@ -144,17 +144,47 @@ function checkExp(){
 			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id'], 0);
 			$data['leavelist']=$this->leaveBalance();
 			
+			// whether employee can take substitute leave or not / showing 'Substitute Leave' in drop-down
+			$sbs_emp = $this->Database_model->find('substitute_balance', 'emp_id', $_SESSION['user_id']);
+			$data['can_take_sbs'] = FALSE;	
+			if ($sbs_emp) {
+				foreach ($sbs_emp as $sbs) {
+					$remaining_days = $sbs['remain_days'];
+				}
+				if ($remaining_days > 0) $data['can_take_sbs'] = TRUE;
+			}
+
+			// disabling multiple button at initial stage / as page refreshes
 			$i = TRUE; 
 			foreach ($data['leaves'] as $value) {
             	if ($i == TRUE) {
-              		$data['remainingDuration'] = $value['remain_days']; 
-              		$data['initialLeave'] = $value['leave_name']; $i = FALSE;
+            		if ($value['is_one_day'] == 1) {
+	            		$data['disableMultipleBtn'] = TRUE;
+            		}
+              		$data['remainingDuration'] = $value['remain_days']; $i = FALSE;
             	}
             }
+
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 						
 				$data['clb'] = $this->Employee_model->checkLeaveBalance($_SESSION['user_id'], (int)$leave['leave_id']);
+
+				// is_one_day validation
+				$emp_leave = $this->Database_model->find('leaves', 'leave_id', $leave['leave_id']);
+				foreach ($emp_leave as $value) {
+					$is_one_day = $value['is_one_day'];
+				}
+				if ($is_one_day == 1 && isset($leave['to_date'])) {
+					$data['leave_form'] = $leave; 
+
+					// disabling the multiple button after form submission
+					if ($is_one_day == 1) $data['leave_form']['disableMultipleBtn'] = TRUE; 
+
+					$data['not_valid'] = $data['clb']['l_leave_name'] . ' Leave cannot have \'Multiple Days\' as Duration Type.';
+					$this->view('leave_form', $title, $data);
+					return;
+				}
 
 				// from_date and to_date validation
 				if (!empty($leave['to_date'])) {	
@@ -185,7 +215,10 @@ function checkExp(){
 				if ($leave['duration_type'] == 'half') {
 					if ($data['clb']['elb_remain_days'] < 0.5) {
 						$data['leave_form'] = $leave; 
-						if ((int)$leave['leave_id'] == 1) $data['leave_form']['leave_name'] = 'casual'; 
+
+						// disabling the multiple button after form submission
+						if ($is_one_day == 1) $data['leave_form']['disableMultipleBtn'] = TRUE; 
+
 						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -194,7 +227,10 @@ function checkExp(){
 				elseif ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
 						$data['leave_form'] = $leave; 
-						if ((int)$leave['leave_id'] == 1) $data['leave_form']['leave_name'] = 'casual'; 
+						
+						// disabling the multiple button after form submission
+						if ($is_one_day == 1) $data['leave_form']['disableMultipleBtn'] = TRUE; 
+
 						$data['not_valid'] = 'You have only <script type="text/javascript"> document.write(trim_day('. $data['clb']['elb_remain_days'] .')); </script> left for '. $data['clb']['l_leave_name'].'.';
 						$this->view('leave_form', $title, $data);
 						return;
@@ -260,8 +296,8 @@ function checkExp(){
 				$recId=$this->Admin_model->getRecommenderId($_SESSION['user_id']);
 				$email=$this->Admin_model->getEmail($recId)
 				;
-				$title="Leave Requested by ".$requester_name;
-				$this->Admin_model->sendEmail($title,$message,$email);
+				$titleEmail="Leave Requested by ".$requester_name;
+				$this->Admin_model->sendEmail($titleEmail,$message,$email);
 
 				$this->view('leave_form', $title, $data);
 			} 

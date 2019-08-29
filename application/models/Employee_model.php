@@ -27,7 +27,7 @@
 		}
 	
 		public function leaveDetail($id, $r_days = FALSE){
-			$leaves= "SELECT e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days
+			$leaves= "SELECT e.emp_id,e.package_id,p.package_name,lp.leave_id,l.leave_name,lp.duration,elb.remain_days, l.is_one_day
 					FROM employees e
 					JOIN packages p ON e.package_id=p.package_id
 					JOIN leave_packages lp ON p.package_id=lp.package_id

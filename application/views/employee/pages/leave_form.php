@@ -35,7 +35,11 @@
                       echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '">' . $value['leave_name'] . '</option>';              
                     }
                 }   
+                if ($can_take_sbs) {
+                 echo '<option>Substitue Leave</option>';     
+                }
                 ?>
+
               </select>
             </div>
             <div class="form-div">
@@ -65,8 +69,7 @@
                 <label>Full Day</label> 
               </div>
               <div>
-                <input type="radio" name="duration_type" id="multiple-days" value="multiple" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'multiple') { echo "checked"; }} else { if ($initialLeave == 'Casual Leave') {
-                 echo 'disabled="disabled"'; }} if (isset($leave_form['leave_name'])) { echo 'disabled="disabled"'; }?>>
+                <input type="radio" name="duration_type" id="multiple-days" value="multiple" <?php if(isset($leave_form['duration_type'])) { if ($leave_form['duration_type'] == 'multiple') { echo "checked"; }} else { if (isset($disableMultipleBtn) && $disableMultipleBtn == TRUE) { echo 'disabled="disabled"'; }} if (isset($leave_form['disableMultipleBtn'])) { echo 'disabled="disabled"'; }?>>
 
                 <label>Multiple Days</label>
               </div>
