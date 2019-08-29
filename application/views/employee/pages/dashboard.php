@@ -41,12 +41,12 @@
   <h4>Susbtitute Leave Requests Lists</h4>
   </div>
   <div>
- <div class="sp-btn  ml-2">
+<!--  <div class="sp-btn  ml-2">
     <div class="emp-link">
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link">Active Leaves</a>
       <a href="<?= site_url('employee/leave_substitute_archive'); ?>" id="small-link">Archived Leaves</a>
     </div>
-  </div>
+  </div> -->
    <div class="lists">
   <div class="box"  id="liststab">
   <div class="box-head">
