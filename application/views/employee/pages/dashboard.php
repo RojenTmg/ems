@@ -89,7 +89,7 @@
                         <div class="tooltiptext">
                           <p>Are you sure?</p>
                           <span class="tip-can">Cancel</span>
-                          <span class="tip-arch tip-res" onclick="leaveSubstitute(<?php echo $value['slId']; ?>)">Approve</span>
+                          <span class="tip-arch tip-res" onclick="leaveSubstitute(<?php echo $value['slId']; ?>, <?php echo $value['e_id']; ?>)">Approve</span>
                         </div>
                       </button>
                       

@@ -302,6 +302,27 @@ function checkExp(){
 		{
 			$title['title'] = 'Substitute Leave Form';
 
+			// testing
+			// increase the Substitue Leave Balance of an employee
+			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
+
+			foreach ($substitute_emp as $sbs) {
+				$remaining_days = $sbs['remain_days'];
+			}
+
+			$remaining_days = $remaining_days + 1;
+
+			$this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', 317);
+
+			echo $remaining_days;
+
+			var_dump($substitute_emp);
+
+			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
+			var_dump($substitute_emp);
+			die();
+
+
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
 				$employee = $this->Database_model->find('employee_approvers', 'emp_id', $_SESSION['user_id']);
@@ -610,7 +631,6 @@ function checkExp(){
 				}
 			}
 
-				
 			$this->Employee_model->leaveApprove($id, $e_id, $leave_id, $leaveBalance);
 
 			// send email to leave requester
@@ -685,12 +705,22 @@ function checkExp(){
 
 
 
-		// approve status on table 'substitute_leaves' and update leave balance on table 'employee_leave_balance'
+		// approve status on table 'substitute_leaves' and update leave balance on table 'substitute_balance'
 		public function leaveSubstitute()
 		{
 			extract($_POST);
 
+			// increase the Substitue Leave Balance of an employee
+			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', $emp_id);
+
+			foreach ($substitute_emp as $sbs) {
+				$remaining_days = $sbs['remain_days'];
+			}
+
+			$remaining_days = $remaining_days + 1;
+			$this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', $emp_id);
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'approved'), 'id', $id);
+
 
 			// send email to employe
 		}

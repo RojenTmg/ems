@@ -2261,12 +2261,13 @@ function denyLeaveFromRecommender(btn,id)
 
 
 // approve Substitute leave by recommender
-function leaveSubstitute(id)
+function leaveSubstitute(id, emp_id)
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST','leaveSubstitute',true);
   var data = new FormData();
-  data.append('id',id);
+  data.append('id', id);
+  data.append('emp_id', emp_id);
   // alert(id);
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
