@@ -21,7 +21,7 @@
       <button type="button" class="close" >&times;</button>
     </div>
     <!-- area finishes here -->
-  <div class="box-body">
+  <div class="box-body" style="overflow-x:auto;">
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
   <thead >
   <tr>
@@ -38,7 +38,7 @@
                   <tr id="<?php echo $value['slId']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['date']; ?></td>
-                    <td id="substitute-div"><div id="substitute-desc"><?php echo $value['description']; ?></div><span class="tooltiptext-sbs"><?php echo $value['description']; ?></span></td>
+                    <td><?php echo $value['description']; ?></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
 <!-- Restore button -->
 <td>
@@ -46,8 +46,7 @@
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
-        <!-- <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="unArchiveSubstituteRecord(<?php echo $value['slId']; ?> )">Restore</span> -->
-        <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="">Restore</span>
+        <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="unArchiveSubstituteRecord(<?php echo $value['slId']; ?> )">Restore</span>
       </div>
     </button>
   </td>
