@@ -46,7 +46,8 @@
       <div class="tooltiptext">
         <p>Are you sure?</p>
         <span class="tip-can">Cancel</span>
-        <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="unArchiveSubstituteRecord(<?php echo $value['slId']; ?> )">Restore</span>
+        <!-- <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="unArchiveSubstituteRecord(<?php echo $value['slId']; ?> )">Restore</span> -->
+        <span class="tip-arch tip-res" id="<?php echo $value['slId']; ?>" onclick="">Restore</span>
       </div>
     </button>
   </td>
