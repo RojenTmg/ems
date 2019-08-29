@@ -21,7 +21,7 @@
       <button type="button" class="close" >&times;</button>
     </div>
     <!-- area finishes here -->
-  <div class="box-body" style="overflow-x:auto;">
+  <div class="box-body">
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
   <thead >
   <tr>
