@@ -1,6 +1,6 @@
 <div class="contents">
   <div class="con-sub-head sp-btn">
-      <h5>Archived Leaves</h5>
+      <h5>Archived Substitute Leaves</h5>
       <a href="<?= site_url('employee/dashboard'); ?>" id="small-link"> <i class="fa fa-long-arrow-left" aria-hidden="true"></i> &nbsp;Go back to Dashboard</a>
       
   </div>
@@ -21,7 +21,7 @@
       <button type="button" class="close" >&times;</button>
     </div>
     <!-- area finishes here -->
-  <div class="box-body" style="overflow-x:auto;">
+  <div class="box-body">
   <table class="table table-bordered hover employee_table" id="datatable-recommender" >
   <thead >
   <tr>
@@ -38,7 +38,7 @@
                   <tr id="<?php echo $value['slId']; ?>">
                     <td><?php echo $value['e_first_name'] .' '. $value['e_middle_name'] .' '. $value['e_last_name']; ?></td>
                     <td><?php echo $value['date']; ?></td>
-                    <td><?php echo $value['description']; ?></td>
+                    <td id="substitute-div"><div id="substitute-desc"><?php echo $value['description']; ?></div><span class="tooltiptext-sbs"><?php echo $value['description']; ?></span></td>
                     <td class="status"><?php if ($value['is_approved'] == 'pending') { echo '<span class="pending">Pending</span>'; } else if ($value['is_approved'] == 'approved') { echo '<span class="granted">Granted</span>';  } else if ($value['is_approved'] == 'denied') { echo '<span class="denied">Denied</span>';  } ?> </td>
 <!-- Restore button -->
 <td>

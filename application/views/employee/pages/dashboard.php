@@ -175,7 +175,7 @@
    <div class="lists">
   <div class="box"  id="liststab">
   <div class="box-head">
-    <p>Substitute Leaves left to be Recommended</p>
+    <p>Leaves left to be Recommended</p>
   </div>
 
     <!-- area to show success and erorr messages -->
@@ -468,13 +468,13 @@
 
     $(document).ready(function(){
        $('#datatable-recommender').dataTable({
-        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+        "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
             "aaSorting": [],  });
     });
 
     $(document).ready(function(){
        $('#datatable-substitute').dataTable({
-        "lengthMenu": [ [3,5, 10, 25, -1], [3,5, 10, 25, "All"]],
+        "lengthMenu": [ [5, 10, 25, 50 ,-1], [5 , 10, 25, 50, "All"]],
             "aaSorting": [],  });
     });
 
