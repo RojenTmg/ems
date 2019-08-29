@@ -175,7 +175,7 @@
    <div class="lists">
   <div class="box"  id="liststab">
   <div class="box-head">
- 
+    <p>Substitute Leaves left to be Recommended</p>
   </div>
 
     <!-- area to show success and erorr messages -->
