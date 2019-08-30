@@ -50,10 +50,7 @@
 			$data['employee_leaves_substitute'] = $this->Employee_model->findSubstituteLeaves();
 			$data['recommendations']=$this->Employee_model->recommendationList('0');
 			$data['duty_by']=$this->Admin_model->employeeList();
-			
-			
-				$data['substitute_balance']=$this->Employee_model->findSubstituteLeaveBalance($_SESSION['user_id']);
-			
+			$data['substitute_balance']=$this->Employee_model->findSubstituteLeaveBalance($_SESSION['user_id']);
 			$data['leavelist']=$this->leaveBalance();
 
 			$this->view('dashboard', $data);
@@ -144,19 +141,25 @@ function checkExp(){
 		{
 			$title['title'] = 'Leave Form';
 			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
+			$data['substitute_balance']=$this->Employee_model->findSubstituteLeaveBalance($_SESSION['user_id']);
 			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id'], 0);
+
 			$data['leavelist']=$this->leaveBalance();
 			
 			// whether employee can take substitute leave or not / showing 'Substitute Leave' in drop-down
 			$sbs_emp = $this->Database_model->find('substitute_balance', 'emp_id', $_SESSION['user_id']);
 			$data['can_take_sbs'] = FALSE;	
 			if ($sbs_emp) {
-				foreach ($sbs_emp as $sbs) {
+				foreach ($sbs_emp as $sbs) 
+				{
 					$remaining_days = $sbs['remain_days'];
 				}
-				if ($remaining_days > 0) $data['can_take_sbs'] = TRUE;
-			}
-
+				if ($remaining_days > 0) 
+				{
+					$data['can_take_sbs'] = TRUE;
+					
+				}
+}
 			// disabling multiple button at initial stage / as page refreshes
 			$i = TRUE; 
 			foreach ($data['leaves'] as $value) {
@@ -170,7 +173,7 @@ function checkExp(){
 
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
-						
+
 				$data['clb'] = $this->Employee_model->checkLeaveBalance($_SESSION['user_id'], (int)$leave['leave_id']);
 
 				// is_one_day validation
@@ -227,7 +230,7 @@ function checkExp(){
 						return;
 					}
 				}
-				elseif ($leave['duration_type'] == 'full') {
+				else if ($leave['duration_type'] == 'full') {
 					if ($data['clb']['elb_remain_days'] < 1) {
 						$data['leave_form'] = $leave; 
 						
@@ -266,26 +269,6 @@ function checkExp(){
 				$this->Database_model->insert('employee_leaves', $leaveData);
 
 				$data['valid'] = TRUE; 
-
-				// Testing day
-				// echo $leave['from_date'] . ' + ' . date("D", strtotime(date("Y-m-d", strtotime($leave['from_date'] . ' -2 days')))); die();
-				// // if ($leave['from_date'] - 3 ) {
-				// // }				
-
-				// var_dump($this->db->query('SELECT * from employee_leaves WHERE (emp_id = 278 AND from_date = "2019-08-23" AND duration_type != "half") OR (emp_id = 278 AND to_date = "2019-08-23"  AND duration_type != "half")')->num_rows()); die();
-
-				// $data['leave_by_emp'] = $this->Database_model->find('employee_leaves', 'id', 291);
-				
-				// foreach ($data['leave_by_emp'] as $lbe) {
-				// 	$from_date = $lbe['from_date'];
-				// 	$emp_id = $lbe['emp_id'];
-				// }
-				// echo $from_date. ' ' . $emp_id; die();
-
-				// echo  date("Y-m-d", strtotime("2019-08-25" . ' -2 days'));
-				// echo $this->Employee_model->findLeaveOnFri(278, date("Y-m-d", strtotime("2019-08-25" . ' -2 days'))); die();
-
-
 
 				// sending email to employee who requested leave
 				$leavename=$this->Admin_model->getNameByLid($leave['leave_id']);

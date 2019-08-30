@@ -43,7 +43,7 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title">Substitute leave</div>
-                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $substitute_balance;?>)); </script><span><em> left</em></span></div>
+                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php if($substitute_balance==NULL) echo '0'; else echo $substitute_balance['remain_days'];?>)); </script><span><em> left</em></span></div>
               </div>
             </div>
              <div class="item-2 sp-btn">

@@ -106,6 +106,14 @@ function trim_day(dec_day) {
         $('#duration').val('1/2');
         $('#to_date').val($('#from_date').val());
       }
+      else if ($('#leave_name').find("option:selected").text().indexOf('Substitute') !== -1) {     // if selected value is 'Casual'
+        $('#multiple-days').attr('disabled', true);
+        $('#half-day').prop('checked', true);
+        $('#to_date').attr('disabled', true);
+        $('#duration').val('1/2');
+        $('#to_date').val($('#from_date').val());
+      }
+
       else {
         $('#multiple-days').attr('disabled', false);        
       }

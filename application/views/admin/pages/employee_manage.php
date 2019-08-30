@@ -879,10 +879,10 @@
             <label>Approver <span class="text-danger"><i>*</i></span></label>
                <select class='fstdropdown-select' id="approver">
                    <option  value="">Select option</option>
-                  <?php foreach ($empList as $row) {
-                   if($_SESSION['current_employee_id']==$row['emp_id']) continue;
-                   ?>
-                   <option <?php if($assigned!=''&&$assigned['approver_id']==$row['emp_id']) echo "selected";?> value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
+                  <?php foreach ($managerList as $row) {
+                      if($_SESSION['current_employee_id']==$row['emp_id']) continue;
+                    ?>
+                   <option <?php if($assigned!=''&&$assigned['recommender_id']==$row['emp_id']) echo "selected";?>  value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'].' '.$row['middle_name'].' '.$row['last_name'];?></option>
                  <?php } ?>
                 </select> 
           </div>

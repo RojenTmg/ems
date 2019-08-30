@@ -36,7 +36,7 @@
                     }
                 }   
                 if ($can_take_sbs) {
-                 echo '<option>Substitue Leave</option>';     
+                 echo '<option value="substitute" id="'.$substitute_balance['remain_days'].'">Substitute Leave</option>';     
                 }
                 ?>
 
@@ -50,9 +50,12 @@
                       if ($leave_form['leave_id'] == $value['leave_id']) {
                         echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$value['remain_days'].')); </script></div>';
                       }
+
                   }
                 } else {
+                    
                     echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$remainingDuration.')); </script></div>';
+
                 }
               ?>
             </div>
