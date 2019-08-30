@@ -31,6 +31,28 @@
           </div>
         
         <?php } } ?>
+
+        <!-- substitute leave -->
+        <?php  if ($_SESSION['is_recommender'] == 0) { ?>  
+        <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
+
+          <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
+            <div class="item-1 sp-btn">
+              <div>
+                <i class="fas fa-user-clock" aria-hidden="true"></i>
+              </div>
+              <div class="hgh-lgt">
+                <div class="hl-title">Substitute leave</div>
+                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $substitute_balance;?>)); </script><span><em> left</em></span></div>
+              </div>
+            </div>
+             <div class="item-2 sp-btn">
+                <div><span>Number of Leaves taken</span></div>
+                <div><span><script type="text/javascript"> document.write(trim_day(<?php echo $leave['duration'] - $leave['remain_days'];?>)); </script></span></div>
+            </div>
+          </a>
+          </div>
+       <?php } ?>
     </div>
 
     <!-- SUBSTITUTE LEAVE REQUESTS -->

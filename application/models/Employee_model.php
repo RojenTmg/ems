@@ -230,4 +230,16 @@
 			
 			return $query->row_array();
 		}
+
+// this returns each employee's substitute leave balance
+		public function findSubstituteLeaveBalance($id)
+		{
+			$this->db->where('emp_id',$id);
+			$query=$this->db->get('substitute_balance');
+			$result=$query->row_array();
+			if($result=='')
+				return '0';
+			else return $result['remain_days'];
+
+		}
 	}
