@@ -344,20 +344,13 @@ function checkExp(){
 
 			foreach ($substitute_emp as $sbs) {
 				$remaining_days = $sbs['remain_days'];
-			}
 
 			$remaining_days = $remaining_days + 1;
 
 			$this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', 317);
 
-			echo $remaining_days;
-
-			var_dump($substitute_emp);
-
 			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
-			var_dump($substitute_emp);
-			die();
-
+			}
 
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
@@ -387,23 +380,6 @@ function checkExp(){
 			}
 		}
 
-
-		// // recommenders page
-		// public function recommendationList()
-		// {
-
-		// 	if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin']==true) 
-		// 	{
-		// 		$title['title'] = 'Recommendation List';
-
-		// 		$recommender_data['recommendations']=$this->Employee_model->recommendationList();
-		// 		$recommender_data['duty_by']=$this->Admin_model->employeeList();
-		// 		$this->view('recommendation_list', $title, $recommender_data);
-				
-
-		// 	}
-		// 	else { redirect('login');}
-		// }
 
 		// leave recommend to approver
 		public function recommendLeave()
