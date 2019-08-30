@@ -374,7 +374,9 @@ function checkExp(){
 				$this->Database_model->insert('substitute_leaves', $substituteLeave);
 
 				$data['valid'] = TRUE; 
-				// // send mail to recommender
+				// send mail to recommender
+				$message="A substitute leave has been requested by an employee.";
+				$this->Admin_model->sendEmail('Substitute Leave Request',$message,$this->Admin_model->getEmail($recommender_id));
 
 				$this->view('leave_substitute_form', $title, $data);
 			} 
@@ -737,7 +739,8 @@ function checkExp(){
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'approved'), 'id', $id);
 
 
-			// send email to employe
+			// send email to employee
+			$this->Admin_model->sendEmail('Substitute Leave Added','Your substitute leave has been increased by 1 day.',$this->Admin_model->getEmail($emp_id));
 		}
 
 		// deny Substitute leave by Recommender
@@ -746,8 +749,15 @@ function checkExp(){
 			extract($_POST);
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'denied', 'denial_reason' => $denial_reason), 'id', $id);
 
-			// send email to employe
+			// send email to employee
+			$message='Unfortunately, Your substitute leave request has been rejected.<br> The reason for denial is: <br>'.$denial_reason.'.';
+			
 
+			$this->db->where('id',$id);
+			$res=$this->db->get('substitute_leaves');
+			$result=$res->row_array();
+			$this->Admin_model->sendEmail('Substitute Leave Rejected',$message,$this->Admin_model->getEmail($result['emp_id']));
+			
 		}
 
 		
