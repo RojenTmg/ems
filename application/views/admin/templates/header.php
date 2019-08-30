@@ -161,7 +161,7 @@
           <li><a href="<?= base_url('admin'); ?>/employee_detail/<?php echo $_SESSION['user_id'];?>"><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp;&nbsp; My Profile</a></li>
              <li><a href="<?= base_url('admin'); ?>/employee_manage/<?php echo $_SESSION['user_id'];?>"><i class="fa fa-edit" aria-hidden="true"></i> &nbsp;&nbsp; Edit Profile</a></li>
           <li><a href="<?= base_url('admin'); ?>/employee_manage"><i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp;&nbsp; Add Staff</a></li>
-
+      <li><a href="<?= base_url('changePassword'); ?>"><i class="fa fa-edit" title="logout"></i> &nbsp;&nbsp; Change Password</a></li>
           <li><a href="<?= base_url('logout'); ?>"><i class="fa fa-power-off" title="logout"></i> &nbsp;&nbsp; Logout</a></li>
         </ul>
       </div>

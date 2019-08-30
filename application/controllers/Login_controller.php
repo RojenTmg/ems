@@ -44,5 +44,64 @@
                 }
              }
         }
+        // to change password
+        public function changePassword(){
+
+           if ($this->input->post('submit') != NULL) {
+                $result = $this->input->post();
+
+               $this->db->where('user_id',$_SESSION['user_id']);
+               $users=$this->db->get('users');
+               $user=$users->row_array();
+
+                $data['emp_id']=$_SESSION['user_id'];
+                $data['cp']=trim($result['cp']);
+                $data['np']=trim($result['np']);
+                $data['rnp']=trim($result['rnp']);
+                $error=false;
+
+                    if(empty( $data['cp'])||empty($data['np'])||empty($data['rnp'])){
+                    $data['error']="Fill All Fields";
+                     $error=true;
+                      $this->load->view('login/changePassword',$data);
+                      return;
+                    }
+
+                    if($user['user_pass']!= $data['cp']){
+                     $data['error']="Invalid Current Password";
+                     $error=true;
+                      $this->load->view('login/changePassword',$data);
+                      return;
+                    }
+                    if($data['np']!=$data['rnp']){
+                    $data['error']="Password Do Not Match";
+                    $error=true;
+                     $this->load->view('login/changePassword',$data);
+                     return;
+                    }
+
+                    if($error==false){
+                        $this->db->where('user_id',$_SESSION['user_id']);
+                        $udata=[
+                            'user_pass'=>$data['np'],
+                            'modified_date'=>strtotime(Date('Y-m-d')),
+                            'is_logged_in'=>'0'
+                        ];
+                        $this->db->update('users',$udata);
+                        $message='Your new password is: '.$data['np'].'<br> Please Delete this mail if you have read the mail.';
+                        $email=$this->Admin_model->getEmail($_SESSION['user_id']);
+                        $this->Admin_model->sendEmail('Password Changed',$message,$email);
+
+                        $_SESSION['success_msg']="Password Changed. Login With New Password";
+                        session_destroy();
+                        $this->load->view('login/login');
+
+                    }
+               
+             
+            }
+            else
+            $this->load->view('login/changePassword');
+        }
     }
 ?>

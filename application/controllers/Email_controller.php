@@ -1,7 +1,7 @@
 <?php
 class Email_controller extends CI_Controller {
 
-// php htdocs/ems/cron.php /Email_controller/checkdatabase
+//x
 	
 
 public function checkdatabase(){

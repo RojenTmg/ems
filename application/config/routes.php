@@ -8,7 +8,8 @@ $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
 
-
+//change password
+$route['changePassword']='Login_controller/changePassword';
 
 
 
