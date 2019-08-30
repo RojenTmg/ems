@@ -746,8 +746,15 @@ function checkExp(){
 			extract($_POST);
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'denied', 'denial_reason' => $denial_reason), 'id', $id);
 
-			// send email to employe
+			// send email to employee
+			$message='Unfortunately, Your substitute leave request has been rejected.<br> The reason for denial is: <br>'.$denial_reason.'.';
+			
 
+			$this->db->where('id',$id);
+			$res=$this->db->get('substitute_leaves');
+			$result=$res->row_array();
+			$this->Admin_model->sendEmail('Substitute Leave Rejected',$message,$this->Admin_model->getEmail($result['emp_id']));
+			
 		}
 
 		
