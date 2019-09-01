@@ -370,6 +370,9 @@ public function employeeManage($id = NULL)
 			);
 
 			$id=$this->Admin_model->add_employee($data,$password);
+			$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
+				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
+				 
 
 			$this->db->where('emp_id',$_SESSION['current_employee_id']);
 			$this->db->delete('managers');
@@ -385,8 +388,7 @@ public function employeeManage($id = NULL)
 			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0','created_by'=>$_SESSION['user_id'],'modified_by'=>$_SESSION['user_id']];
 			$this->db->insert('substitute_balance',$subs_data);
 			}
-				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
-				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
+				
 				
 				array_push($result, $id);
 			

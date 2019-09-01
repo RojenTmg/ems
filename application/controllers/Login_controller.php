@@ -67,7 +67,7 @@
                       return;
                     }
 
-                    if($user['user_pass']!= $data['cp']){
+                    if(password_verify($user['user_pass'],$data['cp'])){
                      $data['error']="Invalid Current Password";
                      $error=true;
                       $this->load->view('login/changePassword',$data);
@@ -83,7 +83,7 @@
                     if($error==false){
                         $this->db->where('user_id',$_SESSION['user_id']);
                         $udata=[
-                            'user_pass'=>$data['np'],
+                            'user_pass'=>password_hash($data['np'], PASSWORD_DEFAULT),
                             'modified_date'=>strtotime(Date('Y-m-d')),
                             'is_logged_in'=>'0'
                         ];
@@ -95,10 +95,7 @@
                         $_SESSION['success_msg']="Password Changed. Login With New Password";
                         session_destroy();
                         $this->load->view('login/login');
-
                     }
-               
-             
             }
             else
             $this->load->view('login/changePassword');

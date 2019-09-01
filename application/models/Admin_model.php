@@ -143,7 +143,7 @@
 			$_SESSION['current_employee_id']=$this->db->insert_id();
 			$userData=array(
 					'user_id'=>$user_id,
-					'user_pass'=>$password
+					'user_pass'=>password_hash($password, PASSWORD_DEFAULT),
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();

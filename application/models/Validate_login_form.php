@@ -22,11 +22,9 @@ class Validate_login_form extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				// $store_password = $this->encrypt->decode($row->password);
-				// if($row->is_logged_in==0)
-				// {
+				
 				$store_password=$row->user_pass;
-				if($password == $store_password)
+				if(password_verify($password,$store_password))
 				{
 					$user_num= $row->user_num;
 					$this->db->select('*');
