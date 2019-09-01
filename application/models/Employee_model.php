@@ -240,4 +240,14 @@
 			return $result;
 
 		}
+
+// funtion to show employees only NOT ADMIN
+		public function showEmployeesOnly()
+		{
+			$this->db->join('users', 'users.user_id=employees.emp_id');
+			$this->db->join('user_roles', 'user_roles.user_id=users.user_num');
+			$this->db->where('user_roles.role_id=2');
+			$query=$this->db->get('employees');
+			return $query->result_array();
+		}
 	}

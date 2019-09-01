@@ -7,7 +7,7 @@
        <?php 
        if(count($leavelist)==0)
        {?>
-         <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
+         
        <?php } else {
        foreach ($leavelist as $index=>$leave) { ?>
 
@@ -34,9 +34,10 @@
 
         <!-- substitute leave -->
         <?php  if ($_SESSION['is_recommender'] == 0) { ?>  
-        <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
+        <div class="sum-item" id="leave-substitute">
 
-          <a href="<?= base_url('employee'); ?>/leave_details/<?php echo $index;?>">
+         
+          <a href="#">
             <div class="item-1 sp-btn">
               <div>
                 <i class="fas fa-user-clock" aria-hidden="true"></i>

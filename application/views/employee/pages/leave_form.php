@@ -96,8 +96,10 @@
             <label>Duty Performed by</label>
             <select name="duty_performed_by" id="substitute">
               <?php 
+            
                 foreach ($duty_performed_by as $value) {
-                  if ($value['emp_id'] != $_SESSION['user_id']) {
+
+                  if ($value['emp_id'] != $_SESSION['user_id'] ) {
                     if (isset($leave_form['duty_performed_by']) && ($leave_form['duty_performed_by'] == $value['emp_id'])) { 
                       echo '<option value=' . $value['emp_id'] . ' selected="selected">' . $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name'] . '</option>';
                     } else {

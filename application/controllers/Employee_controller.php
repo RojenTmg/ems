@@ -140,7 +140,8 @@ function checkExp(){
 		public function leaveForm()
 		{
 			$title['title'] = 'Leave Form';
-			$data['duty_performed_by'] = $this->Database_model->findAll('employees');
+			// this returns employees name only : not Admin's name
+			$data['duty_performed_by'] = $this->Employee_model->showEmployeesOnly();
 			$data['substitute_balance']=$this->Employee_model->findSubstituteLeaveBalance($_SESSION['user_id']);
 			$data['leaves'] = $this->Employee_model->leaveDetail($_SESSION['user_id'], 0);
 
