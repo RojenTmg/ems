@@ -232,7 +232,7 @@ $('.arch-msg-div').click(function(){
     var middle_name= document.getElementById('middle_name').value.trim();
     var join_date=document.getElementById('join_date').value.trim();
     var department= document.getElementById('department').value.trim();
-    var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
+    var password= 'changeme';
 
     var manager = document.getElementById('manager');
     
