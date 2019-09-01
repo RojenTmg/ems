@@ -7,6 +7,10 @@ class Admin_controller extends CI_Controller {
            if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true || $_SESSION['type']!='admin') {
 				redirect('login');
 			}
+			if(isset($_SESSION['changed'])&&$_SESSION['changed']!='1'){
+                    $_SESSION['changePasswordMsg']="Change Your Password Before Logging In";
+                    redirect('changePassword');
+             }       
 			  date_default_timezone_set('Asia/Kathmandu');
 
         }
@@ -372,7 +376,7 @@ public function employeeManage($id = NULL)
 			$id=$this->Admin_model->add_employee($data,$password);
 			$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
 				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
-				 
+
 
 			$this->db->where('emp_id',$_SESSION['current_employee_id']);
 			$this->db->delete('managers');

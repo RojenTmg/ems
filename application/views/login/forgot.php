@@ -59,7 +59,7 @@
     }
 
     .login-form{
-        margin-top:20%;
+        margin-top:50%;
     }
 
     .register-form{
@@ -93,29 +93,17 @@
          </div>
       </div>
       <div class="main">
-         <div class="col-md-6 col-sm-12" style="margin: auto;">
+         <div class="col-md-6 col-sm-12 " style="margin: auto;">
             <div class="login-form">
-                <form method="POST" action="changePassword">
+                <form method="POST" action="forgot">
                   <p class="text-danger"><?php if(isset($error)) echo $error;?> </p>
-                  <p class="text-warning"><?php if(isset($_SESSION['changePasswordMsg'])) echo $_SESSION['changePasswordMsg'];?> </p>
+                  <p class="text-success"><?php if(isset($success)) echo $success;?> </p>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Employee ID</label>
-                  <input type="text" class="form-control" disabled="true" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; else redirect('login');?>">
+                  <label for="emp_id">Employee ID</label>
+                  <input type="text" placeholder="Enter your employee id" name="emp_id" id="emp_id" class="form-control">
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Current Password</label>
-                  <input type="password" class="form-control" value="<?php if(isset($cp)) echo $cp;?>" name="cp" id="cp" placeholder="Current Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">New Password</label>
-                  <input type="password" class="form-control" value="<?php if(isset($np)) echo $np;?>" name="np" id="np" placeholder="New Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Repeat New Password</label>
-                  <input type="password" class="form-control" value="<?php if(isset($rnp)) echo $rnp;?>" name="rnp" id="rnp" placeholder="Repeat New Password">
-                </div>
-
-              <input type="submit" name="submit" class="btn btn-success" value="Change Password">
+  
+              <input type="submit" name="request" class="btn btn-success" value="Request Reset">
                 <a  href="<?php echo site_url();?>" class="btn btn-info" > Cancel </a>
               </form>
 

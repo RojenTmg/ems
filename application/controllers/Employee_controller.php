@@ -7,6 +7,10 @@
                if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true|| $_SESSION['type']!='employee') {
 					redirect('login');
 				}
+				if(isset($_SESSION['changed'])&&$_SESSION['changed']!='1'){
+                    $_SESSION['changePasswordMsg']="Change Your Password Before Logging In";
+                    redirect('changePassword');
+             }  
 			date_default_timezone_set('Asia/Kathmandu');
 
         }

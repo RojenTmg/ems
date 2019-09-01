@@ -124,6 +124,7 @@
                     <span class="text-danger"><?php echo form_error('password'); ?></span>
                   </div>
                   <button type="submit" name="submit" class="btn btn-black">Login</button>
+                  <a style="float: right; text-decoration: none" class="text-danger" href="<?= site_url('forgot');?>">Forgot Password</a>
                
                </form>
             </div>
