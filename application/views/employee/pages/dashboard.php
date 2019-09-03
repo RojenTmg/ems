@@ -33,7 +33,7 @@
         <?php } } ?>
 
         <!-- substitute leave -->
-       <?php  if ($_SESSION['is_recommender'] != 1) { ?>
+       <?php  if ($_SESSION['is_recommender'] != 1 || $_SESSION['is_approver']!= 1 ||  empty($substituteleave)) { ?>
 
         <div class="sum-item" id="leave-substitute">
 
