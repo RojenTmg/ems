@@ -63,12 +63,15 @@
       </li> 
 
       <!-- substitute leave add -->
+      <!-- show option only if the user is not recommender or approver -->
+      <?php if($_SESSION['is_recommender']==0 && $_SESSION['is_approver']==0){?>
        <li class="nav-item">
         <a class="nav-link" href="<?= site_url('employee/leave_substitute_form'); ?>">
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Add Substitute Leave
         </a>
       </li> 
+    <?php } ?>
     </ul>
     <ul class="navbar-nav">
     </ul>
