@@ -156,6 +156,7 @@
 			$this->db->join('employee_approvers', 'employee_leaves.emp_id =employee_approvers.emp_id');
 			$this->db->where('employee_leaves.is_archived', $is_archived);
 			$this->db->where('employee_approvers.recommender_id', $recommender);
+			$this->db->order_by('id','DESC');
 			$query = $this->db->get('employee_leaves');
 			return $query->result_array();
 		}
