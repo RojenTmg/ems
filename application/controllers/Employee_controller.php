@@ -758,6 +758,9 @@ function checkExp(){
 
 			// Increasing leave balance of  employee
 			$data=['emp_id'=>$emp_id,'leave_id'=>$leave_id,'remain_days'=>$remain_days];
+			$this->db->where('emp_id',$emp_id);
+			$this->db->where('leave_id',$leave_id);
+			$this->db->update('employee_leave_balance',$data);
 
 
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'approved'), 'id', $id);
