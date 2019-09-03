@@ -149,6 +149,7 @@ class Admin_controller extends CI_Controller {
 					 	$this->Admin_model->insert_leave_balance($data3,$id);
 				 	}
 				 	// assigning substitute leave to employee start
+				 $managerList = $this->Admin_model->getManagerList();
 				 $isManager=false;
 				 foreach ($managerList as $manager) {
 				 	if($manager['emp_id']==$id){
