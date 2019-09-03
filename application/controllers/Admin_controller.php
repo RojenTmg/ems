@@ -122,6 +122,25 @@ class Admin_controller extends CI_Controller {
 				 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
 				 	$this->Admin_model->insert_leave_balance($data3,$id);
 				 }
+				 // assigning substitute leave to employee start
+				 $managerList = $this->Admin_model->getManagerList();
+				 $isManager=false;
+				 foreach ($managerList as $manager) {
+				 	if($manager['emp_id']==$id){
+				 		$isManager=true;
+				 		break;
+				 	}
+				 }
+				 if(!$isManager){
+				 $this->db->where('leave_name','Substitute');
+				 $getLeave= $this->db->get('leaves');
+				 $getLeave=$getLeave->row_array();
+				 $getSubstitueId=$getLeave['leave_id'];
+				 $substitute=['emp_id'=>$id,'leave_id'=>$getSubstitueId,'remain_days'=>'0'];
+				 $this->Admin_model->insert_leave_balance($substitute,$id);
+				}
+				// assigning substitute leave to employee start
+
 				}
 				else{
 					$this->Admin_model->delete_leave_balance($id);
@@ -129,6 +148,23 @@ class Admin_controller extends CI_Controller {
 					 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
 					 	$this->Admin_model->insert_leave_balance($data3,$id);
 				 	}
+				 	// assigning substitute leave to employee start
+				 $isManager=false;
+				 foreach ($managerList as $manager) {
+				 	if($manager['emp_id']==$id){
+				 		$isManager=true;
+				 		break;
+				 	}
+				 }
+				 if(!$isManager){
+				 $this->db->where('leave_name','Substitute');
+				 $getLeave= $this->db->get('leaves');
+				 $getLeave=$getLeave->row_array();
+				 $getSubstitueId=$getLeave['leave_id'];
+				 $substitute=['emp_id'=>$id,'leave_id'=>$getSubstitueId,'remain_days'=>'0'];
+				 $this->Admin_model->insert_leave_balance($substitute,$id);
+				}
+				// assigning substitute leave to employee start
 
 				}
 

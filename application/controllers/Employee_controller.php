@@ -56,8 +56,21 @@
 			$data['duty_by']=$this->Admin_model->employeeList();
 			$data['substitute_balance']=$this->Employee_model->findSubstituteLeaveBalance($_SESSION['user_id']);
 			$data['leavelist']=$this->leaveBalance();
+			$data['substituteleave']=$this->substituteleave();
 
 			$this->view('dashboard', $data);
+		}
+
+		// get substitute leave
+		public function substituteleave(){
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$leaves=$query->row_array();
+			$this->db->where('emp_id',$_SESSION['user_id']);
+			$this->db->where('employee_leave_balance.leave_id',$leaves['leave_id']);
+			$this->db->join('leaves','employee_leave_balance.leave_id=leaves.leave_id');
+			$query=$this->db->get('employee_leave_balance');
+			return $query->row_array();
 		}
 
 		// archive approved list
@@ -331,17 +344,17 @@ function checkExp(){
 
 			// testing
 			// increase the Substitue Leave Balance of an employee
-			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
+			// $substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
 
-			foreach ($substitute_emp as $sbs) {
-				$remaining_days = $sbs['remain_days'];
+			// foreach ($substitute_emp as $sbs) {
+			// 	$remaining_days = $sbs['remain_days'];
 
-			$remaining_days = $remaining_days + 1;
+			// $remaining_days = $remaining_days + 1;
 
-			$this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', 317);
+			// $this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', 317);
 
-			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
-			}
+			// $substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', 317);
+			// }
 
 			if ($this->input->post('submit') != NULL) {
 				$leave = $this->input->post();
@@ -716,14 +729,37 @@ function checkExp(){
 			extract($_POST);
 
 			// increase the Substitue Leave Balance of an employee
-			$substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', $emp_id);
+			// $substitute_emp = $this->Database_model->find('substitute_balance', 'emp_id', $emp_id);
 
-			foreach ($substitute_emp as $sbs) {
-				$remaining_days = $sbs['remain_days'];
-			}
+			// foreach ($substitute_emp as $sbs) {
+			// 	$remaining_days = $sbs['remain_days'];
+			// }
 
-			$remaining_days = $remaining_days + 1;
-			$this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', $emp_id);
+			// $remaining_days = $remaining_days + 1;
+
+			// $this->Database_model->update('substitute_balance', array('remain_days' => $remaining_days), 'emp_id', $emp_id);
+
+
+			//get id of substitute leave
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$subs=$query->row_array();
+
+			$leave_id=$subs['leave_id'];
+
+			//getting leave balance of employee
+			$this->db->where('emp_id',$emp_id);
+			$this->db->where('leave_id',$leave_id);
+			$query= $this->db->get('employee_leave_balance');
+			$leaveBalance=$query->row_array();
+
+			$previous_remain_days=$leaveBalance['remain_days'];
+			$remain_days=$previous_remain_days + 1;
+
+			// Increasing leave balance of  employee
+			$data=['emp_id'=>$emp_id,'leave_id'=>$leave_id,'remain_days'=>$remain_days];
+
+
 			$this->Database_model->update('substitute_leaves', array('is_approved' => 'approved'), 'id', $id);
 
 

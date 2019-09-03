@@ -35,6 +35,7 @@
           <tbody>
             <?php $sn =1; ?>
             <?php foreach ($posts as $value=>$post) { 
+              if($post['leave_name']=="Substitute") continue;
               $assigned=false;
               foreach($assignedLeave as $aLeave){
                 if($aLeave['leave_id']==$post['leave_id']){
@@ -338,7 +339,8 @@
               Select leave type and no. of days for each:
               <hr>
             </div>
-            <?php foreach ($posts as $key => $leave) {?>
+            <!-- hiding the substitute leave from leave list on package -->
+            <?php foreach ($posts as $key => $leave) { if($leave['leave_name']=="Substitute") continue;?>
             <div class="col-sm-12 "  >
             
         

@@ -33,7 +33,8 @@
         <?php } } ?>
 
         <!-- substitute leave -->
-        <?php  if ($_SESSION['is_recommender'] == 0) { ?>  
+       <?php  if ($_SESSION['is_recommender'] != 1) { ?>
+
         <div class="sum-item" id="leave-substitute">
 
          
@@ -43,8 +44,8 @@
                 <i class="fas fa-user-clock" aria-hidden="true"></i>
               </div>
               <div class="hgh-lgt">
-                <div class="hl-title">Substitute leave</div>
-                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php if($substitute_balance==NULL) echo '0'; else echo $substitute_balance['remain_days'];?>)); </script><span><em> left</em></span></div>
+               <div class="hl-title"><?php echo $substituteleave['leave_name'];?></div>
+                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $substituteleave['remain_days'];?>)); </script>left</div>
               </div>
             </div>
              <div class="item-2 sp-btn">
@@ -53,8 +54,14 @@
             </div>
           </a>
           </div>
-       <?php } ?>
-    </div>
+
+
+<?php } ?>
+<!-- new substitute leave start -->
+    
+    </div> 
+
+
 
     <!-- SUBSTITUTE LEAVE REQUESTS -->
     <!-- check if the user is recommender or not -->
