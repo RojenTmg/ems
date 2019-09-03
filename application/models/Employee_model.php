@@ -234,8 +234,16 @@
 // this returns each employee's substitute leave balance
 		public function findSubstituteLeaveBalance($id)
 		{
+			//get id of substitute leave
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$subs=$query->row_array();
+
+			$leave_id=$subs['leave_id'];
+
 			$this->db->where('emp_id',$id);
-			$query=$this->db->get('substitute_balance');
+			$this->db->where('leave_id',$leave_id);
+			$query=$this->db->get('employee_leave_balance');
 			$result=$query->row_array();
 			return $result;
 
