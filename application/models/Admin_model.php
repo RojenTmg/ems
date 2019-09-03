@@ -113,6 +113,13 @@
 			$query = $this->db->get('packages');
 			return $query->row_array();
 		}
+		public function getPackageId($id){
+			$this->db->where('emp_id',$id);
+			$query = $this->db->get('employees');
+			$data= $query->row_array();
+			return $data['package_id'];
+		}
+
 		//package assigned to person
 		public function assignedPackage(){
 			$query = $this->db->get('employees');
