@@ -2276,7 +2276,7 @@ function leaveSubstitute(id, emp_id)
   var data = new FormData();
   data.append('id', id);
   data.append('emp_id', emp_id);
-  // alert(id);
+ 
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)
