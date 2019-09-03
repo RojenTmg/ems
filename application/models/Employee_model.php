@@ -258,4 +258,7 @@
 			$query=$this->db->get('employees');
 			return $query->result_array();
 		}
+
+
+
 	}

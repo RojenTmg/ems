@@ -37,6 +37,8 @@
     <!-- <div class="con-head"> -->
       <!-- <h4>Leaves</h4> -->
     <!-- </div> -->
+
+    
     <div class="box">
       <div class="box-head">
         <p><?php echo $leave_name;?> Details</p>
