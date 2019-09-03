@@ -1,4 +1,6 @@
  <!-- form -->
+ <?php if($_SESSION['is_recommender']==1 || $_SESSION['is_approver']==1) 
+ { redirect('employee/dashboard'); }?> 
   <div class="contents">
     <div class="con-head sp-btn">
       <h4>Substitute Application Form</h4>

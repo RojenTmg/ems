@@ -35,9 +35,7 @@
                       echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '">' . $value['leave_name'] . '</option>';              
                     }
                 }   
-                if ($can_take_sbs) {
-                 echo '<option value="'.$substitute_balance['leave_id'].'" id="'.$substitute_balance['remain_days'].'">Substitute Leave</option>';     
-                }
+              
                 ?>
 
               </select>
