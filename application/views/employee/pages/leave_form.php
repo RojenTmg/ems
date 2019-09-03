@@ -36,7 +36,7 @@
                     }
                 }   
                 if ($can_take_sbs) {
-                 echo '<option value="substitute" id="'.$substitute_balance['remain_days'].'">Substitute Leave</option>';     
+                 echo '<option value="'.$substitute_balance['leave_id'].'" id="'.$substitute_balance['remain_days'].'">Substitute Leave</option>';     
                 }
                 ?>
 

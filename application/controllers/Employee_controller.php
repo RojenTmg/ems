@@ -165,7 +165,7 @@ function checkExp(){
 			$data['leavelist']=$this->leaveBalance();
 			
 			// whether employee can take substitute leave or not / showing 'Substitute Leave' in drop-down
-			$sbs_emp = $this->Database_model->find('substitute_balance', 'emp_id', $_SESSION['user_id']);
+			$sbs_emp = $this->Database_model->find('employee_leave_balance', 'emp_id', $_SESSION['user_id']);
 			$data['can_take_sbs'] = FALSE;	
 			if ($sbs_emp) {
 				foreach ($sbs_emp as $sbs) 
