@@ -1605,12 +1605,24 @@ function deleteWorkExp(){
 		
 
 		function addLeaveToPackage($leave,$duration,$id,$operation){
+				//get id of substitute leave
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$subs=$query->row_array();
+
+			$subs_id=$subs['leave_id'];
+
 
 			if($operation=="insert"){
 				foreach ($leave as $index => $leaveId) {
 					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
 					$this->db->insert('leave_packages',$data);
 				}
+				$data=['leave_id'=>$subs_id, 'package_id'=>$id, 'duration'=>0,'created_by'=>$_SESSION['user_id']];
+					$this->db->insert('leave_packages',$data);
+
+
+
 			}
 			if($operation=="update"){
 				$this->db->where('package_id',$id);
@@ -1620,6 +1632,8 @@ function deleteWorkExp(){
 					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
 					$this->db->insert('leave_packages',$data);
 				}
+					$data=['leave_id'=>$subs_id, 'package_id'=>$id, 'duration'=>0,'created_by'=>$_SESSION['user_id']];
+					$this->db->insert('leave_packages',$data);
 			}
 		}
 
