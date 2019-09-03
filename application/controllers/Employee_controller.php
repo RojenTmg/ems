@@ -105,8 +105,9 @@
 			$data['leavelist']=$this->leaveBalance();
 			$data['leaveDetail']=$data['leavelist'][$lid];
 			$data['leaveDetail']['taken']=$data['leaveDetail']['duration']-$data['leaveDetail']['remain_days'];
-
-			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id'], $lid);
+			$leaveID= $data['leaveDetail']['leave_id'];
+			$data['employee_leaves'] = $this->Employee_model->findAllLeaves($_SESSION['user_id'], $leaveID);
+			// $data['employee_leaves'] = $this->Employee_model->getLeaveDetail($lid);
 
 			$this->view('leave_details', $title, $data);
 
