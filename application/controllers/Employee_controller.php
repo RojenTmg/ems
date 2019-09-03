@@ -764,8 +764,8 @@ function checkExp(){
 			$this->db->update('employee_leave_balance',$data);
 
 			//increasing total days on leave package table
-			$data=['emp_id'=>$emp_id,'leave_id'=>$leave_id,'duration'=>$remain_days];
-			$pkgId=$this->Admin_model->getPackageId();
+			$data=['leave_id'=>$leave_id,'duration'=>$remain_days];
+			$pkgId=$this->Admin_model->getPackageId($emp_id);
 			$this->db->where('leave_id',$leave_id);
 			$this->db->where('package_id',$pkgId);
 			$this->db->update('leave_packages',$data);
