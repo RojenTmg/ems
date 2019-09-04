@@ -68,7 +68,47 @@ class Admin_controller extends CI_Controller {
 		$data[]='';
 		$this->load->view('email/index');
 	}
+
+	//showing mail group
+	public function mailgroup(){
+		$title['title']="Mail Group";
+		$query=$this->db->get('mail_groups');
+
+		$data['mails']=$query->result_array();
+		$this->load->view('admin/templates/header', $title);
+		$this->load->view('admin/pages/mailgroup', $data);
+		$this->load->view('admin/templates/footer');
+	}
+
+	//adding email to db
+	public function addEmail(){
+		extract($_POST);
+		$email=trim($email);
+		if(empty($email)){
+			echo "empty";
+			return;
+		}
+		if(!$this->validateEmail($email)){
+			echo "invalid";
+			return;
+		}
+
+		$data=['email_address'=>$email];
+		$this->db->insert('mail_groups',$data);
+
+		$_SESSION['mailMsg']="addEmail";
+	}
 	
+		//adding email to db
+	public function deleteEmail(){
+		extract($_POST);
+		$this->db->where('id',$id);
+		if($this->db->delete('mail_groups'))
+		$_SESSION['mailMsg']="maildelete";
+		else $_SESSION['mailMsg']="error";
+
+	}
+
 	public function employeeArchive() 
 	{
 		$title['title'] = 'Archived Employee\'s';

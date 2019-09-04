@@ -41,14 +41,16 @@ $config['newline'] = "\r\n";
 $config['crlf'] = "\r\n";
 
 // list of emails to send mail
-$emails=['me.albin81@gmail.com'];
 
+
+$list=$this->db->get('mail_groups');
+$emails=$list->result_array();
 
 
 foreach ($emails as $iemail) {
 $this->load->library('email', $config);
 $this->email->from('emsnotificationsystem@gmail.com', 'EMS');
-$this->email->to($iemail);
+$this->email->to($iemail['email_address']);
 $this->email->subject($title);
 $this->email->message($content);
 $this->email->send();

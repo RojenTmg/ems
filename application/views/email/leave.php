@@ -298,12 +298,10 @@
 <body>
       <div>
         <center> 
-      <div class="con-sub-head">
-          <h4>Leave Requests</h4>
-      </div>
+
       <div class="box">
       <div class="box-head">
-        <p>Employee On Leave Today</p>
+        <h3>Employee/s On Leave Today</h3>
       </div>
     </center>
       <div class="box-body"  style="overflow-x:auto; padding-top: 0px;">
