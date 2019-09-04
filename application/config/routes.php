@@ -8,6 +8,10 @@ $route['sql']='Database_controller/sql';
 // report generation
 $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
+
+//send leaves
+$route['sendLeaves']='Email_controller/sendLeaves';
+
 //change password
 $route['changePassword']='Login_controller/changePassword';
 

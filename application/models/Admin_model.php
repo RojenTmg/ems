@@ -438,6 +438,14 @@ public function getAllLeaves(){
 	$query=$this->db->get('employee_leaves');
 	return $query->result_array();
 }
+public function getTodayLeaves(){
+	$this->db->join('leaves','employee_leaves.leave_id=leaves.leave_id');
+	$this->db->join('employees','employees.emp_id=employee_leaves.emp_id');
+	$this->db->where('employee_leaves.is_approved','approved');
+	$this->db->where('employee_leaves.is_recommended','recommended');
+	$query=$this->db->get('employee_leaves');
+	return $query->result_array();
+}
 
 
 
