@@ -151,7 +151,10 @@ function checkExp(){
 				foreach ($sbs_emp as $sbs) {
 					$remaining_days = $sbs['remain_days'];
 				}
-				if ($remaining_days > 0) $data['can_take_sbs'] = TRUE;
+				if ($remaining_days > 0)  {
+					$data['can_take_sbs'] = TRUE;
+					$data['sbs_remaining_days'] = $remaining_days;
+				} 
 			}
 
 			// disabling multiple button at initial stage / as page refreshes

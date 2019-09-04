@@ -30,13 +30,13 @@
               <select name="leave_id" id="leave_name">
                 <?php foreach ($leaves as $value) {
                     if (isset($leave_form['leave_id']) && ($leave_form['leave_id'] == $value['leave_id'])) { 
-                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '" selected="selected">' . $value['leave_name'] . '</option>';
+                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '" selected="selected" class="'. $value['is_one_day'] .'">' . $value['leave_name'] . '</option>';
                     } else {
-                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '">' . $value['leave_name'] . '</option>';              
+                      echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '" class="'. $value['is_one_day'] .'">' . $value['leave_name'] . '</option>';              
                     }
                 }   
                 if ($can_take_sbs) {
-                 echo '<option>Substitue Leave</option>';     
+                     echo '<option id="' . $sbs_remaining_days . '" value="">Substitute Leave</option>';     
                 }
                 ?>
 
