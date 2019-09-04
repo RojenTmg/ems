@@ -1,14 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// sql file and hash file
+$route['sql']='Database_controller/sql';
+// $route['changePassword']='Login_controller/changePassword';
+
 
 // report generation
 $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
-
 //send leaves
 $route['sendLeaves']='Email_controller/sendLeaves';
-
 
 //change password
 $route['changePassword']='Login_controller/changePassword';
@@ -18,9 +20,6 @@ $route['forgot']='Login_controller/forgot';
 $route['requestReset']='Login_controller/requestReset';
 $route['resetNewPassword']='Login_controller/resetNewPassword';
 $route['resetPassword/(:any)/(:any)']='Login_controller/resetPassword/$1/$2';
-
-
-
 
 // work experience
 
@@ -43,10 +42,6 @@ $route['employee/profile_update/editWork'] = 'Employee_controller/editWork';
 
 //edit document
 $route['employee/profile_update/editDocuments'] = 'Employee_controller/editDocuments';
-
-
-
-
 
 $route['admin/employee_manage/checkExp'] = 'Admin_controller/checkExp';
 
@@ -228,3 +223,5 @@ $route['default_controller'] = 'Login_controller/generalPage';
 
 $route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;
+
+
