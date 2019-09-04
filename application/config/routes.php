@@ -6,6 +6,8 @@ $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
 
+//send leaves
+$route['sendLeaves']='Email_controller/sendLeaves';
 
 
 //change password
