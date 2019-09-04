@@ -8,6 +8,12 @@ $route['sql']='Database_controller/sql';
 // report generation
 $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
+//mail group
+$route['admin/mailgroup'] = 'Admin_controller/mailgroup';
+$route['admin/addEmail'] = 'Admin_controller/addEmail';
+$route['admin/deleteEmail'] = 'Admin_controller/deleteEmail';
+
+
 
 //send leaves
 $route['sendLeaves']='Email_controller/sendLeaves';

@@ -118,6 +118,16 @@
         </a>
       </li>
 
+      <!-- mail group -->
+       <li class="nav-item">
+          
+         <a class="nav-link" href="<?= base_url('admin'); ?>/mailgroup">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+           Mail Group
+        </a>
+      </li>
+
+
 
     </ul>
     <ul class="navbar-nav">
