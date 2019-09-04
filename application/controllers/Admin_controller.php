@@ -73,7 +73,7 @@ class Admin_controller extends CI_Controller {
 	public function mailgroup(){
 		$title['title']="Mail Group";
 		$query=$this->db->get('mail_groups');
-
+		// $data['emails']=$this->Admin_model->getEmployeeDetails();
 		$data['mails']=$query->result_array();
 		$this->load->view('admin/templates/header', $title);
 		$this->load->view('admin/pages/mailgroup', $data);
@@ -463,15 +463,8 @@ public function employeeManage($id = NULL)
 				$mdata=['emp_id'=>$id];
 			$this->db->insert('managers',$mdata);
 			
-			}
-			else
-			{
-			// for substitute balance
-			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0','created_by'=>$_SESSION['user_id'],'modified_by'=>$_SESSION['user_id']];
-			$this->db->insert('substitute_balance',$subs_data);
-			}
-				
-				
+			}	
+			
 				array_push($result, $id);
 			
 

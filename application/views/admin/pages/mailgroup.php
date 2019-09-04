@@ -6,7 +6,7 @@
  
 
 
-
+<p class=" h6 text-danger">Notify the following list of emails about the employees on leave everyday at 10 AM.  </p> 
 	<h3>List of Emails</h3>
 <div id="emailList">
 <table id="emailTable" class="table table-striped table-hover table">
@@ -56,6 +56,7 @@
               <div class="form-div">
                 <label>Email <i class="text-danger">*</i></label>
                 <input type="text" name="" id="email_add" value="" autocomplete="off">
+               
                 </div>
                 <div class="sub-can">
                   <input type="button" name="" id="addEmailBtn" class="btn btn-success" onclick="addEmail()" value="Save" autocomplete="off">
