@@ -24,6 +24,7 @@ class Admin_controller extends CI_Controller {
 	}
 
 	
+	
 
 	public function dashboard() 
 	{

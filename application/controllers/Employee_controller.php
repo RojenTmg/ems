@@ -178,7 +178,8 @@ function checkExp(){
 					$data['can_take_sbs'] = TRUE;
 					
 				}
-}
+			}
+
 			// disabling multiple button at initial stage / as page refreshes
 			$i = TRUE; 
 			foreach ($data['leaves'] as $value) {
