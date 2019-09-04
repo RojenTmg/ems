@@ -644,6 +644,22 @@ $query73=mysqli_query($conn,"ALTER TABLE `substitute_leaves`
 ");
 
 
+// table for mail groups added
+$query74=mysqli_query($conn,"CREATE TABLE `mail_groups` (
+  `id` int(11) NOT NULL,
+  `email_address` varchar(255) NOT NULL,
+  `mail_group` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+");
+
+$query75=mysqli_query($conn,"ALTER TABLE `mail_groups`
+  ADD PRIMARY KEY (`id`)
+");
+
+$query76=mysqli_query($conn,"ALTER TABLE `mail_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT
+");
+
     echo "Database created successfully";
 } else {
     echo "Error creating database: " . $conn->error;
