@@ -129,9 +129,7 @@ $query6=mysqli_query($conn,"CREATE TABLE `employees` (
 
 //input department data
 $query7=mysqli_query($conn,"INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, `middle_name`, `last_name`, `join_date`, `is_active`, `department_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `email`, `nationality`, `visa_permission`, `visa_type`, `visa_expiry_date`, `passport_no`, `passport_issue_place`, `e_name`, `e_relation`, `e_address`, `e_phone`, `highest_degree`, `degree_title`, `university`, `institute`, `dob`, `gender`, `blood_group`, `medical_complications`, `regular_medication`, `allergies`, `allergy_description`, `pan`, `previous_employer`, `package_id`, `is_approver`, `is_recommender`, `is_on_leave`) VALUES
-(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 3, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', 'candy.khando@gmail.com', 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', 'o', 'p', '', 'p[', '', '', '', '123', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', '123', 'jqdslkjaslk', NULL, NULL, '1', '1', '0'),
-(277, '0', 'Mr', 'Bryan', '', 'Adams', '2019-08-02', 1, 4, '', '2019-07-30 04:19:34', NULL, '2019-07-30 04:19:34', 'bryan123@gmail.com', 'Non-Nepalese', 'Yes', 'Working', '2019-08-31', '123', 'KTM', 'Granny', 'Granny', '', '989839892', 'Master', 'non', 'ono', 'NAMI', '1975-01-01', 'Male', 'AB +ve', '', '', 'No', '', 'wre', NULL, NULL, '1', '1', '0'),
-(278, '0', 'Mr', 'Hari', '', 'Nepal', '2019-07-30', 1, 6, '', '2019-07-30 04:21:08', NULL, '2019-07-30 04:21:08', 'candy.khando@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', 'awd', '123', NULL, NULL, '0', '0', '0')");
+(276, '0', 'Mr', 'Graham', '', 'Riggs', '2019-07-29', 1, 3, '', '2019-07-29 06:02:13', NULL, '2019-07-29 06:02:13', 'candy.khando@gmail.com', 'Non-Nepalese', 'Yes', '123', '2019-08-23', '234', '234', 'o', 'p', '', 'p[', '', '', '', '123', '1960-11-30', 'Male', 'A -ve', '', '', 'Yes', '123', 'jqdslkjaslk', NULL, NULL, '1', '1', '0')");
 
 
 // creating employee_addresses table
@@ -375,9 +373,7 @@ $query26=mysqli_query($conn,"CREATE TABLE `users` (
 
 // insert into users table
 $query27=mysqli_query($conn,"INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`, `temp_pass`, `changed`) VALUES
-(257, 276, 'Nepal@123', 0, '', '2019-07-29 06:02:13', '', '0000-00-00 00:00:00', '', 1),
-(258, 277,'Nepal@123', 0, '', '2019-07-30 04:19:34', '', '0000-00-00 00:00:00', '', 1),
-(259, 278,'Nepal@123', 0, '', '2019-07-30 04:21:08', '', '0000-00-00 00:00:00', '', 1)
+(257, 276, 'Nepal@123', 0, '', '2019-07-29 06:02:13', '', '0000-00-00 00:00:00', '', 0)
 ");
 
 // create user_roles tables
@@ -393,9 +389,7 @@ $query26=mysqli_query($conn,"CREATE TABLE `user_roles` (
 
 // insert data into user_roles
 $query27=mysqli_query($conn,"INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(1, 257, '', '2019-08-02 04:56:00', NULL, '2019-08-02 04:56:00'),
-(2, 258, '', '2019-08-02 07:25:55', NULL, '2019-08-02 07:25:55'),
-(2, 259, '', '2019-08-02 07:25:55', NULL, '2019-08-02 07:25:55')
+(1, 257, '', '2019-08-02 04:56:00', NULL, '2019-08-02 04:56:00')
 ");
 
 /*----------ALTER STATEMENTS-------*/
