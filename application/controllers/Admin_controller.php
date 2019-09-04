@@ -7,6 +7,10 @@ class Admin_controller extends CI_Controller {
            if (!isset($_SESSION['loggedin'])|| $_SESSION['loggedin']!=true || $_SESSION['type']!='admin') {
 				redirect('login');
 			}
+			if(isset($_SESSION['changed'])&&$_SESSION['changed']!='1'){
+                    $_SESSION['changePasswordMsg']="Change Your Password Before Logging In";
+                    redirect('changePassword');
+             }       
 			  date_default_timezone_set('Asia/Kathmandu');
 
         }
@@ -118,6 +122,25 @@ class Admin_controller extends CI_Controller {
 				 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
 				 	$this->Admin_model->insert_leave_balance($data3,$id);
 				 }
+				 // assigning substitute leave to employee start
+				 $managerList = $this->Admin_model->getManagerList();
+				 $isManager=false;
+				 foreach ($managerList as $manager) {
+				 	if($manager['emp_id']==$id){
+				 		$isManager=true;
+				 		break;
+				 	}
+				 }
+				 if(!$isManager){
+				 $this->db->where('leave_name','Substitute');
+				 $getLeave= $this->db->get('leaves');
+				 $getLeave=$getLeave->row_array();
+				 $getSubstitueId=$getLeave['leave_id'];
+				 $substitute=['emp_id'=>$id,'leave_id'=>$getSubstitueId,'remain_days'=>'0'];
+				 $this->Admin_model->insert_leave_balance($substitute,$id);
+				}
+				// assigning substitute leave to employee start
+
 				}
 				else{
 					$this->Admin_model->delete_leave_balance($id);
@@ -125,6 +148,24 @@ class Admin_controller extends CI_Controller {
 					 	$data3=['emp_id'=>$id,'leave_id'=>$li['leave_id'],'remain_days'=>$li['duration']];
 					 	$this->Admin_model->insert_leave_balance($data3,$id);
 				 	}
+				 	// assigning substitute leave to employee start
+				 $managerList = $this->Admin_model->getManagerList();
+				 $isManager=false;
+				 foreach ($managerList as $manager) {
+				 	if($manager['emp_id']==$id){
+				 		$isManager=true;
+				 		break;
+				 	}
+				 }
+				 if(!$isManager){
+				 $this->db->where('leave_name','Substitute');
+				 $getLeave= $this->db->get('leaves');
+				 $getLeave=$getLeave->row_array();
+				 $getSubstitueId=$getLeave['leave_id'];
+				 $substitute=['emp_id'=>$id,'leave_id'=>$getSubstitueId,'remain_days'=>'0'];
+				 $this->Admin_model->insert_leave_balance($substitute,$id);
+				}
+				// assigning substitute leave to employee start
 
 				}
 
@@ -370,6 +411,9 @@ public function employeeManage($id = NULL)
 			);
 
 			$id=$this->Admin_model->add_employee($data,$password);
+			$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
+				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
+
 
 			$this->db->where('emp_id',$_SESSION['current_employee_id']);
 			$this->db->delete('managers');
@@ -385,8 +429,7 @@ public function employeeManage($id = NULL)
 			$subs_data=['emp_id'=>$id,'remain_days'=>'0.0','created_by'=>$_SESSION['user_id'],'modified_by'=>$_SESSION['user_id']];
 			$this->db->insert('substitute_balance',$subs_data);
 			}
-				$message= "Dear ".$first_name." , "."<br>"."Welcome to EMS. You have been registered as an employee. Please have a look at your account details below "."<br>"."Login ID: ".$id."<br>"."Password: ".$password."<br>";
-				 $this->Admin_model->sendEmail('Account Registered',$message,$email);
+				
 				
 				array_push($result, $id);
 			
@@ -1562,12 +1605,24 @@ function deleteWorkExp(){
 		
 
 		function addLeaveToPackage($leave,$duration,$id,$operation){
+				//get id of substitute leave
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$subs=$query->row_array();
+
+			$subs_id=$subs['leave_id'];
+
 
 			if($operation=="insert"){
 				foreach ($leave as $index => $leaveId) {
 					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
 					$this->db->insert('leave_packages',$data);
 				}
+				$data=['leave_id'=>$subs_id, 'package_id'=>$id, 'duration'=>0,'created_by'=>$_SESSION['user_id']];
+					$this->db->insert('leave_packages',$data);
+
+
+
 			}
 			if($operation=="update"){
 				$this->db->where('package_id',$id);
@@ -1577,6 +1632,8 @@ function deleteWorkExp(){
 					$data=['leave_id'=>$leaveId, 'package_id'=>$id, 'duration'=>$duration[$index],'created_by'=>$_SESSION['user_id']];
 					$this->db->insert('leave_packages',$data);
 				}
+					$data=['leave_id'=>$subs_id, 'package_id'=>$id, 'duration'=>0,'created_by'=>$_SESSION['user_id']];
+					$this->db->insert('leave_packages',$data);
 			}
 		}
 

@@ -6,9 +6,18 @@ $route['admin/report_generation'] = 'Admin_controller/reportGeneration';
 
 
 
+//send leaves
+$route['sendLeaves']='Email_controller/sendLeaves';
 
 
+//change password
+$route['changePassword']='Login_controller/changePassword';
 
+// forgot password
+$route['forgot']='Login_controller/forgot';
+$route['requestReset']='Login_controller/requestReset';
+$route['resetNewPassword']='Login_controller/resetNewPassword';
+$route['resetPassword/(:any)/(:any)']='Login_controller/resetPassword/$1/$2';
 
 
 

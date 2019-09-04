@@ -106,6 +106,14 @@ function trim_day(dec_day) {
         $('#duration').val('1/2');
         $('#to_date').val($('#from_date').val());
       }
+      else if ($('#leave_name').find("option:selected").text().indexOf('Substitute') !== -1) {     // if selected value is 'Casual'
+        $('#multiple-days').attr('disabled', true);
+        $('#half-day').prop('checked', true);
+        $('#to_date').attr('disabled', true);
+        $('#duration').val('1/2');
+        $('#to_date').val($('#from_date').val());
+      }
+
       else {
         $('#multiple-days').attr('disabled', false);        
       }
@@ -224,7 +232,7 @@ $('.arch-msg-div').click(function(){
     var middle_name= document.getElementById('middle_name').value.trim();
     var join_date=document.getElementById('join_date').value.trim();
     var department= document.getElementById('department').value.trim();
-    var password= first_name.toLowerCase().substring(0,2)+last_name.toLowerCase().substring(0,2)+'123';
+    var password= 'changeme';
 
     var manager = document.getElementById('manager');
     
@@ -2268,7 +2276,7 @@ function leaveSubstitute(id, emp_id)
   var data = new FormData();
   data.append('id', id);
   data.append('emp_id', emp_id);
-  // alert(id);
+ 
   xmlHttp.send(data);
   xmlHttp.onreadystatechange=function(){
   if(xmlHttp.readyState==4)

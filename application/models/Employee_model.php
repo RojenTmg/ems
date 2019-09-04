@@ -156,6 +156,7 @@
 			$this->db->join('employee_approvers', 'employee_leaves.emp_id =employee_approvers.emp_id');
 			$this->db->where('employee_leaves.is_archived', $is_archived);
 			$this->db->where('employee_approvers.recommender_id', $recommender);
+			$this->db->order_by('id','DESC');
 			$query = $this->db->get('employee_leaves');
 			return $query->result_array();
 		}
@@ -230,4 +231,35 @@
 			
 			return $query->row_array();
 		}
+
+// this returns each employee's substitute leave balance
+		public function findSubstituteLeaveBalance($id)
+		{
+			//get id of substitute leave
+			$this->db->where('leave_name','Substitute');
+			$query=$this->db->get('leaves');
+			$subs=$query->row_array();
+
+			$leave_id=$subs['leave_id'];
+
+			$this->db->where('emp_id',$id);
+			$this->db->where('leave_id',$leave_id);
+			$query=$this->db->get('employee_leave_balance');
+			$result=$query->row_array();
+			return $result;
+
+		}
+
+// funtion to show employees only NOT ADMIN
+		public function showEmployeesOnly()
+		{
+			$this->db->join('users', 'users.user_id=employees.emp_id');
+			$this->db->join('user_roles', 'user_roles.user_id=users.user_num');
+			$this->db->where('user_roles.role_id=2');
+			$query=$this->db->get('employees');
+			return $query->result_array();
+		}
+
+
+
 	}

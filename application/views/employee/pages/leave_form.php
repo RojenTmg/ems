@@ -35,9 +35,6 @@
                       echo '<option id="' . $value['remain_days'] . '" value="' . $value['leave_id'] . '" class="'. $value['is_one_day'] .'">' . $value['leave_name'] . '</option>';              
                     }
                 }   
-                if ($can_take_sbs) {
-                     echo '<option id="' . $sbs_remaining_days . '" value="">Substitute Leave</option>';     
-                }
                 ?>
 
               </select>
@@ -50,9 +47,12 @@
                       if ($leave_form['leave_id'] == $value['leave_id']) {
                         echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$value['remain_days'].')); </script></div>';
                       }
+
                   }
                 } else {
+                    
                     echo '<div class="remDuration" id="remDuration"><script type="text/javascript"> document.write(trim_day('.$remainingDuration.')); </script></div>';
+
                 }
               ?>
             </div>
@@ -93,8 +93,10 @@
             <label>Duty Performed by</label>
             <select name="duty_performed_by" id="substitute">
               <?php 
+            
                 foreach ($duty_performed_by as $value) {
-                  if ($value['emp_id'] != $_SESSION['user_id']) {
+
+                  if ($value['emp_id'] != $_SESSION['user_id'] ) {
                     if (isset($leave_form['duty_performed_by']) && ($leave_form['duty_performed_by'] == $value['emp_id'])) { 
                       echo '<option value=' . $value['emp_id'] . ' selected="selected">' . $value['first_name'] .' '. $value['middle_name'] .' '. $value['last_name'] . '</option>';
                     } else {

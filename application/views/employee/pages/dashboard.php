@@ -7,9 +7,9 @@
        <?php 
        if(count($leavelist)==0)
        {?>
-         <div class="con-sum mx-auto"> <h5 >No package assigned</h5></div>
+         
        <?php } else {
-       foreach ($leavelist as $index=>$leave) { ?>
+       foreach ($leavelist as $index=>$leave) { if($leave['leave_name']=="Substitute") $sbs=true; else $sbs=false; ?>
 
           <div class="sum-item" id="leave-<?php echo $leave['leave_id'];?>">
 
@@ -20,18 +20,25 @@
               </div>
               <div class="hgh-lgt">
                 <div class="hl-title"><?php echo $leave['leave_name'];?></div>
-                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $leave['remain_days'];?>)); </script><span><em> left out of &nbsp;</em></span><?php echo $leave['duration'];?></div>
+                <div class="hl-cont"><script type="text/javascript"> document.write(trim_day(<?php echo $leave['remain_days'];?>)); </script><span><em>left</em><?php if(!$sbs){?><em>  out of &nbsp;</em></span><?php echo $leave['duration'];?> <?php } ?></div>
               </div>
             </div>
+            <?php if(!$sbs){ ?>
              <div class="item-2 sp-btn">
                 <div><span>Number of Leaves taken</span></div>
                 <div><span><script type="text/javascript"> document.write(trim_day(<?php echo $leave['duration'] - $leave['remain_days'];?>)); </script></span></div>
+            
             </div>
+          <?php } ?>
           </a>
           </div>
         
         <?php } } ?>
+
+    
     </div>
+
+
 
     <!-- SUBSTITUTE LEAVE REQUESTS -->
     <!-- check if the user is recommender or not -->

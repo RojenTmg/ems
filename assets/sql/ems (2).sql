@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2019 at 10:50 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Sep 01, 2019 at 09:50 AM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,9 +36,9 @@ CREATE TABLE `addresses` (
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -66,9 +66,9 @@ CREATE TABLE `contacts` (
   `other_phone2` varchar(255) DEFAULT NULL,
   `other_phone3` varchar(255) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -151,9 +151,9 @@ CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `department_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `email_notifications` (
   `title` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -187,83 +187,24 @@ CREATE TABLE `email_notifications` (
 --
 
 INSERT INTO `email_notifications` (`id`, `email`, `title`, `message`, `status`, `created_date`) VALUES
-(4, 'me.albin81@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:02:53'),
-(5, 'me.albin81@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:12:05'),
-(6, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:04'),
-(7, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(8, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(9, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(10, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(11, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 10:15:05'),
-(12, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 11:04:41'),
-(13, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'sent', '2019-08-18 11:04:46'),
-(14, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:04:47'),
-(15, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:06:04'),
-(16, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:06:54'),
-(17, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:08:41'),
-(18, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:09:12'),
-(19, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:09:18'),
-(20, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:09:27'),
-(21, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:10:15'),
-(22, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:10:41'),
-(23, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-18 11:11:39'),
-(24, 'candsda@l.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:32:45'),
-(25, 'candy.khando@gmail.com', 'Email Updated', 'Dear Graham,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-19 04:33:16'),
-(26, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:04'),
-(27, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:05'),
-(28, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:11'),
-(29, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:11'),
-(30, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:13:21'),
-(31, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:13:21'),
-(32, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:05'),
-(33, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:05'),
-(34, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:08'),
-(35, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:08'),
-(36, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:10'),
-(37, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:10'),
-(38, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:12'),
-(39, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:12'),
-(40, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:17'),
-(41, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:17'),
-(42, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:18'),
-(43, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:18'),
-(44, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 08:14:20'),
-(45, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 08:14:20'),
-(46, 'bryan123@gmail.com', 'Leave Denied by Recommender', 'Your  from  has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>', 'pending', '2019-08-27 08:14:31'),
-(47, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:25:37'),
-(48, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:25:38'),
-(49, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:27:28'),
-(50, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:27:28'),
-(51, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:29'),
-(52, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:29'),
-(53, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:42'),
-(54, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:43'),
-(55, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:51'),
-(56, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:51'),
-(57, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:28:53'),
-(58, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:28:53'),
-(59, 'bryan123@gmail.com', 'Leave Denied by Recommender', 'Your  from  has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>', 'pending', '2019-08-27 15:29:04'),
-(60, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:29:40'),
-(61, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:29:40'),
-(62, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:31:01'),
-(63, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:31:01'),
-(64, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:31:08'),
-(65, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:31:08'),
-(66, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:32:22'),
-(67, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:32:22'),
-(68, 'bryan123@gmail.com', 'Leave Recommended', 'Your  from  has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:32:25'),
-(69, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a  and is waiting for your approval. ', 'pending', '2019-08-27 15:32:25'),
-(70, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:38:19'),
-(71, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:38:19'),
-(72, 'candy.khando@gmail.com', 'Leave Denied by Recommender', 'Your Casual from 2019-08-13 has been denied by Bryan  Adams.<br><br>Reason for Leave Denied is:<br>sadasdasd', 'pending', '2019-08-27 15:38:37'),
-(73, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:41:40'),
-(74, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:41:40'),
-(75, 'candy.khando@gmail.com', 'Leave Recommended', 'Your Casual from 2019-08-13 has been recommended by Bryan  Adams and waiting to be approved', 'pending', '2019-08-27 15:41:49'),
-(76, 'bryan123@gmail.com', 'New Leave Request', 'Bryan  Adams has recommended a Casual and is waiting for your approval. ', 'pending', '2019-08-27 15:41:49'),
-(77, 'anuj@gmail.com', 'Account Registered', 'Dear Anuj , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 313<br>Password: anla123<br>', 'pending', '2019-08-28 05:41:54'),
-(78, 'manojraj@gmail.com', 'Account Registered', 'Dear Manoj , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 314<br>Password: mati123<br>', 'pending', '2019-08-28 05:44:45'),
-(79, 'albin.81@gmail.com', 'Account Registered', 'Dear Damodar , <br>Welcome to EMS. You have been registered as an employee. Please have a look at your account details below <br>Login ID: 315<br>Password: dala123<br>', 'pending', '2019-08-28 05:45:55'),
-(80, 'albin.81@gmail.com', 'Email Updated', 'Dear Damodar,<br>Your email has been updated. Please use the previous ID and Password to log in', 'pending', '2019-08-28 05:47:31');
+(31, 'a@b.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems//resetPassword/317\"> Reset Password Here </a>', 'sent', '2019-09-01 06:30:42'),
+(32, 'a@b.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems//resetPassword/317\"> Reset Password Here </a>', 'sent', '2019-09-01 06:30:45'),
+(33, 'candy.khando@gmail.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/316/223028538\"> Reset Password Here </a>', 'sent', '2019-09-01 06:31:13'),
+(34, 'a@b.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/317/74749507502\"> Reset Password Here </a>', 'sent', '2019-09-01 06:47:17'),
+(35, 'a@b.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/317/60871705706\"> Reset Password Here </a>', 'sent', '2019-09-01 06:49:50'),
+(36, 'a@b.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'sent', '2019-09-01 07:18:06'),
+(37, 'albin.81@gmail.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/315/91295344500\"> Reset Password Here </a>', 'sent', '2019-09-01 07:18:19'),
+(38, 'albin.81@gmail.com', 'Password Changed', 'Your new password is: London@123<br> Please Delete this mail if you have read the mail.', 'sent', '2019-09-01 07:18:52'),
+(39, 'a@b.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/317/79208365665\"> Reset Password Here </a>', 'sent', '2019-09-01 07:19:55'),
+(40, 'a@b.com', 'Password Changed', 'Your new password is: Alubin@12<br> Please Delete this mail if you have read the mail.', 'sent', '2019-09-01 07:21:47'),
+(41, 'a@b.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'sent', '2019-09-01 07:22:43'),
+(42, 'a@b.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'pending', '2019-09-01 07:41:33'),
+(43, 'albin.81@gmail.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/315/82141726493\"> Reset Password Here </a>', 'pending', '2019-09-01 07:44:49'),
+(44, 'albin.81@gmail.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'pending', '2019-09-01 07:45:10'),
+(45, 'albin.81@gmail.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'pending', '2019-09-01 07:48:46'),
+(46, 'candy.khando@gmail.com', 'Password Reset Request', 'We have received a password reset request. If you haven\'t requested then you can ignore this mail. <br> If you want to reset your password visit the link below.<a href=\"http://localhost/ems/resetPassword/276/58120483528\"> Reset Password Here </a>', 'pending', '2019-09-01 07:49:16'),
+(47, 'candy.khando@gmail.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'pending', '2019-09-01 07:49:38'),
+(48, 'candy.khando@gmail.com', 'Password Changed', 'Your new password is: Nepal@123<br> Please Delete this mail if you have read the mail.', 'pending', '2019-09-01 07:50:11');
 
 -- --------------------------------------------------------
 
@@ -282,9 +223,9 @@ CREATE TABLE `employees` (
   `is_active` tinyint(1) NOT NULL,
   `department_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_date` timestamp NULL DEFAULT current_timestamp(),
   `email` varchar(255) DEFAULT NULL,
   `nationality` varchar(255) NOT NULL,
   `visa_permission` varchar(255) NOT NULL,
@@ -303,10 +244,10 @@ CREATE TABLE `employees` (
   `dob` date NOT NULL,
   `gender` enum('Male','Female','Others') NOT NULL,
   `blood_group` enum('','A +ve','A -ve','B +ve','B -ve','AB +ve','AB -ve','O +ve','O -ve') NOT NULL,
-  `medical_complications` text,
-  `regular_medication` text,
+  `medical_complications` text DEFAULT NULL,
+  `regular_medication` text DEFAULT NULL,
   `allergies` varchar(255) NOT NULL,
-  `allergy_description` text,
+  `allergy_description` text DEFAULT NULL,
   `pan` varchar(255) DEFAULT NULL,
   `previous_employer` varchar(255) DEFAULT NULL,
   `package_id` int(11) DEFAULT NULL,
@@ -343,7 +284,9 @@ INSERT INTO `employees` (`emp_id`, `is_department_head`, `title`, `first_name`, 
 (312, '0', 'Mr', 'Test', '', 'test', '2019-08-18', 1, 2, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26', 'me.albin81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1959-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, 44, '0', '0', '0'),
 (313, '0', 'Mr', 'Anuj', '', 'Lama', '2019-08-28', 1, 2, '', '2019-08-28 05:41:54', NULL, '2019-08-28 05:41:54', 'anuj@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1993-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
 (314, '0', 'Mr', 'Manoj', '', 'Tiwari', '2019-08-28', 1, 2, '', '2019-08-28 05:44:44', NULL, '2019-08-28 05:44:44', 'manojraj@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1987-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
-(315, '0', 'Mr', 'Damodar', '', 'Lama', '2019-08-28', 1, 2, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55', 'albin.81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1979-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0');
+(315, '0', 'Mr', 'Damodar', '', 'Lama', '2019-08-28', 1, 2, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55', 'albin.81@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1979-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
+(316, '0', 'Mr', 'Tsering', 'Khando', 'Lama', '2019-09-01', 1, 2, '', '2019-09-01 05:03:02', NULL, '2019-09-01 05:03:02', 'candy.khando@gmail.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1997-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0'),
+(317, '0', 'Mr', 'abcd', '', 'abcd', '2019-09-01', 1, 2, '', '2019-09-01 05:12:32', NULL, '2019-09-01 05:12:32', 'a@b.com', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '1964-01-01', 'Male', '', NULL, NULL, '', NULL, NULL, NULL, NULL, '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -356,9 +299,9 @@ CREATE TABLE `employee_addresses` (
   `primary_addressId` int(11) DEFAULT NULL,
   `secondary_addressId` int(11) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -381,9 +324,9 @@ CREATE TABLE `employee_approvers` (
   `emp_id` int(11) DEFAULT NULL,
   `recommender_id` int(11) DEFAULT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -406,9 +349,9 @@ CREATE TABLE `employee_contacts` (
   `emp_id` int(11) NOT NULL,
   `contact_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -431,9 +374,9 @@ CREATE TABLE `employee_documents` (
   `doc_title` varchar(255) DEFAULT NULL,
   `doc_file` text NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -473,13 +416,13 @@ CREATE TABLE `employee_leaves` (
   `to_date` date DEFAULT NULL,
   `duty_performed_by` int(11) NOT NULL,
   `reason` text NOT NULL,
-  `denial_reason` text,
+  `denial_reason` text DEFAULT NULL,
   `approved_date` date NOT NULL,
   `recommended_date` date NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_date` timestamp NULL DEFAULT current_timestamp(),
   `is_archived` enum('0','1') NOT NULL,
   `is_archived_by_approver` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -492,7 +435,8 @@ INSERT INTO `employee_leaves` (`id`, `emp_id`, `leave_id`, `recommender_id`, `ap
 (230, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:55:15', NULL, '2019-08-13 04:55:15', '1', '0'),
 (231, 278, 39, 277, NULL, NULL, 'pending', 'half', 'denied', '0000-00-00', '2019-08-13', NULL, 276, '', 'sadasdasd', '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:21', NULL, '2019-08-13 04:57:21', '0', '0'),
 (232, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, 'test213', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 04:57:41', NULL, '2019-08-13 04:57:41', '1', '0'),
-(233, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 07:32:55', NULL, '2019-08-13 07:32:55', '1', '0');
+(233, 278, 39, 277, NULL, NULL, 'pending', 'half', 'recommended', '0000-00-00', '2019-08-13', NULL, 276, '', NULL, '0000-00-00', '0000-00-00', '', '2019-08-13 07:32:55', NULL, '2019-08-13 07:32:55', '1', '0'),
+(234, 277, 39, 277, 277, NULL, 'pending', 'half', 'pending', '0000-00-00', '2019-08-30', NULL, 276, 'test', NULL, '0000-00-00', '0000-00-00', '', '2019-08-30 06:19:37', NULL, '2019-08-30 06:19:37', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -505,7 +449,7 @@ CREATE TABLE `employee_leave_balance` (
   `leave_id` int(11) NOT NULL,
   `remain_days` double(11,2) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -546,11 +490,11 @@ CREATE TABLE `employee_work_experience` (
   `organization` varchar(255) NOT NULL,
   `responsibility` text NOT NULL,
   `position` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` varchar(255) NOT NULL,
   `contact_person_number` int(11) NOT NULL,
   `modified_by` varchar(255) NOT NULL,
-  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -572,9 +516,9 @@ CREATE TABLE `leaves` (
   `leave_name` varchar(255) NOT NULL,
   `is_one_day` enum('0','1') NOT NULL DEFAULT '0',
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -597,9 +541,9 @@ CREATE TABLE `leave_packages` (
   `package_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -619,7 +563,7 @@ INSERT INTO `leave_packages` (`leave_id`, `package_id`, `duration`, `created_by`
 CREATE TABLE `managers` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -629,7 +573,8 @@ CREATE TABLE `managers` (
 INSERT INTO `managers` (`id`, `emp_id`, `created_date`) VALUES
 (4, 311, '2019-08-18 08:41:46'),
 (7, 312, '2019-08-18 08:55:40'),
-(29, 276, '2019-08-19 04:33:16');
+(29, 276, '2019-08-19 04:33:16'),
+(30, 316, '2019-09-01 05:03:02');
 
 -- --------------------------------------------------------
 
@@ -641,9 +586,9 @@ CREATE TABLE `modules` (
   `module_id` int(11) NOT NULL,
   `module_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -656,9 +601,9 @@ CREATE TABLE `packages` (
   `package_id` int(11) NOT NULL,
   `package_name` varchar(255) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) DEFAULT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -677,9 +622,9 @@ INSERT INTO `packages` (`package_id`, `package_name`, `created_by`, `created_dat
 CREATE TABLE `permissions` (
   `permission_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -692,9 +637,9 @@ CREATE TABLE `roles` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(255) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -716,9 +661,9 @@ CREATE TABLE `role_permission_modules` (
   `permission_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -731,9 +676,9 @@ CREATE TABLE `substitute_balance` (
   `emp_id` int(11) NOT NULL,
   `remain_days` double(11,2) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -742,7 +687,8 @@ CREATE TABLE `substitute_balance` (
 
 INSERT INTO `substitute_balance` (`emp_id`, `remain_days`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (314, 0.00, '', '2019-08-28 05:44:45', '', '2019-08-28 05:44:45'),
-(315, 0.00, '276', '2019-08-28 05:45:55', '276', '2019-08-28 05:45:55');
+(315, 0.00, '276', '2019-08-28 05:45:55', '276', '2019-08-28 05:45:55'),
+(317, 0.00, '276', '2019-09-01 05:12:32', '276', '2019-09-01 05:12:32');
 
 -- --------------------------------------------------------
 
@@ -755,14 +701,14 @@ CREATE TABLE `substitute_leaves` (
   `emp_id` int(11) DEFAULT NULL,
   `recommender_id` int(11) DEFAULT NULL,
   `date` date NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `denial_reason` text NOT NULL,
   `is_approved` enum('pending','denied','approved') NOT NULL DEFAULT 'pending',
   `is_archived` enum('0','1') NOT NULL DEFAULT '0',
   `created_by` int(11) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` int(11) DEFAULT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -771,7 +717,7 @@ CREATE TABLE `substitute_leaves` (
 
 INSERT INTO `substitute_leaves` (`id`, `emp_id`, `recommender_id`, `date`, `description`, `denial_reason`, `is_approved`, `is_archived`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (20, 278, 277, '2019-08-26', 'It was July 21, 1969, and Neil Armstrong awoke with a start. It was the day he would become the first human being to ever walk on the moon. The journey had begun several days earlier, when on July 16th, the Apollo 11 launched from Earth headed into outer space. On board with Neil Armstrong were Michael Collins and Buzz Aldrin. The crew landed on the moon in the Sea of Tranquility a day before the actual walk. Upon Neil’s first step onto the moon’s surface, he declared, “That’s one small step for man, one giant leap for mankind.” It sure was!\r\n', '', 'approved', '0', NULL, '2019-08-26 06:52:44', NULL, '2019-08-26 06:52:44'),
-(21, 278, 277, '2019-08-26', 'The purpose of Pattern Based Writing: Quick & Easy Essay is to quickly and easily teach students how to organize information and make points clear. Then in the Writing with Purpose section of the writing program, students learn to apply their new writing strategies to different types, kinds, genres, and modes of writing. The truth is that it’s quick and easy to get students to write many different types of paragraphs when they have the right foundation.', '', 'pending', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
+(21, 278, 277, '2019-08-26', 'The purpose of Pattern Based Writing: Quick & Easy Essay is to quickly and easily teach students how to organize information and make points clear. Then in the Writing with Purpose section of the writing program, students learn to apply their new writing strategies to different types, kinds, genres, and modes of writing. The truth is that it’s quick and easy to get students to write many different types of paragraphs when they have the right foundation.', '', 'approved', '0', NULL, '2019-08-26 06:52:49', NULL, '2019-08-26 06:52:49'),
 (22, 278, 277, '2019-08-26', 'Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.\r\n\r\n', '', 'approved', '0', NULL, '2019-08-26 06:52:52', NULL, '2019-08-26 06:52:52');
 
 -- --------------------------------------------------------
@@ -786,41 +732,45 @@ CREATE TABLE `users` (
   `user_pass` varchar(255) NOT NULL,
   `is_logged_in` tinyint(1) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `temp_pass` varchar(255) NOT NULL,
+  `changed` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(111, 111, '111', 0, '', '2019-08-11 05:46:24', '', '2019-08-11 05:46:24'),
-(257, 276, 'grri123', 1, '', '2019-07-29 06:02:13', '', '2019-07-29 06:02:13'),
-(258, 277, 'emp', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34'),
-(259, 278, 'emp', 0, '', '2019-07-30 04:21:08', '', '2019-07-30 04:21:08'),
-(269, 288, 'emp', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27'),
-(270, 289, 'tsla123', 0, '', '2019-08-05 04:32:15', '', '2019-08-05 04:32:15'),
-(277, 296, 'sasa123', 0, '', '2019-08-08 06:07:17', '', '2019-08-08 06:07:17'),
-(279, 298, 'rabh123', 0, '', '2019-08-09 04:39:22', '', '2019-08-09 04:39:22'),
-(280, 299, 'aa123', 0, '', '2019-08-13 07:11:44', '', '2019-08-13 07:11:44'),
-(281, 300, 'hakt123', 0, '', '2019-08-13 07:24:40', '', '2019-08-13 07:24:40'),
-(282, 301, 'mata123', 0, '', '2019-08-13 07:45:28', '', '2019-08-13 07:45:28'),
-(283, 302, 'asas123', 0, '', '2019-08-13 07:46:26', '', '2019-08-13 07:46:26'),
-(284, 303, 'haab123', 0, '', '2019-08-13 07:46:56', '', '2019-08-13 07:46:56'),
-(285, 304, 'sdsf123', 0, '', '2019-08-13 07:53:26', '', '2019-08-13 07:53:26'),
-(286, 305, 'sdsf123', 0, '', '2019-08-13 08:37:00', '', '2019-08-13 08:37:00'),
-(287, 306, 'sfsf123', 0, '', '2019-08-18 08:17:57', '', '2019-08-18 08:17:57'),
-(288, 307, 'sdsd123', 0, '', '2019-08-18 08:18:26', '', '2019-08-18 08:18:26'),
-(289, 308, 'adas123', 0, '', '2019-08-18 08:19:02', '', '2019-08-18 08:19:02'),
-(290, 309, 'adas123', 0, '', '2019-08-18 08:20:10', '', '2019-08-18 08:20:10'),
-(291, 310, 'asas123', 0, '', '2019-08-18 08:20:45', '', '2019-08-18 08:20:45'),
-(292, 311, 'asas123', 0, '', '2019-08-18 08:21:01', '', '2019-08-18 08:21:01'),
-(293, 312, 'asa123', 0, '', '2019-08-18 08:21:26', '', '2019-08-18 08:21:26'),
-(294, 313, 'anla123', 0, '', '2019-08-28 05:41:54', '', '2019-08-28 05:41:54'),
-(295, 314, 'mati123', 0, '', '2019-08-28 05:44:44', '', '2019-08-28 05:44:44'),
-(296, 315, 'dala123', 0, '', '2019-08-28 05:45:55', '', '2019-08-28 05:45:55');
+INSERT INTO `users` (`user_num`, `user_id`, `user_pass`, `is_logged_in`, `created_by`, `created_date`, `modified_by`, `modified_date`, `temp_pass`, `changed`) VALUES
+(111, 111, '111', 0, '', '2019-08-11 05:46:24', '', '2019-08-11 05:46:24', '', 0),
+(257, 276, '$2y$10$NvAjMzczUYZR4NTTUndGsO3HWoV.lfkOa./sMa0S5eKgdxGcNsh3u', 1, '', '2019-07-29 06:02:13', '', '0000-00-00 00:00:00', '', 1),
+(258, 277, 'emp', 0, '', '2019-07-30 04:19:34', '', '2019-07-30 04:19:34', '', 0),
+(259, 278, 'emp', 0, '', '2019-07-30 04:21:08', '', '0000-00-00 00:00:00', '', 0),
+(269, 288, 'emp', 0, '', '2019-08-04 08:14:27', '', '2019-08-04 08:14:27', '', 0),
+(270, 289, 'tsla123', 0, '', '2019-08-05 04:32:15', '', '2019-08-05 04:32:15', '', 0),
+(277, 296, 'sasa123', 0, '', '2019-08-08 06:07:17', '', '2019-08-08 06:07:17', '', 0),
+(279, 298, 'rabh123', 0, '', '2019-08-09 04:39:22', '', '2019-08-09 04:39:22', '', 0),
+(280, 299, 'aa123', 0, '', '2019-08-13 07:11:44', '', '2019-08-13 07:11:44', '', 0),
+(281, 300, 'hakt123', 0, '', '2019-08-13 07:24:40', '', '2019-08-13 07:24:40', '', 0),
+(282, 301, 'mata123', 0, '', '2019-08-13 07:45:28', '', '2019-08-13 07:45:28', '', 0),
+(283, 302, 'asas123', 0, '', '2019-08-13 07:46:26', '', '2019-08-13 07:46:26', '', 0),
+(284, 303, 'haab123', 0, '', '2019-08-13 07:46:56', '', '2019-08-13 07:46:56', '', 0),
+(285, 304, 'sdsf123', 0, '', '2019-08-13 07:53:26', '', '2019-08-13 07:53:26', '', 0),
+(286, 305, 'sdsf123', 0, '', '2019-08-13 08:37:00', '', '2019-08-13 08:37:00', '', 0),
+(287, 306, 'sfsf123', 0, '', '2019-08-18 08:17:57', '', '2019-08-18 08:17:57', '', 0),
+(288, 307, 'sdsd123', 0, '', '2019-08-18 08:18:26', '', '2019-08-18 08:18:26', '', 0),
+(289, 308, 'adas123', 0, '', '2019-08-18 08:19:02', '', '2019-08-18 08:19:02', '', 0),
+(290, 309, 'adas123', 0, '', '2019-08-18 08:20:10', '', '2019-08-18 08:20:10', '', 0),
+(291, 310, 'asas123', 0, '', '2019-08-18 08:20:45', '', '2019-08-18 08:20:45', '', 0),
+(292, 311, 'asas123', 0, '', '2019-08-18 08:21:01', '', '2019-08-18 08:21:01', '', 0),
+(293, 312, 'asa123', 0, '', '2019-08-18 08:21:26', '', '2019-08-18 08:21:26', '', 0),
+(294, 313, 'anla123', 0, '', '2019-08-28 05:41:54', '', '2019-08-28 05:41:54', '', 0),
+(295, 314, 'mati123', 0, '', '2019-08-28 05:44:44', '', '2019-08-28 05:44:44', '', 0),
+(296, 315, '$2y$10$Oe4ourdEEiAwsthGwCVIFOcEzFFZFO9cve5dR7T8th2p5PBK2O6wK', 0, '', '2019-08-28 05:45:55', '', '0000-00-00 00:00:00', '', 1),
+(297, 316, '$2y$10$5kgnSElVFmW54D.d8hZQkeXXS2BNqEY2IKA/Q0dRKy05K3PyO3j4G', 0, '', '2019-09-01 05:03:02', '', '2019-09-01 05:03:02', '', 0),
+(298, 317, '$2y$10$x/WK3GAfC7MjidxcjcMtJ.R8wADISPjqjX/IjXqkgP3ArIPnFFx1S', 0, '', '2019-09-01 05:12:32', '', '0000-00-00 00:00:00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -832,9 +782,9 @@ CREATE TABLE `user_roles` (
   `role_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) DEFAULT NULL,
-  `modified_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -865,7 +815,9 @@ INSERT INTO `user_roles` (`role_id`, `user_id`, `created_by`, `created_date`, `m
 (2, 293, '', '2019-08-18 08:21:26', NULL, '2019-08-18 08:21:26'),
 (2, 294, '', '2019-08-28 05:41:54', NULL, '2019-08-28 05:41:54'),
 (2, 295, '', '2019-08-28 05:44:44', NULL, '2019-08-28 05:44:44'),
-(2, 296, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55');
+(2, 296, '', '2019-08-28 05:45:55', NULL, '2019-08-28 05:45:55'),
+(2, 297, '', '2019-09-01 05:03:02', NULL, '2019-09-01 05:03:02'),
+(2, 298, '', '2019-09-01 05:12:32', NULL, '2019-09-01 05:12:32');
 
 --
 -- Indexes for dumped tables
@@ -1068,13 +1020,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
 
 --
 -- AUTO_INCREMENT for table `employee_approvers`
@@ -1092,7 +1044,7 @@ ALTER TABLE `employee_documents`
 -- AUTO_INCREMENT for table `employee_leaves`
 --
 ALTER TABLE `employee_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT for table `employee_work_experience`
@@ -1110,7 +1062,7 @@ ALTER TABLE `leaves`
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -1140,7 +1092,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `substitute_balance`
 --
 ALTER TABLE `substitute_balance`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
 
 --
 -- AUTO_INCREMENT for table `substitute_leaves`
@@ -1152,7 +1104,7 @@ ALTER TABLE `substitute_leaves`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+  MODIFY `user_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
 
 --
 -- Constraints for dumped tables

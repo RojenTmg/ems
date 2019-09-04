@@ -113,6 +113,13 @@
 			$query = $this->db->get('packages');
 			return $query->row_array();
 		}
+		public function getPackageId($id){
+			$this->db->where('emp_id',$id);
+			$query = $this->db->get('employees');
+			$data= $query->row_array();
+			return $data['package_id'];
+		}
+
 		//package assigned to person
 		public function assignedPackage(){
 			$query = $this->db->get('employees');
@@ -143,7 +150,7 @@
 			$_SESSION['current_employee_id']=$this->db->insert_id();
 			$userData=array(
 					'user_id'=>$user_id,
-					'user_pass'=>$password
+					'user_pass'=>password_hash($password, PASSWORD_DEFAULT),
 			);
 			$this->db->insert('users',$userData);
 			$user_num=$this->db->insert_id();
@@ -428,6 +435,14 @@ public function leaveDetail(){
 public function getAllLeaves(){
 	$this->db->join('leaves','employee_leaves.leave_id=leaves.leave_id');
 	$this->db->join('employees','employees.emp_id=employee_leaves.emp_id');
+	$query=$this->db->get('employee_leaves');
+	return $query->result_array();
+}
+public function getTodayLeaves(){
+	$this->db->join('leaves','employee_leaves.leave_id=leaves.leave_id');
+	$this->db->join('employees','employees.emp_id=employee_leaves.emp_id');
+	$this->db->where('employee_leaves.is_approved','approved');
+	$this->db->where('employee_leaves.is_recommended','recommended');
 	$query=$this->db->get('employee_leaves');
 	return $query->result_array();
 }

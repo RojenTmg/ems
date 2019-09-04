@@ -42,6 +42,8 @@
 			return $query->result_array();
 		}
 
+		
+
 		public function findDescending($table, $field, $id, $sort_id)
 		{
 					return $this->db->query('SELECT * from ' . $table . ' WHERE ' . $field . ' = ' . $id . ' ORDER BY '. $sort_id. ' DESC ' )->result_array();

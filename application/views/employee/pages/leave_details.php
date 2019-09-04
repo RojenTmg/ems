@@ -37,6 +37,8 @@
     <!-- <div class="con-head"> -->
       <!-- <h4>Leaves</h4> -->
     <!-- </div> -->
+
+    
     <div class="box">
       <div class="box-head">
         <p><?php echo $leave_name;?> Details</p>
@@ -46,13 +48,14 @@
         <table class="table table-bordered hover employee_table" id="leave-details" >
           <thead class="thead-dark">
             <tr>
-              <th id="dt-head" style="width: 10%;"><div class="sp-btn"><span>Type of Leave</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+               <th id="dt-head" style="width: 15%; text-align: center;"><div class="sp-btn"><span>Reason</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>From</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>To</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" width="8%" ><div class="sp-btn"><span>Duration Type</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 8%;"><div class="sp-btn"><span>No. of Days</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 15%;"><div class="sp-btn"><span>Duty Performed by</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
               <th id="dt-head" style="width: 5%; text-align: center;"><div class="sp-btn"><span>Status</span><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+
             </tr>
           </thead>
           <tbody>

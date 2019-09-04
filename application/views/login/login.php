@@ -103,6 +103,11 @@
                     echo '<div class="alert alert-danger">'.$_SESSION['error_msg'].' </div>';
                     unset($_SESSION['error_msg']);
                 }
+                if(isset($_SESSION['success_msg']) && $_SESSION['success_msg']!='')
+                {
+                    echo '<div class="alert alert-success">'.$_SESSION['success_msg'].' </div>';
+                    unset($_SESSION['success_msg']);
+                }
                 ?>
               
                <form action="checkLogin" method="POST">
@@ -119,6 +124,7 @@
                     <span class="text-danger"><?php echo form_error('password'); ?></span>
                   </div>
                   <button type="submit" name="submit" class="btn btn-black">Login</button>
+                  <a style="float: right; text-decoration: none" class="text-danger" href="<?= site_url('forgot');?>">Forgot Password</a>
                
                </form>
             </div>
