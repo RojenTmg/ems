@@ -2559,3 +2559,58 @@ function assignRecTemp(id){
      $('#'+id).notify(msg,{position:"bottom",className:'error',autoHide:'false',autoHideDelay: 15000});
   }
 
+
+
+//function add email
+
+function addEmail(){
+    var email_add= document.getElementById('email_add').value;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','addEmail',true);
+    var data = new FormData();
+    data.append('email',email_add)
+
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+        var status= xmlHttp.responseText;
+        if(status=="empty"){
+       showErrormessage2('Enter Email','addEmailBtn');
+        }
+       else if(status=="invalid"){
+        showErrormessage2('Enter Valid Email','addEmailBtn');
+        }
+        else{
+        location.reload();
+        addEmailForm.reset();
+      }
+        
+      }
+    }
+}
+
+
+//function delete email
+
+function deleteEmail(id){
+  // alert(id);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST','deleteEmail',true);
+    var data = new FormData();
+    data.append('id',id)
+
+    xmlHttp.send(data);
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readyState==4){
+
+     
+                 $('#deleteEmail'+id).css('display','none');
+                  $('#deleteEmail'+id).attr('aria-hidden', 'true');
+                  $('body').removeClass('modal-open');
+                  $('.modal-backdrop').remove();
+                  location.reload();
+                  // console.log(xmlHttp.responseText);
+
+        }
+      }
+    }

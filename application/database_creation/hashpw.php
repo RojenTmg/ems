@@ -1,7 +1,7 @@
 <?php 
 	$pdo= new PDO('mysql:host=localhost; dbname=ems','root','');
 	
-	$ids=[276,277,278];
+	$ids=[276];
 	foreach ($ids as $id) {
 	
 		$pw = password_hash('Nepal@123', PASSWORD_DEFAULT);

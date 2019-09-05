@@ -85,7 +85,7 @@
                    if(preg_match('/^(?=\P{Ll}*\p{Ll})(?=\P{Lu}*\p{Lu})(?=\P{N}*\p{N})(?=[\p{L}\p{N}]*[^\p{L}\p{N}])[\s\S]{8,}$/', $data['np'])){}
                       else{
 
-                      $data['error']="Password Must Contain 1 uppercase, 1 symbol, 1 number, 1 lowercase";
+                      $data['error']="Password must be of minimum 8 characters and contain 1 uppercase, 1 symbol, 1 number, 1 lowercase";
                      $error=true;
                      $this->load->view('login/changePassword',$data);
                      return;
@@ -233,7 +233,7 @@ function resetNewPassword(){
                    if(preg_match('/^(?=\P{Ll}*\p{Ll})(?=\P{Lu}*\p{Lu})(?=\P{N}*\p{N})(?=[\p{L}\p{N}]*[^\p{L}\p{N}])[\s\S]{8,}$/', $data['np'])){}
                       else{
 
-                      $data['error']="Password Must Contain 1 uppercase, 1 symbol, 1 number, 1 lowercase";
+                      $data['error']="Password must be of minimum 8 characters and contain 1 uppercase, 1 symbol, 1 number, 1 lowercase";
                      $error=true;
                      $this->load->view($gotolocation,$data);
                      return;

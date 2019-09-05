@@ -103,7 +103,7 @@
         </div>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('admin'); ?>/employee_manage">
+        <a class="nav-link" href="<?= base_url('admin'); ?>/employee_manage" title="To add new staff">
           <i class="fa fa-user-plus" aria-hidden="true"></i>
           Add Staff
         </a>
@@ -112,11 +112,21 @@
       <!-- add leave and package -->
 
        <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('admin'); ?>/leave_manage">
+        <a class="nav-link" href="<?= base_url('admin'); ?>/leave_manage" title="To manage leave type and packages">
           <i class="fa fa-calendar-check" aria-hidden="true"></i>
           Leaves
         </a>
       </li>
+
+      <!-- mail group -->
+       <li class="nav-item">
+          
+         <a class="nav-link" href="<?= base_url('admin'); ?>/mailgroup" title="List of emails to send leave list everyday.">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+           Mail Group
+        </a>
+      </li>
+
 
 
     </ul>
