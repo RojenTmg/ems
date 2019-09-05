@@ -220,8 +220,26 @@
             <div class="form-group add-frm-grp">
               <input type="text" id="permanentaddress_street" value="<?php if(isset($post['p_street'])) echo $post['p_street']; ?>" placeholder="Street" class="form-group col-md-3">
               <input type="text" id="permanentaddress_municipality" value="<?php if(isset($post['p_municipality'])) echo $post['p_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-              <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
+             <!--  <input type="text" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>" placeholder="District" class="form-group col-md-3">
               <input type="text" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" placeholder="State" class="form-group col-md-3">
+ -->
+              <div class="group-district">
+                <!-- Auto-complete state when permanent_country is Nepal -->
+                <div class="autocompleteState">
+                  <input type="text" placeholder="State" id="permanentaddress_state" value="<?php if(isset($post['p_state'])) echo $post['p_state']; ?>" style="width: 100%;">
+                  <!-- <span class="closeState">Cancel</span> -->
+                  <div class="dialogState"></div>
+                </div>
+                
+                <!-- Auto-complete district when permanent_country is Nepal -->
+                <div class="autocomplete" class="col-md-3">
+                  <input type="text" placeholder="District" id="permanentaddress_district" value="<?php if(isset($post['p_district'])) echo $post['p_district']; ?>"  style="width: 100%;">
+                  <!-- <span class="close">Cancel</span> -->
+                  <div class="dialog"></div>
+                </div>
+              </div>
+
+
             <!-- country will be a dropdown -->
               <select id="permanentaddress_country" value="<?php if(isset($post['p_country'])) echo $post['p_country']; ?>" class="form-group col-md-3">
                  <?php 
@@ -236,7 +254,7 @@
             <p class="title">Current Address<span class="text-danger"><i>*</i></span></p>
             <input type="text" id="currentaddress_street" value="<?php if(isset($post['t_street'])) echo $post['t_street']; ?>" placeholder="Street" class="form-group col-md-3">
             <input type="text" id="currentaddress_municipality" value="<?php if(isset($post['t_municipality'])) echo $post['t_municipality']; ?>" placeholder="Municipality" class="form-group col-md-3">
-            <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3">
+            <!-- <input type="text" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" placeholder="District" class="form-group col-md-3"> -->
 
               <select name="currentaddress_state" id="currentaddress_state" class="form-group col-md-3">
               <option value="Province 1" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 1') { echo "selected"; }} ?>>Province 1</option>
@@ -248,6 +266,12 @@
               <option value="Province 7" <?php if(isset($post['t_state'])) { if ($post['t_state'] == 'Province 7s') { echo "selected"; }} ?>>Province 7</option>
 
             </select>
+             <!-- Auto-complete district -->
+             <div class="autocompleteDistrict" class="col-md-3">
+               <input type="text" placeholder="District" id="currentaddress_district" value="<?php if(isset($post['t_district'])) echo $post['t_district']; ?>" style="width: 100%;">
+               <!-- <span class="closeDistrict">Cancel</span> -->
+               <div class="dialogDistrict"></div>
+             </div>
           </div>
           <div class="sub-can">
             <input type="button" onclick="addAddress()" name="" value="Save" class="sub" id="addressbutton">
