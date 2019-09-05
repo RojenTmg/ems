@@ -69,4 +69,12 @@ Acknowledgement
 The CodeIgniter team would like to thank EllisLab, all the
 contributors to the CodeIgniter project and you, the CodeIgniter user.
 
+# include img
+
+.. image:: assets/images/images.jpg
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
+   
 <img src="assets/images/images.jpg">
