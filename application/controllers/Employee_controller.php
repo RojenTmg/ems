@@ -176,7 +176,6 @@ function checkExp(){
 				if ($remaining_days > 0) 
 				{
 					$data['can_take_sbs'] = TRUE;
-					
 				}
 			}
 
