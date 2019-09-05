@@ -76,4 +76,3 @@ These steps are to followed twice for files(EMS.xml and Send Leave Email.xml) in
 2. Send Leave Email.xml
 -- It sends all the pending emails for employees on leave to the specified emails by admin, automatically at 10 AM everyday.
 
-
