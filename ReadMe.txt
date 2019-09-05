@@ -6,6 +6,7 @@
 				Password: Nepal@123
 /*****************************************/
 
+
 /***** HOW TO OPEN XAMPP AND COPY FOLDER**********/
 
 1. Make sure to have Xampp installed on you PC. If not, first install it.
@@ -13,6 +14,7 @@
 2. Copy the 'ems' folder in the 'C:\xampp\htdocs' folder.
 
 3. First open the Xampp Control Panel and start Apache and MySQL.
+
 
 
 /******** SETUP DATABASE AND START USING EMS ************/
