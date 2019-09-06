@@ -67,11 +67,6 @@ Installation
 
 2. Check if there is "ems" database already created.
 
-.. image:: assets/readme/Capture2.PNG
-   :height: 100px
-   :width: 200px
-   :align: center
- 
 
 3. If the ems database does not exists, go to step 5.
    Or else,
