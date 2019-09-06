@@ -16,8 +16,8 @@ Release Information
 *******************
 
 This repo contains in-development code for future releases. To download the
-latest stable release please visit the `EMS Downloads
-<https://github.com/RojenTmg/ems>`_ page.
+latest stable release please visit the `EMS Releases
+<https://github.com/RojenTmg/ems/releases>`_ page.
 
 .. **************************
 .. Changelog and New Features
@@ -118,6 +118,7 @@ Installation
    :width: 200px
    :align: center
 
+<img align="left" width="100" height="100" src="assets/readme/Capture7.PNG">
 
 9. The setup is complete.
 
