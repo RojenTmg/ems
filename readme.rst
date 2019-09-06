@@ -52,7 +52,9 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :scale: 100 %
    :align: center
 
-SETUP DATABASE AND START USING EMS 
+
+
+/** SETUP DATABASE AND START USING EMS **/
 
 1. Open the browser and type 'http://localhost/phpmyadmin/'.
 
@@ -63,6 +65,12 @@ SETUP DATABASE AND START USING EMS
    :align: center
 
 2. Check if there is "ems" database already created.
+
+.. image:: assets/readme/Capture2.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
  
 3. If the "ems" database does not exists, go to step 5.
 	Or else,
@@ -70,20 +78,49 @@ SETUP DATABASE AND START USING EMS
 
 4. To drop the database, click on "ems", go to 'operations' tab and click "Drop the database (DROP)" option.
 
+.. image:: assets/readme/Capture4.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
 
 5. Go to the browser and open '[url]/sql'. (example: localhost/ems/sql)
---- This will create database and hash the admin's password in the database
+[This will create database and hash the admin's password in the database]
+
+.. image:: assets/readme/Capture3.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
 
 6. Open the 'ems' folder in the text editor (example: sublime).
 	 Then goto the main folder 'ems'-> then to 'application' folder-> 'config' folder -> then open 'database.php'
 
+.. image:: assets/readme/Capture5.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
+
 7. In the file 'database.php', go to  line 81, or where you can see 'database' => ''.
+
+.. image:: assets/readme/Capture6.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
 
 8. There, change 'database' => '' to 'database' => 'ems' .
 
+.. image:: assets/readme/Capture7.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
+
 9. The setup is complete.
 
-10. Open the login page and login with the provided user id and password in the beginning.
+10. Open the login page and login with the provided user id and password given below.
 	The password needs to be changed to be able to use the EMS.
 
 
