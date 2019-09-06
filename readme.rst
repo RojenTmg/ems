@@ -54,14 +54,13 @@ Installation
 
 
 
-** SETUP DATABASE AND START USING EMS **
+**SETUP DATABASE AND START USING EMS**
 
 1. Open the browser and type 'http://localhost/phpmyadmin/'.
 
 .. image:: assets/readme/Capture2.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
@@ -70,7 +69,6 @@ Installation
 .. image:: assets/readme/Capture2.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
  
 
@@ -84,7 +82,6 @@ Installation
 .. image:: assets/readme/Capture4.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
@@ -94,7 +91,6 @@ Installation
 .. image:: assets/readme/Capture3.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
@@ -104,7 +100,6 @@ Installation
 .. image:: assets/readme/Capture5.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
@@ -113,7 +108,6 @@ Installation
 .. image:: assets/readme/Capture6.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
@@ -122,22 +116,22 @@ Installation
 .. image:: assets/readme/Capture7.PNG
    :height: 100px
    :width: 200px
-   :scale: 100 %
    :align: center
 
 
 9. The setup is complete.
 
+
 10. Open the login page and login with the provided user id and password given below.
 	The password needs to be changed to be able to use the EMS.
 
 
-*******
+***************************
 Login Credentials for Admin
-*******
+***************************
 
-User id: 276
-Password: Nepal@123
+| User id: 276
+| Password: Nepal@123
 
 *******
 License
