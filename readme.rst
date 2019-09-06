@@ -1,29 +1,30 @@
 ###################
-What is CodeIgniter
+What is EMS
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+An Employee Management System is designed to simplify the process of record 
+maintenance of employees in an organisation. This system mainly encompasses 
+the process of managing employee details and their Leave Request Management.
+Managing Employee details refers to the overall process of adding a employee to
+an organasation, allocating them to certain department, assign Leave Package 
+according to their designation, editing and archiving those details whereas
+Leave Management bounds the processes employees use to request time away 
+from work and supervisors use to grant or deny leave based on organization policies.
 
 *******************
 Release Information
 *******************
 
 This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+latest stable release please visit the `EMS Downloads
+<https://github.com/RojenTmg/ems>`_ page.
 
-**************************
-Changelog and New Features
-**************************
+.. **************************
+.. Changelog and New Features
+.. **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+.. You can find a list of all changes for each release in the `user
+.. guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
 *******************
 Server Requirements
@@ -39,8 +40,59 @@ issues, as well as missing features.
 Installation
 ************
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+HOW TO OPEN XAMPP AND COPY FOLDER
+
+1. Make sure to have Xampp installed on you PC. If not, first install it.
+2. Copy the 'ems' folder in the 'C:\xampp\htdocs' folder.
+3. First open the Xampp Control Panel and start Apache and MySQL.
+
+.. image:: assets/readme/Capture1.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
+
+SETUP DATABASE AND START USING EMS 
+
+1. Open the browser and type 'http://localhost/phpmyadmin/'.
+
+.. image:: assets/readme/Capture2.PNG
+   :height: 100px
+   :width: 200px
+   :scale: 100 %
+   :align: center
+
+2. Check if there is "ems" database already created.
+ 
+3. If the "ems" database does not exists, go to step 5.
+	Or else,
+	Make sure to drop the database "ems" if it already exits.
+
+4. To drop the database, click on "ems", go to 'operations' tab and click "Drop the database (DROP)" option.
+
+
+5. Go to the browser and open '[url]/sql'. (example: localhost/ems/sql)
+--- This will create database and hash the admin's password in the database
+
+6. Open the 'ems' folder in the text editor (example: sublime).
+	 Then goto the main folder 'ems'-> then to 'application' folder-> 'config' folder -> then open 'database.php'
+
+7. In the file 'database.php', go to  line 81, or where you can see 'database' => ''.
+
+8. There, change 'database' => '' to 'database' => 'ems' .
+
+9. The setup is complete.
+
+10. Open the login page and login with the provided user id and password in the beginning.
+	The password needs to be changed to be able to use the EMS.
+
+
+*******
+Login Credentials for Admin
+*******
+
+User id: 276
+Password: Nepal@123
 
 *******
 License
@@ -49,23 +101,23 @@ License
 Please see the `license
 agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
+.. *********
+.. Resources
+.. *********
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+.. -  `User Guide <https://codeigniter.com/docs>`_
+.. -  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
+.. -  `Community Forums <http://forum.codeigniter.com/>`_
+.. -  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
+.. -  `Community Slack Channel <https://codeigniterchat.slack.com>`_
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+.. Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
+.. or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
 
 ***************
 Acknowledgement
 ***************
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+The EMS team would like to thank NAMI college, all the
+contributors to the EMS project and you, the EMS user.
 
