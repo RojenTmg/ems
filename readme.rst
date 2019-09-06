@@ -42,7 +42,8 @@ Installation
 
 **HOW TO OPEN XAMPP AND COPY FOLDER**
 
-1. Make sure to have Xampp installed on you PC. If not, first install it.
+1. | Make sure to have Xampp installed on you PC. If not, first install it.
+   | Please see `XAMPP Installation Process <https://www.wikihow.com/Install-XAMPP-for-Windows>`_ for further details. 
 2. Copy the 'ems' folder in the 'C:\xampp\htdocs' folder.
 3. First open the Xampp Control Panel and start Apache and MySQL.
 
@@ -95,7 +96,7 @@ Installation
 
 
 6. Open the ems folder in the text editor (example: sublime).
-   Then goto the main folder 'ems'-> then to 'application' folder-> 'config' folder -> then open 'database.php'
+   Then open database.php located at, ems > application > config > database.php
 
 .. image:: assets/readme/Capture5.PNG
    :height: 100px
@@ -118,9 +119,8 @@ Installation
    :width: 200px
    :align: center
 
-<img align="left" width="100" height="100" src="assets/readme/Capture7.PNG">
 
-9. The setup is complete.
+9. The setup is completed.
 
 
 10. Open the login page and login with the provided user id and password given below.
