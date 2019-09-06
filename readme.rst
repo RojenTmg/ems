@@ -40,7 +40,7 @@ issues, as well as missing features.
 Installation
 ************
 
-HOW TO OPEN XAMPP AND COPY FOLDER
+**HOW TO OPEN XAMPP AND COPY FOLDER**
 
 1. Make sure to have Xampp installed on you PC. If not, first install it.
 2. Copy the 'ems' folder in the 'C:\xampp\htdocs' folder.
@@ -54,7 +54,7 @@ HOW TO OPEN XAMPP AND COPY FOLDER
 
 
 
-/** SETUP DATABASE AND START USING EMS **/
+** SETUP DATABASE AND START USING EMS **
 
 1. Open the browser and type 'http://localhost/phpmyadmin/'.
 
@@ -64,6 +64,7 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :scale: 100 %
    :align: center
 
+
 2. Check if there is "ems" database already created.
 
 .. image:: assets/readme/Capture2.PNG
@@ -72,9 +73,11 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :scale: 100 %
    :align: center
  
-3. If the "ems" database does not exists, go to step 5.
-	Or else,
-	Make sure to drop the database "ems" if it already exits.
+
+3. If the ems database does not exists, go to step 5.
+   Or else,
+   Make sure to drop the database "ems" if it already exits.
+
 
 4. To drop the database, click on "ems", go to 'operations' tab and click "Drop the database (DROP)" option.
 
@@ -83,6 +86,7 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :width: 200px
    :scale: 100 %
    :align: center
+
 
 5. Go to the browser and open '[url]/sql'. (example: localhost/ems/sql)
 [This will create database and hash the admin's password in the database]
@@ -93,14 +97,16 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :scale: 100 %
    :align: center
 
-6. Open the 'ems' folder in the text editor (example: sublime).
-	 Then goto the main folder 'ems'-> then to 'application' folder-> 'config' folder -> then open 'database.php'
+
+6. Open the ems folder in the text editor (example: sublime).
+   Then goto the main folder 'ems'-> then to 'application' folder-> 'config' folder -> then open 'database.php'
 
 .. image:: assets/readme/Capture5.PNG
    :height: 100px
    :width: 200px
    :scale: 100 %
    :align: center
+
 
 7. In the file 'database.php', go to  line 81, or where you can see 'database' => ''.
 
@@ -110,6 +116,7 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :scale: 100 %
    :align: center
 
+
 8. There, change 'database' => '' to 'database' => 'ems' .
 
 .. image:: assets/readme/Capture7.PNG
@@ -117,6 +124,7 @@ HOW TO OPEN XAMPP AND COPY FOLDER
    :width: 200px
    :scale: 100 %
    :align: center
+
 
 9. The setup is complete.
 
